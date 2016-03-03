@@ -16,5 +16,5 @@ module.exports = {
 	CadVehicleStatus: cadVehicleStatus,
 	Department: department,
 	Session: session,
-	User: user
+	User: user,
 };

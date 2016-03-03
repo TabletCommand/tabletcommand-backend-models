@@ -15,7 +15,7 @@ var modelSchema = new Schema({
   superuser: { type: Boolean, default: false },
   salt: { type: String, default: '', select: false },
   pass: { type: String, default: '', select: false },
-  password: { type: String, default: '', select: false },
+  outsider: { type: Boolean, default: false },
   mapHidden: { type: Boolean, default: false },
   mapId: String,
   rtsAuthKey: String
