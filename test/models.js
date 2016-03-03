@@ -13,19 +13,7 @@ var config = require("../config");
 var models = require("../index");
 
 var setupMongoose = function(done){
-  if (mongoose.connection.db){
-    return done();
-  }
-
-  mongoose.connect(config.db);
-  mongoose.connection.on("open", function(){
-    return done();
-  });
-
-  mongoose.connection.on("error", function(){
-    assert.fail("Could not connect");
-    return done();
-  });
+  mongoose.connect(config.db, done);
 };
 
 var clearMongoose = function(done){
@@ -39,7 +27,19 @@ var testUser = {
   nick: "Test",
   email: "test@save.me",
   mapId: "TEST",
-  departmentId: "123"
+  departmentId: "d123"
+};
+
+var testIncidentTakeover = {
+  _id: mongoose.Types.ObjectId(),
+  incident_id: "i1234",
+  incident_name: "Test Incident",
+  departmentId: "d123",
+  old_owner: "user1",
+  new_owner: "user2",
+  owner: "",
+  status: "request",
+  request_time: 1442888560
 };
 
 describe("Models", function(){
@@ -50,6 +50,7 @@ describe("Models", function(){
     assert.isFunction(models.CadStatusMap, "Missing CadStatusMap");
     assert.isFunction(models.CadVehicle, "Missing CadVehicle");
     assert.isFunction(models.CadVehicleStatus, "Missing CadVehicleStatus");
+    assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
     assert.isFunction(models.Department, "Missing Department");
     assert.isFunction(models.Session, "Missing Session");
     assert.isFunction(models.User, "Missing User");
@@ -64,9 +65,8 @@ describe("User", function(){
   after(clearMongoose);
 
   it("is saved", function(done){
-    var user = new models.User(testUser);
-
-    return user.save(function(err, sut){
+    var item = new models.User(testUser);
+    return item.save(function(err, sut){
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testUser._id);
@@ -77,6 +77,31 @@ describe("User", function(){
       assert.isFalse(sut.active);
       assert.isFalse(sut.admin);
       assert.isFalse(sut.superuser);
+
+      return done();
+    });
+  });
+});
+
+describe("IncidentTakeover", function(){
+
+  before(setupMongoose);
+  after(clearMongoose);
+
+  it("is saved", function(done){
+    var testData = testIncidentTakeover;
+    var item = new models.IncidentTakeover(testData);
+    return item.save(function(err, sut){
+      assert.isNull(err, "Should not err");
+
+      assert.isNotNull(testData._id);
+      assert.equal(testData.departmentId, sut.departmentId);
+      assert.equal(testData.incident_id, sut.incident_id);
+      assert.equal(testData.incident_name, sut.incident_name);
+      assert.equal(testData.old_owner, sut.old_owner);
+      assert.equal(testData.new_owner, sut.new_owner);
+      assert.equal(testData.status, sut.status);
+      assert.equal(testData.request_time, sut.request_time);
 
       return done();
     });
