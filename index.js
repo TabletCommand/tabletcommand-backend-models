@@ -11,10 +11,10 @@ var session = require('./models/session');
 var user = require('./models/user');
 
 module.exports = {
-	CadStatus: cadStatus,
-	CadStatusMap: cadStatusMap,
-	CadVehicle: cadVehicle,
-	CadVehicleStatus: cadVehicleStatus,
+	CADStatus: cadStatus,
+	CADStatusMap: cadStatusMap,
+	CADVehicle: cadVehicle,
+	CADVehicleStatus: cadVehicleStatus,
 	IncidentTakeover: incidentTakeover,
 	Department: department,
 	Session: session,

@@ -46,10 +46,10 @@ describe("Models", function(){
   it("are wired", function(done){
 
     // These should match index.js
-    assert.isFunction(models.CadStatus, "Missing CadStatus");
-    assert.isFunction(models.CadStatusMap, "Missing CadStatusMap");
-    assert.isFunction(models.CadVehicle, "Missing CadVehicle");
-    assert.isFunction(models.CadVehicleStatus, "Missing CadVehicleStatus");
+    assert.isFunction(models.CADStatus, "Missing CadStatus");
+    assert.isFunction(models.CADStatusMap, "Missing CadStatusMap");
+    assert.isFunction(models.CADVehicle, "Missing CadVehicle");
+    assert.isFunction(models.CADVehicleStatus, "Missing CadVehicleStatus");
     assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
     assert.isFunction(models.Department, "Missing Department");
     assert.isFunction(models.Session, "Missing Session");

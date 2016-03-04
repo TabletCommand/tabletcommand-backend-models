@@ -18,11 +18,11 @@ var ToStatusIdSchema = new Schema({
 // so we keep the db value if no value was sent by the API/CAD
 ToStatusIdSchema.pre("save", function(next) {
   var self = this;
-  
+
   if (_.isUndefined(self.userEnabled) || _.isNull(self.userEnabled)) {
     self.userEnabled = true;
   }
-  
+
   return next();
 });
 
