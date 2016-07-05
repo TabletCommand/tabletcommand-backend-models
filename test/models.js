@@ -42,6 +42,21 @@ var testIncidentTakeover = {
   request_time: 1442888560
 };
 
+var testLocation = {
+  _id: mongoose.Types.ObjectId(),
+  departmentId: "d123",
+  userId: "542a40db20783c000000153d",
+  uuid: "92c8f732-52b7-46cc-855a-d54fddfe3172",
+  username: "E23",
+  modified_unix_date: 1426983552.49945,
+  device_type: "iPad",
+  active: true,
+  location: {
+    "longitude" : -122.304804409037,
+    "latitude" : 37.5419679656974
+  }
+};
+
 describe("Models", function(){
   it("are wired", function(done){
 
@@ -50,8 +65,9 @@ describe("Models", function(){
     assert.isFunction(models.CADStatusMap, "Missing CadStatusMap");
     assert.isFunction(models.CADVehicle, "Missing CadVehicle");
     assert.isFunction(models.CADVehicleStatus, "Missing CadVehicleStatus");
-    assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
     assert.isFunction(models.Department, "Missing Department");
+    assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
+    assert.isFunction(models.Location, "Missing Location");
     assert.isFunction(models.Session, "Missing Session");
     assert.isFunction(models.User, "Missing User");
 
@@ -102,6 +118,34 @@ describe("IncidentTakeover", function(){
       assert.equal(testData.new_owner, sut.new_owner);
       assert.equal(testData.status, sut.status);
       assert.equal(testData.request_time, sut.request_time);
+
+      return done();
+    });
+  });
+});
+
+describe("Location", function(){
+
+  before(setupMongoose);
+  after(clearMongoose);
+
+  it("is saved", function(done){
+    var testData = testLocation;
+    var item = new models.Location(testLocation);
+    return item.save(function(err, sut){
+      assert.isNull(err, "Should not err");
+
+      assert.isNotNull(testData._id);
+      assert.equal(testData.departmentId, sut.departmentId);
+      assert.equal(testData.userId, sut.userId);
+      assert.equal(testData.uuid, sut.uuid);
+      assert.equal(testData.username, sut.username);
+      assert.equal(testData.modified_unix_date, sut.modified_unix_date);
+      assert.equal(testData.device_type, sut.device_type);
+      assert.equal(testData.request_time, sut.request_time);
+      assert.equal(testData.active, sut.active);
+      assert.equal(testData.location.longitude, sut.location.longitude);
+      assert.equal(testData.location.latitude, sut.location.latitude);
 
       return done();
     });

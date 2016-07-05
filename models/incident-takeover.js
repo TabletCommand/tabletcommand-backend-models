@@ -16,7 +16,7 @@ var modelSchema = new Schema({
   owner: { type: String, default: '' },
   status: { type: String, required: true, default: "request" },
 
-  request_time: { type: Number, reqyured:true, default: 0, min: 1 },
+  request_time: { type: Number, required:true, default: 0, min: 1 },
   last_response_time: { type: Number, default: 0 },
   response_time: { type: Number, default: 0 }
 },
