@@ -7,6 +7,10 @@
   },
   "author": "Marius Ursache <marius@simple-track.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bamse16/tabletcommand-backend-models.git"
+  },
   "dependencies": {
     "debug": "~2.2.0",
     "lodash": "^3.10.1",
