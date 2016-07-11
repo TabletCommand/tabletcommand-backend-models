@@ -18,6 +18,7 @@ describe("Models", function(){
     assert.isFunction(models.Location, "Missing Location");
     assert.isFunction(models.Session, "Missing Session");
     assert.isFunction(models.User, "Missing User");
+    assert.isFunction(models.UserRegistration, "Missing User Registration");
 
     return done();
   });

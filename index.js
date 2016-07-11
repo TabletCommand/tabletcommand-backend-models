@@ -10,6 +10,7 @@ var incidentTakeover = require('./models/incident-takeover');
 var location = require('./models/location');
 var session = require('./models/session');
 var user = require('./models/user');
+var userRegistration = require('./models/user-registration');
 
 module.exports = {
 	CADStatus: cadStatus,
@@ -21,4 +22,5 @@ module.exports = {
 	Location: location,
 	Session: session,
 	User: user,
+	UserRegistration: userRegistration,
 };
