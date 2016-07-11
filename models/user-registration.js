@@ -5,7 +5,6 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
-  _id: { type: Schema.ObjectId },
   email: { type: String, default: '', required: true, index: true },
   name: { type: String, default: '', required: true },
   department: { type: String, default: '', required: true },

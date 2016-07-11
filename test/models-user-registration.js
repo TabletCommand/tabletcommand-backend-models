@@ -23,7 +23,6 @@ var clearMongoose = function(done){
 };
 
 var testItem = {
-  _id: mongoose.Types.ObjectId(),
   email: "test@email.com",
   name: "John Waters",
   department: "New York City, NY",
