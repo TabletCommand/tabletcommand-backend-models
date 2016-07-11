@@ -28,7 +28,7 @@ var testItem = {
   name: "John Waters",
   department: "New York City, NY",
   title: "Mr",
-  modified_unix_date: 1426983552.49945,
+  modifiedDate: 1426983552.49945,
   status: "registered"
 };
 
@@ -48,7 +48,7 @@ describe("UserRegistration", function(){
       assert.equal(testData.name, sut.name);
       assert.equal(testData.department, sut.department);
       assert.equal(testData.title, sut.title);
-      assert.equal(testData.modified_unix_date, sut.modified_unix_date);
+      assert.equal(testData.modifiedDate, sut.modifiedDate);
       assert.equal(testData.status, sut.status);
 
       return done();

@@ -11,7 +11,7 @@ var modelSchema = new Schema({
   department: { type: String, default: '', required: true },
   title: { type: String, default: '' },
   status: { type: String, default: '' },
-  modified_unix_date: { type: Number, required: true, default: 0, min: 1 },
+  modifiedDate: { type: Number, required: true, default: 0, min: 1 },
 },
 {
   collection: 'massive_user_registration'
