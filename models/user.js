@@ -5,9 +5,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
-  nick: String,
-  email: String,
-  name: String,
+  nick: { type: String, default: '' },
+  email: { type: String, default: '' },
+  name: { type: String, default: '' },
   active: { type: Boolean, default: false },
   departmentId: { type: String, default: '', required: true, index: true },
   admin: { type: Boolean, default: false },
@@ -16,8 +16,10 @@ var modelSchema = new Schema({
   pass: { type: String, default: '', select: false },
   outsider: { type: Boolean, default: false },
   mapHidden: { type: Boolean, default: false },
-  mapId: String,
-  rtsAuthKey: String
+  mapId: { type: String, default: '' },
+  rtsAuthKey: { type: String, default: '' },
+  token: { type: String, default: '' },
+  tokenExpireDate: { type: Number, default: 0 }
 },
 {
   collection: 'sys_user'
