@@ -9,6 +9,8 @@ var modelSchema = new Schema({
   email: { type: String, default: '', index: true },
   name: { type: String, default: '' },
   departmentId: { type: String, default: '', required: true, index: true },
+  modified_date: { type: Date, default: new Date() },
+  when: { type: Date },
 
   active: { type: Boolean, default: false },
   admin: { type: Boolean, default: false },
