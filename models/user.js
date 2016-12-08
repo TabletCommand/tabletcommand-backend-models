@@ -21,7 +21,7 @@ var modelSchema = new Schema({
   salt: { type: String, default: '', select: false },
   pass: { type: String, default: '', select: false },
 
-  mapHidden: { type: Boolean, default: false },
+  mapHidden: { type: Boolean, default: true },
   mapId: { type: String, default: '' },
 
   rtsAuthKey: { type: String, default: '' },
