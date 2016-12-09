@@ -43,7 +43,7 @@ var modelSchema = new Schema({
 
   // CAD Features
   cadMonitorEnabled: { type: Boolean, default: false },
-  cadMonitorMinutes: { type: Number, default: 120 },
+  cadMonitorMinutes: { type: Number, default: 30 },
   cadBidirectionalEnabled: { type: Boolean, default: false },
   heartbeatEnabled: { type: Boolean, default: false },
   pushEnabled: { type: Boolean, default: true },
@@ -64,6 +64,7 @@ var modelSchema = new Schema({
 
   // Signup
   signupKey: { type: String, default: '' },
+  signupDomains: { type: [String], default: ["tabletcommand.com", "simple-track.com"]}
 },
 {
   collection: 'massive_admin'
