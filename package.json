@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/*"
