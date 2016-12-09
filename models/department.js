@@ -64,7 +64,7 @@ var modelSchema = new Schema({
 
   // Signup
   signupKey: { type: String, default: '' },
-  signupDomains: { type: [String], default: ["tabletcommand.com", "simple-track.com"]}
+  signupDomains: { type: [String], default: []}
 },
 {
   collection: 'massive_admin'
