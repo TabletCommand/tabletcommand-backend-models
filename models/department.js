@@ -36,10 +36,12 @@ var modelSchema = new Schema({
   contact_name: { type: String, default: '' },
   contact_phone: { type: String, default: '' },
   contact_email: { type: String, default: '' },
+  modified_unix_date: { type: Number, default: new Date().valueOf()/1000.0 },
 
   active: { type: Boolean, default: false },
   pager_number: { type: String, default: '' },
   apikey: { type: String, default: '' },
+  cadEmailUsername: { type: String, default: '' },
 
   // CAD Features
   cadMonitorEnabled: { type: Boolean, default: false },
