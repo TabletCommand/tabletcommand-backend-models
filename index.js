@@ -6,6 +6,7 @@ var cadStatusMap = require('./models/cad-status-map');
 var cadVehicle = require('./models/cad-vehicle');
 var cadVehicleStatus = require('./models/cad-vehicle-status');
 var department = require('./models/department');
+var deviceMapping = require('./models/device-mapping');
 var incidentTakeover = require('./models/incident-takeover');
 var location = require('./models/location');
 var rateLimit = require('./models/rate-limit');
@@ -19,6 +20,7 @@ module.exports = {
 	CADVehicle: cadVehicle,
 	CADVehicleStatus: cadVehicleStatus,
 	Department: department,
+	DeviceMapping: deviceMapping,
 	IncidentTakeover: incidentTakeover,
 	Location: location,
 	RateLimit: rateLimit,
