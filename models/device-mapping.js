@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var modelSchema = new Schema({
   _id: { type: Schema.ObjectId },
   departmentId: String,
+  userId: { type: String, default: "" },
 	deviceType: { type: String, default: "truck" },
   mapId: { type: String, default: "" },
   deviceId: { type: String, default: "" },
