@@ -11,6 +11,7 @@ var modelSchema = new Schema({
   departmentId: { type: String, default: '', required: true, index: true },
   modified_date: { type: Date, default: new Date() },
   when: { type: Date },
+  agency: { type: String, default: '' },
 
   active: { type: Boolean, default: false },
   admin: { type: Boolean, default: false },
