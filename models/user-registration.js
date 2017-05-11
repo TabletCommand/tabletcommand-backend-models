@@ -6,27 +6,27 @@ var Schema = mongoose.Schema;
 var modelSchema = new Schema({
   email: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
   name: {
     type: String,
-    default: '',
+    default: "",
     required: true
   },
   department: {
     type: String,
-    default: '',
+    default: "",
     required: true
   },
   title: {
     type: String,
-    default: ''
+    default: ""
   },
   status: {
     type: String,
-    default: ''
+    default: ""
   },
   modifiedDate: {
     type: Number,
@@ -48,7 +48,7 @@ var modelSchema = new Schema({
   },
   stage: {
     type: String,
-    default: ''
+    default: ""
   },
   firstIncidentUnixTime: {
     type: Number,
@@ -56,14 +56,14 @@ var modelSchema = new Schema({
   },
   lastIncidentLocation: {
     type: String,
-    default: ''
+    default: ""
   },
   lastIncidentUnixTime: {
     type: Number,
     default: 0
   }
 }, {
-  collection: 'massive_user_registration'
+  collection: "massive_user_registration"
 });
 
-module.exports = mongoose.model('UserRegistration', modelSchema);
+module.exports = mongoose.model("UserRegistration", modelSchema);

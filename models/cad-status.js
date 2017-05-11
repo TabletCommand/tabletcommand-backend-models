@@ -1,6 +1,6 @@
 "use strict";
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
@@ -10,7 +10,7 @@ var modelSchema = new Schema({
   },
   departmentId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
@@ -27,18 +27,18 @@ var modelSchema = new Schema({
   },
   code: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
   },
   status: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
-  },
+  }
 }, {
-  collection: 'massive_cad_status'
+  collection: "massive_cad_status"
 });
 
-module.exports = mongoose.model('CADStatus', modelSchema);
+module.exports = mongoose.model("CADStatus", modelSchema);

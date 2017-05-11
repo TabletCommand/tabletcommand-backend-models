@@ -1,7 +1,7 @@
 "use strict";
 
-var _ = require('lodash');
-var mongoose = require('mongoose');
+var _ = require("lodash");
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ToStatusIdSchema = new Schema({
@@ -13,7 +13,7 @@ var ToStatusIdSchema = new Schema({
   },
   userEnabled: {
     type: Boolean
-  },
+  }
 }, {
   _id: false
 });
@@ -34,7 +34,7 @@ ToStatusIdSchema.pre("save", function(next) {
 var ModelSchema = new Schema({
   departmentId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
@@ -52,9 +52,9 @@ var ModelSchema = new Schema({
   toStatusIds: {
     type: [ToStatusIdSchema],
     required: true
-  },
+  }
 }, {
-  collection: 'massive_cad_status_map'
+  collection: "massive_cad_status_map"
 });
 
-module.exports = mongoose.model('CADStatusMap', ModelSchema);
+module.exports = mongoose.model("CADStatusMap", ModelSchema);

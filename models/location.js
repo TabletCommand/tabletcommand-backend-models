@@ -9,19 +9,19 @@ var modelSchema = new Schema({
   },
   departmentId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
   userId: {
     type: String,
-    default: '',
+    default: "",
     required: true
   },
   uuid: String,
   username: {
     type: String,
-    default: '',
+    default: "",
     required: true
   },
   device_type: {
@@ -52,7 +52,7 @@ var modelSchema = new Schema({
     }
   }
 }, {
-  collection: 'massive_location'
+  collection: "massive_location"
 });
 
-module.exports = mongoose.model('Location', modelSchema);
+module.exports = mongoose.model("Location", modelSchema);

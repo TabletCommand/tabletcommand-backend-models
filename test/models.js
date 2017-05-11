@@ -1,12 +1,10 @@
 "use strict";
 
 var assert = require("chai").assert;
-
 var models = require("../index");
 
 describe("Models", function() {
   it("are wired", function(done) {
-
     // These should match index.js
     assert.isFunction(models.CADStatus, "Missing CadStatus");
     assert.isFunction(models.CADStatusMap, "Missing CadStatusMap");

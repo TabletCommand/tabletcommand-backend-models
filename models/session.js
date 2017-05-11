@@ -1,8 +1,8 @@
 "use strict";
 
-var uuid = require('uuid');
+var uuid = require("uuid");
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
@@ -22,7 +22,7 @@ var modelSchema = new Schema({
     default: uuid.v4
   }
 }, {
-  collection: 'sys_login'
+  collection: "sys_login"
 });
 
-module.exports = mongoose.model('Session', modelSchema);
+module.exports = mongoose.model("Session", modelSchema);

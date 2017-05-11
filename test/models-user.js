@@ -1,7 +1,7 @@
 "use strict";
 
-if (process.env.NODE_ENV !== 'test') {
-  console.log('NODE_ENV=' + process.env.NODE_ENV + ' which might cause problems.');
+if (process.env.NODE_ENV !== "test") {
+  console.log(`NODE_ENV=${process.env.NODE_ENV} which might cause problems.`);
   process.exit(1);
 }
 
@@ -30,7 +30,6 @@ var testUser = {
 };
 
 describe("User", function() {
-
   before(setupMongoose);
   after(clearMongoose);
 

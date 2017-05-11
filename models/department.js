@@ -1,20 +1,20 @@
 "use strict";
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var EsriToken = new Schema({
   access_token: {
     type: String,
-    default: ''
+    default: ""
   },
   refresh_token: {
     type: String,
-    default: ''
+    default: ""
   },
   username: {
     type: String,
-    default: ''
+    default: ""
   },
   ssl: {
     type: Boolean,
@@ -23,7 +23,7 @@ var EsriToken = new Schema({
   expires_in: {
     type: Number,
     default: 1800
-  },
+  }
 }, {
   _id: false
 });
@@ -31,12 +31,12 @@ var EsriToken = new Schema({
 var IncidentType = new Schema({
   name: {
     type: String,
-    default: 'Any'
+    default: "Any"
   },
   value: {
     type: String,
-    default: 'any'
-  },
+    default: "any"
+  }
 }, {
   _id: false
 });
@@ -47,36 +47,36 @@ var modelSchema = new Schema({
   },
   uuid: {
     type: String,
-    default: ''
+    default: ""
   },
 
   department: {
     type: String,
-    default: ''
+    default: ""
   },
   fdid: {
     type: String,
-    default: ''
+    default: ""
   },
   city: {
     type: String,
-    default: ''
+    default: ""
   },
   state: {
     type: String,
-    default: ''
+    default: ""
   },
   contact_name: {
     type: String,
-    default: ''
+    default: ""
   },
   contact_phone: {
     type: String,
-    default: ''
+    default: ""
   },
   contact_email: {
     type: String,
-    default: ''
+    default: ""
   },
   modified_unix_date: {
     type: Number,
@@ -89,15 +89,15 @@ var modelSchema = new Schema({
   },
   pager_number: {
     type: String,
-    default: ''
+    default: ""
   },
   apikey: {
     type: String,
-    default: ''
+    default: ""
   },
   cadEmailUsername: {
     type: String,
-    default: ''
+    default: ""
   },
 
   // CAD Features
@@ -129,11 +129,11 @@ var modelSchema = new Schema({
   },
   rtsChannelPrefix: {
     type: String,
-    default: ''
+    default: ""
   },
   rtsAuthKey: {
     type: String,
-    default: ''
+    default: ""
   },
   esriTokenDateExpiry: {
     type: Number,
@@ -146,11 +146,11 @@ var modelSchema = new Schema({
   // Custom Button
   customWebUrl: {
     type: String,
-    default: ''
+    default: ""
   },
   customWebName: {
     type: String,
-    default: ''
+    default: ""
   },
 
   // Incident Type APN
@@ -161,14 +161,14 @@ var modelSchema = new Schema({
   // Signup
   signupKey: {
     type: String,
-    default: ''
+    default: ""
   },
   signupDomains: {
     type: [String],
     default: []
   }
 }, {
-  collection: 'massive_admin'
+  collection: "massive_admin"
 });
 
-module.exports = mongoose.model('Department', modelSchema);
+module.exports = mongoose.model("Department", modelSchema);

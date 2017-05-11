@@ -1,26 +1,26 @@
 "use strict";
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
   nick: {
     type: String,
-    default: '',
+    default: "",
     index: true
   },
   email: {
     type: String,
-    default: '',
+    default: "",
     index: true
   },
   name: {
     type: String,
-    default: ''
+    default: ""
   },
   departmentId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
@@ -33,7 +33,7 @@ var modelSchema = new Schema({
   },
   agency: {
     type: String,
-    default: ''
+    default: ""
   },
 
   active: {
@@ -60,12 +60,12 @@ var modelSchema = new Schema({
 
   salt: {
     type: String,
-    default: '',
+    default: "",
     select: false
   },
   pass: {
     type: String,
-    default: '',
+    default: "",
     select: false
   },
 
@@ -75,23 +75,23 @@ var modelSchema = new Schema({
   },
   mapId: {
     type: String,
-    default: ''
+    default: ""
   },
 
   rtsAuthKey: {
     type: String,
-    default: ''
+    default: ""
   },
   token: {
     type: String,
-    default: ''
+    default: ""
   },
   tokenExpireDate: {
     type: Number,
     default: 0
   }
 }, {
-  collection: 'sys_user'
+  collection: "sys_user"
 });
 
-module.exports = mongoose.model('User', modelSchema);
+module.exports = mongoose.model("User", modelSchema);

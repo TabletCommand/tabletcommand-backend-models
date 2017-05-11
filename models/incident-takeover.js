@@ -9,7 +9,7 @@ var modelSchema = new Schema({
   },
   departmentId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
@@ -33,7 +33,7 @@ var modelSchema = new Schema({
   },
   owner: {
     type: String,
-    default: ''
+    default: ""
   },
   status: {
     type: String,
@@ -56,7 +56,7 @@ var modelSchema = new Schema({
     default: 0
   }
 }, {
-  collection: 'massive_incident_takeover'
+  collection: "massive_incident_takeover"
 });
 
-module.exports = mongoose.model('IncidentTakeover', modelSchema);
+module.exports = mongoose.model("IncidentTakeover", modelSchema);

@@ -1,6 +1,6 @@
 "use strict";
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
@@ -10,19 +10,19 @@ var modelSchema = new Schema({
   },
   departmentId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
   vehicleId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
   },
   radioName: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
   },
@@ -36,13 +36,13 @@ var modelSchema = new Schema({
   },
   status: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
   },
   statusCode: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
   },
@@ -57,10 +57,10 @@ var modelSchema = new Schema({
   },
   incidentNumber: {
     type: String,
-    default: ''
-  },
+    default: ""
+  }
 }, {
-  collection: 'massive_cad_vehicle_status'
+  collection: "massive_cad_vehicle_status"
 });
 
-module.exports = mongoose.model('CADVehicleStatus', modelSchema);
+module.exports = mongoose.model("CADVehicleStatus", modelSchema);

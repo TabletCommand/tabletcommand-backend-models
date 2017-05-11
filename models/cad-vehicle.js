@@ -1,6 +1,6 @@
 "use strict";
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
@@ -10,7 +10,7 @@ var modelSchema = new Schema({
   },
   departmentId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     index: true
   },
@@ -21,18 +21,18 @@ var modelSchema = new Schema({
   },
   vehicleId: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
   },
   radioName: {
     type: String,
-    default: '',
+    default: "",
     required: true,
     minlength: 1
-  },
+  }
 }, {
-  collection: 'massive_cad_vehicle'
+  collection: "massive_cad_vehicle"
 });
 
-module.exports = mongoose.model('CADVehicle', modelSchema);
+module.exports = mongoose.model("CADVehicle", modelSchema);
