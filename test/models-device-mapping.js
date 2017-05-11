@@ -1,9 +1,8 @@
-/* jslint node: true */
 "use strict";
 
-if ( process.env.NODE_ENV !== 'test' ) {
-    console.log('NODE_ENV=' + process.env.NODE_ENV + ' which might cause problems.');
-    process.exit(1);
+if (process.env.NODE_ENV !== 'test') {
+  console.log('NODE_ENV=' + process.env.NODE_ENV + ' which might cause problems.');
+  process.exit(1);
 }
 
 var assert = require("chai").assert;
@@ -12,12 +11,12 @@ var mongoose = require("mongoose");
 var config = require("../config");
 var models = require("../index");
 
-var setupMongoose = function(done){
+var setupMongoose = function(done) {
   mongoose.connect(config.db, done);
 };
 
-var clearMongoose = function(done){
-  mongoose.connection.db.dropDatabase(function(){
+var clearMongoose = function(done) {
+  mongoose.connection.db.dropDatabase(function() {
     mongoose.connection.close(done);
   });
 };
@@ -34,14 +33,14 @@ var testItem = {
   remoteAddress: "1.2.3.4"
 };
 
-describe("DeviceMapping", function(){
+describe("DeviceMapping", function() {
 
   before(setupMongoose);
   after(clearMongoose);
 
-  it("is saved", function(done){
+  it("is saved", function(done) {
     var item = new models.DeviceMapping(testItem);
-    return item.save(function(err, sut){
+    return item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testItem._id);

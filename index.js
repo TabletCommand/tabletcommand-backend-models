@@ -1,4 +1,3 @@
-/* jslint node: true */
 "use strict";
 
 var cadStatus = require('./models/cad-status');
