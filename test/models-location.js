@@ -44,7 +44,7 @@ describe("Location", function() {
   it("is saved", function(done) {
     var testData = testLocation;
     var item = new models.Location(testLocation);
-    return item.save(function(err, sut) {
+    item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testData._id);

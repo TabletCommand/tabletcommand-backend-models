@@ -36,7 +36,7 @@ describe("User", function() {
 
   it("is saved", function(done) {
     var item = new models.User(testUser);
-    return item.save(function(err, sut) {
+    item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testUser._id);

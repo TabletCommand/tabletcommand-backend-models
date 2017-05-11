@@ -45,7 +45,7 @@ describe("UserRegistration", function() {
   it("is saved", function(done) {
     var testData = testItem;
     var item = new models.UserRegistration(testItem);
-    return item.save(function(err, sut) {
+    item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testData._id);

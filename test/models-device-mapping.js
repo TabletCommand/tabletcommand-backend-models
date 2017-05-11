@@ -40,7 +40,7 @@ describe("DeviceMapping", function() {
 
   it("is saved", function(done) {
     var item = new models.DeviceMapping(testItem);
-    return item.save(function(err, sut) {
+    item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testItem._id);

@@ -41,7 +41,7 @@ describe("IncidentTakeover", function() {
   it("is saved", function(done) {
     var testData = testIncidentTakeover;
     var item = new models.IncidentTakeover(testData);
-    return item.save(function(err, sut) {
+    item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testData._id);
