@@ -2,6 +2,7 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var uuid = require("uuid");
 
 var modelSchema = new Schema({
   _id: {
@@ -18,7 +19,10 @@ var modelSchema = new Schema({
     default: "",
     required: true
   },
-  uuid: String,
+  uuid: {
+    type: String,
+    default: uuid.v4
+  },
   username: {
     type: String,
     default: "",

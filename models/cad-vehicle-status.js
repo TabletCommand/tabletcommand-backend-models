@@ -2,11 +2,13 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var uuid = require("uuid");
 
 var modelSchema = new Schema({
   uuid: {
     type: String,
-    index: true
+    index: true,
+    default: uuid.v4
   },
   departmentId: {
     type: String,

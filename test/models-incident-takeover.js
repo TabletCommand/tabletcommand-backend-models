@@ -52,6 +52,7 @@ describe("IncidentTakeover", function() {
       assert.equal(testData.new_owner, sut.new_owner);
       assert.equal(testData.status, sut.status);
       assert.equal(testData.request_time, sut.request_time);
+      assert.isTrue(sut.uuid !== "");
 
       return done();
     });

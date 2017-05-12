@@ -58,6 +58,7 @@ describe("Location", function() {
       assert.equal(testData.active, sut.active);
       assert.equal(testData.location.longitude, sut.location.longitude);
       assert.equal(testData.location.latitude, sut.location.latitude);
+      assert.isTrue(sut.uuid !== "");
 
       return done();
     });

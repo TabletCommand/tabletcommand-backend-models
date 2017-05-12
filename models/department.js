@@ -2,6 +2,7 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var uuid = require("uuid");
 
 var EsriToken = new Schema({
   access_token: {
@@ -47,7 +48,7 @@ var modelSchema = new Schema({
   },
   uuid: {
     type: String,
-    default: ""
+    default: uuid.v4
   },
 
   department: {
