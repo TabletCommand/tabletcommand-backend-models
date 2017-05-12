@@ -12,9 +12,10 @@
     "url": "git://github.com/bamse16/tabletcommand-backend-models.git"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "debug": "^2.3.3",
     "lodash": "^4.17.2",
-    "mongoose": "^4.1.10",
+    "mongoose": "^4.9.8",
     "uuid": "~3.0.1"
   },
   "devDependencies": {

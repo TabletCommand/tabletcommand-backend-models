@@ -12,6 +12,7 @@ var config = require("../config");
 var models = require("../index");
 
 var setupMongoose = function(done) {
+  mongoose.Promise = require("bluebird");
   mongoose.connect(config.db, done);
 };
 
