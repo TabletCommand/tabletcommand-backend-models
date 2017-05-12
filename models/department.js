@@ -126,7 +126,7 @@ var modelSchema = new Schema({
   // RTS
   rtsEnabled: {
     type: Boolean,
-    default: false
+    default: true
   },
   rtsChannelPrefix: {
     type: String,
@@ -157,6 +157,11 @@ var modelSchema = new Schema({
   // Incident Type APN
   incidentTypes: {
     type: [IncidentType]
+  },
+
+  agency: {
+    type: [String],
+    default: []
   },
 
   // Signup

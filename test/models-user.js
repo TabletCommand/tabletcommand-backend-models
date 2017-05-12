@@ -28,7 +28,8 @@ var testUser = {
   email: "test@save.me",
   mapId: "TEST",
   departmentId: "d123",
-  isPro: true
+  isPro: true,
+  agency: "ZMZM"
 };
 
 describe("User", function() {
@@ -41,14 +42,15 @@ describe("User", function() {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testUser._id);
-      assert.equal(testUser.nick, sut.nick);
-      assert.equal(testUser.email, sut.email);
-      assert.equal(testUser.mapId, sut.mapId);
-      assert.equal(testUser.departmentId, sut.departmentId);
+      assert.equal(sut.nick, testUser.nick);
+      assert.equal(sut.email, testUser.email);
+      assert.equal(sut.mapId, testUser.mapId);
+      assert.equal(sut.departmentId, testUser.departmentId);
       assert.isFalse(sut.active);
       assert.isFalse(sut.admin);
       assert.isFalse(sut.superuser);
       assert.isTrue(sut.isPro);
+      assert.equal(sut.agency, testUser.agency);
 
       return done();
     });
