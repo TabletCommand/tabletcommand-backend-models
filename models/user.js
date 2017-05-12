@@ -48,6 +48,10 @@ var modelSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isPro: {
+    type: Boolean,
+    default: false
+  },
   outsider: {
     type: Boolean,
     default: false

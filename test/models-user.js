@@ -27,7 +27,8 @@ var testUser = {
   nick: "Test",
   email: "test@save.me",
   mapId: "TEST",
-  departmentId: "d123"
+  departmentId: "d123",
+  isPro: true
 };
 
 describe("User", function() {
@@ -47,6 +48,7 @@ describe("User", function() {
       assert.isFalse(sut.active);
       assert.isFalse(sut.admin);
       assert.isFalse(sut.superuser);
+      assert.isTrue(sut.isPro);
 
       return done();
     });
