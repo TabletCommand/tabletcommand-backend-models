@@ -19,5 +19,6 @@ var modelSchema = new Schema({
 }, {
   collection: "massive_rate_limit"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("RateLimit", modelSchema);

@@ -176,5 +176,6 @@ var modelSchema = new Schema({
 }, {
   collection: "massive_admin"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("Department", modelSchema);

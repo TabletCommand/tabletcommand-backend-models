@@ -62,5 +62,6 @@ var modelSchema = new Schema({
 }, {
   collection: "massive_incident_takeover"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("IncidentTakeover", modelSchema);

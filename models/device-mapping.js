@@ -47,5 +47,6 @@ var modelSchema = new Schema({
 }, {
   collection: "massive_device_mapping"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("DeviceMapping", modelSchema);

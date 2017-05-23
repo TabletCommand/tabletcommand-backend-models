@@ -97,5 +97,6 @@ var modelSchema = new Schema({
 }, {
   collection: "sys_user"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("User", modelSchema);

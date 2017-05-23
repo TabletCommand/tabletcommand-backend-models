@@ -23,5 +23,6 @@ var modelSchema = new Schema({
 }, {
   collection: "sys_login"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("Session", modelSchema);

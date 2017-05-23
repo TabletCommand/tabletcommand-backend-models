@@ -31,7 +31,7 @@ ToStatusIdSchema.pre("save", function(next) {
 });
 
 // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
-var ModelSchema = new Schema({
+var modelSchema = new Schema({
   departmentId: {
     type: String,
     default: "",
@@ -56,5 +56,6 @@ var ModelSchema = new Schema({
 }, {
   collection: "massive_cad_status_map"
 });
+modelSchema.set("autoIndex", false);
 
-module.exports = mongoose.model("CADStatusMap", ModelSchema);
+module.exports = mongoose.model("CADStatusMap", modelSchema);

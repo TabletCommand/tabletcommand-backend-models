@@ -64,5 +64,6 @@ var modelSchema = new Schema({
 }, {
   collection: "massive_cad_vehicle_status"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("CADVehicleStatus", modelSchema);

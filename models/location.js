@@ -58,5 +58,6 @@ var modelSchema = new Schema({
 }, {
   collection: "massive_location"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("Location", modelSchema);

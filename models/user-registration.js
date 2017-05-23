@@ -65,5 +65,6 @@ var modelSchema = new Schema({
 }, {
   collection: "massive_user_registration"
 });
+modelSchema.set("autoIndex", false);
 
 module.exports = mongoose.model("UserRegistration", modelSchema);
