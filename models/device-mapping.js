@@ -2,6 +2,7 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var uuid = require("uuid");
 
 var modelSchema = new Schema({
   _id: {
@@ -43,6 +44,10 @@ var modelSchema = new Schema({
   remoteAddress: {
     type: String,
     default: "0.0.0.0"
+  },
+  uuid: {
+    type: String,
+    default: uuid.v4
   }
 }, {
   collection: "massive_device_mapping"
