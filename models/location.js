@@ -42,6 +42,14 @@ var modelSchema = new Schema({
     default: 0,
     min: 1
   },
+  version: {
+    type: Number,
+    default: 2
+  },
+  session: {
+    type: String,
+    default: ""
+  },
 
   location: {
     longitude: {
