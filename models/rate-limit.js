@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 
 var modelSchema = new Schema({
   _id: {
-    type: Schema.ObjectId
+    type: Schema.ObjectId,
+    auto: true
   },
   username: String,
   modified_unix_date: {

@@ -6,9 +6,13 @@ var uuid = require("uuid");
 
 var modelSchema = new Schema({
   _id: {
-    type: Schema.ObjectId
+    type: Schema.ObjectId,
+    auto: true
   },
-  departmentId: String,
+  departmentId: {
+    type: String,
+    default: ""
+  },
   userId: {
     type: String,
     default: ""

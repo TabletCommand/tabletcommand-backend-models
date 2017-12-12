@@ -44,7 +44,8 @@ var IncidentType = new Schema({
 
 var modelSchema = new Schema({
   _id: {
-    type: Schema.ObjectId
+    type: Schema.ObjectId,
+    auto: true
   },
   uuid: {
     type: String,
