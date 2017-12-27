@@ -22,7 +22,7 @@ var modelSchema = new Schema({
   },
   source: {
     type: String,
-    default: "browser" // Options: browser, ipad, iphone, android
+    default: "" // Options: browser, ipad, iphone, android
   }
 }, {
   collection: "sys_login"
