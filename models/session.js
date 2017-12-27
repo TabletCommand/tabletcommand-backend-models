@@ -19,6 +19,10 @@ var modelSchema = new Schema({
   token: {
     type: String,
     default: uuid.v4
+  },
+  source: {
+    type: String,
+    default: "browser" // Options: browser, ipad, iphone, android
   }
 }, {
   collection: "sys_login"
