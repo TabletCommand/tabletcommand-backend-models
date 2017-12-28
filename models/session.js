@@ -23,6 +23,26 @@ var modelSchema = new Schema({
   source: {
     type: String,
     default: "" // Options: browser, ipad, iphone, android
+  },
+  departmentId: {
+    type: String,
+    default: "",
+    required: true,
+    index: true
+  },
+  why: {
+    type: String,
+    default: "password"
+  },
+  when: String,
+  ended: String,
+  userAgent: {
+    type: String,
+    default: ""
+  },
+  remoteAddress: {
+    type: String,
+    default: ""
   }
 }, {
   collection: "sys_login"
