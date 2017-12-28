@@ -49,4 +49,9 @@ var modelSchema = new Schema({
 });
 modelSchema.set("autoIndex", false);
 
+modelSchema.pre("save", function(next) {
+  this._id = this.get("token"); // Copy _id from token
+  next();
+});
+
 module.exports = mongoose.model("Session", modelSchema);
