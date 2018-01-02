@@ -4,6 +4,11 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
 
+function requiredButAllowEmptyString() {
+  // Workaround to set required, and allow empty id
+  return typeof this.myField === "string";
+}
+
 var modelSchema = new Schema({
   _id: {
     type: String,
@@ -27,7 +32,7 @@ var modelSchema = new Schema({
   departmentId: {
     type: String,
     default: "",
-    required: true,
+    required: requiredButAllowEmptyString,
     index: true
   },
   why: {
