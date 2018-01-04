@@ -48,6 +48,10 @@ var modelSchema = new Schema({
   remoteAddress: {
     type: String,
     default: ""
+  },
+  deviceId: {
+    type: String,
+    default: ""
   }
 }, {
   collection: "sys_login"
