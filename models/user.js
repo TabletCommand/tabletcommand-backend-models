@@ -3,6 +3,19 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+var vehicleSchema = new Schema({
+  radioName: {
+    type: String,
+    default: ""
+  },
+  vehicleId: {
+    type: String,
+    default: ""
+  }
+}, {
+  _id: false
+});
+
 var modelSchema = new Schema({
   nick: {
     type: String,
@@ -80,6 +93,10 @@ var modelSchema = new Schema({
   mapId: {
     type: String,
     default: ""
+  },
+  vehicle: {
+    type: vehicleSchema,
+    default: null
   },
 
   rtsAuthKey: {
