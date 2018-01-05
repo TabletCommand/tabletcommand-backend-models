@@ -179,4 +179,16 @@ var modelSchema = new Schema({
 });
 modelSchema.set("autoIndex", false);
 
+modelSchema.set("toJSON", {
+  virtuals: true,
+  versionKey: false,
+  transform: function(doc, ret) {
+    ret.id = ret._id;
+  }
+});
+
+modelSchema.virtual("id").get(function() {
+  return this._id.toHexString();
+});
+
 module.exports = mongoose.model("Department", modelSchema);

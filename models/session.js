@@ -63,4 +63,16 @@ modelSchema.pre("save", function(next) {
   next();
 });
 
+modelSchema.set("toJSON", {
+  virtuals: true,
+  versionKey: false,
+  transform: function(doc, ret) {
+    ret.id = ret._id;
+  }
+});
+
+modelSchema.virtual("id").get(function() {
+  return this._id.toHexString();
+});
+
 module.exports = mongoose.model("Session", modelSchema);
