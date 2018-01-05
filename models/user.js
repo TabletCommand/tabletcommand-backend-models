@@ -98,6 +98,14 @@ var modelSchema = new Schema({
     type: vehicleSchema,
     default: null
   },
+  sessionCountiPhone: {
+    type: Number,
+    default: 1
+  },
+  sessionCountiPad: {
+    type: Number,
+    default: 1
+  },
 
   rtsAuthKey: {
     type: String,
