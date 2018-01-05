@@ -72,7 +72,7 @@ modelSchema.set("toJSON", {
 });
 
 modelSchema.virtual("id").get(function() {
-  return this._id.toHexString();
+  return this._id.toString();
 });
 
 module.exports = mongoose.model("Session", modelSchema);
