@@ -8,6 +8,7 @@ var department = require("./models/department");
 var deviceMapping = require("./models/device-mapping");
 var incidentTakeover = require("./models/incident-takeover");
 var location = require("./models/location");
+var managedIncident = require("./models/managed-incident");
 var rateLimit = require("./models/rate-limit");
 var session = require("./models/session");
 var user = require("./models/user");
@@ -22,6 +23,7 @@ module.exports = {
   DeviceMapping: deviceMapping,
   IncidentTakeover: incidentTakeover,
   Location: location,
+  ManagedIncident: managedIncident,
   RateLimit: rateLimit,
   Session: session,
   User: user,

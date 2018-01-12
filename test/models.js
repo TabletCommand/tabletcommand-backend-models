@@ -14,6 +14,7 @@ describe("Models", function() {
     assert.isFunction(models.DeviceMapping, "Missing DeviceMapping");
     assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
     assert.isFunction(models.Location, "Missing Location");
+    assert.isFunction(models.ManagedIncident, "Missing ManagedIncident");
     assert.isFunction(models.RateLimit, "Missing RateLimit");
     assert.isFunction(models.Session, "Missing Session");
     assert.isFunction(models.User, "Missing User");

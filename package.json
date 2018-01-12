@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js"
@@ -14,7 +14,8 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "debug": "^2.3.3",
-    "lodash": "^4.17.2",
+    "lodash": "^4.17.4",
+    "moment-timezone": "^0.5.14",
     "mongoose": "^4.9.8",
     "uuid": "~3.0.1"
   },
