@@ -3,6 +3,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
+var _ = require("lodash");
 
 var modelSchema = new Schema({
   uuid: {
@@ -65,5 +66,24 @@ var modelSchema = new Schema({
   collection: "massive_cad_vehicle_status"
 });
 modelSchema.set("autoIndex", false);
+
+modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callback) {
+  if (!_.isObject(dbItem)) {
+    return callback(this);
+  }
+
+  // We keep the same value for _id, uuid, departmentId
+  dbItem.vehicleId = this.vehicleId;
+  dbItem.radioName = this.radioName;
+  dbItem.requestTime = this.requestTime;
+  dbItem.responseTime = this.responseTime;
+  dbItem.status = this.status;
+  dbItem.statusCode = this.statusCode;
+  dbItem.modifiedDate = this.modifiedDate;
+  dbItem.requestStatus = this.requestStatus;
+  dbItem.incidentNumber = this.incidentNumber;
+
+  return callback(dbItem);
+};
 
 module.exports = mongoose.model("CADVehicleStatus", modelSchema);
