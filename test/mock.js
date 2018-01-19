@@ -64,6 +64,13 @@ module.exports = function(dependencies) {
     }
   };
 
+  const rateLimit = {
+    _id: mongoose.Types.ObjectId(),
+    username: "test123",
+    modified_unix_date: 1426983552.49945,
+    count: 8
+  };
+
   const user = {
     _id: mongoose.Types.ObjectId(),
     nick: "Test",
@@ -129,6 +136,7 @@ module.exports = function(dependencies) {
     deviceMapping,
     incidentTakeover,
     location,
+    rateLimit,
     user,
     userRegistration
   };
