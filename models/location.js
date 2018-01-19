@@ -3,6 +3,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
+var _ = require("lodash");
 
 var modelSchema = new Schema({
   _id: {
@@ -68,5 +69,24 @@ var modelSchema = new Schema({
   collection: "massive_location"
 });
 modelSchema.set("autoIndex", false);
+
+modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callback) {
+  if (!_.isObject(dbItem)) {
+    return callback(this);
+  }
+
+  // We keep the same value for _id, uuid, departmentId
+  dbItem.userId = this.userId;
+  dbItem.username = this.username;
+  dbItem.device_type = this.device_type;
+  dbItem.active = this.active;
+  dbItem.modified_unix_date = this.modified_unix_date;
+  dbItem.version = this.version;
+  dbItem.session = this.session;
+  dbItem.location.latitude = this.location.latitude;
+  dbItem.location.longitude = this.location.longitude;
+
+  return callback(dbItem);
+};
 
 module.exports = mongoose.model("Location", modelSchema);
