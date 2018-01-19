@@ -1,50 +1,35 @@
 "use strict";
 
-if (process.env.NODE_ENV !== "test") {
-  console.log(`NODE_ENV=${process.env.NODE_ENV} which might cause problems.`);
-  process.exit(1);
-}
+let mongoose = require("mongoose");
+mongoose.Promise = require("bluebird");
+let models = require("../index");
 
-var assert = require("chai").assert;
-var mongoose = require("mongoose");
+let Mockgoose = require("mockgoose").Mockgoose;
+let mockgoose = new Mockgoose(mongoose);
 
-var config = require("../config");
-var models = require("../index");
+const redisClient = require("redis-js");
 
-var setupMongoose = function(done) {
-  mongoose.Promise = require("bluebird");
-  mongoose.connect(config.db, done);
-};
+const mock = require("./mock")({
+  mockgoose,
+  mongoose,
+  models,
+  redisClient
+});
 
-var clearMongoose = function(done) {
-  mongoose.connection.db.dropDatabase(function() {
-    mongoose.connection.close(done);
-  });
-};
-
-var testItem = {
-  email: "test@email.com",
-  name: "John Waters",
-  department: "New York City, NY",
-  title: "Mr",
-  modifiedDate: 1426983552.49945,
-  status: "registered",
-  stage: "afterEULA",
-  presentedAt: 1488157071.042124,
-  managedIncidentsCount: 1,
-  checklistsCount: 2,
-  firstIncidentUnixTime: 1443666043.380937,
-  lastIncidentLocation: "40.999357,-85.767932",
-  lastIncidentUnixTime: 1480525299.50968
-};
+const assert = require("chai").assert;
+const testData = mock.userRegistration;
 
 describe("UserRegistration", function() {
-  before(setupMongoose);
-  after(clearMongoose);
+  beforeEach(function(done) {
+    mock.beforeEach(done);
+  });
+
+  afterEach(function(done) {
+    mock.afterEach(done);
+  });
 
   it("is saved", function(done) {
-    var testData = testItem;
-    var item = new models.UserRegistration(testItem);
+    const item = new models.UserRegistration(testData);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 

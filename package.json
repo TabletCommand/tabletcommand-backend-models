@@ -32,6 +32,8 @@
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-mocha": "^4.2.0",
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "mockgoose": "^7.3.3",
+    "redis-js": "^0.1.2"
   }
 }
