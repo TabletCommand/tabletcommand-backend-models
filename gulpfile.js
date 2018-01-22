@@ -16,7 +16,7 @@ gulp.task("lint", function() {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task("test", function() {
+gulp.task("test", ["lint"], function() {
   const tests = [
     "test/*.js"
   ];

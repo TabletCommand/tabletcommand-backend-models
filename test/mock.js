@@ -61,7 +61,8 @@ module.exports = function(dependencies) {
     location: {
       longitude: -122.304804409037,
       latitude: 37.5419679656974
-    }
+    },
+    session: "abcd"
   };
 
   const rateLimit = {
