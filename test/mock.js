@@ -6,6 +6,20 @@ module.exports = function(dependencies) {
   // var models = dependencies.models;
   const redisClient = dependencies.redisClient;
 
+  const cadVehicleStatus = {
+    uuid: "5a324923-2622-48f2-abaa-8a855e7cebdf",
+    departmentId: "d1234",
+    vehicleId: "v1171",
+    radioName: "E10",
+    requestTime: 1516557000,
+    responseTime: 1516567096,
+    status: "Dispatched",
+    statusCode: "DISP",
+    modifiedDate: 1516577096,
+    requestStatus: 0,
+    incidentNumber: "INC19991"
+  };
+
   const department = {
     _id: mongoose.Types.ObjectId(),
     department: "Test Department",
@@ -133,6 +147,7 @@ module.exports = function(dependencies) {
     beforeEach,
     afterEach,
 
+    cadVehicleStatus,
     department,
     deviceMapping,
     incidentTakeover,
