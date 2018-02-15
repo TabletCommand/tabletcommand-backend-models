@@ -6,6 +6,7 @@ var models = require("../index");
 describe("Models", function() {
   it("are wired", function(done) {
     // These should match index.js
+    assert.isFunction(models.ActionLog, "Missing ActionLog");
     assert.isFunction(models.CADStatus, "Missing CadStatus");
     assert.isFunction(models.CADStatusMap, "Missing CadStatusMap");
     assert.isFunction(models.CADVehicle, "Missing CadVehicle");

@@ -6,6 +6,16 @@ module.exports = function(dependencies) {
   // var models = dependencies.models;
   const redisClient = dependencies.redisClient;
 
+  const actionLog = {
+    departmentId: "d1234",
+    email: "hello@example.com",
+    action: "someAction",
+    object: {
+      vehicleId: "v1171",
+      radioName: "E10"
+    }
+  };
+
   const cadVehicleStatus = {
     uuid: "5a324923-2622-48f2-abaa-8a855e7cebdf",
     departmentId: "d1234",
@@ -147,6 +157,7 @@ module.exports = function(dependencies) {
     beforeEach,
     afterEach,
 
+    actionLog,
     cadVehicleStatus,
     department,
     deviceMapping,

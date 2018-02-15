@@ -1,5 +1,6 @@
 "use strict";
 
+var actionLog = require("./models/action-log");
 var cadStatus = require("./models/cad-status");
 var cadStatusMap = require("./models/cad-status-map");
 var cadVehicle = require("./models/cad-vehicle");
@@ -15,6 +16,7 @@ var user = require("./models/user");
 var userRegistration = require("./models/user-registration");
 
 module.exports = {
+  ActionLog: actionLog,
   CADStatus: cadStatus,
   CADStatusMap: cadStatusMap,
   CADVehicle: cadVehicle,
