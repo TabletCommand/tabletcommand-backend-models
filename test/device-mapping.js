@@ -40,6 +40,7 @@ describe("DeviceMapping", function() {
       assert.equal(testItem.deviceId, sut.deviceId);
       assert.equal(testItem.modified_unix_date, sut.modified_unix_date);
       assert.equal(testItem.remoteAddress, sut.remoteAddress);
+      assert.equal(testItem.note, sut.note);
       assert.isFalse(sut.active);
 
       return done();

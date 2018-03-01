@@ -52,6 +52,10 @@ var modelSchema = new Schema({
   uuid: {
     type: String,
     default: uuid.v4
+  },
+  note: {
+    type: String,
+    default: ""
   }
 }, {
   collection: "massive_device_mapping"

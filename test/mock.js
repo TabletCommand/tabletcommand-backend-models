@@ -58,7 +58,8 @@ module.exports = function(dependencies) {
     deviceId: "deviceType121",
     modified_unix_date: 1432230780,
     active: false,
-    remoteAddress: "1.2.3.4"
+    remoteAddress: "1.2.3.4",
+    note: "don't feed after dark"
   };
 
   const incidentTakeover = {
@@ -127,14 +128,14 @@ module.exports = function(dependencies) {
   }
 
   function beforeEach(callback) {
-    mockgoose.prepareStorage().then(function() {
-      mongoose.connect("mongodb://127.0.0.1:27017/TestingDB", {
+    return mockgoose.prepareStorage().then(function() {
+      return mongoose.connect("mongodb://127.0.0.1:27017/TestingDB", {
         useMongoClient: true // this option silents the warning, but does not cleanup the data
       }, function(err) {
         if (err) {
           return callback(err);
         }
-        prepareTestData(function(err) {
+        return prepareTestData(function(err) {
           if (err) {
             console.log("err prepareTestData", err);
           }
