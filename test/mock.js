@@ -80,7 +80,8 @@ module.exports = function(dependencies) {
         username: "ztc-marcc",
         radioName: "E12",
         userId: "51c2dcca0c599704e400001f"
-      }
+      },
+      uuid: "ABCDEF"
     }]
   };
 

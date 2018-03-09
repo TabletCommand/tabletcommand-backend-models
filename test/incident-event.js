@@ -47,6 +47,7 @@ describe("IncidentEvent", function() {
       assert.equal(testEvent.message, sutEvent.message);
       assert.equal(testEvent.user_time, sutEvent.user_time);
       assert.equal(testEvent.type, sutEvent.type);
+      assert.equal(testEvent.uuid, sutEvent.uuid);
       assert.equal(testEvent.location.latitude, sutEvent.location.latitude);
       assert.equal(testEvent.location.longitude, sutEvent.location.longitude);
       assert.equal(testEvent.user.email, sutEvent.user.email);

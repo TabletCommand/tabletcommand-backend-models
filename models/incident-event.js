@@ -54,6 +54,10 @@ var EventItem = new Schema({
     required: true,
     default: 0,
     min: 1
+  },
+  uuid: {
+    type: String,
+    require: true
   }
 }, {
   _id: false
