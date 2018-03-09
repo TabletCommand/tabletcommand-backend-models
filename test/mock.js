@@ -62,6 +62,28 @@ module.exports = function(dependencies) {
     note: "don't feed after dark"
   };
 
+  const incidentEvent = {
+    IncidentNumber: "TC1212121",
+    departmentId: "d123",
+    modified_unix_date: 1432230780,
+    checksum: "abcd",
+    events: [{
+      message: "Hello from the other side",
+      location: {
+        longitude: -29.90129,
+        latitude: 121.223131
+      },
+      user_time: 1437121647,
+      type: "contribution",
+      user: {
+        email: "marius+cc@tabletcommand.com",
+        username: "ztc-marcc",
+        radioName: "E12",
+        userId: "51c2dcca0c599704e400001f"
+      }
+    }]
+  };
+
   const incidentTakeover = {
     _id: mongoose.Types.ObjectId(),
     incident_id: "i1234",
@@ -162,6 +184,7 @@ module.exports = function(dependencies) {
     cadVehicleStatus,
     department,
     deviceMapping,
+    incidentEvent,
     incidentTakeover,
     location,
     rateLimit,
