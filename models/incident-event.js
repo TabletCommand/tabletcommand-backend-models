@@ -44,12 +44,12 @@ var EventItem = new Schema({
   user: {
     type: EventUser
   },
-  server_time: {
+  serverTime: {
     type: Number,
     default: new Date().valueOf() / 1000.0,
     min: 1
   },
-  user_time: {
+  userTime: {
     type: Number,
     required: true,
     default: 0,
