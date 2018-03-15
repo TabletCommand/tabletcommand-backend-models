@@ -73,7 +73,7 @@ module.exports = function(dependencies) {
         longitude: -29.90129,
         latitude: 121.223131
       },
-      user_time: 1437121647,
+      userTime: 1437121647,
       type: "contribution",
       user: {
         email: "marius+cc@tabletcommand.com",

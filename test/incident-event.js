@@ -45,7 +45,7 @@ describe("IncidentEvent", function() {
       let sutEvent = sut.events[0];
 
       assert.equal(testEvent.message, sutEvent.message);
-      assert.equal(testEvent.user_time, sutEvent.user_time);
+      assert.equal(testEvent.userTime, sutEvent.userTime);
       assert.equal(testEvent.type, sutEvent.type);
       assert.equal(testEvent.uuid, sutEvent.uuid);
       assert.equal(testEvent.location.latitude, sutEvent.location.latitude);
