@@ -66,23 +66,20 @@ module.exports = function(dependencies) {
     IncidentNumber: "TC1212121",
     departmentId: "d123",
     modified_unix_date: 1432230780,
-    checksum: "abcd",
-    events: [{
-      message: "Hello from the other side",
-      location: {
-        longitude: -29.90129,
-        latitude: 121.223131
-      },
-      userTime: 1437121647,
-      type: "contribution",
-      user: {
-        email: "marius+cc@tabletcommand.com",
-        username: "ztc-marcc",
-        radioName: "E12",
-        userId: "51c2dcca0c599704e400001f"
-      },
-      uuid: "ABCDEF"
-    }]
+    message: "Hello from the other side",
+    location: {
+      longitude: -29.90129,
+      latitude: 121.223131
+    },
+    userTime: 1437121647,
+    type: "contribution",
+    user: {
+      email: "marius+cc@tabletcommand.com",
+      username: "ztc-marcc",
+      radioName: "E12",
+      userId: "51c2dcca0c599704e400001f"
+    },
+    uuid: "ABCDEF"
   };
 
   const incidentTakeover = {

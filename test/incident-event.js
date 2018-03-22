@@ -36,24 +36,17 @@ describe("IncidentEvent", function() {
       assert.isNotNull(testData._id);
       assert.equal(testData.departmentId, sut.departmentId);
       assert.equal(testData.IncidentNumber, sut.IncidentNumber);
-      assert.equal(testData.checksum, sut.checksum);
       assert.equal(testData.modified_unix_date, sut.modified_unix_date);
-      assert.equal(testData.events.length, 1);
-      assert.equal(sut.events.length, 1);
-
-      let testEvent = testData.events[0];
-      let sutEvent = sut.events[0];
-
-      assert.equal(testEvent.message, sutEvent.message);
-      assert.equal(testEvent.userTime, sutEvent.userTime);
-      assert.equal(testEvent.type, sutEvent.type);
-      assert.equal(testEvent.uuid, sutEvent.uuid);
-      assert.equal(testEvent.location.latitude, sutEvent.location.latitude);
-      assert.equal(testEvent.location.longitude, sutEvent.location.longitude);
-      assert.equal(testEvent.user.email, sutEvent.user.email);
-      assert.equal(testEvent.user.username, sutEvent.user.username);
-      assert.equal(testEvent.user.radioName, sutEvent.user.radioName);
-      assert.equal(testEvent.user.userId, sutEvent.user.userId);
+      assert.equal(testData.message, sut.message);
+      assert.equal(testData.userTime, sut.userTime);
+      assert.equal(testData.type, sut.type);
+      assert.equal(testData.uuid, sut.uuid);
+      assert.equal(testData.location.latitude, sut.location.latitude);
+      assert.equal(testData.location.longitude, sut.location.longitude);
+      assert.equal(testData.user.email, sut.user.email);
+      assert.equal(testData.user.username, sut.user.username);
+      assert.equal(testData.user.radioName, sut.user.radioName);
+      assert.equal(testData.user.userId, sut.user.userId);
 
       return done();
     });

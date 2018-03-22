@@ -24,7 +24,27 @@ var EventUser = new Schema({
   _id: false
 });
 
-var EventItem = new Schema({
+var modelSchema = new Schema({
+  _id: {
+    type: Schema.ObjectId,
+    auto: true
+  },
+  departmentId: {
+    type: String,
+    default: "",
+    required: true,
+    index: true
+  },
+  IncidentNumber: {
+    type: String,
+    default: "",
+    required: true,
+    index: true
+  },
+  modified_unix_date: {
+    type: Number,
+    default: new Date().valueOf() / 1000.0
+  },
   message: {
     type: String,
     default: ""
@@ -58,38 +78,6 @@ var EventItem = new Schema({
   uuid: {
     type: String,
     require: true
-  }
-}, {
-  _id: false
-});
-
-var modelSchema = new Schema({
-  _id: {
-    type: Schema.ObjectId,
-    auto: true
-  },
-  departmentId: {
-    type: String,
-    default: "",
-    required: true,
-    index: true
-  },
-  IncidentNumber: {
-    type: String,
-    default: "",
-    required: true,
-    index: true
-  },
-  modified_unix_date: {
-    type: Number,
-    default: 0
-  },
-  checksum: {
-    type: String,
-    default: ""
-  },
-  events: {
-    type: [EventItem]
   }
 }, {
   collection: "massive_incident_event"
