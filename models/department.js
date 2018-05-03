@@ -123,6 +123,10 @@ var modelSchema = new Schema({
     type: Boolean,
     default: true
   },
+  userContributionEnabled: {
+    type: Boolean,
+    default: false
+  },
 
   // RTS
   rtsEnabled: {
