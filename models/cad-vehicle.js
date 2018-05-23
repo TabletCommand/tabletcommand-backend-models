@@ -32,6 +32,14 @@ var modelSchema = new Schema({
     default: "",
     required: true,
     minlength: 1
+  },
+  stationCode: {
+    type: String,
+    default: ""
+  },
+  stationName: {
+    type: String,
+    default: ""
   }
 }, {
   collection: "massive_cad_vehicle"
