@@ -38,6 +38,14 @@ var modelSchema = new Schema({
     default: "",
     required: true,
     minlength: 1
+  },
+  name: {
+    type: String,
+    default: ""
+  },
+  normalized: {
+    type: String,
+    default: ""
   }
 }, {
   collection: "massive_cad_status"
