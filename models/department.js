@@ -130,6 +130,10 @@ var modelSchema = new Schema({
     type: Boolean,
     default: false
   },
+  heartbeatMinutes: {
+    type: Number,
+    default: 5
+  },
   pushEnabled: {
     type: Boolean,
     default: true
