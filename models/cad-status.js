@@ -4,6 +4,48 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
 
+var StatusOptionValue = new Schema({
+  name: {
+    type: String,
+    default: ""
+  },
+  type: {
+    type: String,
+    default: "string" // int, bool
+  },
+  visible: {
+    type: Boolean,
+    default: true
+  },
+  value: {
+    type: String,
+    default: ""
+  }
+});
+
+var StatusOption = new Schema({
+  name: {
+    type: String,
+    default: ""
+  },
+  position: {
+    type: Number,
+    default: 0
+  },
+  visible: {
+    type: Boolean,
+    default: true
+  },
+  cadKey: {
+    type: String,
+    default: ""
+  },
+  cadValues: {
+    type: [StatusOptionValue],
+    default: []
+  }
+});
+
 var modelSchema = new Schema({
   uuid: {
     type: String,
@@ -46,6 +88,10 @@ var modelSchema = new Schema({
   normalized: {
     type: String,
     default: ""
+  },
+  options: {
+    type: [StatusOption],
+    default: []
   }
 }, {
   collection: "massive_cad_status"

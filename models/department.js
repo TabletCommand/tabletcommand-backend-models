@@ -179,7 +179,7 @@ var modelSchema = new Schema({
     type: [IncidentType]
   },
 
-  agency: {
+  agencies: {
     type: [Agency],
     default: []
   },
