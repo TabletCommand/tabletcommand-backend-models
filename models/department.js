@@ -14,6 +14,8 @@ var Agency = new Schema({
     type: String,
     default: ""
   }
+}, {
+  _id: false
 });
 
 var EsriToken = new Schema({

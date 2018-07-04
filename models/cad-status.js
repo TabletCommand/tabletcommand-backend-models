@@ -21,6 +21,8 @@ var StatusOptionValue = new Schema({
     type: String,
     default: ""
   }
+}, {
+  _id: false
 });
 
 var StatusOption = new Schema({
@@ -44,6 +46,8 @@ var StatusOption = new Schema({
     type: [StatusOptionValue],
     default: []
   }
+}, {
+  _id: false
 });
 
 var modelSchema = new Schema({
