@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
 
+// Update user.js too
 var Agency = new Schema({
   code: {
     type: String,

@@ -16,6 +16,18 @@ var vehicleSchema = new Schema({
   _id: false
 });
 
+// Copied from department.js
+var Agency = new Schema({
+  code: {
+    type: String,
+    default: ""
+  },
+  name: {
+    type: String,
+    default: ""
+  }
+});
+
 var modelSchema = new Schema({
   nick: {
     type: String,
@@ -45,8 +57,8 @@ var modelSchema = new Schema({
     type: Date
   },
   agency: {
-    type: String,
-    default: ""
+    type: Agency,
+    default: null
   },
 
   active: {
