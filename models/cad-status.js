@@ -93,6 +93,10 @@ var modelSchema = new Schema({
     type: String,
     default: ""
   },
+  selfAssignable: {
+    type: Boolean,
+    default: false
+  },
   options: {
     type: [StatusOption],
     default: []
