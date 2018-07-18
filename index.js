@@ -11,6 +11,7 @@ var incidentEvent = require("./models/incident-event");
 var incidentTakeover = require("./models/incident-takeover");
 var location = require("./models/location");
 var managedIncident = require("./models/managed-incident");
+var cadIncident = require("./models/cad-incident");
 var rateLimit = require("./models/rate-limit");
 var session = require("./models/session");
 var user = require("./models/user");
@@ -18,6 +19,7 @@ var userRegistration = require("./models/user-registration");
 
 module.exports = {
   ActionLog: actionLog,
+  CADIncident: cadIncident,
   CADStatus: cadStatus,
   CADStatusMap: cadStatusMap,
   CADVehicle: cadVehicle,
