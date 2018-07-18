@@ -4,6 +4,19 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
 
+var Station = new Schema({
+  code: {
+    type: String,
+    default: ""
+  },
+  name: {
+    type: String,
+    default: ""
+  }
+}, {
+  _id: false
+});
+
 var modelSchema = new Schema({
   uuid: {
     type: String,
@@ -33,13 +46,9 @@ var modelSchema = new Schema({
     required: true,
     minlength: 1
   },
-  stationCode: {
-    type: String,
-    default: ""
-  },
-  stationName: {
-    type: String,
-    default: ""
+  station: {
+    type: Station,
+    default: null
   }
 }, {
   collection: "massive_cad_vehicle"

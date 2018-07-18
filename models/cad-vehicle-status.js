@@ -49,10 +49,6 @@ var modelSchema = new Schema({
     required: true,
     minlength: 1
   },
-  statusNormalized: {
-    type: String,
-    default: ""
-  },
   modifiedDate: {
     type: Number,
     default: 0,
