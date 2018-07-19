@@ -111,6 +111,10 @@ var modelSchema = new Schema({
     type: Schema.ObjectId,
     auto: true
   },
+  uuid: {
+    type: String,
+    default: uuid.v4
+  },
   departmentId: {
     type: String,
     default: "",
@@ -147,6 +151,9 @@ var modelSchema = new Schema({
     type: String
   },
   PulsePointIncidentCallType: {
+    type: String
+  },
+  PulsePointDeterminantCode: {
     type: String
   },
   AlarmLevel: {
@@ -254,6 +261,9 @@ var modelSchema = new Schema({
   Building: {
     type: String
   },
+  Floor: {
+    type: String
+  },
   Suite: {
     type: String
   },
@@ -267,6 +277,9 @@ var modelSchema = new Schema({
     type: String
   },
   CrossStreetName: {
+    type: String
+  },
+  LocationComment: {
     type: String
   },
   // TC Address
@@ -296,6 +309,11 @@ var modelSchema = new Schema({
     type: [CADUnit]
   },
 
+  // Legacy Unit
+  Unit: {
+    type: [CADUnit]
+  },
+
   // Tablet Command Internal fields
   preference_location: {
     type: String
@@ -311,9 +329,15 @@ var modelSchema = new Schema({
   InterfaceVersion: {
     type: String
   },
+  CADSimulator: {
+    type: String
+  },
 
   notificationType: {
     type: [APNNotificationType]
+  },
+  notifiedUnits: {
+    type: [String]
   },
 
   // Anaheim
@@ -321,9 +345,87 @@ var modelSchema = new Schema({
     type: [String]
   },
 
-  uuid: {
-    type: String,
-    default: uuid.v4
+  // Other Agencies
+  AgencyDeterminantCode: {
+    type: String
+  },
+  AgencyIncidentCategory: {
+    type: String
+  },
+  CFMap: {
+    type: String
+  },
+  CallSource: {
+    type: String
+  },
+  CaseNumber: {
+    type: String
+  },
+  CrossRefDataOwnerAgyID1: {
+    type: String
+  },
+  CrossRefDataSubmitterAgyID1: {
+    type: String
+  },
+  CrossRefEventCategory1: {
+    type: String
+  },
+  CrossRefEventNum1: {
+    type: String
+  },
+  EventLevel: {
+    type: String
+  },
+  EventNumber: {
+    type: String
+  },
+  FirstDueStation: {
+    type: String
+  },
+  MedicalAgencyIncidentType: {
+    type: String
+  },
+  MedicalEventCode: {
+    type: String
+  },
+  PopulationDensity: {
+    type: String
+  },
+  Priority: {
+    type: String
+  },
+  WorkstationID: {
+    type: String
+  },
+  LatitudeDegree: {
+    type: String
+  },
+  LatitudeMinute: {
+    type: String
+  },
+  LatitudeSecond: {
+    type: String
+  },
+  LongitudeDegree: {
+    type: String
+  },
+  LongitudeMinute: {
+    type: String
+  },
+  LongitudeSecond: {
+    type: String
+  },
+  Location: {
+    type: String
+  },
+  LocationType: {
+    type: String
+  },
+  OrigLocation: {
+    type: String
+  },
+  Jurisdiction: {
+    type: String
   }
 }, {
   collection: "massive_incident_cad",
@@ -335,7 +437,11 @@ modelSchema.set("toJSON", {
   virtuals: true,
   versionKey: false,
   transform: function(doc, ret) {
+    // Remove fields that should not be here
+    delete ret.apikey;
+
     strictSchema(doc.schema, ret);
+
     ret.id = ret._id;
   }
 });
