@@ -107,6 +107,7 @@ modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callb
   dbItem.modifiedDate = this.modifiedDate;
   dbItem.requestStatus = this.requestStatus;
   dbItem.incidentNumber = this.incidentNumber;
+  dbItem.options = this.options;
 
   return callback(dbItem);
 };
