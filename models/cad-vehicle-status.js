@@ -5,6 +5,27 @@ var Schema = mongoose.Schema;
 var uuid = require("uuid");
 var _ = require("lodash");
 
+var CADStatusOptionSelected = new Schema({
+  name: {
+    type: String,
+    default: ""
+  },
+  type: {
+    type: String,
+    default: "string" // integer, bool
+  },
+  value: {
+    type: String,
+    default: ""
+  },
+  key: {
+    type: String,
+    default: ""
+  }
+}, {
+  _id: false
+});
+
 var modelSchema = new Schema({
   uuid: {
     type: String,
@@ -61,6 +82,10 @@ var modelSchema = new Schema({
   incidentNumber: {
     type: String,
     default: ""
+  },
+  options: {
+    type: [CADStatusOptionSelected],
+    default: []
   }
 }, {
   collection: "massive_cad_vehicle_status"
