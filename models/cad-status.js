@@ -20,6 +20,10 @@ var StatusOptionValue = new Schema({
   value: {
     type: String,
     default: ""
+  },
+  favorite: {
+    type: Boolean,
+    default: false
   }
 }, {
   _id: false
