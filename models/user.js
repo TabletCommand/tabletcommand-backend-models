@@ -16,19 +16,7 @@ var vehicleSchema = new Schema({
   _id: false
 });
 
-// Copied from department.js
-var Agency = new Schema({
-  code: {
-    type: String,
-    default: ""
-  },
-  name: {
-    type: String,
-    default: ""
-  }
-}, {
-  _id: false
-});
+var Agency = require("./cad-agency");
 
 var modelSchema = new Schema({
   nick: {
