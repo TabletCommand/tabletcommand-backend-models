@@ -4,6 +4,8 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
 
+var CADStatusColor = require("./cad-status-color");
+
 var StatusOptionValue = new Schema({
   name: {
     type: String,
@@ -104,6 +106,10 @@ var modelSchema = new Schema({
   options: {
     type: [StatusOption],
     default: []
+  },
+  color: {
+    type: CADStatusColor,
+    default: null
   }
 }, {
   collection: "massive_cad_status"
