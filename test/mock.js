@@ -39,8 +39,20 @@ module.exports = function(dependencies) {
     rtsEnabled: true,
     rtsChannelPrefix: "CH_TEST",
     rtsAuthKey: "CH_AUTH_KEY",
-    agency: [
-      "A", "B", "C"
+    agencies: [
+      //
+      {
+        code: "A",
+        name: "AA",
+        domain: ""
+      },
+      {
+        code: "B",
+        name: "BB"
+      }, {
+        code: "C",
+        name: "CC"
+      }
     ],
     signupKey: "A1B2",
     incidentTypes: [{
@@ -124,7 +136,10 @@ module.exports = function(dependencies) {
     mapId: "TEST",
     departmentId: "d123",
     isPro: true,
-    agency: "ZMM"
+    agency: {
+      code: "A",
+      name: "AA"
+    }
   };
 
   const userRegistration = {

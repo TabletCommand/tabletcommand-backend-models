@@ -42,7 +42,7 @@ describe("User", function() {
       assert.isFalse(sut.admin);
       assert.isFalse(sut.superuser);
       assert.isTrue(sut.isPro);
-      assert.equal(sut.agency, testUser.agency);
+      assert.equal(sut.agency.name, testUser.agency.name);
 
       return done();
     });
