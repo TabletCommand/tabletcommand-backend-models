@@ -16,7 +16,7 @@ var vehicleSchema = new Schema({
   _id: false
 });
 
-var Agency = require("./cad-agency");
+var Agency = require("./schema/cad-agency");
 
 var modelSchema = new Schema({
   nick: {

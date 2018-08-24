@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
 
-var Agency = require("./cad-agency");
+var Agency = require("./schema/cad-agency");
 
 var EsriToken = new Schema({
   access_token: {

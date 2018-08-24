@@ -14,4 +14,4 @@ var CADStatusColor = new Schema({
   _id: false
 });
 
-module.exports = mongoose.model("CADStatusColor", CADStatusColor);
+module.exports = CADStatusColor;

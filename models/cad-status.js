@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
 
-var CADStatusColor = require("./cad-status-color");
+var CADStatusColor = require("./schema/cad-status-color");
 
 var StatusOptionValue = new Schema({
   name: {

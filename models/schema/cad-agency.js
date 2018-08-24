@@ -18,4 +18,4 @@ var Agency = new Schema({
   _id: false
 });
 
-module.exports = mongoose.model("Agency", Agency);
+module.exports = Agency;
