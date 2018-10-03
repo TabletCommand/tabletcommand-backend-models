@@ -145,6 +145,8 @@ module.exports = function(dependencies) {
   const userRegistration = {
     email: "test@email.com",
     name: "John Waters",
+    firstName: "John",
+    lastName: "Waters",
     department: "New York City, NY",
     title: "Mr",
     modifiedDate: 1426983552.49945,

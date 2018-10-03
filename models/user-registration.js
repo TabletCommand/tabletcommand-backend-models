@@ -15,6 +15,14 @@ var modelSchema = new Schema({
     default: "",
     required: true
   },
+  firstName: {
+    type: String,
+    default: ""
+  },
+  lastName: {
+    type: String,
+    default: ""
+  },
   department: {
     type: String,
     default: "",

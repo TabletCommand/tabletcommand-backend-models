@@ -36,6 +36,8 @@ describe("UserRegistration", function() {
       assert.isNotNull(testData._id);
       assert.equal(testData.email, sut.email);
       assert.equal(testData.name, sut.name);
+      assert.equal(testData.firstName, sut.firstName);
+      assert.equal(testData.lastName, sut.lastName);
       assert.equal(testData.department, sut.department);
       assert.equal(testData.title, sut.title);
       assert.equal(testData.modifiedDate, sut.modifiedDate);
