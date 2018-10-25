@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js"

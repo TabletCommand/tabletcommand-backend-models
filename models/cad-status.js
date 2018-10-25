@@ -103,6 +103,10 @@ var modelSchema = new Schema({
     type: Boolean,
     default: false
   },
+  roaming: {
+    type: Boolean,
+    default: false
+  },
   options: {
     type: [StatusOption],
     default: []
