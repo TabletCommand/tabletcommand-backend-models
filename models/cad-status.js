@@ -26,6 +26,10 @@ var StatusOptionValue = new Schema({
   favorite: {
     type: Boolean,
     default: false
+  },
+  position: {
+    type: Number,
+    default: 0
   }
 }, {
   _id: false
