@@ -110,6 +110,7 @@ modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callb
   dbItem.statusCode = this.statusCode;
   dbItem.modifiedDate = this.modifiedDate;
   dbItem.requestStatus = this.requestStatus;
+  dbItem.owner = this.owner;
   dbItem.incidentNumber = this.incidentNumber;
   dbItem.options = this.options;
 
