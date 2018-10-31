@@ -79,6 +79,10 @@ var modelSchema = new Schema({
     type: Number,
     default: 0
   },
+  owner: {
+    type: String,
+    default: ""
+  },
   incidentNumber: {
     type: String,
     default: ""
