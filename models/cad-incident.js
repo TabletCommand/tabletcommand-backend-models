@@ -106,6 +106,33 @@ var APNNotificationType = new Schema({
 });
 APNNotificationType.set("toJSON", toJSONOpts);
 
+var CADPriorIncident = new Schema({
+  Address: {
+    type: String
+  },
+  Comment: {
+    type: [CADComment]
+  },
+  IncidentDateTime: {
+    type: String
+  },
+  IncidentNumber: {
+    type: String
+  },
+  Jurisdiction: {
+    type: String
+  },
+  Problem: {
+    type: String
+  },
+  Suite: {
+    type: String
+  }
+}, {
+  _id: false
+});
+CADPriorIncident.set("toJSON", toJSONOpts);
+
 var modelSchema = new Schema({
   _id: {
     type: Schema.ObjectId,
@@ -293,6 +320,23 @@ var modelSchema = new Schema({
     type: String
   },
 
+  // Prior History
+  PriorIncidentChanged: {
+    type: Boolean
+  },
+  PriorIncident: {
+    type: [CADPriorIncident]
+  },
+
+  // Caller
+  CallerNumber: {
+    type: String
+  },
+
+  tag: {
+    type: String
+  },
+
   // Coordinate
   Latitude: {
     type: String
@@ -456,8 +500,15 @@ function strictSchema(schema, ret) {
     if (element === "id") {
       return;
     }
+
+    var ignoreFields = ["station"];
+    if (ignoreFields.indexOf(element) !== -1) {
+      delete ret[element];
+      return;
+    }
+
     if (schema.paths[element] === undefined) {
-      console.log("undefined schema.paths[element]:", element, schema.paths[element]);
+      console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, schema.paths[element]);
       delete ret[element];
     }
   });
