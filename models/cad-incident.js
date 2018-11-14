@@ -501,7 +501,7 @@ function strictSchema(schema, ret) {
       return;
     }
 
-    var ignoreFields = ["station"];
+    var ignoreFields = ["station", "callerNumber"];
     if (ignoreFields.indexOf(element) !== -1) {
       delete ret[element];
       return;
