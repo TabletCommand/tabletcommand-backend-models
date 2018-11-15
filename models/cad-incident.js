@@ -353,11 +353,6 @@ var modelSchema = new Schema({
     type: [CADUnit]
   },
 
-  // Legacy Unit
-  Unit: {
-    type: [CADUnit]
-  },
-
   // Tablet Command Internal fields
   preference_location: {
     type: String
