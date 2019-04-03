@@ -16,7 +16,7 @@
     "debug": "^2.3.3",
     "lodash": "^4.17.4",
     "moment-timezone": "^0.5.14",
-    "mongoose": "^4.9.8",
+    "mongoose": "^5.4.10",
     "uuid": "~3.0.1"
   },
   "devDependencies": {
