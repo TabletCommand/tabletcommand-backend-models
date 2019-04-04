@@ -1,15 +1,15 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "3.7.0",
+  "version": "4.0.0",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js"
   },
-  "author": "Marius Ursache <marius@simple-track.com>",
+  "author": "Marius Ursache <marius@tabletcommand.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/bamse16/tabletcommand-backend-models.git"
+    "url": "git://github.com/TabletCommand/tabletcommand-backend-models.git"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
