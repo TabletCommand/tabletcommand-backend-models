@@ -129,6 +129,22 @@ module.exports = function(dependencies) {
     count: 8
   };
 
+  const session = {
+    when: "2019-04-01T04:41:38.509Z",
+    user: "51c2dcca0c599704e400001f",
+    email: "marius+cc@tabletcommand.com",
+    nick: "ztc-marcc",
+    deviceId: "7evAKaFiOeaWTlsMTOSQMBKN",
+    remoteAddress: "124.148.161.107",
+    userAgent: "TCMobile/1.6 (iPhone; iOS 12.1; Scale/2.00)",
+    why: "password",
+    departmentId: "51a2529293e11b3569000057",
+    source: "iphone.beta",
+    token: "9bece414-6b94-4300-980f-8f4104c8b183",
+    active: false,
+    ended: "2019-04-01T04:41:39.233Z"
+  };
+
   const user = {
     _id: mongoose.Types.ObjectId(),
     nick: "Test",
@@ -203,6 +219,7 @@ module.exports = function(dependencies) {
     incidentTakeover,
     location,
     rateLimit,
+    session,
     user,
     userRegistration
   };
