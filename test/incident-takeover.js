@@ -2,7 +2,7 @@
 
 let mongoose = require("mongoose");
 mongoose.Promise = require("bluebird");
-let models = require("../index");
+let models = require("../index")(mongoose);
 
 let Mockgoose = require("mockgoose").Mockgoose;
 let mockgoose = new Mockgoose(mongoose);
