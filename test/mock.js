@@ -16,6 +16,134 @@ module.exports = function(dependencies) {
     }
   };
 
+  const cadIncident = {
+    _id: mongoose.Types.ObjectId(),
+    uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d679",
+    departmentId: "56131f724143487a10000001",
+    AgencyID: "BDC",
+    IncidentNumber: "19-058314",
+    TransactionID: "15532010710000",
+    AgencyIncidentCallTypeDescription: "AT - Ambulance Transport",
+    StreetName: "College",
+    StreetSuffix: "Court",
+    Predirectional: "North",
+    Postdirectional: "Late",
+    CityOrLocality: "San Francisco",
+    Floor: "2",
+    Suite: "AA",
+    City: "San Francisco",
+    Building: "E",
+    StateOrProvince: "CA",
+    CommonPlaceName: "VALLEY VIEW MEDICAL CENTER",
+    LocationComment: "VALLEY VIEW MEDICAL CENTER",
+    CrossStreet1: "FIVE MILE RD",
+    CrossStreet2: "No X-Street",
+    cross_streets: "FIVE MILE RD/No X-Street",
+    PostalCode: "29191",
+    CallerNumber: "0192-122-299",
+    PriorIncidentChanged: true,
+    PriorIncident: [
+      {
+        IncidentNumber: "19-042678",
+        IncidentDateTime: "2019-03-01T01:56:54-08:00",
+        Problem: "Problem Abcd",
+        Address: "5330 Us 95 Hwy S",
+        Suite: "83",
+        Jurisdiction: "San Bernardino County",
+        Comment: [
+          {
+            Comment: "[1] Call Appended to Incident number 19-042593",
+            CommentSource: "G8724",
+            CommentDateTime: "2019-03-01T01:59:57-08:00"
+          }
+        ]
+      }
+    ],
+    Latitude: "34.788611",
+    Longitude: "-114.549444",
+    Comment: [
+      {
+        Comment: "(1) VALLEY VIEW ICU TO SUNRISE ICU",
+        CommentSource: "H6577",
+        CommentDateTime: "2019-03-21T13:21:08-07:00"
+      }
+    ],
+    units: [
+      {
+        UnitDispatchNumber: 4067677,
+        UnitID: "MA31",
+        TimeDispatched: "2019-03-21T13:21:22-07:00"
+      }
+    ],
+    preference_location: "address",
+    EntryDateTime: "2019-03-21T13:21:11-07:00",
+    ClosedDateTime: "",
+    closed_unix_date: 0,
+    start_unix_date: 1553199671,
+    modified_unix_date: 1553201071.636
+  };
+
+  const cadStatus = {
+    _id: mongoose.Types.ObjectId(),
+    code: "AV",
+    color: {
+      background: "#7b7d7d",
+      text: "#F8F9F9"
+    },
+    departmentId: "51a2529293e11b3569000057",
+    modifiedDate: 1544771122.997,
+    name: "In Service",
+    normalized: "inService",
+    options: [
+      {
+        cadKey: "oosCode",
+        cadValues: [
+          {
+            favorite: false,
+            name: "ADM - Admin",
+            position: 20,
+            type: "string",
+            value: "ADM",
+            visible: true
+          }
+        ],
+        name: "oosCode",
+        position: 2,
+        visible: true
+      }
+    ],
+    roaming: false,
+    selfAssignable: true,
+    status: "OR",
+    statusId: 1,
+    uuid: "8086956b-43af-4300-aa30-5efbd10b2c98"
+  };
+
+  const cadStatusMap = {
+    "departmentId": "51a2529293e11b3569000057",
+    "fromStatusId": 0,
+    "modifiedDate": 1544143059.729,
+    "toStatusIds": [
+      {
+        "statusId": 1,
+        "userEnabled": true
+      }
+    ]
+  };
+
+  const cadVehicle = {
+    _id: mongoose.Types.ObjectId(),
+    uuid: "30f8d7c7-20a3-4a12-b911-a424f5037003",
+    radioName: "T01",
+    vehicleId: "7705",
+    modifiedDate: 1541569088.909,
+    departmentId: "5195426cc4e016a988000965",
+    station: {
+      code: "S01",
+      name: "Station 01"
+    }
+  };
+
   const cadVehicleStatus = {
     uuid: "5a324923-2622-48f2-abaa-8a855e7cebdf",
     departmentId: "d1234",
@@ -122,6 +250,74 @@ module.exports = function(dependencies) {
     session: "abcd"
   };
 
+  const managedIncident = {
+    _id: mongoose.Types.ObjectId(),
+    CallerNumber: "(720) 275-6765",
+    CommandChannel: "ACPRI",
+    TacticalAltChannel: "ACOPSB",
+    TacticalChannel: "ACOPSA",
+    active: 1,
+    address: "Interstate 76 Eb / Federal To I 76 Eb, UNINCORPORATED ADAMS COUNTY CO",
+    api_incident_number: "ACFR040719-0002506",
+    channel: "ADAMSCOUNTYFIRERESCUEN1C-MANAGED-ACFR040719-0002506",
+    channel_owner: "e12@acfpd.org",
+    departmentId: "5b17f315f877ee16f3d019b7",
+    end_time: "2019-04-08T00:16:30+0000",
+    end_unix_time: 1554682590.44313,
+    esri_map: {
+      json: "YnBsaXN0MDDUAQIDBAUGCAlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKEHVSRudWxsXxAPTlNLZXllZEFyY2hpdmVy0QoLVHJvb3SAAAgRGiMtMjc5P1FUWQAAAAAAAAEBAAAAAAAAAAwAAAAAAAAAAAAAAAAAAABb",
+      map_type: "Generic",
+      name: "Street",
+      url: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+      uuid: "00FCA57A-6F1B-4F74-84BD-E7A8B8BFF8FB"
+    },
+    history: [
+      {
+        entity_id: 9207,
+        entity_type: 14,
+        message: "(43) 2a72 start medical (Shared)",
+        time: 1554681941
+      }
+    ],
+    is_closed: 1,
+    location: "39.802526,-105.019773",
+    managed: "1",
+    modified_date: "2019-04-08T00:16:30.473", // Same as the modified_unix_date
+    modified_unix_date: 1554682590.47396,
+    name: "INJURED PARTY",
+    preference_location: "location",
+    slave_map_changed: false,
+    source: "cad",
+    start_time: "2019-04-08T00:05:41+0000",
+    start_unix_time: 1554681941,
+    units: [
+      {
+        UnitID: "M12",
+        active: 1,
+        air_time: "",
+        api_unit_dispatch_number: "5163322",
+        checked: 0,
+        column_position: 0,
+        group_position: 0,
+        incident_position: 0,
+        isSupervisor: false,
+        is_part_of_group: false,
+        location_on_image: "",
+        location_on_map: "",
+        modified_date: "2019-04-08T00:16:30+0000",
+        modified_unix_date: 1554682590.51667,
+        note: "",
+        personnelOnScene: 2,
+        status: "Arrived",
+        status_unix_date: 1554682217,
+        time: "",
+        warning: 0
+      }
+    ],
+    userId: "5b3e78cc944e2a18d5222424",
+    uuid: "579E2F47-7F63-4351-B41F-4A345D680B8F"
+  };
+
   const rateLimit = {
     _id: mongoose.Types.ObjectId(),
     username: "test123",
@@ -212,12 +408,17 @@ module.exports = function(dependencies) {
     afterEach,
 
     actionLog,
+    cadIncident,
+    cadStatus,
+    cadStatusMap,
     cadVehicleStatus,
+    cadVehicle,
     department,
     deviceMapping,
     incidentEvent,
     incidentTakeover,
     location,
+    managedIncident,
     rateLimit,
     session,
     user,

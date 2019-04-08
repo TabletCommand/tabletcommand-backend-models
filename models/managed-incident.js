@@ -94,10 +94,14 @@ module.exports = function RateLimitModule(mongoose) {
     api_incident_number: String,
     CommonPlaceName: String,
     TacticalChannel: String,
+    TacticalAltChannel: String,
     active: Boolean,
     slave_map_changed: Boolean,
     managed: Boolean,
     is_closed: Boolean,
+    source: String,
+    CallerNumber: String,
+    CommandChannel: String,
 
     // Incident Notes
     notes: {
