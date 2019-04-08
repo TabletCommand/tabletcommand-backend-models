@@ -1,10 +1,9 @@
 module.exports = function(dependencies) {
   "use strict";
 
-  const mockgoose = dependencies.mockgoose;
+  const uuid = require("uuid");
+
   const mongoose = dependencies.mongoose;
-  // var models = dependencies.models;
-  const redisClient = dependencies.redisClient;
 
   const actionLog = {
     departmentId: "d1234",
@@ -336,7 +335,7 @@ module.exports = function(dependencies) {
     why: "password",
     departmentId: "51a2529293e11b3569000057",
     source: "iphone.beta",
-    token: "9bece414-6b94-4300-980f-8f4104c8b183",
+    token: uuid.v4(),
     active: false,
     ended: "2019-04-01T04:41:39.233Z"
   };
@@ -372,41 +371,7 @@ module.exports = function(dependencies) {
     lastIncidentUnixTime: 1480525299.50968
   };
 
-  function prepareTestData(callback) {
-    return callback(null);
-  }
-
-  function beforeEach(callback) {
-    return mockgoose.prepareStorage().then(function() {
-      return mongoose.connect("mongodb://127.0.0.1:27017/TestingDB", {
-        useNewUrlParser: true
-      }, function(err) {
-        if (err) {
-          return callback(err);
-        }
-        return prepareTestData(function(err) {
-          if (err) {
-            console.log("err prepareTestData", err);
-          }
-          return callback(err);
-        });
-      });
-    });
-  }
-
-  function afterEach(callback) {
-    mockgoose.helper.reset().then(function() {
-      redisClient.flushall(function() {
-        return callback();
-      });
-    });
-  }
-
   return {
-    prepareTestData,
-    beforeEach,
-    afterEach,
-
     actionLog,
     cadIncident,
     cadStatus,

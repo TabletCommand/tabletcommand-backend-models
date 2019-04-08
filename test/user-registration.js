@@ -1,53 +1,52 @@
 "use strict";
 
-let mongoose = require("mongoose");
-mongoose.Promise = require("bluebird");
-let models = require("../index")(mongoose);
-
-let Mockgoose = require("mockgoose").Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
-
-const redisClient = require("redis-js");
-
-const mock = require("./mock")({
-  mockgoose,
-  mongoose,
-  models,
-  redisClient
-});
-
 const assert = require("chai").assert;
-const testData = mock.userRegistration;
+
+const m = require("..");
+const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
 
 describe("UserRegistration", function() {
-  beforeEach(function(done) {
-    mock.beforeEach(done);
-  });
+  let models, connection;
+  let testItem;
+  beforeEach(function() {
+    return m.connect(url, (err, mongoose, conn, mods) => {
+      if (err) {
+        console.log("Error connecting to mongo", err);
+        process.exit();
+      }
+      models = mods;
+      connection = conn;
 
-  afterEach(function(done) {
-    mock.afterEach(done);
+      const mock = require("./mock")({
+        mongoose
+      });
+      testItem = mock.userRegistration;
+    });
+  });
+  afterEach(function() {
+    connection.close();
   });
 
   it("is saved", function(done) {
-    const item = new models.UserRegistration(testData);
+    const item = new models.UserRegistration(testItem);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
-      assert.isNotNull(testData._id);
-      assert.equal(testData.email, sut.email);
-      assert.equal(testData.name, sut.name);
-      assert.equal(testData.firstName, sut.firstName);
-      assert.equal(testData.lastName, sut.lastName);
-      assert.equal(testData.department, sut.department);
-      assert.equal(testData.title, sut.title);
-      assert.equal(testData.modifiedDate, sut.modifiedDate);
-      assert.equal(testData.stage, sut.stage);
-      assert.equal(testData.presentedAt, sut.presentedAt);
-      assert.equal(testData.managedIncidentsCount, sut.managedIncidentsCount);
-      assert.equal(testData.checklistsCount, sut.checklistsCount);
-      assert.equal(testData.firstIncidentUnixTime, sut.firstIncidentUnixTime);
-      assert.equal(testData.lastIncidentLocation, sut.lastIncidentLocation);
-      assert.equal(testData.lastIncidentUnixTime, sut.lastIncidentUnixTime);
+      assert.isNotNull(testItem._id);
+      assert.equal(testItem.email, sut.email);
+      assert.equal(testItem.name, sut.name);
+      assert.equal(testItem.firstName, sut.firstName);
+      assert.equal(testItem.lastName, sut.lastName);
+      assert.equal(testItem.department, sut.department);
+      assert.equal(testItem.title, sut.title);
+      assert.equal(testItem.modifiedDate, sut.modifiedDate);
+      assert.equal(testItem.stage, sut.stage);
+      assert.equal(testItem.presentedAt, sut.presentedAt);
+      assert.equal(testItem.managedIncidentsCount, sut.managedIncidentsCount);
+      assert.equal(testItem.checklistsCount, sut.checklistsCount);
+      assert.equal(testItem.firstIncidentUnixTime, sut.firstIncidentUnixTime);
+      assert.equal(testItem.lastIncidentLocation, sut.lastIncidentLocation);
+      assert.equal(testItem.lastIncidentUnixTime, sut.lastIncidentUnixTime);
 
       return done();
     });

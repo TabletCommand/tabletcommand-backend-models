@@ -1,46 +1,45 @@
 "use strict";
 
-let mongoose = require("mongoose");
-mongoose.Promise = require("bluebird");
-let models = require("../index")(mongoose);
-
-let Mockgoose = require("mockgoose").Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
-
-const redisClient = require("redis-js");
-
-const mock = require("./mock")({
-  mockgoose,
-  mongoose,
-  models,
-  redisClient
-});
-
 const assert = require("chai").assert;
-const testData = mock.incidentTakeover;
+
+const m = require("..");
+const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
 
 describe("IncidentTakeover", function() {
-  beforeEach(function(done) {
-    mock.beforeEach(done);
-  });
+  let models, connection;
+  let testItem;
+  beforeEach(function() {
+    return m.connect(url, (err, mongoose, conn, mods) => {
+      if (err) {
+        console.log("Error connecting to mongo", err);
+        process.exit();
+      }
+      models = mods;
+      connection = conn;
 
-  afterEach(function(done) {
-    mock.afterEach(done);
+      const mock = require("./mock")({
+        mongoose
+      });
+      testItem = mock.incidentTakeover;
+    });
+  });
+  afterEach(function() {
+    connection.close();
   });
 
   it("is saved", function(done) {
-    var item = new models.IncidentTakeover(testData);
+    var item = new models.IncidentTakeover(testItem);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
-      assert.isNotNull(testData._id);
-      assert.equal(testData.departmentId, sut.departmentId);
-      assert.equal(testData.incident_id, sut.incident_id);
-      assert.equal(testData.incident_name, sut.incident_name);
-      assert.equal(testData.old_owner, sut.old_owner);
-      assert.equal(testData.new_owner, sut.new_owner);
-      assert.equal(testData.status, sut.status);
-      assert.equal(testData.request_time, sut.request_time);
+      assert.isNotNull(testItem._id);
+      assert.equal(testItem.departmentId, sut.departmentId);
+      assert.equal(testItem.incident_id, sut.incident_id);
+      assert.equal(testItem.incident_name, sut.incident_name);
+      assert.equal(testItem.old_owner, sut.old_owner);
+      assert.equal(testItem.new_owner, sut.new_owner);
+      assert.equal(testItem.status, sut.status);
+      assert.equal(testItem.request_time, sut.request_time);
       assert.isTrue(sut.uuid !== "");
 
       return done();

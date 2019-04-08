@@ -71,8 +71,9 @@ module.exports = function LocationModule(mongoose) {
   modelSchema.set("autoIndex", false);
 
   modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callback) {
+    const that = this; // Reassign this to silence standard/no-callback-literal
     if (!_.isObject(dbItem)) {
-      return callback(this);
+      return callback(that);
     }
 
     // We keep the same value for _id, uuid, departmentId

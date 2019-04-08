@@ -1,48 +1,47 @@
 "use strict";
 
-let mongoose = require("mongoose");
-mongoose.Promise = require("bluebird");
-let models = require("../index")(mongoose);
-
-let Mockgoose = require("mockgoose").Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
-
-const redisClient = require("redis-js");
-
-const mock = require("./mock")({
-  mockgoose,
-  mongoose,
-  models,
-  redisClient
-});
-
 const assert = require("chai").assert;
-const testUser = mock.user;
+
+const m = require("..");
+const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
 
 describe("User", function() {
-  beforeEach(function(done) {
-    mock.beforeEach(done);
-  });
+  let models, connection;
+  let testItem;
+  beforeEach(function() {
+    return m.connect(url, (err, mongoose, conn, mods) => {
+      if (err) {
+        console.log("Error connecting to mongo", err);
+        process.exit();
+      }
+      models = mods;
+      connection = conn;
 
-  afterEach(function(done) {
-    mock.afterEach(done);
+      const mock = require("./mock")({
+        mongoose
+      });
+      testItem = mock.user;
+    });
+  });
+  afterEach(function() {
+    connection.close();
   });
 
   it("is saved", function(done) {
-    var item = new models.User(testUser);
+    var item = new models.User(testItem);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
-      assert.isNotNull(testUser._id);
-      assert.equal(sut.nick, testUser.nick);
-      assert.equal(sut.email, testUser.email);
-      assert.equal(sut.mapId, testUser.mapId);
-      assert.equal(sut.departmentId, testUser.departmentId);
+      assert.isNotNull(testItem._id);
+      assert.equal(sut.nick, testItem.nick);
+      assert.equal(sut.email, testItem.email);
+      assert.equal(sut.mapId, testItem.mapId);
+      assert.equal(sut.departmentId, testItem.departmentId);
       assert.isFalse(sut.active);
       assert.isFalse(sut.admin);
       assert.isFalse(sut.superuser);
       assert.isTrue(sut.isPro);
-      assert.equal(sut.agency.name, testUser.agency.name);
+      assert.equal(sut.agency.name, testItem.agency.name);
 
       return done();
     });

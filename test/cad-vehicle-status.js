@@ -1,31 +1,30 @@
 "use strict";
 
-let mongoose = require("mongoose");
-mongoose.Promise = require("bluebird");
-let models = require("../index")(mongoose);
-
-let Mockgoose = require("mockgoose").Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
-
-const redisClient = require("redis-js");
-
-const mock = require("./mock")({
-  mockgoose,
-  mongoose,
-  models,
-  redisClient
-});
-
 const assert = require("chai").assert;
-const testItem = mock.cadVehicleStatus;
+
+const m = require("..");
+const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
 
 describe("CADVehicleStatus", function() {
-  beforeEach(function(done) {
-    mock.beforeEach(done);
-  });
+  let models, connection;
+  let testItem;
+  beforeEach(function() {
+    return m.connect(url, (err, mongoose, conn, mods) => {
+      if (err) {
+        console.log("Error connecting to mongo", err);
+        process.exit();
+      }
+      models = mods;
+      connection = conn;
 
-  afterEach(function(done) {
-    mock.afterEach(done);
+      const mock = require("./mock")({
+        mongoose
+      });
+      testItem = mock.cadVehicleStatus;
+    });
+  });
+  afterEach(function() {
+    connection.close();
   });
 
   it("is saved", function(done) {

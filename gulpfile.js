@@ -2,8 +2,6 @@ const gulp = require("gulp");
 const eslint = require("gulp-eslint");
 const mocha = require("gulp-mocha");
 
-gulp.task("default", ["lint", "test"]);
-
 gulp.task("lint", function() {
   const sources = [
     "*.js",
@@ -16,7 +14,7 @@ gulp.task("lint", function() {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task("test", ["lint"], function() {
+gulp.task("test", gulp.series("lint", function() {
   const tests = [
     "test/*.js"
   ];
@@ -27,4 +25,6 @@ gulp.task("test", ["lint"], function() {
     .pipe(mocha({
       reporter: "list"
     }));
-});
+}));
+
+gulp.task("default", gulp.series("test"));

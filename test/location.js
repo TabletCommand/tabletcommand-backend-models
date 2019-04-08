@@ -1,50 +1,48 @@
 "use strict";
 
-const _ = require("lodash");
-let mongoose = require("mongoose");
-mongoose.Promise = require("bluebird");
-let models = require("../index")(mongoose);
-
-let Mockgoose = require("mockgoose").Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
-
-const redisClient = require("redis-js");
-
-const mock = require("./mock")({
-  mockgoose,
-  mongoose,
-  models,
-  redisClient
-});
-
 const assert = require("chai").assert;
-const testData = mock.location;
+
+const m = require("..");
+const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
 
 describe("Location", function() {
-  beforeEach(function(done) {
-    mock.beforeEach(done);
-  });
+  let models, connection;
+  let testItem;
+  beforeEach(function() {
+    return m.connect(url, (err, mongoose, conn, mods) => {
+      if (err) {
+        console.log("Error connecting to mongo", err);
+        process.exit();
+      }
+      models = mods;
+      connection = conn;
 
-  afterEach(function(done) {
-    mock.afterEach(done);
+      const mock = require("./mock")({
+        mongoose
+      });
+      testItem = mock.location;
+    });
+  });
+  afterEach(function() {
+    connection.close();
   });
 
   it("is saved", function(done) {
-    const item = new models.Location(testData);
+    const item = new models.Location(testItem);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
-      assert.isNotNull(testData._id);
-      assert.equal(testData.departmentId, sut.departmentId);
-      assert.equal(testData.userId, sut.userId);
-      assert.equal(testData.uuid, sut.uuid);
-      assert.equal(testData.username, sut.username);
-      assert.equal(testData.modified_unix_date, sut.modified_unix_date);
-      assert.equal(testData.device_type, sut.device_type);
-      assert.equal(testData.session, sut.session);
-      assert.equal(testData.active, sut.active);
-      assert.equal(testData.location.longitude, sut.location.longitude);
-      assert.equal(testData.location.latitude, sut.location.latitude);
+      assert.isNotNull(testItem._id);
+      assert.equal(testItem.departmentId, sut.departmentId);
+      assert.equal(testItem.userId, sut.userId);
+      assert.equal(testItem.uuid, sut.uuid);
+      assert.equal(testItem.username, sut.username);
+      assert.equal(testItem.modified_unix_date, sut.modified_unix_date);
+      assert.equal(testItem.device_type, sut.device_type);
+      assert.equal(testItem.session, sut.session);
+      assert.equal(testItem.active, sut.active);
+      assert.equal(testItem.location.longitude, sut.location.longitude);
+      assert.equal(testItem.location.latitude, sut.location.latitude);
       assert.isTrue(sut.uuid !== "");
 
       return done();
@@ -52,19 +50,19 @@ describe("Location", function() {
   });
 
   it("propagateToObject with object", function(done) {
-    let nextUpdate = _.clone(testData);
+    let nextUpdate = JSON.parse(JSON.stringify(testItem)); // Clone
     nextUpdate.username = "abc";
     nextUpdate.session = "def";
     nextUpdate.active = false;
 
-    const item1 = new models.Location(testData);
+    const item1 = new models.Location(testItem);
     item1.save(function(err, sut) {
       assert.isNull(err, "Should not err");
-      assert.isNotNull(testData._id);
-      assert.equal(testData.uuid, sut.uuid);
-      assert.equal(testData.username, sut.username);
-      assert.equal(testData.session, sut.session);
-      assert.equal(testData.active, sut.active);
+      assert.isNotNull(testItem._id);
+      assert.equal(testItem.uuid, sut.uuid);
+      assert.equal(testItem.username, sut.username);
+      assert.equal(testItem.session, sut.session);
+      assert.equal(testItem.active, sut.active);
 
       const item2 = new models.Location(nextUpdate);
       item2.propagateToObject(sut, function(itemToSave) {
@@ -78,12 +76,12 @@ describe("Location", function() {
   });
 
   it("propagateToObject with null", function(done) {
-    let item = new models.Location(testData);
+    let item = new models.Location(testItem);
     item.propagateToObject(null, function(sut) {
-      assert.equal(testData.uuid, sut.uuid);
-      assert.equal(testData.username, sut.username);
-      assert.equal(testData.session, sut.session);
-      assert.equal(testData.active, sut.active);
+      assert.equal(testItem.uuid, sut.uuid);
+      assert.equal(testItem.username, sut.username);
+      assert.equal(testItem.session, sut.session);
+      assert.equal(testItem.active, sut.active);
 
       return done();
     });
