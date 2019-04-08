@@ -1,24 +1,24 @@
-module.exports = function index(mongoose) {
-  "use strict";
+"use strict";
 
-  var actionLog = require("./models/action-log")(mongoose);
-  var cadIncident = require("./models/cad-incident")(mongoose);
-  var cadStatus = require("./models/cad-status")(mongoose);
-  var cadStatusMap = require("./models/cad-status-map")(mongoose);
-  var cadVehicle = require("./models/cad-vehicle")(mongoose);
-  var cadVehicleStatus = require("./models/cad-vehicle-status")(mongoose);
-  var department = require("./models/department")(mongoose);
-  var deviceMapping = require("./models/device-mapping")(mongoose);
-  var incidentEvent = require("./models/incident-event")(mongoose);
-  var incidentTakeover = require("./models/incident-takeover")(mongoose);
-  var location = require("./models/location")(mongoose);
-  var managedIncident = require("./models/managed-incident")(mongoose);
-  var rateLimit = require("./models/rate-limit")(mongoose);
-  var session = require("./models/session")(mongoose);
-  var user = require("./models/user")(mongoose);
-  var userRegistration = require("./models/user-registration")(mongoose);
+function wireModels(mongoose, callback) {
+  const actionLog = require("./models/action-log")(mongoose);
+  const cadIncident = require("./models/cad-incident")(mongoose);
+  const cadStatus = require("./models/cad-status")(mongoose);
+  const cadStatusMap = require("./models/cad-status-map")(mongoose);
+  const cadVehicle = require("./models/cad-vehicle")(mongoose);
+  const cadVehicleStatus = require("./models/cad-vehicle-status")(mongoose);
+  const department = require("./models/department")(mongoose);
+  const deviceMapping = require("./models/device-mapping")(mongoose);
+  const incidentEvent = require("./models/incident-event")(mongoose);
+  const incidentTakeover = require("./models/incident-takeover")(mongoose);
+  const location = require("./models/location")(mongoose);
+  const managedIncident = require("./models/managed-incident")(mongoose);
+  const rateLimit = require("./models/rate-limit")(mongoose);
+  const session = require("./models/session")(mongoose);
+  const user = require("./models/user")(mongoose);
+  const userRegistration = require("./models/user-registration")(mongoose);
 
-  return {
+  const models = {
     ActionLog: actionLog,
     CADIncident: cadIncident,
     CADStatus: cadStatus,
@@ -36,4 +36,28 @@ module.exports = function index(mongoose) {
     User: user,
     UserRegistration: userRegistration
   };
+
+  return callback(models);
+}
+
+function connect(url, callback) {
+  const mongoose = require("mongoose");
+  mongoose.Promise = require("bluebird");
+
+  return wireModels(mongoose, (models) => {
+    const opts = {
+      useNewUrlParser: true
+    };
+    return mongoose.connect(url, opts, (err, connection) => {
+      if (err) {
+        return callback(err);
+      }
+
+      return callback(err, mongoose, connection, models);
+    });
+  });
+}
+
+module.exports = {
+  connect
 };
