@@ -1,11 +1,13 @@
-module.exports = function RateLimitModule(mongoose) {
-  "use strict";
+import * as  uuid from "uuid";
+import * as  _ from "lodash";
+import { createModel, createSchema, createSchemaDefinition, DocumentFromSchemaDefinition } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
+
+export async function CADVehicleStatusModule(mongoose: MongooseModule) {
 
   var Schema = mongoose.Schema;
-  var uuid = require("uuid");
-  var _ = require("lodash");
 
-  var CADStatusOptionSelected = new Schema({
+  var CADStatusOptionSelected = createSchema(Schema, {
     name: {
       type: String,
       default: ""
@@ -26,7 +28,7 @@ module.exports = function RateLimitModule(mongoose) {
     _id: false
   });
 
-  var modelSchema = new Schema({
+  var modelSchemaConfig = createSchemaDefinition({
     uuid: {
       type: String,
       index: true,
@@ -91,40 +93,38 @@ module.exports = function RateLimitModule(mongoose) {
       type: [CADStatusOptionSelected],
       default: []
     }
-  }, {
+  })
+
+  type CADVehicleStatus = DocumentFromSchemaDefinition<typeof modelSchemaConfig>;
+  var modelSchema = createSchema(Schema, modelSchemaConfig, {
     collection: "massive_cad_vehicle_status"
-  });
-  modelSchema.set("autoIndex", false);
+  }, {
+    propagateToObject<T>(dbItem : CADVehicleStatus, callback: (o: CADVehicleStatus)=> T): T {
+      const that = this; // Reassign this to silence standard/no-callback-literal
+      if (!_.isObject(dbItem)) {
+        return callback(that);
+      }
 
-  modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callback) {
-    const that = this; // Reassign this to silence standard/no-callback-literal
-    if (!_.isObject(dbItem)) {
-      return callback(that);
+      // We keep the same value for _id, uuid, departmentId
+      dbItem.vehicleId = this.vehicleId;
+      dbItem.radioName = this.radioName;
+      dbItem.requestTime = this.requestTime;
+      dbItem.responseTime = this.responseTime;
+      dbItem.status = this.status;
+      dbItem.statusCode = this.statusCode;
+      dbItem.modifiedDate = this.modifiedDate;
+      dbItem.requestStatus = this.requestStatus;
+      dbItem.owner = this.owner;
+      dbItem.incidentNumber = this.incidentNumber;
+      dbItem.options = this.options;
+
+      return callback(dbItem);
     }
+  });
 
-    // We keep the same value for _id, uuid, departmentId
-    dbItem.vehicleId = this.vehicleId;
-    dbItem.radioName = this.radioName;
-    dbItem.requestTime = this.requestTime;
-    dbItem.responseTime = this.responseTime;
-    dbItem.status = this.status;
-    dbItem.statusCode = this.statusCode;
-    dbItem.modifiedDate = this.modifiedDate;
-    dbItem.requestStatus = this.requestStatus;
-    dbItem.owner = this.owner;
-    dbItem.incidentNumber = this.incidentNumber;
-    dbItem.options = this.options;
-
-    return callback(dbItem);
-  };
-
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.CADVehicleStatus) {
-    Model = mongoose.model("CADVehicleStatus");
-  } else {
-    Model = mongoose.model("CADVehicleStatus", modelSchema);
-  }
-
-  return Model;
+  modelSchema.set("autoIndex", false);
+  return createModel(mongoose, "CADVehicleStatus", modelSchema);
 };
+
+export default CADVehicleStatusModule;
+export type CADVehicleStatus = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>

@@ -1,12 +1,15 @@
-module.exports = function RateLimitModule(mongoose) {
+import * as uuid from "uuid";
+import { MongooseModule } from "./types";
+import { createSchema, createModel } from "./helpers";
+
+
+export async function CADStatusModule(mongoose: MongooseModule) {
   "use strict";
 
-  var Schema = mongoose.Schema;
-  var uuid = require("uuid");
+  var { Schema } = mongoose;
+  var CADStatusColor = (await import("./schema/cad-status-color")).RateLimitModule(mongoose);
 
-  var CADStatusColor = require("./schema/cad-status-color")(mongoose);
-
-  var StatusOptionValue = new Schema({
+  var StatusOptionValue = createSchema(Schema, {
     name: {
       type: String,
       default: ""
@@ -35,7 +38,7 @@ module.exports = function RateLimitModule(mongoose) {
     _id: false
   });
 
-  var StatusOption = new Schema({
+  var StatusOption = createSchema(Schema, {
     name: {
       type: String,
       default: ""
@@ -60,7 +63,7 @@ module.exports = function RateLimitModule(mongoose) {
     _id: false
   });
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     uuid: {
       type: String,
       index: true,
@@ -124,13 +127,8 @@ module.exports = function RateLimitModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.CADStatus) {
-    Model = mongoose.model("CADStatus");
-  } else {
-    Model = mongoose.model("CADStatus", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "CADStatus", modelSchema);
 };
+
+export default CADStatusModule
+export type CADStatus = ReturnType<typeof CADStatusModule>

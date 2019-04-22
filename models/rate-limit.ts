@@ -1,11 +1,15 @@
-module.exports = function RateLimitModule(mongoose) {
-  "use strict";
+import * as _ from "lodash";
+import * as uuid from "uuid";
+import { createSchema, createModel } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
 
-  var Schema = mongoose.Schema;
+export async function RateLimitModule(mongoose: MongooseModule) {
 
-  var modelSchema = new Schema({
+  const { Schema, Types} = mongoose;
+
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     username: String,
@@ -22,13 +26,9 @@ module.exports = function RateLimitModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.RateLimit) {
-    Model = mongoose.model("RateLimit");
-  } else {
-    Model = mongoose.model("RateLimit", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "RateLimit", modelSchema);
 };
+
+
+export default RateLimitModule;
+export type RateLimit = UnboxPromise<ReturnType<typeof RateLimitModule>>

@@ -1,9 +1,10 @@
-module.exports = function UserModule(mongoose) {
-  "use strict";
+import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
+import { MongooseModule, MongooseDocument, UnboxPromise } from "./types";
 
+export async function UserModule(mongoose: MongooseModule) {
   var Schema = mongoose.Schema;
 
-  var vehicleSchema = new Schema({
+  var vehicleSchema = createSchema(Schema, {
     radioName: {
       type: String,
       default: ""
@@ -16,8 +17,8 @@ module.exports = function UserModule(mongoose) {
     _id: false
   });
 
-  var Agency = require("./schema/cad-agency")(mongoose);
-  var modelSchema = new Schema({
+  var Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
+  var modelSchema = createSchema(Schema, {
     nick: {
       type: String,
       default: "",
@@ -128,22 +129,17 @@ module.exports = function UserModule(mongoose) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform: function(doc, ret) {
+    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
     }
   });
 
-  modelSchema.virtual("id").get(function() {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.User) {
-    Model = mongoose.model("User");
-  } else {
-    Model = mongoose.model("User", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "User", modelSchema);
 };
+
+export default UserModule;
+export type User = UnboxPromise<ReturnType<typeof UserModule>>

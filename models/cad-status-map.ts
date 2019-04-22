@@ -1,10 +1,12 @@
-module.exports = function RateLimitModule(mongoose) {
-  "use strict";
+import { MongooseModule, UnboxPromise } from "./types";
+import * as _ from "lodash";
+import { TypedDocument, createSchema, createModel } from "./helpers";
 
-  var _ = require("lodash");
+export async function CADStatusMapModule(mongoose: MongooseModule) {
+
   var Schema = mongoose.Schema;
 
-  var ToStatusIdSchema = new Schema({
+  var ToStatusIdSchema = createSchema(Schema, {
     statusId: {
       type: Number,
       default: 0,
@@ -20,7 +22,7 @@ module.exports = function RateLimitModule(mongoose) {
 
   // Using hook instead of default values,
   // so we keep the db value if no value was sent by the API/CAD
-  ToStatusIdSchema.pre("save", function(next) {
+  ToStatusIdSchema.pre("save", function(this: TypedDocument<typeof ToStatusIdSchema>, next) {
     var self = this;
 
     if (_.isUndefined(self.userEnabled) || _.isNull(self.userEnabled)) {
@@ -31,7 +33,7 @@ module.exports = function RateLimitModule(mongoose) {
   });
 
   // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     departmentId: {
       type: String,
       default: "",
@@ -58,13 +60,8 @@ module.exports = function RateLimitModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.CADStatusMap) {
-    Model = mongoose.model("CADStatusMap");
-  } else {
-    Model = mongoose.model("CADStatusMap", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "CADStatusMap", modelSchema);
 };
+
+export default CADStatusMapModule
+export type CADStatusMap = UnboxPromise<ReturnType<typeof CADStatusMapModule>>

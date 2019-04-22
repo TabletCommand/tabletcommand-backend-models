@@ -1,26 +1,27 @@
-module.exports = function RateLimitModule(mongoose) {
-  "use strict";
+import * as _ from "lodash";
+import * as uuid from "uuid";
+import * as moment from "moment-timezone";
+import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
 
-  var Schema = mongoose.Schema;
-  var uuid = require("uuid");
-  var moment = require("moment-timezone");
-  var _ = require("lodash");
+export async function ManagedIncidentModule(mongoose: MongooseModule) {
+  const { Schema, Types } = mongoose;
 
-  function unixTimeToJSONWithTimezone(unixTime) {
+  function unixTimeToJSONWithTimezone(unixTime: number) {
     if (_.isFinite(unixTime) && unixTime > 1) {
       return moment.unix(unixTime).utc().format("YYYY-MM-DDTHH:mm:ssZZ");
     }
     return "";
   }
 
-  function unixTimeToLocalTime(unixTime) {
+  function unixTimeToLocalTime(unixTime: number) {
     if (_.isFinite(unixTime) && unixTime > 1) {
       return moment.unix(unixTime).utc().format("YYYY-MM-DDTHH:mm:ss.SSS");
     }
     return "";
   }
 
-  var HistoryItem = new Schema({
+  var HistoryItem = createSchema(Schema, {
     message: {
       type: String,
       default: ""
@@ -41,9 +42,9 @@ module.exports = function RateLimitModule(mongoose) {
     _id: false
   });
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     departmentId: {
@@ -119,34 +120,29 @@ module.exports = function RateLimitModule(mongoose) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform: function(doc, ret) {
+    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
     }
   });
 
-  modelSchema.virtual("id").get(function() {
+  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toString();
   });
 
-  modelSchema.virtual("start_time").get(function() {
+  modelSchema.virtual("start_time").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return unixTimeToJSONWithTimezone(this.start_unix_time);
   });
 
-  modelSchema.virtual("end_time").get(function() {
+  modelSchema.virtual("end_time").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return unixTimeToJSONWithTimezone(this.end_unix_time);
   });
 
-  modelSchema.virtual("modified_date").get(function() {
+  modelSchema.virtual("modified_date").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return unixTimeToLocalTime(this.modified_unix_date);
   });
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.ManagedIncident) {
-    Model = mongoose.model("ManagedIncident");
-  } else {
-    Model = mongoose.model("ManagedIncident", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "ManagedIncident", modelSchema);
 };
+
+export default ManagedIncidentModule
+export type ManagedIncident = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>

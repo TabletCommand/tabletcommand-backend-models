@@ -1,17 +1,20 @@
-module.exports = function CADIncidentModule(mongoose) {
-  "use strict";
+import { MongooseModule, MongooseModel, MongooseSchema, MongooseDocument, UnboxPromise } from "./types";
 
-  var Schema = mongoose.Schema;
-  var uuid = require("uuid");
+import { createSchema, DocumentTypeFromSchema, ModelFromSchema, createModel, FieldsOfDocument } from "./helpers";
+import * as uuid from "uuid";
 
+export async function CADIncidentModule(mongoose: MongooseModule) {
+
+  const { Schema, Types } = mongoose;
+  
   var toJSONOpts = {
     versionKey: false,
-    transform: function(doc, ret) {
-      strictSchema(doc.schema, ret);
+    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
+      strictSchema(doc.schema as any, ret);
     }
   };
 
-  var CADComment = new Schema({
+  var CADComment = createSchema(Schema, {
     Comment: {
       type: String
     },
@@ -27,7 +30,7 @@ module.exports = function CADIncidentModule(mongoose) {
 
   CADComment.set("toJSON", toJSONOpts);
 
-  var CADPerson = new Schema({
+  var CADPerson = createSchema(Schema, {
     PersonnelID: {
       type: String
     },
@@ -48,7 +51,7 @@ module.exports = function CADIncidentModule(mongoose) {
   });
   CADPerson.set("toJSON", toJSONOpts);
 
-  var CADUnit = new Schema({
+  var CADUnit = createSchema(Schema, {
     UnitID: {
       type: String,
       required: true
@@ -94,7 +97,7 @@ module.exports = function CADIncidentModule(mongoose) {
   });
   CADUnit.set("toJSON", toJSONOpts);
 
-  var APNNotificationType = new Schema({
+  var APNNotificationType = createSchema(Schema, {
     name: {
       type: String
     },
@@ -106,7 +109,7 @@ module.exports = function CADIncidentModule(mongoose) {
   });
   APNNotificationType.set("toJSON", toJSONOpts);
 
-  var CADPriorIncident = new Schema({
+  var CADPriorIncident = createSchema(Schema, {
     Address: {
       type: String
     },
@@ -133,9 +136,9 @@ module.exports = function CADIncidentModule(mongoose) {
   });
   CADPriorIncident.set("toJSON", toJSONOpts);
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     uuid: {
@@ -475,47 +478,43 @@ module.exports = function CADIncidentModule(mongoose) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform: function(doc, ret) {
+    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
       // Remove fields that should not be here
-      delete ret.apikey;
+      delete (ret as any)['apikey'];
 
-      strictSchema(doc.schema, ret);
+      strictSchema(doc.schema as typeof modelSchema, ret);
 
       ret.id = ret._id;
     }
   });
 
-  modelSchema.virtual("id").get(function() {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toString();
   });
+  
+  const ignoreFields: ReadonlyArray<string> = ["station", "callerNumber"];
 
-  function strictSchema(schema, ret) {
-    Object.keys(ret).forEach(function(element, index) {
+  function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
+    Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;
       }
 
-      var ignoreFields = ["station", "callerNumber"];
       if (ignoreFields.indexOf(element) !== -1) {
         delete ret[element];
         return;
       }
 
-      if (schema.paths[element] === undefined) {
-        console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, schema.paths[element]);
+      if ((schema as any).paths[element] === undefined) {
+        console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, (schema as any).paths[element]);
         delete ret[element];
       }
     });
   }
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.CADIncident) {
-    Model = mongoose.model("CADIncident");
-  } else {
-    Model = mongoose.model("CADIncident", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "CADIncident", modelSchema);
 };
+
+export default CADIncidentModule;
+export type CADIncident = UnboxPromise<ReturnType<typeof CADIncidentModule>>

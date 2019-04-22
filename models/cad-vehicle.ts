@@ -1,10 +1,12 @@
-module.exports = function RateLimitModule(mongoose) {
-  "use strict";
+import { MongooseModule, UnboxPromise } from "./types";
+import { createSchema, createModel } from "./helpers";
+import * as uuid from "uuid";
 
+export async function CADVehicleModule(mongoose: MongooseModule) {
   var Schema = mongoose.Schema;
-  var uuid = require("uuid");
+  
 
-  var Station = new Schema({
+  var Station = createSchema(Schema, {
     code: {
       type: String,
       default: ""
@@ -17,7 +19,7 @@ module.exports = function RateLimitModule(mongoose) {
     _id: false
   });
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     uuid: {
       type: String,
       index: true,
@@ -55,13 +57,9 @@ module.exports = function RateLimitModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.CADVehicle) {
-    Model = mongoose.model("CADVehicle");
-  } else {
-    Model = mongoose.model("CADVehicle", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "CADVehicle", modelSchema);
+  
 };
+
+export default CADVehicleModule
+export type CADVehicle = UnboxPromise<ReturnType<typeof CADVehicleModule>>

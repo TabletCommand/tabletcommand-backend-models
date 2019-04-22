@@ -1,11 +1,14 @@
-module.exports = function ActionLogModule(mongoose) {
+import { MongooseModule, UnboxPromise } from "./types";
+import { createSchema, createModel } from "./helpers";
+
+export async function ActionLogModule(mongoose: MongooseModule) {
   "use strict";
 
-  var Schema = mongoose.Schema;
+  var { Schema, Types } = mongoose;
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     departmentId: {
@@ -31,14 +34,8 @@ module.exports = function ActionLogModule(mongoose) {
     collection: "massive_action_log"
   });
   modelSchema.set("autoIndex", false);
-
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.ActionLog) {
-    Model = mongoose.model("ActionLog");
-  } else {
-    Model = mongoose.model("ActionLog", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "ActionLog", modelSchema);
 };
+
+export default ActionLogModule;
+export type ActionLog =  UnboxPromise<ReturnType<typeof ActionLogModule>>

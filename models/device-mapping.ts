@@ -1,11 +1,15 @@
-module.exports = function DeviceMappingModule(mongoose) {
-  "use strict";
-  var Schema = mongoose.Schema;
-  var uuid = require("uuid");
+import * as  uuid from "uuid";
+import * as  _ from "lodash";
+import { createSchema, createModel } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
 
-  var modelSchema = new Schema({
+export async function DeviceMappingModule(mongoose: MongooseModule) {
+
+  const { Schema, Types } = mongoose;
+
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     departmentId: {
@@ -61,13 +65,8 @@ module.exports = function DeviceMappingModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.DeviceMapping) {
-    Model = mongoose.model("DeviceMapping");
-  } else {
-    Model = mongoose.model("DeviceMapping", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "DeviceMapping", modelSchema);
 };
+
+export default DeviceMappingModule
+export type DeviceMapping = UnboxPromise<ReturnType<typeof DeviceMappingModule>>

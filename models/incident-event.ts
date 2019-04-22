@@ -1,9 +1,12 @@
-module.exports = function IncidentEventModule(mongoose) {
+import { createSchema, createModel } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
+
+export async function IncidentEventModule(mongoose: MongooseModule) {
   "use strict";
 
-  var Schema = mongoose.Schema;
+  const { Schema, Types} = mongoose;
 
-  var EventUser = new Schema({
+  var EventUser = createSchema(Schema, {
     username: {
       type: String,
       default: ""
@@ -24,9 +27,9 @@ module.exports = function IncidentEventModule(mongoose) {
     _id: false
   });
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     departmentId: {
@@ -84,13 +87,9 @@ module.exports = function IncidentEventModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.IncidentEvent) {
-    Model = mongoose.model("IncidentEvent");
-  } else {
-    Model = mongoose.model("IncidentEvent", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "IncidentEvent", modelSchema);
 };
+
+
+export default IncidentEventModule
+export type IncidentEvent = UnboxPromise<ReturnType<typeof IncidentEventModule>>

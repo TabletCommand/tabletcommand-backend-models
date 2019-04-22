@@ -1,12 +1,14 @@
-module.exports = function IncidentTakeoverModule(mongoose) {
-  "use strict";
+import { createSchema, createModel } from "./helpers";
+import * as uuid from "uuid";
+import { MongooseModule, UnboxPromise } from "./types";
 
-  var Schema = mongoose.Schema;
-  var uuid = require("uuid");
+export async function IncidentTakeoverModule(mongoose: MongooseModule) {
+  
+  const { Schema, Types } = mongoose;
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     departmentId: {
@@ -65,13 +67,8 @@ module.exports = function IncidentTakeoverModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.IncidentTakeover) {
-    Model = mongoose.model("IncidentTakeover");
-  } else {
-    Model = mongoose.model("IncidentTakeover", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "IncidentTakeover", modelSchema);
 };
+
+export default IncidentTakeoverModule;
+export type IncidentTakeover = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>

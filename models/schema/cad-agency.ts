@@ -1,8 +1,10 @@
-module.exports = function CADAgency(mongoose) {
-  "use strict";
+import { createSchema } from "../helpers";
+import { MongooseModule } from "../types";
+
+export function CADAgency(mongoose: MongooseModule) {
   var Schema = mongoose.Schema;
 
-  var Agency = new Schema({
+  var Agency = createSchema(Schema, {
     code: {
       type: String,
       default: ""

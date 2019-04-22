@@ -1,13 +1,15 @@
-module.exports = function LocationModule(mongoose) {
-  "use strict";
+import * as _ from "lodash";
+import * as uuid from "uuid";
+import { createSchema, createSchemaDefinition, DocumentFromSchemaDefinition, createModel } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
 
-  var Schema = mongoose.Schema;
-  var uuid = require("uuid");
-  var _ = require("lodash");
+export async function LocationModule(mongoose: MongooseModule) {
 
-  var modelSchema = new Schema({
+  var { Schema, Types } = mongoose;
+
+  const modelSchemaDefinition = createSchemaDefinition({
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     departmentId: {
@@ -65,38 +67,37 @@ module.exports = function LocationModule(mongoose) {
         default: 0
       }
     }
-  }, {
-    collection: "massive_location"
   });
-  modelSchema.set("autoIndex", false);
 
-  modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callback) {
-    const that = this; // Reassign this to silence standard/no-callback-literal
-    if (!_.isObject(dbItem)) {
-      return callback(that);
+  type Location =  DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
+  var modelSchema = createSchema(Schema, modelSchemaDefinition, {
+    collection: "massive_location"
+  }, {
+    propagateToObject<T>(this: Location, dbItem: Location, callback: (doc: Location) => T) {
+      const that = this; // Reassign this to silence standard/no-callback-literal
+      if (!_.isObject(dbItem)) {
+        return callback(that);
+      }
+      
+      // We keep the same value for _id, uuid, departmentId
+      dbItem.userId = this.userId;
+      dbItem.username = this.username;
+      dbItem.device_type = this.device_type;
+      dbItem.active = this.active;
+      dbItem.modified_unix_date = this.modified_unix_date;
+      dbItem.version = this.version;
+      dbItem.session = this.session;
+      dbItem.location.latitude = this.location.latitude;
+      dbItem.location.longitude = this.location.longitude;
+
+      return callback(dbItem);
     }
+  });
 
-    // We keep the same value for _id, uuid, departmentId
-    dbItem.userId = this.userId;
-    dbItem.username = this.username;
-    dbItem.device_type = this.device_type;
-    dbItem.active = this.active;
-    dbItem.modified_unix_date = this.modified_unix_date;
-    dbItem.version = this.version;
-    dbItem.session = this.session;
-    dbItem.location.latitude = this.location.latitude;
-    dbItem.location.longitude = this.location.longitude;
-
-    return callback(dbItem);
-  };
-
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.Location) {
-    Model = mongoose.model("Location");
-  } else {
-    Model = mongoose.model("Location", modelSchema);
-  }
-
-  return Model;
+  
+  modelSchema.set("autoIndex", false);
+  return createModel(mongoose, "Location", modelSchema);
 };
+
+export default LocationModule
+export type Location = UnboxPromise<ReturnType<typeof LocationModule>>

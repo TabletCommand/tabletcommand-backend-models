@@ -12,6 +12,8 @@
     "url": "git://github.com/TabletCommand/tabletcommand-backend-models.git"
   },
   "dependencies": {
+    "@types/bluebird": "^3.5.26",
+    "@types/uuid": "^3.4.4",
     "bluebird": "^3.5.0",
     "debug": "^4.1.1",
     "lodash": "^4.17.4",

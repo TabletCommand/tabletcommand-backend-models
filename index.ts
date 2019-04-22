@@ -1,63 +1,63 @@
 "use strict";
 
-function wireModels(mongoose, callback) {
-  const actionLog = require("./models/action-log")(mongoose);
-  const cadIncident = require("./models/cad-incident")(mongoose);
-  const cadStatus = require("./models/cad-status")(mongoose);
-  const cadStatusMap = require("./models/cad-status-map")(mongoose);
-  const cadVehicle = require("./models/cad-vehicle")(mongoose);
-  const cadVehicleStatus = require("./models/cad-vehicle-status")(mongoose);
-  const department = require("./models/department")(mongoose);
-  const deviceMapping = require("./models/device-mapping")(mongoose);
-  const incidentEvent = require("./models/incident-event")(mongoose);
-  const incidentTakeover = require("./models/incident-takeover")(mongoose);
-  const location = require("./models/location")(mongoose);
-  const managedIncident = require("./models/managed-incident")(mongoose);
-  const rateLimit = require("./models/rate-limit")(mongoose);
-  const session = require("./models/session")(mongoose);
-  const user = require("./models/user")(mongoose);
-  const userRegistration = require("./models/user-registration")(mongoose);
+import { MongooseModule, UnionToIntersection } from "./models/types";
 
-  const models = {
-    ActionLog: actionLog,
-    CADIncident: cadIncident,
-    CADStatus: cadStatus,
-    CADStatusMap: cadStatusMap,
-    CADVehicle: cadVehicle,
-    CADVehicleStatus: cadVehicleStatus,
-    Department: department,
-    DeviceMapping: deviceMapping,
-    IncidentEvent: incidentEvent,
-    IncidentTakeover: incidentTakeover,
-    Location: location,
-    ManagedIncident: managedIncident,
-    RateLimit: rateLimit,
-    Session: session,
-    User: user,
-    UserRegistration: userRegistration
+async function wireModels(mongoose: MongooseModule) {
+  type ModelType<TModule extends Record<'default', (m: MongooseModule)=> any>> = ReturnType<TModule['default']>;
+  async function getModel<TModule extends Record<'default', (m: MongooseModule)=> any>>(m: Promise<TModule>): Promise<ModelType<TModule>>  {
+    const module = await m;
+    return module.default(mongoose);
+  }
+  
+  return {
+    ActionLog: await getModel(import("./models/action-log")),
+    CADIncident: await getModel(import("./models/cad-incident")),
+    CADStatusMap: await getModel(import("./models/cad-status-map")),
+    CADStatus: await getModel(import("./models/cad-status")),
+    CADVehicle: await getModel(import("./models/cad-vehicle")),
+    CADVehicleStatus: await getModel(import("./models/cad-vehicle-status")),
+    Department: await getModel(import("./models/department")),
+    DeviceMapping: await getModel(import("./models/device-mapping")),
+    IncidentEvent: await getModel(import("./models/incident-event")),
+    IncidentTakeover: await getModel(import("./models/incident-takeover")),
+    Location: await getModel(import("./models/location")),
+    ManagedIncident: await getModel(import("./models/managed-incident")),
+    RateLimit: await getModel(import("./models/rate-limit")),
+    Session: await getModel(import("./models/session")),
+    User: await getModel(import("./models/user")),
+    UserRegistration: await getModel(import("./models/user-registration")),
+  }
+}
+
+export { ActionLog } from './models/action-log';
+export { CADIncident } from './models/cad-incident';
+export { CADStatusMap } from './models/cad-status-map';
+export { CADStatus } from './models/cad-status';
+export { CADVehicle } from './models/cad-vehicle';
+export { CADVehicleStatus } from './models/cad-vehicle-status';
+export { Department } from './models/department';
+export { DeviceMapping } from './models/device-mapping';
+export { IncidentEvent } from './models/incident-event';
+export { IncidentTakeover } from './models/incident-takeover';
+export { Location } from './models/location';
+export { ManagedIncident } from './models/managed-incident';
+export { RateLimit } from './models/rate-limit';
+export { Session } from './models/session';
+export { User} from './models/user';
+export { UserRegistration } from './models/user-registration';
+
+export async function connect(url: string) {
+  const mongoose = await import("mongoose");
+  mongoose.Promise = await import("bluebird");
+
+  const models = await wireModels(mongoose);
+  const opts = {
+    useNewUrlParser: true
   };
+  const connection = await mongoose.connect(url, opts);
 
-  return callback(models);
+  return { mongoose, connection, models };
 }
 
-function connect(url, callback) {
-  const mongoose = require("mongoose");
-  mongoose.Promise = require("bluebird");
-
-  return wireModels(mongoose, (models) => {
-    const opts = {
-      useNewUrlParser: true
-    };
-    return mongoose.connect(url, opts, (err, connection) => {
-      if (err) {
-        return callback(err);
-      }
-
-      return callback(err, mongoose, connection, models);
-    });
-  });
-}
-
-module.exports = {
-  connect
-};
+type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U>? U : never;
+export type BackendModels =  UnboxPromise<ReturnType<typeof connect>>['models']

@@ -1,9 +1,11 @@
-module.exports = function UserRegistrationModule(mongoose) {
-  "use strict";
+import * as _ from "lodash";
+import { createSchema, createModel } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
 
+export async function UserRegistrationModule(mongoose: MongooseModule) {
   var Schema = mongoose.Schema;
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     email: {
       type: String,
       default: "",
@@ -75,13 +77,8 @@ module.exports = function UserRegistrationModule(mongoose) {
   });
   modelSchema.set("autoIndex", false);
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.UserRegistration) {
-    Model = mongoose.model("UserRegistration");
-  } else {
-    Model = mongoose.model("UserRegistration", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "UserRegistration", modelSchema);
 };
+
+export default UserRegistrationModule;
+export type UserRegistration = UnboxPromise<ReturnType<typeof UserRegistrationModule>>

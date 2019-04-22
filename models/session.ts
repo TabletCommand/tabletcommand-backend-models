@@ -1,15 +1,18 @@
-module.exports = function SessionModule(mongoose) {
+import { MongooseModule, UnboxPromise } from "./types";
+import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
+import * as uuid from "uuid";
+
+export async function SessionModule(mongoose: MongooseModule) {
   "use strict";
 
   var Schema = mongoose.Schema;
-  var uuid = require("uuid");
 
-  function requiredButAllowEmptyString() {
+  function requiredButAllowEmptyString(this: { myField: unknown }) {
     // Workaround to set required, and allow empty id
     return typeof this.myField === "string";
   }
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     _id: {
       type: String,
       default: uuid.v4
@@ -66,22 +69,17 @@ module.exports = function SessionModule(mongoose) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform: function(doc, ret) {
+    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
     }
   });
 
-  modelSchema.virtual("id").get(function() {
+  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toString();
   });
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.Session) {
-    Model = mongoose.model("Session");
-  } else {
-    Model = mongoose.model("Session", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "Session", modelSchema);
 };
+
+export default SessionModule;
+export type Session = UnboxPromise<ReturnType<typeof SessionModule>>

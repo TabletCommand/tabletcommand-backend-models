@@ -1,11 +1,14 @@
-module.exports = function DepartmentModule(mongoose) {
-  "use strict";
+import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
+import { MongooseModule, UnboxPromise } from "./types";
+import * as uuid from "uuid";
 
-  var Schema = mongoose.Schema;
-  var uuid = require("uuid");
-  var Agency = require("./schema/cad-agency")(mongoose);
+export async function DepartmentModule(mongoose: MongooseModule) {
 
-  var EsriToken = new Schema({
+  const { Schema, Types } = mongoose;
+  
+  var Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
+
+  var EsriToken = createSchema(Schema, {
     access_token: {
       type: String,
       default: ""
@@ -30,7 +33,7 @@ module.exports = function DepartmentModule(mongoose) {
     _id: false
   });
 
-  var IncidentType = new Schema({
+  var IncidentType = createSchema(Schema, {
     name: {
       type: String,
       default: "Any"
@@ -43,9 +46,9 @@ module.exports = function DepartmentModule(mongoose) {
     _id: false
   });
 
-  var modelSchema = new Schema({
+  var modelSchema = createSchema(Schema, {
     _id: {
-      type: Schema.ObjectId,
+      type: Types.ObjectId,
       auto: true
     },
     uuid: {
@@ -191,22 +194,18 @@ module.exports = function DepartmentModule(mongoose) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform: function(doc, ret) {
+    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
     }
   });
 
-  modelSchema.virtual("id").get(function() {
+  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toHexString();
   });
 
-  // Hack for mocha that loads the same models twice
-  var Model;
-  if (mongoose.models.Department) {
-    Model = mongoose.model("Department");
-  } else {
-    Model = mongoose.model("Department", modelSchema);
-  }
-
-  return Model;
+  return createModel(mongoose, "Department", modelSchema);
+  
 };
+
+export default DepartmentModule;
+export type Department = UnboxPromise<ReturnType<typeof DepartmentModule>>
