@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-import { MongooseModule } from "./types";
+import { MongooseModule, UnboxPromise } from "./types";
 import { createSchema, createModel } from "./helpers";
 
 
@@ -131,4 +131,4 @@ export async function CADStatusModule(mongoose: MongooseModule) {
 };
 
 export default CADStatusModule
-export type CADStatus = ReturnType<typeof CADStatusModule>
+export type CADStatus = UnboxPromise<ReturnType<typeof CADStatusModule>>

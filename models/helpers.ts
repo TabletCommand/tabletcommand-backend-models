@@ -35,7 +35,9 @@ export function createSchema
     (schemaCtor: typeof Schema, p: T, o: SchemaOptions, methods?: TMethods & ThisType<DocumentFromSchemaDefinition<T>>)
         :Schema & { _interface: MongooseInterface<T>, _methods: TMethods } {
     var schema = new schemaCtor(p, o);
-    schema.methods = methods as any;
+    if(methods) {
+        schema.methods = methods as any;
+    }
     return schema as any;
 }
 
