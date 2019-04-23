@@ -26,3 +26,4 @@ async function RateLimitModule(mongoose) {
 exports.RateLimitModule = RateLimitModule;
 ;
 exports.default = RateLimitModule;
+//# sourceMappingURL=rate-limit.js.map

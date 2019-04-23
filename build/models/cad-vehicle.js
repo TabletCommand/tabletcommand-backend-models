@@ -58,3 +58,4 @@ async function CADVehicleModule(mongoose) {
 exports.CADVehicleModule = CADVehicleModule;
 ;
 exports.default = CADVehicleModule;
+//# sourceMappingURL=cad-vehicle.js.map

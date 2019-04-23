@@ -92,3 +92,4 @@ async function LocationModule(mongoose) {
 exports.LocationModule = LocationModule;
 ;
 exports.default = LocationModule;
+//# sourceMappingURL=location.js.map

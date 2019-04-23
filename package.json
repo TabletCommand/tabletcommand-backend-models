@@ -11,6 +11,8 @@
     "type": "git",
     "url": "git://github.com/TabletCommand/tabletcommand-backend-models.git"
   },
+  "main": "build/index.js",
+  "types": "definitions/index.d.ts",
   "dependencies": {
     "@types/bluebird": "^3.5.26",
     "@types/uuid": "^3.4.4",

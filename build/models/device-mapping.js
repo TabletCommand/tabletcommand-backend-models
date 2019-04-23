@@ -66,3 +66,4 @@ async function DeviceMappingModule(mongoose) {
 exports.DeviceMappingModule = DeviceMappingModule;
 ;
 exports.default = DeviceMappingModule;
+//# sourceMappingURL=device-mapping.js.map

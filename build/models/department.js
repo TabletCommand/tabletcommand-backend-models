@@ -192,3 +192,4 @@ async function DepartmentModule(mongoose) {
 exports.DepartmentModule = DepartmentModule;
 ;
 exports.default = DepartmentModule;
+//# sourceMappingURL=department.js.map

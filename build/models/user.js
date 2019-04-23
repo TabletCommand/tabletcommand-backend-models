@@ -133,3 +133,4 @@ async function UserModule(mongoose) {
 exports.UserModule = UserModule;
 ;
 exports.default = UserModule;
+//# sourceMappingURL=user.js.map

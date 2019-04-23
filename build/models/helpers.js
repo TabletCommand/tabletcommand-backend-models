@@ -21,3 +21,4 @@ function createModel(mongoose, name, schema, collection, skipInit) {
     }
 }
 exports.createModel = createModel;
+//# sourceMappingURL=helpers.js.map

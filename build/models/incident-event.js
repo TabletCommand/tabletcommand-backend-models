@@ -88,3 +88,4 @@ async function IncidentEventModule(mongoose) {
 exports.IncidentEventModule = IncidentEventModule;
 ;
 exports.default = IncidentEventModule;
+//# sourceMappingURL=incident-event.js.map

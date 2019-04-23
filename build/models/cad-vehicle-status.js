@@ -120,3 +120,4 @@ async function CADVehicleStatusModule(mongoose) {
 exports.CADVehicleStatusModule = CADVehicleStatusModule;
 ;
 exports.default = CADVehicleStatusModule;
+//# sourceMappingURL=cad-vehicle-status.js.map

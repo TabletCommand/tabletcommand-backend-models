@@ -67,3 +67,4 @@ async function IncidentTakeoverModule(mongoose) {
 exports.IncidentTakeoverModule = IncidentTakeoverModule;
 ;
 exports.default = IncidentTakeoverModule;
+//# sourceMappingURL=incident-takeover.js.map

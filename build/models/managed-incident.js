@@ -130,3 +130,4 @@ async function ManagedIncidentModule(mongoose) {
 exports.ManagedIncidentModule = ManagedIncidentModule;
 ;
 exports.default = ManagedIncidentModule;
+//# sourceMappingURL=managed-incident.js.map

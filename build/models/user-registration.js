@@ -79,3 +79,4 @@ async function UserRegistrationModule(mongoose) {
 exports.UserRegistrationModule = UserRegistrationModule;
 ;
 exports.default = UserRegistrationModule;
+//# sourceMappingURL=user-registration.js.map
