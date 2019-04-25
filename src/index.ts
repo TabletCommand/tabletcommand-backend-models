@@ -1,14 +1,14 @@
 "use strict";
 
-import { MongooseModule, UnionToIntersection } from "./models/types";
+import { MongooseModule, UnionToIntersection } from "./models/helpers";
 
 async function wireModels(mongoose: MongooseModule) {
-  type ModelType<TModule extends Record<'default', (m: MongooseModule)=> any>> = ReturnType<TModule['default']>;
-  async function getModel<TModule extends Record<'default', (m: MongooseModule)=> any>>(m: Promise<TModule>): Promise<ModelType<TModule>>  {
+  type ModelType<TModule extends Record<'default', (m: MongooseModule) => unknown>> = ReturnType<TModule['default']>;
+  async function getModel<TModule extends Record<'default', (m: MongooseModule) => unknown>>(m: Promise<TModule>): Promise<ModelType<TModule>> {
     const module = await m;
-    return module.default(mongoose);
+    return module.default(mongoose) as Promise<ModelType<TModule>>;
   }
-  
+
   return {
     ActionLog: await getModel(import("./models/action-log")),
     CADIncident: await getModel(import("./models/cad-incident")),
@@ -26,7 +26,7 @@ async function wireModels(mongoose: MongooseModule) {
     Session: await getModel(import("./models/session")),
     User: await getModel(import("./models/user")),
     UserRegistration: await getModel(import("./models/user-registration")),
-  }
+  };
 }
 
 export { ActionLog } from './models/action-log';
@@ -46,18 +46,20 @@ export { Session } from './models/session';
 export { User} from './models/user';
 export { UserRegistration } from './models/user-registration';
 
+export * from './models/helpers';
+
 export async function connect(url: string) {
   const mongoose = await import("mongoose");
   mongoose.Promise = await import("bluebird");
 
   const models = await wireModels(mongoose);
   const opts = {
-    useNewUrlParser: true
+    useNewUrlParser: true,
   };
   const connection = await mongoose.connect(url, opts);
 
   return { mongoose, connection, models };
 }
 
-type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U>? U : never;
-export type BackendModels =  UnboxPromise<ReturnType<typeof connect>>['models']
+type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U>? U : never;
+export type BackendModels =  UnboxPromise<ReturnType<typeof connect>>['models'];

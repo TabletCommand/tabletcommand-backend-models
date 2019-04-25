@@ -2,25 +2,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../helpers");
 function CADAgency(mongoose) {
-    var Schema = mongoose.Schema;
-    var Agency = helpers_1.createSchema(Schema, {
+    const Schema = mongoose.Schema;
+    const Agency = helpers_1.createSchema(Schema, {
         code: {
             type: String,
-            default: ""
+            default: "",
         },
         name: {
             type: String,
-            default: ""
+            default: "",
         },
         domain: {
             type: String,
-            default: ""
-        }
+            default: "",
+        },
     }, {
-        _id: false
+        _id: false,
     });
     return Agency;
 }
 exports.CADAgency = CADAgency;
-;
 //# sourceMappingURL=cad-agency.js.map

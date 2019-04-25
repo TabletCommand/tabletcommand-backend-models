@@ -1,72 +1,72 @@
 import * as  uuid from "uuid";
 import * as  _ from "lodash";
 import { createSchema, createModel } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./types";
+import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function DeviceMappingModule(mongoose: MongooseModule) {
 
   const { Schema, Types } = mongoose;
 
-  var modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
-      auto: true
+      auto: true,
     },
     departmentId: {
       type: String,
-      default: ""
+      default: "",
     },
     userId: {
       type: String,
-      default: ""
+      default: "",
     },
     deviceType: {
       type: String,
-      default: "truck"
+      default: "truck",
     },
     mapId: {
       type: String,
-      default: ""
+      default: "",
     },
     deviceId: {
       type: String,
-      default: ""
+      default: "",
     },
     location: {
       longitude: {
-        type: Number
+        type: Number,
       },
       latitude: {
-        type: Number
-      }
+        type: Number,
+      },
     },
     modified_unix_date: {
       type: Number,
-      default: 0
+      default: 0,
     },
     active: {
       type: Boolean,
-      default: true
+      default: true,
     },
     remoteAddress: {
       type: String,
-      default: "0.0.0.0"
+      default: "0.0.0.0",
     },
     uuid: {
       type: String,
-      default: uuid.v4
+      default: uuid.v4,
     },
     note: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   }, {
-    collection: "massive_device_mapping"
+    collection: "massive_device_mapping",
   });
   modelSchema.set("autoIndex", false);
 
   return createModel(mongoose, "DeviceMapping", modelSchema);
-};
+}
 
-export default DeviceMappingModule
-export type DeviceMapping = UnboxPromise<ReturnType<typeof DeviceMappingModule>>
+export default DeviceMappingModule;
+export type DeviceMapping = UnboxPromise<ReturnType<typeof DeviceMappingModule>>;

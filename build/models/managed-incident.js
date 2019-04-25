@@ -18,48 +18,48 @@ async function ManagedIncidentModule(mongoose) {
         }
         return "";
     }
-    var HistoryItem = helpers_1.createSchema(Schema, {
+    const HistoryItem = helpers_1.createSchema(Schema, {
         message: {
             type: String,
-            default: ""
+            default: "",
         },
         entity_type: {
             type: Number,
-            default: 0
+            default: 0,
         },
         time: {
             type: Number,
-            default: 0
+            default: 0,
         },
         entity_id: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
-            auto: true
+            auto: true,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         userId: {
             type: String,
-            required: true
+            required: true,
         },
         uuid: {
             type: String,
-            default: uuid.v4
+            default: uuid.v4,
         },
         start_unix_time: {
             type: Number,
-            default: 0
+            default: 0,
         },
         end_unix_time: Number,
         par_unix_time: Number,
@@ -67,15 +67,15 @@ async function ManagedIncidentModule(mongoose) {
         watch_unix_pause_time: Number,
         modified_unix_date: {
             type: Number,
-            default: 0
+            default: 0,
         },
         channel_owner: {
             type: String,
-            default: ""
+            default: "",
         },
         channel: {
             type: String,
-            default: ""
+            default: "",
         },
         location: String,
         last_view: String,
@@ -96,14 +96,14 @@ async function ManagedIncidentModule(mongoose) {
         CommandChannel: String,
         // Incident Notes
         notes: {
-            type: [HistoryItem]
+            type: [HistoryItem],
         },
         // Incident History
         history: {
-            type: [HistoryItem]
-        }
+            type: [HistoryItem],
+        },
     }, {
-        collection: "massive_incident_managed"
+        collection: "massive_incident_managed",
     });
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
@@ -111,7 +111,7 @@ async function ManagedIncidentModule(mongoose) {
         versionKey: false,
         transform(doc, ret) {
             ret.id = ret._id;
-        }
+        },
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
@@ -128,6 +128,5 @@ async function ManagedIncidentModule(mongoose) {
     return helpers_1.createModel(mongoose, "ManagedIncident", modelSchema);
 }
 exports.ManagedIncidentModule = ManagedIncidentModule;
-;
 exports.default = ManagedIncidentModule;
 //# sourceMappingURL=managed-incident.js.map

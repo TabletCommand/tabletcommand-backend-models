@@ -1,128 +1,128 @@
 import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
-import { MongooseModule, MongooseDocument, UnboxPromise } from "./types";
+import { MongooseModule, MongooseDocument, UnboxPromise } from "./helpers";
 
 export async function UserModule(mongoose: MongooseModule) {
-  var Schema = mongoose.Schema;
+  const Schema = mongoose.Schema;
 
-  var vehicleSchema = createSchema(Schema, {
+  const vehicleSchema = createSchema(Schema, {
     radioName: {
       type: String,
-      default: ""
+      default: "",
     },
     vehicleId: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   }, {
-    _id: false
+    _id: false,
   });
 
-  var Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
-  var modelSchema = createSchema(Schema, {
+  const Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
+  const modelSchema = createSchema(Schema, {
     nick: {
       type: String,
       default: "",
-      index: true
+      index: true,
     },
     email: {
       type: String,
       default: "",
-      index: true
+      index: true,
     },
     name: {
       type: String,
-      default: ""
+      default: "",
     },
     departmentId: {
       type: String,
       default: "",
       required: true,
-      index: true
+      index: true,
     },
     modified_date: {
       type: Date,
-      default: new Date()
+      default: new Date(),
     },
     when: {
-      type: Date
+      type: Date,
     },
     agency: {
       type: Agency,
-      default: null
+      default: null,
     },
 
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     admin: {
       type: Boolean,
-      default: false
+      default: false,
     },
     superuser: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isPro: {
       type: Boolean,
-      default: false
+      default: false,
     },
     outsider: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     remoteLoggingEnabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     salt: {
       type: String,
       default: "",
-      select: false
+      select: false,
     },
     pass: {
       type: String,
       default: "",
-      select: false
+      select: false,
     },
 
     mapHidden: {
       type: Boolean,
-      default: true
+      default: true,
     },
     mapId: {
       type: String,
-      default: ""
+      default: "",
     },
     vehicle: {
       type: vehicleSchema,
-      default: null
+      default: null,
     },
     sessionCountiPhone: {
       type: Number,
-      default: 1
+      default: 1,
     },
     sessionCountiPad: {
       type: Number,
-      default: 1
+      default: 1,
     },
 
     rtsAuthKey: {
       type: String,
-      default: ""
+      default: "",
     },
     token: {
       type: String,
-      default: ""
+      default: "",
     },
     tokenExpireDate: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   }, {
-    collection: "sys_user"
+    collection: "sys_user",
   });
   modelSchema.set("autoIndex", false);
 
@@ -131,7 +131,7 @@ export async function UserModule(mongoose: MongooseModule) {
     versionKey: false,
     transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
-    }
+    },
   });
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
@@ -139,7 +139,7 @@ export async function UserModule(mongoose: MongooseModule) {
   });
 
   return createModel(mongoose, "User", modelSchema);
-};
+}
 
 export default UserModule;
-export type User = UnboxPromise<ReturnType<typeof UserModule>>
+export type User = UnboxPromise<ReturnType<typeof UserModule>>;

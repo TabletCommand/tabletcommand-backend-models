@@ -2,120 +2,120 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("./helpers");
 async function UserModule(mongoose) {
-    var Schema = mongoose.Schema;
-    var vehicleSchema = helpers_1.createSchema(Schema, {
+    const Schema = mongoose.Schema;
+    const vehicleSchema = helpers_1.createSchema(Schema, {
         radioName: {
             type: String,
-            default: ""
+            default: "",
         },
         vehicleId: {
             type: String,
-            default: ""
-        }
+            default: "",
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
+    const modelSchema = helpers_1.createSchema(Schema, {
         nick: {
             type: String,
             default: "",
-            index: true
+            index: true,
         },
         email: {
             type: String,
             default: "",
-            index: true
+            index: true,
         },
         name: {
             type: String,
-            default: ""
+            default: "",
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         modified_date: {
             type: Date,
-            default: new Date()
+            default: new Date(),
         },
         when: {
-            type: Date
+            type: Date,
         },
         agency: {
             type: Agency,
-            default: null
+            default: null,
         },
         active: {
             type: Boolean,
-            default: false
+            default: false,
         },
         admin: {
             type: Boolean,
-            default: false
+            default: false,
         },
         superuser: {
             type: Boolean,
-            default: false
+            default: false,
         },
         isPro: {
             type: Boolean,
-            default: false
+            default: false,
         },
         outsider: {
             type: Boolean,
-            default: false
+            default: false,
         },
         remoteLoggingEnabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         salt: {
             type: String,
             default: "",
-            select: false
+            select: false,
         },
         pass: {
             type: String,
             default: "",
-            select: false
+            select: false,
         },
         mapHidden: {
             type: Boolean,
-            default: true
+            default: true,
         },
         mapId: {
             type: String,
-            default: ""
+            default: "",
         },
         vehicle: {
             type: vehicleSchema,
-            default: null
+            default: null,
         },
         sessionCountiPhone: {
             type: Number,
-            default: 1
+            default: 1,
         },
         sessionCountiPad: {
             type: Number,
-            default: 1
+            default: 1,
         },
         rtsAuthKey: {
             type: String,
-            default: ""
+            default: "",
         },
         token: {
             type: String,
-            default: ""
+            default: "",
         },
         tokenExpireDate: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+        },
     }, {
-        collection: "sys_user"
+        collection: "sys_user",
     });
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
@@ -123,7 +123,7 @@ async function UserModule(mongoose) {
         versionKey: false,
         transform(doc, ret) {
             ret.id = ret._id;
-        }
+        },
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
@@ -131,6 +131,5 @@ async function UserModule(mongoose) {
     return helpers_1.createModel(mongoose, "User", modelSchema);
 }
 exports.UserModule = UserModule;
-;
 exports.default = UserModule;
 //# sourceMappingURL=user.js.map

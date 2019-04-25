@@ -1,84 +1,84 @@
 import * as _ from "lodash";
 import { createSchema, createModel } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./types";
+import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function UserRegistrationModule(mongoose: MongooseModule) {
-  var Schema = mongoose.Schema;
+  const Schema = mongoose.Schema;
 
-  var modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema(Schema, {
     email: {
       type: String,
       default: "",
       required: true,
-      index: true
+      index: true,
     },
     name: {
       type: String,
       default: "",
-      required: true
+      required: true,
     },
     firstName: {
       type: String,
-      default: ""
+      default: "",
     },
     lastName: {
       type: String,
-      default: ""
+      default: "",
     },
     department: {
       type: String,
       default: "",
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     status: {
       type: String,
-      default: ""
+      default: "",
     },
     modifiedDate: {
       type: Number,
       required: true,
       default: 0,
-      min: 1
+      min: 1,
     },
     presentedAt: {
       type: Number,
-      default: 0
+      default: 0,
     },
     managedIncidentsCount: {
       type: Number,
-      default: 0
+      default: 0,
     },
     checklistsCount: {
       type: Number,
-      default: 0
+      default: 0,
     },
     stage: {
       type: String,
-      default: ""
+      default: "",
     },
     firstIncidentUnixTime: {
       type: Number,
-      default: 0
+      default: 0,
     },
     lastIncidentLocation: {
       type: String,
-      default: ""
+      default: "",
     },
     lastIncidentUnixTime: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   }, {
-    collection: "massive_user_registration"
+    collection: "massive_user_registration",
   });
   modelSchema.set("autoIndex", false);
 
   return createModel(mongoose, "UserRegistration", modelSchema);
-};
+}
 
 export default UserRegistrationModule;
-export type UserRegistration = UnboxPromise<ReturnType<typeof UserRegistrationModule>>
+export type UserRegistration = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;

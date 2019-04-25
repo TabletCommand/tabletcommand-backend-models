@@ -4,57 +4,57 @@ const helpers_1 = require("./helpers");
 const uuid = require("uuid");
 async function SessionModule(mongoose) {
     "use strict";
-    var Schema = mongoose.Schema;
+    const Schema = mongoose.Schema;
     function requiredButAllowEmptyString() {
         // Workaround to set required, and allow empty id
         return typeof this.myField === "string";
     }
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: String,
-            default: uuid.v4
+            default: uuid.v4,
         },
         nick: String,
         email: String,
         user: String,
         active: {
             type: Boolean,
-            default: false
+            default: false,
         },
         token: {
             type: String,
-            default: uuid.v4
+            default: uuid.v4,
         },
         source: {
             type: String,
-            default: "" // Options: browser, ipad, iphone, android
+            default: "",
         },
         departmentId: {
             type: String,
             default: "",
             required: requiredButAllowEmptyString,
-            index: true
+            index: true,
         },
         why: {
             type: String,
-            default: "password"
+            default: "password",
         },
         when: String,
         ended: String,
         userAgent: {
             type: String,
-            default: ""
+            default: "",
         },
         remoteAddress: {
             type: String,
-            default: ""
+            default: "",
         },
         deviceId: {
             type: String,
-            default: ""
-        }
+            default: "",
+        },
     }, {
-        collection: "sys_login"
+        collection: "sys_login",
     });
     modelSchema.set("autoIndex", false);
     modelSchema.pre("save", function (next) {
@@ -66,7 +66,7 @@ async function SessionModule(mongoose) {
         versionKey: false,
         transform(doc, ret) {
             ret.id = ret._id;
-        }
+        },
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
@@ -74,6 +74,5 @@ async function SessionModule(mongoose) {
     return helpers_1.createModel(mongoose, "Session", modelSchema);
 }
 exports.SessionModule = SessionModule;
-;
 exports.default = SessionModule;
 //# sourceMappingURL=session.js.map

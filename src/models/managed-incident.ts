@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as uuid from "uuid";
 import * as moment from "moment-timezone";
 import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./types";
+import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -21,50 +21,50 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     return "";
   }
 
-  var HistoryItem = createSchema(Schema, {
+  const HistoryItem = createSchema(Schema, {
     message: {
       type: String,
-      default: ""
+      default: "",
     },
     entity_type: {
       type: Number,
-      default: 0
+      default: 0,
     },
     time: {
       type: Number,
-      default: 0
+      default: 0,
     },
     entity_id: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   }, {
-    _id: false
+    _id: false,
   });
 
-  var modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
-      auto: true
+      auto: true,
     },
     departmentId: {
       type: String,
       default: "",
       required: true,
-      index: true
+      index: true,
     },
     userId: {
       type: String,
-      required: true
+      required: true,
     },
     uuid: {
       type: String,
-      default: uuid.v4
+      default: uuid.v4,
     },
 
     start_unix_time: {
       type: Number,
-      default: 0
+      default: 0,
     },
 
     end_unix_time: Number,
@@ -74,16 +74,16 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
 
     modified_unix_date: {
       type: Number,
-      default: 0
+      default: 0,
     },
 
     channel_owner: {
       type: String,
-      default: ""
+      default: "",
     },
     channel: {
       type: String,
-      default: ""
+      default: "",
     },
 
     location: String,
@@ -106,14 +106,14 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
 
     // Incident Notes
     notes: {
-      type: [HistoryItem]
+      type: [HistoryItem],
     },
     // Incident History
     history: {
-      type: [HistoryItem]
-    }
+      type: [HistoryItem],
+    },
   }, {
-    collection: "massive_incident_managed"
+    collection: "massive_incident_managed",
   });
   modelSchema.set("autoIndex", false);
 
@@ -122,7 +122,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     versionKey: false,
     transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
-    }
+    },
   });
 
   modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
@@ -142,7 +142,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   });
 
   return createModel(mongoose, "ManagedIncident", modelSchema);
-};
+}
 
-export default ManagedIncidentModule
-export type ManagedIncident = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>
+export default ManagedIncidentModule;
+export type ManagedIncident = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>;

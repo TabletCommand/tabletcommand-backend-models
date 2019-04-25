@@ -4,95 +4,95 @@ const uuid = require("uuid");
 const _ = require("lodash");
 const helpers_1 = require("./helpers");
 async function CADVehicleStatusModule(mongoose) {
-    var Schema = mongoose.Schema;
-    var CADStatusOptionSelected = helpers_1.createSchema(Schema, {
+    const Schema = mongoose.Schema;
+    const CADStatusOptionSelected = helpers_1.createSchema(Schema, {
         name: {
             type: String,
-            default: ""
+            default: "",
         },
         type: {
             type: String,
-            default: "string" // integer, bool
+            default: "string",
         },
         value: {
             type: String,
-            default: ""
+            default: "",
         },
         key: {
             type: String,
-            default: ""
-        }
+            default: "",
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var modelSchemaConfig = helpers_1.createSchemaDefinition({
+    const modelSchemaConfig = helpers_1.createSchemaDefinition({
         uuid: {
             type: String,
             index: true,
-            default: uuid.v4
+            default: uuid.v4,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         vehicleId: {
             type: String,
             default: "",
             required: true,
-            minlength: 1
+            minlength: 1,
         },
         radioName: {
             type: String,
             default: "",
             required: true,
-            minlength: 1
+            minlength: 1,
         },
         requestTime: {
             type: Number,
-            default: 0
+            default: 0,
         },
         responseTime: {
             type: Number,
-            default: 0
+            default: 0,
         },
         status: {
             type: String,
             default: "",
             required: true,
-            minlength: 1
+            minlength: 1,
         },
         statusCode: {
             type: String,
             default: "",
             required: true,
-            minlength: 1
+            minlength: 1,
         },
         modifiedDate: {
             type: Number,
             default: 0,
-            min: 1
+            min: 1,
         },
         requestStatus: {
             type: Number,
-            default: 0
+            default: 0,
         },
         owner: {
             type: String,
-            default: ""
+            default: "",
         },
         incidentNumber: {
             type: String,
-            default: ""
+            default: "",
         },
         options: {
             type: [CADStatusOptionSelected],
-            default: []
-        }
+            default: [],
+        },
     });
-    var modelSchema = helpers_1.createSchema(Schema, modelSchemaConfig, {
-        collection: "massive_cad_vehicle_status"
+    const modelSchema = helpers_1.createSchema(Schema, modelSchemaConfig, {
+        collection: "massive_cad_vehicle_status",
     }, {
         propagateToObject(dbItem, callback) {
             const that = this; // Reassign this to silence standard/no-callback-literal
@@ -112,12 +112,11 @@ async function CADVehicleStatusModule(mongoose) {
             dbItem.incidentNumber = this.incidentNumber;
             dbItem.options = this.options;
             return callback(dbItem);
-        }
+        },
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "CADVehicleStatus", modelSchema);
 }
 exports.CADVehicleStatusModule = CADVehicleStatusModule;
-;
 exports.default = CADVehicleStatusModule;
 //# sourceMappingURL=cad-vehicle-status.js.map

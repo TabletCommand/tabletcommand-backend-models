@@ -4,448 +4,448 @@ const helpers_1 = require("./helpers");
 const uuid = require("uuid");
 async function CADIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    var toJSONOpts = {
+    const toJSONOpts = {
         versionKey: false,
         transform(doc, ret) {
             strictSchema(doc.schema, ret);
-        }
+        },
     };
-    var CADComment = helpers_1.createSchema(Schema, {
+    const CADComment = helpers_1.createSchema(Schema, {
         Comment: {
-            type: String
+            type: String,
         },
         CommentSource: {
-            type: String
+            type: String,
         },
         CommentDateTime: {
-            type: String
-        }
+            type: String,
+        },
     }, {
-        _id: false
+        _id: false,
     });
     CADComment.set("toJSON", toJSONOpts);
-    var CADPerson = helpers_1.createSchema(Schema, {
+    const CADPerson = helpers_1.createSchema(Schema, {
         PersonnelID: {
-            type: String
+            type: String,
         },
         PersonnelName: {
-            type: String
+            type: String,
         },
         PersonnelRank: {
-            type: String
+            type: String,
         },
         PersonnelWorkCode: {
-            type: String
+            type: String,
         },
         PersonnelNote: {
-            type: String
-        }
+            type: String,
+        },
     }, {
-        _id: false
+        _id: false,
     });
     CADPerson.set("toJSON", toJSONOpts);
-    var CADUnit = helpers_1.createSchema(Schema, {
+    const CADUnit = helpers_1.createSchema(Schema, {
         UnitID: {
             type: String,
-            required: true
+            required: true,
         },
         UnitDispatchNumber: {
             type: String,
-            required: true
+            required: true,
         },
         TimeDispatched: {
-            type: String
+            type: String,
         },
         TimeEnroute: {
-            type: String
+            type: String,
         },
         TimeArrived: {
-            type: String
+            type: String,
         },
         TimeStaged: {
-            type: String
+            type: String,
         },
         TimeCleared: {
-            type: String
+            type: String,
         },
         TimeAtHospital: {
-            type: String
+            type: String,
         },
         TimePatient: {
-            type: String
+            type: String,
         },
         TimeTransport: {
-            type: String
+            type: String,
         },
         TimeTransporting: {
-            type: String
+            type: String,
         },
         PersonnelCount: {
-            type: Number
+            type: Number,
         },
-        Personnel: [CADPerson]
+        Personnel: [CADPerson],
     }, {
-        _id: false
+        _id: false,
     });
     CADUnit.set("toJSON", toJSONOpts);
-    var APNNotificationType = helpers_1.createSchema(Schema, {
+    const APNNotificationType = helpers_1.createSchema(Schema, {
         name: {
-            type: String
+            type: String,
         },
         value: {
-            type: String
-        }
+            type: String,
+        },
     }, {
-        _id: false
+        _id: false,
     });
     APNNotificationType.set("toJSON", toJSONOpts);
-    var CADPriorIncident = helpers_1.createSchema(Schema, {
+    const CADPriorIncident = helpers_1.createSchema(Schema, {
         Address: {
-            type: String
+            type: String,
         },
         Comment: {
-            type: [CADComment]
+            type: [CADComment],
         },
         IncidentDateTime: {
-            type: String
+            type: String,
         },
         IncidentNumber: {
-            type: String
+            type: String,
         },
         Jurisdiction: {
-            type: String
+            type: String,
         },
         Problem: {
-            type: String
+            type: String,
         },
         Suite: {
-            type: String
-        }
+            type: String,
+        },
     }, {
-        _id: false
+        _id: false,
     });
     CADPriorIncident.set("toJSON", toJSONOpts);
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
-            auto: true
+            auto: true,
         },
         uuid: {
             type: String,
-            default: uuid.v4
+            default: uuid.v4,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         AgencyID: {
             type: String,
-            required: true
+            required: true,
         },
         IncidentNumber: {
             type: String,
-            required: true
+            required: true,
         },
         TransactionID: {
             type: String,
-            required: true
+            required: true,
         },
         // Incident Specific
         AgencyIncidentCallTypeDescription: {
-            type: String
+            type: String,
         },
         AgencyIncidentCallType: {
-            type: String
+            type: String,
         },
         AgencyIncidentCallSubTypeDescription: {
-            type: String
+            type: String,
         },
         AgencyIncidentCallSubType: {
-            type: String
+            type: String,
         },
         AgencyIncidentPriorityDescription: {
-            type: String
+            type: String,
         },
         PulsePointIncidentCallType: {
-            type: String
+            type: String,
         },
         PulsePointDeterminantCode: {
-            type: String
+            type: String,
         },
         AlarmLevel: {
-            type: String
+            type: String,
         },
         CommandName: {
-            type: String
+            type: String,
         },
         FireMap: {
-            type: String
+            type: String,
         },
         TBMap: {
-            type: String
+            type: String,
         },
         MapPages: {
-            type: String
+            type: String,
         },
         TacticalChannel: {
-            type: String
+            type: String,
         },
         TacticalAltChannel: {
-            type: String
+            type: String,
         },
         CommandChannel: {
-            type: String
+            type: String,
         },
         // Dates
         EntryDateTime: {
-            type: String
+            type: String,
         },
         ClosedDateTime: {
-            type: String
+            type: String,
         },
         CallReceivedDateTime: {
-            type: String
+            type: String,
         },
         DispatchDateTime: {
-            type: String
+            type: String,
         },
         IncidentLastUpdate: {
-            type: String
+            type: String,
         },
         EnrouteDateTime: {
-            type: String
+            type: String,
         },
         OnSceneDateTime: {
-            type: String
+            type: String,
         },
         modified_date: {
-            type: String
+            type: String,
         },
         modified_unix_date: {
-            type: Number
+            type: Number,
         },
         start_unix_date: {
-            type: Number
+            type: Number,
         },
         closed_unix_date: {
-            type: Number
+            type: Number,
         },
         queued_at: {
-            type: Number
+            type: Number,
         },
         scheduled_at: {
-            type: Number
+            type: Number,
         },
         // Address fields
         StreetName: {
-            type: String
+            type: String,
         },
         StreetSuffix: {
-            type: String
+            type: String,
         },
         Predirectional: {
-            type: String
+            type: String,
         },
         Postdirectional: {
-            type: String
+            type: String,
         },
         CityOrLocality: {
-            type: String
+            type: String,
         },
         StateOrProvince: {
-            type: String
+            type: String,
         },
         // Legacy
         StateOfProvince: {
-            type: String
+            type: String,
         },
         CommonPlaceName: {
-            type: String
+            type: String,
         },
         CrossStreet1: {
-            type: String
+            type: String,
         },
         CrossStreet2: {
-            type: String
+            type: String,
         },
         StreetNumber: {
-            type: String
+            type: String,
         },
         Building: {
-            type: String
+            type: String,
         },
         Floor: {
-            type: String
+            type: String,
         },
         Suite: {
-            type: String
+            type: String,
         },
         City: {
-            type: String
+            type: String,
         },
         County: {
-            type: String
+            type: String,
         },
         PostalCode: {
-            type: String
+            type: String,
         },
         CrossStreetName: {
-            type: String
+            type: String,
         },
         LocationComment: {
-            type: String
+            type: String,
         },
         // TC Address
         full_address: {
-            type: String
+            type: String,
         },
         address: {
-            type: String
+            type: String,
         },
         cross_streets: {
-            type: String
+            type: String,
         },
         // Prior History
         PriorIncidentChanged: {
-            type: Boolean
+            type: Boolean,
         },
         PriorIncident: {
-            type: [CADPriorIncident]
+            type: [CADPriorIncident],
         },
         // Caller
         CallerNumber: {
-            type: String
+            type: String,
         },
         tag: {
-            type: String
+            type: String,
         },
         // Coordinate
         Latitude: {
-            type: String
+            type: String,
         },
         Longitude: {
-            type: String
+            type: String,
         },
         Comment: {
-            type: [CADComment]
+            type: [CADComment],
         },
         units: {
-            type: [CADUnit]
+            type: [CADUnit],
         },
         // Tablet Command Internal fields
         preference_location: {
-            type: String
+            type: String,
         },
         // Leaked
         admin_note: {
-            type: String
+            type: String,
         },
         Interface: {
-            type: String
+            type: String,
         },
         InterfaceVersion: {
-            type: String
+            type: String,
         },
         CADSimulator: {
-            type: String
+            type: String,
         },
         notificationType: {
-            type: [APNNotificationType]
+            type: [APNNotificationType],
         },
         notifiedUnits: {
-            type: [String]
+            type: [String],
         },
         // Anaheim
         ReportNumber: {
-            type: [String]
+            type: [String],
         },
         // Other Agencies
         AgencyDeterminantCode: {
-            type: String
+            type: String,
         },
         AgencyIncidentCategory: {
-            type: String
+            type: String,
         },
         CFMap: {
-            type: String
+            type: String,
         },
         CallSource: {
-            type: String
+            type: String,
         },
         CaseNumber: {
-            type: String
+            type: String,
         },
         CrossRefDataOwnerAgyID1: {
-            type: String
+            type: String,
         },
         CrossRefDataSubmitterAgyID1: {
-            type: String
+            type: String,
         },
         CrossRefEventCategory1: {
-            type: String
+            type: String,
         },
         CrossRefEventNum1: {
-            type: String
+            type: String,
         },
         EventLevel: {
-            type: String
+            type: String,
         },
         EventNumber: {
-            type: String
+            type: String,
         },
         FirstDueStation: {
-            type: String
+            type: String,
         },
         MedicalAgencyIncidentType: {
-            type: String
+            type: String,
         },
         MedicalEventCode: {
-            type: String
+            type: String,
         },
         PopulationDensity: {
-            type: String
+            type: String,
         },
         Priority: {
-            type: String
+            type: String,
         },
         WorkstationID: {
-            type: String
+            type: String,
         },
         LatitudeDegree: {
-            type: String
+            type: String,
         },
         LatitudeMinute: {
-            type: String
+            type: String,
         },
         LatitudeSecond: {
-            type: String
+            type: String,
         },
         LongitudeDegree: {
-            type: String
+            type: String,
         },
         LongitudeMinute: {
-            type: String
+            type: String,
         },
         LongitudeSecond: {
-            type: String
+            type: String,
         },
         Location: {
-            type: String
+            type: String,
         },
         LocationType: {
-            type: String
+            type: String,
         },
         OrigLocation: {
-            type: String
+            type: String,
         },
         Jurisdiction: {
-            type: String
-        }
+            type: String,
+        },
     }, {
         collection: "massive_incident_cad",
-        strict: false // Because we accept all kind of data in
+        strict: false,
     });
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
@@ -453,12 +453,13 @@ async function CADIncidentModule(mongoose) {
         versionKey: false,
         transform(doc, ret) {
             // Remove fields that should not be here
-            delete ret['apikey'];
+            delete ret.apikey;
             strictSchema(doc.schema, ret);
             ret.id = ret._id;
-        }
+        },
     });
     modelSchema.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
     const ignoreFields = ["station", "callerNumber"];
@@ -472,8 +473,9 @@ async function CADIncidentModule(mongoose) {
                 delete ret[element];
                 return;
             }
-            if (schema.paths[element] === undefined) {
-                console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, schema.paths[element]);
+            const pathSchema = schema;
+            if (pathSchema.paths[element] === undefined) {
+                console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
                 delete ret[element];
             }
         });
@@ -481,6 +483,5 @@ async function CADIncidentModule(mongoose) {
     return helpers_1.createModel(mongoose, "CADIncident", modelSchema);
 }
 exports.CADIncidentModule = CADIncidentModule;
-;
 exports.default = CADIncidentModule;
 //# sourceMappingURL=cad-incident.js.map

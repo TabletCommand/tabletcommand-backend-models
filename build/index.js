@@ -1,4 +1,7 @@
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
 async function wireModels(mongoose) {
     async function getModel(m) {
@@ -24,12 +27,13 @@ async function wireModels(mongoose) {
         UserRegistration: await getModel(Promise.resolve().then(() => require("./models/user-registration"))),
     };
 }
+__export(require("./models/helpers"));
 async function connect(url) {
     const mongoose = await Promise.resolve().then(() => require("mongoose"));
     mongoose.Promise = await Promise.resolve().then(() => require("bluebird"));
     const models = await wireModels(mongoose);
     const opts = {
-        useNewUrlParser: true
+        useNewUrlParser: true,
     };
     const connection = await mongoose.connect(url, opts);
     return { mongoose, connection, models };

@@ -1,7 +1,20 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise } from "./types";
+/// <reference types="bson" />
+import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function ActionLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: import("bson").ObjectId;
+    _id: {
+        type: {
+            prototype: {} | {
+                [x: string]: {} | any | {}[];
+            } | {}[];
+            cacheHexString?: undefined;
+            createFromHexString: {};
+            createFromTime: {};
+            isValid: {};
+            generate: {};
+        };
+        auto: never;
+    };
     departmentId: string;
     email: string;
     action: string;

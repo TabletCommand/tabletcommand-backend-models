@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule } from "../types";
+import { MongooseModule } from "../helpers";
 export declare function CADAgency(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: {
         code: string;

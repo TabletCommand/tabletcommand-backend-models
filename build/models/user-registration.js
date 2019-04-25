@@ -2,81 +2,80 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("./helpers");
 async function UserRegistrationModule(mongoose) {
-    var Schema = mongoose.Schema;
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const Schema = mongoose.Schema;
+    const modelSchema = helpers_1.createSchema(Schema, {
         email: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         name: {
             type: String,
             default: "",
-            required: true
+            required: true,
         },
         firstName: {
             type: String,
-            default: ""
+            default: "",
         },
         lastName: {
             type: String,
-            default: ""
+            default: "",
         },
         department: {
             type: String,
             default: "",
-            required: true
+            required: true,
         },
         title: {
             type: String,
-            default: ""
+            default: "",
         },
         status: {
             type: String,
-            default: ""
+            default: "",
         },
         modifiedDate: {
             type: Number,
             required: true,
             default: 0,
-            min: 1
+            min: 1,
         },
         presentedAt: {
             type: Number,
-            default: 0
+            default: 0,
         },
         managedIncidentsCount: {
             type: Number,
-            default: 0
+            default: 0,
         },
         checklistsCount: {
             type: Number,
-            default: 0
+            default: 0,
         },
         stage: {
             type: String,
-            default: ""
+            default: "",
         },
         firstIncidentUnixTime: {
             type: Number,
-            default: 0
+            default: 0,
         },
         lastIncidentLocation: {
             type: String,
-            default: ""
+            default: "",
         },
         lastIncidentUnixTime: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+        },
     }, {
-        collection: "massive_user_registration"
+        collection: "massive_user_registration",
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "UserRegistration", modelSchema);
 }
 exports.UserRegistrationModule = UserRegistrationModule;
-;
 exports.default = UserRegistrationModule;
 //# sourceMappingURL=user-registration.js.map

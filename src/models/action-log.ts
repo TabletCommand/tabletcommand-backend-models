@@ -1,41 +1,41 @@
-import { MongooseModule, UnboxPromise } from "./types";
+import { MongooseModule, UnboxPromise } from "./helpers";
 import { createSchema, createModel } from "./helpers";
 
 export async function ActionLogModule(mongoose: MongooseModule) {
   "use strict";
 
-  var { Schema, Types } = mongoose;
+  const { Schema, Types } = mongoose;
 
-  var modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
-      auto: true
+      auto: true,
     },
     departmentId: {
       type: String,
-      default: ""
+      default: "",
     },
     email: {
       type: String,
-      default: ""
+      default: "",
     },
     action: {
       type: String,
-      default: ""
+      default: "",
     },
     object: {
-      type: Object
+      type: Object,
     },
     modified_unix_date: {
       type: Number,
-      default: new Date().valueOf() / 1000.0
-    }
+      default: new Date().valueOf() / 1000.0,
+    },
   }, {
-    collection: "massive_action_log"
+    collection: "massive_action_log",
   });
   modelSchema.set("autoIndex", false);
   return createModel(mongoose, "ActionLog", modelSchema);
-};
+}
 
 export default ActionLogModule;
-export type ActionLog =  UnboxPromise<ReturnType<typeof ActionLogModule>>
+export type ActionLog =  UnboxPromise<ReturnType<typeof ActionLogModule>>;

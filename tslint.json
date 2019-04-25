@@ -1,0 +1,28 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "linterOptions": {
+        "exclude": ["package.json"]
+    },
+    "jsRules": {},
+    "rules": {
+        "quotemark":false,
+        "no-var-requires": true,
+        "ordered-imports": false,
+        "object-literal-sort-keys":false,
+        "only-arrow-functions": false,
+        "no-namespace":false,
+        "interface-name":false,
+        "no-shadowed-variable":false,
+        "no-console":false,
+        "no-any": true,
+        "no-unsafe-any":true,
+        "max-line-length":false,
+        "radix":false,
+        "arrow-parens": false,
+        "no-floating-promises": true
+    },
+    "rulesDirectory": []
+}

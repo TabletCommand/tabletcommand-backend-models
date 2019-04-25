@@ -4,88 +4,87 @@ const helpers_1 = require("./helpers");
 async function IncidentEventModule(mongoose) {
     "use strict";
     const { Schema, Types } = mongoose;
-    var EventUser = helpers_1.createSchema(Schema, {
+    const EventUser = helpers_1.createSchema(Schema, {
         username: {
             type: String,
-            default: ""
+            default: "",
         },
         email: {
             type: String,
-            default: ""
+            default: "",
         },
         radioName: {
             type: String,
-            default: ""
+            default: "",
         },
         userId: {
             type: String,
-            default: ""
-        }
+            default: "",
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
-            auto: true
+            auto: true,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         IncidentNumber: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         modified_unix_date: {
             type: Number,
-            default: new Date().valueOf() / 1000.0
+            default: new Date().valueOf() / 1000.0,
         },
         message: {
             type: String,
-            default: ""
+            default: "",
         },
         location: {
             longitude: {
-                type: Number
+                type: Number,
             },
             latitude: {
-                type: Number
-            }
+                type: Number,
+            },
         },
         type: {
             type: String,
-            default: ""
+            default: "",
         },
         user: {
-            type: EventUser
+            type: EventUser,
         },
         serverTime: {
             type: Number,
             default: new Date().valueOf() / 1000.0,
-            min: 1
+            min: 1,
         },
         userTime: {
             type: Number,
             required: true,
             default: 0,
-            min: 1
+            min: 1,
         },
         uuid: {
             type: String,
-            require: true
-        }
+            require: true,
+        },
     }, {
-        collection: "massive_incident_event"
+        collection: "massive_incident_event",
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "IncidentEvent", modelSchema);
 }
 exports.IncidentEventModule = IncidentEventModule;
-;
 exports.default = IncidentEventModule;
 //# sourceMappingURL=incident-event.js.map

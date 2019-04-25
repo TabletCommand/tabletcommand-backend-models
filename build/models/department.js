@@ -4,177 +4,177 @@ const helpers_1 = require("./helpers");
 const uuid = require("uuid");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    var Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
-    var EsriToken = helpers_1.createSchema(Schema, {
+    const Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
+    const EsriToken = helpers_1.createSchema(Schema, {
         access_token: {
             type: String,
-            default: ""
+            default: "",
         },
         refresh_token: {
             type: String,
-            default: ""
+            default: "",
         },
         username: {
             type: String,
-            default: ""
+            default: "",
         },
         ssl: {
             type: Boolean,
-            default: true
+            default: true,
         },
         expires_in: {
             type: Number,
-            default: 1800
-        }
+            default: 1800,
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var IncidentType = helpers_1.createSchema(Schema, {
+    const IncidentType = helpers_1.createSchema(Schema, {
         name: {
             type: String,
-            default: "Any"
+            default: "Any",
         },
         value: {
             type: String,
-            default: "any"
-        }
+            default: "any",
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
-            auto: true
+            auto: true,
         },
         uuid: {
             type: String,
-            default: uuid.v4
+            default: uuid.v4,
         },
         department: {
             type: String,
-            default: ""
+            default: "",
         },
         fdid: {
             type: String,
-            default: ""
+            default: "",
         },
         city: {
             type: String,
-            default: ""
+            default: "",
         },
         state: {
             type: String,
-            default: ""
+            default: "",
         },
         contact_name: {
             type: String,
-            default: ""
+            default: "",
         },
         contact_phone: {
             type: String,
-            default: ""
+            default: "",
         },
         contact_email: {
             type: String,
-            default: ""
+            default: "",
         },
         modified_unix_date: {
             type: Number,
-            default: new Date().valueOf() / 1000.0
+            default: new Date().valueOf() / 1000.0,
         },
         active: {
             type: Boolean,
-            default: false
+            default: false,
         },
         pager_number: {
             type: String,
-            default: ""
+            default: "",
         },
         apikey: {
             type: String,
-            default: ""
+            default: "",
         },
         cadEmailUsername: {
             type: String,
-            default: ""
+            default: "",
         },
         // CAD Features
         cadMonitorEnabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         cadMonitorMinutes: {
             type: Number,
-            default: 30
+            default: 30,
         },
         cadBidirectionalEnabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         heartbeatEnabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         heartbeatMinutes: {
             type: Number,
-            default: 5
+            default: 5,
         },
         pushEnabled: {
             type: Boolean,
-            default: true
+            default: true,
         },
         userContributionEnabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         // RTS
         rtsEnabled: {
             type: Boolean,
-            default: true
+            default: true,
         },
         rtsChannelPrefix: {
             type: String,
-            default: ""
+            default: "",
         },
         rtsAuthKey: {
             type: String,
-            default: ""
+            default: "",
         },
         esriTokenDateExpiry: {
             type: Number,
-            default: 0
+            default: 0,
         },
         esriToken: {
-            type: EsriToken
+            type: EsriToken,
         },
         // Custom Button
         customWebUrl: {
             type: String,
-            default: ""
+            default: "",
         },
         customWebName: {
             type: String,
-            default: ""
+            default: "",
         },
         // Incident Type APN
         incidentTypes: {
-            type: [IncidentType]
+            type: [IncidentType],
         },
         agencies: {
             type: [Agency],
-            default: []
+            default: [],
         },
         // Signup
         signupKey: {
             type: String,
-            default: ""
+            default: "",
         },
         signupDomains: {
             type: [String],
-            default: []
-        }
+            default: [],
+        },
     }, {
-        collection: "massive_admin"
+        collection: "massive_admin",
     });
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
@@ -182,7 +182,7 @@ async function DepartmentModule(mongoose) {
         versionKey: false,
         transform(doc, ret) {
             ret.id = ret._id;
-        }
+        },
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
@@ -190,6 +190,5 @@ async function DepartmentModule(mongoose) {
     return helpers_1.createModel(mongoose, "Department", modelSchema);
 }
 exports.DepartmentModule = DepartmentModule;
-;
 exports.default = DepartmentModule;
 //# sourceMappingURL=department.js.map

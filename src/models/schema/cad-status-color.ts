@@ -1,23 +1,23 @@
-import { MongooseModule } from "../types";
+import { MongooseModule } from "../helpers";
 import { createSchema } from "../helpers";
 
 export function RateLimitModule(mongoose: MongooseModule) {
   "use strict";
 
-  var { Schema } = mongoose;
+  const { Schema } = mongoose;
 
-  var CADStatusColor = createSchema(Schema, {
+  const CADStatusColor = createSchema(Schema, {
     background: {
       type: String,
-      default: "#851414" // Red-like
+      default: "#851414", // Red-like
     },
     text: {
       type: String,
-      default: "#F8F8F8" // White-like
-    }
+      default: "#F8F8F8", // White-like
+    },
   }, {
-    _id: false
+    _id: false,
   });
 
   return CADStatusColor;
-};
+}

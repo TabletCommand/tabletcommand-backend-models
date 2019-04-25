@@ -4,66 +4,65 @@ const uuid = require("uuid");
 const helpers_1 = require("./helpers");
 async function DeviceMappingModule(mongoose) {
     const { Schema, Types } = mongoose;
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
-            auto: true
+            auto: true,
         },
         departmentId: {
             type: String,
-            default: ""
+            default: "",
         },
         userId: {
             type: String,
-            default: ""
+            default: "",
         },
         deviceType: {
             type: String,
-            default: "truck"
+            default: "truck",
         },
         mapId: {
             type: String,
-            default: ""
+            default: "",
         },
         deviceId: {
             type: String,
-            default: ""
+            default: "",
         },
         location: {
             longitude: {
-                type: Number
+                type: Number,
             },
             latitude: {
-                type: Number
-            }
+                type: Number,
+            },
         },
         modified_unix_date: {
             type: Number,
-            default: 0
+            default: 0,
         },
         active: {
             type: Boolean,
-            default: true
+            default: true,
         },
         remoteAddress: {
             type: String,
-            default: "0.0.0.0"
+            default: "0.0.0.0",
         },
         uuid: {
             type: String,
-            default: uuid.v4
+            default: uuid.v4,
         },
         note: {
             type: String,
-            default: ""
-        }
+            default: "",
+        },
     }, {
-        collection: "massive_device_mapping"
+        collection: "massive_device_mapping",
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "DeviceMapping", modelSchema);
 }
 exports.DeviceMappingModule = DeviceMappingModule;
-;
 exports.default = DeviceMappingModule;
 //# sourceMappingURL=device-mapping.js.map

@@ -1,25 +1,25 @@
 import { createSchema } from "../helpers";
-import { MongooseModule } from "../types";
+import { MongooseModule } from "../helpers";
 
 export function CADAgency(mongoose: MongooseModule) {
-  var Schema = mongoose.Schema;
+  const Schema = mongoose.Schema;
 
-  var Agency = createSchema(Schema, {
+  const Agency = createSchema(Schema, {
     code: {
       type: String,
-      default: ""
+      default: "",
     },
     name: {
       type: String,
-      default: ""
+      default: "",
     },
     domain: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   }, {
-    _id: false
+    _id: false,
   });
 
   return Agency;
-};
+}

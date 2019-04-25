@@ -4,69 +4,69 @@ const _ = require("lodash");
 const uuid = require("uuid");
 const helpers_1 = require("./helpers");
 async function LocationModule(mongoose) {
-    var { Schema, Types } = mongoose;
+    const { Schema, Types } = mongoose;
     const modelSchemaDefinition = helpers_1.createSchemaDefinition({
         _id: {
             type: Types.ObjectId,
-            auto: true
+            auto: true,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         userId: {
             type: String,
             default: "",
-            required: true
+            required: true,
         },
         uuid: {
             type: String,
-            default: uuid.v4
+            default: uuid.v4,
         },
         username: {
             type: String,
             default: "",
-            required: true
+            required: true,
         },
         device_type: {
             type: String,
-            required: true
+            required: true,
         },
         active: {
             type: Boolean,
-            default: false
+            default: false,
         },
         modified_unix_date: {
             type: Number,
             required: true,
             default: 0,
-            min: 1
+            min: 1,
         },
         version: {
             type: Number,
-            default: 2
+            default: 2,
         },
         session: {
             type: String,
-            default: ""
+            default: "",
         },
         location: {
             longitude: {
                 type: Number,
                 required: true,
-                default: 0
+                default: 0,
             },
             latitude: {
                 type: Number,
                 required: true,
-                default: 0
-            }
-        }
+                default: 0,
+            },
+        },
     });
-    var modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
-        collection: "massive_location"
+    const modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
+        collection: "massive_location",
     }, {
         propagateToObject(dbItem, callback) {
             const that = this; // Reassign this to silence standard/no-callback-literal
@@ -84,12 +84,11 @@ async function LocationModule(mongoose) {
             dbItem.location.latitude = this.location.latitude;
             dbItem.location.longitude = this.location.longitude;
             return callback(dbItem);
-        }
+        },
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "Location", modelSchema);
 }
 exports.LocationModule = LocationModule;
-;
 exports.default = LocationModule;
 //# sourceMappingURL=location.js.map

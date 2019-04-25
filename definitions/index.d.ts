@@ -1,4 +1,5 @@
 /// <reference types="mongoose" />
+/// <reference types="bson" />
 export { ActionLog } from './models/action-log';
 export { CADIncident } from './models/cad-incident';
 export { CADStatusMap } from './models/cad-status-map';
@@ -15,12 +16,25 @@ export { RateLimit } from './models/rate-limit';
 export { Session } from './models/session';
 export { User } from './models/user';
 export { UserRegistration } from './models/user-registration';
+export * from './models/helpers';
 export declare function connect(url: string): Promise<{
     mongoose: typeof import("mongoose");
     connection: typeof import("mongoose");
     models: {
         ActionLog: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             departmentId: string;
             email: string;
             action: string;
@@ -28,7 +42,19 @@ export declare function connect(url: string): Promise<{
             modified_unix_date: number;
         }, {}>;
         CADIncident: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             uuid: string;
             departmentId: string;
             AgencyID: string;
@@ -256,7 +282,32 @@ export declare function connect(url: string): Promise<{
                     value: string;
                     key: string;
                 }[];
-            } & import("mongoose").Document, callback: (o: {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+                _id: import("bson").ObjectId;
+            } & {
+                schema: import("mongoose").Schema<any> & {
+                    _interface: {
+                        uuid: string;
+                        departmentId: string;
+                        vehicleId: string;
+                        radioName: string;
+                        requestTime: number;
+                        responseTime: number;
+                        status: string;
+                        statusCode: string;
+                        modifiedDate: number;
+                        requestStatus: number;
+                        owner: string;
+                        incidentNumber: string;
+                        options: {
+                            name: string;
+                            type: string;
+                            value: string;
+                            key: string;
+                        }[];
+                    };
+                };
+            }, callback: (o: {
                 uuid: string;
                 departmentId: string;
                 vehicleId: string;
@@ -275,10 +326,47 @@ export declare function connect(url: string): Promise<{
                     value: string;
                     key: string;
                 }[];
-            } & import("mongoose").Document) => T): T;
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+                _id: import("bson").ObjectId;
+            } & {
+                schema: import("mongoose").Schema<any> & {
+                    _interface: {
+                        uuid: string;
+                        departmentId: string;
+                        vehicleId: string;
+                        radioName: string;
+                        requestTime: number;
+                        responseTime: number;
+                        status: string;
+                        statusCode: string;
+                        modifiedDate: number;
+                        requestStatus: number;
+                        owner: string;
+                        incidentNumber: string;
+                        options: {
+                            name: string;
+                            type: string;
+                            value: string;
+                            key: string;
+                        }[];
+                    };
+                };
+            }) => T): T;
         }, {}>;
         Department: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             uuid: string;
             department: string;
             fdid: string;
@@ -325,7 +413,19 @@ export declare function connect(url: string): Promise<{
             signupDomains: string[];
         }, {}>;
         DeviceMapping: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             departmentId: string;
             userId: string;
             deviceType: string;
@@ -342,7 +442,19 @@ export declare function connect(url: string): Promise<{
             note: string;
         }, {}>;
         IncidentEvent: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             departmentId: string;
             IncidentNumber: string;
             modified_unix_date: number;
@@ -363,7 +475,19 @@ export declare function connect(url: string): Promise<{
             uuid: string;
         }, {}>;
         IncidentTakeover: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             departmentId: string;
             uuid: string;
             incident_id: string;
@@ -377,7 +501,19 @@ export declare function connect(url: string): Promise<{
             response_time: number;
         }, {}>;
         Location: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             departmentId: string;
             userId: string;
             uuid: string;
@@ -393,7 +529,19 @@ export declare function connect(url: string): Promise<{
             };
         } & {
             propagateToObject<T>(this: {
-                _id: import("bson").ObjectId;
+                _id: {
+                    type: {
+                        prototype: {} | {
+                            [x: string]: {} | any | {}[];
+                        } | {}[];
+                        cacheHexString?: undefined;
+                        createFromHexString: {};
+                        createFromTime: {};
+                        isValid: {};
+                        generate: {};
+                    };
+                    auto: never;
+                };
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -407,8 +555,53 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & import("mongoose").Document, dbItem: {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
+            } & {
+                schema: import("mongoose").Schema<any> & {
+                    _interface: {
+                        _id: {
+                            type: {
+                                prototype: {} | {
+                                    [x: string]: {} | any | {}[];
+                                } | {}[];
+                                cacheHexString?: undefined;
+                                createFromHexString: {};
+                                createFromTime: {};
+                                isValid: {};
+                                generate: {};
+                            };
+                            auto: never;
+                        };
+                        departmentId: string;
+                        userId: string;
+                        uuid: string;
+                        username: string;
+                        device_type: string;
+                        active: boolean;
+                        modified_unix_date: number;
+                        version: number;
+                        session: string;
+                        location: {
+                            longitude: number;
+                            latitude: number;
+                        };
+                    };
+                };
+            }, dbItem: {
+                _id: {
+                    type: {
+                        prototype: {} | {
+                            [x: string]: {} | any | {}[];
+                        } | {}[];
+                        cacheHexString?: undefined;
+                        createFromHexString: {};
+                        createFromTime: {};
+                        isValid: {};
+                        generate: {};
+                    };
+                    auto: never;
+                };
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -422,8 +615,53 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & import("mongoose").Document, callback: (doc: {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
+            } & {
+                schema: import("mongoose").Schema<any> & {
+                    _interface: {
+                        _id: {
+                            type: {
+                                prototype: {} | {
+                                    [x: string]: {} | any | {}[];
+                                } | {}[];
+                                cacheHexString?: undefined;
+                                createFromHexString: {};
+                                createFromTime: {};
+                                isValid: {};
+                                generate: {};
+                            };
+                            auto: never;
+                        };
+                        departmentId: string;
+                        userId: string;
+                        uuid: string;
+                        username: string;
+                        device_type: string;
+                        active: boolean;
+                        modified_unix_date: number;
+                        version: number;
+                        session: string;
+                        location: {
+                            longitude: number;
+                            latitude: number;
+                        };
+                    };
+                };
+            }, callback: (doc: {
+                _id: {
+                    type: {
+                        prototype: {} | {
+                            [x: string]: {} | any | {}[];
+                        } | {}[];
+                        cacheHexString?: undefined;
+                        createFromHexString: {};
+                        createFromTime: {};
+                        isValid: {};
+                        generate: {};
+                    };
+                    auto: never;
+                };
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -437,10 +675,55 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & import("mongoose").Document) => T): T;
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+                _id: import("bson").ObjectId;
+            } & {
+                schema: import("mongoose").Schema<any> & {
+                    _interface: {
+                        _id: {
+                            type: {
+                                prototype: {} | {
+                                    [x: string]: {} | any | {}[];
+                                } | {}[];
+                                cacheHexString?: undefined;
+                                createFromHexString: {};
+                                createFromTime: {};
+                                isValid: {};
+                                generate: {};
+                            };
+                            auto: never;
+                        };
+                        departmentId: string;
+                        userId: string;
+                        uuid: string;
+                        username: string;
+                        device_type: string;
+                        active: boolean;
+                        modified_unix_date: number;
+                        version: number;
+                        session: string;
+                        location: {
+                            longitude: number;
+                            latitude: number;
+                        };
+                    };
+                };
+            }) => T): T;
         }, {}>;
         ManagedIncident: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             departmentId: string;
             userId: string;
             uuid: string;
@@ -483,7 +766,19 @@ export declare function connect(url: string): Promise<{
             }[];
         }, {}>;
         RateLimit: import("mongoose").Model<import("mongoose").Document & {
-            _id: import("bson").ObjectId;
+            _id: {
+                type: {
+                    prototype: {} | {
+                        [x: string]: {} | any | {}[];
+                    } | {}[];
+                    cacheHexString?: undefined;
+                    createFromHexString: {};
+                    createFromTime: {};
+                    isValid: {};
+                    generate: {};
+                };
+                auto: never;
+            };
             username: string;
             modified_unix_date: number;
             count: number;
@@ -555,5 +850,5 @@ export declare function connect(url: string): Promise<{
         }, {}>;
     };
 }>;
-declare type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never;
+declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
 export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>['models'];

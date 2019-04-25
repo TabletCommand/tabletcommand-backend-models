@@ -1,63 +1,63 @@
-import { MongooseModule, UnboxPromise } from "./types";
+import { MongooseModule, UnboxPromise } from "./helpers";
 import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
 import * as uuid from "uuid";
 
 export async function SessionModule(mongoose: MongooseModule) {
   "use strict";
 
-  var Schema = mongoose.Schema;
+  const Schema = mongoose.Schema;
 
   function requiredButAllowEmptyString(this: { myField: unknown }) {
     // Workaround to set required, and allow empty id
     return typeof this.myField === "string";
   }
 
-  var modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema(Schema, {
     _id: {
       type: String,
-      default: uuid.v4
+      default: uuid.v4,
     },
     nick: String,
     email: String,
     user: String,
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     token: {
       type: String,
-      default: uuid.v4
+      default: uuid.v4,
     },
     source: {
       type: String,
-      default: "" // Options: browser, ipad, iphone, android
+      default: "", // Options: browser, ipad, iphone, android
     },
     departmentId: {
       type: String,
       default: "",
       required: requiredButAllowEmptyString,
-      index: true
+      index: true,
     },
     why: {
       type: String,
-      default: "password"
+      default: "password",
     },
     when: String,
     ended: String,
     userAgent: {
       type: String,
-      default: ""
+      default: "",
     },
     remoteAddress: {
       type: String,
-      default: ""
+      default: "",
     },
     deviceId: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   }, {
-    collection: "sys_login"
+    collection: "sys_login",
   });
   modelSchema.set("autoIndex", false);
 
@@ -71,7 +71,7 @@ export async function SessionModule(mongoose: MongooseModule) {
     versionKey: false,
     transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
-    }
+    },
   });
 
   modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
@@ -79,7 +79,7 @@ export async function SessionModule(mongoose: MongooseModule) {
   });
 
   return createModel(mongoose, "Session", modelSchema);
-};
+}
 
 export default SessionModule;
-export type Session = UnboxPromise<ReturnType<typeof SessionModule>>
+export type Session = UnboxPromise<ReturnType<typeof SessionModule>>;

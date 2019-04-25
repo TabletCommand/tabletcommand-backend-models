@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise } from "./types";
+import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     uuid: string;
     departmentId: string;
@@ -39,7 +39,32 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             value: string;
             key: string;
         }[];
-    } & import("mongoose").Document, callback: (o: {
+    } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+        _id: import("bson").ObjectId;
+    } & {
+        schema: import("mongoose").Schema<any> & {
+            _interface: {
+                uuid: string;
+                departmentId: string;
+                vehicleId: string;
+                radioName: string;
+                requestTime: number;
+                responseTime: number;
+                status: string;
+                statusCode: string;
+                modifiedDate: number;
+                requestStatus: number;
+                owner: string;
+                incidentNumber: string;
+                options: {
+                    name: string;
+                    type: string;
+                    value: string;
+                    key: string;
+                }[];
+            };
+        };
+    }, callback: (o: {
         uuid: string;
         departmentId: string;
         vehicleId: string;
@@ -58,7 +83,32 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             value: string;
             key: string;
         }[];
-    } & import("mongoose").Document) => T): T;
+    } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+        _id: import("bson").ObjectId;
+    } & {
+        schema: import("mongoose").Schema<any> & {
+            _interface: {
+                uuid: string;
+                departmentId: string;
+                vehicleId: string;
+                radioName: string;
+                requestTime: number;
+                responseTime: number;
+                status: string;
+                statusCode: string;
+                modifiedDate: number;
+                requestStatus: number;
+                owner: string;
+                incidentNumber: string;
+                options: {
+                    name: string;
+                    type: string;
+                    value: string;
+                    key: string;
+                }[];
+            };
+        };
+    }) => T): T;
 }, {}>>;
 export default CADVehicleStatusModule;
 export declare type CADVehicleStatus = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>;

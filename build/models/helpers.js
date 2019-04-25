@@ -5,7 +5,7 @@ function createSchemaDefinition(c) {
 }
 exports.createSchemaDefinition = createSchemaDefinition;
 function createSchema(schemaCtor, p, o, methods) {
-    var schema = new schemaCtor(p, o);
+    const schema = new schemaCtor(p, o);
     if (methods) {
         schema.methods = methods;
     }

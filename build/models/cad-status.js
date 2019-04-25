@@ -4,126 +4,125 @@ const uuid = require("uuid");
 const helpers_1 = require("./helpers");
 async function CADStatusModule(mongoose) {
     "use strict";
-    var { Schema } = mongoose;
-    var CADStatusColor = (await Promise.resolve().then(() => require("./schema/cad-status-color"))).RateLimitModule(mongoose);
-    var StatusOptionValue = helpers_1.createSchema(Schema, {
+    const { Schema } = mongoose;
+    const CADStatusColor = (await Promise.resolve().then(() => require("./schema/cad-status-color"))).RateLimitModule(mongoose);
+    const StatusOptionValue = helpers_1.createSchema(Schema, {
         name: {
             type: String,
-            default: ""
+            default: "",
         },
         type: {
             type: String,
-            default: "string" // int, bool
+            default: "string",
         },
         visible: {
             type: Boolean,
-            default: true
+            default: true,
         },
         value: {
             type: String,
-            default: ""
+            default: "",
         },
         favorite: {
             type: Boolean,
-            default: false
+            default: false,
         },
         position: {
             type: Number,
-            default: 0
-        }
+            default: 0,
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var StatusOption = helpers_1.createSchema(Schema, {
+    const StatusOption = helpers_1.createSchema(Schema, {
         name: {
             type: String,
-            default: ""
+            default: "",
         },
         position: {
             type: Number,
-            default: 0
+            default: 0,
         },
         visible: {
             type: Boolean,
-            default: true
+            default: true,
         },
         cadKey: {
             type: String,
-            default: ""
+            default: "",
         },
         cadValues: {
             type: [StatusOptionValue],
-            default: []
-        }
+            default: [],
+        },
     }, {
-        _id: false
+        _id: false,
     });
-    var modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
         uuid: {
             type: String,
             index: true,
-            default: uuid.v4
+            default: uuid.v4,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true
+            index: true,
         },
         modifiedDate: {
             type: Number,
             default: 0,
-            min: 1
+            min: 1,
         },
         statusId: {
             type: Number,
             default: 0,
             required: true,
-            min: 0
+            min: 0,
         },
         code: {
             type: String,
             default: "",
             required: true,
-            minlength: 1
+            minlength: 1,
         },
         status: {
             type: String,
             default: "",
             required: true,
-            minlength: 1
+            minlength: 1,
         },
         name: {
             type: String,
-            default: ""
+            default: "",
         },
         normalized: {
             type: String,
-            default: ""
+            default: "",
         },
         selfAssignable: {
             type: Boolean,
-            default: false
+            default: false,
         },
         roaming: {
             type: Boolean,
-            default: false
+            default: false,
         },
         options: {
             type: [StatusOption],
-            default: []
+            default: [],
         },
         color: {
             type: CADStatusColor,
-            default: null
-        }
+            default: null,
+        },
     }, {
-        collection: "massive_cad_status"
+        collection: "massive_cad_status",
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "CADStatus", modelSchema);
 }
 exports.CADStatusModule = CADStatusModule;
-;
 exports.default = CADStatusModule;
 //# sourceMappingURL=cad-status.js.map
