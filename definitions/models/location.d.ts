@@ -1,5 +1,6 @@
 /// <reference types="mongoose" />
 /// <reference types="bson" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function LocationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: {
@@ -56,7 +57,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             longitude: number;
             latitude: number;
         };
-    } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+    } & Pick<import("mongoose").Document, "collection" | "id" | "toJSON" | "toObject" | "save" | "init" | "validate" | "remove" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<any> & {
@@ -116,7 +117,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             longitude: number;
             latitude: number;
         };
-    } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+    } & Pick<import("mongoose").Document, "collection" | "id" | "toJSON" | "toObject" | "save" | "init" | "validate" | "remove" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<any> & {
@@ -176,7 +177,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             longitude: number;
             latitude: number;
         };
-    } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+    } & Pick<import("mongoose").Document, "collection" | "id" | "toJSON" | "toObject" | "save" | "init" | "validate" | "remove" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<any> & {
@@ -212,4 +213,5 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     }) => T): T;
 }, {}>>;
 export default LocationModule;
-export declare type Location = UnboxPromise<ReturnType<typeof LocationModule>>;
+export declare type LocationModel = UnboxPromise<ReturnType<typeof LocationModule>>;
+export declare type Location = ModelItemType<LocationModel>;

@@ -1,4 +1,4 @@
-import { MongooseModule, MongooseModel, MongooseSchema, MongooseDocument, UnboxPromise } from "./helpers";
+import { MongooseModule, MongooseModel, MongooseSchema, MongooseDocument, UnboxPromise, ModelItemType } from "./helpers";
 
 import { createSchema, DocumentTypeFromSchema, ModelFromSchema, createModel, FieldsOfDocument } from "./helpers";
 import * as uuid from "uuid";
@@ -518,4 +518,5 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
 }
 
 export default CADIncidentModule;
-export type CADIncident = UnboxPromise<ReturnType<typeof CADIncidentModule>>;
+export type CADIncidentModel = UnboxPromise<ReturnType<typeof CADIncidentModule>>;
+export type CADIncident = ModelItemType<CADIncidentModel>;

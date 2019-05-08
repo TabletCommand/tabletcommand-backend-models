@@ -1,4 +1,4 @@
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
 import { TypedDocument, createSchema, createModel } from "./helpers";
 import * as _ from "lodash";
 
@@ -65,4 +65,5 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
 }
 
 export default CADStatusMapModule;
-export type CADStatusMap = UnboxPromise<ReturnType<typeof CADStatusMapModule>>;
+export type CADStatusMapModel = UnboxPromise<ReturnType<typeof CADStatusMapModule>>;
+export type CADStatusMap = ModelItemType<CADStatusMapModel>;

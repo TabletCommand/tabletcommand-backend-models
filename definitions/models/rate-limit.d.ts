@@ -1,5 +1,6 @@
 /// <reference types="mongoose" />
 /// <reference types="bson" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function RateLimitModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: {
@@ -20,4 +21,5 @@ export declare function RateLimitModule(mongoose: MongooseModule): Promise<impor
     count: number;
 }, {}>>;
 export default RateLimitModule;
-export declare type RateLimit = UnboxPromise<ReturnType<typeof RateLimitModule>>;
+export declare type RateLimitModel = UnboxPromise<ReturnType<typeof RateLimitModule>>;
+export declare type RateLimit = ModelItemType<RateLimitModel>;

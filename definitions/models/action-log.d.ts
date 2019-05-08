@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 /// <reference types="bson" />
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
 export declare function ActionLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: {
         type: {
@@ -22,4 +22,5 @@ export declare function ActionLogModule(mongoose: MongooseModule): Promise<impor
     modified_unix_date: number;
 }, {}>>;
 export default ActionLogModule;
-export declare type ActionLog = UnboxPromise<ReturnType<typeof ActionLogModule>>;
+export declare type ActionLogModel = UnboxPromise<ReturnType<typeof ActionLogModule>>;
+export declare type ActionLog = ModelItemType<ActionLogModel>;

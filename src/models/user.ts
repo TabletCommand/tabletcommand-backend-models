@@ -1,4 +1,4 @@
-import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
+import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument, ModelItemType } from "./helpers";
 import { MongooseModule, MongooseDocument, UnboxPromise } from "./helpers";
 
 export async function UserModule(mongoose: MongooseModule) {
@@ -142,4 +142,5 @@ export async function UserModule(mongoose: MongooseModule) {
 }
 
 export default UserModule;
-export type User = UnboxPromise<ReturnType<typeof UserModule>>;
+export type UserModel = UnboxPromise<ReturnType<typeof UserModule>>;
+export type User = ModelItemType<UserModel>;

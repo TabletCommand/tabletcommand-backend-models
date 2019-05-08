@@ -1,5 +1,6 @@
 /// <reference types="mongoose" />
 /// <reference types="bson" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function IncidentTakeoverModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: {
@@ -28,4 +29,5 @@ export declare function IncidentTakeoverModule(mongoose: MongooseModule): Promis
     response_time: number;
 }, {}>>;
 export default IncidentTakeoverModule;
-export declare type IncidentTakeover = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>;
+export declare type IncidentTakeoverModel = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>;
+export declare type IncidentTakeover = ModelItemType<IncidentTakeoverModel>;

@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import * as uuid from "uuid";
-import { createSchema, createModel } from "./helpers";
+import { createSchema, createModel, ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function RateLimitModule(mongoose: MongooseModule) {
@@ -30,4 +30,5 @@ export async function RateLimitModule(mongoose: MongooseModule) {
 }
 
 export default RateLimitModule;
-export type RateLimit = UnboxPromise<ReturnType<typeof RateLimitModule>>;
+export type RateLimitModel = UnboxPromise<ReturnType<typeof RateLimitModule>>;
+export type RateLimit = ModelItemType<RateLimitModel>;

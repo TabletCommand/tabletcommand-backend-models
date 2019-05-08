@@ -1,5 +1,6 @@
 /// <reference types="mongoose" />
 /// <reference types="bson" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: {
@@ -61,4 +62,5 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     signupDomains: string[];
 }, {}>>;
 export default DepartmentModule;
-export declare type Department = UnboxPromise<ReturnType<typeof DepartmentModule>>;
+export declare type DepartmentModel = UnboxPromise<ReturnType<typeof DepartmentModule>>;
+export declare type Department = ModelItemType<DepartmentModel>;

@@ -1,4 +1,4 @@
-import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
+import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument, ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 import * as uuid from "uuid";
 
@@ -208,4 +208,5 @@ export async function DepartmentModule(mongoose: MongooseModule) {
 }
 
 export default DepartmentModule;
-export type Department = UnboxPromise<ReturnType<typeof DepartmentModule>>;
+export type DepartmentModel = UnboxPromise<ReturnType<typeof DepartmentModule>>;
+export type Department = ModelItemType<DepartmentModel>;

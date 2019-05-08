@@ -1,4 +1,5 @@
 /// <reference types="mongoose" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function UserRegistrationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     email: string;
@@ -18,4 +19,5 @@ export declare function UserRegistrationModule(mongoose: MongooseModule): Promis
     lastIncidentUnixTime: number;
 }, {}>>;
 export default UserRegistrationModule;
-export declare type UserRegistration = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;
+export declare type UserRegistrationModel = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;
+export declare type UserRegistration = ModelItemType<UserRegistrationModel>;

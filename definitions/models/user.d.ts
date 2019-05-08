@@ -1,4 +1,5 @@
 /// <reference types="mongoose" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     nick: string;
@@ -33,4 +34,5 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     tokenExpireDate: number;
 }, {}>>;
 export default UserModule;
-export declare type User = UnboxPromise<ReturnType<typeof UserModule>>;
+export declare type UserModel = UnboxPromise<ReturnType<typeof UserModule>>;
+export declare type User = ModelItemType<UserModel>;

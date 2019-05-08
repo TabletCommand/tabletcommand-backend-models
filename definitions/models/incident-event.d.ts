@@ -1,5 +1,6 @@
 /// <reference types="mongoose" />
 /// <reference types="bson" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: {
@@ -35,4 +36,5 @@ export declare function IncidentEventModule(mongoose: MongooseModule): Promise<i
     uuid: string;
 }, {}>>;
 export default IncidentEventModule;
-export declare type IncidentEvent = UnboxPromise<ReturnType<typeof IncidentEventModule>>;
+export declare type IncidentEventModel = UnboxPromise<ReturnType<typeof IncidentEventModule>>;
+export declare type IncidentEvent = ModelItemType<IncidentEventModel>;

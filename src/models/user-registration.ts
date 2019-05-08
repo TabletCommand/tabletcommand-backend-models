@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import { createSchema, createModel } from "./helpers";
+import { createSchema, createModel, ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function UserRegistrationModule(mongoose: MongooseModule) {
@@ -81,4 +81,5 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
 }
 
 export default UserRegistrationModule;
-export type UserRegistration = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;
+export type UserRegistrationModel = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;
+export type UserRegistration = ModelItemType<UserRegistrationModel>;

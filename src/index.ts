@@ -29,22 +29,22 @@ async function wireModels(mongoose: MongooseModule) {
   };
 }
 
-export { ActionLog } from './models/action-log';
-export { CADIncident } from './models/cad-incident';
-export { CADStatusMap } from './models/cad-status-map';
-export { CADStatus } from './models/cad-status';
-export { CADVehicle } from './models/cad-vehicle';
-export { CADVehicleStatus } from './models/cad-vehicle-status';
-export { Department } from './models/department';
-export { DeviceMapping } from './models/device-mapping';
-export { IncidentEvent } from './models/incident-event';
-export { IncidentTakeover } from './models/incident-takeover';
-export { Location } from './models/location';
-export { ManagedIncident } from './models/managed-incident';
-export { RateLimit } from './models/rate-limit';
-export { Session } from './models/session';
-export { User} from './models/user';
-export { UserRegistration } from './models/user-registration';
+export { ActionLog, ActionLogModel } from './models/action-log';
+export { CADIncident, CADIncidentModel } from './models/cad-incident';
+export { CADStatusMap, CADStatusMapModel } from './models/cad-status-map';
+export { CADStatus, CADStatusModel } from './models/cad-status';
+export { CADVehicle, CADVehicleModel } from './models/cad-vehicle';
+export { CADVehicleStatus, CADVehicleStatusModel } from './models/cad-vehicle-status';
+export { Department, DepartmentModel } from './models/department';
+export { DeviceMapping, DeviceMappingModel } from './models/device-mapping';
+export { IncidentEvent, IncidentEventModel } from './models/incident-event';
+export { IncidentTakeover, IncidentTakeoverModel } from './models/incident-takeover';
+export { Location, LocationModel } from './models/location';
+export { ManagedIncident, ManagedIncidentModel } from './models/managed-incident';
+export { RateLimit, RateLimitModel } from './models/rate-limit';
+export { Session, SessionModel } from './models/session';
+export { User, UserModel } from './models/user';
+export { UserRegistration, UserRegistrationModel } from './models/user-registration';
 
 export * from './models/helpers';
 

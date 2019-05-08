@@ -1,5 +1,6 @@
 /// <reference types="mongoose" />
 /// <reference types="bson" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: {
@@ -31,4 +32,5 @@ export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<i
     note: string;
 }, {}>>;
 export default DeviceMappingModule;
-export declare type DeviceMapping = UnboxPromise<ReturnType<typeof DeviceMappingModule>>;
+export declare type DeviceMappingModel = UnboxPromise<ReturnType<typeof DeviceMappingModule>>;
+export declare type DeviceMapping = ModelItemType<DeviceMappingModel>;

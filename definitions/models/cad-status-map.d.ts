@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
 export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     departmentId: string;
     modifiedDate: number;
@@ -10,4 +10,5 @@ export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<im
     }[];
 }, {}>>;
 export default CADStatusMapModule;
-export declare type CADStatusMap = UnboxPromise<ReturnType<typeof CADStatusMapModule>>;
+export declare type CADStatusMapModel = UnboxPromise<ReturnType<typeof CADStatusMapModule>>;
+export declare type CADStatusMap = ModelItemType<CADStatusMapModel>;

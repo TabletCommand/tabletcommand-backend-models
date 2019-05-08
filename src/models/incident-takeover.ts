@@ -1,4 +1,4 @@
-import { createSchema, createModel } from "./helpers";
+import { createSchema, createModel, ModelItemType } from "./helpers";
 import * as uuid from "uuid";
 import { MongooseModule, UnboxPromise } from "./helpers";
 
@@ -71,4 +71,5 @@ export async function IncidentTakeoverModule(mongoose: MongooseModule) {
 }
 
 export default IncidentTakeoverModule;
-export type IncidentTakeover = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>;
+export type IncidentTakeoverModel = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>;
+export type IncidentTakeover = ModelItemType<IncidentTakeoverModel>;

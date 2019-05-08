@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
 export declare function CADVehicleModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     uuid: string;
     departmentId: string;
@@ -12,4 +12,5 @@ export declare function CADVehicleModule(mongoose: MongooseModule): Promise<impo
     };
 }, {}>>;
 export default CADVehicleModule;
-export declare type CADVehicle = UnboxPromise<ReturnType<typeof CADVehicleModule>>;
+export declare type CADVehicleModel = UnboxPromise<ReturnType<typeof CADVehicleModule>>;
+export declare type CADVehicle = ModelItemType<CADVehicleModel>;

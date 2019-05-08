@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as uuid from "uuid";
 import * as moment from "moment-timezone";
-import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
+import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument, ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
@@ -145,4 +145,5 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
 }
 
 export default ManagedIncidentModule;
-export type ManagedIncident = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>;
+export type ManagedIncidentModel = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>;
+export type ManagedIncident = ModelItemType<ManagedIncidentModel>;

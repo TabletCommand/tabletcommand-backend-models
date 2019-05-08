@@ -1,6 +1,6 @@
 import * as  uuid from "uuid";
 import * as  _ from "lodash";
-import { createModel, createSchema, createSchemaDefinition, DocumentFromSchemaDefinition } from "./helpers";
+import { createModel, createSchema, createSchemaDefinition, DocumentFromSchemaDefinition, ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function CADVehicleStatusModule(mongoose: MongooseModule) {
@@ -127,4 +127,5 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
 }
 
 export default CADVehicleStatusModule;
-export type CADVehicleStatus = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>;
+export type CADVehicleStatusModel = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>;
+export type CADVehicleStatus = ModelItemType<CADVehicleStatusModel>;

@@ -1,4 +1,4 @@
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
 import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument } from "./helpers";
 import * as uuid from "uuid";
 
@@ -82,4 +82,5 @@ export async function SessionModule(mongoose: MongooseModule) {
 }
 
 export default SessionModule;
-export type Session = UnboxPromise<ReturnType<typeof SessionModule>>;
+export type SessionModel = UnboxPromise<ReturnType<typeof SessionModule>>;
+export type Session = ModelItemType<SessionModel>;

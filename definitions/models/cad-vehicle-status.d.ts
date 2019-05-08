@@ -1,4 +1,5 @@
 /// <reference types="mongoose" />
+import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     uuid: string;
@@ -39,7 +40,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             value: string;
             key: string;
         }[];
-    } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+    } & Pick<import("mongoose").Document, "collection" | "id" | "toJSON" | "toObject" | "save" | "init" | "validate" | "remove" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<any> & {
@@ -83,7 +84,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             value: string;
             key: string;
         }[];
-    } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+    } & Pick<import("mongoose").Document, "collection" | "id" | "toJSON" | "toObject" | "save" | "init" | "validate" | "remove" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<any> & {
@@ -111,4 +112,5 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
     }) => T): T;
 }, {}>>;
 export default CADVehicleStatusModule;
-export declare type CADVehicleStatus = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>;
+export declare type CADVehicleStatusModel = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>;
+export declare type CADVehicleStatus = ModelItemType<CADVehicleStatusModel>;

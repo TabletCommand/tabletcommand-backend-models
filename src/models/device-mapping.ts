@@ -1,6 +1,6 @@
 import * as  uuid from "uuid";
 import * as  _ from "lodash";
-import { createSchema, createModel } from "./helpers";
+import { createSchema, createModel, ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function DeviceMappingModule(mongoose: MongooseModule) {
@@ -69,4 +69,5 @@ export async function DeviceMappingModule(mongoose: MongooseModule) {
 }
 
 export default DeviceMappingModule;
-export type DeviceMapping = UnboxPromise<ReturnType<typeof DeviceMappingModule>>;
+export type DeviceMappingModel = UnboxPromise<ReturnType<typeof DeviceMappingModule>>;
+export type DeviceMapping = ModelItemType<DeviceMappingModel>;

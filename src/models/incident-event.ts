@@ -1,4 +1,4 @@
-import { createSchema, createModel } from "./helpers";
+import { createSchema, createModel, ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 
 export async function IncidentEventModule(mongoose: MongooseModule) {
@@ -91,4 +91,5 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
 }
 
 export default IncidentEventModule;
-export type IncidentEvent = UnboxPromise<ReturnType<typeof IncidentEventModule>>;
+export type IncidentEventModel = UnboxPromise<ReturnType<typeof IncidentEventModule>>;
+export type IncidentEvent = ModelItemType<IncidentEventModel>;
