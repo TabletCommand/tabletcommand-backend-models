@@ -1,4 +1,7 @@
 {
+    "files.exclude": {
+        "definitions": true
+    },
     "cSpell.words": [
         "Counti",
         "DDTHH",

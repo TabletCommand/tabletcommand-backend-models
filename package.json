@@ -23,6 +23,7 @@
     "lodash": "^4.17.4",
     "moment-timezone": "^0.5.14",
     "mongoose": "^5.4.10",
+    "ms": "^2.1.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
