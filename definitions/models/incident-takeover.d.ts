@@ -1,21 +1,8 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function IncidentTakeoverModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     departmentId: string;
     uuid: string;
     incident_id: string;
@@ -31,3 +18,4 @@ export declare function IncidentTakeoverModule(mongoose: MongooseModule): Promis
 export default IncidentTakeoverModule;
 export declare type IncidentTakeoverModel = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>;
 export declare type IncidentTakeover = ModelItemType<IncidentTakeoverModel>;
+//# sourceMappingURL=incident-takeover.d.ts.map

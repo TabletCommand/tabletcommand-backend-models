@@ -1,21 +1,8 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function LocationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
     uuid: string;
@@ -31,19 +18,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     };
 } & {
     propagateToObject<T>(this: {
-        _id: {
-            type: {
-                prototype: {} | {
-                    [x: string]: {} | any | {}[];
-                } | {}[];
-                cacheHexString?: undefined;
-                createFromHexString: {};
-                createFromTime: {};
-                isValid: {};
-                generate: {};
-            };
-            auto: never;
-        };
+        _id: import("bson").ObjectId;
         departmentId: string;
         userId: string;
         uuid: string;
@@ -62,19 +37,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     } & {
         schema: import("mongoose").Schema<any> & {
             _interface: {
-                _id: {
-                    type: {
-                        prototype: {} | {
-                            [x: string]: {} | any | {}[];
-                        } | {}[];
-                        cacheHexString?: undefined;
-                        createFromHexString: {};
-                        createFromTime: {};
-                        isValid: {};
-                        generate: {};
-                    };
-                    auto: never;
-                };
+                _id: import("bson").ObjectId;
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -91,19 +54,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             };
         };
     }, dbItem: {
-        _id: {
-            type: {
-                prototype: {} | {
-                    [x: string]: {} | any | {}[];
-                } | {}[];
-                cacheHexString?: undefined;
-                createFromHexString: {};
-                createFromTime: {};
-                isValid: {};
-                generate: {};
-            };
-            auto: never;
-        };
+        _id: import("bson").ObjectId;
         departmentId: string;
         userId: string;
         uuid: string;
@@ -122,19 +73,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     } & {
         schema: import("mongoose").Schema<any> & {
             _interface: {
-                _id: {
-                    type: {
-                        prototype: {} | {
-                            [x: string]: {} | any | {}[];
-                        } | {}[];
-                        cacheHexString?: undefined;
-                        createFromHexString: {};
-                        createFromTime: {};
-                        isValid: {};
-                        generate: {};
-                    };
-                    auto: never;
-                };
+                _id: import("bson").ObjectId;
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -151,19 +90,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             };
         };
     }, callback: (doc: {
-        _id: {
-            type: {
-                prototype: {} | {
-                    [x: string]: {} | any | {}[];
-                } | {}[];
-                cacheHexString?: undefined;
-                createFromHexString: {};
-                createFromTime: {};
-                isValid: {};
-                generate: {};
-            };
-            auto: never;
-        };
+        _id: import("bson").ObjectId;
         departmentId: string;
         userId: string;
         uuid: string;
@@ -182,19 +109,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     } & {
         schema: import("mongoose").Schema<any> & {
             _interface: {
-                _id: {
-                    type: {
-                        prototype: {} | {
-                            [x: string]: {} | any | {}[];
-                        } | {}[];
-                        cacheHexString?: undefined;
-                        createFromHexString: {};
-                        createFromTime: {};
-                        isValid: {};
-                        generate: {};
-                    };
-                    auto: never;
-                };
+                _id: import("bson").ObjectId;
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -215,3 +130,4 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
 export default LocationModule;
 export declare type LocationModel = UnboxPromise<ReturnType<typeof LocationModule>>;
 export declare type Location = ModelItemType<LocationModel>;
+//# sourceMappingURL=location.d.ts.map

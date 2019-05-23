@@ -1,20 +1,7 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
 export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     uuid: string;
     departmentId: string;
     AgencyID: string;
@@ -156,3 +143,4 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
 export default CADIncidentModule;
 export declare type CADIncidentModel = UnboxPromise<ReturnType<typeof CADIncidentModule>>;
 export declare type CADIncident = ModelItemType<CADIncidentModel>;
+//# sourceMappingURL=cad-incident.d.ts.map

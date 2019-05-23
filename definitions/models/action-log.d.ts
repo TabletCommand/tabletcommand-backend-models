@@ -1,20 +1,7 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
 export declare function ActionLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     departmentId: string;
     email: string;
     action: string;
@@ -24,3 +11,4 @@ export declare function ActionLogModule(mongoose: MongooseModule): Promise<impor
 export default ActionLogModule;
 export declare type ActionLogModel = UnboxPromise<ReturnType<typeof ActionLogModule>>;
 export declare type ActionLog = ModelItemType<ActionLogModel>;
+//# sourceMappingURL=action-log.d.ts.map

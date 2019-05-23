@@ -1,5 +1,5 @@
 import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from 'mongoose';
-import { ObjectID } from 'bson';
+import { ObjectID, ObjectId } from 'bson';
 export declare type MongooseModule = typeof import("mongoose");
 export declare type MongooseModel<T extends Document, QueryHelpers = {}> = Model<T, QueryHelpers>;
 export declare type MongooseSchema<T = any> = Schema<T>;
@@ -31,7 +31,9 @@ export declare type MongooseProperty<T extends SchemaDefinition[string]> = T ext
     };
 } ? P : T extends (...a: unknown[]) => infer P ? P : T extends Schema & {
     _interface: infer P;
-} ? P : T extends object ? {
+} ? P : T extends {
+    type: MongooseModule['Types']['ObjectId'];
+} ? ObjectId : T extends MongooseModule['Types']['ObjectId'] ? ObjectId : T extends object ? {
     [P in keyof T]: MongooseProperty<T[P]>;
 } : never;
 export declare type MongooseInterface<T extends SchemaDefinition> = {} & {
@@ -66,7 +68,8 @@ export declare type DocumentTypeFromSchema<T extends Schema> = T extends Schema 
 } : never;
 export declare type DocumentTypeFromModel<T extends Model<Document>> = T extends Model<infer U> ? U : never;
 export declare type FieldsOfDocument<T extends Document> = T extends Document & infer F ? F & {
-    id: unknown;
+    id?: unknown;
     _id: unknown;
 } : never;
 export {};
+//# sourceMappingURL=helpers.d.ts.map

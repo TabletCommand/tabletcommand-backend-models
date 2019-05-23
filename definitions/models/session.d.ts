@@ -19,3 +19,4 @@ export declare function SessionModule(mongoose: MongooseModule): Promise<import(
 export default SessionModule;
 export declare type SessionModel = UnboxPromise<ReturnType<typeof SessionModule>>;
 export declare type Session = ModelItemType<SessionModel>;
+//# sourceMappingURL=session.d.ts.map

@@ -12,3 +12,4 @@ export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<im
 export default CADStatusMapModule;
 export declare type CADStatusMapModel = UnboxPromise<ReturnType<typeof CADStatusMapModule>>;
 export declare type CADStatusMap = ModelItemType<CADStatusMapModel>;
+//# sourceMappingURL=cad-status-map.d.ts.map

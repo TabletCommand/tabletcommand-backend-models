@@ -1,21 +1,8 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     departmentId: string;
     IncidentNumber: string;
     modified_unix_date: number;
@@ -38,3 +25,4 @@ export declare function IncidentEventModule(mongoose: MongooseModule): Promise<i
 export default IncidentEventModule;
 export declare type IncidentEventModel = UnboxPromise<ReturnType<typeof IncidentEventModule>>;
 export declare type IncidentEvent = ModelItemType<IncidentEventModel>;
+//# sourceMappingURL=incident-event.d.ts.map

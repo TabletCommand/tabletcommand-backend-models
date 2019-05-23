@@ -114,3 +114,4 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
 export default CADVehicleStatusModule;
 export declare type CADVehicleStatusModel = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>;
 export declare type CADVehicleStatus = ModelItemType<CADVehicleStatusModel>;
+//# sourceMappingURL=cad-vehicle-status.d.ts.map

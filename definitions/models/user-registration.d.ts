@@ -21,3 +21,4 @@ export declare function UserRegistrationModule(mongoose: MongooseModule): Promis
 export default UserRegistrationModule;
 export declare type UserRegistrationModel = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;
 export declare type UserRegistration = ModelItemType<UserRegistrationModel>;
+//# sourceMappingURL=user-registration.d.ts.map

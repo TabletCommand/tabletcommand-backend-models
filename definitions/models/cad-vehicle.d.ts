@@ -14,3 +14,4 @@ export declare function CADVehicleModule(mongoose: MongooseModule): Promise<impo
 export default CADVehicleModule;
 export declare type CADVehicleModel = UnboxPromise<ReturnType<typeof CADVehicleModule>>;
 export declare type CADVehicle = ModelItemType<CADVehicleModel>;
+//# sourceMappingURL=cad-vehicle.d.ts.map

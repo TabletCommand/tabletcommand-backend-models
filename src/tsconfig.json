@@ -8,6 +8,7 @@
        "strict": true,
        "outDir": "../build",
        "declarationDir": "../definitions",
+       "declarationMap": true,
        "sourceMap": true
     }
 }

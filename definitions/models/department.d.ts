@@ -1,21 +1,8 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     uuid: string;
     department: string;
     fdid: string;
@@ -64,3 +51,4 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
 export default DepartmentModule;
 export declare type DepartmentModel = UnboxPromise<ReturnType<typeof DepartmentModule>>;
 export declare type Department = ModelItemType<DepartmentModel>;
+//# sourceMappingURL=department.d.ts.map

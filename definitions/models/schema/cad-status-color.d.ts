@@ -7,3 +7,4 @@ export declare function RateLimitModule(mongoose: MongooseModule): import("mongo
     };
     _methods: {};
 };
+//# sourceMappingURL=cad-status-color.d.ts.map

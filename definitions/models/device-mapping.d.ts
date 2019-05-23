@@ -1,21 +1,8 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
     deviceType: string;
@@ -34,3 +21,4 @@ export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<i
 export default DeviceMappingModule;
 export declare type DeviceMappingModel = UnboxPromise<ReturnType<typeof DeviceMappingModule>>;
 export declare type DeviceMapping = ModelItemType<DeviceMappingModel>;
+//# sourceMappingURL=device-mapping.d.ts.map

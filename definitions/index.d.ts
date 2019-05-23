@@ -1,5 +1,4 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 export { ActionLog, ActionLogModel } from './models/action-log';
 export { CADIncident, CADIncidentModel } from './models/cad-incident';
 export { CADStatusMap, CADStatusMapModel } from './models/cad-status-map';
@@ -22,19 +21,7 @@ export declare function connect(url: string): Promise<{
     connection: typeof import("mongoose");
     models: {
         ActionLog: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             departmentId: string;
             email: string;
             action: string;
@@ -42,19 +29,7 @@ export declare function connect(url: string): Promise<{
             modified_unix_date: number;
         }, {}>;
         CADIncident: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             uuid: string;
             departmentId: string;
             AgencyID: string;
@@ -354,19 +329,7 @@ export declare function connect(url: string): Promise<{
             }) => T): T;
         }, {}>;
         Department: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             uuid: string;
             department: string;
             fdid: string;
@@ -413,19 +376,7 @@ export declare function connect(url: string): Promise<{
             signupDomains: string[];
         }, {}>;
         DeviceMapping: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             departmentId: string;
             userId: string;
             deviceType: string;
@@ -442,19 +393,7 @@ export declare function connect(url: string): Promise<{
             note: string;
         }, {}>;
         IncidentEvent: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             departmentId: string;
             IncidentNumber: string;
             modified_unix_date: number;
@@ -475,19 +414,7 @@ export declare function connect(url: string): Promise<{
             uuid: string;
         }, {}>;
         IncidentTakeover: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             departmentId: string;
             uuid: string;
             incident_id: string;
@@ -501,19 +428,7 @@ export declare function connect(url: string): Promise<{
             response_time: number;
         }, {}>;
         Location: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             departmentId: string;
             userId: string;
             uuid: string;
@@ -529,19 +444,7 @@ export declare function connect(url: string): Promise<{
             };
         } & {
             propagateToObject<T>(this: {
-                _id: {
-                    type: {
-                        prototype: {} | {
-                            [x: string]: {} | any | {}[];
-                        } | {}[];
-                        cacheHexString?: undefined;
-                        createFromHexString: {};
-                        createFromTime: {};
-                        isValid: {};
-                        generate: {};
-                    };
-                    auto: never;
-                };
+                _id: import("bson").ObjectId;
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -560,19 +463,7 @@ export declare function connect(url: string): Promise<{
             } & {
                 schema: import("mongoose").Schema<any> & {
                     _interface: {
-                        _id: {
-                            type: {
-                                prototype: {} | {
-                                    [x: string]: {} | any | {}[];
-                                } | {}[];
-                                cacheHexString?: undefined;
-                                createFromHexString: {};
-                                createFromTime: {};
-                                isValid: {};
-                                generate: {};
-                            };
-                            auto: never;
-                        };
+                        _id: import("bson").ObjectId;
                         departmentId: string;
                         userId: string;
                         uuid: string;
@@ -589,19 +480,7 @@ export declare function connect(url: string): Promise<{
                     };
                 };
             }, dbItem: {
-                _id: {
-                    type: {
-                        prototype: {} | {
-                            [x: string]: {} | any | {}[];
-                        } | {}[];
-                        cacheHexString?: undefined;
-                        createFromHexString: {};
-                        createFromTime: {};
-                        isValid: {};
-                        generate: {};
-                    };
-                    auto: never;
-                };
+                _id: import("bson").ObjectId;
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -620,19 +499,7 @@ export declare function connect(url: string): Promise<{
             } & {
                 schema: import("mongoose").Schema<any> & {
                     _interface: {
-                        _id: {
-                            type: {
-                                prototype: {} | {
-                                    [x: string]: {} | any | {}[];
-                                } | {}[];
-                                cacheHexString?: undefined;
-                                createFromHexString: {};
-                                createFromTime: {};
-                                isValid: {};
-                                generate: {};
-                            };
-                            auto: never;
-                        };
+                        _id: import("bson").ObjectId;
                         departmentId: string;
                         userId: string;
                         uuid: string;
@@ -649,19 +516,7 @@ export declare function connect(url: string): Promise<{
                     };
                 };
             }, callback: (doc: {
-                _id: {
-                    type: {
-                        prototype: {} | {
-                            [x: string]: {} | any | {}[];
-                        } | {}[];
-                        cacheHexString?: undefined;
-                        createFromHexString: {};
-                        createFromTime: {};
-                        isValid: {};
-                        generate: {};
-                    };
-                    auto: never;
-                };
+                _id: import("bson").ObjectId;
                 departmentId: string;
                 userId: string;
                 uuid: string;
@@ -680,19 +535,7 @@ export declare function connect(url: string): Promise<{
             } & {
                 schema: import("mongoose").Schema<any> & {
                     _interface: {
-                        _id: {
-                            type: {
-                                prototype: {} | {
-                                    [x: string]: {} | any | {}[];
-                                } | {}[];
-                                cacheHexString?: undefined;
-                                createFromHexString: {};
-                                createFromTime: {};
-                                isValid: {};
-                                generate: {};
-                            };
-                            auto: never;
-                        };
+                        _id: import("bson").ObjectId;
                         departmentId: string;
                         userId: string;
                         uuid: string;
@@ -711,19 +554,7 @@ export declare function connect(url: string): Promise<{
             }) => T): T;
         }, {}>;
         ManagedIncident: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             departmentId: string;
             userId: string;
             uuid: string;
@@ -766,19 +597,7 @@ export declare function connect(url: string): Promise<{
             }[];
         }, {}>;
         RateLimit: import("mongoose").Model<import("mongoose").Document & {
-            _id: {
-                type: {
-                    prototype: {} | {
-                        [x: string]: {} | any | {}[];
-                    } | {}[];
-                    cacheHexString?: undefined;
-                    createFromHexString: {};
-                    createFromTime: {};
-                    isValid: {};
-                    generate: {};
-                };
-                auto: never;
-            };
+            _id: import("bson").ObjectId;
             username: string;
             modified_unix_date: number;
             count: number;
@@ -852,3 +671,4 @@ export declare function connect(url: string): Promise<{
 }>;
 declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
 export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>['models'];
+//# sourceMappingURL=index.d.ts.map

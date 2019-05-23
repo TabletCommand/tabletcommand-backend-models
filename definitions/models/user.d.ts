@@ -36,3 +36,4 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
 export default UserModule;
 export declare type UserModel = UnboxPromise<ReturnType<typeof UserModule>>;
 export declare type User = ModelItemType<UserModel>;
+//# sourceMappingURL=user.d.ts.map

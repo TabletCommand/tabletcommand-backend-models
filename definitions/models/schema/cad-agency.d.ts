@@ -8,3 +8,4 @@ export declare function CADAgency(mongoose: MongooseModule): import("mongoose").
     };
     _methods: {};
 };
+//# sourceMappingURL=cad-agency.d.ts.map

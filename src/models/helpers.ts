@@ -1,6 +1,6 @@
 import { SchemaDefinition, SchemaOptions, Schema, model, Document, Model } from 'mongoose';
 
-import { ObjectID } from 'bson';
+import { ObjectID, ObjectId } from 'bson';
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = {}> = Model<T, QueryHelpers>;
@@ -28,8 +28,11 @@ export type MongooseProperty<T extends SchemaDefinition[string]> =
     T extends { type: Schema & { _interface: infer P } } ? P :
     T extends (...a: unknown[]) => infer P ? P :
     T extends Schema & { _interface: infer P } ? P :
+    T extends { type: MongooseModule['Types']['ObjectId'] } ? ObjectId :
+    T extends MongooseModule['Types']['ObjectId'] ? ObjectId :
     T extends object ? { [P in keyof T]: MongooseProperty<T[P]> } :
     never;
+
 export type MongooseInterface<T extends SchemaDefinition> = {} & {
     [P in keyof T]: MongooseProperty<T[P]>
 };
@@ -51,7 +54,7 @@ export function createSchema
     if (methods) {
         schema.methods = methods;
     }
-    return schema as unknown as ReturnType<typeof createSchema>;
+    return schema as unknown as Schema & { _interface: MongooseInterface<T>, _methods: TMethods };
 }
 
 export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }, collection?: string, skipInit?: boolean) {
@@ -67,4 +70,4 @@ export type ModelFromSchema<T extends Schema> = Model<DocumentTypeFromSchema<T>>
 export type DocumentFromSchemaDefinition<T extends SchemaDefinition> = DocumentTypeFromSchema<Schema & { _interface: MongooseInterface<T> }>;
 export type DocumentTypeFromSchema<T extends Schema> = T extends Schema & { _interface: infer TI } ? TI & MongooseDocument & { schema: T }  : never;
 export type DocumentTypeFromModel<T extends Model<Document>> = T extends Model<infer U> ? U : never;
-export type FieldsOfDocument<T extends Document> = T extends Document & infer F ? F & { id: unknown, _id: unknown } : never;
+export type FieldsOfDocument<T extends Document> = T extends Document & infer F ? F & { id?: unknown, _id: unknown } : never;

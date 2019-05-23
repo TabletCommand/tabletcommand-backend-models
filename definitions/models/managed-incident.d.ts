@@ -1,21 +1,8 @@
 /// <reference types="mongoose" />
-/// <reference types="bson" />
 import { ModelItemType } from "./helpers";
 import { MongooseModule, UnboxPromise } from "./helpers";
 export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
-    _id: {
-        type: {
-            prototype: {} | {
-                [x: string]: {} | any | {}[];
-            } | {}[];
-            cacheHexString?: undefined;
-            createFromHexString: {};
-            createFromTime: {};
-            isValid: {};
-            generate: {};
-        };
-        auto: never;
-    };
+    _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
     uuid: string;
@@ -60,3 +47,4 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
 export default ManagedIncidentModule;
 export declare type ManagedIncidentModel = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>;
 export declare type ManagedIncident = ModelItemType<ManagedIncidentModel>;
+//# sourceMappingURL=managed-incident.d.ts.map
