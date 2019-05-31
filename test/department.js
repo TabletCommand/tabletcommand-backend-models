@@ -6,25 +6,20 @@ const m = require("..");
 const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
 
 describe("Department", function() {
-  let models, connection;
+  let models, mongoose;
   let testItem;
-  beforeEach(function() {
-    return m.connect(url, (err, mongoose, conn, mods) => {
-      if (err) {
-        console.log("Error connecting to mongo", err);
-        process.exit();
-      }
-      models = mods;
-      connection = conn;
+  beforeEach(async function() {
+    const c = await m.connect(url);
+    models = c.models;
+    mongoose = c.mongoose;
 
-      const mock = require("./mock")({
-        mongoose
-      });
-      testItem = mock.department;
+    const mock = require("./mock")({
+      mongoose
     });
+    testItem = mock.department;
   });
   afterEach(function() {
-    connection.close();
+    mongoose.disconnect();
   });
 
   it("is saved", function(done) {
