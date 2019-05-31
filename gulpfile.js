@@ -5,7 +5,6 @@ const del = require("del");
 const gulpTSLint = require("gulp-tslint");
 const TSLint = require("tslint");
 
-
 const tsProjectFileName = "src/tsconfig.json";
 
 gulp.task('clean', function(){
@@ -16,7 +15,6 @@ gulp.task('clean', function(){
 });
 
 gulp.task("ts", gulp.series("clean", shell.task("tsc -p .\\src")));
-
 
 gulp.task("tslint", function() {
   const sources = [
