@@ -3,8 +3,8 @@
 import { MongooseModule, UnionToIntersection } from "./models/helpers";
 
 async function wireModels(mongoose: MongooseModule) {
-  type ModelType<TModule extends Record<'default', (m: MongooseModule) => unknown>> = ReturnType<TModule['default']>;
-  async function getModel<TModule extends Record<'default', (m: MongooseModule) => unknown>>(m: Promise<TModule>): Promise<ModelType<TModule>> {
+  type ModelType<TModule extends Record<"default", (m: MongooseModule) => unknown>> = ReturnType<TModule["default"]>;
+  async function getModel<TModule extends Record<"default", (m: MongooseModule) => unknown>>(m: Promise<TModule>): Promise<ModelType<TModule>> {
     const module = await m;
     return module.default(mongoose) as Promise<ModelType<TModule>>;
   }
@@ -29,24 +29,24 @@ async function wireModels(mongoose: MongooseModule) {
   };
 }
 
-export { ActionLog, ActionLogModel } from './models/action-log';
-export { CADIncident, CADIncidentModel } from './models/cad-incident';
-export { CADStatusMap, CADStatusMapModel } from './models/cad-status-map';
-export { CADStatus, CADStatusModel } from './models/cad-status';
-export { CADVehicle, CADVehicleModel } from './models/cad-vehicle';
-export { CADVehicleStatus, CADVehicleStatusModel } from './models/cad-vehicle-status';
-export { Department, DepartmentModel } from './models/department';
-export { DeviceMapping, DeviceMappingModel } from './models/device-mapping';
-export { IncidentEvent, IncidentEventModel } from './models/incident-event';
-export { IncidentTakeover, IncidentTakeoverModel } from './models/incident-takeover';
-export { Location, LocationModel } from './models/location';
-export { ManagedIncident, ManagedIncidentModel } from './models/managed-incident';
-export { RateLimit, RateLimitModel } from './models/rate-limit';
-export { Session, SessionModel } from './models/session';
-export { User, UserModel } from './models/user';
-export { UserRegistration, UserRegistrationModel } from './models/user-registration';
+export { ActionLog, ActionLogModel } from "./models/action-log";
+export { CADIncident, CADIncidentModel } from "./models/cad-incident";
+export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
+export { CADStatus, CADStatusModel } from "./models/cad-status";
+export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
+export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
+export { Department, DepartmentModel } from "./models/department";
+export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
+export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
+export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
+export { Location, LocationModel } from "./models/location";
+export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { RateLimit, RateLimitModel } from "./models/rate-limit";
+export { Session, SessionModel } from "./models/session";
+export { User, UserModel } from "./models/user";
+export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
 
-export * from './models/helpers';
+export * from "./models/helpers";
 
 export async function connect(url: string) {
   const mongoose = await import("mongoose");
@@ -62,4 +62,4 @@ export async function connect(url: string) {
 }
 
 type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U>? U : never;
-export type BackendModels =  UnboxPromise<ReturnType<typeof connect>>['models'];
+export type BackendModels =  UnboxPromise<ReturnType<typeof connect>>["models"];

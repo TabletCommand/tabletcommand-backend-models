@@ -1,6 +1,6 @@
-import { SchemaDefinition, SchemaOptions, Schema, model, Document, Model } from 'mongoose';
+import { SchemaDefinition, SchemaOptions, Schema, model, Document, Model } from "mongoose";
 
-import { ObjectID, ObjectId } from 'bson';
+import { ObjectID, ObjectId } from "bson";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = {}> = Model<T, QueryHelpers>;
@@ -8,7 +8,7 @@ export type MongooseModel<T extends Document, QueryHelpers = {}> = Model<T, Quer
 export type MongooseSchema<T = any>  = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-export type MongooseDocument = Omit<Document, '_id'> & {
+export type MongooseDocument = Omit<Document, "_id"> & {
     _id: ObjectID,
 };
 export type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
@@ -28,8 +28,8 @@ export type MongooseProperty<T extends SchemaDefinition[string]> =
     T extends { type: Schema & { _interface: infer P } } ? P :
     T extends (...a: unknown[]) => infer P ? P :
     T extends Schema & { _interface: infer P } ? P :
-    T extends { type: MongooseModule['Types']['ObjectId'] } ? ObjectId :
-    T extends MongooseModule['Types']['ObjectId'] ? ObjectId :
+    T extends { type: MongooseModule["Types"]["ObjectId"] } ? ObjectId :
+    T extends MongooseModule["Types"]["ObjectId"] ? ObjectId :
     T extends object ? { [P in keyof T]: MongooseProperty<T[P]> } :
     never;
 

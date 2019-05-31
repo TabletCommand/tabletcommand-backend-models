@@ -8,7 +8,7 @@
     },
     "jsRules": {},
     "rules": {
-        "quotemark":false,
+        "quotemark": [true, "double"],
         "no-var-requires": true,
         "ordered-imports": false,
         "object-literal-sort-keys":false,
@@ -21,8 +21,8 @@
         "no-unsafe-any":true,
         "max-line-length":false,
         "radix":false,
-        "arrow-parens": false,
-        "no-floating-promises": true
+        "no-floating-promises": true,
+        "no-trailing-whitespace": true
     },
     "rulesDirectory": []
 }
