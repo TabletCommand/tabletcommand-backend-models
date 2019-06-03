@@ -39,4 +39,5 @@ async function connect(url) {
     return { mongoose, connection, models };
 }
 exports.connect = connect;
+exports.default = connect;
 //# sourceMappingURL=index.js.map
