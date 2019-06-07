@@ -109,6 +109,12 @@ export async function UserModule(mongoose: MongooseModule) {
       default: 1,
     },
 
+    // Share Phone Location
+    shareLocationEnabled: {
+      type: Boolean,
+      default: false,
+    },
+
     rtsAuthKey: {
       type: String,
       default: "",
