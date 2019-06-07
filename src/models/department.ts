@@ -33,6 +33,27 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
   });
 
+  const EsriError = createSchema(Schema, {
+    code: {
+      type: Number,
+      default: 1,
+    },
+    error: {
+      type: String,
+      default: "",
+    },
+    error_description: {
+      type: String,
+      default: "",
+    },
+    message: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+  });
+
   const IncidentType = createSchema(Schema, {
     name: {
       type: String,
@@ -127,13 +148,23 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: 5,
     },
-    pushEnabled: {
+    selfAssignmentEnabled: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     userContributionEnabled: {
       type: Boolean,
       default: false,
+    },
+    vehicleSwapEnabled: {
+      type: Boolean,
+      default: false,
+    },
+
+    // Other features
+    pushEnabled: {
+      type: Boolean,
+      default: true,
     },
 
     // RTS
@@ -149,12 +180,18 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+
+    // ESRI
     esriTokenDateExpiry: {
       type: Number,
       default: 0,
     },
     esriToken: {
       type: EsriToken,
+    },
+    error: {
+      type: EsriError,
+      default: null,
     },
 
     // Custom Button
