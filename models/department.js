@@ -31,6 +31,27 @@ var EsriToken = new Schema({
   _id: false
 });
 
+var EsriError = new Schema({
+  code: {
+    type: Number,
+    default: 1
+  },
+  error: {
+    type: String,
+    default: ""
+  },
+  error_description: {
+    type: String,
+    default: ""
+  },
+  message: {
+    type: String,
+    default: ""
+  }
+}, {
+  _id: false
+});
+
 var IncidentType = new Schema({
   name: {
     type: String,
@@ -125,13 +146,23 @@ var modelSchema = new Schema({
     type: Number,
     default: 5
   },
-  pushEnabled: {
+  selfAssignmentEnabled: {
     type: Boolean,
-    default: true
+    default: false
   },
   userContributionEnabled: {
     type: Boolean,
     default: false
+  },
+  vehicleSwapEnabled: {
+    type: Boolean,
+    default: false
+  },
+
+  // Other features
+  pushEnabled: {
+    type: Boolean,
+    default: true
   },
 
   // RTS
@@ -153,6 +184,10 @@ var modelSchema = new Schema({
   },
   esriToken: {
     type: EsriToken
+  },
+  error: {
+    type: EsriError,
+    default: null
   },
 
   // Custom Button

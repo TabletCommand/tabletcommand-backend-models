@@ -77,6 +77,12 @@ var modelSchema = new Schema({
     default: false
   },
 
+  // Share Phone Location
+  shareLocationEnabled: {
+    type: Boolean,
+    default: false
+  },
+
   salt: {
     type: String,
     default: "",
