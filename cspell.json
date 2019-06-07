@@ -35,15 +35,6 @@
         "hte"
     ],
     "ignoreWords": [],
-    "dictionaryDefinitions": [
-        {
-            "name": "cities",
-            "path": "./sampleDictionaries/cities.txt"
-        }
-    ],
-    "dictionaries": [
-        "cities"
-    ],
     "languageSettings": [
         {
             "languageId": "*",
