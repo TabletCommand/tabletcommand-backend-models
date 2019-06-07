@@ -5,6 +5,6 @@ export declare function RateLimitModule(mongoose: MongooseModule): import("mongo
         background: string;
         text: string;
     };
-    _methods: {};
+    _methods: unknown;
 };
 //# sourceMappingURL=cad-status-color.d.ts.map

@@ -102,6 +102,11 @@ async function UserModule(mongoose) {
             type: Number,
             default: 1,
         },
+        // Share Phone Location
+        shareLocationEnabled: {
+            type: Boolean,
+            default: false,
+        },
         rtsAuthKey: {
             type: String,
             default: "",

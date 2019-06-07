@@ -6,6 +6,6 @@ export declare function CADAgency(mongoose: MongooseModule): import("mongoose").
         name: string;
         domain: string;
     };
-    _methods: {};
+    _methods: unknown;
 };
 //# sourceMappingURL=cad-agency.d.ts.map

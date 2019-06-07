@@ -29,6 +29,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     };
     sessionCountiPhone: number;
     sessionCountiPad: number;
+    shareLocationEnabled: boolean;
     rtsAuthKey: string;
     token: string;
     tokenExpireDate: number;

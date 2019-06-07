@@ -21,8 +21,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     cadBidirectionalEnabled: boolean;
     heartbeatEnabled: boolean;
     heartbeatMinutes: number;
-    pushEnabled: boolean;
+    selfAssignmentEnabled: boolean;
     userContributionEnabled: boolean;
+    vehicleSwapEnabled: boolean;
+    pushEnabled: boolean;
     rtsEnabled: boolean;
     rtsChannelPrefix: string;
     rtsAuthKey: string;
@@ -33,6 +35,12 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         username: string;
         ssl: boolean;
         expires_in: number;
+    };
+    error: {
+        code: number;
+        error: string;
+        error_description: string;
+        message: string;
     };
     customWebUrl: string;
     customWebName: string;

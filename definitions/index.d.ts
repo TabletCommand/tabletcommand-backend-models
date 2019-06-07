@@ -1,21 +1,21 @@
 /// <reference types="mongoose" />
-export { ActionLog, ActionLogModel } from './models/action-log';
-export { CADIncident, CADIncidentModel } from './models/cad-incident';
-export { CADStatusMap, CADStatusMapModel } from './models/cad-status-map';
-export { CADStatus, CADStatusModel } from './models/cad-status';
-export { CADVehicle, CADVehicleModel } from './models/cad-vehicle';
-export { CADVehicleStatus, CADVehicleStatusModel } from './models/cad-vehicle-status';
-export { Department, DepartmentModel } from './models/department';
-export { DeviceMapping, DeviceMappingModel } from './models/device-mapping';
-export { IncidentEvent, IncidentEventModel } from './models/incident-event';
-export { IncidentTakeover, IncidentTakeoverModel } from './models/incident-takeover';
-export { Location, LocationModel } from './models/location';
-export { ManagedIncident, ManagedIncidentModel } from './models/managed-incident';
-export { RateLimit, RateLimitModel } from './models/rate-limit';
-export { Session, SessionModel } from './models/session';
-export { User, UserModel } from './models/user';
-export { UserRegistration, UserRegistrationModel } from './models/user-registration';
-export * from './models/helpers';
+export { ActionLog, ActionLogModel } from "./models/action-log";
+export { CADIncident, CADIncidentModel } from "./models/cad-incident";
+export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
+export { CADStatus, CADStatusModel } from "./models/cad-status";
+export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
+export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
+export { Department, DepartmentModel } from "./models/department";
+export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
+export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
+export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
+export { Location, LocationModel } from "./models/location";
+export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { RateLimit, RateLimitModel } from "./models/rate-limit";
+export { Session, SessionModel } from "./models/session";
+export { User, UserModel } from "./models/user";
+export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
+export * from "./models/helpers";
 export declare function connect(url: string): Promise<{
     mongoose: typeof import("mongoose");
     connection: typeof import("mongoose");
@@ -257,7 +257,7 @@ export declare function connect(url: string): Promise<{
                     value: string;
                     key: string;
                 }[];
-            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -301,7 +301,7 @@ export declare function connect(url: string): Promise<{
                     value: string;
                     key: string;
                 }[];
-            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -348,8 +348,10 @@ export declare function connect(url: string): Promise<{
             cadBidirectionalEnabled: boolean;
             heartbeatEnabled: boolean;
             heartbeatMinutes: number;
-            pushEnabled: boolean;
+            selfAssignmentEnabled: boolean;
             userContributionEnabled: boolean;
+            vehicleSwapEnabled: boolean;
+            pushEnabled: boolean;
             rtsEnabled: boolean;
             rtsChannelPrefix: string;
             rtsAuthKey: string;
@@ -360,6 +362,12 @@ export declare function connect(url: string): Promise<{
                 username: string;
                 ssl: boolean;
                 expires_in: number;
+            };
+            error: {
+                code: number;
+                error: string;
+                error_description: string;
+                message: string;
             };
             customWebUrl: string;
             customWebName: string;
@@ -458,7 +466,7 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -494,7 +502,7 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -530,7 +538,7 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -646,6 +654,7 @@ export declare function connect(url: string): Promise<{
             };
             sessionCountiPhone: number;
             sessionCountiPad: number;
+            shareLocationEnabled: boolean;
             rtsAuthKey: string;
             token: string;
             tokenExpireDate: number;
@@ -670,5 +679,5 @@ export declare function connect(url: string): Promise<{
     };
 }>;
 declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
-export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>['models'];
+export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
 //# sourceMappingURL=index.d.ts.map
