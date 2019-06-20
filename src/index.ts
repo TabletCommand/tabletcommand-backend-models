@@ -63,3 +63,4 @@ export async function connect(url: string) {
 
 type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U>? U : never;
 export type BackendModels =  UnboxPromise<ReturnType<typeof connect>>["models"];
+export default connect;
