@@ -14,7 +14,7 @@ gulp.task("clean", function(){
   ], {force:true});
 });
 
-gulp.task("ts", gulp.series("clean", shell.task("tsc -p .\\src")));
+gulp.task("ts", gulp.series("clean", shell.task("tsc -p .\\/src")));
 
 gulp.task("tslint", function() {
   const sources = [
@@ -44,6 +44,6 @@ gulp.task("test", gulp.series("tslint", function() {
     }));
 }));
 
-gulp.task("watch", gulp.series("clean", shell.task("tsc -p .\\src --watch")));
+gulp.task("watch", gulp.series("clean", shell.task("tsc -p .\\/src --watch")));
 
 gulp.task("default", gulp.series("test"));
