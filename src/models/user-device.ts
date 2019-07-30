@@ -36,6 +36,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
     session: {
       type: String,
+      default: "",
     },
   }, {
     _id: false,

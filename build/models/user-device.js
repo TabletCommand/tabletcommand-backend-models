@@ -34,6 +34,7 @@ async function UserDeviceModule(mongoose) {
         },
         session: {
             type: String,
+            default: "",
         },
     }, {
         _id: false,
