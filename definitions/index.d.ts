@@ -15,6 +15,7 @@ export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { Session, SessionModel } from "./models/session";
 export { User, UserModel } from "./models/user";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
+export { UserDevice, UserDeviceModel } from "./models/user-device";
 export * from "./models/helpers";
 export declare function connect(url: string): Promise<{
     mongoose: typeof import("mongoose");
@@ -257,7 +258,7 @@ export declare function connect(url: string): Promise<{
                     value: string;
                     key: string;
                 }[];
-            } & Pick<import("mongoose").Document, "increment" | "model" | "isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toJSON" | "toObject" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "id" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -301,7 +302,7 @@ export declare function connect(url: string): Promise<{
                     value: string;
                     key: string;
                 }[];
-            } & Pick<import("mongoose").Document, "increment" | "model" | "isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toJSON" | "toObject" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "id" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -348,8 +349,10 @@ export declare function connect(url: string): Promise<{
             cadBidirectionalEnabled: boolean;
             heartbeatEnabled: boolean;
             heartbeatMinutes: number;
-            pushEnabled: boolean;
+            selfAssignmentEnabled: boolean;
             userContributionEnabled: boolean;
+            vehicleSwapEnabled: boolean;
+            pushEnabled: boolean;
             rtsEnabled: boolean;
             rtsChannelPrefix: string;
             rtsAuthKey: string;
@@ -360,6 +363,12 @@ export declare function connect(url: string): Promise<{
                 username: string;
                 ssl: boolean;
                 expires_in: number;
+            };
+            error: {
+                code: number;
+                error: string;
+                error_description: string;
+                message: string;
             };
             customWebUrl: string;
             customWebName: string;
@@ -458,7 +467,7 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & Pick<import("mongoose").Document, "increment" | "model" | "isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toJSON" | "toObject" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "id" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -494,7 +503,7 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & Pick<import("mongoose").Document, "increment" | "model" | "isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toJSON" | "toObject" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "id" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -530,7 +539,7 @@ export declare function connect(url: string): Promise<{
                     longitude: number;
                     latitude: number;
                 };
-            } & Pick<import("mongoose").Document, "increment" | "model" | "isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "get" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "set" | "toJSON" | "toObject" | "toString" | "unmarkModified" | "replaceOne" | "update" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "id" | "addListener" | "on" | "once" | "removeListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "base" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
+            } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "off" | "init" | "validate" | "save" | "remove" | "updateOne" | "collection" | "id" | "toJSON" | "toObject" | "increment" | "model" | "$isDeleted" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "unmarkModified" | "replaceOne" | "validateSync" | "errors" | "isNew" | "schema" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "baseModelName" | "db" | "discriminators" | "modelName"> & {
                 _id: import("bson").ObjectId;
             } & {
                 schema: import("mongoose").Schema<any> & {
@@ -646,6 +655,7 @@ export declare function connect(url: string): Promise<{
             };
             sessionCountiPhone: number;
             sessionCountiPad: number;
+            shareLocationEnabled: boolean;
             rtsAuthKey: string;
             token: string;
             tokenExpireDate: number;
@@ -666,6 +676,24 @@ export declare function connect(url: string): Promise<{
             firstIncidentUnixTime: number;
             lastIncidentLocation: string;
             lastIncidentUnixTime: number;
+        }, {}>;
+        UserDevice: import("mongoose").Model<import("mongoose").Document & {
+            _id: import("bson").ObjectId;
+            userId: string;
+            departmentId: string;
+            devices: {
+                token: string;
+                env: string;
+                ua: string;
+                time: number;
+                bundleIdentifier: string;
+                silentEnabled: boolean;
+                richEnabled: boolean;
+                session: string;
+            }[];
+            notificationCount: number;
+            notificationUnits: string[];
+            notificationIncidentTypes: string[];
         }, {}>;
     };
 }>;

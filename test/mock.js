@@ -371,6 +371,26 @@ module.exports = function(dependencies) {
     lastIncidentUnixTime: 1480525299.50968
   };
 
+  const userDevice = {
+    userId: "1234",
+    departmentID: "4321",
+    devices: [{
+      token: "de2687382a9df6a1165616aac",
+      env: "testmock",
+      ver: "TC Mobile v1.0 b23",
+      ua: "TCMobile/1.0 (iPhone; iOS 10.1.1; Scale/3.00)",
+      time: 1438627429.956,
+      bundleIdentifier: "com.testtesttest.TCMobile",
+      silentEnabled: true,
+      richEnabled: true,
+      session: '1234321'
+    }],
+    notificationCount: 12,
+    notificationUnits: ["M10", "B1"],
+    notificationIncidentTypes: ["cliff-rescue", "test"],
+  };
+
+
   return {
     actionLog,
     cadIncident,
@@ -387,6 +407,7 @@ module.exports = function(dependencies) {
     rateLimit,
     session,
     user,
-    userRegistration
+    userRegistration,
+    userDevice
   };
 };

@@ -26,6 +26,7 @@ async function wireModels(mongoose: MongooseModule) {
     Session: await getModel(import("./models/session")),
     User: await getModel(import("./models/user")),
     UserRegistration: await getModel(import("./models/user-registration")),
+    UserDevice: await getModel(import("./models/user-device")),
   };
 }
 
@@ -45,6 +46,7 @@ export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { Session, SessionModel } from "./models/session";
 export { User, UserModel } from "./models/user";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
+export { UserDevice, UserDeviceModel } from "./models/user-device";
 
 export * from "./models/helpers";
 

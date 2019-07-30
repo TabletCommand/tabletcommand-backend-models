@@ -25,6 +25,7 @@ async function wireModels(mongoose) {
         Session: await getModel(Promise.resolve().then(() => require("./models/session"))),
         User: await getModel(Promise.resolve().then(() => require("./models/user"))),
         UserRegistration: await getModel(Promise.resolve().then(() => require("./models/user-registration"))),
+        UserDevice: await getModel(Promise.resolve().then(() => require("./models/user-device"))),
     };
 }
 __export(require("./models/helpers"));
