@@ -33,7 +33,8 @@ var deviceSchema = new Schema({
     default: false
   },
   session: {
-    type: String
+    type: String,
+    default: ""
   }
 }, {
   _id: false
