@@ -98,7 +98,8 @@ modelSchema.set("autoIndex", false);
 
 modelSchema.methods.propagateToObject = function propagateToObject(dbItem, callback) {
   if (!_.isObject(dbItem)) {
-    return callback(this);
+    const literalThis = this;
+    return callback(literalThis);
   }
 
   // We keep the same value for _id, uuid, departmentId
