@@ -16,6 +16,7 @@ var rateLimit = require("./models/rate-limit");
 var session = require("./models/session");
 var user = require("./models/user");
 var userRegistration = require("./models/user-registration");
+var userDevice = require("./models/user-device");
 
 module.exports = {
   ActionLog: actionLog,
@@ -33,5 +34,6 @@ module.exports = {
   RateLimit: rateLimit,
   Session: session,
   User: user,
-  UserRegistration: userRegistration
+  UserRegistration: userRegistration,
+  UserDevice: userDevice
 };

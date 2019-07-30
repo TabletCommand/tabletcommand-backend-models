@@ -1,11 +1,11 @@
 "use strict";
 
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 mongoose.Promise = require("bluebird");
-let models = require("../index");
+const models = require("../index");
 
-let Mockgoose = require("mockgoose").Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
+const Mockgoose = require("mockgoose").Mockgoose;
+const mockgoose = new Mockgoose(mongoose);
 
 const redisClient = require("redis-js");
 

@@ -1,12 +1,12 @@
 "use strict";
 
 const _ = require("lodash");
-let mongoose = require("mongoose");
+const mongoose = require("mongoose");
 mongoose.Promise = require("bluebird");
-let models = require("../index");
+const models = require("../index");
 
-let Mockgoose = require("mockgoose").Mockgoose;
-let mockgoose = new Mockgoose(mongoose);
+const Mockgoose = require("mockgoose").Mockgoose;
+const mockgoose = new Mockgoose(mongoose);
 
 const redisClient = require("redis-js");
 
@@ -52,7 +52,7 @@ describe("Location", function() {
   });
 
   it("propagateToObject with object", function(done) {
-    let nextUpdate = _.clone(testData);
+    const nextUpdate = _.clone(testData);
     nextUpdate.username = "abc";
     nextUpdate.session = "def";
     nextUpdate.active = false;
@@ -78,7 +78,7 @@ describe("Location", function() {
   });
 
   it("propagateToObject with null", function(done) {
-    let item = new models.Location(testData);
+    const item = new models.Location(testData);
     item.propagateToObject(null, function(sut) {
       assert.equal(testData.uuid, sut.uuid);
       assert.equal(testData.username, sut.username);
