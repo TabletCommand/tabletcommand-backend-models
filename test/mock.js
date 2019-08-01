@@ -399,8 +399,8 @@ module.exports = function(dependencies) {
     PersonnelNote: "A test user",
     DepartmentId: "123zzz",
     UnitID: "M10",
-    ShiftStartTime: 1559446299,
-    ShiftEndTime: 1569446299,
+    ShiftStartDateTime: 1559446299,
+    ShiftEndDateTime: 1569446299,
     ImportedDateTime: new Date().valueOf() / 1000.0
   };
 

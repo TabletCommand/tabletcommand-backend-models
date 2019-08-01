@@ -10,9 +10,11 @@ async function PersonnelImportModule(mongoose) {
         },
         PersonnelID: {
             type: String,
+            required: true,
         },
         PersonnelName: {
             type: String,
+            required: true,
         },
         PersonnelRank: {
             type: String,
@@ -29,10 +31,10 @@ async function PersonnelImportModule(mongoose) {
         UnitID: {
             type: String,
         },
-        ShiftStartTime: {
+        ShiftStartDateTime: {
             type: Number,
         },
-        ShiftEndTime: {
+        ShiftEndDateTime: {
             type: Number,
         },
         ImportedDateTime: {

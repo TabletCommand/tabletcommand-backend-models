@@ -10,8 +10,8 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     PersonnelNote: string;
     DepartmentId: string;
     UnitID: string;
-    ShiftStartTime: number;
-    ShiftEndTime: number;
+    ShiftStartDateTime: number;
+    ShiftEndDateTime: number;
     ImportedDateTime: number;
 }, {}>>;
 export default PersonnelImportModule;

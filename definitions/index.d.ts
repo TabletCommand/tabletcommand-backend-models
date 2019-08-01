@@ -705,8 +705,8 @@ export declare function connect(url: string): Promise<{
             PersonnelNote: string;
             DepartmentId: string;
             UnitID: string;
-            ShiftStartTime: number;
-            ShiftEndTime: number;
+            ShiftStartDateTime: number;
+            ShiftEndDateTime: number;
             ImportedDateTime: number;
         }, {}>;
     };

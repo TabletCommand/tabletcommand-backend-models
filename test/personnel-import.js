@@ -34,8 +34,8 @@ describe("PersonnelImport", function() {
       assert.equal(testItem.PersonnelNote, sut.PersonnelNote);
       assert.equal(testItem.DepartmentId, sut.DepartmentId);
       assert.equal(testItem.UnitID, sut.UnitID);
-      assert.equal(testItem.ShiftStartTime, sut.ShiftStartTime);
-      assert.equal(testItem.ShiftEndTime, sut.ShiftEndTime);
+      assert.equal(testItem.ShiftStartDateTime, sut.ShiftStartDateTime);
+      assert.equal(testItem.ShiftEndDateTime, sut.ShiftEndDateTime);
       assert.equal(testItem.ImportedDateTime, sut.ImportedDateTime);
 
       return done();
