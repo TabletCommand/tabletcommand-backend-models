@@ -390,6 +390,20 @@ module.exports = function(dependencies) {
     notificationIncidentTypes: ["cliff-rescue", "test"],
   };
 
+  const personnelImport = {
+    _id: mongoose.Types.ObjectId(),
+    PersonnelID: "AM0111",
+    PersonnelName: "Test User",
+    PersonnelRank: "Eng",
+    PersonnelWorkCode: "abcd1234",
+    PersonnelNote: "A test user",
+    DepartmentId: "123zzz",
+    UnitID: "M10",
+    ShiftStartTime: 1559446299,
+    ShiftEndTime: 1569446299,
+    ImportedDateTime: new Date().valueOf() / 1000.0
+  };
+
 
   return {
     actionLog,
@@ -408,6 +422,7 @@ module.exports = function(dependencies) {
     session,
     user,
     userRegistration,
-    userDevice
+    userDevice,
+    personnelImport
   };
 };

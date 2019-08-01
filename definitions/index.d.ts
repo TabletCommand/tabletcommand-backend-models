@@ -16,6 +16,7 @@ export { Session, SessionModel } from "./models/session";
 export { User, UserModel } from "./models/user";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
+export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export * from "./models/helpers";
 export declare function connect(url: string): Promise<{
     mongoose: typeof import("mongoose");
@@ -694,6 +695,19 @@ export declare function connect(url: string): Promise<{
             notificationCount: number;
             notificationUnits: string[];
             notificationIncidentTypes: string[];
+        }, {}>;
+        PersonnelImport: import("mongoose").Model<import("mongoose").Document & {
+            _id: import("bson").ObjectId;
+            PersonnelID: string;
+            PersonnelName: string;
+            PersonnelRank: string;
+            PersonnelWorkCode: string;
+            PersonnelNote: string;
+            DepartmentId: string;
+            UnitID: string;
+            ShiftStartTime: number;
+            ShiftEndTime: number;
+            ImportedDateTime: number;
         }, {}>;
     };
 }>;
