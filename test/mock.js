@@ -179,6 +179,20 @@ module.exports = function(dependencies) {
     notificationIncidentTypes: ["cliff-rescue", "test"]
   };
 
+  const personnelImport = {
+    _id: mongoose.Types.ObjectId(),
+    PersonnelID: "AM0111",
+    PersonnelName: "Test User",
+    PersonnelRank: "Eng",
+    PersonnelWorkCode: "abcd1234",
+    PersonnelNote: "A test user",
+    DepartmentId: "123zzz",
+    UnitID: "M10",
+    ShiftStartDateTime: 1559446299,
+    ShiftEndDateTime: 1569446299,
+    ImportedDateTime: new Date().valueOf() / 1000.0
+  };
+
   function prepareTestData(callback) {
     return callback(null);
   }
@@ -186,7 +200,7 @@ module.exports = function(dependencies) {
   function beforeEach(callback) {
     return mockgoose.prepareStorage().then(function() {
       return mongoose.connect("mongodb://127.0.0.1:27017/TestingDB", {
-        // useMongoClient: true // this option silents the warning, but does not cleanup the data
+        useMongoClient: true // this option silents the warning, but does not cleanup the data
       }, function(err) {
         if (err) {
           return callback(err);
@@ -213,7 +227,6 @@ module.exports = function(dependencies) {
     prepareTestData,
     beforeEach,
     afterEach,
-
     actionLog,
     cadVehicleStatus,
     department,
@@ -224,6 +237,7 @@ module.exports = function(dependencies) {
     rateLimit,
     user,
     userRegistration,
-    userDevice
+    userDevice,
+    personnelImport
   };
 };
