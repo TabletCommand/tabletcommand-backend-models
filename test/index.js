@@ -34,6 +34,7 @@ describe("Models", function() {
     assert.isFunction(models.User, "Missing User");
     assert.isFunction(models.UserRegistration, "Missing UserRegistration");
     assert.isFunction(models.UserDevice, "Missing UserDevice");
+    assert.isFunction(models.PersonnelImport, "Missing PersonnelImport");
 
     return done();
   });
