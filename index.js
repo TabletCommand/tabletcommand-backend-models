@@ -17,6 +17,7 @@ var session = require("./models/session");
 var user = require("./models/user");
 var userRegistration = require("./models/user-registration");
 var userDevice = require("./models/user-device");
+var personnelImport = require("./models/personnel-import");
 
 module.exports = {
   ActionLog: actionLog,
@@ -35,5 +36,6 @@ module.exports = {
   Session: session,
   User: user,
   UserRegistration: userRegistration,
-  UserDevice: userDevice
+  UserDevice: userDevice,
+  PersonnelImport: personnelImport
 };
