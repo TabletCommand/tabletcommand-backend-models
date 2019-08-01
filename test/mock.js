@@ -200,7 +200,7 @@ module.exports = function(dependencies) {
   function beforeEach(callback) {
     return mockgoose.prepareStorage().then(function() {
       return mongoose.connect("mongodb://127.0.0.1:27017/TestingDB", {
-        // useMongoClient: true // this option silents the warning, but does not cleanup the data
+        useMongoClient: true // this option silents the warning, but does not cleanup the data
       }, function(err) {
         if (err) {
           return callback(err);
