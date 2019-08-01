@@ -9,10 +9,12 @@ var modelSchema = new Schema({
     auto: true
   },
   PersonnelID: {
-    type: String
+    type: String,
+    required: true
   },
   PersonnelName: {
-    type: String
+    type: String,
+    required: true
   },
   PersonnelRank: {
     type: String
@@ -29,10 +31,10 @@ var modelSchema = new Schema({
   UnitID: {
     type: String
   },
-  ShiftStartTime: {
+  ShiftStartDateTime: {
     type: Number
   },
-  ShiftEndTime: {
+  ShiftEndDateTime: {
     type: Number
   },
   ImportedDateTime: {
