@@ -43,7 +43,7 @@ async function PersonnelImportModule(mongoose) {
             default: new Date().valueOf() / 1000.0,
         },
     }, {
-        collection: "massive_import_personnel",
+        collection: "massive_personnel_import",
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "PersonnelImport", modelSchema);
