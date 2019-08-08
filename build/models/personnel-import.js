@@ -25,24 +25,25 @@ async function PersonnelImportModule(mongoose) {
         PersonnelNote: {
             type: String,
         },
-        DepartmentId: {
+        departmentId: {
             type: String,
         },
-        UnitID: {
+        radioName: {
             type: String,
         },
-        ShiftStartDateTime: {
+        shiftStartTime: {
             type: Number,
         },
-        ShiftEndDateTime: {
+        shiftEndTime: {
             type: Number,
         },
-        ImportedDateTime: {
+        // Cases matches the other modified_unix_date
+        modified_unix_date: {
             type: Number,
             default: new Date().valueOf() / 1000.0,
         },
     }, {
-        collection: "massive_personnel_import",
+        collection: "massive_import_personnel",
     });
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "PersonnelImport", modelSchema);

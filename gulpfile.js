@@ -7,7 +7,7 @@ const TSLint = require("tslint");
 
 const tsProjectFileName = "src/tsconfig.json";
 
-gulp.task("clean", function(){
+gulp.task("clean", function() {
   return del([
     "build/**",
     "definitions/**"

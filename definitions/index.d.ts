@@ -703,11 +703,11 @@ export declare function connect(url: string): Promise<{
             PersonnelRank: string;
             PersonnelWorkCode: string;
             PersonnelNote: string;
-            DepartmentId: string;
-            UnitID: string;
-            ShiftStartDateTime: number;
-            ShiftEndDateTime: number;
-            ImportedDateTime: number;
+            departmentId: string;
+            radioName: string;
+            shiftStartTime: number;
+            shiftEndTime: number;
+            modified_unix_date: number;
         }, {}>;
     };
 }>;

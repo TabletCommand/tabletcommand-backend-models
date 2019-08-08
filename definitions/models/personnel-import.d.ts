@@ -8,11 +8,11 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     PersonnelRank: string;
     PersonnelWorkCode: string;
     PersonnelNote: string;
-    DepartmentId: string;
-    UnitID: string;
-    ShiftStartDateTime: number;
-    ShiftEndDateTime: number;
-    ImportedDateTime: number;
+    departmentId: string;
+    radioName: string;
+    shiftStartTime: number;
+    shiftEndTime: number;
+    modified_unix_date: number;
 }, {}>>;
 export default PersonnelImportModule;
 export declare type PersonnelImportModel = UnboxPromise<ReturnType<typeof PersonnelImportModule>>;
