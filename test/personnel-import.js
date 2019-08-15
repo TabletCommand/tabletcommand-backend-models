@@ -41,11 +41,10 @@ describe("PersonnelImport", function() {
       assert.equal(testItem.PersonnelRank, sut.PersonnelRank);
       assert.equal(testItem.PersonnelWorkCode, sut.PersonnelWorkCode);
       assert.equal(testItem.PersonnelNote, sut.PersonnelNote);
-      assert.equal(testItem.DepartmentId, sut.DepartmentId);
-      assert.equal(testItem.UnitID, sut.UnitID);
-      assert.equal(testItem.ShiftStartDateTime, sut.ShiftStartDateTime);
-      assert.equal(testItem.ShiftEndDateTime, sut.ShiftEndDateTime);
-      assert.equal(testItem.ImportedDateTime, sut.ImportedDateTime);
+      assert.equal(testItem.radioName, sut.radioName);
+      assert.equal(testItem.shiftStartTime, sut.shiftStartTime);
+      assert.equal(testItem.shiftEndTime, sut.shiftEndTime);
+      assert.equal(testItem.modified_unix_date, sut.modified_unix_date);
 
       return done();
     });

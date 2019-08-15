@@ -10,6 +10,7 @@ module.exports = function(dependencies) {
     departmentId: "d1234",
     email: "hello@example.com",
     action: "someAction",
+    userId: "1234",
     object: {
       vehicleId: "v1171",
       radioName: "E10"
@@ -186,11 +187,11 @@ module.exports = function(dependencies) {
     PersonnelRank: "Eng",
     PersonnelWorkCode: "abcd1234",
     PersonnelNote: "A test user",
-    DepartmentId: "123zzz",
-    UnitID: "M10",
-    ShiftStartDateTime: 1559446299,
-    ShiftEndDateTime: 1569446299,
-    ImportedDateTime: new Date().valueOf() / 1000.0
+    departmentId: "123zzz",
+    radioName: "M10",
+    shiftStartTime: 1559446299,
+    shiftEndTime: 1569446299,
+    modified_unix_date: new Date().valueOf() / 1000.0
   };
 
   function prepareTestData(callback) {
