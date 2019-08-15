@@ -26,6 +26,7 @@ export declare function connect(url: string): Promise<{
             _id: import("bson").ObjectId;
             departmentId: string;
             email: string;
+            userId: string;
             action: string;
             object: any;
             modified_unix_date: number;

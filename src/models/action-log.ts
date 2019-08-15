@@ -19,6 +19,10 @@ export async function ActionLogModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    userId: {
+      type: String,
+      default: "",
+    },
     action: {
       type: String,
       default: "",
