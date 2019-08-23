@@ -44,7 +44,7 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
     // Cases matches the other modified_unix_date
     modified_unix_date: {
       type: Number,
-      default: new Date().valueOf() / 1000.0,
+      default: Date.now,
     },
   }, {
     collection: "massive_personnel_import",

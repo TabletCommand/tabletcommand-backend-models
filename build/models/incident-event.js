@@ -43,7 +43,7 @@ async function IncidentEventModule(mongoose) {
         },
         modified_unix_date: {
             type: Number,
-            default: new Date().valueOf() / 1000.0,
+            default: Date.now,
         },
         message: {
             type: String,
@@ -66,7 +66,7 @@ async function IncidentEventModule(mongoose) {
         },
         serverTime: {
             type: Number,
-            default: new Date().valueOf() / 1000.0,
+            default: Date.now,
             min: 1,
         },
         userTime: {

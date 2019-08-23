@@ -20,7 +20,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
     time: {
       type: Number,
-      default: new Date().valueOf() / 1000.0,
+      default: Date.now,
     },
     bundleIdentifier: {
       type: String,

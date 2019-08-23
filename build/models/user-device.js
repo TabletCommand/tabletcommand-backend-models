@@ -18,7 +18,7 @@ async function UserDeviceModule(mongoose) {
         },
         time: {
             type: Number,
-            default: new Date().valueOf() / 1000.0,
+            default: Date.now,
         },
         bundleIdentifier: {
             type: String,

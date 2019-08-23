@@ -32,7 +32,7 @@ export async function ActionLogModule(mongoose: MongooseModule) {
     },
     modified_unix_date: {
       type: Number,
-      default: new Date().valueOf() / 1000.0,
+      default: Date.now,
     },
   }, {
     collection: "massive_action_log",

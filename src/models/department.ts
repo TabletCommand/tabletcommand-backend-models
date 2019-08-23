@@ -107,7 +107,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
     modified_unix_date: {
       type: Number,
-      default: new Date().valueOf() / 1000.0,
+      default: Date.now,
     },
 
     active: {
