@@ -43,7 +43,7 @@ var modelSchema = new Schema({
   },
   modified_unix_date: {
     type: Number,
-    default: new Date().valueOf() / 1000.0
+    default: Date.now
   },
   message: {
     type: String,
@@ -66,7 +66,7 @@ var modelSchema = new Schema({
   },
   serverTime: {
     type: Number,
-    default: new Date().valueOf() / 1000.0,
+    default: Date.now,
     min: 1
   },
   userTime: {
