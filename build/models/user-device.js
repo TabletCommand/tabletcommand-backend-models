@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("./helpers");
+const helpers_2 = require("./helpers");
 async function UserDeviceModule(mongoose) {
     const { Schema, Types } = mongoose;
     const deviceSchema = helpers_1.createSchema(Schema, {
@@ -18,7 +19,7 @@ async function UserDeviceModule(mongoose) {
         },
         time: {
             type: Number,
-            default: Date.now,
+            default: helpers_2.retrieveCurrentUnixTime,
         },
         bundleIdentifier: {
             type: String,

@@ -1,5 +1,5 @@
 import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
-import { createSchema, createModel } from "./helpers";
+import { createSchema, createModel, retrieveCurrentUnixTime } from "./helpers";
 
 export async function ActionLogModule(mongoose: MongooseModule) {
   "use strict";
@@ -32,7 +32,7 @@ export async function ActionLogModule(mongoose: MongooseModule) {
     },
     modified_unix_date: {
       type: Number,
-      default: Date.now,
+      default: retrieveCurrentUnixTime,
     },
   }, {
     collection: "massive_action_log",

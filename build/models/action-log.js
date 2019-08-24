@@ -30,7 +30,7 @@ async function ActionLogModule(mongoose) {
         },
         modified_unix_date: {
             type: Number,
-            default: Date.now,
+            default: helpers_1.retrieveCurrentUnixTime,
         },
     }, {
         collection: "massive_action_log",

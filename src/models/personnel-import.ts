@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import { createSchema, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, retrieveCurrentUnixTime } from "./helpers";
 
 export async function PersonnelImportModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -44,7 +44,7 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
     // Cases matches the other modified_unix_date
     modified_unix_date: {
       type: Number,
-      default: Date.now,
+      default: retrieveCurrentUnixTime,
     },
   }, {
     collection: "massive_personnel_import",

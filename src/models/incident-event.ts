@@ -1,5 +1,5 @@
 import { createSchema, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, retrieveCurrentUnixTime } from "./helpers";
 
 export async function IncidentEventModule(mongoose: MongooseModule) {
   "use strict";
@@ -46,7 +46,7 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
     },
     modified_unix_date: {
       type: Number,
-      default: Date.now,
+      default: retrieveCurrentUnixTime,
     },
     message: {
       type: String,
@@ -69,7 +69,7 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
     },
     serverTime: {
       type: Number,
-      default: Date.now,
+      default: retrieveCurrentUnixTime,
       min: 1,
     },
     userTime: {
