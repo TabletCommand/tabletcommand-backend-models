@@ -2,6 +2,7 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var retrieveCurrentUnixTime = require("./helperUtil").retrieveCurrentUnixTime;
 
 var modelSchema = new Schema({
   _id: {
@@ -29,7 +30,7 @@ var modelSchema = new Schema({
   },
   modified_unix_date: {
     type: Number,
-    default: Date.now
+    default: retrieveCurrentUnixTime
   }
 }, {
   collection: "massive_action_log"

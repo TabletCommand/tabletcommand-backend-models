@@ -2,6 +2,7 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var retrieveCurrentUnixTime = require("./helperUtil").retrieveCurrentUnixTime;
 
 var EventUser = new Schema({
   username: {
@@ -43,7 +44,7 @@ var modelSchema = new Schema({
   },
   modified_unix_date: {
     type: Number,
-    default: Date.now
+    default: retrieveCurrentUnixTime
   },
   message: {
     type: String,
@@ -66,7 +67,7 @@ var modelSchema = new Schema({
   },
   serverTime: {
     type: Number,
-    default: Date.now,
+    default: retrieveCurrentUnixTime,
     min: 1
   },
   userTime: {
