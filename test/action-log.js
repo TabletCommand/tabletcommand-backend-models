@@ -33,7 +33,9 @@ describe("ActionLog", function() {
       assert.equal(testItem.email, sut.email);
       assert.equal(testItem.userId, sut.userId);
       assert.equal(testItem.object, sut.object);
-      assert.isTrue(sut.modified_unix_date > 0);
+      const expectedDate = new Date().valueOf() / 1000.0;
+      const timeDelta = expectedDate - sut.modified_unix_date;
+      assert.isTrue(timeDelta < 1);
     });
   });
 });
