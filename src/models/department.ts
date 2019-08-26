@@ -1,5 +1,5 @@
 import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { MongooseModule, UnboxPromise, retrieveCurrentUnixTime } from "./helpers";
 import * as uuid from "uuid";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
@@ -107,7 +107,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
     modified_unix_date: {
       type: Number,
-      default: new Date().valueOf() / 1000.0,
+      default: retrieveCurrentUnixTime,
     },
 
     active: {

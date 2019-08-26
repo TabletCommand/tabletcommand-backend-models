@@ -71,3 +71,6 @@ export type DocumentFromSchemaDefinition<T extends SchemaDefinition> = DocumentT
 export type DocumentTypeFromSchema<T extends Schema> = T extends Schema & { _interface: infer TI } ? TI & MongooseDocument & { schema: T }  : never;
 export type DocumentTypeFromModel<T extends Model<Document>> = T extends Model<infer U> ? U : never;
 export type FieldsOfDocument<T extends Document> = T extends Document & infer F ? F & { id?: unknown, _id: unknown } : never;
+export function retrieveCurrentUnixTime(): number {
+  return Date.now() / 1000;
+}

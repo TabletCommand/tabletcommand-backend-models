@@ -21,4 +21,8 @@ function createModel(mongoose, name, schema, collection, skipInit) {
     }
 }
 exports.createModel = createModel;
+function retrieveCurrentUnixTime() {
+    return Date.now() / 1000;
+}
+exports.retrieveCurrentUnixTime = retrieveCurrentUnixTime;
 //# sourceMappingURL=helpers.js.map
