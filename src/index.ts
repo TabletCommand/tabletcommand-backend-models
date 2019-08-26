@@ -1,6 +1,6 @@
 "use strict";
 
-import { MongooseModule, UnionToIntersection } from "./models/helpers";
+import { MongooseModule } from "./helpers";
 
 async function wireModels(mongoose: MongooseModule) {
   type ModelType<TModule extends Record<"default", (m: MongooseModule) => unknown>> = ReturnType<TModule["default"]>;
@@ -50,7 +50,7 @@ export { UserRegistration, UserRegistrationModel } from "./models/user-registrat
 export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 
-export * from "./models/helpers";
+export * from "./helpers";
 
 export async function connect(url: string) {
   const mongoose = await import("mongoose");
@@ -65,6 +65,6 @@ export async function connect(url: string) {
   return { mongoose, connection, models };
 }
 
-type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U>? U : never;
-export type BackendModels =  UnboxPromise<ReturnType<typeof connect>>["models"];
+type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
+export type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
 export default connect;

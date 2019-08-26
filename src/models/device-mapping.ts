@@ -1,10 +1,13 @@
 import * as  uuid from "uuid";
-import * as  _ from "lodash";
-import { createSchema, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+} from "../helpers";
 
 export async function DeviceMappingModule(mongoose: MongooseModule) {
-
   const { Schema, Types } = mongoose;
 
   const modelSchema = createSchema(Schema, {

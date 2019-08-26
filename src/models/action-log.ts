@@ -1,5 +1,11 @@
-import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
-import { createSchema, createModel, retrieveCurrentUnixTime } from "./helpers";
+import {
+  MongooseModule,
+  UnboxPromise,
+  ModelItemType,
+  createSchema,
+  createModel,
+  retrieveCurrentUnixTime,
+} from "../helpers";
 
 export async function ActionLogModule(mongoose: MongooseModule) {
   "use strict";
@@ -42,5 +48,5 @@ export async function ActionLogModule(mongoose: MongooseModule) {
 }
 
 export default ActionLogModule;
-export type ActionLogModel =  UnboxPromise<ReturnType<typeof ActionLogModule>>;
+export type ActionLogModel = UnboxPromise<ReturnType<typeof ActionLogModule>>;
 export type ActionLog = ModelItemType<ActionLogModel>;

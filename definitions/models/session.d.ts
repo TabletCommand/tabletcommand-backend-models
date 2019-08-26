@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "../helpers";
 export declare function SessionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: string;
     nick: string;

@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../helpers");
+const helpers_1 = require("../../helpers");
 function RateLimitModule(mongoose) {
-    "use strict";
     const { Schema } = mongoose;
     const CADStatusColor = helpers_1.createSchema(Schema, {
         background: {

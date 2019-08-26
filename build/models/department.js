@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
-const helpers_2 = require("./helpers");
 const uuid = require("uuid");
+const helpers_1 = require("../helpers");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
@@ -101,7 +100,7 @@ async function DepartmentModule(mongoose) {
         },
         modified_unix_date: {
             type: Number,
-            default: helpers_2.retrieveCurrentUnixTime,
+            default: helpers_1.retrieveCurrentUnixTime,
         },
         active: {
             type: Boolean,

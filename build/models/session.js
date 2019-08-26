@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
+const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function SessionModule(mongoose) {
     "use strict";

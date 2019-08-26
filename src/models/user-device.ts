@@ -1,6 +1,11 @@
-import * as _ from "lodash";
-import { createSchema, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise, retrieveCurrentUnixTime } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+  retrieveCurrentUnixTime,
+} from "../helpers";
 
 export async function UserDeviceModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
+const helpers_1 = require("../helpers");
 async function UserModule(mongoose) {
     const Schema = mongoose.Schema;
     const vehicleSchema = helpers_1.createSchema(Schema, {

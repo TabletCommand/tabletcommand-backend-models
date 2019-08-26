@@ -1,10 +1,13 @@
 import * as uuid from "uuid";
-import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
-import { createSchema, createModel } from "./helpers";
+import {
+  MongooseModule,
+  UnboxPromise,
+  ModelItemType,
+  createSchema,
+  createModel,
+} from "../helpers";
 
 export async function CADStatusModule(mongoose: MongooseModule) {
-  "use strict";
-
   const { Schema } = mongoose;
   const CADStatusColor = (await import("./schema/cad-status-color")).RateLimitModule(mongoose);
 

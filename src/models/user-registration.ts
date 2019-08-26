@@ -1,6 +1,10 @@
-import * as _ from "lodash";
-import { createSchema, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+} from "../helpers";
 
 export async function UserRegistrationModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;

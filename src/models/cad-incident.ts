@@ -1,6 +1,15 @@
-import { MongooseModule, MongooseModel, MongooseSchema, MongooseDocument, UnboxPromise, ModelItemType } from "./helpers";
+import {
+  MongooseModule,
+  MongooseDocument,
+  UnboxPromise,
+  ModelItemType,
+  createSchema,
+  DocumentTypeFromSchema,
+  ModelFromSchema,
+  createModel,
+  FieldsOfDocument,
+} from "../helpers";
 
-import { createSchema, DocumentTypeFromSchema, ModelFromSchema, createModel, FieldsOfDocument } from "./helpers";
 import * as uuid from "uuid";
 
 export async function CADIncidentModule(mongoose: MongooseModule) {

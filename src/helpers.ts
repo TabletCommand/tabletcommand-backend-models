@@ -5,7 +5,7 @@ import { ObjectID, ObjectId } from "bson";
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = {}> = Model<T, QueryHelpers>;
 // tslint:disable-next-line: no-any
-export type MongooseSchema<T = any>  = Schema<T>;
+export type MongooseSchema<T = any> = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 export type MongooseDocument = Omit<Document, "_id"> & {
@@ -71,6 +71,7 @@ export type DocumentFromSchemaDefinition<T extends SchemaDefinition> = DocumentT
 export type DocumentTypeFromSchema<T extends Schema> = T extends Schema & { _interface: infer TI } ? TI & MongooseDocument & { schema: T }  : never;
 export type DocumentTypeFromModel<T extends Model<Document>> = T extends Model<infer U> ? U : never;
 export type FieldsOfDocument<T extends Document> = T extends Document & infer F ? F & { id?: unknown, _id: unknown } : never;
+
 export function retrieveCurrentUnixTime(): number {
   return Date.now() / 1000;
 }

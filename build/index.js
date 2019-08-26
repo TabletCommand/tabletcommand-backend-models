@@ -29,7 +29,7 @@ async function wireModels(mongoose) {
         PersonnelImport: await getModel(Promise.resolve().then(() => require("./models/personnel-import"))),
     };
 }
-__export(require("./models/helpers"));
+__export(require("./helpers"));
 async function connect(url) {
     const mongoose = await Promise.resolve().then(() => require("mongoose"));
     mongoose.Promise = await Promise.resolve().then(() => require("bluebird"));

@@ -1,9 +1,9 @@
-import { MongooseModule } from "../helpers";
-import { createSchema } from "../helpers";
+import {
+  MongooseModule,
+  createSchema,
+} from "../../helpers";
 
 export function RateLimitModule(mongoose: MongooseModule) {
-  "use strict";
-
   const { Schema } = mongoose;
 
   const CADStatusColor = createSchema(Schema, {

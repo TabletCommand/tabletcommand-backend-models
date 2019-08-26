@@ -1,9 +1,16 @@
-import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise, retrieveCurrentUnixTime } from "./helpers";
 import * as uuid from "uuid";
+import {
+  createSchema,
+  createModel,
+  DocumentTypeFromSchema,
+  FieldsOfDocument,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+  retrieveCurrentUnixTime,
+} from "../helpers";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
-
   const { Schema, Types } = mongoose;
 
   const Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
@@ -241,7 +248,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   });
 
   return createModel(mongoose, "Department", modelSchema);
-
 }
 
 export default DepartmentModule;

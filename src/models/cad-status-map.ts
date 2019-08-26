@@ -1,6 +1,12 @@
-import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
-import { TypedDocument, createSchema, createModel } from "./helpers";
 import * as _ from "lodash";
+import {
+  MongooseModule,
+  UnboxPromise,
+  ModelItemType,
+  TypedDocument,
+  createSchema,
+  createModel,
+} from "../helpers";
 
 export async function CADStatusMapModule(mongoose: MongooseModule) {
 

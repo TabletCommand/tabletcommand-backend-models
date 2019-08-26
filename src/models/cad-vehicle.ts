@@ -1,5 +1,10 @@
-import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
-import { createSchema, createModel } from "./helpers";
+import {
+  MongooseModule,
+  UnboxPromise,
+  ModelItemType,
+  createSchema,
+  createModel,
+} from "../helpers";
 import * as uuid from "uuid";
 
 export async function CADVehicleModule(mongoose: MongooseModule) {
@@ -57,7 +62,6 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
   modelSchema.set("autoIndex", false);
 
   return createModel(mongoose, "CADVehicle", modelSchema);
-
 }
 
 export default CADVehicleModule;

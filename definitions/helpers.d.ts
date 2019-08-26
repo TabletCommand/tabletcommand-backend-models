@@ -71,6 +71,6 @@ export declare type FieldsOfDocument<T extends Document> = T extends Document & 
     id?: unknown;
     _id: unknown;
 } : never;
-export declare function retrieveCurrentUnixTime(): any;
+export declare function retrieveCurrentUnixTime(): number;
 export {};
 //# sourceMappingURL=helpers.d.ts.map

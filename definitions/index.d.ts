@@ -17,7 +17,7 @@ export { User, UserModel } from "./models/user";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
-export * from "./models/helpers";
+export * from "./helpers";
 export declare function connect(url: string): Promise<{
     mongoose: typeof import("mongoose");
     connection: typeof import("mongoose");

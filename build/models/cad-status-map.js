@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
 const _ = require("lodash");
+const helpers_1 = require("../helpers");
 async function CADStatusMapModule(mongoose) {
     const Schema = mongoose.Schema;
     const ToStatusIdSchema = helpers_1.createSchema(Schema, {

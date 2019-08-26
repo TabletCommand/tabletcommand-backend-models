@@ -1,5 +1,7 @@
-import { createSchema } from "../helpers";
-import { MongooseModule } from "../helpers";
+import {
+  createSchema,
+  MongooseModule,
+} from "../../helpers";
 
 export function CADAgency(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;

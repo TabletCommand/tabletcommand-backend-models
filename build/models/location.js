@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const _ = require("lodash");
 const uuid = require("uuid");
-const helpers_1 = require("./helpers");
+const helpers_1 = require("../helpers");
 async function LocationModule(mongoose) {
     const { Schema, Types } = mongoose;
     const modelSchemaDefinition = helpers_1.createSchemaDefinition({

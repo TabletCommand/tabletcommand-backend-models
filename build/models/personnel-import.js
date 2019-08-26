@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
-const helpers_2 = require("./helpers");
+const helpers_1 = require("../helpers");
 async function PersonnelImportModule(mongoose) {
     const { Schema, Types } = mongoose;
     const modelSchema = helpers_1.createSchema(Schema, {
@@ -41,7 +40,7 @@ async function PersonnelImportModule(mongoose) {
         // Cases matches the other modified_unix_date
         modified_unix_date: {
             type: Number,
-            default: helpers_2.retrieveCurrentUnixTime,
+            default: helpers_1.retrieveCurrentUnixTime,
         },
     }, {
         collection: "massive_personnel_import",

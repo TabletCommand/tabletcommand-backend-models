@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid = require("uuid");
-const helpers_1 = require("./helpers");
+const helpers_1 = require("../helpers");
 async function CADStatusModule(mongoose) {
-    "use strict";
     const { Schema } = mongoose;
     const CADStatusColor = (await Promise.resolve().then(() => require("./schema/cad-status-color"))).RateLimitModule(mongoose);
     const StatusOptionValue = helpers_1.createSchema(Schema, {

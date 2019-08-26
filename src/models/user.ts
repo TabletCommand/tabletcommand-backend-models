@@ -1,5 +1,13 @@
-import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument, ModelItemType } from "./helpers";
-import { MongooseModule, MongooseDocument, UnboxPromise } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  DocumentTypeFromSchema,
+  FieldsOfDocument,
+  ModelItemType,
+  MongooseModule,
+  MongooseDocument,
+  UnboxPromise,
+} from "../helpers";
 
 export async function UserModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;

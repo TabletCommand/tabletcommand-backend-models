@@ -1,6 +1,5 @@
 /// <reference types="mongoose" />
-import { ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { ModelItemType, MongooseModule, UnboxPromise } from "../helpers";
 export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     nick: string;
     email: string;

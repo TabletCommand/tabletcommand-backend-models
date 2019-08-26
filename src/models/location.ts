@@ -1,7 +1,14 @@
 import * as _ from "lodash";
 import * as uuid from "uuid";
-import { createSchema, createSchemaDefinition, DocumentFromSchemaDefinition, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import {
+  createSchema,
+  createSchemaDefinition,
+  DocumentFromSchemaDefinition,
+  createModel,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+} from "../helpers";
 
 export async function LocationModule(mongoose: MongooseModule) {
 
@@ -69,7 +76,7 @@ export async function LocationModule(mongoose: MongooseModule) {
     },
   });
 
-  type Location =  DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
+  type Location = DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
   const modelSchema = createSchema(Schema, modelSchemaDefinition, {
     collection: "massive_location",
   }, {

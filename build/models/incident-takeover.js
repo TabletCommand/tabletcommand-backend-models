@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
 const uuid = require("uuid");
+const helpers_1 = require("../helpers");
 async function IncidentTakeoverModule(mongoose) {
     const { Schema, Types } = mongoose;
     const modelSchema = helpers_1.createSchema(Schema, {

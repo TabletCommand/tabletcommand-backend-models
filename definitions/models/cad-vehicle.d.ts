@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "../helpers";
 export declare function CADVehicleModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     uuid: string;
     departmentId: string;

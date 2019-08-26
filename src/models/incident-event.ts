@@ -1,10 +1,14 @@
-import { createSchema, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise, retrieveCurrentUnixTime } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+  retrieveCurrentUnixTime,
+} from "../helpers";
 
 export async function IncidentEventModule(mongoose: MongooseModule) {
-  "use strict";
-
-  const { Schema, Types} = mongoose;
+  const { Schema, Types } = mongoose;
 
   const EventUser = createSchema(Schema, {
     username: {

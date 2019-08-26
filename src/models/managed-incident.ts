@@ -1,8 +1,15 @@
 import * as _ from "lodash";
 import * as uuid from "uuid";
 import * as moment from "moment-timezone";
-import { createSchema, createModel, DocumentTypeFromSchema, FieldsOfDocument, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  DocumentTypeFromSchema,
+  FieldsOfDocument,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+} from "../helpers";
 
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;

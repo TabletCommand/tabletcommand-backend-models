@@ -1,10 +1,16 @@
 import * as  uuid from "uuid";
 import * as  _ from "lodash";
-import { createModel, createSchema, createSchemaDefinition, DocumentFromSchemaDefinition, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import {
+  createModel,
+  createSchema,
+  createSchemaDefinition,
+  DocumentFromSchemaDefinition,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+} from "../helpers";
 
 export async function CADVehicleStatusModule(mongoose: MongooseModule) {
-
   const Schema = mongoose.Schema;
 
   const CADStatusOptionSelected = createSchema(Schema, {

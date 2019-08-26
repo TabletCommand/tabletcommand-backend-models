@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise, ModelItemType } from "./helpers";
+import { MongooseModule, UnboxPromise, ModelItemType } from "../helpers";
 export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     departmentId: string;
     modifiedDate: number;

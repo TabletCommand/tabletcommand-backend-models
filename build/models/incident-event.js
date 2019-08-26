@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
-const helpers_2 = require("./helpers");
+const helpers_1 = require("../helpers");
 async function IncidentEventModule(mongoose) {
-    "use strict";
     const { Schema, Types } = mongoose;
     const EventUser = helpers_1.createSchema(Schema, {
         username: {
@@ -44,7 +42,7 @@ async function IncidentEventModule(mongoose) {
         },
         modified_unix_date: {
             type: Number,
-            default: helpers_2.retrieveCurrentUnixTime,
+            default: helpers_1.retrieveCurrentUnixTime,
         },
         message: {
             type: String,
@@ -67,7 +65,7 @@ async function IncidentEventModule(mongoose) {
         },
         serverTime: {
             type: Number,
-            default: helpers_2.retrieveCurrentUnixTime,
+            default: helpers_1.retrieveCurrentUnixTime,
             min: 1,
         },
         userTime: {

@@ -1,9 +1,13 @@
-import { createSchema, createModel, ModelItemType } from "./helpers";
 import * as uuid from "uuid";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+} from "../helpers";
 
 export async function IncidentTakeoverModule(mongoose: MongooseModule) {
-
   const { Schema, Types } = mongoose;
 
   const modelSchema = createSchema(Schema, {

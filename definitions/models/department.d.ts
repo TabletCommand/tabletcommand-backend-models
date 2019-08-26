@@ -1,6 +1,5 @@
 /// <reference types="mongoose" />
-import { ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import { ModelItemType, MongooseModule, UnboxPromise } from "../helpers";
 export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: import("bson").ObjectId;
     uuid: string;

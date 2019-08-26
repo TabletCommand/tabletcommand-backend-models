@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const _ = require("lodash");
 const uuid = require("uuid");
 const moment = require("moment-timezone");
-const helpers_1 = require("./helpers");
+const helpers_1 = require("../helpers");
 async function ManagedIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
     function unixTimeToJSONWithTimezone(unixTime) {

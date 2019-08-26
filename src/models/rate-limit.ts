@@ -1,11 +1,13 @@
-import * as _ from "lodash";
-import * as uuid from "uuid";
-import { createSchema, createModel, ModelItemType } from "./helpers";
-import { MongooseModule, UnboxPromise } from "./helpers";
+import {
+  createSchema,
+  createModel,
+  ModelItemType,
+  MongooseModule,
+  UnboxPromise,
+} from "../helpers";
 
 export async function RateLimitModule(mongoose: MongooseModule) {
-
-  const { Schema, Types} = mongoose;
+  const { Schema, Types } = mongoose;
 
   const modelSchema = createSchema(Schema, {
     _id: {
