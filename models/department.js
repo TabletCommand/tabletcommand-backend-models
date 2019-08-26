@@ -3,6 +3,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var uuid = require("uuid");
+var retrieveCurrentUnixTime = require("./helperUtil").retrieveCurrentUnixTime;
 
 var Agency = require("./schema/cad-agency");
 
@@ -105,7 +106,7 @@ var modelSchema = new Schema({
   },
   modified_unix_date: {
     type: Number,
-    default: new Date().valueOf() / 1000.0
+    default: retrieveCurrentUnixTime
   },
 
   active: {

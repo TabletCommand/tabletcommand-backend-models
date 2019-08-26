@@ -2,6 +2,7 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var retrieveCurrentUnixTime = require("./helperUtil").retrieveCurrentUnixTime;
 
 var modelSchema = new Schema({
   _id: {
@@ -41,7 +42,7 @@ var modelSchema = new Schema({
   // Cases matches the other modified_unix_date
   modified_unix_date: {
     type: Number,
-    default: new Date().valueOf() / 1000.0
+    default: retrieveCurrentUnixTime
   }
 }, {
   collection: "massive_personnel_import"
