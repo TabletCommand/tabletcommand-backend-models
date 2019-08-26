@@ -2,7 +2,7 @@
 
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var retrieveCurrentUnixTime = require("./helperUtil").retrieveCurrentUnixTime;
+var currentUnixTime = require("../helpers").currentUnixTime;
 
 var deviceSchema = new Schema({
   token: {
@@ -19,7 +19,7 @@ var deviceSchema = new Schema({
   },
   time: {
     type: Number,
-    default: retrieveCurrentUnixTime
+    default: currentUnixTime
   },
   bundleIdentifier: {
     type: String,
