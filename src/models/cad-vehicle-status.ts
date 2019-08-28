@@ -5,9 +5,10 @@ import {
   createSchema,
   createSchemaDefinition,
   DocumentFromSchemaDefinition,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function CADVehicleStatusModule(mongoose: MongooseModule) {
@@ -132,6 +133,6 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADVehicleStatus", modelSchema);
 }
 
-export default CADVehicleStatusModule;
-export type CADVehicleStatusModel = UnboxPromise<ReturnType<typeof CADVehicleStatusModule>>;
-export type CADVehicleStatus = ModelItemType<CADVehicleStatusModel>;
+export interface CADVehicleStatus extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> {}
+export interface CADVehicleStatusModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatus> {}
+export default CADVehicleStatusModule as ReplaceModelReturnType<typeof CADVehicleStatusModule, CADVehicleStatusModel>;

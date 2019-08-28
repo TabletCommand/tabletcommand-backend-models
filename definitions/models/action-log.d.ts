@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise, ModelItemType } from "../helpers";
+import { MongooseModule, ModelTypeFromTypeSchemaFunction, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function ActionLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: import("bson").ObjectId;
     departmentId: string;
@@ -8,8 +8,13 @@ export declare function ActionLogModule(mongoose: MongooseModule): Promise<impor
     action: string;
     object: any;
     modified_unix_date: number;
-}, {}>>;
-export default ActionLogModule;
-export declare type ActionLogModel = UnboxPromise<ReturnType<typeof ActionLogModule>>;
-export declare type ActionLog = ModelItemType<ActionLogModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> {
+}
+export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> {
+}
+declare const _default: ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;
+export default _default;
 //# sourceMappingURL=action-log.d.ts.map

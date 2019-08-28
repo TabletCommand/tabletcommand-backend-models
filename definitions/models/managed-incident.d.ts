@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { ModelItemType, MongooseModule, UnboxPromise } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: import("bson").ObjectId;
     departmentId: string;
@@ -42,8 +42,13 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         time: number;
         entity_id: number;
     }[];
-}, {}>>;
-export default ManagedIncidentModule;
-export declare type ManagedIncidentModel = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>;
-export declare type ManagedIncident = ModelItemType<ManagedIncidentModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> {
+}
+export interface ManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ManagedIncident> {
+}
+declare const _default: ReplaceModelReturnType<typeof ManagedIncidentModule, ManagedIncidentModel>;
+export default _default;
 //# sourceMappingURL=managed-incident.d.ts.map

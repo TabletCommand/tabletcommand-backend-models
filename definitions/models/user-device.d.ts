@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { ModelItemType, MongooseModule, UnboxPromise } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function UserDeviceModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: import("bson").ObjectId;
     userId: string;
@@ -17,8 +17,13 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     notificationCount: number;
     notificationUnits: string[];
     notificationIncidentTypes: string[];
-}, {}>>;
-export default UserDeviceModule;
-export declare type UserDeviceModel = UnboxPromise<ReturnType<typeof UserDeviceModule>>;
-export declare type UserDevice = ModelItemType<UserDeviceModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface UserDevice extends ItemTypeFromTypeSchemaFunction<typeof UserDeviceModule> {
+}
+export interface UserDeviceModel extends ModelTypeFromTypeSchemaFunction<UserDevice> {
+}
+declare const _default: ReplaceModelReturnType<typeof UserDeviceModule, UserDeviceModel>;
+export default _default;
 //# sourceMappingURL=user-device.d.ts.map

@@ -1,13 +1,14 @@
 import {
   MongooseModule,
   MongooseDocument,
-  UnboxPromise,
-  ModelItemType,
   createSchema,
   DocumentTypeFromSchema,
   ModelFromSchema,
   createModel,
   FieldsOfDocument,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 import * as uuid from "uuid";
@@ -526,6 +527,6 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADIncident", modelSchema);
 }
 
-export default CADIncidentModule;
-export type CADIncidentModel = UnboxPromise<ReturnType<typeof CADIncidentModule>>;
-export type CADIncident = ModelItemType<CADIncidentModel>;
+export interface CADIncident extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> {}
+export interface CADIncidentModel extends ModelTypeFromTypeSchemaFunction<CADIncident> {}
+export default CADIncidentModule as ReplaceModelReturnType<typeof CADIncidentModule, CADIncidentModel>;

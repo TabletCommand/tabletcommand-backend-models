@@ -1,11 +1,12 @@
 import * as _ from "lodash";
 import {
   MongooseModule,
-  UnboxPromise,
-  ModelItemType,
   TypedDocument,
   createSchema,
   createModel,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function CADStatusMapModule(mongoose: MongooseModule) {
@@ -70,6 +71,6 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADStatusMap", modelSchema);
 }
 
-export default CADStatusMapModule;
-export type CADStatusMapModel = UnboxPromise<ReturnType<typeof CADStatusMapModule>>;
-export type CADStatusMap = ModelItemType<CADStatusMapModel>;
+export interface CADStatusMap extends ItemTypeFromTypeSchemaFunction<typeof CADStatusMapModule> {}
+export interface CADStatusMapModel extends ModelTypeFromTypeSchemaFunction<CADStatusMap> {}
+export default CADStatusMapModule as ReplaceModelReturnType<typeof CADStatusMapModule, CADStatusMapModel>;

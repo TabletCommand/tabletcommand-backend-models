@@ -1,10 +1,11 @@
 import {
   createSchema,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
   retrieveCurrentUnixTime,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function IncidentEventModule(mongoose: MongooseModule) {
@@ -94,6 +95,6 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
   return createModel(mongoose, "IncidentEvent", modelSchema);
 }
 
-export default IncidentEventModule;
-export type IncidentEventModel = UnboxPromise<ReturnType<typeof IncidentEventModule>>;
-export type IncidentEvent = ModelItemType<IncidentEventModel>;
+export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> {}
+export interface IncidentEventModel extends ModelTypeFromTypeSchemaFunction<IncidentEvent> {}
+export default IncidentEventModule as ReplaceModelReturnType<typeof IncidentEventModule, IncidentEventModel>;

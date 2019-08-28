@@ -1,13 +1,15 @@
 import {
   MongooseModule,
-  UnboxPromise,
-  ModelItemType,
   createSchema,
   createModel,
   DocumentTypeFromSchema,
   FieldsOfDocument,
+  ReplaceModelReturnType,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
 } from "../helpers";
 import * as uuid from "uuid";
+import { Model } from "mongoose";
 
 export async function SessionModule(mongoose: MongooseModule) {
   "use strict";
@@ -88,6 +90,6 @@ export async function SessionModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Session", modelSchema);
 }
 
-export default SessionModule;
-export type SessionModel = UnboxPromise<ReturnType<typeof SessionModule>>;
-export type Session = ModelItemType<SessionModel>;
+export interface Session extends ItemTypeFromTypeSchemaFunction<typeof SessionModule> {}
+export interface SessionModel extends ModelTypeFromTypeSchemaFunction<Session> {}
+export default SessionModule as ReplaceModelReturnType<typeof SessionModule, SessionModel>;

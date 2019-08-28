@@ -1,9 +1,10 @@
 import {
   createSchema,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function UserRegistrationModule(mongoose: MongooseModule) {
@@ -84,6 +85,6 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
   return createModel(mongoose, "UserRegistration", modelSchema);
 }
 
-export default UserRegistrationModule;
-export type UserRegistrationModel = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;
-export type UserRegistration = ModelItemType<UserRegistrationModel>;
+export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> {}
+export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> {}
+export default UserRegistrationModule as ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;

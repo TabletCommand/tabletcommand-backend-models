@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { ModelItemType, MongooseModule, UnboxPromise } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function IncidentTakeoverModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: import("bson").ObjectId;
     departmentId: string;
@@ -13,8 +13,13 @@ export declare function IncidentTakeoverModule(mongoose: MongooseModule): Promis
     request_time: number;
     last_response_time: number;
     response_time: number;
-}, {}>>;
-export default IncidentTakeoverModule;
-export declare type IncidentTakeoverModel = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>;
-export declare type IncidentTakeover = ModelItemType<IncidentTakeoverModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface IncidentTakeover extends ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> {
+}
+export interface IncidentTakeoverModel extends ModelTypeFromTypeSchemaFunction<IncidentTakeover> {
+}
+declare const _default: ReplaceModelReturnType<typeof IncidentTakeoverModule, IncidentTakeoverModel>;
+export default _default;
 //# sourceMappingURL=incident-takeover.d.ts.map

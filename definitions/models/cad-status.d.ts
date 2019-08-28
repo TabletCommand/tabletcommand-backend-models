@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise, ModelItemType } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     uuid: string;
     departmentId: string;
@@ -29,8 +29,13 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
         background: string;
         text: string;
     };
-}, {}>>;
-export default CADStatusModule;
-export declare type CADStatusModel = UnboxPromise<ReturnType<typeof CADStatusModule>>;
-export declare type CADStatus = ModelItemType<CADStatusModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> {
+}
+export interface CADStatusModel extends ModelTypeFromTypeSchemaFunction<CADStatus> {
+}
+declare const _default: ReplaceModelReturnType<typeof CADStatusModule, CADStatusModel>;
+export default _default;
 //# sourceMappingURL=cad-status.d.ts.map

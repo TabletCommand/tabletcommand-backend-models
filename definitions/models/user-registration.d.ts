@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { ModelItemType, MongooseModule, UnboxPromise } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function UserRegistrationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     email: string;
     name: string;
@@ -16,8 +16,13 @@ export declare function UserRegistrationModule(mongoose: MongooseModule): Promis
     firstIncidentUnixTime: number;
     lastIncidentLocation: string;
     lastIncidentUnixTime: number;
-}, {}>>;
-export default UserRegistrationModule;
-export declare type UserRegistrationModel = UnboxPromise<ReturnType<typeof UserRegistrationModule>>;
-export declare type UserRegistration = ModelItemType<UserRegistrationModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> {
+}
+export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> {
+}
+declare const _default: ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;
+export default _default;
 //# sourceMappingURL=user-registration.d.ts.map

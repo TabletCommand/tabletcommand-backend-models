@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { ModelItemType, MongooseModule, UnboxPromise } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: import("bson").ObjectId;
     uuid: string;
@@ -54,8 +54,13 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     }[];
     signupKey: string;
     signupDomains: string[];
-}, {}>>;
-export default DepartmentModule;
-export declare type DepartmentModel = UnboxPromise<ReturnType<typeof DepartmentModule>>;
-export declare type Department = ModelItemType<DepartmentModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> {
+}
+export interface DepartmentModel extends ModelTypeFromTypeSchemaFunction<Department> {
+}
+declare const _default: ReplaceModelReturnType<typeof DepartmentModule, DepartmentModel>;
+export default _default;
 //# sourceMappingURL=department.d.ts.map

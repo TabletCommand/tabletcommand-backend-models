@@ -2,9 +2,10 @@ import * as uuid from "uuid";
 import {
   createSchema,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function IncidentTakeoverModule(mongoose: MongooseModule) {
@@ -74,6 +75,6 @@ export async function IncidentTakeoverModule(mongoose: MongooseModule) {
   return createModel(mongoose, "IncidentTakeover", modelSchema);
 }
 
-export default IncidentTakeoverModule;
-export type IncidentTakeoverModel = UnboxPromise<ReturnType<typeof IncidentTakeoverModule>>;
-export type IncidentTakeover = ModelItemType<IncidentTakeoverModel>;
+export interface IncidentTakeover extends ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> {}
+export interface IncidentTakeoverModel extends ModelTypeFromTypeSchemaFunction<IncidentTakeover> {}
+export default IncidentTakeoverModule as ReplaceModelReturnType<typeof IncidentTakeoverModule, IncidentTakeoverModel>;

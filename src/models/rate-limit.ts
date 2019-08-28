@@ -1,9 +1,10 @@
 import {
   createSchema,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function RateLimitModule(mongoose: MongooseModule) {
@@ -31,6 +32,6 @@ export async function RateLimitModule(mongoose: MongooseModule) {
   return createModel(mongoose, "RateLimit", modelSchema);
 }
 
-export default RateLimitModule;
-export type RateLimitModel = UnboxPromise<ReturnType<typeof RateLimitModule>>;
-export type RateLimit = ModelItemType<RateLimitModel>;
+export interface RateLimit extends ItemTypeFromTypeSchemaFunction<typeof RateLimitModule> {}
+export interface RateLimitModel extends ModelTypeFromTypeSchemaFunction<RateLimit> {}
+export default RateLimitModule as ReplaceModelReturnType<typeof RateLimitModule, RateLimitModel>;

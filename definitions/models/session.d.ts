@@ -1,6 +1,6 @@
-/// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise, ModelItemType } from "../helpers";
-export declare function SessionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+import { MongooseModule, ReplaceModelReturnType, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction } from "../helpers";
+import { Model } from "mongoose";
+export declare function SessionModule(mongoose: MongooseModule): Promise<Model<import("mongoose").Document & {
     _id: string;
     nick: string;
     email: string;
@@ -15,8 +15,13 @@ export declare function SessionModule(mongoose: MongooseModule): Promise<import(
     userAgent: string;
     remoteAddress: string;
     deviceId: string;
-}, {}>>;
-export default SessionModule;
-export declare type SessionModel = UnboxPromise<ReturnType<typeof SessionModule>>;
-export declare type Session = ModelItemType<SessionModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface Session extends ItemTypeFromTypeSchemaFunction<typeof SessionModule> {
+}
+export interface SessionModel extends ModelTypeFromTypeSchemaFunction<Session> {
+}
+declare const _default: ReplaceModelReturnType<typeof SessionModule, SessionModel>;
+export default _default;
 //# sourceMappingURL=session.d.ts.map

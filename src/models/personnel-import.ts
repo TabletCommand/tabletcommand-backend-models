@@ -1,10 +1,11 @@
 import {
   createSchema,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
   retrieveCurrentUnixTime,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function PersonnelImportModule(mongoose: MongooseModule) {
@@ -59,6 +60,6 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
   return createModel(mongoose, "PersonnelImport", modelSchema);
 }
 
-export default PersonnelImportModule;
-export type PersonnelImportModel = UnboxPromise<ReturnType<typeof PersonnelImportModule>>;
-export type PersonnelImport = ModelItemType<PersonnelImportModel>;
+export interface PersonnelImport extends ItemTypeFromTypeSchemaFunction<typeof PersonnelImportModule> {}
+export interface PersonnelImportModel extends ModelTypeFromTypeSchemaFunction<PersonnelImport> {}
+export default PersonnelImportModule as ReplaceModelReturnType<typeof PersonnelImportModule, PersonnelImportModel>;

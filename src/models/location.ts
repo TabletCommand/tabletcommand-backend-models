@@ -5,9 +5,10 @@ import {
   createSchemaDefinition,
   DocumentFromSchemaDefinition,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function LocationModule(mongoose: MongooseModule) {
@@ -105,6 +106,6 @@ export async function LocationModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Location", modelSchema);
 }
 
-export default LocationModule;
-export type LocationModel = UnboxPromise<ReturnType<typeof LocationModule>>;
-export type Location = ModelItemType<LocationModel>;
+export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> {}
+export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> {}
+export default LocationModule as ReplaceModelReturnType<typeof LocationModule, LocationModel>;

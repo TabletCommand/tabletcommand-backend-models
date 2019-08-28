@@ -3,10 +3,11 @@ import {
   createModel,
   DocumentTypeFromSchema,
   FieldsOfDocument,
-  ModelItemType,
   MongooseModule,
   MongooseDocument,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function UserModule(mongoose: MongooseModule) {
@@ -155,6 +156,6 @@ export async function UserModule(mongoose: MongooseModule) {
   return createModel(mongoose, "User", modelSchema);
 }
 
-export default UserModule;
-export type UserModel = UnboxPromise<ReturnType<typeof UserModule>>;
-export type User = ModelItemType<UserModel>;
+export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> {}
+export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> {}
+export default UserModule as ReplaceModelReturnType<typeof UserModule, UserModel>;

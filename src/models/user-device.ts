@@ -1,10 +1,11 @@
 import {
   createSchema,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
   retrieveCurrentUnixTime,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function UserDeviceModule(mongoose: MongooseModule) {
@@ -82,6 +83,6 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
   return createModel(mongoose, "UserDevice", modelSchema);
 }
 
-export default UserDeviceModule;
-export type UserDeviceModel = UnboxPromise<ReturnType<typeof UserDeviceModule>>;
-export type UserDevice = ModelItemType<UserDeviceModel>;
+export interface UserDevice extends ItemTypeFromTypeSchemaFunction<typeof UserDeviceModule> {}
+export interface UserDeviceModel extends ModelTypeFromTypeSchemaFunction<UserDevice> {}
+export default UserDeviceModule as ReplaceModelReturnType<typeof UserDeviceModule, UserDeviceModel>;

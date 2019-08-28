@@ -6,9 +6,10 @@ import {
   createModel,
   DocumentTypeFromSchema,
   FieldsOfDocument,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
@@ -151,6 +152,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ManagedIncident", modelSchema);
 }
 
-export default ManagedIncidentModule;
-export type ManagedIncidentModel = UnboxPromise<ReturnType<typeof ManagedIncidentModule>>;
-export type ManagedIncident = ModelItemType<ManagedIncidentModel>;
+export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> {}
+export interface ManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ManagedIncident> {}
+export default ManagedIncidentModule as ReplaceModelReturnType<typeof ManagedIncidentModule, ManagedIncidentModel>;

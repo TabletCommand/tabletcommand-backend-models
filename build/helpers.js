@@ -25,4 +25,8 @@ function retrieveCurrentUnixTime() {
     return Date.now() / 1000;
 }
 exports.retrieveCurrentUnixTime = retrieveCurrentUnixTime;
+function conditions(items, c) {
+    return c;
+}
+exports.conditions = conditions;
 //# sourceMappingURL=helpers.js.map

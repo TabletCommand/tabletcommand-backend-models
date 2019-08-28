@@ -2,9 +2,10 @@ import * as  uuid from "uuid";
 import {
   createSchema,
   createModel,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function DeviceMappingModule(mongoose: MongooseModule) {
@@ -71,6 +72,6 @@ export async function DeviceMappingModule(mongoose: MongooseModule) {
   return createModel(mongoose, "DeviceMapping", modelSchema);
 }
 
-export default DeviceMappingModule;
-export type DeviceMappingModel = UnboxPromise<ReturnType<typeof DeviceMappingModule>>;
-export type DeviceMapping = ModelItemType<DeviceMappingModel>;
+export interface DeviceMapping extends ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> {}
+export interface DeviceMappingModel extends ModelTypeFromTypeSchemaFunction<DeviceMapping> {}
+export default DeviceMappingModule as ReplaceModelReturnType<typeof DeviceMappingModule, DeviceMappingModel>;

@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, UnboxPromise, ModelItemType } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
     _id: import("bson").ObjectId;
     uuid: string;
@@ -139,8 +139,13 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     LocationType: string;
     OrigLocation: string;
     Jurisdiction: string;
-}, {}>>;
-export default CADIncidentModule;
-export declare type CADIncidentModel = UnboxPromise<ReturnType<typeof CADIncidentModule>>;
-export declare type CADIncident = ModelItemType<CADIncidentModel>;
+}, {}> & {
+    __methods?: unknown;
+}>;
+export interface CADIncident extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> {
+}
+export interface CADIncidentModel extends ModelTypeFromTypeSchemaFunction<CADIncident> {
+}
+declare const _default: ReplaceModelReturnType<typeof CADIncidentModule, CADIncidentModel>;
+export default _default;
 //# sourceMappingURL=cad-incident.d.ts.map

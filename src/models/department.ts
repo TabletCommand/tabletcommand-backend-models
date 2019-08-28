@@ -4,10 +4,11 @@ import {
   createModel,
   DocumentTypeFromSchema,
   FieldsOfDocument,
-  ModelItemType,
   MongooseModule,
-  UnboxPromise,
   retrieveCurrentUnixTime,
+  ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
@@ -250,6 +251,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Department", modelSchema);
 }
 
-export default DepartmentModule;
-export type DepartmentModel = UnboxPromise<ReturnType<typeof DepartmentModule>>;
-export type Department = ModelItemType<DepartmentModel>;
+export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> {}
+export interface DepartmentModel extends ModelTypeFromTypeSchemaFunction<Department> {}
+export default DepartmentModule as ReplaceModelReturnType<typeof DepartmentModule, DepartmentModel>;

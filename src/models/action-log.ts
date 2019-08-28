@@ -1,10 +1,11 @@
 import {
   MongooseModule,
-  UnboxPromise,
-  ModelItemType,
   createSchema,
   createModel,
   retrieveCurrentUnixTime,
+  ModelTypeFromTypeSchemaFunction,
+  ItemTypeFromTypeSchemaFunction,
+  ReplaceModelReturnType,
 } from "../helpers";
 
 export async function ActionLogModule(mongoose: MongooseModule) {
@@ -47,6 +48,6 @@ export async function ActionLogModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ActionLog", modelSchema);
 }
 
-export default ActionLogModule;
-export type ActionLogModel = UnboxPromise<ReturnType<typeof ActionLogModule>>;
-export type ActionLog = ModelItemType<ActionLogModel>;
+export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> {}
+export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> {}
+export default ActionLogModule as ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;
