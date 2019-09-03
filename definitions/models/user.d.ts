@@ -11,6 +11,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         code: string;
         name: string;
         domain: string;
+        personnelApiKey: string;
     };
     active: boolean;
     admin: boolean;

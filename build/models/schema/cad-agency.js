@@ -16,6 +16,10 @@ function CADAgency(mongoose) {
             type: String,
             default: "",
         },
+        personnelApiKey: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
     });

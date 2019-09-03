@@ -51,6 +51,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         code: string;
         name: string;
         domain: string;
+        personnelApiKey: string;
     }[];
     signupKey: string;
     signupDomains: string[];
