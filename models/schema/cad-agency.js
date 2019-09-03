@@ -13,6 +13,10 @@ var Agency = new Schema({
   domain: {
     type: String,
     default: ""
+  },
+  personnelApiKey: {
+    type: String,
+    default: ""
   }
 }, {
   _id: false

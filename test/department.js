@@ -45,6 +45,7 @@ describe("Department", function() {
       assert.equal(sut.agencies.length, 3);
       assert.equal(sut.agencies[0].name, testData.agencies[0].name);
       assert.equal(sut.agencies[0].code, testData.agencies[0].code);
+      assert.equal(sut.agencies[0].personnelApiKey, testData.agencies[0].personnelApiKey);
       assert.equal(sut.incidentTypes.length, 1);
       assert.equal(sut.incidentTypes[0].name, testData.incidentTypes[0].name);
 
