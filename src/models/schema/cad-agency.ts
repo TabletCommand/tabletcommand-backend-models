@@ -22,6 +22,7 @@ export function CADAgency(mongoose: MongooseModule) {
     personnelApiKey: {
       type: String,
       default: "",
+      select: false,
     },
   }, {
     _id: false,
