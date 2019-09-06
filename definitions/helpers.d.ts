@@ -77,6 +77,7 @@ export declare type FieldsOfDocument<T extends Document> = T extends Document & 
     _id: unknown;
 } : never;
 export declare function retrieveCurrentUnixTime(): number;
+export declare function currentDate(): Date;
 declare type Or<T> = T & {
     $or?: Array<Or<T>>;
 };

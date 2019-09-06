@@ -25,6 +25,10 @@ function retrieveCurrentUnixTime() {
     return Date.now() / 1000;
 }
 exports.retrieveCurrentUnixTime = retrieveCurrentUnixTime;
+function currentDate() {
+    return new Date();
+}
+exports.currentDate = currentDate;
 function conditions(items, c) {
     return c;
 }

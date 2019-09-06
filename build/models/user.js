@@ -39,7 +39,7 @@ async function UserModule(mongoose) {
         },
         modified_date: {
             type: Date,
-            default: new Date(),
+            default: helpers_1.currentDate,
         },
         when: {
             type: Date,

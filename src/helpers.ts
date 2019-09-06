@@ -84,6 +84,10 @@ export function retrieveCurrentUnixTime(): number {
     return Date.now() / 1000;
 }
 
+export function currentDate() {
+    return new Date();
+}
+
 type Or<T> = T & {
     $or?: Array<Or<T>>,
 };

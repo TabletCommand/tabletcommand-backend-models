@@ -8,6 +8,7 @@ import {
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
+  currentDate,
 } from "../helpers";
 
 export async function UserModule(mongoose: MongooseModule) {
@@ -50,7 +51,7 @@ export async function UserModule(mongoose: MongooseModule) {
     },
     modified_date: {
       type: Date,
-      default: new Date(),
+      default: currentDate,
     },
     when: {
       type: Date,
