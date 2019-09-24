@@ -52,6 +52,10 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
+    active: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "massive_personnel_import",
   });
