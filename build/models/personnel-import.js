@@ -28,8 +28,9 @@ async function PersonnelImportModule(mongoose) {
         departmentId: {
             type: String,
         },
-        radioName: {
-            type: String,
+        radioNames: {
+            type: [String],
+            default: [],
         },
         shiftStartTime: {
             type: Number,

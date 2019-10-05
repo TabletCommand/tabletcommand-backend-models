@@ -400,7 +400,7 @@ module.exports = function(dependencies) {
     PersonnelWorkCode: "abcd1234",
     PersonnelNote: "A test user",
     departmentId: "123zzz",
-    radioName: "M10",
+    radioNames: ["M10", "Z1"],
     shiftStartTime: 1559446299,
     shiftEndTime: 1569446299,
     modified_unix_date: new Date().valueOf() / 1000.0,

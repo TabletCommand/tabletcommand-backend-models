@@ -8,7 +8,7 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     PersonnelWorkCode: string;
     PersonnelNote: string;
     departmentId: string;
-    radioName: string;
+    radioNames: string[];
     shiftStartTime: number;
     shiftEndTime: number;
     modified_unix_date: number;

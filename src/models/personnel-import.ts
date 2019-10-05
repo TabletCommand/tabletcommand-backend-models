@@ -37,8 +37,9 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
     departmentId: {
       type: String,
     },
-    radioName: {
-      type: String,
+    radioNames: {
+      type: [String],
+      default: [],
     },
     shiftStartTime: {
       type: Number,
