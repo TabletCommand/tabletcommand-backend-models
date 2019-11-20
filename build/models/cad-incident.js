@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
+const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function CADIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const toJSONOpts = {
@@ -480,6 +481,7 @@ async function CADIncidentModule(mongoose) {
             }
         });
     }
+    modelSchema.plugin(mongooseLeanVirtuals);
     return helpers_1.createModel(mongoose, "CADIncident", modelSchema);
 }
 exports.CADIncidentModule = CADIncidentModule;

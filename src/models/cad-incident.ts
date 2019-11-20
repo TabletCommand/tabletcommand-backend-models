@@ -12,6 +12,7 @@ import {
 } from "../helpers";
 
 import * as uuid from "uuid";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function CADIncidentModule(mongoose: MongooseModule) {
 
@@ -523,6 +524,7 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
       }
     });
   }
+  modelSchema.plugin(mongooseLeanVirtuals) as Schema;
 
   return createModel(mongoose, "CADIncident", modelSchema);
 }
