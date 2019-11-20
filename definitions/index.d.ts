@@ -43,12 +43,6 @@ export declare function connect(url: string): Promise<{
     };
 }>;
 declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
-declare module 'mongoose-lean-virtuals' {
-    class MongooseLeanVirtuals {
-        mongooseLeanVirtuals(schema:import("mongoose").Schema): import("mongoose").Schema
-    }
-    export = MongooseLeanVirtuals;
-}
 export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
 export default connect;
 //# sourceMappingURL=index.d.ts.map
