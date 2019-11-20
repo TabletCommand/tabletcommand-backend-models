@@ -519,7 +519,7 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
       }
       const pathSchema = schema as unknown as { paths: Record<string, string> };
       if (pathSchema.paths[element] === undefined) {
-        console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
+        // console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
         delete ret[element];
       }
     });
