@@ -72,6 +72,19 @@ async function UserModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        // Share Phone Location
+        shareLocationEnabled: {
+            type: Boolean,
+            default: false,
+        },
+        beaconEnabled: {
+            type: Boolean,
+            default: false,
+        },
+        userContributionEnabled: {
+            type: Boolean,
+            default: false,
+        },
         salt: {
             type: String,
             default: "",
@@ -101,11 +114,6 @@ async function UserModule(mongoose) {
         sessionCountiPad: {
             type: Number,
             default: 1,
-        },
-        // Share Phone Location
-        shareLocationEnabled: {
-            type: Boolean,
-            default: false,
         },
         rtsAuthKey: {
             type: String,

@@ -168,6 +168,32 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    defaultMapPosition: {
+      longitude: {
+        type: Number,
+        default: 0,
+      },
+      latitude: {
+        type: Number,
+        default: 0,
+      },
+    },
+    fireMapPDFReader: {
+      type: String,
+      default: "",
+    },
+    locationStaleMinutes: {
+      type: Number,
+      default: 1440, // 24h
+    },
+    beaconEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    fireMapperEnabled: {
+      type: Boolean,
+      default: false,
+    },
 
     // Other features
     pushEnabled: {
