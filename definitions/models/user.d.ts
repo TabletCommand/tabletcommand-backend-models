@@ -35,6 +35,8 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     rtsAuthKey: string;
     token: string;
     tokenExpireDate: number;
+    shareLocationPhone: boolean;
+    shareLocationTablet: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

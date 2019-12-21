@@ -233,6 +233,14 @@ async function DepartmentModule(mongoose) {
             type: [String],
             default: [],
         },
+        shareLocationPhones: {
+            type: Boolean,
+            default: false,
+        },
+        shareLocationTablets: {
+            type: Boolean,
+            default: true,
+        },
     }, {
         collection: "massive_admin",
     });

@@ -257,6 +257,14 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [String],
       default: [],
     },
+    shareLocationPhones: {
+      type: Boolean,
+      default: false,
+    },
+    shareLocationTablets: {
+      type: Boolean,
+      default: true,
+    },
   }, {
     collection: "massive_admin",
   });

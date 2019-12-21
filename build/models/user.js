@@ -127,6 +127,14 @@ async function UserModule(mongoose) {
             type: Number,
             default: 0,
         },
+        shareLocationPhone: {
+            type: Boolean,
+            default: false,
+        },
+        shareLocationTablet: {
+            type: Boolean,
+            default: true,
+        },
     }, {
         collection: "sys_user",
     });

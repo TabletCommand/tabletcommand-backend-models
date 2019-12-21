@@ -63,6 +63,8 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     }[];
     signupKey: string;
     signupDomains: string[];
+    shareLocationPhones: boolean;
+    shareLocationTablets: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

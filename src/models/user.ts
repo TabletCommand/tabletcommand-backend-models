@@ -144,6 +144,14 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    shareLocationPhone: {
+      type: Boolean,
+      default: false,
+    },
+    shareLocationTablet: {
+      type: Boolean,
+      default: true,
+    },
   }, {
     collection: "sys_user",
   });
