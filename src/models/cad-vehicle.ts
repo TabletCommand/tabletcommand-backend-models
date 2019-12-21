@@ -57,6 +57,10 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
       type: Station,
       default: null,
     },
+    mapHidden: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "massive_cad_vehicle",
   });
