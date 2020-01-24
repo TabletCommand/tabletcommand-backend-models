@@ -86,6 +86,19 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    // Share Phone Location
+    shareLocationEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    beaconEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    userContributionEnabled: {
+      type: Boolean,
+      default: false,
+    },
 
     salt: {
       type: String,
@@ -119,12 +132,6 @@ export async function UserModule(mongoose: MongooseModule) {
       default: 1,
     },
 
-    // Share Phone Location
-    shareLocationEnabled: {
-      type: Boolean,
-      default: false,
-    },
-
     rtsAuthKey: {
       type: String,
       default: "",
@@ -136,6 +143,14 @@ export async function UserModule(mongoose: MongooseModule) {
     tokenExpireDate: {
       type: Number,
       default: 0,
+    },
+    shareLocationPhone: {
+      type: Boolean,
+      default: false,
+    },
+    shareLocationTablet: {
+      type: Boolean,
+      default: true,
     },
   }, {
     collection: "sys_user",

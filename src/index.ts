@@ -59,6 +59,7 @@ export async function connect(url: string) {
   const models = await wireModels(mongoose);
   const opts = {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   };
   const connection = await mongoose.connect(url, opts);
 

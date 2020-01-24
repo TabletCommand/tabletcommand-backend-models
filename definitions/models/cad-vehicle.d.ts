@@ -10,6 +10,7 @@ export declare function CADVehicleModule(mongoose: MongooseModule): Promise<impo
         code: string;
         name: string;
     };
+    mapHidden: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

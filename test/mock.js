@@ -187,7 +187,9 @@ module.exports = function(dependencies) {
     incidentTypes: [{
       name: "Type",
       value: "type"
-    }]
+    }],
+    shareLocationPhones: false,
+    shareLocationTablets: true
   };
 
   const deviceMapping = {
@@ -352,7 +354,9 @@ module.exports = function(dependencies) {
     agency: {
       code: "A",
       name: "AA"
-    }
+    },
+    shareLocationPhone: false,
+    shareLocationTablet: true
   };
 
   const userRegistration = {

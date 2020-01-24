@@ -23,6 +23,14 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     selfAssignmentEnabled: boolean;
     userContributionEnabled: boolean;
     vehicleSwapEnabled: boolean;
+    defaultMapPosition: {
+        longitude: number;
+        latitude: number;
+    };
+    fireMapPDFReader: string;
+    locationStaleMinutes: number;
+    beaconEnabled: boolean;
+    fireMapperEnabled: boolean;
     pushEnabled: boolean;
     rtsEnabled: boolean;
     rtsChannelPrefix: string;
@@ -55,6 +63,8 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     }[];
     signupKey: string;
     signupDomains: string[];
+    shareLocationPhones: boolean;
+    shareLocationTablets: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

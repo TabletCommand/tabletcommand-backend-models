@@ -151,6 +151,32 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        defaultMapPosition: {
+            longitude: {
+                type: Number,
+                default: 0,
+            },
+            latitude: {
+                type: Number,
+                default: 0,
+            },
+        },
+        fireMapPDFReader: {
+            type: String,
+            default: "",
+        },
+        locationStaleMinutes: {
+            type: Number,
+            default: 1440,
+        },
+        beaconEnabled: {
+            type: Boolean,
+            default: false,
+        },
+        fireMapperEnabled: {
+            type: Boolean,
+            default: false,
+        },
         // Other features
         pushEnabled: {
             type: Boolean,
@@ -206,6 +232,14 @@ async function DepartmentModule(mongoose) {
         signupDomains: {
             type: [String],
             default: [],
+        },
+        shareLocationPhones: {
+            type: Boolean,
+            default: false,
+        },
+        shareLocationTablets: {
+            type: Boolean,
+            default: true,
         },
     }, {
         collection: "massive_admin",

@@ -19,6 +19,9 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     isPro: boolean;
     outsider: boolean;
     remoteLoggingEnabled: boolean;
+    shareLocationEnabled: boolean;
+    beaconEnabled: boolean;
+    userContributionEnabled: boolean;
     salt: string;
     pass: string;
     mapHidden: boolean;
@@ -29,10 +32,11 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     };
     sessionCountiPhone: number;
     sessionCountiPad: number;
-    shareLocationEnabled: boolean;
     rtsAuthKey: string;
     token: string;
     tokenExpireDate: number;
+    shareLocationPhone: boolean;
+    shareLocationTablet: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

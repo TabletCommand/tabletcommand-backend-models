@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "4.6.0",
+  "version": "4.7.0",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js",
@@ -15,23 +15,23 @@
   "main": "build/index.js",
   "types": "definitions/index.d.ts",
   "dependencies": {
-    "bluebird": "^3.5.0",
+    "bluebird": "^3.7.2",
     "debug": "^4.1.1",
     "lodash": "^4.17.15",
-    "moment-timezone": "^0.5.26",
-    "mongoose": "^5.6.12",
+    "moment-timezone": "^0.5.27",
+    "mongoose": "^5.8.9",
     "mongoose-lean-virtuals": "^0.5.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.27",
-    "@types/chai": "^4.2.1",
-    "@types/lodash": "^4.14.138",
+    "@types/bluebird": "^3.5.29",
+    "@types/chai": "^4.2.7",
+    "@types/lodash": "^4.14.149",
     "@types/mocha": "^5.2.5",
     "@types/moment-timezone": "^0.5.9",
-    "@types/mongoose": "^5.5.17",
-    "@types/redis": "^2.8.10",
-    "@types/uuid": "^3.4.5",
+    "@types/mongoose": "^5.5.43",
+    "@types/redis": "^2.8.14",
+    "@types/uuid": "^3.4.6",
     "chai": "^4.2.0",
     "del": "^5.1.0",
     "eyes": "^0.1.8",
@@ -41,6 +41,6 @@
     "gulp-tslint": "^8.1.4",
     "mocha": "^6.2.0",
     "tslint": "^5.19.0",
-    "typescript": "^3.6.2"
+    "typescript": "^3.7.5"
   }
 }
