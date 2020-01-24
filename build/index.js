@@ -10,6 +10,7 @@ async function wireModels(mongoose) {
     }
     return {
         ActionLog: await getModel(Promise.resolve().then(() => require("./models/action-log"))),
+        BeaconLog: await getModel(Promise.resolve().then(() => require("./models/beacon-log"))),
         CADIncident: await getModel(Promise.resolve().then(() => require("./models/cad-incident"))),
         CADStatusMap: await getModel(Promise.resolve().then(() => require("./models/cad-status-map"))),
         CADStatus: await getModel(Promise.resolve().then(() => require("./models/cad-status"))),

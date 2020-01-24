@@ -1,5 +1,6 @@
 /// <reference types="mongoose" />
 export { ActionLog, ActionLogModel } from "./models/action-log";
+export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
@@ -23,6 +24,7 @@ export declare function connect(url: string): Promise<{
     connection: typeof import("mongoose");
     models: {
         ActionLog: import("./models/action-log").ActionLogModel;
+        BeaconLog: import("./models/beacon-log").BeaconLogModel;
         CADIncident: import("./models/cad-incident").CADIncidentModel;
         CADStatusMap: import("./models/cad-status-map").CADStatusMapModel;
         CADStatus: import("./models/cad-status").CADStatusModel;

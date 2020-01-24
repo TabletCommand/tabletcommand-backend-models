@@ -1,0 +1,1 @@
+{"version":3,"file":"beacon-log.d.ts","sourceRoot":"","sources":["../../src/models/beacon-log.ts"],"names":[],"mappings":";AAAA,OAAO,EACL,cAAc,EAId,8BAA8B,EAC9B,+BAA+B,EAC/B,sBAAsB,EACvB,MAAM,YAAY,CAAC;AAEpB,wBAAsB,eAAe,CAAC,QAAQ,EAAE,cAAc;;;;;;;;GA8B7D;AAED,MAAM,WAAW,SAAU,SAAQ,8BAA8B,CAAC,OAAO,eAAe,CAAC;CAAG;AAC5F,MAAM,WAAW,cAAe,SAAQ,+BAA+B,CAAC,SAAS,CAAC;CAAG;;AACrF,wBAAiG"}
