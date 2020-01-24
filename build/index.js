@@ -36,6 +36,7 @@ async function connect(url) {
     const models = await wireModels(mongoose);
     const opts = {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
     };
     const connection = await mongoose.connect(url, opts);
     return { mongoose, connection, models };
