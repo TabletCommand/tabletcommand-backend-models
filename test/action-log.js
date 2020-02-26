@@ -21,8 +21,8 @@ describe("ActionLog", function() {
   afterEach(function() {
     mongoose.disconnect();
   });
-  it("is saved", function() {
-    // console.log(models);
+
+  it("is saved", function(done) {
     var item = new models.ActionLog(testItem);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
@@ -36,6 +36,7 @@ describe("ActionLog", function() {
       const expectedDate = new Date().valueOf() / 1000.0;
       const timeDelta = expectedDate - sut.modified_unix_date;
       assert.isTrue(timeDelta < 1);
+      return done();
     });
   });
 });
