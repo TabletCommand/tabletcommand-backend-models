@@ -49,6 +49,30 @@ async function DepartmentModule(mongoose) {
     }, {
         _id: false,
     });
+    const EsriAuthPassword = helpers_1.createSchema(Schema, {
+        iv: {
+            type: String,
+            default: "",
+        },
+        encryptedData: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+    });
+    const EsriAuth = helpers_1.createSchema(Schema, {
+        username: {
+            type: String,
+            default: "",
+        },
+        encrypted: {
+            type: EsriAuthPassword,
+            default: null,
+        },
+    }, {
+        _id: false,
+    });
     const IncidentType = helpers_1.createSchema(Schema, {
         name: {
             type: String,
@@ -205,6 +229,10 @@ async function DepartmentModule(mongoose) {
         },
         error: {
             type: EsriError,
+            default: null,
+        },
+        esriAuth: {
+            type: EsriAuth,
             default: null,
         },
         // Custom Button

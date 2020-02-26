@@ -62,6 +62,32 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
   });
 
+  const EsriAuthPassword = createSchema(Schema, {
+    iv: {
+      type: String,
+      default: "",
+    },
+    encryptedData: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+  });
+
+  const EsriAuth = createSchema(Schema, {
+    username: {
+      type: String,
+      default: "",
+    },
+    encrypted: {
+      type: EsriAuthPassword,
+      default: null,
+    },
+  }, {
+    _id: false,
+  });
+
   const IncidentType = createSchema(Schema, {
     name: {
       type: String,
@@ -227,6 +253,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: EsriError,
       default: null,
     },
+    esriAuth: {
+      type: EsriAuth,
+      default: null,
+    },
 
     // Custom Button
     customWebUrl: {
@@ -285,6 +315,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Department", modelSchema);
 }
 
-export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> {}
-export interface DepartmentModel extends ModelTypeFromTypeSchemaFunction<Department> {}
+export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> { }
+export interface DepartmentModel extends ModelTypeFromTypeSchemaFunction<Department> { }
 export default DepartmentModule as ReplaceModelReturnType<typeof DepartmentModule, DepartmentModel>;

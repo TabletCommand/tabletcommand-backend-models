@@ -49,6 +49,13 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         error_description: string;
         message: string;
     };
+    esriAuth: {
+        username: string;
+        encrypted: {
+            iv: string;
+            encryptedData: string;
+        };
+    };
     customWebUrl: string;
     customWebName: string;
     incidentTypes: {
