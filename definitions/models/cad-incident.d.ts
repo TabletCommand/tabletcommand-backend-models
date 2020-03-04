@@ -83,6 +83,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     units: {
         UnitID: string;
         UnitDispatchNumber: string;
+        AlarmAtDispatch: string;
         TimeDispatched: string;
         TimeEnroute: string;
         TimeArrived: string;

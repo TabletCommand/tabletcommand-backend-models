@@ -71,6 +71,9 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
       type: String,
       required: true,
     },
+    AlarmAtDispatch: {
+      type: String,
+    },
     TimeDispatched: {
       type: String,
     },

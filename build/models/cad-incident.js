@@ -54,6 +54,9 @@ async function CADIncidentModule(mongoose) {
             type: String,
             required: true,
         },
+        AlarmAtDispatch: {
+            type: String,
+        },
         TimeDispatched: {
             type: String,
         },
