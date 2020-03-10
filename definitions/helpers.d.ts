@@ -19,14 +19,14 @@ export declare type ReplaceModelReturnType<T extends (...a: any[]) => Promise<an
 export declare type ItemTypeFromTypeSchemaFunction<T extends (...a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
 export declare type ModelTypeFromTypeSchemaFunction<TItemType extends Document> = Model<TItemType>;
 export declare type MongooseProperty<T extends SchemaDefinition[string]> = T extends {
-    type: Array<Schema & {
+    type: (Schema & {
         _interface: infer P;
-    }>;
+    })[];
 } ? P[] : T extends {
-    type: Array<(...a: unknown[]) => infer P>;
-} ? P[] : T extends Array<(...a: unknown[]) => infer P> ? P[] : T extends Array<Schema & {
+    type: ((...a: unknown[]) => infer P)[];
+} ? P[] : T extends ((...a: unknown[]) => infer P)[] ? P[] : T extends (Schema & {
     _interface: infer P;
-}> ? P[] : T extends {
+})[] ? P[] : T extends {
     type: (...a: unknown[]) => infer P;
 } ? P : T extends {
     type: Schema & {
@@ -79,7 +79,7 @@ export declare type FieldsOfDocument<T extends Document> = T extends Document & 
 export declare function retrieveCurrentUnixTime(): number;
 export declare function currentDate(): Date;
 declare type Or<T> = T & {
-    $or?: Array<Or<T>>;
+    $or?: Or<T>[];
 };
 declare type NonFunctionKeys<T> = {
     [P in keyof T]: T[P] extends (...a: never[]) => unknown ? never : P;

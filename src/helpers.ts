@@ -22,15 +22,15 @@ export type ReplaceModelReturnType<T extends (...a: any[]) => Promise<any>, TNew
     (...a: Parameters<T>) => Promise<TNewReturnType>;
 
 // tslint:disable-next-line: no-any
-export type ItemTypeFromTypeSchemaFunction<T extends (...a: any[]) => Promise<any>> =  ModelItemType<UnboxPromise<ReturnType<T>>>;
+export type ItemTypeFromTypeSchemaFunction<T extends (...a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
 // tslint:disable-next-line: no-any
-export type ModelTypeFromTypeSchemaFunction<TItemType extends Document> =  Model<TItemType>;
+export type ModelTypeFromTypeSchemaFunction<TItemType extends Document> = Model<TItemType>;
 
 export type MongooseProperty<T extends SchemaDefinition[string]> =
-    T extends { type: Array<Schema & { _interface: infer P }> } ? P[] :
-    T extends { type: Array<(...a: unknown[]) => infer P> } ? P[] :
-    T extends Array<(...a: unknown[]) => infer P> ? P[] :
-    T extends Array<Schema & { _interface: infer P }> ? P[] :
+    T extends { type: (Schema & { _interface: infer P })[] } ? P[] :
+    T extends { type: ((...a: unknown[]) => infer P)[] } ? P[] :
+    T extends ((...a: unknown[]) => infer P)[] ? P[] :
+    T extends (Schema & { _interface: infer P })[] ? P[] :
 
     T extends { type: (...a: unknown[]) => infer P } ? P :
     T extends { type: Schema & { _interface: infer P } } ? P :
@@ -89,7 +89,7 @@ export function currentDate() {
 }
 
 type Or<T> = T & {
-    $or?: Array<Or<T>>,
+    $or?: Or<T>[],
 };
 
 type NonFunctionKeys<T> = {
