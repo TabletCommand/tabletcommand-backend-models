@@ -266,6 +266,10 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
     scheduled_at: {
       type: Number,
     },
+    blacklisted: {
+      type: Boolean,
+      default: false,
+    },
 
     // Address fields
     StreetName: {
@@ -532,6 +536,6 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADIncident", modelSchema);
 }
 
-export interface CADIncident extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> {}
-export interface CADIncidentModel extends ModelTypeFromTypeSchemaFunction<CADIncident> {}
+export interface CADIncident extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> { }
+export interface CADIncidentModel extends ModelTypeFromTypeSchemaFunction<CADIncident> { }
 export default CADIncidentModule as ReplaceModelReturnType<typeof CADIncidentModule, CADIncidentModel>;

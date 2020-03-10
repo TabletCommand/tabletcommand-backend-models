@@ -242,6 +242,10 @@ async function CADIncidentModule(mongoose) {
         scheduled_at: {
             type: Number,
         },
+        blacklisted: {
+            type: Boolean,
+            default: false,
+        },
         // Address fields
         StreetName: {
             type: String,

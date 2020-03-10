@@ -35,6 +35,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     closed_unix_date: number;
     queued_at: number;
     scheduled_at: number;
+    blacklisted: boolean;
     StreetName: string;
     StreetSuffix: string;
     Predirectional: string;
