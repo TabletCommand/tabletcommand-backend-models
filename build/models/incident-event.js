@@ -78,6 +78,10 @@ async function IncidentEventModule(mongoose) {
             type: String,
             require: true,
         },
+        opts: {
+            type: Object,
+            default: {},
+        },
     }, {
         collection: "massive_incident_event",
     });

@@ -87,6 +87,10 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
       type: String,
       require: true,
     },
+    opts: {
+      type: Object,
+      default: {},
+    },
   }, {
     collection: "massive_incident_event",
   });
