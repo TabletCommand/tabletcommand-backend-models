@@ -11,6 +11,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     modified_unix_date: number;
     version: number;
     session: string;
+    esriId: number;
     location: {
         longitude: number;
         latitude: number;
@@ -27,6 +28,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         modified_unix_date: number;
         version: number;
         session: string;
+        esriId: number;
         location: {
             longitude: number;
             latitude: number;
@@ -46,6 +48,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 modified_unix_date: number;
                 version: number;
                 session: string;
+                esriId: number;
                 location: {
                     longitude: number;
                     latitude: number;
@@ -63,6 +66,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         modified_unix_date: number;
         version: number;
         session: string;
+        esriId: number;
         location: {
             longitude: number;
             latitude: number;
@@ -82,6 +86,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 modified_unix_date: number;
                 version: number;
                 session: string;
+                esriId: number;
                 location: {
                     longitude: number;
                     latitude: number;
@@ -99,6 +104,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         modified_unix_date: number;
         version: number;
         session: string;
+        esriId: number;
         location: {
             longitude: number;
             latitude: number;
@@ -118,6 +124,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 modified_unix_date: number;
                 version: number;
                 session: string;
+                esriId: number;
                 location: {
                     longitude: number;
                     latitude: number;
@@ -138,6 +145,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             modified_unix_date: number;
             version: number;
             session: string;
+            esriId: number;
             location: {
                 longitude: number;
                 latitude: number;
@@ -157,6 +165,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     modified_unix_date: number;
                     version: number;
                     session: string;
+                    esriId: number;
                     location: {
                         longitude: number;
                         latitude: number;
@@ -174,6 +183,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             modified_unix_date: number;
             version: number;
             session: string;
+            esriId: number;
             location: {
                 longitude: number;
                 latitude: number;
@@ -193,6 +203,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     modified_unix_date: number;
                     version: number;
                     session: string;
+                    esriId: number;
                     location: {
                         longitude: number;
                         latitude: number;
@@ -210,6 +221,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             modified_unix_date: number;
             version: number;
             session: string;
+            esriId: number;
             location: {
                 longitude: number;
                 latitude: number;
@@ -229,6 +241,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     modified_unix_date: number;
                     version: number;
                     session: string;
+                    esriId: number;
                     location: {
                         longitude: number;
                         latitude: number;

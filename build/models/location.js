@@ -52,6 +52,11 @@ async function LocationModule(mongoose) {
             type: String,
             default: "",
         },
+        // Unsigned 32 Int that gets exposed as OBJECTID to ArcGIS Feature Services
+        esriId: {
+            type: Number,
+            default: 0,
+        },
         location: {
             longitude: {
                 type: Number,
