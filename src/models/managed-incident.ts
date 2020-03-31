@@ -111,6 +111,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     source: String,
     CallerNumber: String,
     CommandChannel: String,
+    extended: {
+      type: Boolean,
+      default: false
+    },
 
     // Incident Notes
     notes: {

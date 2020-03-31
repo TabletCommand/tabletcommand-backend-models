@@ -30,6 +30,7 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
     source: string;
     CallerNumber: string;
     CommandChannel: string;
+    extended: boolean;
     notes: {
         message: string;
         entity_type: number;

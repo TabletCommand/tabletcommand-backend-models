@@ -21,6 +21,10 @@ async function CADIncidentModule(mongoose) {
         CommentDateTime: {
             type: String,
         },
+        CommentConfidential: {
+            type: Boolean,
+            default: false
+        }
     }, {
         _id: false,
     });

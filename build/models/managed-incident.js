@@ -94,6 +94,10 @@ async function ManagedIncidentModule(mongoose) {
         source: String,
         CallerNumber: String,
         CommandChannel: String,
+        extended: {
+            type: Boolean,
+            default: false
+        },
         // Incident Notes
         notes: {
             type: [HistoryItem],

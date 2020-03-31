@@ -65,6 +65,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             Comment: string;
             CommentSource: string;
             CommentDateTime: string;
+            CommentConfidential: boolean;
         }[];
         IncidentDateTime: string;
         IncidentNumber: string;
@@ -80,6 +81,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         Comment: string;
         CommentSource: string;
         CommentDateTime: string;
+        CommentConfidential: boolean;
     }[];
     units: {
         UnitID: string;
