@@ -56,6 +56,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             encryptedData: string;
         };
     };
+    esriGeoJSONFilename: string;
     customWebUrl: string;
     customWebName: string;
     incidentTypes: {

@@ -235,6 +235,10 @@ async function DepartmentModule(mongoose) {
             type: EsriAuth,
             default: null,
         },
+        esriGeoJSONFilename: {
+            type: String,
+            default: ""
+        },
         // Custom Button
         customWebUrl: {
             type: String,
