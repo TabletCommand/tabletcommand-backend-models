@@ -68,6 +68,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         name: string;
         domain: string;
         personnelApiKey: string;
+        agencyApiKey: string;
     }[];
     signupKey: string;
     signupDomains: string[];

@@ -173,7 +173,8 @@ module.exports = function(dependencies) {
         code: "A",
         name: "AA",
         domain: "",
-        personnelApiKey: "4321"
+        personnelApiKey: "4321",
+        agencyApiKey: "4321"
       },
       {
         code: "B",

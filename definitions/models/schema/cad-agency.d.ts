@@ -6,6 +6,7 @@ export declare function CADAgency(mongoose: MongooseModule): import("mongoose").
         name: string;
         domain: string;
         personnelApiKey: string;
+        agencyApiKey: string;
     };
     _methods: unknown;
 };

@@ -21,6 +21,11 @@ function CADAgency(mongoose) {
             default: "",
             select: false,
         },
+        agencyApiKey: {
+            type: String,
+            default: "",
+            select: false,
+        },
     }, {
         _id: false,
     });

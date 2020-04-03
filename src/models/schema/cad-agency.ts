@@ -24,6 +24,11 @@ export function CADAgency(mongoose: MongooseModule) {
       default: "",
       select: false,
     },
+    agencyApiKey: {
+      type: String,
+      default: "",
+      select: false,
+    },
   }, {
     _id: false,
   });
