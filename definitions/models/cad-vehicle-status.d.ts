@@ -19,6 +19,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
         value: string;
         key: string;
     }[];
+    capability: string;
 } & {
     propagateToObject<T>(dbItem: {
         uuid: string;
@@ -39,6 +40,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             value: string;
             key: string;
         }[];
+        capability: string;
     } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "addListener" | "emit" | "on" | "once" | "prependListener" | "prependOnceListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "listenerCount" | "eventNames" | "increment" | "model" | "$isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -62,6 +64,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     value: string;
                     key: string;
                 }[];
+                capability: string;
             };
         };
     }, callback: (o: {
@@ -83,6 +86,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             value: string;
             key: string;
         }[];
+        capability: string;
     } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "addListener" | "emit" | "on" | "once" | "prependListener" | "prependOnceListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "listenerCount" | "eventNames" | "increment" | "model" | "$isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -106,6 +110,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     value: string;
                     key: string;
                 }[];
+                capability: string;
             };
         };
     }) => T): T;
@@ -130,6 +135,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 value: string;
                 key: string;
             }[];
+            capability: string;
         } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "addListener" | "emit" | "on" | "once" | "prependListener" | "prependOnceListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "listenerCount" | "eventNames" | "increment" | "model" | "$isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -153,6 +159,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                         value: string;
                         key: string;
                     }[];
+                    capability: string;
                 };
             };
         }, callback: (o: {
@@ -174,6 +181,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 value: string;
                 key: string;
             }[];
+            capability: string;
         } & Pick<import("mongoose").Document, "toString" | "base" | "update" | "get" | "set" | "removeListener" | "addListener" | "emit" | "on" | "once" | "prependListener" | "prependOnceListener" | "off" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "listenerCount" | "eventNames" | "increment" | "model" | "$isDeleted" | "remove" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "invalidate" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "baseModelName" | "collection" | "db" | "discriminators" | "modelName"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -197,6 +205,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                         value: string;
                         key: string;
                     }[];
+                    capability: string;
                 };
             };
         }) => T): T;

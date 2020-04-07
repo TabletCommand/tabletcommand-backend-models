@@ -100,6 +100,10 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
       type: [CADStatusOptionSelected],
       default: [],
     },
+    capability: {
+      type: String,
+      default: "",
+    },
   });
 
   type CADVehicleStatus = DocumentFromSchemaDefinition<typeof modelSchemaConfig>;

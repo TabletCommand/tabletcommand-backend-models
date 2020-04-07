@@ -61,6 +61,10 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    capability: {
+      type: String,
+      default: "",
+    },
   }, {
     collection: "massive_cad_vehicle",
   });

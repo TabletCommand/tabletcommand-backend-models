@@ -141,7 +141,8 @@ module.exports = function(dependencies) {
     station: {
       code: "S01",
       name: "Station 01"
-    }
+    },
+    capability: ""
   };
 
   const cadVehicleStatus = {
@@ -155,7 +156,8 @@ module.exports = function(dependencies) {
     statusCode: "DISP",
     modifiedDate: 1516577096,
     requestStatus: 0,
-    incidentNumber: "INC19991"
+    incidentNumber: "INC19991",
+    capability: ""
   };
 
   const department = {

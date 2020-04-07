@@ -38,6 +38,7 @@ describe("CADVehicleStatus", function() {
       assert.equal(testItem.modifiedDate, sut.modifiedDate);
       assert.equal(testItem.requestStatus, sut.requestStatus);
       assert.equal(testItem.incidentNumber, sut.incidentNumber);
+      assert.equal(testItem.capability, sut.capability)
 
       return done();
     });

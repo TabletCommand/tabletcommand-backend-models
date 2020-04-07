@@ -90,6 +90,10 @@ async function CADVehicleStatusModule(mongoose) {
             type: [CADStatusOptionSelected],
             default: [],
         },
+        capability: {
+            type: String,
+            default: "",
+        },
     });
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaConfig, {
         collection: "massive_cad_vehicle_status",
