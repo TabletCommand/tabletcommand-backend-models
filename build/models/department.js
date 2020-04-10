@@ -175,6 +175,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        personnelStaffingEnabled: {
+            type: Boolean,
+            default: false,
+        },
         defaultMapPosition: {
             longitude: {
                 type: Number,

@@ -166,6 +166,7 @@ module.exports = function(dependencies) {
     city: "San Francisco",
     active: true,
     apikey: "abcd",
+    personnelStaffingEnabled: true,
     rtsEnabled: true,
     rtsChannelPrefix: "CH_TEST",
     rtsAuthKey: "CH_AUTH_KEY",
