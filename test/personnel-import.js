@@ -40,6 +40,8 @@ describe("PersonnelImport", function() {
       assert.equal(testItem.shiftEndTime, sut.shiftEndTime);
       assert.equal(testItem.modified_unix_date, sut.modified_unix_date);
       assert.equal(testItem.active, sut.active);
+      assert.equal(testItem.agencyName, sut.agencyName);
+      assert.equal(testItem.agencyCode, sut.agencyCode);
 
       return done();
     });

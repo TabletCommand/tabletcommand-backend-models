@@ -412,7 +412,9 @@ module.exports = function(dependencies) {
     shiftStartTime: 1559446299,
     shiftEndTime: 1569446299,
     modified_unix_date: new Date().valueOf() / 1000.0,
-    active: true
+    active: true,
+    agencyCode: "TC",
+    agencyName: "Tablet Command",
   };
 
 

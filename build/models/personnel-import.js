@@ -47,6 +47,14 @@ async function PersonnelImportModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        agencyName: {
+            type: String,
+            default: ""
+        },
+        agencyCode: {
+            type: String,
+            default: ""
+        },
     }, {
         collection: "massive_personnel_import",
     });

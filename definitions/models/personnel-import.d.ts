@@ -13,6 +13,8 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     shiftEndTime: number;
     modified_unix_date: number;
     active: boolean;
+    agencyName: string;
+    agencyCode: string;
 }, {}> & {
     __methods?: unknown;
 }>;
