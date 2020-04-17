@@ -23,6 +23,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     shareLocationEnabled: boolean;
     beaconEnabled: boolean;
     userContributionEnabled: boolean;
+    syncLoggingExpireDate: string;
     salt: string;
     pass: string;
     mapHidden: boolean;

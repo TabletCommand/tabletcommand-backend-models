@@ -85,6 +85,10 @@ async function UserModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        syncLoggingExpireDate: {
+            type: Date,
+            default: null
+        },
         salt: {
             type: String,
             default: "",

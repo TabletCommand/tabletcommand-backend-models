@@ -99,6 +99,10 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    syncLoggingExpireDate: {
+      type: Date,
+      default: null
+    },
 
     salt: {
       type: String,
@@ -172,6 +176,6 @@ export async function UserModule(mongoose: MongooseModule) {
   return createModel(mongoose, "User", modelSchema);
 }
 
-export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> {}
-export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> {}
+export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> { }
+export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> { }
 export default UserModule as ReplaceModelReturnType<typeof UserModule, UserModel>;
