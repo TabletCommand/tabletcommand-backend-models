@@ -1,3 +1,4 @@
+import * as uuid from "uuid";
 import {
   createSchema,
   createModel,
@@ -42,6 +43,10 @@ export async function UserModule(mongoose: MongooseModule) {
     name: {
       type: String,
       default: "",
+    },
+    uuid: {
+      type: String,
+      default: uuid.v4,
     },
     departmentId: {
       type: String,

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function UserModule(mongoose) {
     const Schema = mongoose.Schema;
@@ -30,6 +31,10 @@ async function UserModule(mongoose) {
         name: {
             type: String,
             default: "",
+        },
+        uuid: {
+            type: String,
+            default: uuid.v4,
         },
         departmentId: {
             type: String,

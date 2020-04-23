@@ -4,6 +4,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     nick: string;
     email: string;
     name: string;
+    uuid: string;
     departmentId: string;
     modified_date: string;
     when: string;

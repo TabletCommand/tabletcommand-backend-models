@@ -24,6 +24,7 @@ describe("User", function() {
 
   it("is saved", function(done) {
     var item = new models.User(testItem);
+    assert.isNotNull(item.uuid);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
@@ -39,6 +40,7 @@ describe("User", function() {
       assert.equal(sut.agency.name, testItem.agency.name);
       assert.isFalse(sut.shareLocationPhone);
       assert.isTrue(sut.shareLocationTablet);
+      assert.equal(item.uuid, sut.uuid);
 
       return done();
     });
