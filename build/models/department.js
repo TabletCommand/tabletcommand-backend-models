@@ -5,6 +5,19 @@ const helpers_1 = require("../helpers");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
+    const SafetyPriorityKeyword = helpers_1.createSchema(Schema, {
+        priority: {
+            type: Number,
+        },
+        keywords: {
+            type: [String],
+        },
+        hexColor: {
+            type: String,
+        },
+    }, {
+        _id: false,
+    });
     const EsriToken = helpers_1.createSchema(Schema, {
         access_token: {
             type: String,
@@ -270,7 +283,7 @@ async function DepartmentModule(mongoose) {
             default: [],
         },
         safetyPriorityKeywords: {
-            type: [Object],
+            type: [SafetyPriorityKeyword],
             default: [],
         },
         shareLocationPhones: {

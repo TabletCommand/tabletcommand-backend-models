@@ -16,6 +16,21 @@ export async function DepartmentModule(mongoose: MongooseModule) {
 
   const Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
 
+
+  const SafetyPriorityKeyword = createSchema(Schema, {
+    priority: {
+      type: Number,
+    },
+    keywords: {
+      type: [String],
+    },
+    hexColor: {
+      type: String,
+    },
+  }, {
+    _id: false,
+  });
+
   const EsriToken = createSchema(Schema, {
     access_token: {
       type: String,
@@ -296,7 +311,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: [],
     },
     safetyPriorityKeywords: {
-      type: [Object],
+      type: [SafetyPriorityKeyword],
       default: [],
     },
     shareLocationPhones: {
