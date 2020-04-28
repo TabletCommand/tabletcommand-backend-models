@@ -269,6 +269,10 @@ async function DepartmentModule(mongoose) {
             type: [String],
             default: [],
         },
+        safetyPriorityKeywords: {
+            type: [Object],
+            default: [],
+        },
         shareLocationPhones: {
             type: Boolean,
             default: false,

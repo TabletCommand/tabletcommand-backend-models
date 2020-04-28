@@ -295,6 +295,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [String],
       default: [],
     },
+    safetyPriorityKeywords: {
+      type: [Object],
+      default: [],
+    },
     shareLocationPhones: {
       type: Boolean,
       default: false,
