@@ -156,25 +156,41 @@ async function DepartmentModule(mongoose) {
             default: "",
         },
         // CAD Features
-        cadMonitorEnabled: {
-            type: Boolean,
-            default: false,
-        },
-        cadMonitorMinutes: {
-            type: Number,
-            default: 30,
-        },
         cadBidirectionalEnabled: {
             type: Boolean,
             default: false,
         },
-        heartbeatEnabled: {
-            type: Boolean,
-            default: false,
-        },
-        heartbeatMinutes: {
-            type: Number,
-            default: 5,
+        connectivity: {
+            incident: {
+                enabled: {
+                    type: Boolean,
+                    default: false,
+                },
+                staleMinutes: {
+                    type: Number,
+                    default: 30,
+                }
+            },
+            location: {
+                enabled: {
+                    type: Boolean,
+                    default: false,
+                },
+                staleMinutes: {
+                    type: Number,
+                    default: 5,
+                }
+            },
+            status: {
+                enabled: {
+                    type: Boolean,
+                    default: false,
+                },
+                staleMinutes: {
+                    type: Number,
+                    default: 5,
+                }
+            }
         },
         selfAssignmentEnabled: {
             type: Boolean,

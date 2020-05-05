@@ -15,11 +15,21 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     pager_number: string;
     apikey: string;
     cadEmailUsername: string;
-    cadMonitorEnabled: boolean;
-    cadMonitorMinutes: number;
     cadBidirectionalEnabled: boolean;
-    heartbeatEnabled: boolean;
-    heartbeatMinutes: number;
+    connectivity: {
+        incident: {
+            enabled: boolean;
+            staleMinutes: number;
+        };
+        location: {
+            enabled: boolean;
+            staleMinutes: number;
+        };
+        status: {
+            enabled: boolean;
+            staleMinutes: number;
+        };
+    };
     selfAssignmentEnabled: boolean;
     userContributionEnabled: boolean;
     vehicleSwapEnabled: boolean;
