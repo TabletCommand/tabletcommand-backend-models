@@ -397,6 +397,7 @@ module.exports = function(dependencies) {
       ver: "TC Mobile v1.0 b23",
       ua: "TCMobile/1.0 (iPhone; iOS 10.1.1; Scale/3.00)",
       time: 1438627429.956,
+      drift: 1438627429.956,
       bundleIdentifier: "com.testtesttest.TCMobile",
       silentEnabled: true,
       richEnabled: true,

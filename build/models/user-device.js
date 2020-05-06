@@ -12,6 +12,10 @@ async function UserDeviceModule(mongoose) {
             type: String,
             default: "",
         },
+        ver: {
+            type: String,
+            default: "",
+        },
         ua: {
             type: String,
             default: "",
@@ -19,6 +23,10 @@ async function UserDeviceModule(mongoose) {
         time: {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
+        },
+        drift: {
+            type: Number,
+            default: 0
         },
         bundleIdentifier: {
             type: String,

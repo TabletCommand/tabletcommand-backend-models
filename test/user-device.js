@@ -35,6 +35,7 @@ describe("UserDevice", function() {
       assert.equal(testItem.devices[0].env, sut.devices[0].env);
       assert.equal(testItem.devices[0].ua, sut.devices[0].ua);
       assert.equal(testItem.devices[0].time, sut.devices[0].time);
+      assert.equal(testItem.devices[0].drift, sut.devices[0].drift);
       assert.equal(testItem.devices[0].bundleIdentifier, sut.devices[0].bundleIdentifier);
       assert.equal(testItem.devices[0].silentEnabled, sut.devices[0].silentEnabled);
       assert.equal(testItem.devices[0].richEnabled, sut.devices[0].richEnabled);

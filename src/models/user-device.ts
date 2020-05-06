@@ -20,6 +20,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    ver: {
+      type: String,
+      default: "",
+    },
     ua: {
       type: String,
       default: "",
@@ -27,6 +31,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     time: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    drift: {
+      type: Number,
+      default: 0
     },
     bundleIdentifier: {
       type: String,

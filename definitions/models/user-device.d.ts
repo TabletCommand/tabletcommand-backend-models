@@ -7,8 +7,10 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     devices: {
         token: string;
         env: string;
+        ver: string;
         ua: string;
         time: number;
+        drift: number;
         bundleIdentifier: string;
         silentEnabled: boolean;
         richEnabled: boolean;
