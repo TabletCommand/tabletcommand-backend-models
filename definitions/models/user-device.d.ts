@@ -15,6 +15,7 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
         silentEnabled: boolean;
         richEnabled: boolean;
         session: string;
+        active: boolean;
     }[];
     notificationCount: number;
     notificationUnits: string[];

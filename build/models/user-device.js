@@ -44,6 +44,10 @@ async function UserDeviceModule(mongoose) {
             type: String,
             default: "",
         },
+        active: {
+            type: Boolean,
+            default: true
+        },
     }, {
         _id: false,
     });

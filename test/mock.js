@@ -401,7 +401,8 @@ module.exports = function(dependencies) {
       bundleIdentifier: "com.testtesttest.TCMobile",
       silentEnabled: true,
       richEnabled: true,
-      session: '1234321'
+      session: '1234321',
+      active: true
     }],
     notificationCount: 12,
     notificationUnits: ["M10", "B1"],

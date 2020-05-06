@@ -52,6 +52,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    active: {
+      type: Boolean,
+      default: true
+    },
   }, {
     _id: false,
   });
