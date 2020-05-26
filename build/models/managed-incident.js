@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ManagedIncidentModule = void 0;
 const _ = require("lodash");
 const uuid = require("uuid");
 const moment = require("moment-timezone");

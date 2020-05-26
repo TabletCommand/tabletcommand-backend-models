@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RateLimitModule = void 0;
 const helpers_1 = require("../../helpers");
 function RateLimitModule(mongoose) {
     const { Schema } = mongoose;

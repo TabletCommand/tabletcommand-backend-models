@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DepartmentModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function DepartmentModule(mongoose) {
@@ -169,6 +170,10 @@ async function DepartmentModule(mongoose) {
                 staleMinutes: {
                     type: Number,
                     default: 30,
+                },
+                heartbeatMinutes: {
+                    type: Number,
+                    default: 5
                 }
             },
             location: {
@@ -178,7 +183,11 @@ async function DepartmentModule(mongoose) {
                 },
                 staleMinutes: {
                     type: Number,
-                    default: 5,
+                    default: 30,
+                },
+                heartbeatMinutes: {
+                    type: Number,
+                    default: 5
                 }
             },
             status: {
@@ -188,7 +197,11 @@ async function DepartmentModule(mongoose) {
                 },
                 staleMinutes: {
                     type: Number,
-                    default: 5,
+                    default: 30,
+                },
+                heartbeatMinutes: {
+                    type: Number,
+                    default: 5
                 }
             }
         },

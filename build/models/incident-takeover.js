@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.IncidentTakeoverModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function IncidentTakeoverModule(mongoose) {

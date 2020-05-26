@@ -190,6 +190,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         staleMinutes: {
           type: Number,
           default: 30,
+        },
+        heartbeatMinutes: {
+          type: Number,
+          default: 5
         }
       },
       location: {
@@ -199,7 +203,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         },
         staleMinutes: {
           type: Number,
-          default: 5,
+          default: 30,
+        },
+        heartbeatMinutes: {
+          type: Number,
+          default: 5
         }
       },
       status: {
@@ -209,7 +217,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         },
         staleMinutes: {
           type: Number,
-          default: 5,
+          default: 30,
+        },
+        heartbeatMinutes: {
+          type: Number,
+          default: 5
         }
       }
     },

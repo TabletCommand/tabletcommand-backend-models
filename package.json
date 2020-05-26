@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "4.10.2",
+  "version": "4.10.3",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js",
@@ -18,20 +18,19 @@
     "bluebird": "^3.7.2",
     "debug": "^4.1.1",
     "lodash": "^4.17.15",
-    "moment-timezone": "^0.5.27",
-    "mongoose": "^5.9.10",
-    "mongoose-lean-virtuals": "^0.6.0",
-    "uuid": "^8.0.0"
+    "moment-timezone": "^0.5.31",
+    "mongoose": "^5.9.16",
+    "mongoose-lean-virtuals": "^0.6.3",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.30",
+    "@types/bluebird": "^3.5.32",
     "@types/chai": "^4.2.10",
-    "@types/lodash": "^4.14.150",
+    "@types/lodash": "^4.14.152",
     "@types/mocha": "^7.0.2",
-    "@types/moment-timezone": "^0.5.9",
-    "@types/mongoose": "^5.7.12",
-    "@types/redis": "^2.8.18",
-    "@types/uuid": "^7.0.0",
+    "@types/mongoose": "^5.7.21",
+    "@types/redis": "^2.8.21",
+    "@types/uuid": "^8.0.0",
     "chai": "^4.2.0",
     "del": "^5.1.0",
     "eyes": "^0.1.8",
@@ -39,8 +38,8 @@
     "gulp-mocha": "^7.0.1",
     "gulp-shell": "^0.8.0",
     "gulp-tslint": "^8.1.4",
-    "mocha": "^7.1.0",
+    "mocha": "^7.2.0",
     "tslint": "^6.0.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.3"
   }
 }

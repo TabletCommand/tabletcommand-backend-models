@@ -20,14 +20,17 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         incident: {
             enabled: boolean;
             staleMinutes: number;
+            heartbeatMinutes: number;
         };
         location: {
             enabled: boolean;
             staleMinutes: number;
+            heartbeatMinutes: number;
         };
         status: {
             enabled: boolean;
             staleMinutes: number;
+            heartbeatMinutes: number;
         };
     };
     selfAssignmentEnabled: boolean;

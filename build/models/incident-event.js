@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.IncidentEventModule = void 0;
 const helpers_1 = require("../helpers");
 async function IncidentEventModule(mongoose) {
     const { Schema, Types } = mongoose;
