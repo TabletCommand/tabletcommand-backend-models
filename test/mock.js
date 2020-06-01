@@ -367,7 +367,13 @@ module.exports = function(dependencies) {
       name: "AA"
     },
     shareLocationPhone: false,
-    shareLocationTablet: true
+    shareLocationTablet: true,
+    notificationSounds: [
+      {
+        sound: "testSound.caf",
+        soundType: "default",
+      }
+    ],
   };
 
   const userRegistration = {

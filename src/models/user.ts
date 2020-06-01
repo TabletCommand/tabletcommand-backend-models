@@ -27,7 +27,16 @@ export async function UserModule(mongoose: MongooseModule) {
   }, {
     _id: false,
   });
-
+  const soundSchema = createSchema(Schema, {
+        sound: {
+            type: String,
+        },
+        soundType: {
+            type: String,
+        },
+    }, {
+        _id: false,
+  });
   const Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
   const modelSchema = createSchema(Schema, {
     nick: {
@@ -160,6 +169,10 @@ export async function UserModule(mongoose: MongooseModule) {
     shareLocationTablet: {
       type: Boolean,
       default: true,
+    },
+    notificationSounds: {
+      type: [soundSchema],
+      default: []
     },
   }, {
     collection: "sys_user",

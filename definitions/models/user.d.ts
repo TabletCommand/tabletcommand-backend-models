@@ -40,6 +40,10 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     tokenExpireDate: number;
     shareLocationPhone: boolean;
     shareLocationTablet: boolean;
+    notificationSounds: {
+        sound: string;
+        soundType: string;
+    }[];
 }, {}> & {
     __methods?: unknown;
 }>;
