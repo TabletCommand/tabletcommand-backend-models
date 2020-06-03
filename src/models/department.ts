@@ -222,6 +222,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         heartbeatMinutes: {
           type: Number,
           default: 5
+        },
+        ackMinutes: {
+          type: Number,
+          default: 5
         }
       }
     },

@@ -202,6 +202,10 @@ async function DepartmentModule(mongoose) {
                 heartbeatMinutes: {
                     type: Number,
                     default: 5
+                },
+                ackMinutes: {
+                    type: Number,
+                    default: 5
                 }
             }
         },

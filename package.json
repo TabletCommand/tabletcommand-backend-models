@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "4.10.4",
+  "version": "4.10.5",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js",
@@ -29,7 +29,6 @@
     "@types/lodash": "^4.14.152",
     "@types/mocha": "^7.0.2",
     "@types/mongoose": "^5.7.21",
-    "@types/redis": "^2.8.21",
     "@types/uuid": "^8.0.0",
     "chai": "^4.2.0",
     "del": "^5.1.0",
