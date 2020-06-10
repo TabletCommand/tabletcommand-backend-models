@@ -223,9 +223,9 @@ export async function DepartmentModule(mongoose: MongooseModule) {
           type: Number,
           default: 5
         },
-        ackMinutes: {
+        ackUnitsCount: {
           type: Number,
-          default: 5
+          default: 3
         }
       }
     },

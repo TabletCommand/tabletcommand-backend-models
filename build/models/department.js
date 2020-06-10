@@ -203,9 +203,9 @@ async function DepartmentModule(mongoose) {
                     type: Number,
                     default: 5
                 },
-                ackMinutes: {
+                ackUnitsCount: {
                     type: Number,
-                    default: 5
+                    default: 3
                 }
             }
         },

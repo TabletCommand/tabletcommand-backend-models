@@ -31,7 +31,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             enabled: boolean;
             staleMinutes: number;
             heartbeatMinutes: number;
-            ackMinutes: number;
+            ackUnitsCount: number;
         };
     };
     selfAssignmentEnabled: boolean;
