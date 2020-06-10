@@ -16,6 +16,22 @@ module.exports = function(dependencies) {
     }
   };
 
+  const mailLog = {
+    mailId: "1234",
+    event: "delivery",
+    timestamp: 1553199671,
+    recipient: "test@tabletcommand.com",
+    recipientDomain: "tabletcommand.com",
+    tags: ["create account"],
+    deliveryStatus: {},
+    message: {},
+    flags: {},
+    envelope: {},
+    logLevel: "info",
+    reason: "Message Sent",
+    severity: "Mild"
+  };
+
   const cadIncident = {
     _id: mongoose.Types.ObjectId(),
     uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d679",
@@ -435,6 +451,7 @@ module.exports = function(dependencies) {
 
   return {
     actionLog,
+    mailLog,
     cadIncident,
     cadStatus,
     cadStatusMap,
