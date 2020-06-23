@@ -11,6 +11,7 @@ async function wireModels(mongoose: MongooseModule) {
 
   return {
     ActionLog: await getModel(import("./models/action-log")),
+    Assignment: await getModel(import("./models/assignment")),
     BeaconLog: await getModel(import("./models/beacon-log")),
     MailLog: await getModel(import("./models/mail-log")),
     CADIncident: await getModel(import("./models/cad-incident")),
@@ -34,6 +35,7 @@ async function wireModels(mongoose: MongooseModule) {
 }
 
 export { ActionLog, ActionLogModel } from "./models/action-log";
+export { Assignment, AssignmentModel } from "./models/assignment";
 export { BeaconLog, BeaconLogModel} from "./models/beacon-log";
 export { MailLog, MailLogModel} from "./models/mail-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";

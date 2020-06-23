@@ -16,6 +16,16 @@ module.exports = function(dependencies) {
     }
   };
 
+  const assignment = {
+    position: 1,
+    active: true,
+    name: "Vertical Test",
+    userId: "1234",
+    departmentId: "4321",
+    description: "testing",
+    isMandatory: false,
+  };
+
   const mailLog = {
     mailId: "1234",
     event: "delivery",
@@ -451,6 +461,7 @@ module.exports = function(dependencies) {
 
   return {
     actionLog,
+    assignment,
     mailLog,
     cadIncident,
     cadStatus,
