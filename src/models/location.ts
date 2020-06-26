@@ -5,6 +5,7 @@ import {
   createSchemaDefinition,
   DocumentFromSchemaDefinition,
   createModel,
+  retrieveCurrentUnixTime,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -50,9 +51,7 @@ export async function LocationModule(mongoose: MongooseModule) {
     },
     modified_unix_date: {
       type: Number,
-      required: true,
-      default: 0,
-      min: 1,
+      default: retrieveCurrentUnixTime,
     },
     version: {
       type: Number,

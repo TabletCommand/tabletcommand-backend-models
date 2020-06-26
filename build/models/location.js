@@ -41,9 +41,7 @@ async function LocationModule(mongoose) {
         },
         modified_unix_date: {
             type: Number,
-            required: true,
-            default: 0,
-            min: 1,
+            default: helpers_1.retrieveCurrentUnixTime,
         },
         version: {
             type: Number,
