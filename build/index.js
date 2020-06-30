@@ -18,6 +18,7 @@ async function wireModels(mongoose) {
     }
     return {
         ActionLog: await getModel(Promise.resolve().then(() => require("./models/action-log"))),
+        Agency: await getModel(Promise.resolve().then(() => require("./models/agency"))),
         Assignment: await getModel(Promise.resolve().then(() => require("./models/assignment"))),
         BeaconLog: await getModel(Promise.resolve().then(() => require("./models/beacon-log"))),
         MailLog: await getModel(Promise.resolve().then(() => require("./models/mail-log"))),

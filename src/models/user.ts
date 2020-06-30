@@ -74,7 +74,10 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Agency,
       default: null,
     },
-
+    agencyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Agency"
+    },
     active: {
       type: Boolean,
       default: false,
