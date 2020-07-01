@@ -251,6 +251,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        beansAIEnabled: {
+            type: Boolean,
+            default: false,
+        },
         // Other features
         pushEnabled: {
             type: Boolean,

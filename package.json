@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "4.10.9",
+  "version": "4.10.10",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js",
@@ -37,7 +37,7 @@
     "gulp-mocha": "^7.0.1",
     "gulp-shell": "^0.8.0",
     "gulp-tslint": "^8.1.4",
-    "mocha": "^7.2.0",
+    "mocha": "^8.0.1",
     "tslint": "^6.0.0",
     "typescript": "^3.9.3"
   }
