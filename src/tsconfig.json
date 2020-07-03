@@ -1,14 +1,14 @@
 {
-    "compilerOptions": {
-       "module": "commonjs",
-       "resolveJsonModule": true,
-       "moduleResolution": "node",
-       "target": "es2017",
-       "declaration": true,
-       "strict": true,
-       "outDir": "../build",
-       "declarationDir": "../definitions",
-       "declarationMap": true,
-       "sourceMap": true
-    }
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "../definitions",
+    "declarationMap": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "../build",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017",
+  }
 }

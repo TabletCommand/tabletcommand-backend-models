@@ -271,6 +271,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    fireMapperRefreshInterval: {
+      type: Number,
+      default: 15,
+    },
     beansAIEnabled: {
       type: Boolean,
       default: false,
