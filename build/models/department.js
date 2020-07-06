@@ -314,11 +314,11 @@ async function DepartmentModule(mongoose) {
             type: [Agency],
             default: [],
         },
-        agencyIds: {
-            type: [mongoose.Schema.Types.ObjectId],
-            ref: "Agency",
-            default: [],
-        },
+        agencyIds: [{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Agency",
+                default: []
+            }],
         // Signup
         signupKey: {
             type: String,

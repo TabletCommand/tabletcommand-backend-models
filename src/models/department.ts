@@ -339,11 +339,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [Agency],
       default: [],
     },
-    agencyIds: {
-      type: [mongoose.Schema.Types.ObjectId],
+    agencyIds: [{
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Agency",
-      default: [],
-    },
+      default: []
+    }],
 
     // Signup
     signupKey: {

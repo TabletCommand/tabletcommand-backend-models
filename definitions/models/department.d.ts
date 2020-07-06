@@ -104,10 +104,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                 validate: {};
             };
             schemaName: never;
-        }[];
+        };
         ref: never;
         default: unknown[];
-    };
+    }[];
     signupKey: string;
     signupDomains: string[];
     safetyPriorityKeywords: {
