@@ -21,6 +21,7 @@ export declare function IncidentEventModule(mongoose: MongooseModule): Promise<i
     userTime: number;
     uuid: string;
     opts: any;
+    archived: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -91,6 +91,10 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
       type: Object,
       default: {},
     },
+    archived: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "massive_incident_event",
   });
@@ -99,6 +103,6 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
   return createModel(mongoose, "IncidentEvent", modelSchema);
 }
 
-export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> {}
-export interface IncidentEventModel extends ModelTypeFromTypeSchemaFunction<IncidentEvent> {}
+export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> { }
+export interface IncidentEventModel extends ModelTypeFromTypeSchemaFunction<IncidentEvent> { }
 export default IncidentEventModule as ReplaceModelReturnType<typeof IncidentEventModule, IncidentEventModel>;

@@ -83,6 +83,10 @@ async function IncidentEventModule(mongoose) {
             type: Object,
             default: {},
         },
+        archived: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "massive_incident_event",
     });

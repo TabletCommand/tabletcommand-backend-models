@@ -111,6 +111,6 @@ export async function LocationModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Location", modelSchema);
 }
 
-export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> {}
-export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> {}
+export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> { }
+export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> { }
 export default LocationModule as ReplaceModelReturnType<typeof LocationModule, LocationModel>;

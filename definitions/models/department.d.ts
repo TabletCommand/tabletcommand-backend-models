@@ -46,6 +46,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     locationStaleMinutes: number;
     beaconEnabled: boolean;
     fireMapperEnabled: boolean;
+    fireMapperRefreshInterval: number;
     beansAIEnabled: boolean;
     pushEnabled: boolean;
     rtsEnabled: boolean;

@@ -251,6 +251,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        fireMapperRefreshInterval: {
+            type: Number,
+            default: 15,
+        },
         beansAIEnabled: {
             type: Boolean,
             default: false,
