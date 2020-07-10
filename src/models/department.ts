@@ -158,7 +158,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
-
     active: {
       type: Boolean,
       default: false,
@@ -340,6 +339,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [Agency],
       default: [],
     },
+    agencyIds: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Agency",
+      default: []
+    }],
 
     // Signup
     signupKey: {

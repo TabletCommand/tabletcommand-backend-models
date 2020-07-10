@@ -87,6 +87,27 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         personnelApiKey: string;
         agencyApiKey: string;
     }[];
+    agencyIds: {
+        type: {
+            prototype: {
+                auto: {};
+                checkRequired: {};
+                default: any;
+                get: {};
+                index: import("mongoose").Schema.Types.ObjectId;
+                required: {};
+                select: {};
+                set: {};
+                sparse: {};
+                text: {};
+                unique: {};
+                validate: {};
+            };
+            schemaName: never;
+        };
+        ref: never;
+        default: unknown[];
+    }[];
     signupKey: string;
     signupDomains: string[];
     safetyPriorityKeywords: {

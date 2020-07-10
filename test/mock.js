@@ -16,6 +16,17 @@ module.exports = function(dependencies) {
     }
   };
 
+  const agency = {
+    _id: mongoose.Types.ObjectId(),
+    departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
+    code: "TC",
+    name: "Tablet Command",
+    active: true,
+    administrators: [
+      new mongoose.Types.ObjectId()
+    ]
+  };
+
   const assignment = {
     position: 1,
     active: true,
@@ -213,6 +224,9 @@ module.exports = function(dependencies) {
         name: "CC"
       }
     ],
+    agencyIds: [
+      new mongoose.Types.ObjectId(agency._id)
+    ],
     signupKey: "A1B2",
     incidentTypes: [{
       name: "Type",
@@ -392,6 +406,7 @@ module.exports = function(dependencies) {
       code: "A",
       name: "AA"
     },
+    agencyId: new mongoose.Types.ObjectId(agency._id),
     shareLocationPhone: false,
     shareLocationTablet: true,
     notificationSounds: [
@@ -461,6 +476,7 @@ module.exports = function(dependencies) {
 
   return {
     actionLog,
+    agency,
     assignment,
     mailLog,
     cadIncident,

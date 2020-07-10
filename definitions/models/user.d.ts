@@ -15,6 +15,27 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         personnelApiKey: string;
         agencyApiKey: string;
     };
+    agencyId: {
+        type: {
+            prototype: {
+                auto: {};
+                checkRequired: {};
+                default: any;
+                get: {};
+                index: import("mongoose").Schema.Types.ObjectId;
+                required: {};
+                select: {};
+                set: {};
+                sparse: {};
+                text: {};
+                unique: {};
+                validate: {};
+            };
+            schemaName: never;
+        };
+        ref: never;
+        default: never;
+    };
     active: boolean;
     admin: boolean;
     superuser: boolean;
