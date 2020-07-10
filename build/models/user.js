@@ -66,7 +66,8 @@ async function UserModule(mongoose) {
         },
         agencyId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Agency"
+            ref: "Agency",
+            default: null,
         },
         active: {
             type: Boolean,

@@ -34,6 +34,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
             schemaName: never;
         };
         ref: never;
+        default: never;
     };
     active: boolean;
     admin: boolean;
