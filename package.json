@@ -1,18 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "version": "4.10.12",
-=======
-  "version": "5.0.0",
->>>>>>> agency model and split administrator permissions
-=======
-  "version": "5.0.1",
->>>>>>> alter array of agencids on department
-=======
   "version": "5.0.2",
->>>>>>> default null to agencyId on user
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js",
