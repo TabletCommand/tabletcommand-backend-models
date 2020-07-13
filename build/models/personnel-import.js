@@ -56,6 +56,11 @@ async function PersonnelImportModule(mongoose) {
             type: String,
             default: ""
         },
+        agencyId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Agency",
+            default: null,
+        },
     }, {
         collection: "massive_personnel_import",
     });

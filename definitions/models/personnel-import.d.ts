@@ -15,6 +15,27 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     active: boolean;
     agencyName: string;
     agencyCode: string;
+    agencyId: {
+        type: {
+            prototype: {
+                auto: {};
+                checkRequired: {};
+                default: any;
+                get: {};
+                index: import("mongoose").Schema.Types.ObjectId;
+                required: {};
+                select: {};
+                set: {};
+                sparse: {};
+                text: {};
+                unique: {};
+                validate: {};
+            };
+            schemaName: never;
+        };
+        ref: never;
+        default: never;
+    };
 }, {}> & {
     __methods?: unknown;
 }>;
