@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IncidentEventModule = void 0;
 const helpers_1 = require("../helpers");
+const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function IncidentEventModule(mongoose) {
     const { Schema, Types } = mongoose;
     const EventUser = helpers_1.createSchema(Schema, {
@@ -90,6 +91,15 @@ async function IncidentEventModule(mongoose) {
     }, {
         collection: "massive_incident_event",
     });
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+    });
+    modelSchema.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
+        return this._id.toString();
+    });
+    modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "IncidentEvent", modelSchema);
 }

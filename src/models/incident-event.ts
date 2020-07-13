@@ -1,12 +1,14 @@
 import {
-  createSchema,
   createModel,
-  MongooseModule,
-  retrieveCurrentUnixTime,
+  createSchema,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseDocument,
+  MongooseModule,
   ReplaceModelReturnType,
+  retrieveCurrentUnixTime,
 } from "../helpers";
+import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function IncidentEventModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -98,6 +100,17 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
   }, {
     collection: "massive_incident_event",
   });
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+    // tslint:disable-next-line: no-unsafe-any
+    return this._id.toString();
+  });
+
+  modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
   return createModel(mongoose, "IncidentEvent", modelSchema);
