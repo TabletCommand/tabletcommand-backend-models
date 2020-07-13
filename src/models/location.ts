@@ -1,16 +1,18 @@
 import * as _ from "lodash";
 import * as uuid from "uuid";
 import {
+  createModel,
   createSchema,
   createSchemaDefinition,
   DocumentFromSchemaDefinition,
-  createModel,
-  retrieveCurrentUnixTime,
-  MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseDocument,
+  MongooseModule,
   ReplaceModelReturnType,
+  retrieveCurrentUnixTime,
 } from "../helpers";
+import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function LocationModule(mongoose: MongooseModule) {
 
@@ -107,6 +109,17 @@ export async function LocationModule(mongoose: MongooseModule) {
     },
   });
 
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+    // tslint:disable-next-line: no-unsafe-any
+    return this._id.toString();
+  });
+
+  modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
   return createModel(mongoose, "Location", modelSchema);
 }

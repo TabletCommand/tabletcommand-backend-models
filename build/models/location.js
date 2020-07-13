@@ -4,6 +4,7 @@ exports.LocationModule = void 0;
 const _ = require("lodash");
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
+const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function LocationModule(mongoose) {
     const { Schema, Types } = mongoose;
     const modelSchemaDefinition = helpers_1.createSchemaDefinition({
@@ -90,6 +91,15 @@ async function LocationModule(mongoose) {
             return callback(dbItem);
         },
     });
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+    });
+    modelSchema.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
+        return this._id.toString();
+    });
+    modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "Location", modelSchema);
 }
