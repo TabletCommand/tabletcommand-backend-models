@@ -58,6 +58,10 @@ async function DeviceMappingModule(mongoose) {
             type: String,
             default: "",
         },
+        mapHidden: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "massive_device_mapping",
     });

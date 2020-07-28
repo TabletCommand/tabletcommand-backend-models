@@ -253,7 +253,8 @@ module.exports = function(dependencies) {
     modified_unix_date: 1432230780,
     active: false,
     remoteAddress: "1.2.3.4",
-    note: "don't feed after dark"
+    note: "don't feed after dark",
+    mapHidden: false
   };
 
   const incidentEvent = {

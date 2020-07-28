@@ -36,6 +36,7 @@ describe("DeviceMapping", function() {
       assert.equal(testItem.remoteAddress, sut.remoteAddress);
       assert.equal(testItem.note, sut.note);
       assert.isFalse(sut.active);
+      assert.isFalse(sut.mapHidden);
 
       return done();
     });

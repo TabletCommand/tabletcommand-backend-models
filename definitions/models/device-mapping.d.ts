@@ -16,6 +16,7 @@ export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<i
     remoteAddress: string;
     uuid: string;
     note: string;
+    mapHidden: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;
