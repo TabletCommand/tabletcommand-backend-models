@@ -37,7 +37,6 @@ export async function UserModule(mongoose: MongooseModule) {
   }, {
     _id: false,
   });
-  const Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
   const modelSchema = createSchema(Schema, {
     nick: {
       type: String,
@@ -69,10 +68,6 @@ export async function UserModule(mongoose: MongooseModule) {
     },
     when: {
       type: Date,
-    },
-    agency: {
-      type: Agency,
-      default: null,
     },
     agencyId: {
       type: mongoose.Schema.Types.ObjectId,

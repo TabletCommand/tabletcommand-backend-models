@@ -7,10 +7,11 @@ import {
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import CADStatusColorModule from "./schema/cad-status-color";
 
 export async function CADStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
-  const CADStatusColor = (await import("./schema/cad-status-color")).RateLimitModule(mongoose);
+  const CADStatusColor = CADStatusColorModule(mongoose);
 
   const StatusOptionValue = createSchema(Schema, {
     name: {
@@ -133,6 +134,6 @@ export async function CADStatusModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADStatus", modelSchema);
 }
 
-export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> {}
-export interface CADStatusModel extends ModelTypeFromTypeSchemaFunction<CADStatus> {}
+export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> { }
+export interface CADStatusModel extends ModelTypeFromTypeSchemaFunction<CADStatus> { }
 export default CADStatusModule as ReplaceModelReturnType<typeof CADStatusModule, CADStatusModel>;

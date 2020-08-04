@@ -8,13 +8,6 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     departmentId: string;
     modified_date: string;
     when: string;
-    agency: {
-        code: string;
-        name: string;
-        domain: string;
-        personnelApiKey: string;
-        agencyApiKey: string;
-    };
     agencyId: {
         type: {
             prototype: {

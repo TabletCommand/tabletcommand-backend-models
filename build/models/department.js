@@ -5,7 +5,6 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
     const SafetyPriorityKeyword = helpers_1.createSchema(Schema, {
         priority: {
             type: Number,
@@ -309,10 +308,6 @@ async function DepartmentModule(mongoose) {
         // Incident Type APN
         incidentTypes: {
             type: [IncidentType],
-        },
-        agencies: {
-            type: [Agency],
-            default: [],
         },
         agencyIds: [{
                 type: mongoose.Schema.Types.ObjectId,

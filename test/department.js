@@ -37,11 +37,6 @@ describe("Department", function() {
       assert.equal(sut.rtsChannelPrefix, testItem.rtsChannelPrefix);
       assert.equal(sut.rtsAuthKey, testItem.rtsAuthKey);
       assert.equal(sut.signupKey, testItem.signupKey);
-      assert.equal(sut.agencies.length, 3);
-      assert.equal(sut.agencies[0].name, testItem.agencies[0].name);
-      assert.equal(sut.agencies[0].code, testItem.agencies[0].code);
-      assert.equal(sut.agencies[0].personnelApiKey, testItem.agencies[0].personnelApiKey);
-      assert.equal(sut.agencies[0].agencyApiKey, testItem.agencies[0].agencyApiKey);
       assert.equal(sut.incidentTypes.length, 1);
       assert.equal(sut.agencyIds.length, 1);
       assert.equal(sut.agencyIds[0], testItem.agencyIds[0]);

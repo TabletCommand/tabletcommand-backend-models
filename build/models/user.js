@@ -27,7 +27,6 @@ async function UserModule(mongoose) {
     }, {
         _id: false,
     });
-    const Agency = (await Promise.resolve().then(() => require("./schema/cad-agency"))).CADAgency(mongoose);
     const modelSchema = helpers_1.createSchema(Schema, {
         nick: {
             type: String,
@@ -59,10 +58,6 @@ async function UserModule(mongoose) {
         },
         when: {
             type: Date,
-        },
-        agency: {
-            type: Agency,
-            default: null,
         },
         agencyId: {
             type: mongoose.Schema.Types.ObjectId,

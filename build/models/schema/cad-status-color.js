@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RateLimitModule = void 0;
 const helpers_1 = require("../../helpers");
-function RateLimitModule(mongoose) {
+function CADStatusColorModule(mongoose) {
     const { Schema } = mongoose;
     const CADStatusColor = helpers_1.createSchema(Schema, {
         background: {
@@ -18,5 +17,5 @@ function RateLimitModule(mongoose) {
     });
     return CADStatusColor;
 }
-exports.RateLimitModule = RateLimitModule;
+exports.default = CADStatusColorModule;
 //# sourceMappingURL=cad-status-color.js.map

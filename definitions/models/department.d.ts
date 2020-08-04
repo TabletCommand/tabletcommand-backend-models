@@ -80,13 +80,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         name: string;
         value: string;
     }[];
-    agencies: {
-        code: string;
-        name: string;
-        domain: string;
-        personnelApiKey: string;
-        agencyApiKey: string;
-    }[];
     agencyIds: {
         type: {
             prototype: {

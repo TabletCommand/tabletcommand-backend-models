@@ -3,7 +3,7 @@ import {
   createSchema,
 } from "../../helpers";
 
-export function RateLimitModule(mongoose: MongooseModule) {
+export default function CADStatusColorModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const CADStatusColor = createSchema(Schema, {

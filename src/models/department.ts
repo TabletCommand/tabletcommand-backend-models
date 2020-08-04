@@ -14,9 +14,6 @@ import {
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
-  const Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
-
-
   const SafetyPriorityKeyword = createSchema(Schema, {
     priority: {
       type: Number,
@@ -335,10 +332,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [IncidentType],
     },
 
-    agencies: {
-      type: [Agency],
-      default: [],
-    },
     agencyIds: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Agency",

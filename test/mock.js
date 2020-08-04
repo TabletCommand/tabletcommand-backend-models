@@ -214,23 +214,6 @@ module.exports = function(dependencies) {
     rtsEnabled: true,
     rtsChannelPrefix: "CH_TEST",
     rtsAuthKey: "CH_AUTH_KEY",
-    agencies: [
-      //
-      {
-        code: "A",
-        name: "AA",
-        domain: "",
-        personnelApiKey: "4321",
-        agencyApiKey: "4321"
-      },
-      {
-        code: "B",
-        name: "BB"
-      }, {
-        code: "C",
-        name: "CC"
-      }
-    ],
     agencyIds: [
       new mongoose.Types.ObjectId(agency._id)
     ],
@@ -413,10 +396,6 @@ module.exports = function(dependencies) {
     mapId: "TEST",
     departmentId: "d123",
     isPro: true,
-    agency: {
-      code: "A",
-      name: "AA"
-    },
     agencyId: new mongoose.Types.ObjectId(agency._id),
     shareLocationPhone: false,
     shareLocationTablet: true,

@@ -37,7 +37,6 @@ describe("User", function() {
       assert.isFalse(sut.admin);
       assert.isFalse(sut.superuser);
       assert.isTrue(sut.isPro);
-      assert.equal(sut.agency.name, testItem.agency.name);
       assert.isFalse(sut.shareLocationPhone);
       assert.isTrue(sut.shareLocationTablet);
       assert.equal(item.uuid, sut.uuid);
