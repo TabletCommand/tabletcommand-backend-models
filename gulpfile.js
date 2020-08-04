@@ -48,4 +48,6 @@ gulp.task("test", gulp.series("tslint", function testTask() {
 
 gulp.task("watch", gulp.series("clean", shell.task("tsc -p .\\/src --watch")));
 
+gulp.task("build", gulp.series("ts", "tslint"));
+
 gulp.task("default", gulp.series("test"));
