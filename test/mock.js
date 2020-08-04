@@ -80,6 +80,7 @@ module.exports = function(dependencies) {
     CallerNumber: "0192-122-299",
     PriorIncidentChanged: true,
     PriorIncident: [
+      //
       {
         IncidentNumber: "19-042678",
         IncidentDateTime: "2019-03-01T01:56:54-08:00",
@@ -88,6 +89,7 @@ module.exports = function(dependencies) {
         Suite: "83",
         Jurisdiction: "San Bernardino County",
         Comment: [
+          //
           {
             Comment: "[1] Call Appended to Incident number 19-042593",
             CommentSource: "G8724",
@@ -99,6 +101,7 @@ module.exports = function(dependencies) {
     Latitude: "34.788611",
     Longitude: "-114.549444",
     Comment: [
+      //
       {
         Comment: "(1) VALLEY VIEW ICU TO SUNRISE ICU",
         CommentSource: "H6577",
@@ -106,6 +109,7 @@ module.exports = function(dependencies) {
       }
     ],
     units: [
+      //
       {
         UnitDispatchNumber: 4067677,
         UnitID: "MA31",
@@ -132,9 +136,11 @@ module.exports = function(dependencies) {
     name: "In Service",
     normalized: "inService",
     options: [
+      //
       {
         cadKey: "oosCode",
         cadValues: [
+          //
           {
             favorite: false,
             name: "ADM - Admin",
@@ -161,6 +167,7 @@ module.exports = function(dependencies) {
     "fromStatusId": 0,
     "modifiedDate": 1544143059.729,
     "toStatusIds": [
+      //
       {
         "statusId": 1,
         "userEnabled": true
@@ -233,6 +240,7 @@ module.exports = function(dependencies) {
       value: "type"
     }],
     safetyPriorityKeywords: [
+      //
       {
         priority: 0,
         keywords: [],
@@ -327,6 +335,7 @@ module.exports = function(dependencies) {
       uuid: "00FCA57A-6F1B-4F74-84BD-E7A8B8BFF8FB"
     },
     history: [
+      //
       {
         entity_id: 9207,
         entity_type: 14,
@@ -346,6 +355,7 @@ module.exports = function(dependencies) {
     start_time: "2019-04-08T00:05:41+0000",
     start_unix_time: 1554681941,
     units: [
+      //
       {
         UnitID: "M12",
         active: 1,
@@ -411,11 +421,13 @@ module.exports = function(dependencies) {
     shareLocationPhone: false,
     shareLocationTablet: true,
     notificationSounds: [
+      //
       {
         sound: "testSound.caf",
         soundType: "default",
       }
     ],
+    offlineMapsEnabled: true,
   };
 
   const userRegistration = {
@@ -439,19 +451,22 @@ module.exports = function(dependencies) {
   const userDevice = {
     userId: "1234",
     departmentID: "4321",
-    devices: [{
-      token: "de2687382a9df6a1165616aac",
-      env: "testmock",
-      ver: "TC Mobile v1.0 b23",
-      ua: "TCMobile/1.0 (iPhone; iOS 10.1.1; Scale/3.00)",
-      time: 1438627429.956,
-      drift: 1438627429.956,
-      bundleIdentifier: "com.testtesttest.TCMobile",
-      silentEnabled: true,
-      richEnabled: true,
-      session: '1234321',
-      active: true
-    }],
+    devices: [
+      //
+      {
+        token: "de2687382a9df6a1165616aac",
+        env: "testmock",
+        ver: "TC Mobile v1.0 b23",
+        ua: "TCMobile/1.0 (iPhone; iOS 10.1.1; Scale/3.00)",
+        time: 1438627429.956,
+        drift: 1438627429.956,
+        bundleIdentifier: "com.testtesttest.TCMobile",
+        silentEnabled: true,
+        richEnabled: true,
+        session: '1234321',
+        active: true
+      }
+    ],
     notificationCount: 12,
     notificationUnits: ["M10", "B1"],
     notificationIncidentTypes: ["cliff-rescue", "test"],

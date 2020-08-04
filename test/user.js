@@ -45,6 +45,7 @@ describe("User", function() {
       assert.isArray(sut.notificationSounds, true);
       assert.equal(sut.notificationSounds[0].sound, testItem.notificationSounds[0].sound);
       assert.equal(sut.notificationSounds[0].soundType, testItem.notificationSounds[0].soundType);
+      assert.isTrue(sut.offlineMapsEnabled);
       return done();
     });
   });

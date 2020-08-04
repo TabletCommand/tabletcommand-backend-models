@@ -164,6 +164,10 @@ async function UserModule(mongoose) {
             type: [soundSchema],
             default: []
         },
+        offlineMapsEnabled: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "sys_user",
     });

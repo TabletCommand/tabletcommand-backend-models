@@ -28,14 +28,14 @@ export async function UserModule(mongoose: MongooseModule) {
     _id: false,
   });
   const soundSchema = createSchema(Schema, {
-        sound: {
-            type: String,
-        },
-        soundType: {
-            type: String,
-        },
-    }, {
-        _id: false,
+    sound: {
+      type: String,
+    },
+    soundType: {
+      type: String,
+    },
+  }, {
+    _id: false,
   });
   const Agency = (await import("./schema/cad-agency")).CADAgency(mongoose);
   const modelSchema = createSchema(Schema, {
@@ -177,6 +177,11 @@ export async function UserModule(mongoose: MongooseModule) {
     notificationSounds: {
       type: [soundSchema],
       default: []
+    },
+
+    offlineMapsEnabled: {
+      type: Boolean,
+      default: false,
     },
   }, {
     collection: "sys_user",
