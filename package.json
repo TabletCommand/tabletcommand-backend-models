@@ -4,7 +4,8 @@
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js",
-    "build": "./node_modules/gulp/bin/gulp.js build"
+    "build": "./node_modules/gulp/bin/gulp.js build",
+    "lint": "eslint src"
   },
   "author": "Marius Ursache <marius@tabletcommand.com>",
   "license": "MIT",
@@ -30,15 +31,16 @@
     "@types/mocha": "^8.0.0",
     "@types/mongoose": "^5.7.32",
     "@types/uuid": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
     "chai": "^4.2.0",
     "del": "^5.1.0",
+    "eslint": "^7.6.0",
     "eyes": "^0.1.8",
     "gulp": "^4.0.2",
     "gulp-mocha": "^7.0.2",
     "gulp-shell": "^0.8.0",
-    "gulp-tslint": "^8.1.4",
     "mocha": "^8.0.1",
-    "tslint": "^6.1.2",
     "typescript": "^3.9.7"
   }
 }

@@ -1,19 +1,27 @@
 module.exports = {
-  "extends": "standard",
-  "plugins": [
-    "standard",
-    "security",
-    "promise"
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
-  "env": {
-    "browser": true,
+  plugins: [
+    "@typescript-eslint"
+  ],
+  env: {
     "node": true,
     "mocha": true
   },
-  "rules": {
-    "quotes": [2, "double"],
-    "semi": [2, "always"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./src/tsconfig.json"
+  },
+  rules: {
+    quotes: [2, "double"],
+    semi: [2, "always"],
     "no-unused-vars": [1],
-    "space-before-function-paren": [0]
+    "space-before-function-paren": [0],
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/require-await": 0
   }
 };

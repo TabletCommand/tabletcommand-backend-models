@@ -89,9 +89,8 @@ export async function LocationModule(mongoose: MongooseModule) {
     collection: "massive_location",
   }, {
     propagateToObject<T>(this: Location, dbItem: Location, callback: (doc: Location) => T) {
-      const that = this; // Reassign this to silence standard/no-callback-literal
       if (!_.isObject(dbItem)) {
-        return callback(that);
+        return callback(this);
       }
 
       // We keep the same value for _id, uuid, departmentId

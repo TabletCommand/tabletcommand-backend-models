@@ -9,11 +9,8 @@ import {
   ModelTypeFromTypeSchemaFunction,
 } from "../helpers";
 import * as uuid from "uuid";
-import { Model } from "mongoose";
 
 export async function SessionModule(mongoose: MongooseModule) {
-  "use strict";
-
   const Schema = mongoose.Schema;
 
   function requiredButAllowEmptyString(this: { myField: unknown }) {
@@ -90,6 +87,6 @@ export async function SessionModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Session", modelSchema);
 }
 
-export interface Session extends ItemTypeFromTypeSchemaFunction<typeof SessionModule> {}
-export interface SessionModel extends ModelTypeFromTypeSchemaFunction<Session> {}
+export interface Session extends ItemTypeFromTypeSchemaFunction<typeof SessionModule> { }
+export interface SessionModel extends ModelTypeFromTypeSchemaFunction<Session> { }
 export default SessionModule as ReplaceModelReturnType<typeof SessionModule, SessionModel>;

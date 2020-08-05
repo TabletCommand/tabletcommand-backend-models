@@ -111,9 +111,8 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     collection: "massive_cad_vehicle_status",
   }, {
     propagateToObject<T>(dbItem: CADVehicleStatus, callback: (o: CADVehicleStatus) => T): T {
-      const that = this; // Reassign this to silence standard/no-callback-literal
       if (!_.isObject(dbItem)) {
-        return callback(that);
+        return callback(this);
       }
 
       // We keep the same value for _id, uuid, departmentId
@@ -137,6 +136,6 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADVehicleStatus", modelSchema);
 }
 
-export interface CADVehicleStatus extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> {}
-export interface CADVehicleStatusModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatus> {}
+export interface CADVehicleStatus extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> { }
+export interface CADVehicleStatusModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatus> { }
 export default CADVehicleStatusModule as ReplaceModelReturnType<typeof CADVehicleStatusModule, CADVehicleStatusModel>;
