@@ -15,7 +15,6 @@ import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function CADIncidentModule(mongoose: MongooseModule) {
-
   const { Schema, Types } = mongoose;
 
   const toJSONOpts = {

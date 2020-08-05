@@ -1,1 +1,1 @@
-{"version":3,"file":"cad-status-color.d.ts","sourceRoot":"","sources":["../../../src/models/schema/cad-status-color.ts"],"names":[],"mappings":";AAAA,OAAO,EACL,cAAc,EAEf,MAAM,eAAe,CAAC;AAEvB,MAAM,CAAC,OAAO,UAAU,oBAAoB,CAAC,QAAQ,EAAE,cAAc;;;;;;EAiBpE"}
+{"version":3,"file":"cad-status-color.d.ts","sourceRoot":"","sources":["../../../src/models/schema/cad-status-color.ts"],"names":[],"mappings":";AAAA,OAAO,EACL,cAAc,EAEf,MAAM,eAAe,CAAC;AAEvB,MAAM,CAAC,OAAO,UAAU,oBAAoB,CAAC,QAAQ,EAAE,cAAc;;;;;;;;;;;;EAiBpE"}

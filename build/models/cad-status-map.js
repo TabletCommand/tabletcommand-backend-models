@@ -21,12 +21,10 @@ async function CADStatusMapModule(mongoose) {
     // Using hook instead of default values,
     // so we keep the db value if no value was sent by the API/CAD
     ToStatusIdSchema.pre("save", function (next) {
-        const self = this;
-        if (_.isUndefined(self.userEnabled) || _.isNull(self.userEnabled)) {
-            self.userEnabled = true;
+        if (_.isUndefined(this.userEnabled) || _.isNull(this.userEnabled)) {
+            this.userEnabled = true;
         }
-        // tslint:disable-next-line: no-unsafe-any
-        return next();
+        next();
     });
     // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
     const modelSchema = helpers_1.createSchema(Schema, {

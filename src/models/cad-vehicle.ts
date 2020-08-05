@@ -73,6 +73,6 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADVehicle", modelSchema);
 }
 
-export interface CADVehicle extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleModule> {}
-export interface CADVehicleModel extends ModelTypeFromTypeSchemaFunction<CADVehicle> {}
+export interface CADVehicle extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleModule> { }
+export interface CADVehicleModel extends ModelTypeFromTypeSchemaFunction<CADVehicle> { }
 export default CADVehicleModule as ReplaceModelReturnType<typeof CADVehicleModule, CADVehicleModel>;

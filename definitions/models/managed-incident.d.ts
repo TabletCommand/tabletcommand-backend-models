@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
@@ -31,18 +31,42 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
     CallerNumber: string;
     CommandChannel: string;
     extended: boolean;
-    notes: {
-        message: string;
-        entity_type: number;
-        time: number;
-        entity_id: number;
-    }[];
-    history: {
-        message: string;
-        entity_type: number;
-        time: number;
-        entity_id: number;
-    }[];
+    notes: import("../helpers").MongooseInterface<{
+        message: {
+            type: StringConstructor;
+            default: string;
+        };
+        entity_type: {
+            type: NumberConstructor;
+            default: number;
+        };
+        time: {
+            type: NumberConstructor;
+            default: number;
+        };
+        entity_id: {
+            type: NumberConstructor;
+            default: number;
+        };
+    }>[];
+    history: import("../helpers").MongooseInterface<{
+        message: {
+            type: StringConstructor;
+            default: string;
+        };
+        entity_type: {
+            type: NumberConstructor;
+            default: number;
+        };
+        time: {
+            type: NumberConstructor;
+            default: number;
+        };
+        entity_id: {
+            type: NumberConstructor;
+            default: number;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;

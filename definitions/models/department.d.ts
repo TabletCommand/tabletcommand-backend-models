@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     uuid: string;
     department: string;
@@ -53,61 +53,95 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     rtsChannelPrefix: string;
     rtsAuthKey: string;
     esriTokenDateExpiry: number;
-    esriToken: {
-        access_token: string;
-        refresh_token: string;
-        username: string;
-        ssl: boolean;
-        expires_in: number;
-    };
-    error: {
-        code: number;
-        error: string;
-        error_description: string;
-        message: string;
-    };
-    esriAuth: {
-        username: string;
-        encrypted: {
-            iv: string;
-            encryptedData: string;
+    esriToken: import("../helpers").MongooseInterface<{
+        access_token: {
+            type: StringConstructor;
+            default: string;
         };
-    };
+        refresh_token: {
+            type: StringConstructor;
+            default: string;
+        };
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        ssl: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        expires_in: {
+            type: NumberConstructor;
+            default: number;
+        };
+    }>;
+    error: import("../helpers").MongooseInterface<{
+        code: {
+            type: NumberConstructor;
+            default: number;
+        };
+        error: {
+            type: StringConstructor;
+            default: string;
+        };
+        error_description: {
+            type: StringConstructor;
+            default: string;
+        };
+        message: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
+    esriAuth: import("../helpers").MongooseInterface<{
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        encrypted: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    iv: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    encryptedData: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: null;
+        };
+    }>;
     esriGeoJSONFilename: string;
     customWebUrl: string;
     customWebName: string;
-    incidentTypes: {
-        name: string;
-        value: string;
-    }[];
-    agencyIds: {
-        type: {
-            prototype: {
-                auto: {};
-                checkRequired: {};
-                default: any;
-                get: {};
-                index: import("mongoose").Schema.Types.ObjectId;
-                required: {};
-                select: {};
-                set: {};
-                sparse: {};
-                text: {};
-                unique: {};
-                validate: {};
-            };
-            schemaName: never;
+    incidentTypes: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
         };
-        ref: never;
-        default: unknown[];
-    }[];
+        value: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
+    agencyIds: never;
     signupKey: string;
     signupDomains: string[];
-    safetyPriorityKeywords: {
-        priority: number;
-        keywords: string[];
-        hexColor: string;
-    }[];
+    safetyPriorityKeywords: import("../helpers").MongooseInterface<{
+        priority: {
+            type: NumberConstructor;
+        };
+        keywords: {
+            type: StringConstructor[];
+        };
+        hexColor: {
+            type: StringConstructor;
+        };
+    }>[];
     shareLocationPhones: boolean;
     shareLocationTablets: boolean;
 }, {}> & {

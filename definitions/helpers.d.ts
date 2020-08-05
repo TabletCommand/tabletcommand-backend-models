@@ -1,7 +1,7 @@
 import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
 import { ObjectID, ObjectId } from "bson";
 export declare type MongooseModule = typeof import("mongoose");
-export declare type MongooseModel<T extends Document, QueryHelpers = {}> = Model<T, QueryHelpers>;
+export declare type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
 export declare type MongooseSchema<T = any> = Schema<T>;
 declare type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 export declare type MongooseDocument = Omit<Document, "_id"> & {
@@ -36,10 +36,10 @@ export declare type MongooseProperty<T extends SchemaDefinition[string]> = T ext
     _interface: infer P;
 } ? P : T extends {
     type: MongooseModule["Types"]["ObjectId"];
-} ? ObjectId : T extends MongooseModule["Types"]["ObjectId"] ? ObjectId : T extends object ? {
+} ? ObjectId : T extends MongooseModule["Types"]["ObjectId"] ? ObjectId : T extends Record<string, unknown> ? {
     [P in keyof T]: MongooseProperty<T[P]>;
 } : never;
-export declare type MongooseInterface<T extends SchemaDefinition> = {} & {
+export declare type MongooseInterface<T extends SchemaDefinition> = Record<string, unknown> & {
     [P in keyof T]: MongooseProperty<T[P]>;
 };
 export declare type TypedSchema<T extends SchemaDefinition> = Schema & {
@@ -56,7 +56,7 @@ export declare function createSchema<T extends SchemaDefinition, TMethods>(schem
 export declare function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & {
     _interface: T;
     _methods?: TMethods;
-}, collection?: string, skipInit?: boolean): Model<Document & T & TMethods, {}> & {
+}): Model<Document & T & TMethods, {}> & {
     __methods?: TMethods | undefined;
 };
 export declare type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & {
@@ -96,10 +96,10 @@ interface Comparison<T> {
 }
 declare type PropConditions<T> = T extends boolean ? Comparison<T> : T extends number ? Comparison<T> & {
     $mod?: [number, number];
-} : T extends string ? Comparison<T> & ({} | {
+} : T extends string ? Comparison<T> & (Record<string, unknown> | {
     $regex: string;
     $options: string;
-}) & ({} | {
+}) & (Record<string, unknown> | {
     $text: {
         $search: string;
         $language?: string;

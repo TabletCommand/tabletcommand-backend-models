@@ -100,9 +100,8 @@ async function CADVehicleStatusModule(mongoose) {
         collection: "massive_cad_vehicle_status",
     }, {
         propagateToObject(dbItem, callback) {
-            const that = this; // Reassign this to silence standard/no-callback-literal
             if (!_.isObject(dbItem)) {
-                return callback(that);
+                return callback(this);
             }
             // We keep the same value for _id, uuid, departmentId
             dbItem.vehicleId = this.vehicleId;

@@ -75,6 +75,6 @@ export async function IncidentTakeoverModule(mongoose: MongooseModule) {
   return createModel(mongoose, "IncidentTakeover", modelSchema);
 }
 
-export interface IncidentTakeover extends ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> {}
-export interface IncidentTakeoverModel extends ModelTypeFromTypeSchemaFunction<IncidentTakeover> {}
+export interface IncidentTakeover extends ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> { }
+export interface IncidentTakeoverModel extends ModelTypeFromTypeSchemaFunction<IncidentTakeover> { }
 export default IncidentTakeoverModule as ReplaceModelReturnType<typeof IncidentTakeoverModule, IncidentTakeoverModel>;

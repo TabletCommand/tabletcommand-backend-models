@@ -32,6 +32,6 @@ export async function RateLimitModule(mongoose: MongooseModule) {
   return createModel(mongoose, "RateLimit", modelSchema);
 }
 
-export interface RateLimit extends ItemTypeFromTypeSchemaFunction<typeof RateLimitModule> {}
-export interface RateLimitModel extends ModelTypeFromTypeSchemaFunction<RateLimit> {}
+export interface RateLimit extends ItemTypeFromTypeSchemaFunction<typeof RateLimitModule> { }
+export interface RateLimitModel extends ModelTypeFromTypeSchemaFunction<RateLimit> { }
 export default RateLimitModule as ReplaceModelReturnType<typeof RateLimitModule, RateLimitModel>;

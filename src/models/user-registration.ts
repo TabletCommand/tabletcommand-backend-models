@@ -85,6 +85,6 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
   return createModel(mongoose, "UserRegistration", modelSchema);
 }
 
-export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> {}
-export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> {}
+export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> { }
+export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> { }
 export default UserRegistrationModule as ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;

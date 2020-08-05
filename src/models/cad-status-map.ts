@@ -10,7 +10,6 @@ import {
 } from "../helpers";
 
 export async function CADStatusMapModule(mongoose: MongooseModule) {
-
   const Schema = mongoose.Schema;
 
   const ToStatusIdSchema = createSchema(Schema, {

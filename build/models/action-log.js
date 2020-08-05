@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ActionLogModule = void 0;
 const helpers_1 = require("../helpers");
 async function ActionLogModule(mongoose) {
-    "use strict";
     const { Schema, Types } = mongoose;
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {

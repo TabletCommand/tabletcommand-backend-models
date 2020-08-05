@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     IncidentNumber: string;
@@ -11,12 +11,24 @@ export declare function IncidentEventModule(mongoose: MongooseModule): Promise<i
         latitude: number;
     };
     type: string;
-    user: {
-        username: string;
-        email: string;
-        radioName: string;
-        userId: string;
-    };
+    user: import("../helpers").MongooseInterface<{
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        email: {
+            type: StringConstructor;
+            default: string;
+        };
+        radioName: {
+            type: StringConstructor;
+            default: string;
+        };
+        userId: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
     serverTime: number;
     userTime: number;
     uuid: string;

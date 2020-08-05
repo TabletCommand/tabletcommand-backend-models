@@ -4,7 +4,7 @@ import { ObjectID, ObjectId } from "bson";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
-// tslint:disable-next-line: no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type MongooseSchema<T = any> = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
@@ -12,18 +12,18 @@ export type MongooseDocument = Omit<Document, "_id"> & {
   _id: ObjectID,
 };
 export type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
-// tslint:disable-next-line: no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never;
 export type ModelItemType<T extends Model<Document>> = T extends Model<infer U> ? U : never;
 export type SchemaItemType<T extends { _interface: unknown }> = T extends { _interface: infer U } ? U : never;
 
-// tslint:disable-next-line: no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ReplaceModelReturnType<T extends (...a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> =
   (...a: Parameters<T>) => Promise<TNewReturnType>;
 
-// tslint:disable-next-line: no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ItemTypeFromTypeSchemaFunction<T extends (...a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
-// tslint:disable-next-line: no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ModelTypeFromTypeSchemaFunction<TItemType extends Document> = Model<TItemType>;
 
 export type MongooseProperty<T extends SchemaDefinition[string]> =
@@ -46,7 +46,7 @@ export type MongooseInterface<T extends SchemaDefinition> = Record<string, unkno
 };
 
 export type TypedSchema<T extends SchemaDefinition> = Schema & { _interface: MongooseInterface<T> };
-// tslint:disable-next-line: no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TypedDocument<T extends TypedSchema<any>> = Document & (
   T extends { _interface: infer U } ? U : never
 );

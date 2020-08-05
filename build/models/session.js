@@ -4,7 +4,6 @@ exports.SessionModule = void 0;
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function SessionModule(mongoose) {
-    "use strict";
     const Schema = mongoose.Schema;
     function requiredButAllowEmptyString() {
         // Workaround to set required, and allow empty id

@@ -78,6 +78,6 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
   return createModel(mongoose, "PersonnelImport", modelSchema);
 }
 
-export interface PersonnelImport extends ItemTypeFromTypeSchemaFunction<typeof PersonnelImportModule> {}
-export interface PersonnelImportModel extends ModelTypeFromTypeSchemaFunction<PersonnelImport> {}
+export interface PersonnelImport extends ItemTypeFromTypeSchemaFunction<typeof PersonnelImportModule> { }
+export interface PersonnelImportModel extends ModelTypeFromTypeSchemaFunction<PersonnelImport> { }
 export default PersonnelImportModule as ReplaceModelReturnType<typeof PersonnelImportModule, PersonnelImportModel>;

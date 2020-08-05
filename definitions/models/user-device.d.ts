@@ -1,22 +1,55 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function UserDeviceModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+import { MongooseModule, retrieveCurrentUnixTime, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+export declare function UserDeviceModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     userId: string;
     departmentId: string;
-    devices: {
-        token: string;
-        env: string;
-        ver: string;
-        ua: string;
-        time: number;
-        drift: number;
-        bundleIdentifier: string;
-        silentEnabled: boolean;
-        richEnabled: boolean;
-        session: string;
-        active: boolean;
-    }[];
+    devices: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+        env: {
+            type: StringConstructor;
+            default: string;
+        };
+        ver: {
+            type: StringConstructor;
+            default: string;
+        };
+        ua: {
+            type: StringConstructor;
+            default: string;
+        };
+        time: {
+            type: NumberConstructor;
+            default: typeof retrieveCurrentUnixTime;
+        };
+        drift: {
+            type: NumberConstructor;
+            default: number;
+        };
+        bundleIdentifier: {
+            type: StringConstructor;
+            default: string;
+        };
+        silentEnabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        richEnabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        session: {
+            type: StringConstructor;
+            default: string;
+        };
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>[];
     notificationCount: number;
     notificationUnits: string[];
     notificationIncidentTypes: string[];

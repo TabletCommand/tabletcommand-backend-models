@@ -13,7 +13,7 @@ function createSchema(schemaCtor, p, o, methods) {
     return schema;
 }
 exports.createSchema = createSchema;
-function createModel(mongoose, name, schema, collection, skipInit) {
+function createModel(mongoose, name, schema) {
     if (mongoose.models[name]) {
         return mongoose.model(name);
     }

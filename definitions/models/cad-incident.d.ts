@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     uuid: string;
     departmentId: string;
@@ -59,61 +59,141 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     address: string;
     cross_streets: string;
     PriorIncidentChanged: boolean;
-    PriorIncident: {
-        Address: string;
+    PriorIncident: import("../helpers").MongooseInterface<{
+        Address: {
+            type: StringConstructor;
+        };
         Comment: {
-            Comment: string;
-            CommentSource: string;
-            CommentDateTime: string;
-            CommentConfidential: boolean;
-        }[];
-        IncidentDateTime: string;
-        IncidentNumber: string;
-        Jurisdiction: string;
-        Problem: string;
-        Suite: string;
-    }[];
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    Comment: {
+                        type: StringConstructor;
+                    };
+                    CommentSource: {
+                        type: StringConstructor;
+                    };
+                    CommentDateTime: {
+                        type: StringConstructor;
+                    };
+                    CommentConfidential: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+        };
+        IncidentDateTime: {
+            type: StringConstructor;
+        };
+        IncidentNumber: {
+            type: StringConstructor;
+        };
+        Jurisdiction: {
+            type: StringConstructor;
+        };
+        Problem: {
+            type: StringConstructor;
+        };
+        Suite: {
+            type: StringConstructor;
+        };
+    }>[];
     CallerNumber: string;
     tag: string;
     Latitude: string;
     Longitude: string;
-    Comment: {
-        Comment: string;
-        CommentSource: string;
-        CommentDateTime: string;
-        CommentConfidential: boolean;
-    }[];
-    units: {
-        UnitID: string;
-        UnitDispatchNumber: string;
-        AlarmAtDispatch: string;
-        TimeDispatched: string;
-        TimeEnroute: string;
-        TimeArrived: string;
-        TimeStaged: string;
-        TimeCleared: string;
-        TimeAtHospital: string;
-        TimePatient: string;
-        TimeTransport: string;
-        TimeTransporting: string;
-        PersonnelCount: number;
-        Personnel: {
-            PersonnelID: string;
-            PersonnelName: string;
-            PersonnelRank: string;
-            PersonnelWorkCode: string;
-            PersonnelNote: string;
-        }[];
-    }[];
+    Comment: import("../helpers").MongooseInterface<{
+        Comment: {
+            type: StringConstructor;
+        };
+        CommentSource: {
+            type: StringConstructor;
+        };
+        CommentDateTime: {
+            type: StringConstructor;
+        };
+        CommentConfidential: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>[];
+    units: import("../helpers").MongooseInterface<{
+        UnitID: {
+            type: StringConstructor;
+            required: boolean;
+        };
+        UnitDispatchNumber: {
+            type: StringConstructor;
+            required: boolean;
+        };
+        AlarmAtDispatch: {
+            type: StringConstructor;
+        };
+        TimeDispatched: {
+            type: StringConstructor;
+        };
+        TimeEnroute: {
+            type: StringConstructor;
+        };
+        TimeArrived: {
+            type: StringConstructor;
+        };
+        TimeStaged: {
+            type: StringConstructor;
+        };
+        TimeCleared: {
+            type: StringConstructor;
+        };
+        TimeAtHospital: {
+            type: StringConstructor;
+        };
+        TimePatient: {
+            type: StringConstructor;
+        };
+        TimeTransport: {
+            type: StringConstructor;
+        };
+        TimeTransporting: {
+            type: StringConstructor;
+        };
+        PersonnelCount: {
+            type: NumberConstructor;
+        };
+        Personnel: (import("mongoose").Schema<any> & {
+            _interface: import("../helpers").MongooseInterface<{
+                PersonnelID: {
+                    type: StringConstructor;
+                };
+                PersonnelName: {
+                    type: StringConstructor;
+                };
+                PersonnelRank: {
+                    type: StringConstructor;
+                };
+                PersonnelWorkCode: {
+                    type: StringConstructor;
+                };
+                PersonnelNote: {
+                    type: StringConstructor;
+                };
+            }>;
+            _methods: unknown;
+        })[];
+    }>[];
     preference_location: string;
     admin_note: string;
     Interface: string;
     InterfaceVersion: string;
     CADSimulator: string;
-    notificationType: {
-        name: string;
-        value: string;
-    }[];
+    notificationType: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+        };
+        value: {
+            type: StringConstructor;
+        };
+    }>[];
     notifiedUnits: string[];
     ReportNumber: string[];
     AgencyDeterminantCode: string;

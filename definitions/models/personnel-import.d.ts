@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function PersonnelImportModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+export declare function PersonnelImportModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     PersonnelID: string;
     PersonnelName: string;
@@ -16,23 +16,7 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     agencyName: string;
     agencyCode: string;
     agencyId: {
-        type: {
-            prototype: {
-                auto: {};
-                checkRequired: {};
-                default: any;
-                get: {};
-                index: import("mongoose").Schema.Types.ObjectId;
-                required: {};
-                select: {};
-                set: {};
-                sparse: {};
-                text: {};
-                unique: {};
-                validate: {};
-            };
-            schemaName: never;
-        };
+        type: never;
         ref: never;
         default: never;
     };

@@ -40,6 +40,6 @@ export async function BeaconLogModule(mongoose: MongooseModule) {
   return createModel(mongoose, "BeaconLog", modelSchema);
 }
 
-export interface BeaconLog extends ItemTypeFromTypeSchemaFunction<typeof BeaconLogModule> {}
-export interface BeaconLogModel extends ModelTypeFromTypeSchemaFunction<BeaconLog> {}
+export interface BeaconLog extends ItemTypeFromTypeSchemaFunction<typeof BeaconLogModule> { }
+export interface BeaconLogModel extends ModelTypeFromTypeSchemaFunction<BeaconLog> { }
 export default BeaconLogModule as ReplaceModelReturnType<typeof BeaconLogModule, BeaconLogModel>;

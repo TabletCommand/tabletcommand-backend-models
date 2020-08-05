@@ -3,8 +3,6 @@ const shell = require("gulp-shell")
 const mocha = require("gulp-mocha");
 const del = require("del");
 
-const tsProjectFileName = "src/tsconfig.json";
-
 gulp.task("clean", function cleanTask() {
   return del([
     "build/**",
@@ -16,20 +14,7 @@ gulp.task("clean", function cleanTask() {
 
 gulp.task("ts", gulp.series("clean", shell.task("tsc -p .\\/src")));
 
-gulp.task("tslint", function tslintTask() {
-  const sources = [
-    "src/**/*.ts",
-    "!src/**/*.d.ts"
-  ];
-  const lintProgram = TSLint.Linter.createProgram(tsProjectFileName);
-  return gulp.src(sources)
-    .pipe(gulpTSLint({
-      program: lintProgram,
-      formatter: "verbose",
-      configuration: "tslint.json"
-    }))
-    .pipe(gulpTSLint.report());
-});
+gulp.task("tslint", gulp.series(shell.task("eslint .\\/src")));
 
 gulp.task("test", gulp.series("tslint", function testTask() {
   const tests = [
@@ -46,6 +31,6 @@ gulp.task("test", gulp.series("tslint", function testTask() {
 
 gulp.task("watch", gulp.series("clean", shell.task("tsc -p .\\/src --watch")));
 
-gulp.task("build", gulp.series("ts"));
+gulp.task("build", gulp.series("tslint", "ts"));
 
 gulp.task("default", gulp.series("test"));

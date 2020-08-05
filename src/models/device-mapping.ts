@@ -76,6 +76,6 @@ export async function DeviceMappingModule(mongoose: MongooseModule) {
   return createModel(mongoose, "DeviceMapping", modelSchema);
 }
 
-export interface DeviceMapping extends ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> {}
-export interface DeviceMappingModel extends ModelTypeFromTypeSchemaFunction<DeviceMapping> {}
+export interface DeviceMapping extends ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> { }
+export interface DeviceMappingModel extends ModelTypeFromTypeSchemaFunction<DeviceMapping> { }
 export default DeviceMappingModule as ReplaceModelReturnType<typeof DeviceMappingModule, DeviceMappingModel>;

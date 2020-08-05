@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     uuid: string;
     departmentId: string;
     modifiedDate: number;
@@ -11,24 +11,66 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
     normalized: string;
     selfAssignable: boolean;
     roaming: boolean;
-    options: {
-        name: string;
-        position: number;
-        visible: boolean;
-        cadKey: string;
+    options: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        position: {
+            type: NumberConstructor;
+            default: number;
+        };
+        visible: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        cadKey: {
+            type: StringConstructor;
+            default: string;
+        };
         cadValues: {
-            name: string;
-            type: string;
-            visible: boolean;
-            value: string;
-            favorite: boolean;
-            position: number;
-        }[];
-    }[];
-    color: {
-        background: string;
-        text: string;
-    };
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    type: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    visible: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    value: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    favorite: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    position: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>[];
+    color: import("../helpers").MongooseInterface<{
+        background: {
+            type: StringConstructor;
+            default: string;
+        };
+        text: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

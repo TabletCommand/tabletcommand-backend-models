@@ -4,7 +4,6 @@ exports.AssignmentModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function AssignmentModule(mongoose) {
-    "use strict";
     const { Schema, Types } = mongoose;
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {

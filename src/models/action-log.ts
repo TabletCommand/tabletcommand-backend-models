@@ -9,8 +9,6 @@ import {
 } from "../helpers";
 
 export async function ActionLogModule(mongoose: MongooseModule) {
-  "use strict";
-
   const { Schema, Types } = mongoose;
 
   const modelSchema = createSchema(Schema, {
@@ -48,6 +46,6 @@ export async function ActionLogModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ActionLog", modelSchema);
 }
 
-export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> {}
-export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> {}
+export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> { }
+export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> { }
 export default ActionLogModule as ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;

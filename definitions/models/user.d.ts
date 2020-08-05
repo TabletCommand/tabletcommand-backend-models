@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & {
+export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     nick: string;
     email: string;
     name: string;
@@ -9,23 +9,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     modified_date: string;
     when: string;
     agencyId: {
-        type: {
-            prototype: {
-                auto: {};
-                checkRequired: {};
-                default: any;
-                get: {};
-                index: import("mongoose").Schema.Types.ObjectId;
-                required: {};
-                select: {};
-                set: {};
-                sparse: {};
-                text: {};
-                unique: {};
-                validate: {};
-            };
-            schemaName: never;
-        };
+        type: never;
         ref: never;
         default: never;
     };
@@ -43,10 +27,16 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     pass: string;
     mapHidden: boolean;
     mapId: string;
-    vehicle: {
-        radioName: string;
-        vehicleId: string;
-    };
+    vehicle: import("../helpers").MongooseInterface<{
+        radioName: {
+            type: StringConstructor;
+            default: string;
+        };
+        vehicleId: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
     sessionCountiPhone: number;
     sessionCountiPad: number;
     rtsAuthKey: string;
@@ -54,10 +44,14 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     tokenExpireDate: number;
     shareLocationPhone: boolean;
     shareLocationTablet: boolean;
-    notificationSounds: {
-        sound: string;
-        soundType: string;
-    }[];
+    notificationSounds: import("../helpers").MongooseInterface<{
+        sound: {
+            type: StringConstructor;
+        };
+        soundType: {
+            type: StringConstructor;
+        };
+    }>[];
     offlineMapsEnabled: boolean;
 }, {}> & {
     __methods?: unknown;

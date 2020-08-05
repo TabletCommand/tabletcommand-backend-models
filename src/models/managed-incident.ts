@@ -156,6 +156,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ManagedIncident", modelSchema);
 }
 
-export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> {}
-export interface ManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ManagedIncident> {}
+export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> { }
+export interface ManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ManagedIncident> { }
 export default ManagedIncidentModule as ReplaceModelReturnType<typeof ManagedIncidentModule, ManagedIncidentModel>;
