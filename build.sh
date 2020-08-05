@@ -23,4 +23,3 @@ nvm install $NODE_VERSION
 nvm use $NODE_VERSION;
 npm install;
 npm test;
-

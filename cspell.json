@@ -1,44 +1,42 @@
 // cSpell Settings
 {
-    // Version of the setting file.  Always 0.1
-    "version": "0.1",
-    // language - current active spelling language
-    "language": "en-US",
-    // words - list of words to be always considered correct
-    "words": [
-        "apikey",
-        "backend",
-        "bson",
-        "Counti",
-        "DDTHH",
-        "Enroute",
-        "Esri",
-        "fdid",
-        "flushall",
-        "ipad",
-        "iphone",
-        "minlength",
-        "mockgoose",
-        "parens",
-        "Postdirectional",
-        "Predirectional",
-        "quotemark",
-        "signup",
-        "tabletcommand",
-        "Ursache",
-        "virtuals"
-    ],
-    // flagWords - list of words to be always considered incorrect
-    // This is useful for offensive words and common spelling errors.
-    // For example "hte" should be "the"
-    "flagWords": [
-        "hte"
-    ],
-    "ignoreWords": [],
-    "languageSettings": [
-        {
-            "languageId": "*",
-            "dictionaries": []
-        }
-    ]
+  // Version of the setting file.  Always 0.1
+  "version": "0.1",
+  // language - current active spelling language
+  "language": "en-US",
+  // words - list of words to be always considered correct
+  "words": [
+    "apikey",
+    "backend",
+    "bson",
+    "Counti",
+    "DDTHH",
+    "Enroute",
+    "Esri",
+    "fdid",
+    "flushall",
+    "ipad",
+    "iphone",
+    "minlength",
+    "mockgoose",
+    "parens",
+    "Postdirectional",
+    "Predirectional",
+    "quotemark",
+    "signup",
+    "tabletcommand",
+    "Ursache",
+    "virtuals"
+  ],
+  // flagWords - list of words to be always considered incorrect
+  // This is useful for offensive words and common spelling errors.
+  // For example "hte" should be "the"
+  "flagWords": [
+    "hte"
+  ],
+  "ignoreWords": [],
+  "languageSettings": [{
+    "languageId": "*",
+    "dictionaries": []
+  }]
 }

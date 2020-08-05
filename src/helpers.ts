@@ -3,7 +3,7 @@ import { SchemaDefinition, SchemaOptions, Schema, model, Document, Model } from 
 import { ObjectID, ObjectId } from "bson";
 
 export type MongooseModule = typeof import("mongoose");
-export type MongooseModel<T extends Document, QueryHelpers = {}> = Model<T, QueryHelpers>;
+export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
 // tslint:disable-next-line: no-any
 export type MongooseSchema<T = any> = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

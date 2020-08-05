@@ -1,5 +1,3 @@
-"use strict";
-
 import { MongooseModule } from "./helpers";
 
 async function wireModels(mongoose: MongooseModule) {
@@ -38,8 +36,8 @@ async function wireModels(mongoose: MongooseModule) {
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { Assignment, AssignmentModel } from "./models/assignment";
-export { BeaconLog, BeaconLogModel} from "./models/beacon-log";
-export { MailLog, MailLogModel} from "./models/mail-log";
+export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
+export { MailLog, MailLogModel } from "./models/mail-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADStatus, CADStatusModel } from "./models/cad-status";

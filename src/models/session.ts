@@ -71,7 +71,7 @@ export async function SessionModule(mongoose: MongooseModule) {
   modelSchema.set("autoIndex", false);
 
   modelSchema.pre("save", function(next) {
-    this._id = this.get("token"); // Copy _id from token
+    this._id = this.get("token") as string; // Copy _id from token
     next();
   });
 

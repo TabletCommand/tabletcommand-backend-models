@@ -2,8 +2,6 @@ const gulp = require("gulp");
 const shell = require("gulp-shell")
 const mocha = require("gulp-mocha");
 const del = require("del");
-const gulpTSLint = require("gulp-tslint");
-const TSLint = require("tslint");
 
 const tsProjectFileName = "src/tsconfig.json";
 
@@ -48,6 +46,6 @@ gulp.task("test", gulp.series("tslint", function testTask() {
 
 gulp.task("watch", gulp.series("clean", shell.task("tsc -p .\\/src --watch")));
 
-gulp.task("build", gulp.series("ts", "tslint"));
+gulp.task("build", gulp.series("ts"));
 
 gulp.task("default", gulp.series("test"));
