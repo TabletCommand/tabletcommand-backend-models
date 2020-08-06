@@ -1,16 +1,25 @@
 // import * as uuid from "uuid";
 import {
-  createSchema,
   createModel,
-  MongooseModule,
-  retrieveCurrentUnixTime,
+  createSchema,
+  DocumentTypeFromSchema,
+  FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
+  retrieveCurrentUnixTime,
 } from "../helpers";
+import EsriAuthModule from "./schema/esri-auth";
+import EsriErrorModule from "./schema/esri-error";
+import EsriTokenModule from "./schema/esri-token";
 
 export async function EsriModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+  const EsriAuth = EsriAuthModule(mongoose);
+  const EsriError = EsriErrorModule(mongoose);
+  const EsriToken = EsriTokenModule(mongoose);
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -21,14 +30,49 @@ export async function EsriModule(mongoose: MongooseModule) {
       default: retrieveCurrentUnixTime,
     },
     departmentId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Department",
       required: true
     },
+
+    tokenDateExpiry: {
+      type: Number,
+      default: 0,
+    },
+    token: {
+      type: EsriToken,
+    },
+    error: {
+      type: EsriError,
+      default: null,
+    },
+
+    auth: {
+      type: EsriAuth,
+      default: null,
+    },
+    fireMapperAuth: {
+      type: EsriAuth,
+      default: null,
+    },
+
+    // maps
   }, {
     collection: "massive_esri",
   });
   modelSchema.set("autoIndex", false);
+
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
+      ret.id = ret._id;
+    },
+  });
+
+  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
+    return this._id.toHexString();
+  });
 
   return createModel(mongoose, "Esri", modelSchema);
 }

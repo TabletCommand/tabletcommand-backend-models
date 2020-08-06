@@ -26,16 +26,17 @@ describe("Models", function() {
     assert.isFunction(models.CADVehicleStatus, "Missing CadVehicleStatus");
     assert.isFunction(models.Department, "Missing Department");
     assert.isFunction(models.DeviceMapping, "Missing DeviceMapping");
+    assert.isFunction(models.Esri, "Missing Esri");
     assert.isFunction(models.IncidentEvent, "Missing IncidentEvent");
     assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
     assert.isFunction(models.Location, "Missing Location");
     assert.isFunction(models.ManagedIncident, "Missing ManagedIncident");
+    assert.isFunction(models.PersonnelImport, "Missing PersonnelImport");
     assert.isFunction(models.RateLimit, "Missing RateLimit");
     assert.isFunction(models.Session, "Missing Session");
     assert.isFunction(models.User, "Missing User");
-    assert.isFunction(models.UserRegistration, "Missing UserRegistration");
     assert.isFunction(models.UserDevice, "Missing UserDevice");
-    assert.isFunction(models.PersonnelImport, "Missing PersonnelImport");
+    assert.isFunction(models.UserRegistration, "Missing UserRegistration");
 
     return done();
   });

@@ -12,24 +12,25 @@ async function wireModels(mongoose: MongooseModule) {
     Agency: await getModel(import("./models/agency")),
     Assignment: await getModel(import("./models/assignment")),
     BeaconLog: await getModel(import("./models/beacon-log")),
-    MailLog: await getModel(import("./models/mail-log")),
     CADIncident: await getModel(import("./models/cad-incident")),
-    CADStatusMap: await getModel(import("./models/cad-status-map")),
     CADStatus: await getModel(import("./models/cad-status")),
+    CADStatusMap: await getModel(import("./models/cad-status-map")),
     CADVehicle: await getModel(import("./models/cad-vehicle")),
     CADVehicleStatus: await getModel(import("./models/cad-vehicle-status")),
     Department: await getModel(import("./models/department")),
     DeviceMapping: await getModel(import("./models/device-mapping")),
+    Esri: await getModel(import("./models/esri")),
     IncidentEvent: await getModel(import("./models/incident-event")),
     IncidentTakeover: await getModel(import("./models/incident-takeover")),
     Location: await getModel(import("./models/location")),
+    MailLog: await getModel(import("./models/mail-log")),
     ManagedIncident: await getModel(import("./models/managed-incident")),
+    PersonnelImport: await getModel(import("./models/personnel-import")),
     RateLimit: await getModel(import("./models/rate-limit")),
     Session: await getModel(import("./models/session")),
     User: await getModel(import("./models/user")),
-    UserRegistration: await getModel(import("./models/user-registration")),
     UserDevice: await getModel(import("./models/user-device")),
-    PersonnelImport: await getModel(import("./models/personnel-import")),
+    UserRegistration: await getModel(import("./models/user-registration")),
   };
 }
 
@@ -37,24 +38,25 @@ export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { Assignment, AssignmentModel } from "./models/assignment";
 export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
-export { MailLog, MailLogModel } from "./models/mail-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
-export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
+export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
 export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
 export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
+export { Esri, EsriModel } from "./models/esri";
 export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
 export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
 export { Location, LocationModel } from "./models/location";
+export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { Session, SessionModel } from "./models/session";
 export { User, UserModel } from "./models/user";
-export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
-export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
+export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
 
 export * from "./helpers";
 
