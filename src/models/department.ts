@@ -246,6 +246,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: EsriAuth,
       default: null,
     },
+    fireMapperAuth: {
+      type: EsriAuth,
+      default: null,
+    },
 
     // Move this to a different collection
     esriGeoJSONFilename: {

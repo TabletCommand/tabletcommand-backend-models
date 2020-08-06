@@ -51,20 +51,28 @@ describe("Department", function() {
     assert.isObject(testItem);
     const item = new models.Department(testItem);
     const sut = await item.save();
+    assert.isObject(sut.esriToken);
     assert.equal(sut.esriToken.access_token, testItem.esriToken.access_token);
     assert.equal(sut.esriToken.refresh_token, testItem.esriToken.refresh_token);
     assert.equal(sut.esriToken.username, testItem.esriToken.username);
     assert.equal(sut.esriToken.expires_in, testItem.esriToken.expires_in);
     assert.isTrue(sut.esriToken.ssl);
 
+    assert.isObject(sut.esriAuth);
     assert.equal(sut.esriAuth.username, testItem.esriAuth.username);
     assert.equal(sut.esriAuth.encrypted.iv, testItem.esriAuth.encrypted.iv);
     assert.equal(sut.esriAuth.encrypted.encryptedData, testItem.esriAuth.encrypted.encryptedData);
 
+    assert.isObject(sut.error);
     assert.equal(sut.error.code, testItem.error.code);
     assert.equal(sut.error.error, testItem.error.error);
     assert.equal(sut.error.error_description, testItem.error.error_description);
     assert.equal(sut.error.message, testItem.error.message);
     assert.equal(sut.esriTokenDateExpiry, testItem.esriTokenDateExpiry);
+
+    assert.isObject(sut.fireMapperAuth);
+    assert.equal(sut.fireMapperAuth.username, testItem.fireMapperAuth.username);
+    assert.equal(sut.fireMapperAuth.encrypted.iv, testItem.fireMapperAuth.encrypted.iv);
+    assert.equal(sut.fireMapperAuth.encrypted.encryptedData, testItem.fireMapperAuth.encrypted.encryptedData);
   });
 });

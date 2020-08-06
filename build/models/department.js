@@ -230,6 +230,10 @@ async function DepartmentModule(mongoose) {
             type: EsriAuth,
             default: null,
         },
+        fireMapperAuth: {
+            type: EsriAuth,
+            default: null,
+        },
         // Move this to a different collection
         esriGeoJSONFilename: {
             type: String,

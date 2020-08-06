@@ -253,6 +253,13 @@ module.exports = function(dependencies) {
         encryptedData: "dee54"
       }
     },
+    fireMapperAuth: {
+      username: "fire_maps2",
+      encrypted: {
+        iv: "18f172",
+        encryptedData: "dee542"
+      }
+    },
     error: {
       code: 498,
       error: "invalid_request",
