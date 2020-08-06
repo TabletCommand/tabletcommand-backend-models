@@ -3,8 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DepartmentModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
+const esri_auth_1 = require("./schema/esri-auth");
+const esri_error_1 = require("./schema/esri-error");
+const esri_token_1 = require("./schema/esri-token");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const EsriAuth = esri_auth_1.default(mongoose);
+    const EsriError = esri_error_1.default(mongoose);
+    const EsriToken = esri_token_1.default(mongoose);
     const SafetyPriorityKeyword = helpers_1.createSchema(Schema, {
         priority: {
             type: Number,
@@ -14,74 +20,6 @@ async function DepartmentModule(mongoose) {
         },
         hexColor: {
             type: String,
-        },
-    }, {
-        _id: false,
-    });
-    const EsriToken = helpers_1.createSchema(Schema, {
-        access_token: {
-            type: String,
-            default: "",
-        },
-        refresh_token: {
-            type: String,
-            default: "",
-        },
-        username: {
-            type: String,
-            default: "",
-        },
-        ssl: {
-            type: Boolean,
-            default: true,
-        },
-        expires_in: {
-            type: Number,
-            default: 1800,
-        },
-    }, {
-        _id: false,
-    });
-    const EsriError = helpers_1.createSchema(Schema, {
-        code: {
-            type: Number,
-            default: 1,
-        },
-        error: {
-            type: String,
-            default: "",
-        },
-        error_description: {
-            type: String,
-            default: "",
-        },
-        message: {
-            type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-    });
-    const EsriAuthPassword = helpers_1.createSchema(Schema, {
-        iv: {
-            type: String,
-            default: "",
-        },
-        encryptedData: {
-            type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-    });
-    const EsriAuth = helpers_1.createSchema(Schema, {
-        username: {
-            type: String,
-            default: "",
-        },
-        encrypted: {
-            type: EsriAuthPassword,
-            default: null,
         },
     }, {
         _id: false,
@@ -292,6 +230,7 @@ async function DepartmentModule(mongoose) {
             type: EsriAuth,
             default: null,
         },
+        // Move this to a different collection
         esriGeoJSONFilename: {
             type: String,
             default: ""

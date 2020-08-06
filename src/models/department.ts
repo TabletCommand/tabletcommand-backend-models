@@ -10,9 +10,15 @@ import {
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import EsriAuthModule from "./schema/esri-auth";
+import EsriErrorModule from "./schema/esri-error";
+import EsriTokenModule from "./schema/esri-token";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+  const EsriAuth = EsriAuthModule(mongoose);
+  const EsriError = EsriErrorModule(mongoose);
+  const EsriToken = EsriTokenModule(mongoose);
 
   const SafetyPriorityKeyword = createSchema(Schema, {
     priority: {
@@ -23,78 +29,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
     hexColor: {
       type: String,
-    },
-  }, {
-    _id: false,
-  });
-
-  const EsriToken = createSchema(Schema, {
-    access_token: {
-      type: String,
-      default: "",
-    },
-    refresh_token: {
-      type: String,
-      default: "",
-    },
-    username: {
-      type: String,
-      default: "",
-    },
-    ssl: {
-      type: Boolean,
-      default: true,
-    },
-    expires_in: {
-      type: Number,
-      default: 1800,
-    },
-  }, {
-    _id: false,
-  });
-
-  const EsriError = createSchema(Schema, {
-    code: {
-      type: Number,
-      default: 1,
-    },
-    error: {
-      type: String,
-      default: "",
-    },
-    error_description: {
-      type: String,
-      default: "",
-    },
-    message: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-  });
-
-  const EsriAuthPassword = createSchema(Schema, {
-    iv: {
-      type: String,
-      default: "",
-    },
-    encryptedData: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-  });
-
-  const EsriAuth = createSchema(Schema, {
-    username: {
-      type: String,
-      default: "",
-    },
-    encrypted: {
-      type: EsriAuthPassword,
-      default: null,
     },
   }, {
     _id: false,
@@ -312,6 +246,8 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: EsriAuth,
       default: null,
     },
+
+    // Move this to a different collection
     esriGeoJSONFilename: {
       type: String,
       default: ""

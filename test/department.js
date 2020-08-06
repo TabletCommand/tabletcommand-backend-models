@@ -6,46 +6,65 @@ const m = require("..");
 const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
 
 describe("Department", function() {
-  let models, mongoose;
-  let testItem;
+  let models, mongoose, mock;
+
   beforeEach(async function() {
     const c = await m.connect(url);
     models = c.models;
     mongoose = c.mongoose;
-
-    const mock = require("./mock")({
+    mock = require("./mock")({
       mongoose
     });
-    testItem = mock.department;
   });
+
   afterEach(function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.Department(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const testItem = mock.department;
+    assert.isObject(testItem);
+    const item = new models.Department(testItem);
+    const sut = await item.save();
+    assert.isNotNull(sut._id);
+    assert.isNotNull(sut.id);
+    assert.equal(sut.department, testItem.department);
+    assert.equal(sut.city, testItem.city);
+    assert.isTrue(sut.active);
+    assert.equal(sut.apikey, testItem.apikey);
+    assert.isTrue(sut.personnelStaffingEnabled);
+    assert.isTrue(sut.rtsEnabled);
+    assert.equal(sut.rtsChannelPrefix, testItem.rtsChannelPrefix);
+    assert.equal(sut.rtsAuthKey, testItem.rtsAuthKey);
+    assert.equal(sut.signupKey, testItem.signupKey);
+    assert.equal(sut.incidentTypes.length, 1);
+    assert.equal(sut.agencyIds.length, 1);
+    assert.equal(sut.agencyIds[0], testItem.agencyIds[0]);
+    assert.equal(sut.safetyPriorityKeywords.length, 1);
+    assert.equal(sut.incidentTypes[0].name, testItem.incidentTypes[0].name);
+    assert.isFalse(sut.shareLocationPhones);
+    assert.isTrue(sut.shareLocationTablets);
+  });
 
-      assert.isNotNull(testItem._id);
-      assert.equal(sut.department, testItem.department);
-      assert.equal(sut.city, testItem.city);
-      assert.isTrue(sut.active);
-      assert.equal(sut.apikey, testItem.apikey);
-      assert.isTrue(sut.personnelStaffingEnabled);
-      assert.isTrue(sut.rtsEnabled);
-      assert.equal(sut.rtsChannelPrefix, testItem.rtsChannelPrefix);
-      assert.equal(sut.rtsAuthKey, testItem.rtsAuthKey);
-      assert.equal(sut.signupKey, testItem.signupKey);
-      assert.equal(sut.incidentTypes.length, 1);
-      assert.equal(sut.agencyIds.length, 1);
-      assert.equal(sut.agencyIds[0], testItem.agencyIds[0]);
-      assert.equal(sut.safetyPriorityKeywords.length, 1);
-      assert.equal(sut.incidentTypes[0].name, testItem.incidentTypes[0].name);
-      assert.isFalse(sut.shareLocationPhones);
-      assert.isTrue(sut.shareLocationTablets);
+  it("is saved (Esri)", async function() {
+    const testItem = mock.departmentWithEsri;
+    assert.isObject(testItem);
+    const item = new models.Department(testItem);
+    const sut = await item.save();
+    assert.equal(sut.esriToken.access_token, testItem.esriToken.access_token);
+    assert.equal(sut.esriToken.refresh_token, testItem.esriToken.refresh_token);
+    assert.equal(sut.esriToken.username, testItem.esriToken.username);
+    assert.equal(sut.esriToken.expires_in, testItem.esriToken.expires_in);
+    assert.isTrue(sut.esriToken.ssl);
 
-      return done();
-    });
+    assert.equal(sut.esriAuth.username, testItem.esriAuth.username);
+    assert.equal(sut.esriAuth.encrypted.iv, testItem.esriAuth.encrypted.iv);
+    assert.equal(sut.esriAuth.encrypted.encryptedData, testItem.esriAuth.encrypted.encryptedData);
+
+    assert.equal(sut.error.code, testItem.error.code);
+    assert.equal(sut.error.error, testItem.error.error);
+    assert.equal(sut.error.error_description, testItem.error.error_description);
+    assert.equal(sut.error.message, testItem.error.message);
+    assert.equal(sut.esriTokenDateExpiry, testItem.esriTokenDateExpiry);
   });
 });

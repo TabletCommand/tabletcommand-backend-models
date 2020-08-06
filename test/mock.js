@@ -234,6 +234,35 @@ module.exports = function(dependencies) {
     shareLocationTablets: true
   };
 
+  const departmentWithEsri = {
+    _id: mongoose.Types.ObjectId(),
+    department: "Test Department",
+    city: "San Francisco",
+    active: true,
+    esriToken: {
+      access_token: "abc_PccBHQYuj",
+      expires_in: 2800,
+      username: "hello_tc",
+      ssl: true,
+      refresh_token: "def_IZ99D6eS"
+    },
+    esriAuth: {
+      username: "fire_maps",
+      encrypted: {
+        iv: "18f17",
+        encryptedData: "dee54"
+      }
+    },
+    error: {
+      code: 498,
+      error: "invalid_request",
+      error_description: "refresh_token expired",
+      message: "refresh_token expired"
+    },
+    esriTokenDateExpiry: 1595475888,
+    shareLocationTablets: true
+  };
+
   const deviceMapping = {
     _id: mongoose.Types.ObjectId(),
     nick: "Test",
@@ -480,6 +509,7 @@ module.exports = function(dependencies) {
     cadVehicleStatus,
     cadVehicle,
     department,
+    departmentWithEsri,
     deviceMapping,
     incidentEvent,
     incidentTakeover,
