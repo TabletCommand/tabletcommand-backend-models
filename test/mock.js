@@ -234,6 +234,55 @@ module.exports = function(dependencies) {
     shareLocationTablets: true
   };
 
+  const esriMap = {
+    mapLayers: [
+      //
+      {
+        "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/XBO_Branches_Updated/FeatureServer/0",
+        "id": "XBO_Branches_Updated_3067",
+        "layerType": "ArcGISFeatureLayer",
+        "title": "XBO Branches_Updated"
+      },
+      {
+        "id": "city_limits_092019_4185",
+        "layerType": "ArcGISFeatureLayer",
+        "title": "City Limits",
+        "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/city_limits_092019/FeatureServer/0"
+      },
+      {
+        "id": "unvdpdod57lext9eck9nxipcov2dgjqs_8576",
+        "layerType": "ArcGISFeatureLayer",
+        "title": "Tablet Command",
+        "url": "https://api.tabletcommand.com/esri/tc-file/unvdpdod57lext9eck9nxipcov2dgjqs/FeatureServer/0"
+      }
+    ],
+    "owner": "john_tabletcommand",
+    "title": "Location (MM Filters)",
+    "url": null,
+    "access": "shared",
+    "baseMap": {
+      "baseMapLayers": [
+        //
+        {
+          "opacity": 1,
+          "id": "VectorTile_1188",
+          "type": "VectorTileLayer",
+          "layerType": "VectorTileLayer",
+          "title": "World Street Map (Night)",
+          "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/86f556a2d1fd468181855a35e344567f/resources/styles/root.json",
+          "visibility": true
+        }
+      ],
+      "title": "Streets (Night)"
+    },
+    "id": "01cebf7aede94ed3a9f4c260e18a7d7e",
+    "type": "Web Map",
+    "tags": [
+      "XBO",
+      "Tabletcommand"
+    ]
+  };
+
   const departmentWithEsri = {
     _id: mongoose.Types.ObjectId(),
     department: "Test Department",
@@ -266,6 +315,9 @@ module.exports = function(dependencies) {
       error_description: "refresh_token expired",
       message: "refresh_token expired"
     },
+    esriMaps: [
+      esriMap
+    ],
     esriTokenDateExpiry: 1595475888,
     shareLocationTablets: true
   };
@@ -315,7 +367,10 @@ module.exports = function(dependencies) {
         iv: "28f10",
         encryptedData: "dee99"
       }
-    }
+    },
+    maps: [
+      esriMap
+    ]
   };
 
   const incidentEvent = {

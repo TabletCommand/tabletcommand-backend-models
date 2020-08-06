@@ -51,5 +51,20 @@ describe("Esri", function() {
     assert.equal(sut.fireMapperAuth.username, testItem.fireMapperAuth.username);
     assert.equal(sut.fireMapperAuth.encrypted.iv, testItem.fireMapperAuth.encrypted.iv);
     assert.equal(sut.fireMapperAuth.encrypted.encryptedData, testItem.fireMapperAuth.encrypted.encryptedData);
+
+    assert.equal(sut.maps.length, 1);
+    const sutm = sut.maps[0];
+    const testItemM = testItem.maps[0];
+    assert.equal(sutm.id, testItemM.id);
+    assert.equal(sutm.title, testItemM.title);
+    assert.equal(sutm.url, testItemM.url);
+    assert.equal(sutm.access, testItemM.access);
+    assert.equal(sutm.owner, testItemM.owner);
+    assert.equal(sutm.type, testItemM.type);
+    assert.equal(sutm.tags.length, 2);
+    assert.equal(sutm.mapLayers.length, 3);
+    assert.equal(sutm.mapLayers.length, 3);
+    assert.equal(sutm.baseMap.baseMapLayers.length, 1);
+    assert.equal(sutm.baseMap.title, testItemM.baseMap.title);
   });
 });

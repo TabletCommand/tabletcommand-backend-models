@@ -5,11 +5,13 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
+const esri_map_1 = require("./schema/esri-map");
 const esri_token_1 = require("./schema/esri-token");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const EsriAuth = esri_auth_1.default(mongoose);
     const EsriError = esri_error_1.default(mongoose);
+    const EsriMap = esri_map_1.default(mongoose);
     const EsriToken = esri_token_1.default(mongoose);
     const SafetyPriorityKeyword = helpers_1.createSchema(Schema, {
         priority: {
@@ -233,6 +235,10 @@ async function DepartmentModule(mongoose) {
         fireMapperAuth: {
             type: EsriAuth,
             default: null,
+        },
+        esriMaps: {
+            type: [EsriMap],
+            default: []
         },
         // Move this to a different collection
         esriGeoJSONFilename: {

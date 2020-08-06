@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
 function EsriAuthModule(mongoose) {
-    const Schema = mongoose.Schema;
+    const { Schema } = mongoose;
     const EsriAuthPassword = helpers_1.createSchema(Schema, {
         iv: {
             type: String,

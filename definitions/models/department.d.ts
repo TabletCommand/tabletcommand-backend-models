@@ -137,6 +137,127 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: null;
         };
     }>;
+    esriMaps: import("../helpers").MongooseInterface<{
+        id: {
+            type: StringConstructor;
+            default: string;
+        };
+        title: {
+            type: StringConstructor;
+            default: string;
+        };
+        url: {
+            type: StringConstructor;
+            default: string;
+        };
+        tags: {
+            type: StringConstructor[];
+            default: never[];
+        };
+        access: {
+            type: StringConstructor;
+            default: string;
+        };
+        owner: {
+            type: StringConstructor;
+            default: string;
+        };
+        type: {
+            type: StringConstructor;
+            default: string;
+        };
+        mapLayers: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    id: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    title: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    type: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    layerType: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    url: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    styleUrl: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    visibility: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    opacity: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+        baseMap: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    baseMapLayers: {
+                        type: (import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                id: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                title: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                type: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                layerType: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                url: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                styleUrl: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                visibility: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                opacity: {
+                                    type: NumberConstructor;
+                                    default: number;
+                                };
+                            }>;
+                            _methods: unknown;
+                        })[];
+                        default: never[];
+                    };
+                    title: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+        };
+    }>[];
     esriGeoJSONFilename: string;
     customWebUrl: string;
     customWebName: string;

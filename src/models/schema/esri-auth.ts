@@ -4,7 +4,7 @@ import {
 } from "../../helpers";
 
 export default function EsriAuthModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
+  const { Schema } = mongoose;
 
   const EsriAuthPassword = createSchema(Schema, {
     iv: {

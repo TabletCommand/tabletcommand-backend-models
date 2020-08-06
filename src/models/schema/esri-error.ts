@@ -4,7 +4,7 @@ import {
 } from "../../helpers";
 
 export default function EsriErrorModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
+  const { Schema } = mongoose;
 
   const EsriError = createSchema(Schema, {
     code: {

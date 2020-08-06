@@ -5,11 +5,13 @@ exports.EsriModule = void 0;
 const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
+const esri_map_1 = require("./schema/esri-map");
 const esri_token_1 = require("./schema/esri-token");
 async function EsriModule(mongoose) {
     const { Schema, Types } = mongoose;
     const EsriAuth = esri_auth_1.default(mongoose);
     const EsriError = esri_error_1.default(mongoose);
+    const EsriMap = esri_map_1.default(mongoose);
     const EsriToken = esri_token_1.default(mongoose);
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
@@ -43,6 +45,11 @@ async function EsriModule(mongoose) {
         fireMapperAuth: {
             type: EsriAuth,
             default: null,
+        },
+        // maps
+        maps: {
+            type: [EsriMap],
+            default: []
         },
     }, {
         collection: "massive_esri",

@@ -12,12 +12,14 @@ import {
 } from "../helpers";
 import EsriAuthModule from "./schema/esri-auth";
 import EsriErrorModule from "./schema/esri-error";
+import EsriMapModule from "./schema/esri-map";
 import EsriTokenModule from "./schema/esri-token";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const EsriAuth = EsriAuthModule(mongoose);
   const EsriError = EsriErrorModule(mongoose);
+  const EsriMap = EsriMapModule(mongoose);
   const EsriToken = EsriTokenModule(mongoose);
 
   const SafetyPriorityKeyword = createSchema(Schema, {
@@ -249,6 +251,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     fireMapperAuth: {
       type: EsriAuth,
       default: null,
+    },
+    esriMaps: {
+      type: [EsriMap],
+      default: []
     },
 
     // Move this to a different collection
