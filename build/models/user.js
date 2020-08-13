@@ -64,6 +64,11 @@ async function UserModule(mongoose) {
             ref: "Agency",
             default: null,
         },
+        managedAgencies: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: "Agency",
+            default: []
+        },
         active: {
             type: Boolean,
             default: false,

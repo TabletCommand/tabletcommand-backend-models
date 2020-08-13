@@ -522,6 +522,7 @@ module.exports = function(dependencies) {
     departmentId: "d123",
     isPro: true,
     agencyId: new mongoose.Types.ObjectId(agency._id),
+    managedAgencies: [new mongoose.Types.ObjectId(agency._id)],
     shareLocationPhone: false,
     shareLocationTablet: true,
     notificationSounds: [

@@ -41,6 +41,7 @@ describe("User", function() {
       assert.isTrue(sut.shareLocationTablet);
       assert.equal(item.uuid, sut.uuid);
       assert.equal(item.agencyId, sut.agencyId);
+      assert.equal(item.managedAgencies[0], sut.managedAgencies[0]);
       assert.isArray(sut.notificationSounds, true);
       assert.equal(sut.notificationSounds[0].sound, testItem.notificationSounds[0].sound);
       assert.equal(sut.notificationSounds[0].soundType, testItem.notificationSounds[0].soundType);

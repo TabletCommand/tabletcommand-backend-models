@@ -13,6 +13,11 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         ref: never;
         default: never;
     };
+    managedAgencies: {
+        type: never;
+        ref: never;
+        default: unknown[];
+    };
     active: boolean;
     admin: boolean;
     superuser: boolean;
