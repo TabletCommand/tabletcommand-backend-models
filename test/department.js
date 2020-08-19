@@ -44,6 +44,7 @@ describe("Department", function() {
     assert.equal(sut.incidentTypes[0].name, testItem.incidentTypes[0].name);
     assert.isFalse(sut.shareLocationPhones);
     assert.isTrue(sut.shareLocationTablets);
+    assert.isFalse(sut.cadOneWayVehiclesEnabled);
   });
 
   it("is saved (Esri)", async function() {

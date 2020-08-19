@@ -231,7 +231,8 @@ module.exports = function(dependencies) {
       }
     ],
     shareLocationPhones: false,
-    shareLocationTablets: true
+    shareLocationTablets: true,
+    cadOneWayVehiclesEnabled: false
   };
 
   const esriMap = {

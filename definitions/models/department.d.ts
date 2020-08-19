@@ -16,6 +16,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     apikey: string;
     cadEmailUsername: string;
     cadBidirectionalEnabled: boolean;
+    cadOneWayVehiclesEnabled: boolean;
     connectivity: {
         incident: {
             enabled: boolean;

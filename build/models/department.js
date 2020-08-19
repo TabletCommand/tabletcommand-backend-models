@@ -100,6 +100,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        cadOneWayVehiclesEnabled: {
+            type: Boolean,
+            default: false,
+        },
         connectivity: {
             incident: {
                 enabled: {

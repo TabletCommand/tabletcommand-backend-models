@@ -113,6 +113,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    cadOneWayVehiclesEnabled: {
+      type: Boolean,
+      default: false,
+    },
     connectivity: {
       incident: {
         enabled: {
