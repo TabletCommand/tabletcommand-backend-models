@@ -26,6 +26,7 @@ async function wireModels(mongoose) {
         CADStatusMap: await getModel(Promise.resolve().then(() => require("./models/cad-status-map"))),
         CADVehicle: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle"))),
         CADVehicleStatus: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle-status"))),
+        CADVehicleStatusHistory: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle-status-history"))),
         Department: await getModel(Promise.resolve().then(() => require("./models/department"))),
         DeviceMapping: await getModel(Promise.resolve().then(() => require("./models/device-mapping"))),
         Esri: await getModel(Promise.resolve().then(() => require("./models/esri"))),

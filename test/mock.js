@@ -204,6 +204,18 @@ module.exports = function(dependencies) {
     capability: ""
   };
 
+  const cadVehicleStatusHistory = {
+    departmentId: "d1234",
+    vehicleId: "v1171",
+    radioName: "E10",
+    status: "Dispatched",
+    statusCode: "DISP",
+    requestedAt: 1516557000,
+    requestedBy: "user",
+    modifiedDate: 1516577096,
+    incidentNumber: "INC19991"
+  };
+
   const department = {
     _id: mongoose.Types.ObjectId(),
     department: "Test Department",
@@ -604,6 +616,7 @@ module.exports = function(dependencies) {
     cadStatusMap,
     cadVehicle,
     cadVehicleStatus,
+    cadVehicleStatusHistory,
     department,
     departmentWithEsri,
     deviceMapping,

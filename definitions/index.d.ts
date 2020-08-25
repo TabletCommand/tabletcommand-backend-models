@@ -8,6 +8,7 @@ export { CADStatus, CADStatusModel } from "./models/cad-status";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
 export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
+export { CADVehicleStatusHistory, CADVehicleStatusHistoryModel } from "./models/cad-vehicle-status-history";
 export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
 export { Esri, EsriModel } from "./models/esri";
@@ -36,6 +37,7 @@ export declare function connect(url: string): Promise<{
         CADStatusMap: import("./models/cad-status-map").CADStatusMapModel;
         CADVehicle: import("./models/cad-vehicle").CADVehicleModel;
         CADVehicleStatus: import("./models/cad-vehicle-status").CADVehicleStatusModel;
+        CADVehicleStatusHistory: import("./models/cad-vehicle-status-history").CADVehicleStatusHistoryModel;
         Department: import("./models/department").DepartmentModel;
         DeviceMapping: import("./models/device-mapping").DeviceMappingModel;
         Esri: import("./models/esri").EsriModel;

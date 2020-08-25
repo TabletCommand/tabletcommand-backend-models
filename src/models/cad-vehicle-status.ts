@@ -10,30 +10,11 @@ import {
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
 
 export async function CADVehicleStatusModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
-
-  const CADStatusOptionSelected = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    type: {
-      type: String,
-      default: "string", // integer, bool
-    },
-    value: {
-      type: String,
-      default: "",
-    },
-    key: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-  });
+  const { Schema } = mongoose;
+  const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
   const modelSchemaConfig = createSchemaDefinition({
     uuid: {

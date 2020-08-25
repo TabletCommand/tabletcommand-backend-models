@@ -4,28 +4,10 @@ exports.CADVehicleStatusModule = void 0;
 const uuid = require("uuid");
 const _ = require("lodash");
 const helpers_1 = require("../helpers");
+const cad_status_option_selected_1 = require("./schema/cad-status-option-selected");
 async function CADVehicleStatusModule(mongoose) {
-    const Schema = mongoose.Schema;
-    const CADStatusOptionSelected = helpers_1.createSchema(Schema, {
-        name: {
-            type: String,
-            default: "",
-        },
-        type: {
-            type: String,
-            default: "string",
-        },
-        value: {
-            type: String,
-            default: "",
-        },
-        key: {
-            type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-    });
+    const { Schema } = mongoose;
+    const CADStatusOptionSelected = cad_status_option_selected_1.default(mongoose);
     const modelSchemaConfig = helpers_1.createSchemaDefinition({
         uuid: {
             type: String,

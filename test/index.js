@@ -23,7 +23,8 @@ describe("Models", function() {
     assert.isFunction(models.CADStatus, "Missing CadStatus");
     assert.isFunction(models.CADStatusMap, "Missing CadStatusMap");
     assert.isFunction(models.CADVehicle, "Missing CadVehicle");
-    assert.isFunction(models.CADVehicleStatus, "Missing CadVehicleStatus");
+    assert.isFunction(models.CADVehicleStatus, "Missing CADVehicleStatus");
+    assert.isFunction(models.CADVehicleStatusHistory, "Missing CADVehicleStatusHistory");
     assert.isFunction(models.Department, "Missing Department");
     assert.isFunction(models.DeviceMapping, "Missing DeviceMapping");
     assert.isFunction(models.Esri, "Missing Esri");
