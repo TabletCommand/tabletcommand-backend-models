@@ -34,6 +34,10 @@ export async function IncidentTakeoverModule(mongoose: MongooseModule) {
       type: String,
       required: true,
     },
+    incident_number: {
+      type: String,
+      default: "",
+    },
 
     old_owner: {
       type: String,

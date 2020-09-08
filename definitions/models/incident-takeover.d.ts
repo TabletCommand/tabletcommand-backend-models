@@ -6,6 +6,7 @@ export declare function IncidentTakeoverModule(mongoose: MongooseModule): Promis
     uuid: string;
     incident_id: string;
     incident_name: string;
+    incident_number: string;
     old_owner: string;
     new_owner: string;
     owner: string;

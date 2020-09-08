@@ -28,6 +28,10 @@ async function IncidentTakeoverModule(mongoose) {
             type: String,
             required: true,
         },
+        incident_number: {
+            type: String,
+            default: "",
+        },
         old_owner: {
             type: String,
             required: true,

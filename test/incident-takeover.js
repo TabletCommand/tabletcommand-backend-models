@@ -31,6 +31,7 @@ describe("IncidentTakeover", function() {
       assert.equal(testItem.departmentId, sut.departmentId);
       assert.equal(testItem.incident_id, sut.incident_id);
       assert.equal(testItem.incident_name, sut.incident_name);
+      assert.equal(testItem.incident_number, sut.incident_number);
       assert.equal(testItem.old_owner, sut.old_owner);
       assert.equal(testItem.new_owner, sut.new_owner);
       assert.equal(testItem.status, sut.status);

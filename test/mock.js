@@ -410,6 +410,7 @@ module.exports = function(dependencies) {
     _id: mongoose.Types.ObjectId(),
     incident_id: "i1234",
     incident_name: "Test Incident",
+    incident_number: "TC-12345",
     departmentId: "d123",
     old_owner: "user1",
     new_owner: "user2",
