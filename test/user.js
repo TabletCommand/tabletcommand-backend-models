@@ -37,6 +37,8 @@ describe("User", function() {
       assert.isFalse(sut.admin);
       assert.isFalse(sut.superuser);
       assert.isTrue(sut.isPro);
+      assert.isTrue(sut.mobileAccess);
+      assert.isFalse(sut.webAccess);
       assert.isFalse(sut.shareLocationPhone);
       assert.isTrue(sut.shareLocationTablet);
       assert.equal(item.uuid, sut.uuid);

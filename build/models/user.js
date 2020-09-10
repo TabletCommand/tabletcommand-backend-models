@@ -85,6 +85,14 @@ async function UserModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        mobileAccess: {
+            type: Boolean,
+            default: true,
+        },
+        webAccess: {
+            type: Boolean,
+            default: false,
+        },
         outsider: {
             type: Boolean,
             default: false,

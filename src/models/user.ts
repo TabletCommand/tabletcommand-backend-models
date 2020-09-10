@@ -95,6 +95,14 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    mobileAccess: {
+      type: Boolean,
+      default: true,
+    },
+    webAccess: {
+      type: Boolean,
+      default: false,
+    },
     outsider: {
       type: Boolean,
       default: false,
