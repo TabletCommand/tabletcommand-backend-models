@@ -244,7 +244,8 @@ module.exports = function(dependencies) {
     ],
     shareLocationPhones: false,
     shareLocationTablets: true,
-    cadOneWayVehiclesEnabled: false
+    cadOneWayVehiclesEnabled: false,
+    mowsEnabled: true
   };
 
   const esriMap = {

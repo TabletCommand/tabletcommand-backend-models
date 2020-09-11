@@ -221,7 +221,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: true,
     },
-
+    // MOWS - Mobile Only Web Security
+    mowsEnabled: {
+        type: Boolean,
+        default: false
+    },
     // RTS
     rtsEnabled: {
       type: Boolean,

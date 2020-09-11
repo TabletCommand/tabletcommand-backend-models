@@ -45,6 +45,7 @@ describe("Department", function() {
     assert.isFalse(sut.shareLocationPhones);
     assert.isTrue(sut.shareLocationTablets);
     assert.isFalse(sut.cadOneWayVehiclesEnabled);
+    assert.isTrue(sut.mowsEnabled);
   });
 
   it("is saved (Esri)", async function() {

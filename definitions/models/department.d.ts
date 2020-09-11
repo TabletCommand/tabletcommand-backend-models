@@ -50,6 +50,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     fireMapperRefreshInterval: number;
     beansAIEnabled: boolean;
     pushEnabled: boolean;
+    mowsEnabled: boolean;
     rtsEnabled: boolean;
     rtsChannelPrefix: string;
     rtsAuthKey: string;
