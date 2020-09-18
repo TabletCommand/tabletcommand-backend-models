@@ -1,4 +1,6 @@
 import * as uuid from "uuid";
+import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+
 import {
   createSchema,
   createModel,
@@ -329,6 +331,8 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toHexString();
   });
+
+  modelSchema.plugin(mongooseLeanVirtuals);
 
   return createModel(mongoose, "Department", modelSchema);
 }
