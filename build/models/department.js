@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DepartmentModule = void 0;
 const uuid = require("uuid");
+const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
@@ -307,6 +308,7 @@ async function DepartmentModule(mongoose) {
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });
+    modelSchema.plugin(mongooseLeanVirtuals);
     return helpers_1.createModel(mongoose, "Department", modelSchema);
 }
 exports.DepartmentModule = DepartmentModule;
