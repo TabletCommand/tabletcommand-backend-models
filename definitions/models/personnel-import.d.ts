@@ -20,6 +20,7 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
         ref: never;
         default: never;
     };
+    importNotes: string;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -43,6 +43,7 @@ describe("PersonnelImport", function() {
       assert.equal(testItem.agencyName, sut.agencyName);
       assert.equal(testItem.agencyCode, sut.agencyCode);
       assert.equal(testItem.agencyId, sut.agencyId);
+      assert.equal(testItem.importNotes, sut.importNotes);
 
       return done();
     });

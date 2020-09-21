@@ -607,6 +607,7 @@ module.exports = function(dependencies) {
     active: true,
     agencyCode: "TC",
     agencyName: "Tablet Command",
+    importNotes: "test note"
   };
 
   return {

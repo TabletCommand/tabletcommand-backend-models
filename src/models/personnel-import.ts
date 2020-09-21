@@ -70,6 +70,10 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
       ref: "Agency",
       default: null,
     },
+    importNotes: {
+      type: String,
+      default: "",
+    },
   }, {
     collection: "massive_personnel_import",
   });

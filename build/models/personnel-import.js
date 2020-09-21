@@ -61,6 +61,10 @@ async function PersonnelImportModule(mongoose) {
             ref: "Agency",
             default: null,
         },
+        importNotes: {
+            type: String,
+            default: "",
+        },
     }, {
         collection: "massive_personnel_import",
     });
