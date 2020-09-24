@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "5.2.5",
+  "version": "5.2.6",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "gulp",
@@ -17,10 +17,10 @@
   "types": "definitions/index.d.ts",
   "dependencies": {
     "bluebird": "^3.7.2",
-    "debug": "^4.1.1",
+    "debug": "^4.2.0",
     "lodash": "^4.17.20",
     "moment-timezone": "^0.5.31",
-    "mongoose": "^5.10.5",
+    "mongoose": "^5.10.6",
     "mongoose-lean-virtuals": "^0.6.9",
     "uuid": "~8.2.0"
   },
@@ -31,8 +31,8 @@
     "@types/mocha": "^8.0.3",
     "@types/mongoose": "^5.7.36",
     "@types/uuid": "~8.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.1.1",
-    "@typescript-eslint/parser": "^4.1.1",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "chai": "^4.2.0",
     "del": "^5.1.0",
     "eslint": "^7.9.0",

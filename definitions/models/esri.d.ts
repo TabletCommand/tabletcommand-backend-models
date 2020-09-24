@@ -90,34 +90,6 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         };
     }>;
     maps: import("../helpers").MongooseInterface<{
-        id: {
-            type: StringConstructor;
-            default: string;
-        };
-        title: {
-            type: StringConstructor;
-            default: string;
-        };
-        url: {
-            type: StringConstructor;
-            default: string;
-        };
-        tags: {
-            type: StringConstructor[];
-            default: never[];
-        };
-        access: {
-            type: StringConstructor;
-            default: string;
-        };
-        owner: {
-            type: StringConstructor;
-            default: string;
-        };
-        type: {
-            type: StringConstructor;
-            default: string;
-        };
         mapLayers: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
@@ -208,6 +180,62 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                 }>;
                 _methods: unknown;
             };
+        };
+        offline: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    id: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    title: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    url: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    access: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    owner: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    type: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+        id: {
+            type: StringConstructor;
+            default: string;
+        };
+        title: {
+            type: StringConstructor;
+            default: string;
+        };
+        url: {
+            type: StringConstructor;
+            default: string;
+        };
+        access: {
+            type: StringConstructor;
+            default: string;
+        };
+        owner: {
+            type: StringConstructor;
+            default: string;
+        };
+        type: {
+            type: StringConstructor;
+            default: string;
         };
     }>[];
 }, {}> & {

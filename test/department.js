@@ -86,7 +86,6 @@ describe("Department", function() {
     assert.equal(sutm.access, testItemM.access);
     assert.equal(sutm.owner, testItemM.owner);
     assert.equal(sutm.type, testItemM.type);
-    assert.equal(sutm.tags.length, 2);
     assert.equal(sutm.mapLayers.length, 3);
     assert.equal(sutm.mapLayers.length, 3);
     assert.equal(sutm.baseMap.baseMapLayers.length, 1);
