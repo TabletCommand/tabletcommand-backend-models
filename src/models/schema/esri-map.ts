@@ -82,6 +82,14 @@ export default function EsriMapModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    modified: {
+      type: Number,
+      default: 0,
+    },
+    tags: {
+      type: [String],
+      default: [],
+    },
   };
 
   const OfflineMap = createSchema(Schema, SimpleMapSchema, {
@@ -96,10 +104,6 @@ export default function EsriMapModule(mongoose: MongooseModule) {
     },
     baseMap: {
       type: BaseMap
-    },
-    tags: {
-      type: [String],
-      default: [],
     },
     offline: {
       type: [OfflineMap],

@@ -231,10 +231,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                 _methods: unknown;
             };
         };
-        tags: {
-            type: StringConstructor[];
-            default: never[];
-        };
         offline: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
@@ -261,6 +257,14 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                     type: {
                         type: StringConstructor;
                         default: string;
+                    };
+                    modified: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                    tags: {
+                        type: StringConstructor[];
+                        default: never[];
                     };
                 }>;
                 _methods: unknown;
@@ -290,6 +294,14 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         type: {
             type: StringConstructor;
             default: string;
+        };
+        modified: {
+            type: NumberConstructor;
+            default: number;
+        };
+        tags: {
+            type: StringConstructor[];
+            default: never[];
         };
     }>[];
     esriGeoJSONFilename: string;
