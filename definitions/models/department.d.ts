@@ -231,6 +231,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                 _methods: unknown;
             };
         };
+        tags: {
+            type: StringConstructor[];
+            default: never[];
+        };
         offline: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{

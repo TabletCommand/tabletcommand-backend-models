@@ -181,6 +181,10 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                 _methods: unknown;
             };
         };
+        tags: {
+            type: StringConstructor[];
+            default: never[];
+        };
         offline: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{

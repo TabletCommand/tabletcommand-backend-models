@@ -97,10 +97,14 @@ export default function EsriMapModule(mongoose: MongooseModule) {
     baseMap: {
       type: BaseMap
     },
+    tags: {
+      type: [String],
+      default: [],
+    },
     offline: {
       type: [OfflineMap],
       default: [],
-    }
+    },
   }, {
     _id: false,
   });

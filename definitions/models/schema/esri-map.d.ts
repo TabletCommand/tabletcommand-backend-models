@@ -93,6 +93,10 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                 _methods: unknown;
             };
         };
+        tags: {
+            type: StringConstructor[];
+            default: never[];
+        };
         offline: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{

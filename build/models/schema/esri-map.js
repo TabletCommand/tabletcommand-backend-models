@@ -86,6 +86,9 @@ function EsriMapModule(mongoose) {
             default: [],
         }, baseMap: {
             type: BaseMap
+        }, tags: {
+            type: [String],
+            default: [],
         }, offline: {
             type: [OfflineMap],
             default: [],
