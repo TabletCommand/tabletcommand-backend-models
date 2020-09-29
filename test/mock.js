@@ -529,6 +529,18 @@ module.exports = function(dependencies) {
     ended: "2019-04-01T04:41:39.233Z"
   };
 
+  const template = {
+    position: 1,
+    active: true,
+    name: "Vertical Test",
+    userId: "1234",
+    departmentId: "4321",
+    isMandatory: false,
+    group: [],
+    checklist: [],
+    agencyId: new mongoose.Types.ObjectId(agency._id)
+  };
+
   const user = {
     _id: mongoose.Types.ObjectId(),
     nick: "Test",
@@ -632,6 +644,7 @@ module.exports = function(dependencies) {
     personnelImport,
     rateLimit,
     session,
+    template,
     user,
     userDevice,
     userRegistration

@@ -20,6 +20,7 @@ export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { Session, SessionModel } from "./models/session";
+export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
@@ -49,6 +50,7 @@ export declare function connect(url: string): Promise<{
         PersonnelImport: import("./models/personnel-import").PersonnelImportModel;
         RateLimit: import("./models/rate-limit").RateLimitModel;
         Session: import("./models/session").SessionModel;
+        Template: import("./models/template").TemplateModel;
         User: import("./models/user").UserModel;
         UserDevice: import("./models/user-device").UserDeviceModel;
         UserRegistration: import("./models/user-registration").UserRegistrationModel;

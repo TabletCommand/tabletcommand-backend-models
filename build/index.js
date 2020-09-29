@@ -38,6 +38,7 @@ async function wireModels(mongoose) {
         PersonnelImport: await getModel(Promise.resolve().then(() => require("./models/personnel-import"))),
         RateLimit: await getModel(Promise.resolve().then(() => require("./models/rate-limit"))),
         Session: await getModel(Promise.resolve().then(() => require("./models/session"))),
+        Template: await getModel(Promise.resolve().then(() => require("./models/template"))),
         User: await getModel(Promise.resolve().then(() => require("./models/user"))),
         UserDevice: await getModel(Promise.resolve().then(() => require("./models/user-device"))),
         UserRegistration: await getModel(Promise.resolve().then(() => require("./models/user-registration"))),

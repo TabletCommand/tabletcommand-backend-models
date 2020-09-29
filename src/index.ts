@@ -29,6 +29,7 @@ async function wireModels(mongoose: MongooseModule) {
     PersonnelImport: await getModel(import("./models/personnel-import")),
     RateLimit: await getModel(import("./models/rate-limit")),
     Session: await getModel(import("./models/session")),
+    Template: await getModel(import("./models/template")),
     User: await getModel(import("./models/user")),
     UserDevice: await getModel(import("./models/user-device")),
     UserRegistration: await getModel(import("./models/user-registration")),
@@ -56,6 +57,7 @@ export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { Session, SessionModel } from "./models/session";
+export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
