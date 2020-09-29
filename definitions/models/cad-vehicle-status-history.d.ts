@@ -7,6 +7,7 @@ export declare function CADVehicleStatusHistoryModule(mongoose: MongooseModule):
     status: string;
     statusCode: string;
     requestedAt: number;
+    requestDelay: number;
     requestedBy: string;
     incidentNumber: string;
     options: import("../helpers").MongooseInterface<{

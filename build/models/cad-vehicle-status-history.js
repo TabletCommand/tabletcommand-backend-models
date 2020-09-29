@@ -41,6 +41,10 @@ async function CADVehicleStatusHistoryModule(mongoose) {
             default: 0,
             min: 1,
         },
+        requestDelay: {
+            type: Number,
+            default: 0,
+        },
         requestedBy: {
             type: String,
             default: "",
