@@ -57,6 +57,11 @@ async function CADVehicleStatusHistoryModule(mongoose) {
             type: [CADStatusOptionSelected],
             default: [],
         },
+        // Rejection reason
+        e: {
+            type: String,
+            default: "",
+        },
     });
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaConfig, {
         collection: "massive_cad_vehicle_status_history",

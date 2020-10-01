@@ -64,6 +64,11 @@ export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
       type: [CADStatusOptionSelected],
       default: [],
     },
+    // Rejection reason
+    e: {
+      type: String,
+      default: "",
+    },
   });
 
   const modelSchema = createSchema(Schema, modelSchemaConfig, {
