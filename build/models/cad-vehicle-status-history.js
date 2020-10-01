@@ -17,22 +17,18 @@ async function CADVehicleStatusHistoryModule(mongoose) {
             type: String,
             default: "",
             index: true,
-            minlength: 1,
         },
         radioName: {
             type: String,
             default: "",
-            minlength: 1,
         },
         status: {
             type: String,
             default: "",
-            minlength: 1,
         },
         statusCode: {
             type: String,
             default: "",
-            minlength: 1,
         },
         requestedAt: {
             type: Number,
