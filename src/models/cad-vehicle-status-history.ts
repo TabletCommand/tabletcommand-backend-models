@@ -23,14 +23,12 @@ export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
     vehicleId: {
       type: String,
       default: "",
-      required: true,
       index: true,
       minlength: 1,
     },
     radioName: {
       type: String,
       default: "",
-      required: true,
       minlength: 1,
     },
     status: {
