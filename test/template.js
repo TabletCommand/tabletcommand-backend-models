@@ -27,7 +27,8 @@ describe("Template", function() {
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
 
-      assert.isNotNull(testItem._id);
+      assert.isNotNull(item._id);
+      assert.equal(item._id, sut.id);
       assert.equal(testItem.position, sut.position);
       assert.equal(testItem.active, sut.active);
       assert.equal(testItem.name, sut.name);

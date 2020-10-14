@@ -2,13 +2,18 @@ import * as uuid from "uuid";
 
 import {
   MongooseModule,
+  MongooseDocument,
   createSchema,
+  DocumentTypeFromSchema,
+  ModelFromSchema,
   createModel,
-  retrieveCurrentUnixTime,
-  ModelTypeFromTypeSchemaFunction,
+  FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
+  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
+  retrieveCurrentUnixTime
 } from "../helpers";
+import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function TemplateModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -98,6 +103,34 @@ export async function TemplateModule(mongoose: MongooseModule) {
     collection: "massive_template",
   });
   modelSchema.set("autoIndex", false);
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+      ret.id = ret._id;
+    },
+  });
+
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+    // tslint:disable-next-line: no-unsafe-any
+    return this._id.toString();
+  });
+
+  function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
+    Object.keys(ret).forEach(function(element) {
+      // Don't complain about the virtuals
+      if (element === "id") {
+        return;
+      }
+      const pathSchema = schema as unknown as { paths: Record<string, string> };
+      if (pathSchema.paths[element] === undefined) {
+        // console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
+        delete ret[element];
+      }
+    });
+  }
+  // modelSchema.plugin(mongooseLeanVirtuals);
   return createModel(mongoose, "Template", modelSchema);
 }
 

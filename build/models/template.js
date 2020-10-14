@@ -88,6 +88,32 @@ async function TemplateModule(mongoose) {
         collection: "massive_template",
     });
     modelSchema.set("autoIndex", false);
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+            ret.id = ret._id;
+        },
+    });
+    modelSchema.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
+        return this._id.toString();
+    });
+    function strictSchema(schema, ret) {
+        Object.keys(ret).forEach(function (element) {
+            // Don't complain about the virtuals
+            if (element === "id") {
+                return;
+            }
+            const pathSchema = schema;
+            if (pathSchema.paths[element] === undefined) {
+                // console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
+                delete ret[element];
+            }
+        });
+    }
+    // modelSchema.plugin(mongooseLeanVirtuals);
     return helpers_1.createModel(mongoose, "Template", modelSchema);
 }
 exports.TemplateModule = TemplateModule;
