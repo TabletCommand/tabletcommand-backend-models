@@ -13,38 +13,8 @@ import {
   retrieveCurrentUnixTime
 } from "../helpers";
 
-export async function TemplateModule(mongoose: MongooseModule) {
+export async function ChecklistModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
-
-  const ChecklistOption = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    position: {
-      type: Number,
-      default: 0,
-    },
-    id: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-  });
-
-  const GroupOption = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    position: {
-      type: Number,
-      default: 0,
-    },
-  }, {
-    _id: false,
-  });
 
   const modelSchema = createSchema(Schema, {
     _id: {
@@ -54,6 +24,9 @@ export async function TemplateModule(mongoose: MongooseModule) {
     position: {
       type: Number,
       default: 1,
+    },
+    local_id: {
+      type: Number,
     },
     userId: String,
     uuid: {
@@ -84,21 +57,13 @@ export async function TemplateModule(mongoose: MongooseModule) {
       type: String,
       required: true
     },
-    checklist: {
-      type: [ChecklistOption],
-      default: [],
-    },
-    group: {
-      type: [GroupOption],
-      default: []
-    },
     agencyId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
   }, {
-    collection: "massive_template",
+    collection: "massive_checklist_sync",
   });
   modelSchema.set("autoIndex", false);
   modelSchema.set("toJSON", {
@@ -128,10 +93,9 @@ export async function TemplateModule(mongoose: MongooseModule) {
       }
     });
   }
-  // modelSchema.plugin(mongooseLeanVirtuals);
-  return createModel(mongoose, "Template", modelSchema);
+  return createModel(mongoose, "Checklist", modelSchema);
 }
 
-export interface Template extends ItemTypeFromTypeSchemaFunction<typeof TemplateModule> { }
-export interface TemplateModel extends ModelTypeFromTypeSchemaFunction<Template> { }
-export default TemplateModule as ReplaceModelReturnType<typeof TemplateModule, TemplateModel>;
+export interface Checklist extends ItemTypeFromTypeSchemaFunction<typeof ChecklistModule> { }
+export interface ChecklistModel extends ModelTypeFromTypeSchemaFunction<Checklist> { }
+export default ChecklistModule as ReplaceModelReturnType<typeof ChecklistModule, ChecklistModel>;

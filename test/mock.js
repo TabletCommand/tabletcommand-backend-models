@@ -37,6 +37,17 @@ module.exports = function(dependencies) {
     isMandatory: false,
   };
 
+  const checklist = {
+    position: 1,
+    active: true,
+    name: "TC Test",
+    userId: "1234",
+    departmentId: "4321",
+    local_id: 1,
+    isMandatory: true,
+    agencyId: new mongoose.Types.ObjectId(agency._id)
+  };
+
   const mailLog = {
     mailId: "1234",
     event: "delivery",
@@ -647,6 +658,7 @@ module.exports = function(dependencies) {
     template,
     user,
     userDevice,
-    userRegistration
+    userRegistration,
+    checklist
   };
 };
