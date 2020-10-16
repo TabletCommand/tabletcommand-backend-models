@@ -38,9 +38,27 @@ module.exports = function(dependencies) {
   };
 
   const checklist = {
+    _id: mongoose.Types.ObjectId(),
+    uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d888",
     position: 1,
     active: true,
     name: "TC Test",
+    userId: "1234",
+    departmentId: "4321",
+    local_id: 1,
+    isMandatory: true,
+    agencyId: new mongoose.Types.ObjectId(agency._id)
+  };
+
+  const checklistItem = {
+    _id: mongoose.Types.ObjectId(),
+    uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d887",
+    checklist_uuid: checklist.uuid,
+    position: 1,
+    active: true,
+    name: "TC Test Item",
+    checked: 0,
+    api_checklist_id: checklist._id.toString(),
     userId: "1234",
     departmentId: "4321",
     local_id: 1,
@@ -659,6 +677,7 @@ module.exports = function(dependencies) {
     user,
     userDevice,
     userRegistration,
-    checklist
+    checklist,
+    checklistItem
   };
 };

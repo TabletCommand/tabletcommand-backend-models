@@ -19,6 +19,7 @@ async function wireModels(mongoose: MongooseModule) {
     CADVehicleStatus: await getModel(import("./models/cad-vehicle-status")),
     CADVehicleStatusHistory: await getModel(import("./models/cad-vehicle-status-history")),
     Checklist: await getModel(import("./models/checklist")),
+    ChecklistItem: await getModel(import("./models/checklist-item")),
     Department: await getModel(import("./models/department")),
     DeviceMapping: await getModel(import("./models/device-mapping")),
     Esri: await getModel(import("./models/esri")),
@@ -48,6 +49,7 @@ export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
 export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
 export { CADVehicleStatusHistory, CADVehicleStatusHistoryModel } from "./models/cad-vehicle-status-history";
 export { Checklist, ChecklistModel } from "./models/checklist";
+export { ChecklistItem, ChecklistItemModel } from "./models/checklist-item";
 export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
 export { Esri, EsriModel } from "./models/esri";
