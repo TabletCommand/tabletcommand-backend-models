@@ -13,19 +13,11 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                         type: StringConstructor;
                         default: string;
                     };
-                    type: {
-                        type: StringConstructor;
-                        default: string;
-                    };
                     layerType: {
                         type: StringConstructor;
                         default: string;
                     };
                     url: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    styleUrl: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -56,19 +48,11 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                                     type: StringConstructor;
                                     default: string;
                                 };
-                                type: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
                                 layerType: {
                                     type: StringConstructor;
                                     default: string;
                                 };
                                 url: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                                styleUrl: {
                                     type: StringConstructor;
                                     default: string;
                                 };
@@ -124,13 +108,13 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                         type: NumberConstructor;
                         default: number;
                     };
-                    tags: {
-                        type: StringConstructor[];
-                        default: never[];
-                    };
                 }>;
                 _methods: unknown;
             })[];
+            default: never[];
+        };
+        tags: {
+            type: StringConstructor[];
             default: never[];
         };
         id: {
@@ -160,10 +144,6 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
         modified: {
             type: NumberConstructor;
             default: number;
-        };
-        tags: {
-            type: StringConstructor[];
-            default: never[];
         };
     }>;
     _methods: unknown;

@@ -151,19 +151,11 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                         type: StringConstructor;
                         default: string;
                     };
-                    type: {
-                        type: StringConstructor;
-                        default: string;
-                    };
                     layerType: {
                         type: StringConstructor;
                         default: string;
                     };
                     url: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    styleUrl: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -194,19 +186,11 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                                     type: StringConstructor;
                                     default: string;
                                 };
-                                type: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
                                 layerType: {
                                     type: StringConstructor;
                                     default: string;
                                 };
                                 url: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                                styleUrl: {
                                     type: StringConstructor;
                                     default: string;
                                 };
@@ -262,13 +246,13 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                         type: NumberConstructor;
                         default: number;
                     };
-                    tags: {
-                        type: StringConstructor[];
-                        default: never[];
-                    };
                 }>;
                 _methods: unknown;
             })[];
+            default: never[];
+        };
+        tags: {
+            type: StringConstructor[];
             default: never[];
         };
         id: {
@@ -298,10 +282,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         modified: {
             type: NumberConstructor;
             default: number;
-        };
-        tags: {
-            type: StringConstructor[];
-            default: never[];
         };
     }>[];
     esriGeoJSONFilename: string;

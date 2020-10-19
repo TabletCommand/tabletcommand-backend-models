@@ -12,19 +12,11 @@ function EsriMapModule(mongoose) {
             type: String,
             default: "",
         },
-        type: {
-            type: String,
-            default: "",
-        },
         layerType: {
             type: String,
             default: "",
         },
         url: {
-            type: String,
-            default: "",
-        },
-        styleUrl: {
             type: String,
             default: "",
         },
@@ -81,10 +73,6 @@ function EsriMapModule(mongoose) {
             type: Number,
             default: 0,
         },
-        tags: {
-            type: [String],
-            default: [],
-        },
     };
     const OfflineMap = helpers_1.createSchema(Schema, SimpleMapSchema, {
         _id: false,
@@ -96,6 +84,9 @@ function EsriMapModule(mongoose) {
             type: BaseMap
         }, offline: {
             type: [OfflineMap],
+            default: [],
+        }, tags: {
+            type: [String],
             default: [],
         } }), {
         _id: false,
