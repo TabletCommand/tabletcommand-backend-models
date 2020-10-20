@@ -7,7 +7,11 @@ export default function EsriMapModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const MapLayer = createSchema(Schema, {
-    id: {
+    layerId: {
+      type: String,
+      default: "",
+    },
+    itemId: {
       type: String,
       default: "",
     },

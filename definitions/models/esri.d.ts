@@ -93,7 +93,11 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         mapLayers: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
-                    id: {
+                    layerId: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    itemId: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -128,7 +132,11 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                     baseMapLayers: {
                         type: (import("mongoose").Schema<any> & {
                             _interface: import("../helpers").MongooseInterface<{
-                                id: {
+                                layerId: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                itemId: {
                                     type: StringConstructor;
                                     default: string;
                                 };

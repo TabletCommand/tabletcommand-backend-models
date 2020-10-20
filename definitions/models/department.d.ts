@@ -143,7 +143,11 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         mapLayers: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
-                    id: {
+                    layerId: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    itemId: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -178,7 +182,11 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                     baseMapLayers: {
                         type: (import("mongoose").Schema<any> & {
                             _interface: import("../helpers").MongooseInterface<{
-                                id: {
+                                layerId: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                itemId: {
                                     type: StringConstructor;
                                     default: string;
                                 };

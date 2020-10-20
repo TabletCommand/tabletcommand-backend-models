@@ -4,7 +4,11 @@ const helpers_1 = require("../../helpers");
 function EsriMapModule(mongoose) {
     const { Schema } = mongoose;
     const MapLayer = helpers_1.createSchema(Schema, {
-        id: {
+        layerId: {
+            type: String,
+            default: "",
+        },
+        itemId: {
             type: String,
             default: "",
         },

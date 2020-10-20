@@ -5,7 +5,11 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
         mapLayers: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{
-                    id: {
+                    layerId: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    itemId: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -40,7 +44,11 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                     baseMapLayers: {
                         type: (import("mongoose").Schema<any> & {
                             _interface: import("../../helpers").MongooseInterface<{
-                                id: {
+                                layerId: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                itemId: {
                                     type: StringConstructor;
                                     default: string;
                                 };
