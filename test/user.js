@@ -3,13 +3,13 @@
 const assert = require("chai").assert;
 
 const m = require("..");
-const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
+const config = require("./config");
 
 describe("User", function() {
   let models, mongoose;
   let testItem;
   beforeEach(async function() {
-    const c = await m.connect(url);
+    const c = await m.connect(config.url);
     models = c.models;
     mongoose = c.mongoose;
 

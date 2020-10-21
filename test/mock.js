@@ -2,8 +2,13 @@ module.exports = function(dependencies) {
   "use strict";
 
   const uuid = require("uuid");
+  const config = require("./config");
+  config.checkIfTestDatabase();
 
-  const mongoose = dependencies.mongoose;
+  const {
+    models,
+    mongoose
+  } = dependencies;
 
   const actionLog = {
     departmentId: "d1234",
@@ -651,6 +656,12 @@ module.exports = function(dependencies) {
     importNotes: "test note"
   };
 
+  async function cleanup() {
+    config.checkIfTestDatabase();
+
+    await models.Esri.deleteMany({});
+  }
+
   return {
     actionLog,
     agency,
@@ -661,6 +672,8 @@ module.exports = function(dependencies) {
     cadVehicle,
     cadVehicleStatus,
     cadVehicleStatusHistory,
+    checklist,
+    checklistItem,
     department,
     departmentWithEsri,
     deviceMapping,
@@ -677,7 +690,7 @@ module.exports = function(dependencies) {
     user,
     userDevice,
     userRegistration,
-    checklist,
-    checklistItem
+
+    cleanup,
   };
 };
