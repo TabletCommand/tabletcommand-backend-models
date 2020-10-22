@@ -34,12 +34,16 @@ async function EsriModule(mongoose) {
         token: {
             type: EsriToken,
         },
-        error: {
+        tokenError: {
             type: EsriError,
             default: null,
         },
         auth: {
             type: EsriAuth,
+            default: null,
+        },
+        authError: {
+            type: EsriError,
             default: null,
         },
         fireMapperAuth: {

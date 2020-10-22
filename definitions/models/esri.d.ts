@@ -27,7 +27,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: number;
         };
     }>;
-    error: import("../helpers").MongooseInterface<{
+    tokenError: import("../helpers").MongooseInterface<{
         code: {
             type: NumberConstructor;
             default: number;
@@ -65,6 +65,24 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                 _methods: unknown;
             };
             default: null;
+        };
+    }>;
+    authError: import("../helpers").MongooseInterface<{
+        code: {
+            type: NumberConstructor;
+            default: number;
+        };
+        error: {
+            type: StringConstructor;
+            default: string;
+        };
+        error_description: {
+            type: StringConstructor;
+            default: string;
+        };
+        message: {
+            type: StringConstructor;
+            default: string;
         };
     }>;
     fireMapperAuth: import("../helpers").MongooseInterface<{

@@ -41,10 +41,10 @@ describe("Esri", function() {
     assert.isTrue(sut.token.ssl);
     assert.equal(sut.token.refresh_token, testItem.token.refresh_token);
 
-    assert.equal(sut.error.code, testItem.error.code);
-    assert.equal(sut.error.error, testItem.error.error);
-    assert.equal(sut.error.error_description, testItem.error.error_description);
-    assert.equal(sut.error.message, testItem.error.message);
+    assert.equal(sut.tokenError.code, testItem.tokenError.code);
+    assert.equal(sut.tokenError.error, testItem.tokenError.error);
+    assert.equal(sut.tokenError.error_description, testItem.tokenError.error_description);
+    assert.equal(sut.tokenError.message, testItem.tokenError.message);
 
     assert.equal(sut.auth.username, testItem.auth.username);
     assert.equal(sut.auth.encrypted.iv, testItem.auth.encrypted.iv);

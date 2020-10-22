@@ -396,7 +396,7 @@ module.exports = function(dependencies) {
       refresh_token: "def_IZ99D6eS"
     },
     tokenDateExpiry: 1544475888,
-    error: {
+    tokenError: {
       code: 498,
       error: "invalid_request",
       error_description: "refresh_token expired",
