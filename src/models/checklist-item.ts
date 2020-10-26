@@ -71,6 +71,10 @@ export async function ChecklistItemModule(mongoose: MongooseModule) {
       ref: "Agency",
       default: null,
     },
+    description: {
+      type: String,
+      default: ""
+    }
   }, {
     collection: "massive_checklist_item_sync",
   });

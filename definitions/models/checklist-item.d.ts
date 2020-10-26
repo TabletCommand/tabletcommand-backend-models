@@ -20,6 +20,7 @@ export declare function ChecklistItemModule(mongoose: MongooseModule): Promise<i
         ref: never;
         default: never;
     };
+    description: string;
 }, {}> & {
     __methods?: unknown;
 }>;

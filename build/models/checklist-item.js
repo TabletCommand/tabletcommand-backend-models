@@ -60,6 +60,10 @@ async function ChecklistItemModule(mongoose) {
             ref: "Agency",
             default: null,
         },
+        description: {
+            type: String,
+            default: ""
+        }
     }, {
         collection: "massive_checklist_item_sync",
     });
