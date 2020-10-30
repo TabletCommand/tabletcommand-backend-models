@@ -42,6 +42,32 @@ module.exports = function(dependencies) {
     isMandatory: false,
   };
 
+  const battalionUnit = {
+    name: "BattalionUnit Test",
+    friendly_id: "B1",
+    personnel: 4,
+    position: 1,
+    active: true,
+    isMandatory: false,
+    departmentId: "123",
+    userId: "123",
+    api_battalion_id: "123",
+    battalion_uuid: "",
+    battalion_name: "",
+    unit_type_id: 1
+  };
+
+  const battalion = {
+    name: "Battalion Test",
+    active: true,
+    isMandatory: false,
+    userId: "123",
+    departmentId: 123,
+    AgencyId: new mongoose.Types.ObjectId(agency._id),
+    position: 1,
+    units: [battalionUnit]
+  };
+
   const checklist = {
     _id: mongoose.Types.ObjectId(),
     uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d888",
@@ -667,6 +693,7 @@ module.exports = function(dependencies) {
     actionLog,
     agency,
     assignment,
+    battalion,
     cadIncident,
     cadStatus,
     cadStatusMap,

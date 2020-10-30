@@ -2,6 +2,7 @@
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { Assignment, AssignmentModel } from "./models/assignment";
+export { Battalion, BattalionModel } from "./models/battalion";
 export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
@@ -34,6 +35,7 @@ export declare function connect(url: string): Promise<{
         ActionLog: import("./models/action-log").ActionLogModel;
         Agency: import("./models/agency").AgencyModel;
         Assignment: import("./models/assignment").AssignmentModel;
+        Battalion: import("./models/battalion").BattalionModel;
         BeaconLog: import("./models/beacon-log").BeaconLogModel;
         CADIncident: import("./models/cad-incident").CADIncidentModel;
         CADStatus: import("./models/cad-status").CADStatusModel;
