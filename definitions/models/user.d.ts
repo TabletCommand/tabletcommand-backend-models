@@ -58,6 +58,10 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         soundType: {
             type: StringConstructor;
         };
+        os: {
+            type: StringConstructor;
+            default: string;
+        };
     }>[];
     offlineMapsEnabled: boolean;
 }, {}> & {

@@ -34,6 +34,10 @@ export async function UserModule(mongoose: MongooseModule) {
     soundType: {
       type: String,
     },
+    os: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
   });

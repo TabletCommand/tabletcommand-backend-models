@@ -24,6 +24,10 @@ async function UserModule(mongoose) {
         soundType: {
             type: String,
         },
+        os: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
     });
