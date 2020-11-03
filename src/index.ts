@@ -25,6 +25,7 @@ async function wireModels(mongoose: MongooseModule) {
     DeviceMapping: await getModel(import("./models/device-mapping")),
     Esri: await getModel(import("./models/esri")),
     IncidentEvent: await getModel(import("./models/incident-event")),
+    IncidentNotified: await getModel(import("./models/incident-notified")),
     IncidentTakeover: await getModel(import("./models/incident-takeover")),
     Location: await getModel(import("./models/location")),
     MailLog: await getModel(import("./models/mail-log")),
@@ -56,6 +57,7 @@ export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
 export { Esri, EsriModel } from "./models/esri";
 export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
+export { IncidentNotified, IncidentNotifiedModel } from "./models/incident-notified";
 export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";

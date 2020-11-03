@@ -49,6 +49,11 @@ describe("UserDevice", function() {
       assert.equal(testItem.notificationIncidentTypes[0], sut.notificationIncidentTypes[0]);
       assert.equal(testItem.notificationIncidentTypes[1], sut.notificationIncidentTypes[1]);
 
+      assert.isObject(sut.notificationSounds);
+      assert.deepEqual(sut.notificationSounds, item.notificationSounds);
+      assert.isObject(sut.notificationSounds.ios);
+      assert.isObject(sut.notificationSounds.android);
+
       return done();
     });
   });

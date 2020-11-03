@@ -60,6 +60,32 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     _id: false,
   });
 
+  const soundSchemaItem = createSchema(Schema, {
+    sound: {
+      type: String,
+    },
+    soundType: {
+      type: String,
+    },
+    os: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+  });
+
+  const soundSchema = createSchema(Schema, {
+    ios: {
+      type: soundSchemaItem,
+    },
+    android: {
+      type: soundSchemaItem,
+    },
+  }, {
+    _id: false,
+  });
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -87,6 +113,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: [String],
       default: [],
     },
+    notificationSounds: {
+      type: soundSchema,
+      default: {},
+    }
   }, {
     collection: "massive_user_device",
   });

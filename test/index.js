@@ -29,6 +29,7 @@ describe("Models", function() {
     assert.isFunction(models.DeviceMapping, "Missing DeviceMapping");
     assert.isFunction(models.Esri, "Missing Esri");
     assert.isFunction(models.IncidentEvent, "Missing IncidentEvent");
+    assert.isFunction(models.IncidentNotified, "Missing IncidentNotified");
     assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
     assert.isFunction(models.Location, "Missing Location");
     assert.isFunction(models.ManagedIncident, "Missing ManagedIncident");

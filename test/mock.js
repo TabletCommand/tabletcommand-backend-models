@@ -481,6 +481,19 @@ module.exports = function(dependencies) {
     request_time: 1442888560
   };
 
+  const incidentNotified = {
+    _id: mongoose.Types.ObjectId(),
+    departmentId: "d123",
+    IncidentNumber: "T-1536603902",
+    incidentTypes: [
+      "any"
+    ],
+    units: [
+      "E31"
+    ],
+    date: 1536603902.196
+  };
+
   const location = {
     _id: mongoose.Types.ObjectId(),
     departmentId: "d123",
@@ -663,6 +676,18 @@ module.exports = function(dependencies) {
     notificationCount: 12,
     notificationUnits: ["M10", "B1"],
     notificationIncidentTypes: ["cliff-rescue", "test"],
+    notificationSounds: {
+      ios: {
+        sound : "a.caf",
+        soundType: "default",
+        os: "ios"
+      },
+      android: {
+        sound : "b.mp3",
+        soundType: "default",
+        os: "android"
+      }
+    }
   };
 
   const personnelImport = {
@@ -708,6 +733,7 @@ module.exports = function(dependencies) {
     esri,
     incidentEvent,
     incidentTakeover,
+    incidentNotified,
     location,
     mailLog,
     managedIncident,

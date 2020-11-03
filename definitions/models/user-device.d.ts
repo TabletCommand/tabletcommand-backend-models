@@ -53,6 +53,42 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     notificationCount: number;
     notificationUnits: string[];
     notificationIncidentTypes: string[];
+    notificationSounds: import("../helpers").MongooseInterface<{
+        ios: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    sound: {
+                        type: StringConstructor;
+                    };
+                    soundType: {
+                        type: StringConstructor;
+                    };
+                    os: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+        };
+        android: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    sound: {
+                        type: StringConstructor;
+                    };
+                    soundType: {
+                        type: StringConstructor;
+                    };
+                    os: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

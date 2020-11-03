@@ -52,6 +52,30 @@ async function UserDeviceModule(mongoose) {
     }, {
         _id: false,
     });
+    const soundSchemaItem = helpers_1.createSchema(Schema, {
+        sound: {
+            type: String,
+        },
+        soundType: {
+            type: String,
+        },
+        os: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+    });
+    const soundSchema = helpers_1.createSchema(Schema, {
+        ios: {
+            type: soundSchemaItem,
+        },
+        android: {
+            type: soundSchemaItem,
+        },
+    }, {
+        _id: false,
+    });
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -79,6 +103,10 @@ async function UserDeviceModule(mongoose) {
             type: [String],
             default: [],
         },
+        notificationSounds: {
+            type: soundSchema,
+            default: {},
+        }
     }, {
         collection: "massive_user_device",
     });

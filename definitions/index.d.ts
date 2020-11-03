@@ -16,6 +16,7 @@ export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
 export { Esri, EsriModel } from "./models/esri";
 export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
+export { IncidentNotified, IncidentNotifiedModel } from "./models/incident-notified";
 export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
@@ -49,6 +50,7 @@ export declare function connect(url: string): Promise<{
         DeviceMapping: import("./models/device-mapping").DeviceMappingModel;
         Esri: import("./models/esri").EsriModel;
         IncidentEvent: import("./models/incident-event").IncidentEventModel;
+        IncidentNotified: import("./models/incident-notified").IncidentNotifiedModel;
         IncidentTakeover: import("./models/incident-takeover").IncidentTakeoverModel;
         Location: import("./models/location").LocationModel;
         MailLog: import("./models/mail-log").MailLogModel;
