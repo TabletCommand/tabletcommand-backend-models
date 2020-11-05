@@ -26,6 +26,9 @@ async function BattalionModule(mongoose) {
             type: String,
             default: ""
         },
+        local_id: {
+            type: Number,
+        },
         personnel: {
             type: Number,
             default: 0

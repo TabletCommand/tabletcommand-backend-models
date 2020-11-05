@@ -45,6 +45,7 @@ module.exports = function(dependencies) {
   const battalionUnit = {
     name: "BattalionUnit Test",
     friendly_id: "B1",
+    local_id: 321,
     personnel: 4,
     position: 1,
     active: true,

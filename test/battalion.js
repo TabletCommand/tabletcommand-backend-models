@@ -35,6 +35,7 @@ describe("Battalion", function() {
       assert.equal(testItem.userId, sut.userId);
       assert.equal(testItem.position, sut.position);
       assert.equal(testItem.agencyId, sut.agencyId);
+      assert.equal(testItem.local_id, sut.local_id);
       assert.equal(testItem.units.length, 1);
       const expectedDate = new Date().valueOf() / 1000.0;
       const timeDelta = expectedDate - sut.modified_unix_date;

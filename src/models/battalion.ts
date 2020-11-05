@@ -38,6 +38,9 @@ export async function BattalionModule(mongoose: MongooseModule) {
           type: String,
           default: ""
       },
+      local_id: {
+        type: Number,
+      },
       personnel: {
           type: Number,
           default: 0

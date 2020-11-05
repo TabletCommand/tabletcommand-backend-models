@@ -29,6 +29,9 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
             type: StringConstructor;
             default: string;
         };
+        local_id: {
+            type: NumberConstructor;
+        };
         personnel: {
             type: NumberConstructor;
             default: number;
