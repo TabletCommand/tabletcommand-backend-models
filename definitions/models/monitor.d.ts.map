@@ -1,0 +1,1 @@
+{"version":3,"file":"monitor.d.ts","sourceRoot":"","sources":["../../src/models/monitor.ts"],"names":[],"mappings":";AAAA,OAAO,EAGL,8BAA8B,EAC9B,+BAA+B,EAE/B,cAAc,EACd,sBAAsB,EAEvB,MAAM,YAAY,CAAC;AAGpB,wBAAsB,aAAa,CAAC,QAAQ,EAAE,cAAc;;;;;;;;GA6C3D;AAED,MAAM,WAAW,OAAQ,SAAQ,8BAA8B,CAAC,OAAO,aAAa,CAAC;CAAI;AACzF,MAAM,WAAW,YAAa,SAAQ,+BAA+B,CAAC,OAAO,CAAC;CAAI;;AAClF,wBAA2F"}

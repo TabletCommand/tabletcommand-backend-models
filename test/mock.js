@@ -581,6 +581,14 @@ module.exports = function(dependencies) {
     uuid: "579E2F47-7F63-4351-B41F-4A345D680B8F"
   };
 
+  const monitor = {
+    _id: mongoose.Types.ObjectId(),
+    departmentId: "546ace2b3cd8d60d1d00256a",
+    notificationType: "maps-token-error",
+    status: "active",
+    sentUnixDate: 1603263604
+  };
+
   const rateLimit = {
     _id: mongoose.Types.ObjectId(),
     username: "test123",
@@ -738,6 +746,7 @@ module.exports = function(dependencies) {
     location,
     mailLog,
     managedIncident,
+    monitor,
     personnelImport,
     rateLimit,
     session,

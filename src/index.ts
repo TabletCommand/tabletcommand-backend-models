@@ -14,6 +14,7 @@ async function wireModels(mongoose: MongooseModule) {
     Battalion: await getModel(import("./models/battalion")),
     BeaconLog: await getModel(import("./models/beacon-log")),
     CADIncident: await getModel(import("./models/cad-incident")),
+    CADIncidentStream: await getModel(import("./models/cad-incident-stream")),
     CADStatus: await getModel(import("./models/cad-status")),
     CADStatusMap: await getModel(import("./models/cad-status-map")),
     CADVehicle: await getModel(import("./models/cad-vehicle")),
@@ -29,9 +30,11 @@ async function wireModels(mongoose: MongooseModule) {
     IncidentTakeover: await getModel(import("./models/incident-takeover")),
     Location: await getModel(import("./models/location")),
     MailLog: await getModel(import("./models/mail-log")),
+    Monitor: await getModel(import("./models/monitor")),
     ManagedIncident: await getModel(import("./models/managed-incident")),
     PersonnelImport: await getModel(import("./models/personnel-import")),
     RateLimit: await getModel(import("./models/rate-limit")),
+    SMTPUnhandled: await getModel(import("./models/smtp-unhandled")),
     Session: await getModel(import("./models/session")),
     Template: await getModel(import("./models/template")),
     User: await getModel(import("./models/user")),
@@ -46,6 +49,7 @@ export { Assignment, AssignmentModel } from "./models/assignment";
 export { Battalion, BattalionModel } from "./models/battalion";
 export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
+export { CADIncidentStream, CADIncidentStreamModel } from "./models/cad-incident-stream";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
@@ -62,8 +66,10 @@ export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeo
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
+export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Session, SessionModel } from "./models/session";
 export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";

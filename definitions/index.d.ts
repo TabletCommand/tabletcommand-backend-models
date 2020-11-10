@@ -5,6 +5,7 @@ export { Assignment, AssignmentModel } from "./models/assignment";
 export { Battalion, BattalionModel } from "./models/battalion";
 export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
+export { CADIncidentStream, CADIncidentStreamModel } from "./models/cad-incident-stream";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
@@ -21,8 +22,10 @@ export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeo
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
+export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Session, SessionModel } from "./models/session";
 export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";
@@ -39,6 +42,7 @@ export declare function connect(url: string): Promise<{
         Battalion: import("./models/battalion").BattalionModel;
         BeaconLog: import("./models/beacon-log").BeaconLogModel;
         CADIncident: import("./models/cad-incident").CADIncidentModel;
+        CADIncidentStream: import("./models/cad-incident-stream").CADIncidentStreamModel;
         CADStatus: import("./models/cad-status").CADStatusModel;
         CADStatusMap: import("./models/cad-status-map").CADStatusMapModel;
         CADVehicle: import("./models/cad-vehicle").CADVehicleModel;
@@ -54,9 +58,11 @@ export declare function connect(url: string): Promise<{
         IncidentTakeover: import("./models/incident-takeover").IncidentTakeoverModel;
         Location: import("./models/location").LocationModel;
         MailLog: import("./models/mail-log").MailLogModel;
+        Monitor: import("./models/monitor").MonitorModel;
         ManagedIncident: import("./models/managed-incident").ManagedIncidentModel;
         PersonnelImport: import("./models/personnel-import").PersonnelImportModel;
         RateLimit: import("./models/rate-limit").RateLimitModel;
+        SMTPUnhandled: import("./models/smtp-unhandled").SMTPUnhandledModel;
         Session: import("./models/session").SessionModel;
         Template: import("./models/template").TemplateModel;
         User: import("./models/user").UserModel;
