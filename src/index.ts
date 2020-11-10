@@ -20,6 +20,9 @@ async function wireModels(mongoose: MongooseModule) {
     CADVehicle: await getModel(import("./models/cad-vehicle")),
     CADVehicleStatus: await getModel(import("./models/cad-vehicle-status")),
     CADVehicleStatusHistory: await getModel(import("./models/cad-vehicle-status-history")),
+    ChartIncident: await getModel(import("./models/chart-incident")),
+    ChartManagedIncident: await getModel(import("./models/chart-managed-incident")),
+    ChartUser: await getModel(import("./models/chart-user")),
     Checklist: await getModel(import("./models/checklist")),
     ChecklistItem: await getModel(import("./models/checklist-item")),
     Department: await getModel(import("./models/department")),
@@ -55,6 +58,9 @@ export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
 export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
 export { CADVehicleStatusHistory, CADVehicleStatusHistoryModel } from "./models/cad-vehicle-status-history";
+export { ChartIncident, ChartIncidentModel } from "./models/chart-incident";
+export { ChartManagedIncident, ChartManagedIncidentModel } from "./models/chart-managed-incident";
+export { ChartUser, ChartUserModel } from "./models/chart-user";
 export { Checklist, ChecklistModel } from "./models/checklist";
 export { ChecklistItem, ChecklistItemModel } from "./models/checklist-item";
 export { Department, DepartmentModel } from "./models/department";

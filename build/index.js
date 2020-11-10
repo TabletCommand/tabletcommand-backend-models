@@ -29,6 +29,9 @@ async function wireModels(mongoose) {
         CADVehicle: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle"))),
         CADVehicleStatus: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle-status"))),
         CADVehicleStatusHistory: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle-status-history"))),
+        ChartIncident: await getModel(Promise.resolve().then(() => require("./models/chart-incident"))),
+        ChartManagedIncident: await getModel(Promise.resolve().then(() => require("./models/chart-managed-incident"))),
+        ChartUser: await getModel(Promise.resolve().then(() => require("./models/chart-user"))),
         Checklist: await getModel(Promise.resolve().then(() => require("./models/checklist"))),
         ChecklistItem: await getModel(Promise.resolve().then(() => require("./models/checklist-item"))),
         Department: await getModel(Promise.resolve().then(() => require("./models/department"))),
@@ -51,6 +54,12 @@ async function wireModels(mongoose) {
         UserRegistration: await getModel(Promise.resolve().then(() => require("./models/user-registration"))),
     };
 }
+var chart_managed_incident_1 = require("./models/chart-managed-incident");
+Object.defineProperty(exports, "ChartManagedIncident", { enumerable: true, get: function () { return chart_managed_incident_1.ChartManagedIncident; } });
+Object.defineProperty(exports, "ChartManagedIncidentModel", { enumerable: true, get: function () { return chart_managed_incident_1.ChartManagedIncidentModel; } });
+var chart_user_1 = require("./models/chart-user");
+Object.defineProperty(exports, "ChartUser", { enumerable: true, get: function () { return chart_user_1.ChartUser; } });
+Object.defineProperty(exports, "ChartUserModel", { enumerable: true, get: function () { return chart_user_1.ChartUserModel; } });
 __exportStar(require("./helpers"), exports);
 async function connect(url) {
     const mongoose = await Promise.resolve().then(() => require("mongoose"));
