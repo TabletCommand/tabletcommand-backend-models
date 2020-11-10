@@ -52,8 +52,8 @@ export declare function connect(url: string): Promise<{
         CADVehicleStatus: import("./models/cad-vehicle-status").CADVehicleStatusModel;
         CADVehicleStatusHistory: import("./models/cad-vehicle-status-history").CADVehicleStatusHistoryModel;
         ChartIncident: import("./models/chart-incident").ChartIncidentModel;
-        ChartManagedIncident: import("./models/chart-managed-incident").ChartIncidentModel;
-        ChartUser: import("./models/chart-user").ChartIncidentModel;
+        ChartManagedIncident: import("./models/chart-managed-incident").ChartManagedIncidentModel;
+        ChartUser: import("./models/chart-user").ChartUserModel;
         Checklist: import("./models/checklist").ChecklistModel;
         ChecklistItem: import("./models/checklist-item").ChecklistItemModel;
         Department: import("./models/department").DepartmentModel;

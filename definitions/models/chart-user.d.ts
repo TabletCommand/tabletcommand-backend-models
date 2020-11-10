@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ChartIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function ChartUserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     date: number;
     departmentId: string;
@@ -9,10 +9,10 @@ export declare function ChartIncidentModule(mongoose: MongooseModule): Promise<i
 }, {}> & {
     __methods?: unknown;
 }>;
-export interface ChartIncident extends ItemTypeFromTypeSchemaFunction<typeof ChartIncidentModule> {
+export interface ChartUser extends ItemTypeFromTypeSchemaFunction<typeof ChartUserModule> {
 }
-export interface ChartIncidentModel extends ModelTypeFromTypeSchemaFunction<ChartIncident> {
+export interface ChartUserModel extends ModelTypeFromTypeSchemaFunction<ChartUser> {
 }
-declare const _default: ReplaceModelReturnType<typeof ChartIncidentModule, ChartIncidentModel>;
+declare const _default: ReplaceModelReturnType<typeof ChartUserModule, ChartUserModel>;
 export default _default;
 //# sourceMappingURL=chart-user.d.ts.map

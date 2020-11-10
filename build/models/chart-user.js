@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChartIncidentModule = void 0;
+exports.ChartUserModule = void 0;
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
-async function ChartIncidentModule(mongoose) {
+async function ChartUserModule(mongoose) {
     const { Schema, Types } = mongoose;
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
@@ -43,6 +43,6 @@ async function ChartIncidentModule(mongoose) {
     modelSchema.plugin(mongooseLeanVirtuals);
     return helpers_1.createModel(mongoose, "ChartUser", modelSchema);
 }
-exports.ChartIncidentModule = ChartIncidentModule;
-exports.default = ChartIncidentModule;
+exports.ChartUserModule = ChartUserModule;
+exports.default = ChartUserModule;
 //# sourceMappingURL=chart-user.js.map

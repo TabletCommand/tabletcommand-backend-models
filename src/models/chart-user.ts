@@ -10,7 +10,7 @@ import {
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-export async function ChartIncidentModule(mongoose: MongooseModule) {
+export async function ChartUserModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const modelSchema = createSchema(Schema, {
@@ -56,6 +56,6 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ChartUser", modelSchema);
 }
 
-export interface ChartIncident extends ItemTypeFromTypeSchemaFunction<typeof ChartIncidentModule> { }
-export interface ChartIncidentModel extends ModelTypeFromTypeSchemaFunction<ChartIncident> { }
-export default ChartIncidentModule as ReplaceModelReturnType<typeof ChartIncidentModule, ChartIncidentModel>;
+export interface ChartUser extends ItemTypeFromTypeSchemaFunction<typeof ChartUserModule> { }
+export interface ChartUserModel extends ModelTypeFromTypeSchemaFunction<ChartUser> { }
+export default ChartUserModule as ReplaceModelReturnType<typeof ChartUserModule, ChartUserModel>;
