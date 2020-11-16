@@ -12,17 +12,9 @@ import {
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
-import EsriAuthModule from "./schema/esri-auth";
-import EsriErrorModule from "./schema/esri-error";
-import EsriMapModule from "./schema/esri-map";
-import EsriTokenModule from "./schema/esri-token";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
-  const EsriAuth = EsriAuthModule(mongoose);
-  const EsriError = EsriErrorModule(mongoose);
-  const EsriMap = EsriMapModule(mongoose);
-  const EsriToken = EsriTokenModule(mongoose);
 
   const SafetyPriorityKeyword = createSchema(Schema, {
     priority: {
@@ -240,31 +232,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     rtsAuthKey: {
       type: String,
       default: "",
-    },
-
-    // ESRI
-    esriTokenDateExpiry: {
-      type: Number,
-      default: 0,
-    },
-    esriToken: {
-      type: EsriToken,
-    },
-    error: {
-      type: EsriError,
-      default: null,
-    },
-    esriAuth: {
-      type: EsriAuth,
-      default: null,
-    },
-    fireMapperAuth: {
-      type: EsriAuth,
-      default: null,
-    },
-    esriMaps: {
-      type: [EsriMap],
-      default: []
     },
 
     // Move this to a different collection

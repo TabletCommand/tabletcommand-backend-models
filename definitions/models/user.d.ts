@@ -51,18 +51,6 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     tokenExpireDate: number;
     shareLocationPhone: boolean;
     shareLocationTablet: boolean;
-    notificationSounds: import("../helpers").MongooseInterface<{
-        sound: {
-            type: StringConstructor;
-        };
-        soundType: {
-            type: StringConstructor;
-        };
-        os: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
     offlineMapsEnabled: boolean;
 }, {}> & {
     __methods?: unknown;

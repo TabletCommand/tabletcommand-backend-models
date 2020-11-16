@@ -27,20 +27,6 @@ export async function UserModule(mongoose: MongooseModule) {
   }, {
     _id: false,
   });
-  const soundSchema = createSchema(Schema, {
-    sound: {
-      type: String,
-    },
-    soundType: {
-      type: String,
-    },
-    os: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-  });
   const modelSchema = createSchema(Schema, {
     nick: {
       type: String,
@@ -185,10 +171,6 @@ export async function UserModule(mongoose: MongooseModule) {
     shareLocationTablet: {
       type: Boolean,
       default: true,
-    },
-    notificationSounds: {
-      type: [soundSchema],
-      default: []
     },
 
     offlineMapsEnabled: {
