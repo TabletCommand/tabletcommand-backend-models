@@ -27,6 +27,7 @@ async function ActionLogModule(mongoose) {
         },
         object: {
             type: Object,
+            default: {},
         },
         modified_unix_date: {
             type: Number,

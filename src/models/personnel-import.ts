@@ -26,12 +26,15 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
     },
     PersonnelRank: {
       type: String,
+      default: ""
     },
     PersonnelWorkCode: {
       type: String,
+      default: ""
     },
     PersonnelNote: {
       type: String,
+      default: ""
     },
 
     departmentId: {
@@ -43,9 +46,11 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
     },
     shiftStartTime: {
       type: Number,
+      default: 0,
     },
     shiftEndTime: {
       type: Number,
+      default: 0,
     },
 
     // Cases matches the other modified_unix_date

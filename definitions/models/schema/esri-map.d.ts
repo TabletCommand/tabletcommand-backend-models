@@ -116,6 +116,10 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                         type: NumberConstructor;
                         default: number;
                     };
+                    download: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -152,6 +156,10 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
         modified: {
             type: NumberConstructor;
             default: number;
+        };
+        download: {
+            type: BooleanConstructor;
+            default: boolean;
         };
     }>;
     _methods: unknown;

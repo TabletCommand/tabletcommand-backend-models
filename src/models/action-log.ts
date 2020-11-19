@@ -34,6 +34,7 @@ export async function ActionLogModule(mongoose: MongooseModule) {
     },
     object: {
       type: Object,
+      default: {},
     },
     modified_unix_date: {
       type: Number,

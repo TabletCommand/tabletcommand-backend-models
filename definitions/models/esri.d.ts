@@ -222,6 +222,10 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                         type: NumberConstructor;
                         default: number;
                     };
+                    download: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -258,6 +262,10 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         modified: {
             type: NumberConstructor;
             default: number;
+        };
+        download: {
+            type: BooleanConstructor;
+            default: boolean;
         };
     }>[];
 }, {}> & {

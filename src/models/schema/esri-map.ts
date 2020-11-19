@@ -82,6 +82,11 @@ export default function EsriMapModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    // Used in the offline map, but not in the main map
+    download: {
+      type: Boolean,
+      default: false,
+    },
   };
 
   const OfflineMap = createSchema(Schema, SimpleMapSchema, {
