@@ -77,13 +77,11 @@ function EsriMapModule(mongoose) {
             type: Number,
             default: 0,
         },
-        // Used in the offline map, but not in the main map
-        download: {
+    };
+    const OfflineMap = helpers_1.createSchema(Schema, Object.assign(Object.assign({}, SimpleMapSchema), { download: {
             type: Boolean,
             default: false,
-        },
-    };
-    const OfflineMap = helpers_1.createSchema(Schema, SimpleMapSchema, {
+        } }), {
         _id: false,
     });
     const Map = helpers_1.createSchema(Schema, Object.assign(Object.assign({}, SimpleMapSchema), { mapLayers: {

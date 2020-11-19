@@ -194,6 +194,10 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         offline: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
+                    download: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
                     id: {
                         type: StringConstructor;
                         default: string;
@@ -221,10 +225,6 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                     modified: {
                         type: NumberConstructor;
                         default: number;
-                    };
-                    download: {
-                        type: BooleanConstructor;
-                        default: boolean;
                     };
                 }>;
                 _methods: unknown;
@@ -262,10 +262,6 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         modified: {
             type: NumberConstructor;
             default: number;
-        };
-        download: {
-            type: BooleanConstructor;
-            default: boolean;
         };
     }>[];
 }, {}> & {
