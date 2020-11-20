@@ -30,6 +30,24 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
   });
 
+  const SafetyPriorityKeywordDefault = [ 
+      {
+          "keywords" : [],
+          "priority" : 0,
+          "hexColor" : "FF3B30"
+      }, 
+      {
+          "keywords" : [],
+          "priority" : 1,
+          "hexColor" : "FEC309"
+      }, 
+      {
+          "keywords" : [],
+          "priority" : 2,
+          "hexColor" : "0A60FF"
+      }
+  ];
+
   const IncidentType = createSchema(Schema, {
     name: {
       type: String,
@@ -272,7 +290,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
     safetyPriorityKeywords: {
       type: [SafetyPriorityKeyword],
-      default: [],
+      default: SafetyPriorityKeywordDefault,
     },
     shareLocationPhones: {
       type: Boolean,

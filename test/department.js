@@ -40,7 +40,7 @@ describe("Department", function() {
     assert.equal(sut.incidentTypes.length, 1);
     assert.equal(sut.agencyIds.length, 1);
     assert.equal(sut.agencyIds[0], testItem.agencyIds[0]);
-    assert.equal(sut.safetyPriorityKeywords.length, 1);
+    assert.equal(sut.safetyPriorityKeywords.length, 3);
     assert.equal(sut.incidentTypes[0].name, testItem.incidentTypes[0].name);
     assert.isFalse(sut.shareLocationPhones);
     assert.isTrue(sut.shareLocationTablets);

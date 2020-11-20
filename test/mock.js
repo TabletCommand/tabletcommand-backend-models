@@ -296,14 +296,6 @@ module.exports = function(dependencies) {
       name: "Type",
       value: "type"
     }],
-    safetyPriorityKeywords: [
-      //
-      {
-        priority: 0,
-        keywords: [],
-        hexColor: "#fff"
-      }
-    ],
     shareLocationPhones: false,
     shareLocationTablets: true,
     cadOneWayVehiclesEnabled: false,
