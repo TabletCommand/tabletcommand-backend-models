@@ -106,6 +106,22 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             };
             default: null;
         };
+        encryptedAccessCode: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    iv: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    encryptedData: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: null;
+        };
     }>;
     maps: import("../helpers").MongooseInterface<{
         mapLayers: {

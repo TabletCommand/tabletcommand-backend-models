@@ -395,6 +395,10 @@ module.exports = function(dependencies) {
       encrypted: {
         iv: "28f10",
         encryptedData: "dee99"
+      },
+      encryptedAccessCode: {
+        iv: "99f1341",
+        encryptedData: "zoom123"
       }
     },
     maps: [

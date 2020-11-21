@@ -53,6 +53,8 @@ describe("Esri", function() {
     assert.equal(sut.fireMapperAuth.username, testItem.fireMapperAuth.username);
     assert.equal(sut.fireMapperAuth.encrypted.iv, testItem.fireMapperAuth.encrypted.iv);
     assert.equal(sut.fireMapperAuth.encrypted.encryptedData, testItem.fireMapperAuth.encrypted.encryptedData);
+    assert.equal(sut.fireMapperAuth.encryptedAccessCode.iv, testItem.fireMapperAuth.encryptedAccessCode.iv);
+    assert.equal(sut.fireMapperAuth.encryptedAccessCode.encryptedData, testItem.fireMapperAuth.encryptedAccessCode.encryptedData);
 
     assert.equal(sut.maps.length, 1);
     const sutm = sut.maps[0];
