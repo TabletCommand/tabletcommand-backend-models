@@ -19,9 +19,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   const SafetyPriorityKeyword = createSchema(Schema, {
     priority: {
       type: Number,
+      default: 6,
     },
     keywords: {
       type: [String],
+      default: [],
     },
     hexColor: {
       type: String,
@@ -30,22 +32,22 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
   });
 
-  const SafetyPriorityKeywordDefault = [ 
-      {
-          "keywords" : [],
-          "priority" : 0,
-          "hexColor" : "FF3B30"
-      }, 
-      {
-          "keywords" : [],
-          "priority" : 1,
-          "hexColor" : "FEC309"
-      }, 
-      {
-          "keywords" : [],
-          "priority" : 2,
-          "hexColor" : "0A60FF"
-      }
+  const SafetyPriorityKeywordDefault = [
+    {
+      "keywords": [],
+      "priority": 0,
+      "hexColor": "FF3B30"
+    },
+    {
+      "keywords": [],
+      "priority": 1,
+      "hexColor": "FEC309"
+    },
+    {
+      "keywords": [],
+      "priority": 2,
+      "hexColor": "0A60FF"
+    }
   ];
 
   const IncidentType = createSchema(Schema, {
@@ -106,10 +108,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     active: {
       type: Boolean,
       default: false,
-    },
-    pager_number: {
-      type: String,
-      default: "",
     },
     apikey: {
       type: String,
@@ -228,15 +226,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: false,
     },
 
-    // Other features
-    pushEnabled: {
-      type: Boolean,
-      default: true,
-    },
     // MOWS - Mobile Only Web Security
     mowsEnabled: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false
     },
     // RTS
     rtsEnabled: {
@@ -271,12 +264,13 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     // Incident Type APN
     incidentTypes: {
       type: [IncidentType],
+      default: [],
     },
 
     agencyIds: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Agency",
-      default: []
+      default: [],
     }],
 
     // Signup

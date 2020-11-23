@@ -45,6 +45,7 @@ export async function EsriModule(mongoose: MongooseModule) {
     },
     token: {
       type: EsriToken,
+      default: null,
     },
     tokenError: {
       type: EsriError,
