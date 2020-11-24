@@ -462,8 +462,12 @@ module.exports = function(dependencies) {
     device_type: "iPad",
     active: true,
     location: {
-      longitude: -122.304804409037,
-      latitude: 37.5419679656974
+      longitude: -122.304,
+      latitude: 37.541
+    },
+    locationGeoJSON: {
+      type: "Point",
+      coordinates: [-122.304, 37.541],
     },
     session: "abcd"
   };

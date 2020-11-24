@@ -5,8 +5,10 @@ const _ = require("lodash");
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const geojson_point_1 = require("./schema/geojson-point");
 async function LocationModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const GeoJSONPoint = geojson_point_1.default(mongoose);
     const modelSchemaDefinition = helpers_1.createSchemaDefinition({
         _id: {
             type: Types.ObjectId,
@@ -69,6 +71,10 @@ async function LocationModule(mongoose) {
                 default: 0,
             },
         },
+        locationGeoJSON: {
+            type: GeoJSONPoint,
+            default: null,
+        }
     });
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
         collection: "massive_location",
@@ -87,6 +93,7 @@ async function LocationModule(mongoose) {
             dbItem.session = this.session;
             dbItem.location.latitude = this.location.latitude;
             dbItem.location.longitude = this.location.longitude;
+            dbItem.locationGeoJSON = this.locationGeoJSON;
             return callback(dbItem);
         },
     });

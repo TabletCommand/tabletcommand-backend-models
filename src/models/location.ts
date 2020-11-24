@@ -13,10 +13,11 @@ import {
   retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import GeoJSONPointModule from "./schema/geojson-point";
 
 export async function LocationModule(mongoose: MongooseModule) {
-
   const { Schema, Types } = mongoose;
+  const GeoJSONPoint = GeoJSONPointModule(mongoose);
 
   const modelSchemaDefinition = createSchemaDefinition({
     _id: {
@@ -82,6 +83,10 @@ export async function LocationModule(mongoose: MongooseModule) {
         default: 0,
       },
     },
+    locationGeoJSON: {
+      type: GeoJSONPoint,
+      default: null,
+    }
   });
 
   type Location = DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
@@ -103,6 +108,7 @@ export async function LocationModule(mongoose: MongooseModule) {
       dbItem.session = this.session;
       dbItem.location.latitude = this.location.latitude;
       dbItem.location.longitude = this.location.longitude;
+      dbItem.locationGeoJSON = this.locationGeoJSON;
 
       return callback(dbItem);
     },
