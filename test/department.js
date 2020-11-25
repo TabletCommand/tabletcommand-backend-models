@@ -46,5 +46,7 @@ describe("Department", function() {
     assert.isTrue(sut.shareLocationTablets);
     assert.isFalse(sut.cadOneWayVehiclesEnabled);
     assert.isTrue(sut.mowsEnabled);
+    assert.isTrue(sut.shareAVL.enabled);
+    assert.equal(sut.shareAVL.prefix, testItem.shareAVL.prefix);
   });
 });

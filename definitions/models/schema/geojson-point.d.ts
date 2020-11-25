@@ -4,10 +4,13 @@ export default function GeoJSONPointModule(mongoose: MongooseModule): import("mo
     _interface: import("../../helpers").MongooseInterface<{
         type: {
             type: StringConstructor;
+            required: boolean;
+            enum: string[];
             default: string;
         };
         coordinates: {
             type: NumberConstructor[];
+            required: boolean;
             default: never[];
         };
     }>;

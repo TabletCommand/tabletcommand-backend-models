@@ -12,7 +12,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     contact_email: string;
     modified_unix_date: number;
     active: boolean;
-    pager_number: string;
     apikey: string;
     cadEmailUsername: string;
     cadBidirectionalEnabled: boolean;
@@ -49,7 +48,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     fireMapperEnabled: boolean;
     fireMapperRefreshInterval: number;
     beansAIEnabled: boolean;
-    pushEnabled: boolean;
     mowsEnabled: boolean;
     rtsEnabled: boolean;
     rtsChannelPrefix: string;
@@ -73,9 +71,11 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     safetyPriorityKeywords: import("../helpers").MongooseInterface<{
         priority: {
             type: NumberConstructor;
+            default: number;
         };
         keywords: {
             type: StringConstructor[];
+            default: never[];
         };
         hexColor: {
             type: StringConstructor;
@@ -83,6 +83,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     }>[];
     shareLocationPhones: boolean;
     shareLocationTablets: boolean;
+    shareAVL: {
+        enabled: boolean;
+        prefix: string;
+    };
 }, {}> & {
     __methods?: unknown;
 }>;

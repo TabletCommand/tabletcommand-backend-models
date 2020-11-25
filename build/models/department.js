@@ -9,9 +9,11 @@ async function DepartmentModule(mongoose) {
     const SafetyPriorityKeyword = helpers_1.createSchema(Schema, {
         priority: {
             type: Number,
+            default: 6,
         },
         keywords: {
             type: [String],
+            default: [],
         },
         hexColor: {
             type: String,
@@ -92,10 +94,6 @@ async function DepartmentModule(mongoose) {
         active: {
             type: Boolean,
             default: false,
-        },
-        pager_number: {
-            type: String,
-            default: "",
         },
         apikey: {
             type: String,
@@ -212,11 +210,6 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        // Other features
-        pushEnabled: {
-            type: Boolean,
-            default: true,
-        },
         // MOWS - Mobile Only Web Security
         mowsEnabled: {
             type: Boolean,
@@ -252,11 +245,12 @@ async function DepartmentModule(mongoose) {
         // Incident Type APN
         incidentTypes: {
             type: [IncidentType],
+            default: [],
         },
         agencyIds: [{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Agency",
-                default: []
+                default: [],
             }],
         // Signup
         signupKey: {
@@ -278,6 +272,16 @@ async function DepartmentModule(mongoose) {
         shareLocationTablets: {
             type: Boolean,
             default: true,
+        },
+        shareAVL: {
+            enabled: {
+                type: Boolean,
+                default: false,
+            },
+            prefix: {
+                type: String,
+                default: "",
+            },
         },
     }, {
         collection: "massive_admin",

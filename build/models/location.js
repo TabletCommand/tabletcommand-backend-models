@@ -71,10 +71,21 @@ async function LocationModule(mongoose) {
                 default: 0,
             },
         },
+        // Shared AVL
         locationGeoJSON: {
             type: GeoJSONPoint,
             default: null,
-        }
+        },
+        // Prefix for shared AVL unit
+        prefix: {
+            type: String,
+            default: "",
+        },
+        // Copied from the department setting
+        shared: {
+            type: Boolean,
+            default: false,
+        },
     });
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
         collection: "massive_location",

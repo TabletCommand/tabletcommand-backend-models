@@ -294,6 +294,16 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: true,
     },
+    shareAVL: {
+      enabled: {
+        type: Boolean,
+        default: false,
+      },
+      prefix: {
+        type: String,
+        default: "",
+      },
+    },
   }, {
     collection: "massive_admin",
   });

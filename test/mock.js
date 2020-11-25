@@ -299,7 +299,11 @@ module.exports = function(dependencies) {
     shareLocationPhones: false,
     shareLocationTablets: true,
     cadOneWayVehiclesEnabled: false,
-    mowsEnabled: true
+    mowsEnabled: true,
+    shareAVL: {
+      enabled: true,
+      prefix: "DAL"
+    }
   };
 
   const esriMap = {
@@ -469,7 +473,9 @@ module.exports = function(dependencies) {
       type: "Point",
       coordinates: [-122.304, 37.541],
     },
-    session: "abcd"
+    session: "abcd",
+    prefix: "DAL",
+    shared: true
   };
 
   const managedIncident = {

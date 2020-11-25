@@ -19,13 +19,18 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     locationGeoJSON: import("../helpers").MongooseInterface<{
         type: {
             type: StringConstructor;
+            required: boolean;
+            enum: string[];
             default: string;
         };
         coordinates: {
             type: NumberConstructor[];
+            required: boolean;
             default: never[];
         };
     }>;
+    prefix: string;
+    shared: boolean;
 } & {
     propagateToObject<T>(this: Record<string, unknown> & {
         _id: import("bson").ObjectId;
@@ -46,13 +51,18 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         locationGeoJSON: import("../helpers").MongooseInterface<{
             type: {
                 type: StringConstructor;
+                required: boolean;
+                enum: string[];
                 default: string;
             };
             coordinates: {
                 type: NumberConstructor[];
+                required: boolean;
                 default: never[];
             };
         }>;
+        prefix: string;
+        shared: boolean;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -123,16 +133,27 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         _interface: import("../helpers").MongooseInterface<{
                             type: {
                                 type: StringConstructor;
+                                required: boolean;
+                                enum: string[];
                                 default: string;
                             };
                             coordinates: {
                                 type: NumberConstructor[];
+                                required: boolean;
                                 default: never[];
                             };
                         }>;
                         _methods: unknown;
                     };
                     default: null;
+                };
+                prefix: {
+                    type: StringConstructor;
+                    default: string;
+                };
+                shared: {
+                    type: BooleanConstructor;
+                    default: boolean;
                 };
             }>;
         };
@@ -155,13 +176,18 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         locationGeoJSON: import("../helpers").MongooseInterface<{
             type: {
                 type: StringConstructor;
+                required: boolean;
+                enum: string[];
                 default: string;
             };
             coordinates: {
                 type: NumberConstructor[];
+                required: boolean;
                 default: never[];
             };
         }>;
+        prefix: string;
+        shared: boolean;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -232,16 +258,27 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         _interface: import("../helpers").MongooseInterface<{
                             type: {
                                 type: StringConstructor;
+                                required: boolean;
+                                enum: string[];
                                 default: string;
                             };
                             coordinates: {
                                 type: NumberConstructor[];
+                                required: boolean;
                                 default: never[];
                             };
                         }>;
                         _methods: unknown;
                     };
                     default: null;
+                };
+                prefix: {
+                    type: StringConstructor;
+                    default: string;
+                };
+                shared: {
+                    type: BooleanConstructor;
+                    default: boolean;
                 };
             }>;
         };
@@ -264,13 +301,18 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         locationGeoJSON: import("../helpers").MongooseInterface<{
             type: {
                 type: StringConstructor;
+                required: boolean;
+                enum: string[];
                 default: string;
             };
             coordinates: {
                 type: NumberConstructor[];
+                required: boolean;
                 default: never[];
             };
         }>;
+        prefix: string;
+        shared: boolean;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -341,16 +383,27 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         _interface: import("../helpers").MongooseInterface<{
                             type: {
                                 type: StringConstructor;
+                                required: boolean;
+                                enum: string[];
                                 default: string;
                             };
                             coordinates: {
                                 type: NumberConstructor[];
+                                required: boolean;
                                 default: never[];
                             };
                         }>;
                         _methods: unknown;
                     };
                     default: null;
+                };
+                prefix: {
+                    type: StringConstructor;
+                    default: string;
+                };
+                shared: {
+                    type: BooleanConstructor;
+                    default: boolean;
                 };
             }>;
         };
@@ -376,13 +429,18 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             locationGeoJSON: import("../helpers").MongooseInterface<{
                 type: {
                     type: StringConstructor;
+                    required: boolean;
+                    enum: string[];
                     default: string;
                 };
                 coordinates: {
                     type: NumberConstructor[];
+                    required: boolean;
                     default: never[];
                 };
             }>;
+            prefix: string;
+            shared: boolean;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -453,16 +511,27 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                             _interface: import("../helpers").MongooseInterface<{
                                 type: {
                                     type: StringConstructor;
+                                    required: boolean;
+                                    enum: string[];
                                     default: string;
                                 };
                                 coordinates: {
                                     type: NumberConstructor[];
+                                    required: boolean;
                                     default: never[];
                                 };
                             }>;
                             _methods: unknown;
                         };
                         default: null;
+                    };
+                    prefix: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    shared: {
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                 }>;
             };
@@ -485,13 +554,18 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             locationGeoJSON: import("../helpers").MongooseInterface<{
                 type: {
                     type: StringConstructor;
+                    required: boolean;
+                    enum: string[];
                     default: string;
                 };
                 coordinates: {
                     type: NumberConstructor[];
+                    required: boolean;
                     default: never[];
                 };
             }>;
+            prefix: string;
+            shared: boolean;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -562,16 +636,27 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                             _interface: import("../helpers").MongooseInterface<{
                                 type: {
                                     type: StringConstructor;
+                                    required: boolean;
+                                    enum: string[];
                                     default: string;
                                 };
                                 coordinates: {
                                     type: NumberConstructor[];
+                                    required: boolean;
                                     default: never[];
                                 };
                             }>;
                             _methods: unknown;
                         };
                         default: null;
+                    };
+                    prefix: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    shared: {
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                 }>;
             };
@@ -594,13 +679,18 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             locationGeoJSON: import("../helpers").MongooseInterface<{
                 type: {
                     type: StringConstructor;
+                    required: boolean;
+                    enum: string[];
                     default: string;
                 };
                 coordinates: {
                     type: NumberConstructor[];
+                    required: boolean;
                     default: never[];
                 };
             }>;
+            prefix: string;
+            shared: boolean;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -671,16 +761,27 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                             _interface: import("../helpers").MongooseInterface<{
                                 type: {
                                     type: StringConstructor;
+                                    required: boolean;
+                                    enum: string[];
                                     default: string;
                                 };
                                 coordinates: {
                                     type: NumberConstructor[];
+                                    required: boolean;
                                     default: never[];
                                 };
                             }>;
                             _methods: unknown;
                         };
                         default: null;
+                    };
+                    prefix: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    shared: {
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                 }>;
             };

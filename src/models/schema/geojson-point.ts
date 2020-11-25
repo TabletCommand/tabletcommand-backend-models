@@ -9,10 +9,13 @@ export default function GeoJSONPointModule(mongoose: MongooseModule) {
   const GeoJSONPoint = createSchema(Schema, {
     type: {
       type: String,
+      required: true,
+      enum: ["Point"],
       default: "Point",
     },
     coordinates: {
       type: [Number],
+      required: true,
       default: [],
     },
   }, {

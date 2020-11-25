@@ -6,10 +6,13 @@ function GeoJSONPointModule(mongoose) {
     const GeoJSONPoint = helpers_1.createSchema(Schema, {
         type: {
             type: String,
+            required: true,
+            enum: ["Point"],
             default: "Point",
         },
         coordinates: {
             type: [Number],
+            required: true,
             default: [],
         },
     }, {

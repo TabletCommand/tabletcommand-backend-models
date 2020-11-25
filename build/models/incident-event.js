@@ -53,9 +53,11 @@ async function IncidentEventModule(mongoose) {
         location: {
             longitude: {
                 type: Number,
+                default: 0,
             },
             latitude: {
                 type: Number,
+                default: 0,
             },
         },
         type: {
@@ -64,6 +66,7 @@ async function IncidentEventModule(mongoose) {
         },
         user: {
             type: EventUser,
+            default: {},
         },
         serverTime: {
             type: Number,

@@ -35,6 +35,7 @@ async function EsriModule(mongoose) {
         },
         token: {
             type: EsriToken,
+            default: null,
         },
         tokenError: {
             type: EsriError,

@@ -83,10 +83,21 @@ export async function LocationModule(mongoose: MongooseModule) {
         default: 0,
       },
     },
+    // Shared AVL
     locationGeoJSON: {
       type: GeoJSONPoint,
       default: null,
-    }
+    },
+    // Prefix for shared AVL unit
+    prefix: {
+      type: String,
+      default: "",
+    },
+    // Copied from the department setting
+    shared: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   type Location = DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
