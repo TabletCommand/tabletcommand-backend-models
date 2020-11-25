@@ -116,6 +116,13 @@ async function LocationModule(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
+    // Create GeoJSON index
+    modelSchema.index({
+        locationGeoJSON: "2dsphere",
+        shared: 1,
+        departmentId: 1,
+        modified_unix_date: 1,
+    });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
     return helpers_1.createModel(mongoose, "Location", modelSchema);
