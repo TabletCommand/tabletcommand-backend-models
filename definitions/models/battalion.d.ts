@@ -23,7 +23,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         };
         name: {
             type: StringConstructor;
-            required: boolean;
+            default: string;
         };
         friendly_id: {
             type: StringConstructor;

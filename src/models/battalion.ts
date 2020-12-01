@@ -32,7 +32,7 @@ export async function BattalionModule(mongoose: MongooseModule) {
       },
       name: {
           type: String,
-          required: true
+          default: ""
       },
       friendly_id: {
           type: String,
@@ -97,7 +97,7 @@ export async function BattalionModule(mongoose: MongooseModule) {
     },
     name: {
       type: String,
-      required: true,
+      default: ""
     },
     active: {
       type: Boolean,

@@ -20,7 +20,7 @@ async function BattalionModule(mongoose) {
         },
         name: {
             type: String,
-            required: true
+            default: ""
         },
         friendly_id: {
             type: String,
@@ -83,7 +83,7 @@ async function BattalionModule(mongoose) {
         },
         name: {
             type: String,
-            required: true,
+            default: ""
         },
         active: {
             type: Boolean,
