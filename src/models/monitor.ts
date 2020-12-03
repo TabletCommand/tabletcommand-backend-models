@@ -24,6 +24,10 @@ export async function MonitorModule(mongoose: MongooseModule) {
       required: true,
       index: true,
     },
+    agencyId: {
+      type: String,
+      default: ""
+    },
     notificationType: {
       type: String,
       default: "",

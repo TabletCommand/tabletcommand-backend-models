@@ -551,6 +551,7 @@ module.exports = function(dependencies) {
   const monitor = {
     _id: mongoose.Types.ObjectId(),
     departmentId: "546ace2b3cd8d60d1d00256a",
+    agencyId: "123",
     notificationType: "maps-token-error",
     status: "active",
     sentUnixDate: 1603263604

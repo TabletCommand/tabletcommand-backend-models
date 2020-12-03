@@ -16,6 +16,10 @@ async function MonitorModule(mongoose) {
             required: true,
             index: true,
         },
+        agencyId: {
+            type: String,
+            default: ""
+        },
         notificationType: {
             type: String,
             default: "",

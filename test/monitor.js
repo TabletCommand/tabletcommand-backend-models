@@ -28,6 +28,7 @@ describe("Monitor", function() {
     assert.isNotNull(sut._id);
 
     assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.agencyId, sut.agencyId);
     assert.equal(testItem.notificationType, sut.notificationType);
     assert.equal(testItem.status, sut.status);
     assert.equal(testItem.sentUnixDate, sut.sentUnixDate);

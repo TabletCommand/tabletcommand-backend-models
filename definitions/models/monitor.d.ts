@@ -3,6 +3,7 @@ import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, Mongoo
 export declare function MonitorModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
+    agencyId: string;
     notificationType: string;
     status: string;
     sentUnixDate: number;
