@@ -29,7 +29,8 @@ module.exports = function(dependencies) {
     active: true,
     administrators: [
       new mongoose.Types.ObjectId()
-    ]
+    ],
+    personnelIntegration: true
   };
 
   const assignment = {

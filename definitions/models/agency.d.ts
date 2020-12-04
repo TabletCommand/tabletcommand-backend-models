@@ -20,6 +20,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
         ref: never;
         default: unknown[];
     };
+    personnelIntegration: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

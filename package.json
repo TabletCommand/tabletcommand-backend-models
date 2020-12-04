@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "5.7.5",
+  "version": "5.7.6",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "gulp",

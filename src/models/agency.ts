@@ -59,6 +59,10 @@ export async function AgencyModule(mongoose: MongooseModule) {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
       default: []
+    },
+    personnelIntegration: {
+      type: Boolean,
+      default: false
     }
   }, {
     collection: "massive_agency",

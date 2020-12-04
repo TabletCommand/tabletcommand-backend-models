@@ -53,6 +53,10 @@ async function AgencyModule(mongoose) {
             type: [mongoose.Schema.Types.ObjectId],
             ref: "User",
             default: []
+        },
+        personnelIntegration: {
+            type: Boolean,
+            default: false
         }
     }, {
         collection: "massive_agency",
