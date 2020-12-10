@@ -411,6 +411,20 @@ module.exports = function(dependencies) {
     ]
   };
 
+  const gstMapping = {
+    _id: mongoose.Types.ObjectId(),
+    departmentId: "d123",
+    unitId: "E123",
+    modified_unix_date: 1432230780,
+    active: false,
+    remoteAddress: "1.2.3.4",
+    note: "don't feed after dark",
+    mapHidden: false,
+    gstAgency: "LAX",
+    deviceType: "gst",
+    note: ""
+  };
+
   const incidentEvent = {
     IncidentNumber: "TC1212121",
     departmentId: "d123",
@@ -708,6 +722,7 @@ module.exports = function(dependencies) {
     department,
     deviceMapping,
     esri,
+    gstMapping,
     incidentEvent,
     incidentTakeover,
     incidentNotified,
@@ -722,7 +737,6 @@ module.exports = function(dependencies) {
     user,
     userDevice,
     userRegistration,
-
     cleanup,
   };
 };

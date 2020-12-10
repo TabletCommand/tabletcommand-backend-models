@@ -19,6 +19,7 @@ export { ChecklistItem, ChecklistItemModel } from "./models/checklist-item";
 export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
 export { Esri, EsriModel } from "./models/esri";
+export { GSTMapping, GSTMappingModel } from "./models/gst-mapping";
 export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
 export { IncidentNotified, IncidentNotifiedModel } from "./models/incident-notified";
 export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
@@ -59,6 +60,7 @@ export declare function connect(url: string): Promise<{
         Department: import("./models/department").DepartmentModel;
         DeviceMapping: import("./models/device-mapping").DeviceMappingModel;
         Esri: import("./models/esri").EsriModel;
+        GSTMapping: import("./models/gst-mapping").GSTMappingModel;
         IncidentEvent: import("./models/incident-event").IncidentEventModel;
         IncidentNotified: import("./models/incident-notified").IncidentNotifiedModel;
         IncidentTakeover: import("./models/incident-takeover").IncidentTakeoverModel;

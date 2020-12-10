@@ -37,6 +37,7 @@ async function wireModels(mongoose) {
         Department: await getModel(Promise.resolve().then(() => require("./models/department"))),
         DeviceMapping: await getModel(Promise.resolve().then(() => require("./models/device-mapping"))),
         Esri: await getModel(Promise.resolve().then(() => require("./models/esri"))),
+        GSTMapping: await getModel(Promise.resolve().then(() => require("./models/gst-mapping"))),
         IncidentEvent: await getModel(Promise.resolve().then(() => require("./models/incident-event"))),
         IncidentNotified: await getModel(Promise.resolve().then(() => require("./models/incident-notified"))),
         IncidentTakeover: await getModel(Promise.resolve().then(() => require("./models/incident-takeover"))),
