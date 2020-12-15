@@ -490,7 +490,8 @@ module.exports = function(dependencies) {
     },
     session: "abcd",
     prefix: "DAL",
-    shared: true
+    shared: true,
+    state: "CA"
   };
 
   const managedIncident = {

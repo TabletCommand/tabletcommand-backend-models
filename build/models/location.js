@@ -86,6 +86,10 @@ async function LocationModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        state: {
+            type: String,
+            default: "",
+        },
     });
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
         collection: "massive_location",

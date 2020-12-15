@@ -41,6 +41,7 @@ describe("Location", function() {
     assert.equal(testItem.locationGeoJSON.coordinates[1], sut.location.latitude);
     assert.equal(testItem.prefix, sut.prefix);
     assert.equal(testItem.shared, sut.shared);
+    assert.equal(testItem.state, sut.state);
     assert.isTrue(sut.uuid !== "");
 
     const { longitude, latitude } = sut.location;

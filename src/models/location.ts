@@ -98,6 +98,10 @@ export async function LocationModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    state: {
+      type: String,
+      default: "",
+    },
   });
 
   type Location = DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
