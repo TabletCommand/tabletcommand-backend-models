@@ -490,7 +490,7 @@ module.exports = function(dependencies) {
       coordinates: [-122.304, 37.541],
     },
     session: "abcd",
-    prefix: "DAL",
+    opAreaCode: "DAL",
     shared: true,
     state: "CA"
   };

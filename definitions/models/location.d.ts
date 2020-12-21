@@ -29,7 +29,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             default: never[];
         };
     }>;
-    prefix: string;
+    opAreaCode: string;
     shared: boolean;
     state: string;
 } & {
@@ -62,7 +62,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 default: never[];
             };
         }>;
-        prefix: string;
+        opAreaCode: string;
         shared: boolean;
         state: string;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
@@ -149,7 +149,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     };
                     default: null;
                 };
-                prefix: {
+                opAreaCode: {
                     type: StringConstructor;
                     default: string;
                 };
@@ -192,7 +192,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 default: never[];
             };
         }>;
-        prefix: string;
+        opAreaCode: string;
         shared: boolean;
         state: string;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
@@ -279,7 +279,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     };
                     default: null;
                 };
-                prefix: {
+                opAreaCode: {
                     type: StringConstructor;
                     default: string;
                 };
@@ -322,7 +322,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 default: never[];
             };
         }>;
-        prefix: string;
+        opAreaCode: string;
         shared: boolean;
         state: string;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
@@ -409,7 +409,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     };
                     default: null;
                 };
-                prefix: {
+                opAreaCode: {
                     type: StringConstructor;
                     default: string;
                 };
@@ -455,7 +455,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: never[];
                 };
             }>;
-            prefix: string;
+            opAreaCode: string;
             shared: boolean;
             state: string;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
@@ -542,7 +542,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         };
                         default: null;
                     };
-                    prefix: {
+                    opAreaCode: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -585,7 +585,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: never[];
                 };
             }>;
-            prefix: string;
+            opAreaCode: string;
             shared: boolean;
             state: string;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
@@ -672,7 +672,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         };
                         default: null;
                     };
-                    prefix: {
+                    opAreaCode: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -715,7 +715,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: never[];
                 };
             }>;
-            prefix: string;
+            opAreaCode: string;
             shared: boolean;
             state: string;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
@@ -802,7 +802,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         };
                         default: null;
                     };
-                    prefix: {
+                    opAreaCode: {
                         type: StringConstructor;
                         default: string;
                     };

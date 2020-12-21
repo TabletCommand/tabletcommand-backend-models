@@ -88,8 +88,8 @@ export async function LocationModule(mongoose: MongooseModule) {
       type: GeoJSONPoint,
       default: null,
     },
-    // Prefix for shared AVL unit
-    prefix: {
+    // opAreaCode for shared AVL unit
+    opAreaCode: {
       type: String,
       default: "",
     },
