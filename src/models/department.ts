@@ -299,7 +299,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         type: Boolean,
         default: false,
       },
-      prefix: {
+      opAreaName: {
+        type: String,
+        default: "",
+      },
+      opAreaCode: {
         type: String,
         default: "",
       },

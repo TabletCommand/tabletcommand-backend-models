@@ -47,6 +47,7 @@ describe("Department", function() {
     assert.isFalse(sut.cadOneWayVehiclesEnabled);
     assert.isTrue(sut.mowsEnabled);
     assert.isTrue(sut.shareAVL.enabled);
-    assert.equal(sut.shareAVL.prefix, testItem.shareAVL.prefix);
+    assert.equal(sut.shareAVL.opAreaCode, testItem.shareAVL.opAreaCode);
+    assert.equal(sut.shareAVL.opAreaName, testItem.shareAVL.opAreaName);
   });
 });

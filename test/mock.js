@@ -303,7 +303,8 @@ module.exports = function(dependencies) {
     mowsEnabled: true,
     shareAVL: {
       enabled: true,
-      prefix: "DAL"
+      opAreaCode: "DAL",
+      opAreaName: "Delta Operations"
     }
   };
 

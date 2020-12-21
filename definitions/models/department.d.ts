@@ -85,7 +85,8 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     shareLocationTablets: boolean;
     shareAVL: {
         enabled: boolean;
-        prefix: string;
+        opAreaName: string;
+        opAreaCode: string;
     };
 }, {}> & {
     __methods?: unknown;

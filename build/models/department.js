@@ -278,7 +278,11 @@ async function DepartmentModule(mongoose) {
                 type: Boolean,
                 default: false,
             },
-            prefix: {
+            opAreaName: {
+                type: String,
+                default: "",
+            },
+            opAreaCode: {
                 type: String,
                 default: "",
             },
