@@ -75,7 +75,25 @@ async function LocationModule(mongoose) {
         locationGeoJSON: {
             type: GeoJSONPoint,
             default: null,
-        }
+        },
+        // opAreaCode for shared AVL unit
+        opAreaCode: {
+            type: String,
+            default: "",
+        },
+        opAreaName: {
+            type: String,
+            default: "",
+        },
+        // Copied from the department setting
+        shared: {
+            type: Boolean,
+            default: false,
+        },
+        state: {
+            type: String,
+            default: "",
+        },
     });
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
         collection: "massive_location",

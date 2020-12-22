@@ -87,7 +87,25 @@ export async function LocationModule(mongoose: MongooseModule) {
     locationGeoJSON: {
       type: GeoJSONPoint,
       default: null,
-    }
+    },
+    // opAreaCode for shared AVL unit
+    opAreaCode: {
+      type: String,
+      default: "",
+    },
+    opAreaName: {
+      type: String,
+      default: "",
+    },
+    // Copied from the department setting
+    shared: {
+      type: Boolean,
+      default: false,
+    },
+    state: {
+      type: String,
+      default: "",
+    },
   });
 
   type Location = DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
