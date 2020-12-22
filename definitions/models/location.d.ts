@@ -29,9 +29,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             default: never[];
         };
     }>;
-    opAreaCode: string;
-    shared: boolean;
-    state: string;
 } & {
     propagateToObject<T>(this: Record<string, unknown> & {
         _id: import("bson").ObjectId;
@@ -62,9 +59,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 default: never[];
             };
         }>;
-        opAreaCode: string;
-        shared: boolean;
-        state: string;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -148,18 +142,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         _methods: unknown;
                     };
                     default: null;
-                };
-                opAreaCode: {
-                    type: StringConstructor;
-                    default: string;
-                };
-                shared: {
-                    type: BooleanConstructor;
-                    default: boolean;
-                };
-                state: {
-                    type: StringConstructor;
-                    default: string;
                 };
             }>;
         };
@@ -192,9 +174,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 default: never[];
             };
         }>;
-        opAreaCode: string;
-        shared: boolean;
-        state: string;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -278,18 +257,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         _methods: unknown;
                     };
                     default: null;
-                };
-                opAreaCode: {
-                    type: StringConstructor;
-                    default: string;
-                };
-                shared: {
-                    type: BooleanConstructor;
-                    default: boolean;
-                };
-                state: {
-                    type: StringConstructor;
-                    default: string;
                 };
             }>;
         };
@@ -322,9 +289,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 default: never[];
             };
         }>;
-        opAreaCode: string;
-        shared: boolean;
-        state: string;
     } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
@@ -408,18 +372,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         _methods: unknown;
                     };
                     default: null;
-                };
-                opAreaCode: {
-                    type: StringConstructor;
-                    default: string;
-                };
-                shared: {
-                    type: BooleanConstructor;
-                    default: boolean;
-                };
-                state: {
-                    type: StringConstructor;
-                    default: string;
                 };
             }>;
         };
@@ -455,9 +407,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: never[];
                 };
             }>;
-            opAreaCode: string;
-            shared: boolean;
-            state: string;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -541,18 +490,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                             _methods: unknown;
                         };
                         default: null;
-                    };
-                    opAreaCode: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    shared: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                    state: {
-                        type: StringConstructor;
-                        default: string;
                     };
                 }>;
             };
@@ -585,9 +522,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: never[];
                 };
             }>;
-            opAreaCode: string;
-            shared: boolean;
-            state: string;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -671,18 +605,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                             _methods: unknown;
                         };
                         default: null;
-                    };
-                    opAreaCode: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    shared: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                    state: {
-                        type: StringConstructor;
-                        default: string;
                     };
                 }>;
             };
@@ -715,9 +637,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: never[];
                 };
             }>;
-            opAreaCode: string;
-            shared: boolean;
-            state: string;
         } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
@@ -801,18 +720,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                             _methods: unknown;
                         };
                         default: null;
-                    };
-                    opAreaCode: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    shared: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                    state: {
-                        type: StringConstructor;
-                        default: string;
                     };
                 }>;
             };

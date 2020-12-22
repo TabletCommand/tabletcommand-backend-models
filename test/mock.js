@@ -489,10 +489,7 @@ module.exports = function(dependencies) {
       type: "Point",
       coordinates: [-122.304, 37.541],
     },
-    session: "abcd",
-    opAreaCode: "DAL",
-    shared: true,
-    state: "CA"
+    session: "abcd"
   };
 
   const managedIncident = {
