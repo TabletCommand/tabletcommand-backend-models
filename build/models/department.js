@@ -287,6 +287,10 @@ async function DepartmentModule(mongoose) {
                 default: "",
             },
         },
+        accountType: {
+            type: String,
+            default: "production"
+        },
     }, {
         collection: "massive_admin",
     });

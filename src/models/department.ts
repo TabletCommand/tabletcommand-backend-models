@@ -308,6 +308,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         default: "",
       },
     },
+    accountType: {
+      type: String,
+      default: "production"
+    },
   }, {
     collection: "massive_admin",
   });

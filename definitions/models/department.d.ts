@@ -88,6 +88,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         opAreaName: string;
         opAreaCode: string;
     };
+    accountType: string;
 }, {}> & {
     __methods?: unknown;
 }>;

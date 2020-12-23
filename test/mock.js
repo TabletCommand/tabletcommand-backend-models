@@ -305,7 +305,8 @@ module.exports = function(dependencies) {
       enabled: true,
       opAreaCode: "DAL",
       opAreaName: "Delta Operations"
-    }
+    },
+    accountType: "production"
   };
 
   const esriMap = {
