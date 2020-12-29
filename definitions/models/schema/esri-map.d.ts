@@ -1,5 +1,12 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
+export declare enum ArcGISOfflineStatus {
+    Unknown = "unknown",
+    Completed = "completed",
+    Partial = "partial",
+    Processing = "processing",
+    Failed = "failed"
+}
 export default function EsriMapModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../../helpers").MongooseInterface<{
         mapLayers: {
@@ -91,6 +98,10 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                     download: {
                         type: BooleanConstructor;
                         default: boolean;
+                    };
+                    status: {
+                        type: typeof ArcGISOfflineStatus;
+                        default: ArcGISOfflineStatus;
                     };
                     id: {
                         type: StringConstructor;

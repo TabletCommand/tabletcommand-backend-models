@@ -214,6 +214,10 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                         type: BooleanConstructor;
                         default: boolean;
                     };
+                    status: {
+                        type: typeof import("./schema/esri-map").ArcGISOfflineStatus;
+                        default: import("./schema/esri-map").ArcGISOfflineStatus;
+                    };
                     id: {
                         type: StringConstructor;
                         default: string;

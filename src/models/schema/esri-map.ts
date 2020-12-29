@@ -3,6 +3,14 @@ import {
   MongooseModule,
 } from "../../helpers";
 
+export enum ArcGISOfflineStatus {
+  Unknown = "unknown",
+  Completed = "completed",
+  Partial = "partial",
+  Processing = "processing",
+  Failed = "failed",
+}
+
 export default function EsriMapModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
@@ -89,6 +97,10 @@ export default function EsriMapModule(mongoose: MongooseModule) {
     download: {
       type: Boolean,
       default: false,
+    },
+    status: {
+      type: ArcGISOfflineStatus,
+      default: ArcGISOfflineStatus.Unknown,
     },
   }, {
     _id: false,

@@ -1,6 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ArcGISOfflineStatus = void 0;
 const helpers_1 = require("../../helpers");
+var ArcGISOfflineStatus;
+(function (ArcGISOfflineStatus) {
+    ArcGISOfflineStatus["Unknown"] = "unknown";
+    ArcGISOfflineStatus["Completed"] = "completed";
+    ArcGISOfflineStatus["Partial"] = "partial";
+    ArcGISOfflineStatus["Processing"] = "processing";
+    ArcGISOfflineStatus["Failed"] = "failed";
+})(ArcGISOfflineStatus = exports.ArcGISOfflineStatus || (exports.ArcGISOfflineStatus = {}));
 function EsriMapModule(mongoose) {
     const { Schema } = mongoose;
     const MapLayer = helpers_1.createSchema(Schema, {
@@ -81,6 +90,9 @@ function EsriMapModule(mongoose) {
     const OfflineMap = helpers_1.createSchema(Schema, Object.assign(Object.assign({}, SimpleMapSchema), { download: {
             type: Boolean,
             default: false,
+        }, status: {
+            type: ArcGISOfflineStatus,
+            default: ArcGISOfflineStatus.Unknown,
         } }), {
         _id: false,
     });
