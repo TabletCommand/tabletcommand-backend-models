@@ -24,6 +24,20 @@ export async function EsriModule(mongoose: MongooseModule) {
   const EsriMap = EsriMapModule(mongoose);
   const EsriToken = EsriTokenModule(mongoose);
 
+  const MapProperties = createSchema(Schema, {
+    // ArcGIS Item id
+    itemId: {
+      type: String,
+      default: "",
+    },
+    download: {
+      type: Boolean,
+      default: false,
+    },
+  }, {
+    _id: false,
+  });
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -70,6 +84,12 @@ export async function EsriModule(mongoose: MongooseModule) {
       type: [EsriMap],
       default: []
     },
+    // Properties set by user.
+    // These are applied by the sync on top of the EsriMap properties
+    mapsProperties: {
+      type: MapProperties,
+      default: {},
+    }
   }, {
     collection: "massive_esri",
   });

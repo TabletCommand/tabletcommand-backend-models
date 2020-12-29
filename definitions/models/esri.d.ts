@@ -210,15 +210,11 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         offline: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
-                    download: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
                     status: {
                         type: StringConstructor;
-                        default: import("./schema/esri-map").ArcGISOfflineStatus;
+                        default: string;
                     };
-                    id: {
+                    itemId: {
                         type: StringConstructor;
                         default: string;
                     };
@@ -255,7 +251,11 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             type: StringConstructor[];
             default: never[];
         };
-        id: {
+        development: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        itemId: {
             type: StringConstructor;
             default: string;
         };
@@ -284,6 +284,16 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: number;
         };
     }>[];
+    mapsProperties: import("../helpers").MongooseInterface<{
+        itemId: {
+            type: StringConstructor;
+            default: string;
+        };
+        download: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

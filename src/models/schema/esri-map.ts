@@ -3,14 +3,6 @@ import {
   MongooseModule,
 } from "../../helpers";
 
-export enum ArcGISOfflineStatus {
-  Unknown = "unknown",
-  Completed = "completed",
-  Partial = "partial",
-  Processing = "processing",
-  Failed = "failed",
-}
-
 export default function EsriMapModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
@@ -62,7 +54,7 @@ export default function EsriMapModule(mongoose: MongooseModule) {
 
   // Use a simpler set for Offline Maps
   const SimpleMapSchema = {
-    id: {
+    itemId: {
       type: String,
       default: "",
     },
@@ -94,13 +86,9 @@ export default function EsriMapModule(mongoose: MongooseModule) {
 
   const OfflineMap = createSchema(Schema, {
     ...SimpleMapSchema,
-    download: {
-      type: Boolean,
-      default: false,
-    },
     status: {
       type: String,
-      default: ArcGISOfflineStatus.Unknown,
+      default: "",
     },
   }, {
     _id: false,
@@ -123,6 +111,10 @@ export default function EsriMapModule(mongoose: MongooseModule) {
       type: [String],
       default: [],
     },
+    development: {
+      type: Boolean,
+      default: false,
+    }
   }, {
     _id: false,
   });

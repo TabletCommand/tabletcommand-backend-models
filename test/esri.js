@@ -59,7 +59,7 @@ describe("Esri", function() {
     assert.equal(sut.maps.length, 1);
     const sutm = sut.maps[0];
     const testItemM = testItem.maps[0];
-    assert.equal(sutm.id, testItemM.id);
+    assert.equal(sutm.itemId, testItemM.itemId);
     assert.equal(sutm.title, testItemM.title);
     assert.equal(sutm.url, testItemM.url);
     assert.equal(sutm.access, testItemM.access);

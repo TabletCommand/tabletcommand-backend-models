@@ -314,18 +314,18 @@ module.exports = function(dependencies) {
       //
       {
         "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/XBO_Branches_Updated/FeatureServer/0",
-        "id": "XBO_Branches_Updated_3067",
+        "itemId": "XBO_Branches_Updated_3067",
         "layerType": "ArcGISFeatureLayer",
         "title": "XBO Branches_Updated"
       },
       {
-        "id": "city_limits_092019_4185",
+        "itemId": "city_limits_092019_4185",
         "layerType": "ArcGISFeatureLayer",
         "title": "City Limits",
         "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/city_limits_092019/FeatureServer/0"
       },
       {
-        "id": "unvdpdod57lext9eck9nxipcov2dgjqs_8576",
+        "itemId": "unvdpdod57lext9eck9nxipcov2dgjqs_8576",
         "layerType": "ArcGISFeatureLayer",
         "title": "Tablet Command",
         "url": "https://api.tabletcommand.com/esri/tc-file/unvdpdod57lext9eck9nxipcov2dgjqs/FeatureServer/0"
@@ -350,12 +350,13 @@ module.exports = function(dependencies) {
       ],
       "title": "Streets (Night)"
     },
-    "id": "01cebf7aede94ed3a9f4c260e18a7d7e",
+    "itemId": "01cebf7aede94ed3a9f4c260e18a7d7e",
     "type": "Web Map",
     "tags": [
       "XBO",
       "Tabletcommand"
-    ]
+    ],
+    "development": true,
   };
 
   const deviceMapping = {
