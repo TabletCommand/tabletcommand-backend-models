@@ -100,7 +100,7 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
                         default: boolean;
                     };
                     status: {
-                        type: typeof ArcGISOfflineStatus;
+                        type: StringConstructor;
                         default: ArcGISOfflineStatus;
                     };
                     id: {

@@ -91,7 +91,7 @@ function EsriMapModule(mongoose) {
             type: Boolean,
             default: false,
         }, status: {
-            type: ArcGISOfflineStatus,
+            type: String,
             default: ArcGISOfflineStatus.Unknown,
         } }), {
         _id: false,

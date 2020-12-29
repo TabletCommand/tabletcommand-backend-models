@@ -99,7 +99,7 @@ export default function EsriMapModule(mongoose: MongooseModule) {
       default: false,
     },
     status: {
-      type: ArcGISOfflineStatus,
+      type: String,
       default: ArcGISOfflineStatus.Unknown,
     },
   }, {
