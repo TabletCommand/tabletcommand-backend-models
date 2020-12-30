@@ -72,9 +72,9 @@ describe("Esri", function() {
 
     const itemId = "01cebf7aede94ed3a9f4c260e18a7d7e";
     // compare saved items
-    assert.equal(sut.mapsProperties.length, 1);
-    const mapPropsFound = sut.mapsProperties.filter( p => { p.itemId === itemId; })
-    assert.equal(sut.mapPropsFound.length, 1);
+    assert.equal(sut.mapsProperties.length, 1, "all items");
+    const mapPropsFound = sut.mapsProperties.filter( p => { return p.itemId === itemId; })
+    assert.equal(mapPropsFound.length, 1, "found items");
     const props = mapPropsFound[0];
     assert.equal(props.download, true);
   });
