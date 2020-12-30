@@ -412,11 +412,13 @@ module.exports = function(dependencies) {
     maps: [
       esriMap
     ],
-    mapsProperties: {
-      "01cebf7aede94ed3a9f4c260e18a7d7e": {
+    mapsProperties: [
+      //
+      {
+        itemId: "01cebf7aede94ed3a9f4c260e18a7d7e",
         download: true,
       }
-    },
+    ]
   };
 
   const gstMapping = {
@@ -680,12 +682,12 @@ module.exports = function(dependencies) {
     notificationIncidentTypes: ["cliff-rescue", "test"],
     notificationSounds: {
       ios: {
-        sound : "a.caf",
+        sound: "a.caf",
         soundType: "default",
         os: "ios"
       },
       android: {
-        sound : "b.mp3",
+        sound: "b.mp3",
         soundType: "default",
         os: "android"
       }

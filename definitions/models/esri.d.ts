@@ -284,16 +284,16 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: number;
         };
     }>[];
-    mapsProperties: {
-        type: never;
-        of: import("../helpers").MongooseInterface<{
-            download: {
-                type: BooleanConstructor;
-                default: boolean;
-            };
-        }>;
-        default: {};
-    };
+    mapsProperties: import("../helpers").MongooseInterface<{
+        itemId: {
+            type: StringConstructor;
+            default: string;
+        };
+        download: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;
