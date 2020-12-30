@@ -26,10 +26,6 @@ export async function EsriModule(mongoose: MongooseModule) {
 
   const MapProperties = createSchema(Schema, {
     // ArcGIS Item id
-    itemId: {
-      type: String,
-      default: "",
-    },
     download: {
       type: Boolean,
       default: false,
@@ -86,8 +82,10 @@ export async function EsriModule(mongoose: MongooseModule) {
     },
     // Properties set by user.
     // These are applied by the sync on top of the EsriMap properties
+    // saved as itemId: MapProperties
     mapsProperties: {
-      type: MapProperties,
+      type: Map,
+      of: MapProperties,
       default: {},
     }
   }, {

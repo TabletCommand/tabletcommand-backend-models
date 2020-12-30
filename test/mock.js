@@ -411,7 +411,12 @@ module.exports = function(dependencies) {
     },
     maps: [
       esriMap
-    ]
+    ],
+    mapsProperties: {
+      "01cebf7aede94ed3a9f4c260e18a7d7e": {
+        download: true,
+      }
+    },
   };
 
   const gstMapping = {

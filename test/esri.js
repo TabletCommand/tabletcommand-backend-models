@@ -69,5 +69,10 @@ describe("Esri", function() {
     assert.equal(sutm.mapLayers.length, 3);
     assert.equal(sutm.baseMap.baseMapLayers.length, 1);
     assert.equal(sutm.baseMap.title, testItemM.baseMap.title);
+
+    const itemId = "01cebf7aede94ed3a9f4c260e18a7d7e";
+    // compare saved items
+    assert.equal(sut.mapsProperties.get(itemId).download, true);
+    assert.equal(sut.mapsProperties.get(itemId).download, testItem.mapsProperties[itemId].download);
   });
 });
