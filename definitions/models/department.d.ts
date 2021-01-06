@@ -89,6 +89,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         opAreaCode: string;
     };
     accountType: string;
+    timeZone: string;
 }, {}> & {
     __methods?: unknown;
 }>;

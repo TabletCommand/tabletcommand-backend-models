@@ -306,7 +306,8 @@ module.exports = function(dependencies) {
       opAreaCode: "DAL",
       opAreaName: "Delta Operations"
     },
-    accountType: "production"
+    accountType: "production",
+    timeZone: "America/Los_Angeles"
   };
 
   const esriMap = {

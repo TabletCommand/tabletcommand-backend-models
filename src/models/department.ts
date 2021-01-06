@@ -312,6 +312,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "production"
     },
+    timeZone: {
+      type: String,
+      default: "America/Los_Angeles"
+    },
   }, {
     collection: "massive_admin",
   });
