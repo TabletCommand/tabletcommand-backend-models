@@ -25,6 +25,10 @@ async function UserDeviceModule(mongoose) {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
         },
+        t: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         drift: {
             type: Number,
             default: 0

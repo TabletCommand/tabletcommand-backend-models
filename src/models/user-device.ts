@@ -1,6 +1,7 @@
 import {
   createSchema,
   createModel,
+  currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
@@ -31,6 +32,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     time: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    t: {
+      type: Date,
+      default: currentDate,
     },
     drift: {
       type: Number,
