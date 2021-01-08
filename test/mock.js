@@ -692,7 +692,8 @@ module.exports = function(dependencies) {
         soundType: "default",
         os: "android"
       }
-    }
+    },
+    offDuty: true,
   };
 
   const personnelImport = {

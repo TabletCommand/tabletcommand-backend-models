@@ -54,7 +54,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
     active: {
       type: Boolean,
-      default: true
+      default: true,
     },
   }, {
     _id: false,
@@ -116,6 +116,11 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     notificationSounds: {
       type: soundSchema,
       default: {},
+    },
+    // When off-duty is true, the device active is flag is set to false
+    offDuty: {
+      type: Boolean,
+      default: false,
     }
   }, {
     collection: "massive_user_device",

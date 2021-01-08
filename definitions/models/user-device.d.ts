@@ -89,6 +89,7 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
             };
         };
     }>;
+    offDuty: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;
