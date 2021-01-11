@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CADStatusModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-const cad_status_color_1 = require("./schema/cad-status-color");
+const color_1 = require("./schema/color");
 async function CADStatusModule(mongoose) {
     const { Schema } = mongoose;
-    const CADStatusColor = cad_status_color_1.default(mongoose);
+    const Color = color_1.default(mongoose);
     const StatusOptionValue = helpers_1.createSchema(Schema, {
         name: {
             type: String,
@@ -115,7 +115,7 @@ async function CADStatusModule(mongoose) {
             default: [],
         },
         color: {
-            type: CADStatusColor,
+            type: Color,
             default: null,
         },
     }, {

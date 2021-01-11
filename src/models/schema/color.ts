@@ -3,10 +3,10 @@ import {
   createSchema,
 } from "../../helpers";
 
-export default function CADStatusColorModule(mongoose: MongooseModule) {
+export default function ColorModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const CADStatusColor = createSchema(Schema, {
+  const Color = createSchema(Schema, {
     background: {
       type: String,
       default: "#851414", // Red-like
@@ -19,5 +19,5 @@ export default function CADStatusColorModule(mongoose: MongooseModule) {
     _id: false,
   });
 
-  return CADStatusColor;
+  return Color;
 }

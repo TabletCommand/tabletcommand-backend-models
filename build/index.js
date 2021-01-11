@@ -43,6 +43,7 @@ async function wireModels(mongoose) {
         IncidentTakeover: await getModel(Promise.resolve().then(() => require("./models/incident-takeover"))),
         Location: await getModel(Promise.resolve().then(() => require("./models/location"))),
         MailLog: await getModel(Promise.resolve().then(() => require("./models/mail-log"))),
+        Message: await getModel(Promise.resolve().then(() => require("./models/message"))),
         Monitor: await getModel(Promise.resolve().then(() => require("./models/monitor"))),
         ManagedIncident: await getModel(Promise.resolve().then(() => require("./models/managed-incident"))),
         PersonnelImport: await getModel(Promise.resolve().then(() => require("./models/personnel-import"))),

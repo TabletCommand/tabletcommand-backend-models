@@ -26,6 +26,7 @@ export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeo
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { Message, MessageModel } from "./models/message";
 export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
@@ -66,6 +67,7 @@ export declare function connect(url: string): Promise<{
         IncidentTakeover: import("./models/incident-takeover").IncidentTakeoverModel;
         Location: import("./models/location").LocationModel;
         MailLog: import("./models/mail-log").MailLogModel;
+        Message: import("./models/message").MessageModel;
         Monitor: import("./models/monitor").MonitorModel;
         ManagedIncident: import("./models/managed-incident").ManagedIncidentModel;
         PersonnelImport: import("./models/personnel-import").PersonnelImportModel;

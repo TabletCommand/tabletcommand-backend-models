@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function CADStatusColorModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function ColorModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../../helpers").MongooseInterface<{
         background: {
             type: StringConstructor;
@@ -13,4 +13,4 @@ export default function CADStatusColorModule(mongoose: MongooseModule): import("
     }>;
     _methods: unknown;
 };
-//# sourceMappingURL=cad-status-color.d.ts.map
+//# sourceMappingURL=color.d.ts.map

@@ -15,7 +15,7 @@ describe(" Models", function() {
   afterEach(function() {
     mongoose.disconnect();
   });
-  it("are wired", function(done) {
+  it("are wired", function() {
     // These should match index.js
     assert.isFunction(models.ActionLog, "Missing ActionLog");
     assert.isFunction(models.Agency, "Missing Agency");
@@ -43,6 +43,7 @@ describe(" Models", function() {
     assert.isFunction(models.Location, "Missing Location");
     assert.isFunction(models.MailLog, "Missing MailLog");
     assert.isFunction(models.ManagedIncident, "Missing ManagedIncident");
+    assert.isFunction(models.Message, "Missing Message");
     assert.isFunction(models.Monitor, "Missing Monitor");
     assert.isFunction(models.PersonnelImport, "Missing PersonnelImport");
     assert.isFunction(models.RateLimit, "Missing RateLimit");
@@ -52,7 +53,5 @@ describe(" Models", function() {
     assert.isFunction(models.User, "Missing User");
     assert.isFunction(models.UserDevice, "Missing UserDevice");
     assert.isFunction(models.UserRegistration, "Missing UserRegistration");
-
-    return done();
   });
 });

@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function CADStatusColorModule(mongoose) {
+function ColorModule(mongoose) {
     const { Schema } = mongoose;
-    const CADStatusColor = helpers_1.createSchema(Schema, {
+    const Color = helpers_1.createSchema(Schema, {
         background: {
             type: String,
             default: "#851414",
@@ -15,7 +15,7 @@ function CADStatusColorModule(mongoose) {
     }, {
         _id: false,
     });
-    return CADStatusColor;
+    return Color;
 }
-exports.default = CADStatusColorModule;
-//# sourceMappingURL=cad-status-color.js.map
+exports.default = ColorModule;
+//# sourceMappingURL=color.js.map
