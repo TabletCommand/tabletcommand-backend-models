@@ -88,6 +88,10 @@ async function CADStatusModule(mongoose) {
             required: true,
             minlength: 1,
         },
+        codeDisplay: {
+            type: String,
+            default: "",
+        },
         status: {
             type: String,
             default: "",

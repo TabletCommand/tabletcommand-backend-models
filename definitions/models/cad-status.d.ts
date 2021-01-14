@@ -6,6 +6,7 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
     modifiedDate: number;
     statusId: number;
     code: string;
+    codeDisplay: string;
     status: string;
     name: string;
     normalized: string;

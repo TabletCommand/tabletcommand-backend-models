@@ -190,6 +190,7 @@ module.exports = function(dependencies) {
   const cadStatus = {
     _id: mongoose.Types.ObjectId(),
     code: "AV",
+    codeDisplay: "RS",
     color: {
       background: "#7b7d7d",
       text: "#F8F9F9"

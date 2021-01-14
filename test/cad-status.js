@@ -31,6 +31,7 @@ describe("CADStatus", function() {
       assert.equal(testItem.departmentId, sut.departmentId);
       assert.equal(testItem.modifiedDate, sut.modifiedDate);
       assert.equal(testItem.code, sut.code);
+      assert.equal(testItem.codeDisplay, sut.codeDisplay);
       assert.equal(testItem.color.background, sut.color.background);
       assert.equal(testItem.color.text, sut.color.text);
       assert.equal(testItem.name, sut.name);
