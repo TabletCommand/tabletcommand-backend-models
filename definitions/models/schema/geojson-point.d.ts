@@ -1,16 +1,16 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function GeoJSONPointModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function GeoJSONPointModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
     _interface: import("../../helpers").MongooseInterface<{
         type: {
             type: StringConstructor;
-            required: boolean;
+            required: true;
             enum: string[];
             default: string;
         };
         coordinates: {
             type: NumberConstructor[];
-            required: boolean;
+            required: true;
             default: never[];
         };
     }>;

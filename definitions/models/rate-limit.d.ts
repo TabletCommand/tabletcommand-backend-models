@@ -1,11 +1,11 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function RateLimitModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function RateLimitModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     username: string;
     modified_unix_date: number;
     count: number;
-}, {}> & {
+}> & {
     __methods?: unknown;
 }>;
 export interface RateLimit extends ItemTypeFromTypeSchemaFunction<typeof RateLimitModule> {

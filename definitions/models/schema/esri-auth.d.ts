@@ -1,13 +1,13 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function EsriAuthModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function EsriAuthModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
     _interface: import("../../helpers").MongooseInterface<{
         username: {
             type: StringConstructor;
             default: string;
         };
         encrypted: {
-            type: import("mongoose").Schema<any> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
                 _interface: import("../../helpers").MongooseInterface<{
                     iv: {
                         type: StringConstructor;

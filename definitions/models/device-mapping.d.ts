@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
@@ -17,7 +17,7 @@ export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<i
     uuid: string;
     note: string;
     mapHidden: boolean;
-}, {}> & {
+}> & {
     __methods?: unknown;
 }>;
 export interface DeviceMapping extends ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> {
