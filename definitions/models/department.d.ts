@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     uuid: string;
     department: string;
@@ -90,7 +90,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     };
     accountType: string;
     timeZone: string;
-}, {}> & {
+}> & {
     __methods?: unknown;
 }>;
 export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> {

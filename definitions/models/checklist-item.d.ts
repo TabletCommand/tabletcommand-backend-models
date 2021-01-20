@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ChecklistItemModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function ChecklistItemModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     position: number;
     checked: number;
@@ -15,13 +15,9 @@ export declare function ChecklistItemModule(mongoose: MongooseModule): Promise<i
     departmentId: string;
     active: boolean;
     name: string;
-    agencyId: {
-        type: never;
-        ref: never;
-        default: never;
-    };
+    agencyId: import("mongoose").Schema.Types.ObjectId;
     description: string;
-}, {}> & {
+}> & {
     __methods?: unknown;
 }>;
 export interface ChecklistItem extends ItemTypeFromTypeSchemaFunction<typeof ChecklistItemModule> {
