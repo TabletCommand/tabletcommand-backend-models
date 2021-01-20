@@ -1,12 +1,12 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ChartUserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function ChartUserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     date: number;
     departmentId: string;
     count: number;
     items: string[];
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface ChartUser extends ItemTypeFromTypeSchemaFunction<typeof ChartUserModule> {

@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function CADVehicleModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function CADVehicleModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     uuid: string;
     departmentId: string;
     modifiedDate: number;
@@ -18,7 +18,7 @@ export declare function CADVehicleModule(mongoose: MongooseModule): Promise<impo
     }>;
     mapHidden: boolean;
     capability: string;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface CADVehicle extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleModule> {

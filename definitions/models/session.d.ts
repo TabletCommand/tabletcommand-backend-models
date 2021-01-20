@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ReplaceModelReturnType, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction } from "../helpers";
-export declare function SessionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function SessionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: string;
     nick: string;
     email: string;
@@ -15,7 +15,7 @@ export declare function SessionModule(mongoose: MongooseModule): Promise<import(
     userAgent: string;
     remoteAddress: string;
     deviceId: string;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface Session extends ItemTypeFromTypeSchemaFunction<typeof SessionModule> {

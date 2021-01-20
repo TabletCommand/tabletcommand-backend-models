@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     uuid: string;
     departmentId: string;
     vehicleId: string;
@@ -65,32 +65,32 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             };
         }>[];
         capability: string;
-    } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+    } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
-        schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+        schema: import("mongoose").Schema<any> & {
             _interface: import("../helpers").MongooseInterface<{
                 uuid: {
                     type: StringConstructor;
                     index: true;
-                    default: () => string;
+                    default: import("uuid/interfaces").v4;
                 };
                 departmentId: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     index: true;
                 };
                 vehicleId: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 radioName: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 requestTime: {
@@ -104,13 +104,13 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 status: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 statusCode: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 modifiedDate: {
@@ -131,7 +131,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     default: string;
                 };
                 options: {
-                    type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+                    type: (import("mongoose").Schema<any> & {
                         _interface: import("../helpers").MongooseInterface<{
                             name: {
                                 type: StringConstructor;
@@ -192,32 +192,32 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             };
         }>[];
         capability: string;
-    } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+    } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
         _id: import("bson").ObjectId;
     } & {
-        schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+        schema: import("mongoose").Schema<any> & {
             _interface: import("../helpers").MongooseInterface<{
                 uuid: {
                     type: StringConstructor;
                     index: true;
-                    default: () => string;
+                    default: import("uuid/interfaces").v4;
                 };
                 departmentId: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     index: true;
                 };
                 vehicleId: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 radioName: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 requestTime: {
@@ -231,13 +231,13 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 status: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 statusCode: {
                     type: StringConstructor;
                     default: string;
-                    required: true;
+                    required: boolean;
                     minlength: number;
                 };
                 modifiedDate: {
@@ -258,7 +258,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     default: string;
                 };
                 options: {
-                    type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+                    type: (import("mongoose").Schema<any> & {
                         _interface: import("../helpers").MongooseInterface<{
                             name: {
                                 type: StringConstructor;
@@ -288,7 +288,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             }>;
         };
     }) => T): T;
-}> & {
+}, {}> & {
     __methods?: {
         propagateToObject<T>(dbItem: Record<string, unknown> & {
             uuid: string;
@@ -322,32 +322,32 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 };
             }>[];
             capability: string;
-        } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+        } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
-            schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            schema: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     uuid: {
                         type: StringConstructor;
                         index: true;
-                        default: () => string;
+                        default: import("uuid/interfaces").v4;
                     };
                     departmentId: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         index: true;
                     };
                     vehicleId: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     radioName: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     requestTime: {
@@ -361,13 +361,13 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     status: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     statusCode: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     modifiedDate: {
@@ -388,7 +388,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                         default: string;
                     };
                     options: {
-                        type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+                        type: (import("mongoose").Schema<any> & {
                             _interface: import("../helpers").MongooseInterface<{
                                 name: {
                                     type: StringConstructor;
@@ -449,32 +449,32 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 };
             }>[];
             capability: string;
-        } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+        } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
             _id: import("bson").ObjectId;
         } & {
-            schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            schema: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     uuid: {
                         type: StringConstructor;
                         index: true;
-                        default: () => string;
+                        default: import("uuid/interfaces").v4;
                     };
                     departmentId: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         index: true;
                     };
                     vehicleId: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     radioName: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     requestTime: {
@@ -488,13 +488,13 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     status: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     statusCode: {
                         type: StringConstructor;
                         default: string;
-                        required: true;
+                        required: boolean;
                         minlength: number;
                     };
                     modifiedDate: {
@@ -515,7 +515,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                         default: string;
                     };
                     options: {
-                        type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+                        type: (import("mongoose").Schema<any> & {
                             _interface: import("../helpers").MongooseInterface<{
                                 name: {
                                     type: StringConstructor;

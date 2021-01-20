@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     nick: string;
     email: string;
     name: string;
@@ -8,8 +8,16 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     departmentId: string;
     modified_date: string;
     when: string;
-    agencyId: import("mongoose").Schema.Types.ObjectId;
-    managedAgencies: import("mongoose").Schema.Types.ObjectId[];
+    agencyId: {
+        type: never;
+        ref: never;
+        default: never;
+    };
+    managedAgencies: {
+        type: never;
+        ref: never;
+        default: unknown[];
+    };
     active: boolean;
     admin: boolean;
     superuser: boolean;
@@ -44,7 +52,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     shareLocationPhone: boolean;
     shareLocationTablet: boolean;
     offlineMapsEnabled: boolean;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> {

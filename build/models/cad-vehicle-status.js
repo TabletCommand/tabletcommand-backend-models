@@ -12,7 +12,7 @@ async function CADVehicleStatusModule(mongoose) {
         uuid: {
             type: String,
             index: true,
-            default: () => uuid.v4(),
+            default: uuid.v4,
         },
         departmentId: {
             type: String,

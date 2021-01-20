@@ -66,7 +66,7 @@ export async function BattalionModule(mongoose: MongooseModule) {
       },
       uuid: {
           type: String,
-          default: () => uuid.v4(), // Needs to be so because has a bad type for declaration generation
+          default: uuid.v4,
       },
       departmentId: {
           type: String,

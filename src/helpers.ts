@@ -3,9 +3,9 @@ import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoo
 import { ObjectID, ObjectId } from "bson";
 
 export type MongooseModule = typeof import("mongoose");
-export type MongooseModel<T extends Document> = Model<T>;
+export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type MongooseSchema<T extends Document<any> = Document<any>> = Schema<T>;
+export type MongooseSchema<T = any> = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 export type MongooseDocument = Omit<Document, "_id"> & {
@@ -38,9 +38,6 @@ export type MongooseProperty<T extends SchemaDefinition[string]> =
   T extends Schema & { _interface: infer P } ? P :
   T extends { type: MongooseModule["Types"]["ObjectId"] } ? ObjectId :
   T extends MongooseModule["Types"]["ObjectId"] ? ObjectId :
-  T extends { type: MongooseModule['Schema']['Types']['ObjectId'] } ? Schema.Types.ObjectId :
-  T extends { type: Array<MongooseModule['Schema']['Types']['ObjectId']> } ? Schema.Types.ObjectId[] :
-  T extends MongooseModule["Types"]["ObjectId"] ? Schema.Types.ObjectId :
   T extends Record<string, unknown> ? { [P in keyof T]: MongooseProperty<T[P]> } :
   never;
 
@@ -63,7 +60,7 @@ export function createSchema
   : Schema & { _interface: MongooseInterface<T>, _methods: TMethods } {
   const schema = new schemaCtor(p, o);
   if (methods) {
-    schema.methods = methods as any;
+    schema.methods = methods;
   }
   return schema as unknown as Schema & { _interface: MongooseInterface<T>, _methods: TMethods };
 }

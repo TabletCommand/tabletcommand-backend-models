@@ -1,13 +1,13 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function FireMapperAuthModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+export default function FireMapperAuthModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../../helpers").MongooseInterface<{
         username: {
             type: StringConstructor;
             default: string;
         };
         encrypted: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{
                     iv: {
                         type: StringConstructor;
@@ -23,7 +23,7 @@ export default function FireMapperAuthModule(mongoose: MongooseModule): import("
             default: null;
         };
         encryptedAccessCode: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{
                     iv: {
                         type: StringConstructor;
