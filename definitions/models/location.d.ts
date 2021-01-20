@@ -11,6 +11,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     modified_unix_date: number;
     version: number;
     session: string;
+    heading: number;
     esriId: number;
     location: {
         longitude: number;
@@ -45,6 +46,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         modified_unix_date: number;
         version: number;
         session: string;
+        heading: number;
         esriId: number;
         location: {
             longitude: number;
@@ -115,6 +117,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 session: {
                     type: StringConstructor;
                     default: string;
+                };
+                heading: {
+                    type: NumberConstructor;
+                    default: number;
                 };
                 esriId: {
                     type: NumberConstructor;
@@ -180,6 +186,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         modified_unix_date: number;
         version: number;
         session: string;
+        heading: number;
         esriId: number;
         location: {
             longitude: number;
@@ -250,6 +257,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 session: {
                     type: StringConstructor;
                     default: string;
+                };
+                heading: {
+                    type: NumberConstructor;
+                    default: number;
                 };
                 esriId: {
                     type: NumberConstructor;
@@ -315,6 +326,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         modified_unix_date: number;
         version: number;
         session: string;
+        heading: number;
         esriId: number;
         location: {
             longitude: number;
@@ -385,6 +397,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 session: {
                     type: StringConstructor;
                     default: string;
+                };
+                heading: {
+                    type: NumberConstructor;
+                    default: number;
                 };
                 esriId: {
                     type: NumberConstructor;
@@ -453,6 +469,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             modified_unix_date: number;
             version: number;
             session: string;
+            heading: number;
             esriId: number;
             location: {
                 longitude: number;
@@ -523,6 +540,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     session: {
                         type: StringConstructor;
                         default: string;
+                    };
+                    heading: {
+                        type: NumberConstructor;
+                        default: number;
                     };
                     esriId: {
                         type: NumberConstructor;
@@ -588,6 +609,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             modified_unix_date: number;
             version: number;
             session: string;
+            heading: number;
             esriId: number;
             location: {
                 longitude: number;
@@ -658,6 +680,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     session: {
                         type: StringConstructor;
                         default: string;
+                    };
+                    heading: {
+                        type: NumberConstructor;
+                        default: number;
                     };
                     esriId: {
                         type: NumberConstructor;
@@ -723,6 +749,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             modified_unix_date: number;
             version: number;
             session: string;
+            heading: number;
             esriId: number;
             location: {
                 longitude: number;
@@ -793,6 +820,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     session: {
                         type: StringConstructor;
                         default: string;
+                    };
+                    heading: {
+                        type: NumberConstructor;
+                        default: number;
                     };
                     esriId: {
                         type: NumberConstructor;

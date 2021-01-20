@@ -34,6 +34,7 @@ describe("Location", function() {
     assert.equal(testItem.device_type, sut.device_type);
     assert.equal(testItem.session, sut.session);
     assert.equal(testItem.active, sut.active);
+    assert.equal(testItem.heading, sut.heading);
     assert.equal(testItem.location.longitude, sut.location.longitude);
     assert.equal(testItem.location.latitude, sut.location.latitude);
     assert.equal(testItem.locationGeoJSON.type, "Point");

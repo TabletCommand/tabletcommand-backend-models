@@ -492,6 +492,7 @@ module.exports = function(dependencies) {
     modified_unix_date: 1426983552.49945,
     device_type: "iPad",
     active: true,
+    heading: 43,
     location: {
       longitude: -122.304,
       latitude: 37.541
