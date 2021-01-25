@@ -69,7 +69,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         opAreaName: string;
         shared: boolean;
         state: string;
-    } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+    } & Pick<import("mongoose").Document<any>, "update" | "get" | "set" | "delete" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
@@ -209,7 +209,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         opAreaName: string;
         shared: boolean;
         state: string;
-    } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+    } & Pick<import("mongoose").Document<any>, "update" | "get" | "set" | "delete" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
@@ -315,7 +315,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                 };
             }>;
         };
-    }, callback: (doc: Record<string, unknown> & {
+    }, callback: (_doc: Record<string, unknown> & {
         _id: import("bson").ObjectId;
         departmentId: string;
         userId: string;
@@ -349,7 +349,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         opAreaName: string;
         shared: boolean;
         state: string;
-    } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+    } & Pick<import("mongoose").Document<any>, "update" | "get" | "set" | "delete" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
@@ -492,7 +492,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             opAreaName: string;
             shared: boolean;
             state: string;
-        } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+        } & Pick<import("mongoose").Document<any>, "update" | "get" | "set" | "delete" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
             _id: import("bson").ObjectId;
         } & {
             schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
@@ -632,7 +632,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             opAreaName: string;
             shared: boolean;
             state: string;
-        } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+        } & Pick<import("mongoose").Document<any>, "update" | "get" | "set" | "delete" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
             _id: import("bson").ObjectId;
         } & {
             schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
@@ -738,7 +738,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     };
                 }>;
             };
-        }, callback: (doc: Record<string, unknown> & {
+        }, callback: (_doc: Record<string, unknown> & {
             _id: import("bson").ObjectId;
             departmentId: string;
             userId: string;
@@ -772,7 +772,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             opAreaName: string;
             shared: boolean;
             state: string;
-        } & Pick<import("mongoose").Document<any>, "get" | "set" | "delete" | "update" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
+        } & Pick<import("mongoose").Document<any>, "update" | "get" | "set" | "delete" | "invalidate" | "populate" | "__v" | "$ignore" | "$isDefault" | "$isDeleted" | "$isEmpty" | "$isValid" | "$locals" | "$markValid" | "$op" | "$session" | "$set" | "$where" | "baseModelName" | "collection" | "db" | "deleteOne" | "depopulate" | "directModifiedPaths" | "equals" | "errors" | "execPopulate" | "getChanges" | "id" | "increment" | "init" | "isDirectModified" | "isDirectSelected" | "isInit" | "isModified" | "isNew" | "isSelected" | "markModified" | "modifiedPaths" | "model" | "modelName" | "overwrite" | "populated" | "remove" | "replaceOne" | "save" | "schema" | "toJSON" | "toObject" | "unmarkModified" | "updateOne" | "validate" | "validateSync"> & {
             _id: import("bson").ObjectId;
         } & {
             schema: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {

@@ -37,9 +37,9 @@ export declare type MongooseProperty<T extends SchemaDefinition[string]> = T ext
 } ? P : T extends {
     type: MongooseModule["Types"]["ObjectId"];
 } ? ObjectId : T extends MongooseModule["Types"]["ObjectId"] ? ObjectId : T extends {
-    type: MongooseModule['Schema']['Types']['ObjectId'];
+    type: MongooseModule["Schema"]["Types"]["ObjectId"];
 } ? Schema.Types.ObjectId : T extends {
-    type: Array<MongooseModule['Schema']['Types']['ObjectId']>;
+    type: Array<MongooseModule["Schema"]["Types"]["ObjectId"]>;
 } ? Schema.Types.ObjectId[] : T extends MongooseModule["Types"]["ObjectId"] ? Schema.Types.ObjectId : T extends Record<string, unknown> ? {
     [P in keyof T]: MongooseProperty<T[P]>;
 } : never;

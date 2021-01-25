@@ -14,7 +14,7 @@ import {
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import GeoJSONPointModule from "./schema/geojson-point";
-import {  } from 'uuid'
+import {  } from "uuid";
 
 export async function LocationModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -117,7 +117,7 @@ export async function LocationModule(mongoose: MongooseModule) {
   const modelSchema = createSchema(Schema, modelSchemaDefinition, {
     collection: "massive_location",
   }, {
-    propagateToObject<T>(this: Location, dbItem: Location, callback: (doc: Location) => T) {
+    propagateToObject<T>(this: Location, dbItem: Location, callback: (_doc: Location) => T) {
       if (!_.isObject(dbItem)) {
         return callback(this);
       }
