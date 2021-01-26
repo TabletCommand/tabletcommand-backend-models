@@ -51,5 +51,6 @@ describe("Department", function() {
     assert.equal(sut.shareAVL.opAreaName, testItem.shareAVL.opAreaName);
     assert.equal(sut.accountType, testItem.accountType);
     assert.equal(sut.timeZone, testItem.timeZone);
+    assert.equal(sut.firstArrivingEnabled, testItem.firstArrivingEnabled);
   });
 });

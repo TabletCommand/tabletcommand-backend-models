@@ -308,7 +308,8 @@ module.exports = function(dependencies) {
       opAreaName: "Delta Operations"
     },
     accountType: "production",
-    timeZone: "America/Los_Angeles"
+    timeZone: "America/Los_Angeles",
+    firstArrivingEnabled: true
   };
 
   const esriMap = {

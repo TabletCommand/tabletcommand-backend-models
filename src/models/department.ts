@@ -213,6 +213,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    firstArrivingEnabled: {
+      type: Boolean,
+      default: false,
+    },
     fireMapperEnabled: {
       type: Boolean,
       default: false,

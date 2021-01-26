@@ -198,6 +198,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        firstArrivingEnabled: {
+            type: Boolean,
+            default: false,
+        },
         fireMapperEnabled: {
             type: Boolean,
             default: false,
