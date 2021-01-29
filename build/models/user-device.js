@@ -115,6 +115,10 @@ async function UserDeviceModule(mongoose) {
         offDuty: {
             type: Boolean,
             default: false,
+        },
+        criticalAlerts: {
+            type: Boolean,
+            default: false,
         }
     }, {
         collection: "massive_user_device",

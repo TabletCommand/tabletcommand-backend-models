@@ -126,6 +126,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     offDuty: {
       type: Boolean,
       default: false,
+    },
+    criticalAlerts: {
+      type: Boolean,
+      default: false,
     }
   }, {
     collection: "massive_user_device",
