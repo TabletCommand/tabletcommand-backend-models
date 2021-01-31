@@ -53,6 +53,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    criticalAlertsEnabled: {
+      type: Boolean,
+      default: false,
+    },
     session: {
       type: String,
       default: "",

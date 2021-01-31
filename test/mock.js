@@ -677,7 +677,7 @@ module.exports = function(dependencies) {
         bundleIdentifier: "com.testtesttest.TCMobile",
         silentEnabled: true,
         richEnabled: true,
-        session: '1234321',
+        criticalAlertsEnabled: true,
         active: true
       }
     ],

@@ -45,6 +45,10 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
             type: BooleanConstructor;
             default: boolean;
         };
+        criticalAlertsEnabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         session: {
             type: StringConstructor;
             default: string;

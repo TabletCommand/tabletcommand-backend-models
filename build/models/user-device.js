@@ -45,6 +45,10 @@ async function UserDeviceModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        criticalAlertsEnabled: {
+            type: Boolean,
+            default: false,
+        },
         session: {
             type: String,
             default: "",
