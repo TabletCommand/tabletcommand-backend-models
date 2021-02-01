@@ -678,6 +678,7 @@ module.exports = function(dependencies) {
         silentEnabled: true,
         richEnabled: true,
         criticalAlertsEnabled: true,
+        session: "1234321",
         active: true
       }
     ],
