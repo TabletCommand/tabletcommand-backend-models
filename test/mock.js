@@ -30,7 +30,8 @@ module.exports = function(dependencies) {
     administrators: [
       new mongoose.Types.ObjectId()
     ],
-    personnelIntegration: true
+    personnelIntegration: true,
+    personnelMonitorHours: 24
   };
 
   const assignment = {

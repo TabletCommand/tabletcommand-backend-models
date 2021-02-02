@@ -57,7 +57,11 @@ async function AgencyModule(mongoose) {
         personnelIntegration: {
             type: Boolean,
             default: false
-        }
+        },
+        personnelMonitorHours: {
+            type: Number,
+            default: 12
+        },
     }, {
         collection: "massive_agency",
     });
