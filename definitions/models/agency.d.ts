@@ -21,6 +21,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
         default: unknown[];
     };
     personnelIntegration: boolean;
+    personnelMonitorHours: number;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -351,6 +351,19 @@ async function CADIncidentModule(mongoose) {
         preference_location: {
             type: String,
         },
+        // Training
+        simulation: {
+            type: Boolean,
+            default: false,
+        },
+        notify: {
+            type: Boolean,
+            default: true,
+        },
+        rts: {
+            type: Boolean,
+            default: true,
+        },
         // Leaked
         admin_note: {
             type: String,
@@ -368,10 +381,6 @@ async function CADIncidentModule(mongoose) {
             type: [APNNotificationType],
         },
         notifiedUnits: {
-            type: [String],
-        },
-        // Anaheim
-        ReportNumber: {
             type: [String],
         },
         // Other Agencies

@@ -182,6 +182,9 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         })[];
     }>[];
     preference_location: string;
+    simulation: boolean;
+    notify: boolean;
+    rts: boolean;
     admin_note: string;
     Interface: string;
     InterfaceVersion: string;
@@ -195,7 +198,6 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         };
     }>[];
     notifiedUnits: string[];
-    ReportNumber: string[];
     AgencyDeterminantCode: string;
     AgencyIncidentCategory: string;
     CFMap: string;

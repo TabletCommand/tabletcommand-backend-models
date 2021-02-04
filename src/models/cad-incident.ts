@@ -382,6 +382,20 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
       type: String,
     },
 
+    // Training
+    simulation: {
+      type: Boolean,
+      default: false,
+    },
+    notify: {
+      type: Boolean,
+      default: true,
+    },
+    rts: {
+      type: Boolean,
+      default: true,
+    },
+
     // Leaked
     admin_note: {
       type: String,
@@ -400,11 +414,6 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
       type: [APNNotificationType],
     },
     notifiedUnits: {
-      type: [String],
-    },
-
-    // Anaheim
-    ReportNumber: {
       type: [String],
     },
 
