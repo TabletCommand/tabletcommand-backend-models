@@ -107,6 +107,15 @@ async function ManagedIncidentModule(mongoose) {
         history: {
             type: [HistoryItem],
         },
+        // Training
+        simulation: {
+            type: Boolean,
+            default: false,
+        },
+        rts: {
+            type: Boolean,
+            default: true,
+        },
     }, {
         collection: "massive_incident_managed",
     });

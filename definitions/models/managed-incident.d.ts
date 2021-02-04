@@ -67,6 +67,8 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: number;
         };
     }>[];
+    simulation: boolean;
+    rts: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

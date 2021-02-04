@@ -124,6 +124,16 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     history: {
       type: [HistoryItem],
     },
+
+    // Training
+    simulation: {
+      type: Boolean,
+      default: false,
+    },
+    rts: {
+      type: Boolean,
+      default: true,
+    },
   }, {
     collection: "massive_incident_managed",
   });
@@ -137,19 +147,19 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     },
   });
 
-  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
+  modelSchema.virtual("id").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toString();
   });
 
-  modelSchema.virtual("start_time").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
+  modelSchema.virtual("start_time").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
     return unixTimeToJSONWithTimezone(this.start_unix_time);
   });
 
-  modelSchema.virtual("end_time").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
+  modelSchema.virtual("end_time").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
     return unixTimeToJSONWithTimezone(this.end_unix_time);
   });
 
-  modelSchema.virtual("modified_date").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
+  modelSchema.virtual("modified_date").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
     return unixTimeToLocalTime(this.modified_unix_date);
   });
 
