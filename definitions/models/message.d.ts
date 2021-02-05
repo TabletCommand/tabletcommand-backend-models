@@ -4,12 +4,14 @@ export declare function MessageModule(mongoose: MongooseModule): Promise<import(
     _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
+    session: string;
     active: boolean;
     uuid: string;
+    requestId: string;
     title: string;
     body: string;
     actionTitle: string;
-    createdAt: string;
+    created: string;
     color: import("../helpers").MongooseInterface<{
         background: {
             type: StringConstructor;
@@ -22,8 +24,16 @@ export declare function MessageModule(mongoose: MongooseModule): Promise<import(
     }>;
     url: string;
     priority: number;
-    type: string;
-    trigger: any;
+    type: import("../helpers").MongooseInterface<{
+        type: {
+            type: StringConstructor;
+            default: string;
+        };
+        typeOpts: {
+            type: ObjectConstructor;
+            default: {};
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

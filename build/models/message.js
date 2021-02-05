@@ -7,6 +7,18 @@ const color_1 = require("./schema/color");
 async function MessageModule(mongoose) {
     const { Schema, Types } = mongoose;
     const Color = color_1.default(mongoose);
+    const TypeSchema = helpers_1.createSchema(Schema, {
+        type: {
+            type: String,
+            default: "",
+        },
+        typeOpts: {
+            type: Object,
+            default: {},
+        },
+    }, {
+        _id: false,
+    });
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -23,11 +35,19 @@ async function MessageModule(mongoose) {
             default: "",
             required: true,
         },
+        session: {
+            type: String,
+            default: "",
+        },
         active: {
             type: Boolean,
             default: false,
         },
         uuid: {
+            type: String,
+            default: uuid.v4,
+        },
+        requestId: {
             type: String,
             default: uuid.v4,
         },
@@ -43,7 +63,7 @@ async function MessageModule(mongoose) {
             type: String,
             default: ""
         },
-        createdAt: {
+        created: {
             type: Date,
             default: helpers_1.currentDate,
         },
@@ -60,11 +80,7 @@ async function MessageModule(mongoose) {
             default: 10,
         },
         type: {
-            type: String,
-            default: "",
-        },
-        trigger: {
-            type: Object,
+            type: TypeSchema,
             default: {},
         },
     }, {

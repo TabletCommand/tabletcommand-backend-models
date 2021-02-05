@@ -14,6 +14,19 @@ export async function MessageModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const Color = ColorModule(mongoose);
 
+  const TypeSchema = createSchema(Schema, {
+    type: {
+      type: String,
+      default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
+    },
+    typeOpts: {
+      type: Object,
+      default: {},
+    },
+  }, {
+    _id: false,
+  });
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -30,11 +43,19 @@ export async function MessageModule(mongoose: MongooseModule) {
       default: "",
       required: true,
     },
+    session: {
+      type: String,
+      default: "",
+    },
     active: {
       type: Boolean,
       default: false,
     },
     uuid: {
+      type: String,
+      default: uuid.v4,
+    },
+    requestId: {
       type: String,
       default: uuid.v4,
     },
@@ -50,7 +71,7 @@ export async function MessageModule(mongoose: MongooseModule) {
       type: String,
       default: ""
     },
-    createdAt: {
+    created: {
       type: Date,
       default: currentDate,
     },
@@ -67,11 +88,7 @@ export async function MessageModule(mongoose: MongooseModule) {
       default: 10, // 1 highest, 10 lowest
     },
     type: {
-      type: String,
-      default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
-    },
-    trigger: {
-      type: Object,
+      type: TypeSchema,
       default: {},
     },
   }, {
