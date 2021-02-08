@@ -2,6 +2,7 @@ import {
   MongooseModule,
   createSchema,
   createModel,
+  currentDate,
   retrieveCurrentUnixTime,
   ModelTypeFromTypeSchemaFunction,
   ItemTypeFromTypeSchemaFunction,
@@ -35,6 +36,10 @@ export async function ActionLogModule(mongoose: MongooseModule) {
     object: {
       type: Object,
       default: {},
+    },
+    createdAt: {
+      type: Date,
+      default: currentDate,
     },
     modified_unix_date: {
       type: Number,

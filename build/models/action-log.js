@@ -29,6 +29,10 @@ async function ActionLogModule(mongoose) {
             type: Object,
             default: {},
         },
+        createdAt: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         modified_unix_date: {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,

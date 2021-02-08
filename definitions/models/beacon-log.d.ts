@@ -5,6 +5,7 @@ export declare function BeaconLogModule(mongoose: MongooseModule): Promise<impor
     departmentId: string;
     userId: string;
     object: any;
+    createdAt: string;
     modified_unix_date: number;
 }, {}> & {
     __methods?: unknown;

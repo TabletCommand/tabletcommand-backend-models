@@ -2,6 +2,7 @@ import {
   createModel,
   createSchema,
   createSchemaDefinition,
+  currentDate,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -41,6 +42,10 @@ export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
       min: 1,
+    },
+    requested: {
+      type: Date,
+      default: currentDate,
     },
     requestDelay: {
       type: Number,

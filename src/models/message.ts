@@ -41,7 +41,6 @@ export async function MessageModule(mongoose: MongooseModule) {
     userId: {
       type: String,
       default: "",
-      required: true,
     },
     session: {
       type: String,

@@ -33,7 +33,6 @@ async function MessageModule(mongoose) {
         userId: {
             type: String,
             default: "",
-            required: true,
         },
         session: {
             type: String,

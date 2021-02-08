@@ -2,6 +2,7 @@ import {
   MongooseModule,
   createSchema,
   createModel,
+  currentDate,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -27,6 +28,10 @@ export async function BeaconLogModule(mongoose: MongooseModule) {
     },
     object: {
       type: Object,
+    },
+    createdAt: {
+      type: Date,
+      default: currentDate,
     },
     modified_unix_date: {
       type: Number,

@@ -7,6 +7,7 @@ export declare function ActionLogModule(mongoose: MongooseModule): Promise<impor
     userId: string;
     action: string;
     object: any;
+    createdAt: string;
     modified_unix_date: number;
 }, {}> & {
     __methods?: unknown;
