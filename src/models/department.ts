@@ -320,6 +320,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "America/Los_Angeles"
     },
+    remoteLoggingEnabled: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "massive_admin",
   });

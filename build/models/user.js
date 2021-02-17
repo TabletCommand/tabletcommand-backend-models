@@ -87,10 +87,6 @@ async function UserModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        remoteLoggingEnabled: {
-            type: Boolean,
-            default: false,
-        },
         // Share Phone Location
         shareLocationEnabled: {
             type: Boolean,

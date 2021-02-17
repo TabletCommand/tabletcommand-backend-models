@@ -299,6 +299,10 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "America/Los_Angeles"
         },
+        remoteLoggingEnabled: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "massive_admin",
     });

@@ -25,7 +25,6 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     mobileAccess: boolean;
     webAccess: boolean;
     outsider: boolean;
-    remoteLoggingEnabled: boolean;
     shareLocationEnabled: boolean;
     beaconEnabled: boolean;
     userContributionEnabled: boolean;
