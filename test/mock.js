@@ -310,7 +310,8 @@ module.exports = function(dependencies) {
     },
     accountType: "production",
     timeZone: "America/Los_Angeles",
-    firstArrivingEnabled: true
+    firstArrivingEnabled: true,
+    simpleSenseEnabled: true
   };
 
   const esriMap = {

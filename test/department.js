@@ -52,5 +52,6 @@ describe("Department", function() {
     assert.equal(sut.accountType, testItem.accountType);
     assert.equal(sut.timeZone, testItem.timeZone);
     assert.equal(sut.firstArrivingEnabled, testItem.firstArrivingEnabled);
+    assert.equal(sut.simpleSenseEnabled, testItem.simpleSenseEnabled);
   });
 });

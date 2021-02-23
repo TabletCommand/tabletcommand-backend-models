@@ -202,6 +202,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        simpleSenseEnabled: {
+            type: Boolean,
+            default: false,
+        },
         fireMapperEnabled: {
             type: Boolean,
             default: false,
