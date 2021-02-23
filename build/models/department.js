@@ -210,6 +210,11 @@ async function DepartmentModule(mongoose) {
             type: Number,
             default: 15,
         },
+        // Number of available FM Pro licenses for this department
+        fireMapperProLicenses: {
+            type: Number,
+            default: 0,
+        },
         beansAIEnabled: {
             type: Boolean,
             default: false,

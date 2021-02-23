@@ -173,6 +173,10 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    fireMapperProEnabled: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "sys_user",
   });

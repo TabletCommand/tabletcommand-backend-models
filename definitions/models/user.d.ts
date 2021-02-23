@@ -51,6 +51,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     shareLocationPhone: boolean;
     shareLocationTablet: boolean;
     offlineMapsEnabled: boolean;
+    fireMapperProEnabled: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

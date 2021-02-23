@@ -158,6 +158,10 @@ async function UserModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        fireMapperProEnabled: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "sys_user",
     });
