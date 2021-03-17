@@ -1,11 +1,9 @@
-import * as _ from "lodash";
 import * as uuid from "uuid";
 import {
   createModel,
   createSchema,
   createSchemaDefinition,
   currentDate,
-  DocumentFromSchemaDefinition,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
@@ -62,7 +60,7 @@ export async function LocationModule(mongoose: MongooseModule) {
       default: currentDate,
     },
     // Date provided by CAD
-    recordDate: {
+    movedAt: {
       type: Date,
       default: currentDate,
     },
@@ -122,31 +120,8 @@ export async function LocationModule(mongoose: MongooseModule) {
     },
   });
 
-  type Location = DocumentFromSchemaDefinition<typeof modelSchemaDefinition>;
   const modelSchema = createSchema(Schema, modelSchemaDefinition, {
     collection: "massive_location",
-  }, {
-    // eslint-disable-next-line no-unused-vars
-    propagateToObject<T>(this: Location, dbItem: Location, callback: (doc: Location) => T) {
-      if (!_.isObject(dbItem)) {
-        return callback(this);
-      }
-
-      // We keep the same value for _id, uuid, departmentId
-      dbItem.userId = this.userId;
-      dbItem.username = this.username;
-      dbItem.device_type = this.device_type;
-      dbItem.active = this.active;
-      dbItem.modified_unix_date = this.modified_unix_date;
-      dbItem.modified = this.modified;
-      dbItem.version = this.version;
-      dbItem.session = this.session;
-      dbItem.location.latitude = this.location.latitude;
-      dbItem.location.longitude = this.location.longitude;
-      dbItem.locationGeoJSON = this.locationGeoJSON;
-
-      return callback(dbItem);
-    },
   });
 
   modelSchema.set("toJSON", {

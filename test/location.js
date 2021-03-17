@@ -74,42 +74,4 @@ describe("Location", function() {
 
     await models.Location.collection.dropIndexes();
   });
-
-  it("propagateToObject with object", function(done) {
-    let nextUpdate = JSON.parse(JSON.stringify(testItem)); // Clone
-    nextUpdate.username = "abc";
-    nextUpdate.session = "def";
-    nextUpdate.active = false;
-
-    const item1 = new models.Location(testItem);
-    item1.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.username, sut.username);
-      assert.equal(testItem.session, sut.session);
-      assert.equal(testItem.active, sut.active);
-
-      const item2 = new models.Location(nextUpdate);
-      item2.propagateToObject(sut, function(itemToSave) {
-        assert.equal(item1._id, itemToSave._id);
-        assert.equal(itemToSave.username, nextUpdate.username);
-        assert.equal(itemToSave.session, nextUpdate.session);
-        assert.equal(itemToSave.active, nextUpdate.active);
-        return done();
-      });
-    });
-  });
-
-  it("propagateToObject with null", function(done) {
-    let item = new models.Location(testItem);
-    item.propagateToObject(null, function(sut) {
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.username, sut.username);
-      assert.equal(testItem.session, sut.session);
-      assert.equal(testItem.active, sut.active);
-
-      return done();
-    });
-  });
 });
