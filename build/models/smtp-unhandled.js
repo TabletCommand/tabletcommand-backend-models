@@ -27,9 +27,9 @@ async function SMTPUnhandledModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
+    // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
+        return this._id.toHexString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);

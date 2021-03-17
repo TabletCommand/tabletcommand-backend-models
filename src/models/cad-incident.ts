@@ -2,6 +2,7 @@ import {
   MongooseModule,
   MongooseDocument,
   createSchema,
+  currentDate,
   DocumentTypeFromSchema,
   ModelFromSchema,
   createModel,
@@ -256,6 +257,10 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
     },
     modified_unix_date: {
       type: Number,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     start_unix_date: {
       type: Number,

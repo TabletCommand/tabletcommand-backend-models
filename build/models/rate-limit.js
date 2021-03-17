@@ -14,6 +14,10 @@ async function RateLimitModule(mongoose) {
             type: Number,
             default: 0,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         count: {
             type: Number,
             default: 0,

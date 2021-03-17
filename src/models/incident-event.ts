@@ -1,6 +1,7 @@
 import {
   createModel,
   createSchema,
+  currentDate,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
@@ -54,6 +55,10 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     message: {
       type: String,

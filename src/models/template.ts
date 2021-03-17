@@ -1,14 +1,15 @@
 import * as uuid from "uuid";
 
 import {
-  MongooseModule,
-  MongooseDocument,
-  createSchema,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
   createModel,
+  createSchema,
+  currentDate,
+  DocumentTypeFromSchema,
   ItemTypeFromTypeSchemaFunction,
+  ModelFromSchema,
   ModelTypeFromTypeSchemaFunction,
+  MongooseDocument,
+  MongooseModule,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
@@ -71,6 +72,10 @@ export async function TemplateModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
+    modified: {
+      type: Date,
+      default: currentDate,
+    },
     departmentId: {
       type: String,
       required: true,
@@ -110,9 +115,9 @@ export async function TemplateModule(mongoose: MongooseModule) {
     },
   });
 
+  // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id.toHexString();
   });
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {

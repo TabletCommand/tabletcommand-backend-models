@@ -4,6 +4,7 @@ import {
   MongooseModule,
   createSchema,
   createModel,
+  currentDate,
   retrieveCurrentUnixTime,
   ModelTypeFromTypeSchemaFunction,
   ItemTypeFromTypeSchemaFunction,
@@ -37,6 +38,10 @@ export async function AssignmentModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     departmentId: {
       type: String,

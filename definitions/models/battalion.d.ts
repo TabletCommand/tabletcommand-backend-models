@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
+import { MongooseModule, currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
 export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     name: string;
@@ -54,6 +54,10 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         modified_unix_date: {
             type: NumberConstructor;
             default: typeof retrieveCurrentUnixTime;
+        };
+        modified: {
+            type: DateConstructor;
+            default: typeof currentDate;
         };
         uuid: {
             type: StringConstructor;

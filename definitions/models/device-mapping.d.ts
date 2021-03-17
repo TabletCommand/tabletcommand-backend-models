@@ -12,6 +12,7 @@ export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<i
         latitude: number;
     };
     modified_unix_date: number;
+    modified: string;
     active: boolean;
     remoteAddress: string;
     uuid: string;

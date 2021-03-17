@@ -11,6 +11,7 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
     watch_unix_start_time: number;
     watch_unix_pause_time: number;
     modified_unix_date: number;
+    modified: string;
     channel_owner: string;
     channel: string;
     location: string;

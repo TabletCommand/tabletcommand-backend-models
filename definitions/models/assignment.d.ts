@@ -8,6 +8,7 @@ export declare function AssignmentModule(mongoose: MongooseModule): Promise<impo
     isMandatory: boolean;
     modified_date: string;
     modified_unix_date: number;
+    modified: string;
     departmentId: string;
     active: boolean;
     name: string;

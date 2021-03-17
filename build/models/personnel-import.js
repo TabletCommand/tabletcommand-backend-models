@@ -49,6 +49,10 @@ async function PersonnelImportModule(mongoose) {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         active: {
             type: Boolean,
             default: false,

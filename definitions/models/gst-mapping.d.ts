@@ -11,6 +11,7 @@ export declare function GSTMappingModule(mongoose: MongooseModule): Promise<impo
         latitude: number;
     };
     modified_unix_date: number;
+    modified: string;
     active: boolean;
     mapHidden: boolean;
     remoteAddress: string;

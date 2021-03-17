@@ -2,6 +2,7 @@
 import {
   createModel,
   createSchema,
+  currentDate,
   DocumentTypeFromSchema,
   FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
@@ -46,6 +47,10 @@ export async function EsriModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     departmentId: {
       type: Types.ObjectId,

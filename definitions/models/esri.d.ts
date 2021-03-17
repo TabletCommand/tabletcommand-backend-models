@@ -3,6 +3,7 @@ import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, Mongoo
 export declare function EsriModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     modified_unix_date: number;
+    modified: string;
     departmentId: import("bson").ObjectId;
     tokenDateExpiry: number;
     token: import("../helpers").MongooseInterface<{

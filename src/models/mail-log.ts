@@ -2,6 +2,7 @@ import {
   MongooseModule,
   createSchema,
   createModel,
+  currentDate,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -70,6 +71,10 @@ export async function MailLogModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
   }, {
     collection: "massive_mail_log",

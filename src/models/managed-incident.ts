@@ -4,6 +4,7 @@ import * as moment from "moment-timezone";
 import {
   createSchema,
   createModel,
+  currentDate,
   DocumentTypeFromSchema,
   FieldsOfDocument,
   MongooseModule,
@@ -83,6 +84,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: 0,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
 
     channel_owner: {

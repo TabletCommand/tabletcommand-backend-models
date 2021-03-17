@@ -4,6 +4,7 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import {
   createSchema,
   createModel,
+  currentDate,
   DocumentTypeFromSchema,
   FieldsOfDocument,
   MongooseModule,
@@ -104,6 +105,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     active: {
       type: Boolean,

@@ -11,6 +11,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     contact_phone: string;
     contact_email: string;
     modified_unix_date: number;
+    modified: string;
     active: boolean;
     apikey: string;
     cadEmailUsername: string;

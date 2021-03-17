@@ -50,9 +50,9 @@ export async function MonitorModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
+  // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id.toHexString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);

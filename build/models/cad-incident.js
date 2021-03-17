@@ -235,6 +235,10 @@ async function CADIncidentModule(mongoose) {
         modified_unix_date: {
             type: Number,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         start_unix_date: {
             type: Number,
         },

@@ -2,6 +2,7 @@ import * as  uuid from "uuid";
 import {
   createSchema,
   createModel,
+  currentDate,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -47,6 +48,10 @@ export async function DeviceMappingModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: 0,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     active: {
       type: Boolean,

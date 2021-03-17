@@ -2,6 +2,7 @@ import * as  uuid from "uuid";
 import {
   createSchema,
   createModel,
+  currentDate,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -44,6 +45,10 @@ export async function GSTMappingModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     active: {
       type: Boolean,

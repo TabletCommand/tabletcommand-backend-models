@@ -16,6 +16,7 @@ export declare function MailLogModule(mongoose: MongooseModule): Promise<import(
     reason: string;
     severity: string;
     modified_unix_date: number;
+    modified: string;
 }, {}> & {
     __methods?: unknown;
 }>;

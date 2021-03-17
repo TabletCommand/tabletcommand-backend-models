@@ -46,6 +46,10 @@ async function LocationModule(mongoose) {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         version: {
             type: Number,
             default: 2,
@@ -102,6 +106,7 @@ async function LocationModule(mongoose) {
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
         collection: "massive_location",
     }, {
+        // eslint-disable-next-line no-unused-vars
         propagateToObject(dbItem, callback) {
             if (!_.isObject(dbItem)) {
                 return callback(this);
@@ -112,6 +117,7 @@ async function LocationModule(mongoose) {
             dbItem.device_type = this.device_type;
             dbItem.active = this.active;
             dbItem.modified_unix_date = this.modified_unix_date;
+            dbItem.modified = this.modified;
             dbItem.version = this.version;
             dbItem.session = this.session;
             dbItem.location.latitude = this.location.latitude;
@@ -124,9 +130,9 @@ async function LocationModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
+    // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
+        return this._id.toHexString();
     });
     // Create GeoJSON index
     modelSchema.index({
@@ -134,6 +140,12 @@ async function LocationModule(mongoose) {
         shared: 1,
         departmentId: 1,
         modified_unix_date: 1,
+    });
+    modelSchema.index({
+        locationGeoJSON: "2dsphere",
+        shared: 1,
+        departmentId: 1,
+        modified: 1,
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);

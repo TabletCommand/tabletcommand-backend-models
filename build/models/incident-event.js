@@ -46,6 +46,10 @@ async function IncidentEventModule(mongoose) {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         message: {
             type: String,
             default: "",

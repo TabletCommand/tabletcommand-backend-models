@@ -31,6 +31,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     OnSceneDateTime: string;
     modified_date: string;
     modified_unix_date: number;
+    modified: string;
     start_unix_date: number;
     closed_unix_date: number;
     queued_at: number;

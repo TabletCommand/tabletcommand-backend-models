@@ -4,6 +4,7 @@ import {
   MongooseModule,
   MongooseDocument,
   createSchema,
+  currentDate,
   DocumentTypeFromSchema,
   ModelFromSchema,
   createModel,
@@ -63,6 +64,10 @@ export async function BattalionModule(mongoose: MongooseModule) {
       modified_unix_date: {
           type: Number,
           default: retrieveCurrentUnixTime,
+      },
+      modified: {
+        type: Date,
+        default: currentDate,
       },
       uuid: {
           type: String,

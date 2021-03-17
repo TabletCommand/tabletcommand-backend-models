@@ -4,6 +4,7 @@ import {
   createModel,
   createSchema,
   createSchemaDefinition,
+  currentDate,
   DocumentFromSchemaDefinition,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -55,6 +56,10 @@ export async function LocationModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     version: {
       type: Number,
@@ -116,6 +121,7 @@ export async function LocationModule(mongoose: MongooseModule) {
   const modelSchema = createSchema(Schema, modelSchemaDefinition, {
     collection: "massive_location",
   }, {
+    // eslint-disable-next-line no-unused-vars
     propagateToObject<T>(this: Location, dbItem: Location, callback: (doc: Location) => T) {
       if (!_.isObject(dbItem)) {
         return callback(this);
@@ -127,6 +133,7 @@ export async function LocationModule(mongoose: MongooseModule) {
       dbItem.device_type = this.device_type;
       dbItem.active = this.active;
       dbItem.modified_unix_date = this.modified_unix_date;
+      dbItem.modified = this.modified;
       dbItem.version = this.version;
       dbItem.session = this.session;
       dbItem.location.latitude = this.location.latitude;
@@ -142,9 +149,9 @@ export async function LocationModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
+  // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id.toHexString();
   });
 
   // Create GeoJSON index
@@ -153,6 +160,12 @@ export async function LocationModule(mongoose: MongooseModule) {
     shared: 1,
     departmentId: 1,
     modified_unix_date: 1,
+  });
+  modelSchema.index({
+    locationGeoJSON: "2dsphere",
+    shared: 1,
+    departmentId: 1,
+    modified: 1,
   });
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);

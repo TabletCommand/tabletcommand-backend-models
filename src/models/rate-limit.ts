@@ -1,6 +1,7 @@
 import {
   createSchema,
   createModel,
+  currentDate,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -19,6 +20,10 @@ export async function RateLimitModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: 0,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     count: {
       type: Number,

@@ -1,6 +1,7 @@
 import {
   createSchema,
   createModel,
+  currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
@@ -57,6 +58,10 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     active: {
       type: Boolean,

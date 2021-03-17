@@ -4,6 +4,7 @@ export declare function RateLimitModule(mongoose: MongooseModule): Promise<impor
     _id: import("bson").ObjectId;
     username: string;
     modified_unix_date: number;
+    modified: string;
     count: number;
 }, {}> & {
     __methods?: unknown;

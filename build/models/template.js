@@ -58,6 +58,10 @@ async function TemplateModule(mongoose) {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         departmentId: {
             type: String,
             required: true,
@@ -96,9 +100,9 @@ async function TemplateModule(mongoose) {
             ret.id = ret._id;
         },
     });
+    // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
+        return this._id.toHexString();
     });
     function strictSchema(schema, ret) {
         Object.keys(ret).forEach(function (element) {

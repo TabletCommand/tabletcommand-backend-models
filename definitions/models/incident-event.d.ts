@@ -5,6 +5,7 @@ export declare function IncidentEventModule(mongoose: MongooseModule): Promise<i
     departmentId: string;
     IncidentNumber: string;
     modified_unix_date: number;
+    modified: string;
     message: string;
     location: {
         longitude: number;
