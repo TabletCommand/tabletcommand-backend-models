@@ -1,12 +1,13 @@
 import * as _ from "lodash";
 import {
-  MongooseModule,
-  TypedDocument,
-  createSchema,
   createModel,
+  createSchema,
+  currentDate,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
+  TypedDocument,
 } from "../helpers";
 
 export async function CADStatusMapModule(mongoose: MongooseModule) {
@@ -47,6 +48,10 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
       min: 1,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     fromStatusId: {
       type: Number,

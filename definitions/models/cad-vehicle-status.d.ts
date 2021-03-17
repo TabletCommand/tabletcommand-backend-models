@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     uuid: string;
     departmentId: string;
@@ -10,6 +10,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
     status: string;
     statusCode: string;
     modifiedDate: number;
+    modified: string;
     requestStatus: number;
     owner: string;
     incidentNumber: string;
@@ -43,6 +44,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
         status: string;
         statusCode: string;
         modifiedDate: number;
+        modified: string;
         requestStatus: number;
         owner: string;
         incidentNumber: string;
@@ -117,6 +119,10 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     type: NumberConstructor;
                     default: number;
                     min: number;
+                };
+                modified: {
+                    type: DateConstructor;
+                    default: typeof currentDate;
                 };
                 requestStatus: {
                     type: NumberConstructor;
@@ -170,6 +176,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
         status: string;
         statusCode: string;
         modifiedDate: number;
+        modified: string;
         requestStatus: number;
         owner: string;
         incidentNumber: string;
@@ -244,6 +251,10 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     type: NumberConstructor;
                     default: number;
                     min: number;
+                };
+                modified: {
+                    type: DateConstructor;
+                    default: typeof currentDate;
                 };
                 requestStatus: {
                     type: NumberConstructor;
@@ -300,6 +311,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             status: string;
             statusCode: string;
             modifiedDate: number;
+            modified: string;
             requestStatus: number;
             owner: string;
             incidentNumber: string;
@@ -374,6 +386,10 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                         type: NumberConstructor;
                         default: number;
                         min: number;
+                    };
+                    modified: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
                     };
                     requestStatus: {
                         type: NumberConstructor;
@@ -427,6 +443,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             status: string;
             statusCode: string;
             modifiedDate: number;
+            modified: string;
             requestStatus: number;
             owner: string;
             incidentNumber: string;
@@ -501,6 +518,10 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                         type: NumberConstructor;
                         default: number;
                         min: number;
+                    };
+                    modified: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
                     };
                     requestStatus: {
                         type: NumberConstructor;

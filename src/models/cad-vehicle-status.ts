@@ -4,10 +4,11 @@ import {
   createModel,
   createSchema,
   createSchemaDefinition,
+  currentDate,
   DocumentFromSchemaDefinition,
-  MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
 import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
@@ -65,6 +66,10 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
       default: 0,
       min: 1,
     },
+    modified: {
+      type: Date,
+      default: currentDate,
+    },
     requestStatus: {
       type: Number,
       default: 0,
@@ -91,6 +96,7 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
   const modelSchema = createSchema(Schema, modelSchemaConfig, {
     collection: "massive_cad_vehicle_status",
   }, {
+    // eslint-disable-next-line no-unused-vars
     propagateToObject<T>(dbItem: CADVehicleStatus, callback: (o: CADVehicleStatus) => T): T {
       if (!_.isObject(dbItem)) {
         return callback(this);

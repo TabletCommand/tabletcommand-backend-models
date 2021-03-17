@@ -1,9 +1,10 @@
 import {
-  createSchema,
   createModel,
-  MongooseModule,
+  createSchema,
+  currentDate,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
 
@@ -48,6 +49,10 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
       required: true,
       default: 0,
       min: 1,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     presentedAt: {
       type: Number,

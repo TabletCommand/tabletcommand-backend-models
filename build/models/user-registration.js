@@ -43,6 +43,10 @@ async function UserRegistrationModule(mongoose) {
             default: 0,
             min: 1,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         presentedAt: {
             type: Number,
             default: 0,

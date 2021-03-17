@@ -39,6 +39,10 @@ async function CADStatusMapModule(mongoose) {
             default: 0,
             min: 1,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         fromStatusId: {
             type: Number,
             default: 0,

@@ -1,10 +1,11 @@
 import * as uuid from "uuid";
 import {
-  MongooseModule,
-  createSchema,
   createModel,
+  createSchema,
+  currentDate,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
 import ColorModule from "./schema/color";
@@ -83,6 +84,10 @@ export async function CADStatusModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
       min: 1,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     statusId: {
       type: Number,

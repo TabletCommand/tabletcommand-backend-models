@@ -1,9 +1,10 @@
 import {
-  MongooseModule,
-  createSchema,
   createModel,
+  createSchema,
+  currentDate,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
@@ -40,6 +41,10 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
       min: 1,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     vehicleId: {
       type: String,

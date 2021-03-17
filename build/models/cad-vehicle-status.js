@@ -57,6 +57,10 @@ async function CADVehicleStatusModule(mongoose) {
             default: 0,
             min: 1,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         requestStatus: {
             type: Number,
             default: 0,
@@ -81,6 +85,7 @@ async function CADVehicleStatusModule(mongoose) {
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaConfig, {
         collection: "massive_cad_vehicle_status",
     }, {
+        // eslint-disable-next-line no-unused-vars
         propagateToObject(dbItem, callback) {
             if (!_.isObject(dbItem)) {
                 return callback(this);

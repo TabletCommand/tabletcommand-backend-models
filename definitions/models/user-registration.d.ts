@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function UserRegistrationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     email: string;
     name: string;
@@ -9,6 +9,7 @@ export declare function UserRegistrationModule(mongoose: MongooseModule): Promis
     title: string;
     status: string;
     modifiedDate: number;
+    modified: string;
     presentedAt: number;
     managedIncidentsCount: number;
     checklistsCount: number;

@@ -34,6 +34,10 @@ async function CADVehicleModule(mongoose) {
             default: 0,
             min: 1,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         vehicleId: {
             type: String,
             default: "",
