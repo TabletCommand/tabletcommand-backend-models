@@ -10,6 +10,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     active: boolean;
     modified_unix_date: number;
     modified: string;
+    recordDate: string;
     version: number;
     session: string;
     heading: number;
@@ -46,6 +47,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         active: boolean;
         modified_unix_date: number;
         modified: string;
+        recordDate: string;
         version: number;
         session: string;
         heading: number;
@@ -113,6 +115,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: typeof retrieveCurrentUnixTime;
                 };
                 modified: {
+                    type: DateConstructor;
+                    default: typeof currentDate;
+                };
+                recordDate: {
                     type: DateConstructor;
                     default: typeof currentDate;
                 };
@@ -191,6 +197,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         active: boolean;
         modified_unix_date: number;
         modified: string;
+        recordDate: string;
         version: number;
         session: string;
         heading: number;
@@ -258,6 +265,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: typeof retrieveCurrentUnixTime;
                 };
                 modified: {
+                    type: DateConstructor;
+                    default: typeof currentDate;
+                };
+                recordDate: {
                     type: DateConstructor;
                     default: typeof currentDate;
                 };
@@ -336,6 +347,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
         active: boolean;
         modified_unix_date: number;
         modified: string;
+        recordDate: string;
         version: number;
         session: string;
         heading: number;
@@ -403,6 +415,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                     default: typeof retrieveCurrentUnixTime;
                 };
                 modified: {
+                    type: DateConstructor;
+                    default: typeof currentDate;
+                };
+                recordDate: {
                     type: DateConstructor;
                     default: typeof currentDate;
                 };
@@ -484,6 +500,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             active: boolean;
             modified_unix_date: number;
             modified: string;
+            recordDate: string;
             version: number;
             session: string;
             heading: number;
@@ -551,6 +568,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         default: typeof retrieveCurrentUnixTime;
                     };
                     modified: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                    recordDate: {
                         type: DateConstructor;
                         default: typeof currentDate;
                     };
@@ -629,6 +650,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             active: boolean;
             modified_unix_date: number;
             modified: string;
+            recordDate: string;
             version: number;
             session: string;
             heading: number;
@@ -696,6 +718,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         default: typeof retrieveCurrentUnixTime;
                     };
                     modified: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                    recordDate: {
                         type: DateConstructor;
                         default: typeof currentDate;
                     };
@@ -774,6 +800,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             active: boolean;
             modified_unix_date: number;
             modified: string;
+            recordDate: string;
             version: number;
             session: string;
             heading: number;
@@ -841,6 +868,10 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
                         default: typeof retrieveCurrentUnixTime;
                     };
                     modified: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                    recordDate: {
                         type: DateConstructor;
                         default: typeof currentDate;
                     };

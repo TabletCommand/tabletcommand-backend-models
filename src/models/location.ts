@@ -61,6 +61,11 @@ export async function LocationModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
+    // Date provided by CAD
+    recordDate: {
+      type: Date,
+      default: currentDate,
+    },
     version: {
       type: Number,
       default: 2,

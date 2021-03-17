@@ -50,6 +50,11 @@ async function LocationModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
+        // Date provided by CAD
+        recordDate: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         version: {
             type: Number,
             default: 2,
