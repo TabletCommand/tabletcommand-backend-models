@@ -29,6 +29,7 @@ describe("Template", function() {
 
       assert.isNotNull(item._id);
       assert.equal(item._id, sut.id);
+      assert.equal(sut.id, sut._id);
       assert.equal(testItem.position, sut.position);
       assert.equal(testItem.active, sut.active);
       assert.equal(testItem.name, sut.name);

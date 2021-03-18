@@ -71,7 +71,7 @@ async function SessionModule(mongoose) {
     });
     // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
-        return this._id.toHexString();
+        return this._id.toString();
     });
     return helpers_1.createModel(mongoose, "Session", modelSchema);
 }

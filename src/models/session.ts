@@ -83,7 +83,7 @@ export async function SessionModule(mongoose: MongooseModule) {
 
   // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
-    return this._id.toHexString();
+    return this._id.toString();
   });
 
   return createModel(mongoose, "Session", modelSchema);

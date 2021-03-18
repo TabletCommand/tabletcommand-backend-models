@@ -41,6 +41,7 @@ describe("Session", function() {
       assert.equal(sut.ended, testItem.ended);
       assert.equal(sut.departmentId, testItem.departmentId);
       assert.equal(sut.when, testItem.when);
+      assert.equal(sut.id, sut._id);
 
       return done();
     });

@@ -28,6 +28,7 @@ describe("UserRegistration", function() {
       assert.isNull(err, "Should not err");
 
       assert.isNotNull(testItem._id);
+      assert.equal(sut.id, sut._id);
       assert.equal(testItem.email, sut.email);
       assert.equal(testItem.name, sut.name);
       assert.equal(testItem.firstName, sut.firstName);

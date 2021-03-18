@@ -27,6 +27,7 @@ describe("UserDevice", function() {
     const sut = await item.save();
 
     assert.isNotNull(testItem._id);
+    assert.equal(sut.id, sut._id);
     assert.equal(testItem.userId, sut.userId);
     assert.equal(testItem.departmentId, sut.departmentId);
     assert.equal(sut.devices.length, 1);
