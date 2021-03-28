@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function EsriErrorModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+export default function EsriErrorModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
     _interface: import("../../helpers").MongooseInterface<{
         code: {
             type: NumberConstructor;

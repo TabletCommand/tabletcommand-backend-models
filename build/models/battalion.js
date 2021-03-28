@@ -54,7 +54,7 @@ async function BattalionModule(mongoose) {
         },
         uuid: {
             type: String,
-            default: () => uuid.v4(),
+            default: () => uuid.v4(), // Needs to be so because has a bad type for declaration generation
         },
         departmentId: {
             type: String,

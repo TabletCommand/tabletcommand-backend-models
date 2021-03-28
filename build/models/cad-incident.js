@@ -458,7 +458,7 @@ async function CADIncidentModule(mongoose) {
         },
     }, {
         collection: "massive_incident_cad",
-        strict: false,
+        strict: false, // Because we accept all kind of data in
     });
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {

@@ -14,7 +14,7 @@ async function CADStatusModule(mongoose) {
         },
         type: {
             type: String,
-            default: "string",
+            default: "string", // int, bool
         },
         visible: {
             type: Boolean,

@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
-export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     name: string;
     active: boolean;
@@ -74,7 +74,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
             type: NumberConstructor;
         };
     }>[];
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface Battalion extends ItemTypeFromTypeSchemaFunction<typeof BattalionModule> {

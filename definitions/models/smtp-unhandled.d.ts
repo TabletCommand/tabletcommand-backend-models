@@ -1,10 +1,10 @@
 /// <reference types="mongoose" />
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function SMTPUnhandledModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function SMTPUnhandledModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     email: string;
     message: string;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface SMTPUnhandled extends ItemTypeFromTypeSchemaFunction<typeof SMTPUnhandledModule> {

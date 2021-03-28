@@ -27,7 +27,7 @@ async function SessionModule(mongoose) {
         },
         source: {
             type: String,
-            default: "",
+            default: "", // Options: browser, ipad, iphone, android
         },
         departmentId: {
             type: String,
