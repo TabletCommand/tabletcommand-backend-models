@@ -25,7 +25,8 @@ gulp.task("test", gulp.series("tslint", function testTask() {
   };
   return gulp.src(tests, srcOpts)
     .pipe(mocha({
-      reporter: "list"
+      reporter: "list",
+      timeout:3000
     }));
 }));
 

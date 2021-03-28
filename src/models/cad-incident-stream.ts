@@ -60,6 +60,7 @@ export async function CADIncidentStreamModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
+  // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
