@@ -10,7 +10,7 @@ function CADStatusOptionSelected(mongoose) {
         },
         type: {
             type: String,
-            default: "string",
+            default: "string", // integer, bool
         },
         value: {
             type: String,

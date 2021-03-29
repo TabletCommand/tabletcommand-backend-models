@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     uuid: string;
     departmentId: string;
     modifiedDate: number;
@@ -31,7 +31,7 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
             default: string;
         };
         cadValues: {
-            type: (import("mongoose").Schema<any> & {
+            type: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     name: {
                         type: StringConstructor;

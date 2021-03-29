@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function LocationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function LocationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
@@ -22,13 +22,13 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     locationGeoJSON: import("../helpers").MongooseInterface<{
         type: {
             type: StringConstructor;
-            required: boolean;
+            required: true;
             enum: string[];
             default: string;
         };
         coordinates: {
             type: NumberConstructor[];
-            required: boolean;
+            required: true;
             default: never[];
         };
     }>;

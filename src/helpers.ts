@@ -1,43 +1,55 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
+import {
+  Document,
+  Model,
+  Schema,
+  SchemaDefinition,
+  SchemaOptions,
+} from "mongoose";
 
-import { ObjectID, ObjectId } from "bson";
+import {
+  ObjectID,
+  ObjectId,
+} from "bson";
 
 export type MongooseModule = typeof import("mongoose");
-export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
+export type MongooseModel<T extends Document> = Model<T>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type MongooseSchema<T = any> = Schema<T>;
+export type MongooseSchema<T extends Document<any> = Document<any>> = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 export type MongooseDocument = Omit<Document, "_id"> & {
   _id: ObjectID,
 };
-export type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
+export type UnionToIntersection<T> = (T extends unknown ? (_p: T) => unknown : never) extends ((_p: infer U) => unknown) ? U : never;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never;
 export type ModelItemType<T extends Model<Document>> = T extends Model<infer U> ? U : never;
 export type SchemaItemType<T extends { _interface: unknown }> = T extends { _interface: infer U } ? U : never;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ReplaceModelReturnType<T extends (...a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> =
-  (...a: Parameters<T>) => Promise<TNewReturnType>;
+export type ReplaceModelReturnType<T extends (..._a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> =
+  (..._a: Parameters<T>) => Promise<TNewReturnType>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ItemTypeFromTypeSchemaFunction<T extends (...a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
+export type ItemTypeFromTypeSchemaFunction<T extends (..._a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ModelTypeFromTypeSchemaFunction<TItemType extends Document> = Model<TItemType>;
 
 export type MongooseProperty<T extends SchemaDefinition[string]> =
   T extends { type: (Schema & { _interface: infer P })[] } ? P[] :
-  T extends { type: ((...a: unknown[]) => infer P)[] } ? P[] :
-  T extends ((...a: unknown[]) => infer P)[] ? P[] :
+  T extends { type: ((..._a: unknown[]) => infer P)[] } ? P[] :
+  T extends ((..._a: unknown[]) => infer P)[] ? P[] :
   T extends (Schema & { _interface: infer P })[] ? P[] :
 
-  T extends { type: (...a: unknown[]) => infer P } ? P :
+  T extends { type: (..._a: unknown[]) => infer P } ? P :
   T extends { type: Schema & { _interface: infer P } } ? P :
-  T extends (...a: unknown[]) => infer P ? P :
+  T extends (..._a: unknown[]) => infer P ? P :
   T extends Schema & { _interface: infer P } ? P :
   T extends { type: MongooseModule["Types"]["ObjectId"] } ? ObjectId :
   T extends MongooseModule["Types"]["ObjectId"] ? ObjectId :
+  T extends { type: MongooseModule["Schema"]["Types"]["ObjectId"] } ? Schema.Types.ObjectId :
+  T extends { type: Array<MongooseModule["Schema"]["Types"]["ObjectId"]> } ? Schema.Types.ObjectId[] :
+  T extends MongooseModule["Types"]["ObjectId"] ? Schema.Types.ObjectId :
   T extends Record<string, unknown> ? { [P in keyof T]: MongooseProperty<T[P]> } :
   never;
 
@@ -60,15 +72,19 @@ export function createSchema
   : Schema & { _interface: MongooseInterface<T>, _methods: TMethods } {
   const schema = new schemaCtor(p, o);
   if (methods) {
-    schema.methods = methods;
+    schema.methods = methods as never;
   }
   return schema as unknown as Schema & { _interface: MongooseInterface<T>, _methods: TMethods };
 }
 
 export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }) {
   if (mongoose.models[name]) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return mongoose.model<Document & T & TMethods>(name) as Model<Document & T & TMethods> & { __methods?: TMethods };
   } else {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return mongoose.model<Document & T & TMethods>(name, schema) as Model<Document & T & TMethods> & { __methods?: TMethods };
   }
 }
@@ -93,7 +109,7 @@ type Or<T> = T & {
 };
 
 type NonFunctionKeys<T> = {
-  [P in keyof T]: T[P] extends (...a: never[]) => unknown ? never : P
+  [P in keyof T]: T[P] extends (..._a: never[]) => unknown ? never : P
 }[keyof T];
 
 interface Comparison<T> {
@@ -106,6 +122,7 @@ interface Comparison<T> {
   $ne?: T;
   $nin?: T[];
 }
+
 type PropConditions<T> =
   T extends boolean ? Comparison<T> :
   T extends number ? Comparison<T> & { $mod?: [number, number] } :
@@ -121,9 +138,11 @@ type PropConditions<T> =
     },
   }) :
   never;
+
 type Conditions<T> = {
   [P in NonFunctionKeys<T>]?: T[P] | PropConditions<T[P]>
 };
+
 export function conditions<T extends import("mongoose").Document>(items: import("mongoose").Model<T>, c: Or<Conditions<T>>) {
   return c;
 }

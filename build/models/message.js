@@ -10,7 +10,7 @@ async function MessageModule(mongoose) {
     const TypeSchema = helpers_1.createSchema(Schema, {
         type: {
             type: String,
-            default: "",
+            default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
         },
         typeOpts: {
             type: Object,
@@ -76,7 +76,7 @@ async function MessageModule(mongoose) {
         },
         priority: {
             type: Number,
-            default: 10,
+            default: 10, // 1 highest, 10 lowest
         },
         type: {
             type: TypeSchema,

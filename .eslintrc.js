@@ -18,7 +18,8 @@ module.exports = {
   rules: {
     quotes: [2, "double"],
     semi: [2, "always"],
-    "no-unused-vars": [1],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [1],
     "space-before-function-paren": [0],
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-empty-interface": 0,

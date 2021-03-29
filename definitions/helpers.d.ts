@@ -1,13 +1,13 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
+import { Document, Model, Schema, SchemaDefinition, SchemaOptions } from "mongoose";
 import { ObjectID, ObjectId } from "bson";
 export declare type MongooseModule = typeof import("mongoose");
-export declare type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
-export declare type MongooseSchema<T = any> = Schema<T>;
+export declare type MongooseModel<T extends Document> = Model<T>;
+export declare type MongooseSchema<T extends Document<any> = Document<any>> = Schema<T>;
 declare type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 export declare type MongooseDocument = Omit<Document, "_id"> & {
     _id: ObjectID;
 };
-export declare type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
+export declare type UnionToIntersection<T> = (T extends unknown ? (_p: T) => unknown : never) extends ((_p: infer U) => unknown) ? U : never;
 export declare type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never;
 export declare type ModelItemType<T extends Model<Document>> = T extends Model<infer U> ? U : never;
 export declare type SchemaItemType<T extends {
@@ -15,28 +15,32 @@ export declare type SchemaItemType<T extends {
 }> = T extends {
     _interface: infer U;
 } ? U : never;
-export declare type ReplaceModelReturnType<T extends (...a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> = (...a: Parameters<T>) => Promise<TNewReturnType>;
-export declare type ItemTypeFromTypeSchemaFunction<T extends (...a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
+export declare type ReplaceModelReturnType<T extends (..._a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> = (..._a: Parameters<T>) => Promise<TNewReturnType>;
+export declare type ItemTypeFromTypeSchemaFunction<T extends (..._a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
 export declare type ModelTypeFromTypeSchemaFunction<TItemType extends Document> = Model<TItemType>;
 export declare type MongooseProperty<T extends SchemaDefinition[string]> = T extends {
     type: (Schema & {
         _interface: infer P;
     })[];
 } ? P[] : T extends {
-    type: ((...a: unknown[]) => infer P)[];
-} ? P[] : T extends ((...a: unknown[]) => infer P)[] ? P[] : T extends (Schema & {
+    type: ((..._a: unknown[]) => infer P)[];
+} ? P[] : T extends ((..._a: unknown[]) => infer P)[] ? P[] : T extends (Schema & {
     _interface: infer P;
 })[] ? P[] : T extends {
-    type: (...a: unknown[]) => infer P;
+    type: (..._a: unknown[]) => infer P;
 } ? P : T extends {
     type: Schema & {
         _interface: infer P;
     };
-} ? P : T extends (...a: unknown[]) => infer P ? P : T extends Schema & {
+} ? P : T extends (..._a: unknown[]) => infer P ? P : T extends Schema & {
     _interface: infer P;
 } ? P : T extends {
     type: MongooseModule["Types"]["ObjectId"];
-} ? ObjectId : T extends MongooseModule["Types"]["ObjectId"] ? ObjectId : T extends Record<string, unknown> ? {
+} ? ObjectId : T extends MongooseModule["Types"]["ObjectId"] ? ObjectId : T extends {
+    type: MongooseModule["Schema"]["Types"]["ObjectId"];
+} ? Schema.Types.ObjectId : T extends {
+    type: Array<MongooseModule["Schema"]["Types"]["ObjectId"]>;
+} ? Schema.Types.ObjectId[] : T extends MongooseModule["Types"]["ObjectId"] ? Schema.Types.ObjectId : T extends Record<string, unknown> ? {
     [P in keyof T]: MongooseProperty<T[P]>;
 } : never;
 export declare type MongooseInterface<T extends SchemaDefinition> = Record<string, unknown> & {
@@ -56,7 +60,7 @@ export declare function createSchema<T extends SchemaDefinition, TMethods>(schem
 export declare function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & {
     _interface: T;
     _methods?: TMethods;
-}): Model<Document & T & TMethods, {}> & {
+}): Model<Document<any, {}> & T & TMethods, {}> & {
     __methods?: TMethods | undefined;
 };
 export declare type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & {
@@ -82,7 +86,7 @@ declare type Or<T> = T & {
     $or?: Or<T>[];
 };
 declare type NonFunctionKeys<T> = {
-    [P in keyof T]: T[P] extends (...a: never[]) => unknown ? never : P;
+    [P in keyof T]: T[P] extends (..._a: never[]) => unknown ? never : P;
 }[keyof T];
 interface Comparison<T> {
     $eq?: T;
