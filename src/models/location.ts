@@ -13,7 +13,7 @@ import {
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import GeoJSONPointModule from "./schema/geojson-point";
-import {  } from 'uuid'
+import {  } from "uuid";
 
 export async function LocationModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
