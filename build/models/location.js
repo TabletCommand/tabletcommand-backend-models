@@ -26,7 +26,7 @@ async function LocationModule(mongoose) {
         },
         uuid: {
             type: String,
-            default: uuid.v4,
+            default: () => uuid.v4(),
         },
         username: {
             type: String,

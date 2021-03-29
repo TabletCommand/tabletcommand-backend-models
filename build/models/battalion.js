@@ -58,7 +58,7 @@ async function BattalionModule(mongoose) {
         },
         uuid: {
             type: String,
-            default: uuid.v4,
+            default: () => uuid.v4(),
         },
         departmentId: {
             type: String,

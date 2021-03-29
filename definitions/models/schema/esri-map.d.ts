@@ -1,9 +1,9 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function EsriMapModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function EsriMapModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
     _interface: import("../../helpers").MongooseInterface<{
         mapLayers: {
-            type: (import("mongoose").Schema<any> & {
+            type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
                 _interface: import("../../helpers").MongooseInterface<{
                     layerId: {
                         type: StringConstructor;
@@ -39,10 +39,10 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
             default: never[];
         };
         baseMap: {
-            type: import("mongoose").Schema<any> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
                 _interface: import("../../helpers").MongooseInterface<{
                     baseMapLayers: {
-                        type: (import("mongoose").Schema<any> & {
+                        type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
                             _interface: import("../../helpers").MongooseInterface<{
                                 layerId: {
                                     type: StringConstructor;
@@ -86,7 +86,7 @@ export default function EsriMapModule(mongoose: MongooseModule): import("mongoos
             };
         };
         offline: {
-            type: (import("mongoose").Schema<any> & {
+            type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
                 _interface: import("../../helpers").MongooseInterface<{
                     status: {
                         type: StringConstructor;

@@ -1,6 +1,11 @@
 /// <reference types="mongoose" />
+<<<<<<< HEAD
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+=======
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+>>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
     departmentId: string;
     modifiedDate: number;
     modified: string;
@@ -9,14 +14,14 @@ export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<im
         statusId: {
             type: NumberConstructor;
             default: number;
-            required: boolean;
+            required: true;
             min: number;
         };
         userEnabled: {
             type: BooleanConstructor;
         };
     }>[];
-}, {}> & {
+}> & {
     __methods?: unknown;
 }>;
 export interface CADStatusMap extends ItemTypeFromTypeSchemaFunction<typeof CADStatusMapModule> {

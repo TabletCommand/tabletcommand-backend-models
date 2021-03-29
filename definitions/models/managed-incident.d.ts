@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
@@ -68,9 +68,13 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: number;
         };
     }>[];
+<<<<<<< HEAD
     simulation: boolean;
     rts: boolean;
 }, {}> & {
+=======
+}> & {
+>>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
     __methods?: unknown;
 }>;
 export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> {

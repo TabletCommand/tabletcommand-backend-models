@@ -21,7 +21,7 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     uuid: {
       type: String,
       index: true,
-      default: uuid.v4,
+      default: () => uuid.v4(), // Needs to be so because has a bad type for declaration generation
     },
     departmentId: {
       type: String,

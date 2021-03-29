@@ -1,6 +1,11 @@
 /// <reference types="mongoose" />
+<<<<<<< HEAD
 import { MongooseModule, currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
 export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+=======
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
+export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+>>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
     _id: import("bson").ObjectId;
     name: string;
     active: boolean;
@@ -10,16 +15,12 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
     userId: string;
     uuid: string;
     departmentId: string;
-    agencyId: {
-        type: never;
-        ref: never;
-        default: never;
-    };
+    agencyId: import("mongoose").Schema.Types.ObjectId;
     position: number;
     units: import("../helpers").MongooseInterface<{
         _id: {
             type: import("mongoose").Types.ObjectIdConstructor;
-            auto: boolean;
+            auto: true;
         };
         name: {
             type: StringConstructor;
@@ -61,7 +62,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         };
         uuid: {
             type: StringConstructor;
-            default: import("uuid/interfaces").v4;
+            default: () => string;
         };
         departmentId: {
             type: StringConstructor;
@@ -82,7 +83,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
             type: NumberConstructor;
         };
     }>[];
-}, {}> & {
+}> & {
     __methods?: unknown;
 }>;
 export interface Battalion extends ItemTypeFromTypeSchemaFunction<typeof BattalionModule> {

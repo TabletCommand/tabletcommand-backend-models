@@ -1,8 +1,8 @@
 import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
 import { ObjectID, ObjectId } from "bson";
 export declare type MongooseModule = typeof import("mongoose");
-export declare type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
-export declare type MongooseSchema<T = any> = Schema<T>;
+export declare type MongooseModel<T extends Document> = Model<T>;
+export declare type MongooseSchema<T extends Document<any> = Document<any>> = Schema<T>;
 declare type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 export declare type MongooseDocument = Omit<Document, "_id"> & {
     _id: ObjectID;
@@ -36,7 +36,11 @@ export declare type MongooseProperty<T extends SchemaDefinition[string]> = T ext
     _interface: infer P;
 } ? P : T extends {
     type: MongooseModule["Types"]["ObjectId"];
-} ? ObjectId : T extends MongooseModule["Types"]["ObjectId"] ? ObjectId : T extends Record<string, unknown> ? {
+} ? ObjectId : T extends MongooseModule["Types"]["ObjectId"] ? ObjectId : T extends {
+    type: MongooseModule['Schema']['Types']['ObjectId'];
+} ? Schema.Types.ObjectId : T extends {
+    type: Array<MongooseModule['Schema']['Types']['ObjectId']>;
+} ? Schema.Types.ObjectId[] : T extends MongooseModule["Types"]["ObjectId"] ? Schema.Types.ObjectId : T extends Record<string, unknown> ? {
     [P in keyof T]: MongooseProperty<T[P]>;
 } : never;
 export declare type MongooseInterface<T extends SchemaDefinition> = Record<string, unknown> & {
@@ -56,7 +60,7 @@ export declare function createSchema<T extends SchemaDefinition, TMethods>(schem
 export declare function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & {
     _interface: T;
     _methods?: TMethods;
-}): Model<Document & T & TMethods, {}> & {
+}): Model<Document<any> & T & TMethods> & {
     __methods?: TMethods | undefined;
 };
 export declare type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & {
