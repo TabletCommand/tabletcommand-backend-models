@@ -11,30 +11,30 @@ type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 export type MongooseDocument = Omit<Document, "_id"> & {
   _id: ObjectID,
 };
-export type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
+export type UnionToIntersection<T> = (T extends unknown ? (_p: T) => unknown : never) extends ((_p: infer U) => unknown) ? U : never;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never;
 export type ModelItemType<T extends Model<Document>> = T extends Model<infer U> ? U : never;
 export type SchemaItemType<T extends { _interface: unknown }> = T extends { _interface: infer U } ? U : never;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ReplaceModelReturnType<T extends (...a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> =
-  (...a: Parameters<T>) => Promise<TNewReturnType>;
+export type ReplaceModelReturnType<T extends (..._a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> =
+  (..._a: Parameters<T>) => Promise<TNewReturnType>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ItemTypeFromTypeSchemaFunction<T extends (...a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
+export type ItemTypeFromTypeSchemaFunction<T extends (..._a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ModelTypeFromTypeSchemaFunction<TItemType extends Document> = Model<TItemType>;
 
 export type MongooseProperty<T extends SchemaDefinition[string]> =
   T extends { type: (Schema & { _interface: infer P })[] } ? P[] :
-  T extends { type: ((...a: unknown[]) => infer P)[] } ? P[] :
-  T extends ((...a: unknown[]) => infer P)[] ? P[] :
+  T extends { type: ((..._a: unknown[]) => infer P)[] } ? P[] :
+  T extends ((..._a: unknown[]) => infer P)[] ? P[] :
   T extends (Schema & { _interface: infer P })[] ? P[] :
 
-  T extends { type: (...a: unknown[]) => infer P } ? P :
+  T extends { type: (..._a: unknown[]) => infer P } ? P :
   T extends { type: Schema & { _interface: infer P } } ? P :
-  T extends (...a: unknown[]) => infer P ? P :
+  T extends (..._a: unknown[]) => infer P ? P :
   T extends Schema & { _interface: infer P } ? P :
   T extends { type: MongooseModule["Types"]["ObjectId"] } ? ObjectId :
   T extends MongooseModule["Types"]["ObjectId"] ? ObjectId :
@@ -96,7 +96,7 @@ type Or<T> = T & {
 };
 
 type NonFunctionKeys<T> = {
-  [P in keyof T]: T[P] extends (...a: never[]) => unknown ? never : P
+  [P in keyof T]: T[P] extends (..._a: never[]) => unknown ? never : P
 }[keyof T];
 
 interface Comparison<T> {
