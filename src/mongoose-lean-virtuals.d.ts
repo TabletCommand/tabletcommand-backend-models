@@ -1,4 +1,5 @@
 declare module "mongoose-lean-virtuals" {
-  const mongooseLeanVirtuals: (schema: import("mongoose").Schema) => import("mongoose").Schema;
+  import { Schema } from "mongoose";
+  const mongooseLeanVirtuals: (schema: Schema) => Schema;
   export = mongooseLeanVirtuals;
 }

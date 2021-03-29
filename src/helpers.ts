@@ -11,11 +11,6 @@ import {
   ObjectId,
 } from "bson";
 
-export {
-  FilterQuery,
-  Mongoose,
-} from "mongoose";
-
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document> = Model<T>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

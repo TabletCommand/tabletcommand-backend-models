@@ -43,17 +43,4 @@ describe("CADVehicleStatus", function() {
       return done();
     });
   });
-
-  it("propagateToObject with null", function(done) {
-    const item = new models.CADVehicleStatus(testItem);
-    item.propagateToObject(null, function(itemToSave) {
-      assert.equal(testItem.radioName, itemToSave.radioName);
-      assert.equal(testItem.vehicleId, itemToSave.vehicleId);
-      assert.equal(testItem.status, itemToSave.status);
-      assert.equal(testItem.statusCode, itemToSave.statusCode);
-      assert.equal(testItem.modifiedDate, itemToSave.modifiedDate);
-
-      return done();
-    });
-  });
 });

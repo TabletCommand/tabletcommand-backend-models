@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
+import { Document, Model, Schema, SchemaDefinition, SchemaOptions } from "mongoose";
 import { ObjectID, ObjectId } from "bson";
 export declare type MongooseModule = typeof import("mongoose");
 export declare type MongooseModel<T extends Document> = Model<T>;
