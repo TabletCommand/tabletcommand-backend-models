@@ -13,16 +13,8 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
     departmentId: import("mongoose").Schema.Types.ObjectId;
     administrators: import("mongoose").Schema.Types.ObjectId[];
     personnelIntegration: boolean;
-<<<<<<< HEAD
-<<<<<<< HEAD
     personnelMonitorHours: number;
 }, {}> & {
-=======
-}> & {
->>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
-=======
-}, {}> & {
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface Agency extends ItemTypeFromTypeSchemaFunction<typeof AgencyModule> {

@@ -94,16 +94,8 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     };
     accountType: string;
     timeZone: string;
-<<<<<<< HEAD
-<<<<<<< HEAD
     remoteLoggingEnabled: boolean;
 }, {}> & {
-=======
-}> & {
->>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
-=======
-}, {}> & {
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> {

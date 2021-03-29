@@ -1,15 +1,6 @@
 /// <reference types="mongoose" />
-<<<<<<< HEAD
 import { MongooseModule, currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
-export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-=======
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
-<<<<<<< HEAD
-export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
->>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
-=======
 export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
     _id: import("bson").ObjectId;
     name: string;
     active: boolean;

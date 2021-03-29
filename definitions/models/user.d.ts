@@ -43,16 +43,8 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     shareLocationPhone: boolean;
     shareLocationTablet: boolean;
     offlineMapsEnabled: boolean;
-<<<<<<< HEAD
-<<<<<<< HEAD
     fireMapperProEnabled: boolean;
 }, {}> & {
-=======
-}> & {
->>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
-=======
-}, {}> & {
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> {

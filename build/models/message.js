@@ -10,7 +10,7 @@ async function MessageModule(mongoose) {
     const TypeSchema = helpers_1.createSchema(Schema, {
         type: {
             type: String,
-            default: "",
+            default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
         },
         typeOpts: {
             type: Object,
@@ -79,15 +79,7 @@ async function MessageModule(mongoose) {
             default: 10, // 1 highest, 10 lowest
         },
         type: {
-<<<<<<< HEAD
             type: TypeSchema,
-=======
-            type: String,
-            default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
-        },
-        trigger: {
-            type: Object,
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
             default: {},
         },
     }, {

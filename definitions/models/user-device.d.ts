@@ -98,16 +98,8 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
         };
     }>;
     offDuty: boolean;
-<<<<<<< HEAD
-<<<<<<< HEAD
     criticalAlerts: boolean;
 }, {}> & {
-=======
-}> & {
->>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
-=======
-}, {}> & {
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface UserDevice extends ItemTypeFromTypeSchemaFunction<typeof UserDeviceModule> {

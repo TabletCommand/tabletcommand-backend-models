@@ -68,17 +68,9 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: number;
         };
     }>[];
-<<<<<<< HEAD
-<<<<<<< HEAD
     simulation: boolean;
     rts: boolean;
 }, {}> & {
-=======
-}> & {
->>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
-=======
-}, {}> & {
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> {

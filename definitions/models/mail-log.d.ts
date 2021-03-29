@@ -16,16 +16,8 @@ export declare function MailLogModule(mongoose: MongooseModule): Promise<import(
     reason: string;
     severity: string;
     modified_unix_date: number;
-<<<<<<< HEAD
-<<<<<<< HEAD
     modified: string;
 }, {}> & {
-=======
-}> & {
->>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
-=======
-}, {}> & {
->>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface MailLog extends ItemTypeFromTypeSchemaFunction<typeof MailLogModule> {
