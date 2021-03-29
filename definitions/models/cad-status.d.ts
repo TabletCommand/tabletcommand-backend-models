@@ -4,8 +4,12 @@ import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, Mongoo
 export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
 =======
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+<<<<<<< HEAD
 export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
 >>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
+=======
+export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
+>>>>>>> a8e26f7 (Upgraded TS and monggose.)
     uuid: string;
     departmentId: string;
     modifiedDate: number;
@@ -36,7 +40,7 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
             default: string;
         };
         cadValues: {
-            type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     name: {
                         type: StringConstructor;
@@ -78,7 +82,7 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
             default: string;
         };
     }>;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> {

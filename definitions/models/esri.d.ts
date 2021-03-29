@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function EsriModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function EsriModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     modified_unix_date: number;
     modified: string;
@@ -52,7 +52,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: string;
         };
         encrypted: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     iv: {
                         type: StringConstructor;
@@ -92,7 +92,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: string;
         };
         encrypted: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     iv: {
                         type: StringConstructor;
@@ -108,7 +108,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: null;
         };
         encryptedAccessCode: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     iv: {
                         type: StringConstructor;
@@ -126,7 +126,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
     }>;
     maps: import("../helpers").MongooseInterface<{
         mapLayers: {
-            type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     layerId: {
                         type: StringConstructor;
@@ -162,10 +162,10 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: never[];
         };
         baseMap: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     baseMapLayers: {
-                        type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+                        type: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                             _interface: import("../helpers").MongooseInterface<{
                                 layerId: {
                                     type: StringConstructor;
@@ -209,7 +209,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             };
         };
         offline: {
-            type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     status: {
                         type: StringConstructor;
@@ -295,7 +295,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: boolean;
         };
     }>[];
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface Esri extends ItemTypeFromTypeSchemaFunction<typeof EsriModule> {

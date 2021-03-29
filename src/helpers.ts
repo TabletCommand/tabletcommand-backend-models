@@ -70,8 +70,12 @@ export function createSchema
 
 export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }) {
   if (mongoose.models[name]) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return mongoose.model<Document & T & TMethods>(name) as Model<Document & T & TMethods> & { __methods?: TMethods };
   } else {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return mongoose.model<Document & T & TMethods>(name, schema) as Model<Document & T & TMethods> & { __methods?: TMethods };
   }
 }

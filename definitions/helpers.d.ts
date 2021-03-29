@@ -60,7 +60,7 @@ export declare function createSchema<T extends SchemaDefinition, TMethods>(schem
 export declare function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & {
     _interface: T;
     _methods?: TMethods;
-}): Model<Document<any> & T & TMethods> & {
+}): Model<Document<any, {}> & T & TMethods, {}> & {
     __methods?: TMethods | undefined;
 };
 export declare type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & {

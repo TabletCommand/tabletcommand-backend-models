@@ -4,8 +4,12 @@ import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, Mongoo
 export declare function TemplateModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
 =======
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+<<<<<<< HEAD
 export declare function TemplateModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
 >>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
+=======
+export declare function TemplateModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
+>>>>>>> a8e26f7 (Upgraded TS and monggose.)
     _id: import("bson").ObjectId;
     position: number;
     userId: string;
@@ -42,7 +46,7 @@ export declare function TemplateModule(mongoose: MongooseModule): Promise<import
         };
     }>[];
     agencyId: import("mongoose").Schema.Types.ObjectId;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface Template extends ItemTypeFromTypeSchemaFunction<typeof TemplateModule> {

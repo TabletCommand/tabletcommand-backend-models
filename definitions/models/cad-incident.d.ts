@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     uuid: string;
     departmentId: string;
@@ -65,7 +65,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             type: StringConstructor;
         };
         Comment: {
-            type: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     Comment: {
                         type: StringConstructor;
@@ -161,7 +161,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         PersonnelCount: {
             type: NumberConstructor;
         };
-        Personnel: (import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+        Personnel: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
             _interface: import("../helpers").MongooseInterface<{
                 PersonnelID: {
                     type: StringConstructor;
@@ -226,7 +226,7 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     LocationType: string;
     OrigLocation: string;
     Jurisdiction: string;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface CADIncident extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> {

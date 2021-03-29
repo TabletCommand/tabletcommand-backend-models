@@ -6,11 +6,11 @@ function ColorModule(mongoose) {
     const Color = helpers_1.createSchema(Schema, {
         background: {
             type: String,
-            default: "#851414",
+            default: "#851414", // Red-like
         },
         text: {
             type: String,
-            default: "#F8F8F8",
+            default: "#F8F8F8", // White-like
         },
     }, {
         _id: false,

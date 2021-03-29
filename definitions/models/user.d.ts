@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     nick: string;
     email: string;
     name: string;
@@ -44,11 +44,15 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     shareLocationTablet: boolean;
     offlineMapsEnabled: boolean;
 <<<<<<< HEAD
+<<<<<<< HEAD
     fireMapperProEnabled: boolean;
 }, {}> & {
 =======
 }> & {
 >>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
+=======
+}, {}> & {
+>>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> {

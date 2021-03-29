@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     IncidentNumber: string;
@@ -35,7 +35,7 @@ export declare function IncidentEventModule(mongoose: MongooseModule): Promise<i
     uuid: string;
     opts: any;
     archived: boolean;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> {

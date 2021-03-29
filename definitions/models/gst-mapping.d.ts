@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function GSTMappingModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function GSTMappingModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     gstAgency: string;
@@ -17,7 +17,7 @@ export declare function GSTMappingModule(mongoose: MongooseModule): Promise<impo
     remoteAddress: string;
     uuid: string;
     note: string;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface GSTMapping extends ItemTypeFromTypeSchemaFunction<typeof GSTMappingModule> {

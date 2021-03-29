@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function MessageModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function MessageModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     departmentId: string;
     userId: string;
@@ -39,8 +39,12 @@ export declare function MessageModule(mongoose: MongooseModule): Promise<import(
 =======
     type: string;
     trigger: any;
+<<<<<<< HEAD
 }> & {
 >>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
+=======
+}, {}> & {
+>>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface Message extends ItemTypeFromTypeSchemaFunction<typeof MessageModule> {

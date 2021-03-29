@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { currentDate, MongooseModule, retrieveCurrentUnixTime, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function UserDeviceModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function UserDeviceModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     userId: string;
     departmentId: string;
@@ -63,7 +63,7 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     notificationIncidentTypes: string[];
     notificationSounds: import("../helpers").MongooseInterface<{
         ios: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     sound: {
                         type: StringConstructor;
@@ -80,7 +80,7 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
             };
         };
         android: {
-            type: import("mongoose").Schema<import("mongoose").Document<any>, import("mongoose").Model<import("mongoose").Document<any>>> & {
+            type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
                 _interface: import("../helpers").MongooseInterface<{
                     sound: {
                         type: StringConstructor;
@@ -99,11 +99,15 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     }>;
     offDuty: boolean;
 <<<<<<< HEAD
+<<<<<<< HEAD
     criticalAlerts: boolean;
 }, {}> & {
 =======
 }> & {
 >>>>>>> 3af52d1 (Upgraded mongoose uuid and ts packages.)
+=======
+}, {}> & {
+>>>>>>> a8e26f7 (Upgraded TS and monggose.)
     __methods?: unknown;
 }>;
 export interface UserDevice extends ItemTypeFromTypeSchemaFunction<typeof UserDeviceModule> {

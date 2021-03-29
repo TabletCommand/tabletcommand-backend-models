@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ModelTypeFromTypeSchemaFunction, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function AssignmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any> & Record<string, unknown> & {
+export declare function AssignmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     position: number;
     userId: string;
@@ -13,7 +13,7 @@ export declare function AssignmentModule(mongoose: MongooseModule): Promise<impo
     active: boolean;
     name: string;
     description: string;
-}> & {
+}, {}> & {
     __methods?: unknown;
 }>;
 export interface Assignment extends ItemTypeFromTypeSchemaFunction<typeof AssignmentModule> {
