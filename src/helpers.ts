@@ -1,6 +1,20 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
+import {
+  Document,
+  Model,
+  Schema,
+  SchemaDefinition,
+  SchemaOptions,
+} from "mongoose";
 
-import { ObjectID, ObjectId } from "bson";
+import {
+  ObjectID,
+  ObjectId,
+} from "bson";
+
+export {
+  FilterQuery,
+  Mongoose,
+} from "mongoose";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document> = Model<T>;
@@ -113,6 +127,7 @@ interface Comparison<T> {
   $ne?: T;
   $nin?: T[];
 }
+
 type PropConditions<T> =
   T extends boolean ? Comparison<T> :
   T extends number ? Comparison<T> & { $mod?: [number, number] } :
@@ -128,9 +143,11 @@ type PropConditions<T> =
     },
   }) :
   never;
+
 type Conditions<T> = {
   [P in NonFunctionKeys<T>]?: T[P] | PropConditions<T[P]>
 };
+
 export function conditions<T extends import("mongoose").Document>(items: import("mongoose").Model<T>, c: Or<Conditions<T>>) {
   return c;
 }
