@@ -287,6 +287,7 @@ module.exports = function(dependencies) {
     city: "San Francisco",
     active: true,
     apikey: "abcd",
+    partialApiKey: "ab",
     personnelStaffingEnabled: true,
     rtsEnabled: true,
     rtsChannelPrefix: "CH_TEST",

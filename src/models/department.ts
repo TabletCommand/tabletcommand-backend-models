@@ -118,6 +118,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    partialApiKey: {
+      type: String,
+      default: "",
+    },
     cadEmailUsername: {
       type: String,
       default: "",

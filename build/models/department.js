@@ -103,6 +103,10 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        partialApiKey: {
+            type: String,
+            default: "",
+        },
         cadEmailUsername: {
             type: String,
             default: "",
