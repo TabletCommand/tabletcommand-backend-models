@@ -200,7 +200,7 @@ async function DepartmentModule(mongoose) {
         },
         locationStaleMinutes: {
             type: Number,
-            default: 1440,
+            default: 1440, // 24h
         },
         beaconEnabled: {
             type: Boolean,

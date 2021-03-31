@@ -1,4 +1,5 @@
 /// <reference types="mongoose" />
+import * as uuid from "uuid";
 import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     uuid: string;
@@ -67,7 +68,95 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             };
         }>[];
         capability: string;
-    } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
+    } & {
+        toString: () => string;
+        update: {
+            (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+        };
+        get: (path: string, type?: any, options?: {
+            virtuals?: boolean | undefined;
+            getters?: boolean | undefined;
+        } | undefined) => any;
+        set: {
+            (path: string, val: any, options?: any): import("mongoose").Document;
+            (path: string, val: any, type: any, options?: any): import("mongoose").Document;
+            (value: any): import("mongoose").Document;
+        };
+        removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
+        increment: () => import("mongoose").Document;
+        model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
+        $isDeleted: {
+            (isDeleted: boolean): void;
+            (): boolean;
+        };
+        remove: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+        deleteOne: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+        save: {
+            (options?: import("mongoose").SaveOptions | undefined, fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+            (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+        };
+        __v?: number | undefined;
+        $isDefault: (path?: string | undefined) => boolean;
+        $session: (session?: import("mongoose").ClientSession | undefined) => import("mongoose").ClientSession;
+        depopulate: (path?: string | undefined) => import("mongoose").Document;
+        equals: (doc: import("mongoose").MongooseDocument) => boolean;
+        execPopulate: () => Promise<import("mongoose").Document>;
+        isDirectSelected: (path: string) => boolean;
+        init: (doc: import("mongoose").MongooseDocument, opts?: any) => import("mongoose").Document;
+        inspect: (options?: any) => any;
+        isDirectModified: (path: string) => boolean;
+        isInit: (path: string) => boolean;
+        isModified: (path?: string | undefined) => boolean;
+        isSelected: (path: string) => boolean;
+        markModified: (path: string) => void;
+        modifiedPaths: () => string[];
+        populate: {
+            (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
+            (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+            (path: string, names: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+            (options: import("mongoose").ModelPopulateOptions | import("mongoose").ModelPopulateOptions[], callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+        };
+        populated: (path: string) => any;
+        overwrite: (obj: any) => import("mongoose").Document;
+        toJSON: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+        toObject: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+        unmarkModified: (path: string) => void;
+        replaceOne: (replacement: any, callback?: ((err: any, raw: any) => void) | undefined) => import("mongoose").Query<any>;
+        updateOne: {
+            (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+        };
+        validate: {
+            (callback?: ((err: any) => void) | undefined): Promise<void>;
+            (optional: any, callback?: ((err: any) => void) | undefined): Promise<void>;
+        };
+        validateSync: (pathsToValidate?: string | string[] | undefined) => import("mongoose").Error.ValidationError | undefined;
+        errors: any;
+        isNew: boolean;
+        schema: import("mongoose").Schema<any>;
+        $locals: {
+            [k: string]: any;
+        };
+        id?: any;
+        addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+        setMaxListeners: (n: number) => import("mongoose").Document;
+        getMaxListeners: () => number;
+        listeners: (event: string | symbol) => Function[];
+        rawListeners: (event: string | symbol) => Function[];
+        emit: (event: string | symbol, ...args: any[]) => boolean;
+        listenerCount: (event: string | symbol) => number;
+        prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        eventNames: () => (string | symbol)[];
+        collection: import("mongoose").Collection;
+        db: import("mongoose").Connection;
+    } & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<any> & {
@@ -75,7 +164,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 uuid: {
                     type: StringConstructor;
                     index: true;
-                    default: import("uuid/interfaces").v4;
+                    default: (<T_2 extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T_2, offset?: number | undefined) => T_2) & ((options?: uuid.V4Options | undefined) => string);
                 };
                 departmentId: {
                     type: StringConstructor;
@@ -199,7 +288,95 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             };
         }>[];
         capability: string;
-    } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
+    } & {
+        toString: () => string;
+        update: {
+            (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+        };
+        get: (path: string, type?: any, options?: {
+            virtuals?: boolean | undefined;
+            getters?: boolean | undefined;
+        } | undefined) => any;
+        set: {
+            (path: string, val: any, options?: any): import("mongoose").Document;
+            (path: string, val: any, type: any, options?: any): import("mongoose").Document;
+            (value: any): import("mongoose").Document;
+        };
+        removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
+        increment: () => import("mongoose").Document;
+        model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
+        $isDeleted: {
+            (isDeleted: boolean): void;
+            (): boolean;
+        };
+        remove: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+        deleteOne: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+        save: {
+            (options?: import("mongoose").SaveOptions | undefined, fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+            (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+        };
+        __v?: number | undefined;
+        $isDefault: (path?: string | undefined) => boolean;
+        $session: (session?: import("mongoose").ClientSession | undefined) => import("mongoose").ClientSession;
+        depopulate: (path?: string | undefined) => import("mongoose").Document;
+        equals: (doc: import("mongoose").MongooseDocument) => boolean;
+        execPopulate: () => Promise<import("mongoose").Document>;
+        isDirectSelected: (path: string) => boolean;
+        init: (doc: import("mongoose").MongooseDocument, opts?: any) => import("mongoose").Document;
+        inspect: (options?: any) => any;
+        isDirectModified: (path: string) => boolean;
+        isInit: (path: string) => boolean;
+        isModified: (path?: string | undefined) => boolean;
+        isSelected: (path: string) => boolean;
+        markModified: (path: string) => void;
+        modifiedPaths: () => string[];
+        populate: {
+            (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
+            (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+            (path: string, names: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+            (options: import("mongoose").ModelPopulateOptions | import("mongoose").ModelPopulateOptions[], callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+        };
+        populated: (path: string) => any;
+        overwrite: (obj: any) => import("mongoose").Document;
+        toJSON: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+        toObject: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+        unmarkModified: (path: string) => void;
+        replaceOne: (replacement: any, callback?: ((err: any, raw: any) => void) | undefined) => import("mongoose").Query<any>;
+        updateOne: {
+            (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+        };
+        validate: {
+            (callback?: ((err: any) => void) | undefined): Promise<void>;
+            (optional: any, callback?: ((err: any) => void) | undefined): Promise<void>;
+        };
+        validateSync: (pathsToValidate?: string | string[] | undefined) => import("mongoose").Error.ValidationError | undefined;
+        errors: any;
+        isNew: boolean;
+        schema: import("mongoose").Schema<any>;
+        $locals: {
+            [k: string]: any;
+        };
+        id?: any;
+        addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+        setMaxListeners: (n: number) => import("mongoose").Document;
+        getMaxListeners: () => number;
+        listeners: (event: string | symbol) => Function[];
+        rawListeners: (event: string | symbol) => Function[];
+        emit: (event: string | symbol, ...args: any[]) => boolean;
+        listenerCount: (event: string | symbol) => number;
+        prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        eventNames: () => (string | symbol)[];
+        collection: import("mongoose").Collection;
+        db: import("mongoose").Connection;
+    } & {
         _id: import("bson").ObjectId;
     } & {
         schema: import("mongoose").Schema<any> & {
@@ -207,7 +384,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 uuid: {
                     type: StringConstructor;
                     index: true;
-                    default: import("uuid/interfaces").v4;
+                    default: (<T_2 extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T_2, offset?: number | undefined) => T_2) & ((options?: uuid.V4Options | undefined) => string);
                 };
                 departmentId: {
                     type: StringConstructor;
@@ -334,7 +511,95 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 };
             }>[];
             capability: string;
-        } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
+        } & {
+            toString: () => string;
+            update: {
+                (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+                (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            };
+            get: (path: string, type?: any, options?: {
+                virtuals?: boolean | undefined;
+                getters?: boolean | undefined;
+            } | undefined) => any;
+            set: {
+                (path: string, val: any, options?: any): import("mongoose").Document;
+                (path: string, val: any, type: any, options?: any): import("mongoose").Document;
+                (value: any): import("mongoose").Document;
+            };
+            removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
+            increment: () => import("mongoose").Document;
+            model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
+            $isDeleted: {
+                (isDeleted: boolean): void;
+                (): boolean;
+            };
+            remove: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+            deleteOne: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+            save: {
+                (options?: import("mongoose").SaveOptions | undefined, fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+                (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+            };
+            __v?: number | undefined;
+            $isDefault: (path?: string | undefined) => boolean;
+            $session: (session?: import("mongoose").ClientSession | undefined) => import("mongoose").ClientSession;
+            depopulate: (path?: string | undefined) => import("mongoose").Document;
+            equals: (doc: import("mongoose").MongooseDocument) => boolean;
+            execPopulate: () => Promise<import("mongoose").Document>;
+            isDirectSelected: (path: string) => boolean;
+            init: (doc: import("mongoose").MongooseDocument, opts?: any) => import("mongoose").Document;
+            inspect: (options?: any) => any;
+            isDirectModified: (path: string) => boolean;
+            isInit: (path: string) => boolean;
+            isModified: (path?: string | undefined) => boolean;
+            isSelected: (path: string) => boolean;
+            markModified: (path: string) => void;
+            modifiedPaths: () => string[];
+            populate: {
+                (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
+                (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+                (path: string, names: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+                (options: import("mongoose").ModelPopulateOptions | import("mongoose").ModelPopulateOptions[], callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+            };
+            populated: (path: string) => any;
+            overwrite: (obj: any) => import("mongoose").Document;
+            toJSON: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+            toObject: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+            unmarkModified: (path: string) => void;
+            replaceOne: (replacement: any, callback?: ((err: any, raw: any) => void) | undefined) => import("mongoose").Query<any>;
+            updateOne: {
+                (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+                (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            };
+            validate: {
+                (callback?: ((err: any) => void) | undefined): Promise<void>;
+                (optional: any, callback?: ((err: any) => void) | undefined): Promise<void>;
+            };
+            validateSync: (pathsToValidate?: string | string[] | undefined) => import("mongoose").Error.ValidationError | undefined;
+            errors: any;
+            isNew: boolean;
+            schema: import("mongoose").Schema<any>;
+            $locals: {
+                [k: string]: any;
+            };
+            id?: any;
+            addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+            setMaxListeners: (n: number) => import("mongoose").Document;
+            getMaxListeners: () => number;
+            listeners: (event: string | symbol) => Function[];
+            rawListeners: (event: string | symbol) => Function[];
+            emit: (event: string | symbol, ...args: any[]) => boolean;
+            listenerCount: (event: string | symbol) => number;
+            prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            eventNames: () => (string | symbol)[];
+            collection: import("mongoose").Collection;
+            db: import("mongoose").Connection;
+        } & {
             _id: import("bson").ObjectId;
         } & {
             schema: import("mongoose").Schema<any> & {
@@ -342,7 +607,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     uuid: {
                         type: StringConstructor;
                         index: true;
-                        default: import("uuid/interfaces").v4;
+                        default: (<T_2 extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T_2, offset?: number | undefined) => T_2) & ((options?: uuid.V4Options | undefined) => string);
                     };
                     departmentId: {
                         type: StringConstructor;
@@ -466,7 +731,95 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 };
             }>[];
             capability: string;
-        } & Pick<import("mongoose").Document, "toString" | "update" | "get" | "set" | "removeListener" | "off" | "invalidate" | "increment" | "model" | "$isDeleted" | "remove" | "deleteOne" | "save" | "__v" | "$isDefault" | "$session" | "depopulate" | "equals" | "execPopulate" | "isDirectSelected" | "init" | "inspect" | "isDirectModified" | "isInit" | "isModified" | "isSelected" | "markModified" | "modifiedPaths" | "populate" | "populated" | "overwrite" | "toJSON" | "toObject" | "unmarkModified" | "replaceOne" | "updateOne" | "validate" | "validateSync" | "errors" | "isNew" | "schema" | "$locals" | "id" | "addListener" | "on" | "once" | "removeAllListeners" | "setMaxListeners" | "getMaxListeners" | "listeners" | "rawListeners" | "emit" | "listenerCount" | "prependListener" | "prependOnceListener" | "eventNames" | "collection" | "db"> & {
+        } & {
+            toString: () => string;
+            update: {
+                (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+                (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            };
+            get: (path: string, type?: any, options?: {
+                virtuals?: boolean | undefined;
+                getters?: boolean | undefined;
+            } | undefined) => any;
+            set: {
+                (path: string, val: any, options?: any): import("mongoose").Document;
+                (path: string, val: any, type: any, options?: any): import("mongoose").Document;
+                (value: any): import("mongoose").Document;
+            };
+            removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
+            increment: () => import("mongoose").Document;
+            model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
+            $isDeleted: {
+                (isDeleted: boolean): void;
+                (): boolean;
+            };
+            remove: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+            deleteOne: (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined) => Promise<import("mongoose").Document>;
+            save: {
+                (options?: import("mongoose").SaveOptions | undefined, fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+                (fn?: ((err: any, product: import("mongoose").Document) => void) | undefined): Promise<import("mongoose").Document>;
+            };
+            __v?: number | undefined;
+            $isDefault: (path?: string | undefined) => boolean;
+            $session: (session?: import("mongoose").ClientSession | undefined) => import("mongoose").ClientSession;
+            depopulate: (path?: string | undefined) => import("mongoose").Document;
+            equals: (doc: import("mongoose").MongooseDocument) => boolean;
+            execPopulate: () => Promise<import("mongoose").Document>;
+            isDirectSelected: (path: string) => boolean;
+            init: (doc: import("mongoose").MongooseDocument, opts?: any) => import("mongoose").Document;
+            inspect: (options?: any) => any;
+            isDirectModified: (path: string) => boolean;
+            isInit: (path: string) => boolean;
+            isModified: (path?: string | undefined) => boolean;
+            isSelected: (path: string) => boolean;
+            markModified: (path: string) => void;
+            modifiedPaths: () => string[];
+            populate: {
+                (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
+                (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+                (path: string, names: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+                (options: import("mongoose").ModelPopulateOptions | import("mongoose").ModelPopulateOptions[], callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
+            };
+            populated: (path: string) => any;
+            overwrite: (obj: any) => import("mongoose").Document;
+            toJSON: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+            toObject: (options?: import("mongoose").DocumentToObjectOptions | undefined) => any;
+            unmarkModified: (path: string) => void;
+            replaceOne: (replacement: any, callback?: ((err: any, raw: any) => void) | undefined) => import("mongoose").Query<any>;
+            updateOne: {
+                (doc: any, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+                (doc: any, options: import("mongoose").ModelUpdateOptions, callback?: ((err: any, raw: any) => void) | undefined): import("mongoose").Query<any>;
+            };
+            validate: {
+                (callback?: ((err: any) => void) | undefined): Promise<void>;
+                (optional: any, callback?: ((err: any) => void) | undefined): Promise<void>;
+            };
+            validateSync: (pathsToValidate?: string | string[] | undefined) => import("mongoose").Error.ValidationError | undefined;
+            errors: any;
+            isNew: boolean;
+            schema: import("mongoose").Schema<any>;
+            $locals: {
+                [k: string]: any;
+            };
+            id?: any;
+            addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+            setMaxListeners: (n: number) => import("mongoose").Document;
+            getMaxListeners: () => number;
+            listeners: (event: string | symbol) => Function[];
+            rawListeners: (event: string | symbol) => Function[];
+            emit: (event: string | symbol, ...args: any[]) => boolean;
+            listenerCount: (event: string | symbol) => number;
+            prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            eventNames: () => (string | symbol)[];
+            collection: import("mongoose").Collection;
+            db: import("mongoose").Connection;
+        } & {
             _id: import("bson").ObjectId;
         } & {
             schema: import("mongoose").Schema<any> & {
@@ -474,7 +827,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                     uuid: {
                         type: StringConstructor;
                         index: true;
-                        default: import("uuid/interfaces").v4;
+                        default: (<T_2 extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T_2, offset?: number | undefined) => T_2) & ((options?: uuid.V4Options | undefined) => string);
                     };
                     departmentId: {
                         type: StringConstructor;
