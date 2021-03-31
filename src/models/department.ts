@@ -132,6 +132,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    cadAllowedIPAddresses: {
+      type: [String],
+      default: [],
+    },
     connectivity: {
       incident: {
         enabled: {
