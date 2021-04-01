@@ -32,7 +32,7 @@ describe("Department", function() {
     assert.equal(sut.city, testItem.city);
     assert.isTrue(sut.active);
     assert.equal(sut.apikey, testItem.apikey);
-    assert.equal(sut.partialApiKey, testItem.partialApiKey);
+    assert.equal(sut.partialApiKey, "abcdefg");
     assert.isTrue(sut.personnelStaffingEnabled);
     assert.isTrue(sut.rtsEnabled);
     assert.equal(sut.rtsChannelPrefix, testItem.rtsChannelPrefix);
