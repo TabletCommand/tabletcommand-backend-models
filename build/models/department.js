@@ -104,6 +104,10 @@ async function DepartmentModule(mongoose) {
             default: "",
             select: false,
         },
+        partialApiKey: {
+            type: String,
+            default: "",
+        },
         cadEmailUsername: {
             type: String,
             default: "",
@@ -330,15 +334,11 @@ async function DepartmentModule(mongoose) {
         versionKey: false,
         transform(doc, ret) {
             ret.id = ret._id;
-            ret.partialApiKey = ret.apikey.slice(0, 7);
         },
     });
     // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
-    });
-    modelSchema.virtual("partialApiKey").get(function () {
-        return this.apikey.slice(0, 7);
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     return helpers_1.createModel(mongoose, "Department", modelSchema);
