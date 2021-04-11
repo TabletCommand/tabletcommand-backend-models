@@ -1,27 +1,41 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ChartIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
-    date: number;
-    departmentId: string;
-    count: number;
-    items: import("../helpers").MongooseInterface<{
-        item: {
-            type: StringConstructor;
-            default: string;
-        };
-        date: {
-            type: NumberConstructor;
-            default: number;
-        };
-    }>[];
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface ChartIncident extends ItemTypeFromTypeSchemaFunction<typeof ChartIncidentModule> {
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { Document, Model } from "mongoose";
+export declare function ChartIncidentModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+    _id: {
+        type: import("mongoose").Types.ObjectIdConstructor;
+        auto: true;
+    };
+    date: {
+        type: NumberConstructor;
+        default: number;
+    };
+    departmentId: {
+        type: StringConstructor;
+        default: string;
+        required: true;
+        index: true;
+    };
+    count: {
+        type: NumberConstructor;
+        default: number;
+    };
+    items: {
+        type: (import("mongoose").Schema<Document<any, {}>, Model<any, any>, undefined> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+            item: {
+                type: StringConstructor;
+                default: string;
+            };
+            date: {
+                type: NumberConstructor;
+                default: number;
+            };
+        }>, unknown>)[];
+        default: never[];
+    };
+}>, unknown>>;
+export interface ChartIncident extends Document, ItemTypeFromTypeSchemaFunction<typeof ChartIncidentModule> {
 }
-export interface ChartIncidentModel extends ModelTypeFromTypeSchemaFunction<ChartIncident> {
+export interface ChartIncidentModel extends Model<ChartIncident> {
 }
 declare const _default: ReplaceModelReturnType<typeof ChartIncidentModule, ChartIncidentModel>;
 export default _default;
-//# sourceMappingURL=chart-incident.d.ts.map

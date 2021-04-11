@@ -1,29 +1,67 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
-    departmentId: string;
-    userId: string;
-    deviceType: string;
-    mapId: string;
-    deviceId: string;
-    location: {
-        longitude: number;
-        latitude: number;
+import * as uuid from "uuid";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { Document, Model } from "mongoose";
+export declare function DeviceMappingModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+    _id: {
+        type: import("mongoose").Types.ObjectIdConstructor;
+        auto: true;
     };
-    modified_unix_date: number;
-    active: boolean;
-    remoteAddress: string;
-    uuid: string;
-    note: string;
-    mapHidden: boolean;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface DeviceMapping extends ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> {
+    departmentId: {
+        type: StringConstructor;
+        default: string;
+    };
+    userId: {
+        type: StringConstructor;
+        default: string;
+    };
+    deviceType: {
+        type: StringConstructor;
+        default: string;
+    };
+    mapId: {
+        type: StringConstructor;
+        default: string;
+    };
+    deviceId: {
+        type: StringConstructor;
+        default: string;
+    };
+    location: {
+        longitude: {
+            type: NumberConstructor;
+        };
+        latitude: {
+            type: NumberConstructor;
+        };
+    };
+    modified_unix_date: {
+        type: NumberConstructor;
+        default: number;
+    };
+    active: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    remoteAddress: {
+        type: StringConstructor;
+        default: string;
+    };
+    uuid: {
+        type: StringConstructor;
+        default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+    };
+    note: {
+        type: StringConstructor;
+        default: string;
+    };
+    mapHidden: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+}>, unknown>>;
+export interface DeviceMapping extends Document, ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> {
 }
-export interface DeviceMappingModel extends ModelTypeFromTypeSchemaFunction<DeviceMapping> {
+export interface DeviceMappingModel extends Model<DeviceMapping> {
 }
 declare const _default: ReplaceModelReturnType<typeof DeviceMappingModule, DeviceMappingModel>;
 export default _default;
-//# sourceMappingURL=device-mapping.d.ts.map

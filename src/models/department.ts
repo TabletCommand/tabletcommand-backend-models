@@ -9,9 +9,9 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -338,6 +338,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Department", modelSchema);
 }
 
-export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> { }
-export interface DepartmentModel extends ModelTypeFromTypeSchemaFunction<Department> { }
-export default DepartmentModule as ReplaceModelReturnType<typeof DepartmentModule, DepartmentModel>;
+export interface Department extends Document, ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> { }
+export interface DepartmentModel extends Model<Department> { }
+export default DepartmentModule as unknown as ReplaceModelReturnType<typeof DepartmentModule, DepartmentModel>;

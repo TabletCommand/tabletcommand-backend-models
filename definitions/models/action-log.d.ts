@@ -1,20 +1,38 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ModelTypeFromTypeSchemaFunction, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ActionLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
-    departmentId: string;
-    email: string;
-    userId: string;
-    action: string;
-    object: any;
-    modified_unix_date: number;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> {
+import { MongooseModule, retrieveCurrentUnixTime, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { Document, Model } from "mongoose";
+export declare function ActionLogModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+    _id: {
+        type: import("mongoose").Types.ObjectIdConstructor;
+        auto: true;
+    };
+    departmentId: {
+        type: StringConstructor;
+        default: string;
+    };
+    email: {
+        type: StringConstructor;
+        default: string;
+    };
+    userId: {
+        type: StringConstructor;
+        default: string;
+    };
+    action: {
+        type: StringConstructor;
+        default: string;
+    };
+    object: {
+        type: ObjectConstructor;
+        default: {};
+    };
+    modified_unix_date: {
+        type: NumberConstructor;
+        default: typeof retrieveCurrentUnixTime;
+    };
+}>, unknown>>;
+export interface ActionLog extends Document, ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> {
 }
-export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> {
+export interface ActionLogModel extends Model<ActionLog> {
 }
 declare const _default: ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;
 export default _default;
-//# sourceMappingURL=action-log.d.ts.map

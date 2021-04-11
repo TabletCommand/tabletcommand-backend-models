@@ -5,9 +5,9 @@ import {
   createSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function CADStatusMapModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
@@ -66,6 +66,6 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADStatusMap", modelSchema);
 }
 
-export interface CADStatusMap extends ItemTypeFromTypeSchemaFunction<typeof CADStatusMapModule> { }
-export interface CADStatusMapModel extends ModelTypeFromTypeSchemaFunction<CADStatusMap> { }
-export default CADStatusMapModule as ReplaceModelReturnType<typeof CADStatusMapModule, CADStatusMapModel>;
+export interface CADStatusMap extends Document, ItemTypeFromTypeSchemaFunction<typeof CADStatusMapModule> { }
+export interface CADStatusMapModel extends Model<CADStatusMap> { }
+export default CADStatusMapModule as unknown as ReplaceModelReturnType<typeof CADStatusMapModule, CADStatusMapModel>;

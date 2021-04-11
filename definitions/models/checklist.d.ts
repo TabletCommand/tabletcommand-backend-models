@@ -1,25 +1,56 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ChecklistModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
-    position: number;
-    local_id: number;
-    userId: string;
-    uuid: string;
-    isMandatory: boolean;
-    modified_date: string;
-    modified_unix_date: number;
-    departmentId: string;
-    active: boolean;
-    name: string;
-    agencyId: import("mongoose").Schema.Types.ObjectId;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface Checklist extends ItemTypeFromTypeSchemaFunction<typeof ChecklistModule> {
+import * as uuid from "uuid";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
+import { Document, Model } from "mongoose";
+export declare function ChecklistModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+    _id: {
+        type: import("mongoose").Types.ObjectIdConstructor;
+        auto: true;
+    };
+    position: {
+        type: NumberConstructor;
+        default: number;
+    };
+    local_id: {
+        type: NumberConstructor;
+    };
+    userId: StringConstructor;
+    uuid: {
+        type: StringConstructor;
+        default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+    };
+    isMandatory: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    modified_date: {
+        type: StringConstructor;
+    };
+    modified_unix_date: {
+        type: NumberConstructor;
+        default: typeof retrieveCurrentUnixTime;
+    };
+    departmentId: {
+        type: StringConstructor;
+        required: true;
+        index: true;
+    };
+    active: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    name: {
+        type: StringConstructor;
+        required: true;
+    };
+    agencyId: {
+        type: typeof import("mongoose").Schema.Types.ObjectId;
+        ref: string;
+        default: null;
+    };
+}>, unknown>>;
+export interface Checklist extends Document, ItemTypeFromTypeSchemaFunction<typeof ChecklistModule> {
 }
-export interface ChecklistModel extends ModelTypeFromTypeSchemaFunction<Checklist> {
+export interface ChecklistModel extends Model<Checklist> {
 }
 declare const _default: ReplaceModelReturnType<typeof ChecklistModule, ChecklistModel>;
 export default _default;
-//# sourceMappingURL=checklist.d.ts.map

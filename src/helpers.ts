@@ -6,36 +6,34 @@ export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document> = Model<T>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type MongooseSchema<T extends Document<any> = Document<any>> = Schema<T>;
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-export type MongooseDocument = Omit<Document, "_id"> & {
-  _id: ObjectID,
-};
+export type MongooseDocument = Document<ObjectID>;
 export type UnionToIntersection<T> = (T extends unknown ? (_p: T) => unknown : never) extends ((_p: infer U) => unknown) ? U : never;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never;
-export type ModelItemType<T extends Model<Document>> = T extends Model<infer U> ? U : never;
-export type SchemaItemType<T extends { _interface: unknown }> = T extends { _interface: infer U } ? U : never;
+export type ModelItemType<T extends Model<Document>> = T extends PrivateSchemaInfo<infer T, infer TMethods> ? T & TMethods : never;
+export type SchemaItemType<T extends { __interface: unknown }> = T extends { __interface: infer U } ? U : never;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ReplaceModelReturnType<T extends (..._a: any[]) => Promise<any>, TNewReturnType extends UnboxPromise<ReturnType<T>>> =
+export type ReplaceModelReturnType<T extends (..._a: any[]) => Promise<any>, TNewReturnType extends Model<any>> =
   (..._a: Parameters<T>) => Promise<TNewReturnType>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ItemTypeFromTypeSchemaFunction<T extends (..._a: any[]) => Promise<any>> = ModelItemType<UnboxPromise<ReturnType<T>>>;
+export type ItemTypeFromTypeSchemaFunction<T extends (..._a: any[]) => Promise<any>> = 
+  Omit<ModelItemType<UnboxPromise<ReturnType<T>>>, "id" | "_id">;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ModelTypeFromTypeSchemaFunction<TItemType extends Document> = Model<TItemType>;
 
 export type MongooseProperty<T extends SchemaDefinition[string]> =
-  T extends { type: (Schema & { _interface: infer P })[] } ? P[] :
+  T extends { type: (Schema & { __interface: infer P })[] } ? P[] :
   T extends { type: ((..._a: unknown[]) => infer P)[] } ? P[] :
   T extends ((..._a: unknown[]) => infer P)[] ? P[] :
-  T extends (Schema & { _interface: infer P })[] ? P[] :
+  T extends (Schema & { __interface: infer P })[] ? P[] :
 
   T extends { type: (..._a: unknown[]) => infer P } ? P :
-  T extends { type: Schema & { _interface: infer P } } ? P :
+  T extends { type: Schema & { __interface: infer P } } ? P :
   T extends (..._a: unknown[]) => infer P ? P :
-  T extends Schema & { _interface: infer P } ? P :
+  T extends Schema & { __interface: infer P } ? P :
   T extends { type: MongooseModule["Types"]["ObjectId"] } ? ObjectId :
   T extends MongooseModule["Types"]["ObjectId"] ? ObjectId :
   T extends { type: MongooseModule["Schema"]["Types"]["ObjectId"] } ? Schema.Types.ObjectId :
@@ -44,48 +42,50 @@ export type MongooseProperty<T extends SchemaDefinition[string]> =
   T extends Record<string, unknown> ? { [P in keyof T]: MongooseProperty<T[P]> } :
   never;
 
-export type MongooseInterface<T extends SchemaDefinition> = Record<string, unknown> & {
+export type MongooseInterface<T extends SchemaDefinition> = {
   [P in keyof T]: MongooseProperty<T[P]>
 };
 
-export type TypedSchema<T extends SchemaDefinition> = Schema & { _interface: MongooseInterface<T> };
+export type TypedSchema<T extends SchemaDefinition> = Schema & { __interface: MongooseInterface<T> };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TypedDocument<T extends TypedSchema<any>> = Document & (
-  T extends { _interface: infer U } ? U : never
+  T extends { __interface: infer U } ? U : never
 );
 
 export function createSchemaDefinition<T extends SchemaDefinition>(c: T) {
   return c;
 }
 
+export interface PrivateSchemaInfo<TInterface, TMethods> {
+  __interface: TInterface; 
+  __methods: TMethods;
+}
+
+
 export function createSchema
   <T extends SchemaDefinition, TMethods>(schemaCtor: typeof Schema, p: T, o: SchemaOptions, methods?: TMethods & ThisType<DocumentFromSchemaDefinition<T>>)
-  : Schema & { _interface: MongooseInterface<T>, _methods: TMethods } {
+  : Schema & PrivateSchemaInfo<MongooseInterface<T>, TMethods> {
   const schema = new schemaCtor(p, o);
   if (methods) {
     schema.methods = methods as never;
   }
-  return schema as unknown as Schema & { _interface: MongooseInterface<T>, _methods: TMethods };
+  return schema as unknown as Schema & PrivateSchemaInfo<MongooseInterface<T>, TMethods>;
 }
 
-export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }) {
+export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & PrivateSchemaInfo<T, TMethods>) {
   if (mongoose.models[name]) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return mongoose.model<Document & T & TMethods>(name) as Model<Document & T & TMethods> & { __methods?: TMethods };
+    return mongoose.model<Document>(name) as Model<Document> & PrivateSchemaInfo<T, TMethods>;
   } else {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return mongoose.model<Document & T & TMethods>(name, schema) as Model<Document & T & TMethods> & { __methods?: TMethods };
+    return mongoose.model<Document>(name, schema) as Model<Document> & PrivateSchemaInfo<T, TMethods>;
   }
 }
 
-export type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & { _interface: MongooseInterface<T> }>;
+export type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & { __interface: MongooseInterface<T> }>;
 export type ModelFromSchema<T extends Schema> = Model<DocumentTypeFromSchema<T>>;
-export type DocumentFromSchemaDefinition<T extends SchemaDefinition> = DocumentTypeFromSchema<Schema & { _interface: MongooseInterface<T> }>;
-export type DocumentTypeFromSchema<T extends Schema> = T extends Schema & { _interface: infer TI } ? TI & MongooseDocument & { schema: T } : never;
+export type DocumentFromSchemaDefinition<T extends SchemaDefinition> = DocumentTypeFromSchema<Schema & { __interface: MongooseInterface<T> }>;
+export type DocumentTypeFromSchema<T extends Schema> = T extends Schema & { __interface: infer TI } ? TI & MongooseDocument & { schema: T } : never;
 export type DocumentTypeFromModel<T extends Model<Document>> = T extends Model<infer U> ? U : never;
-export type FieldsOfDocument<T extends Document> = T extends Document & infer F ? F & { id?: unknown, _id: unknown } : never;
+export type FieldsOfDocument<T extends Document> = T extends MongooseDocument & infer F ? F & { id?: ObjectID, _id: ObjectID } : never;
 
 export function retrieveCurrentUnixTime(): number {
   return Date.now() / 1000;

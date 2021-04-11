@@ -83,4 +83,3 @@ export declare function connect(url: string): Promise<{
 declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
 export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
 export default connect;
-//# sourceMappingURL=index.d.ts.map

@@ -7,10 +7,10 @@ import {
   MongooseModule,
   MongooseDocument,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function UserModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
@@ -191,12 +191,11 @@ export async function UserModule(mongoose: MongooseModule) {
   });
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    return this._id.toHexString();
+    return this._id && this._id.toHexString();
   });
 
   return createModel(mongoose, "User", modelSchema);
 }
-
-export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> { }
-export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> { }
-export default UserModule as ReplaceModelReturnType<typeof UserModule, UserModel>;
+export interface User extends Document, ItemTypeFromTypeSchemaFunction<typeof UserModule> { }
+export interface UserModel extends Model<User> { }
+export default UserModule as unknown as ReplaceModelReturnType<typeof UserModule, UserModel>;

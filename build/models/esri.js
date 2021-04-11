@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EsriModule = void 0;
 // import * as uuid from "uuid";
@@ -95,5 +96,10 @@ async function EsriModule(mongoose) {
     return helpers_1.createModel(mongoose, "Esri", modelSchema);
 }
 exports.EsriModule = EsriModule;
+(_a = r.maps) === null || _a === void 0 ? void 0 : _a.map(m => {
+    m.offline.forEach((o) => {
+        console.log(o, o.status);
+    });
+});
 exports.default = EsriModule;
 //# sourceMappingURL=esri.js.map

@@ -4,9 +4,9 @@ import {
   createModel,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function BeaconLogModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -40,6 +40,6 @@ export async function BeaconLogModule(mongoose: MongooseModule) {
   return createModel(mongoose, "BeaconLog", modelSchema);
 }
 
-export interface BeaconLog extends ItemTypeFromTypeSchemaFunction<typeof BeaconLogModule> { }
-export interface BeaconLogModel extends ModelTypeFromTypeSchemaFunction<BeaconLog> { }
-export default BeaconLogModule as ReplaceModelReturnType<typeof BeaconLogModule, BeaconLogModel>;
+export interface BeaconLog extends Document, ItemTypeFromTypeSchemaFunction<typeof BeaconLogModule> { }
+export interface BeaconLogModel extends Model<BeaconLog> { }
+export default BeaconLogModule as unknown as ReplaceModelReturnType<typeof BeaconLogModule, BeaconLogModel>;

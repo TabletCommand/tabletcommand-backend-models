@@ -4,9 +4,9 @@ import {
   createModel,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function IncidentTakeoverModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -79,6 +79,6 @@ export async function IncidentTakeoverModule(mongoose: MongooseModule) {
   return createModel(mongoose, "IncidentTakeover", modelSchema);
 }
 
-export interface IncidentTakeover extends ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> { }
-export interface IncidentTakeoverModel extends ModelTypeFromTypeSchemaFunction<IncidentTakeover> { }
-export default IncidentTakeoverModule as ReplaceModelReturnType<typeof IncidentTakeoverModule, IncidentTakeoverModel>;
+export interface IncidentTakeover extends  Document, ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> { }
+export interface IncidentTakeoverModel extends Model<IncidentTakeover> { }
+export default IncidentTakeoverModule as unknown as ReplaceModelReturnType<typeof IncidentTakeoverModule, IncidentTakeoverModel>;

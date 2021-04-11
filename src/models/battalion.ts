@@ -9,10 +9,10 @@ import {
   createModel,
   FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function BattalionModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -152,26 +152,27 @@ export async function BattalionModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   const ignoreFields: ReadonlyArray<string> = [];
 
-  function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
-    Object.keys(ret).forEach(function(element) {
+  function strictSchema(schema: typeof modelSchema, ret: unknown): void
+  function strictSchema<T>(schema: typeof modelSchema, ret: T) {
+    Object.keys(ret).forEach(function(element: string) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;
       }
 
       if (ignoreFields.indexOf(element) !== -1) {
-        delete ret[element];
+        delete ret[element as keyof T];
         return;
       }
       const pathSchema = schema as unknown as { paths: Record<string, string> };
       if (pathSchema.paths[element] === undefined) {
         // console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
-        delete ret[element];
+        delete ret[element as keyof T];
       }
     });
   }
@@ -179,6 +180,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Battalion", modelSchema);
 }
 
-export interface Battalion extends ItemTypeFromTypeSchemaFunction<typeof BattalionModule> { }
-export interface BattalionModel extends ModelTypeFromTypeSchemaFunction<Battalion> { }
-export default BattalionModule as ReplaceModelReturnType<typeof BattalionModule, BattalionModel>;
+export interface Battalion extends Document, ItemTypeFromTypeSchemaFunction<typeof BattalionModule> { }
+export interface BattalionModel extends Model<Battalion> { }
+export default BattalionModule as unknown as ReplaceModelReturnType<typeof BattalionModule, BattalionModel>;

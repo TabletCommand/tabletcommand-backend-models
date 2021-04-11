@@ -2,12 +2,12 @@ import {
   createModel,
   createSchema,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { Document, Model } from "mongoose";
 
 export async function SMTPUnhandledModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -37,7 +37,7 @@ export async function SMTPUnhandledModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
@@ -46,6 +46,6 @@ export async function SMTPUnhandledModule(mongoose: MongooseModule) {
   return createModel(mongoose, "SMTPUnhandled", modelSchema);
 }
 
-export interface SMTPUnhandled extends ItemTypeFromTypeSchemaFunction<typeof SMTPUnhandledModule> { }
-export interface SMTPUnhandledModel extends ModelTypeFromTypeSchemaFunction<SMTPUnhandled> { }
-export default SMTPUnhandledModule as ReplaceModelReturnType<typeof SMTPUnhandledModule, SMTPUnhandledModel>;
+export interface SMTPUnhandled extends Document, ItemTypeFromTypeSchemaFunction<typeof SMTPUnhandledModule> { }
+export interface SMTPUnhandledModel extends Model<SMTPUnhandled> { }
+export default SMTPUnhandledModule as unknown as ReplaceModelReturnType<typeof SMTPUnhandledModule, SMTPUnhandledModel>;

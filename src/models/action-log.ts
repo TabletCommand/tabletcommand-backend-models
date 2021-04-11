@@ -3,10 +3,10 @@ import {
   createSchema,
   createModel,
   retrieveCurrentUnixTime,
-  ModelTypeFromTypeSchemaFunction,
   ItemTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function ActionLogModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -47,6 +47,6 @@ export async function ActionLogModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ActionLog", modelSchema);
 }
 
-export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> { }
-export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> { }
-export default ActionLogModule as ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;
+export interface ActionLog extends Document, ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> { }
+export interface ActionLogModel extends Model<ActionLog> { }
+export default ActionLogModule as unknown as ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;

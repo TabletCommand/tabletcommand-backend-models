@@ -51,7 +51,7 @@ async function CADIncidentStreamModule(mongoose) {
     // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
+        return this._id && this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     return helpers_1.createModel(mongoose, "CADIncidentStream", modelSchema);

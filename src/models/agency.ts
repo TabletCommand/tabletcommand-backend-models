@@ -5,9 +5,9 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function AgencyModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -72,6 +72,6 @@ export async function AgencyModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Agency", modelSchema);
 }
 
-export interface Agency extends ItemTypeFromTypeSchemaFunction<typeof AgencyModule> { }
-export interface AgencyModel extends ModelTypeFromTypeSchemaFunction<Agency> { }
-export default AgencyModule as ReplaceModelReturnType<typeof AgencyModule, AgencyModel>;
+export interface Agency extends Document, ItemTypeFromTypeSchemaFunction<typeof AgencyModule> { }
+export interface AgencyModel extends Model<Agency> { }
+export default AgencyModule as unknown as ReplaceModelReturnType<typeof AgencyModule, AgencyModel>;

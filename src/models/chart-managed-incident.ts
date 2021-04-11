@@ -4,9 +4,9 @@ import {
   createSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
@@ -61,7 +61,7 @@ export async function ChartManagedIncidentModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
@@ -69,6 +69,6 @@ export async function ChartManagedIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ChartManagedIncident", modelSchema);
 }
 
-export interface ChartManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ChartManagedIncidentModule> { }
-export interface ChartManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ChartManagedIncident> { }
-export default ChartManagedIncidentModule as ReplaceModelReturnType<typeof ChartManagedIncidentModule, ChartManagedIncidentModel>;
+export interface ChartManagedIncident extends Document, ItemTypeFromTypeSchemaFunction<typeof ChartManagedIncidentModule> { }
+export interface ChartManagedIncidentModel extends Model<ChartManagedIncident> { }
+export default ChartManagedIncidentModule as unknown as ReplaceModelReturnType<typeof ChartManagedIncidentModule, ChartManagedIncidentModel>;

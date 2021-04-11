@@ -7,9 +7,9 @@ import {
   createModel,
   FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
@@ -511,12 +511,13 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   const ignoreFields: ReadonlyArray<string> = ["station", "callerNumber"];
 
-  function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
+  function strictSchema(schema: typeof modelSchema, ret: unknown): void
+  function strictSchema<T extends Record<string, unknown>>(schema: typeof modelSchema, ret: T) {
     Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
       if (element === "id") {
@@ -539,6 +540,6 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADIncident", modelSchema);
 }
 
-export interface CADIncident extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> { }
-export interface CADIncidentModel extends ModelTypeFromTypeSchemaFunction<CADIncident> { }
-export default CADIncidentModule as ReplaceModelReturnType<typeof CADIncidentModule, CADIncidentModel>;
+export interface CADIncident extends Document, ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> { }
+export interface CADIncidentModel extends Model<CADIncident> { }
+export default CADIncidentModule as unknown as ReplaceModelReturnType<typeof CADIncidentModule, CADIncidentModel>;

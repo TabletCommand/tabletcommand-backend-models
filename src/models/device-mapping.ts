@@ -4,9 +4,9 @@ import {
   createModel,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function DeviceMappingModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -76,6 +76,6 @@ export async function DeviceMappingModule(mongoose: MongooseModule) {
   return createModel(mongoose, "DeviceMapping", modelSchema);
 }
 
-export interface DeviceMapping extends ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> { }
-export interface DeviceMappingModel extends ModelTypeFromTypeSchemaFunction<DeviceMapping> { }
-export default DeviceMappingModule as ReplaceModelReturnType<typeof DeviceMappingModule, DeviceMappingModel>;
+export interface DeviceMapping extends Document, ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> { }
+export interface DeviceMappingModel extends Model<DeviceMapping> { }
+export default DeviceMappingModule as unknown as ReplaceModelReturnType<typeof DeviceMappingModule, DeviceMappingModel>;

@@ -1,46 +1,92 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
-    departmentId: string;
-    IncidentNumber: string;
-    modified_unix_date: number;
-    message: string;
-    location: {
-        longitude: number;
-        latitude: number;
+import { ItemTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
+import { Document, Model } from "mongoose";
+export declare function IncidentEventModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+    _id: {
+        type: import("mongoose").Types.ObjectIdConstructor;
+        auto: true;
     };
-    type: string;
-    user: import("../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
+    departmentId: {
+        type: StringConstructor;
+        default: string;
+        required: true;
+        index: true;
+    };
+    IncidentNumber: {
+        type: StringConstructor;
+        default: string;
+        required: true;
+        index: true;
+    };
+    modified_unix_date: {
+        type: NumberConstructor;
+        default: typeof retrieveCurrentUnixTime;
+    };
+    message: {
+        type: StringConstructor;
+        default: string;
+    };
+    location: {
+        longitude: {
+            type: NumberConstructor;
+            default: number;
         };
-        email: {
-            type: StringConstructor;
-            default: string;
+        latitude: {
+            type: NumberConstructor;
+            default: number;
         };
-        radioName: {
-            type: StringConstructor;
-            default: string;
-        };
-        userId: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
-    serverTime: number;
-    userTime: number;
-    uuid: string;
-    opts: any;
-    archived: boolean;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> {
+    };
+    type: {
+        type: StringConstructor;
+        default: string;
+    };
+    user: {
+        type: import("mongoose").Schema<Document<any, {}>, Model<any, any>, undefined> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+            username: {
+                type: StringConstructor;
+                default: string;
+            };
+            email: {
+                type: StringConstructor;
+                default: string;
+            };
+            radioName: {
+                type: StringConstructor;
+                default: string;
+            };
+            userId: {
+                type: StringConstructor;
+                default: string;
+            };
+        }>, unknown>;
+        default: {};
+    };
+    serverTime: {
+        type: NumberConstructor;
+        default: typeof retrieveCurrentUnixTime;
+        min: number;
+    };
+    userTime: {
+        type: NumberConstructor;
+        required: true;
+        default: number;
+        min: number;
+    };
+    uuid: {
+        type: StringConstructor;
+        require: boolean;
+    };
+    opts: {
+        type: ObjectConstructor;
+        default: {};
+    };
+    archived: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+}>, unknown>>;
+export interface IncidentEvent extends Document, ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> {
 }
-export interface IncidentEventModel extends ModelTypeFromTypeSchemaFunction<IncidentEvent> {
+export interface IncidentEventModel extends Model<IncidentEvent> {
 }
 declare const _default: ReplaceModelReturnType<typeof IncidentEventModule, IncidentEventModel>;
 export default _default;
-//# sourceMappingURL=incident-event.d.ts.map

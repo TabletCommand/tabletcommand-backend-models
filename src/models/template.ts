@@ -8,10 +8,10 @@ import {
   ModelFromSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function TemplateModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -112,10 +112,11 @@ export async function TemplateModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
-  function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
+  function strictSchema(schema: typeof modelSchema, ret: unknown): void
+  function strictSchema<T extends Record<string, unknown>>(schema: typeof modelSchema, ret: T) {
     Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
       if (element === "id") {
@@ -132,6 +133,6 @@ export async function TemplateModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Template", modelSchema);
 }
 
-export interface Template extends ItemTypeFromTypeSchemaFunction<typeof TemplateModule> { }
-export interface TemplateModel extends ModelTypeFromTypeSchemaFunction<Template> { }
-export default TemplateModule as ReplaceModelReturnType<typeof TemplateModule, TemplateModel>;
+export interface Template extends Document, ItemTypeFromTypeSchemaFunction<typeof TemplateModule> { }
+export interface TemplateModel extends Model<Template> { }
+export default TemplateModule as unknown as ReplaceModelReturnType<typeof TemplateModule, TemplateModel>;

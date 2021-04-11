@@ -4,10 +4,10 @@ import {
   createSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
@@ -63,7 +63,7 @@ export async function CADIncidentStreamModule(mongoose: MongooseModule) {
   // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
@@ -71,6 +71,6 @@ export async function CADIncidentStreamModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADIncidentStream", modelSchema);
 }
 
-export interface CADIncidentStream extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentStreamModule> { }
-export interface CADIncidentStreamModel extends ModelTypeFromTypeSchemaFunction<CADIncidentStream> { }
-export default CADIncidentStreamModule as ReplaceModelReturnType<typeof CADIncidentStreamModule, CADIncidentStreamModel>;
+export interface CADIncidentStream extends Document, ItemTypeFromTypeSchemaFunction<typeof CADIncidentStreamModule> { }
+export interface CADIncidentStreamModel extends Model<CADIncidentStream> { }
+export default CADIncidentStreamModule as unknown as ReplaceModelReturnType<typeof CADIncidentStreamModule, CADIncidentStreamModel>;

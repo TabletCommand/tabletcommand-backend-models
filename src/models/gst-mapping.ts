@@ -4,10 +4,10 @@ import {
   createModel,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function GSTMappingModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -73,6 +73,6 @@ export async function GSTMappingModule(mongoose: MongooseModule) {
   return createModel(mongoose, "GSTMapping", modelSchema);
 }
 
-export interface GSTMapping extends ItemTypeFromTypeSchemaFunction<typeof GSTMappingModule> { }
-export interface GSTMappingModel extends ModelTypeFromTypeSchemaFunction<GSTMapping> { }
-export default GSTMappingModule as ReplaceModelReturnType<typeof GSTMappingModule, GSTMappingModel>;
+export interface GSTMapping extends Document, ItemTypeFromTypeSchemaFunction<typeof GSTMappingModule> { }
+export interface GSTMappingModel extends Model<GSTMapping> { }
+export default GSTMappingModule as unknown as ReplaceModelReturnType<typeof GSTMappingModule, GSTMappingModel>;

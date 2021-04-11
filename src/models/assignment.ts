@@ -5,10 +5,10 @@ import {
   createSchema,
   createModel,
   retrieveCurrentUnixTime,
-  ModelTypeFromTypeSchemaFunction,
   ItemTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function AssignmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -62,6 +62,6 @@ export async function AssignmentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Assignment", modelSchema);
 }
 
-export interface Assignment extends ItemTypeFromTypeSchemaFunction<typeof AssignmentModule> { }
-export interface AssignmentModel extends ModelTypeFromTypeSchemaFunction<Assignment> { }
-export default AssignmentModule as ReplaceModelReturnType<typeof AssignmentModule, AssignmentModel>;
+export interface Assignment extends Document, ItemTypeFromTypeSchemaFunction<typeof AssignmentModule> { }
+export interface AssignmentModel extends Model<Assignment> { }
+export default AssignmentModule as unknown as ReplaceModelReturnType<typeof AssignmentModule, AssignmentModel>;

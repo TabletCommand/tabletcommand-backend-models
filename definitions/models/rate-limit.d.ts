@@ -1,17 +1,23 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function RateLimitModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
-    username: string;
-    modified_unix_date: number;
-    count: number;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface RateLimit extends ItemTypeFromTypeSchemaFunction<typeof RateLimitModule> {
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { Document, Model } from "mongoose";
+export declare function RateLimitModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+    _id: {
+        type: import("mongoose").Types.ObjectIdConstructor;
+        auto: true;
+    };
+    username: StringConstructor;
+    modified_unix_date: {
+        type: NumberConstructor;
+        default: number;
+    };
+    count: {
+        type: NumberConstructor;
+        default: number;
+    };
+}>, unknown>>;
+export interface RateLimit extends Document, ItemTypeFromTypeSchemaFunction<typeof RateLimitModule> {
 }
-export interface RateLimitModel extends ModelTypeFromTypeSchemaFunction<RateLimit> {
+export interface RateLimitModel extends Model<RateLimit> {
 }
 declare const _default: ReplaceModelReturnType<typeof RateLimitModule, RateLimitModel>;
 export default _default;
-//# sourceMappingURL=rate-limit.d.ts.map

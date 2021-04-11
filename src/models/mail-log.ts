@@ -4,9 +4,9 @@ import {
   createModel,
   retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function MailLogModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -79,6 +79,6 @@ export async function MailLogModule(mongoose: MongooseModule) {
   return createModel(mongoose, "MailLog", modelSchema);
 }
 
-export interface MailLog extends ItemTypeFromTypeSchemaFunction<typeof MailLogModule> { }
-export interface MailLogModel extends ModelTypeFromTypeSchemaFunction<MailLog> { }
-export default MailLogModule as ReplaceModelReturnType<typeof MailLogModule, MailLogModel>;
+export interface MailLog extends Document, ItemTypeFromTypeSchemaFunction<typeof MailLogModule> { }
+export interface MailLogModel extends Model<MailLog> { }
+export default MailLogModule as unknown as ReplaceModelReturnType<typeof MailLogModule, MailLogModel>;

@@ -7,10 +7,10 @@ import {
   DocumentFromSchemaDefinition,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
 import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
+import { Document, Model } from "mongoose";
 
 export async function CADVehicleStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -117,6 +117,6 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADVehicleStatus", modelSchema);
 }
 
-export interface CADVehicleStatus extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> { }
-export interface CADVehicleStatusModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatus> { }
-export default CADVehicleStatusModule as ReplaceModelReturnType<typeof CADVehicleStatusModule, CADVehicleStatusModel>;
+export interface CADVehicleStatus extends Document, ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> { }
+export interface CADVehicleStatusModel extends Model<CADVehicleStatus> { }
+export default CADVehicleStatusModule as unknown as ReplaceModelReturnType<typeof CADVehicleStatusModule, CADVehicleStatusModel>;

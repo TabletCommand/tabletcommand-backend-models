@@ -174,7 +174,7 @@ async function UserModule(mongoose) {
         },
     });
     modelSchema.virtual("id").get(function () {
-        return this._id.toHexString();
+        return this._id && this._id.toHexString();
     });
     return helpers_1.createModel(mongoose, "User", modelSchema);
 }

@@ -2,13 +2,13 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "../definitions",
-    "declarationMap": true,
+//    "declarationMap": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "../build",
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017",
+    "target": "es2017"
   }
 }

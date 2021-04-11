@@ -3,9 +3,9 @@ import {
   createModel,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function UserRegistrationModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
@@ -85,6 +85,6 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
   return createModel(mongoose, "UserRegistration", modelSchema);
 }
 
-export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> { }
-export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> { }
-export default UserRegistrationModule as ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;
+export interface UserRegistration extends Document, ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> { }
+export interface UserRegistrationModel extends Model<UserRegistration> { }
+export default UserRegistrationModule as unknown as ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;

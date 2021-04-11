@@ -1,37 +1,81 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document<any, {}> & Record<string, unknown> & {
-    uuid: string;
-    departmentId: string;
-    modifiedDate: number;
-    statusId: number;
-    code: string;
-    codeDisplay: string;
-    status: string;
-    name: string;
-    normalized: string;
-    selfAssignable: boolean;
-    roaming: boolean;
-    options: import("../helpers").MongooseInterface<{
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-        position: {
-            type: NumberConstructor;
-            default: number;
-        };
-        visible: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        cadKey: {
-            type: StringConstructor;
-            default: string;
-        };
-        cadValues: {
-            type: (import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
-                _interface: import("../helpers").MongooseInterface<{
+import * as uuid from "uuid";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { Document, Model } from "mongoose";
+export declare function CADStatusModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+    uuid: {
+        type: StringConstructor;
+        index: true;
+        default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+    };
+    departmentId: {
+        type: StringConstructor;
+        default: string;
+        required: true;
+        index: true;
+    };
+    modifiedDate: {
+        type: NumberConstructor;
+        default: number;
+        min: number;
+    };
+    statusId: {
+        type: NumberConstructor;
+        default: number;
+        required: true;
+        min: number;
+    };
+    code: {
+        type: StringConstructor;
+        default: string;
+        required: true;
+        minlength: number;
+    };
+    codeDisplay: {
+        type: StringConstructor;
+        default: string;
+    };
+    status: {
+        type: StringConstructor;
+        default: string;
+        required: true;
+        minlength: number;
+    };
+    name: {
+        type: StringConstructor;
+        default: string;
+    };
+    normalized: {
+        type: StringConstructor;
+        default: string;
+    };
+    selfAssignable: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    roaming: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    options: {
+        type: (import("mongoose").Schema<Document<any, {}>, Model<any, any>, undefined> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+            name: {
+                type: StringConstructor;
+                default: string;
+            };
+            position: {
+                type: NumberConstructor;
+                default: number;
+            };
+            visible: {
+                type: BooleanConstructor;
+                default: boolean;
+            };
+            cadKey: {
+                type: StringConstructor;
+                default: string;
+            };
+            cadValues: {
+                type: (import("mongoose").Schema<Document<any, {}>, Model<any, any>, undefined> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
                     name: {
                         type: StringConstructor;
                         default: string;
@@ -56,29 +100,29 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
                         type: NumberConstructor;
                         default: number;
                     };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-    }>[];
-    color: import("../helpers").MongooseInterface<{
-        background: {
-            type: StringConstructor;
-            default: string;
-        };
-        text: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> {
+                }>, unknown>)[];
+                default: never[];
+            };
+        }>, unknown>)[];
+        default: never[];
+    };
+    color: {
+        type: import("mongoose").Schema<Document<any, {}>, Model<any, any>, undefined> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
+            background: {
+                type: StringConstructor;
+                default: string;
+            };
+            text: {
+                type: StringConstructor;
+                default: string;
+            };
+        }>, unknown>;
+        default: null;
+    };
+}>, unknown>>;
+export interface CADStatus extends Document, ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> {
 }
-export interface CADStatusModel extends ModelTypeFromTypeSchemaFunction<CADStatus> {
+export interface CADStatusModel extends Model<CADStatus> {
 }
 declare const _default: ReplaceModelReturnType<typeof CADStatusModule, CADStatusModel>;
 export default _default;
-//# sourceMappingURL=cad-status.d.ts.map

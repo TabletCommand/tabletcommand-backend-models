@@ -8,9 +8,9 @@ import {
   FieldsOfDocument,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -156,6 +156,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ManagedIncident", modelSchema);
 }
 
-export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> { }
-export interface ManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ManagedIncident> { }
-export default ManagedIncidentModule as ReplaceModelReturnType<typeof ManagedIncidentModule, ManagedIncidentModel>;
+export interface ManagedIncident extends Document, ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> { }
+export interface ManagedIncidentModel extends Model<ManagedIncident> { }
+export default ManagedIncidentModule as unknown as ReplaceModelReturnType<typeof ManagedIncidentModule, ManagedIncidentModel>;

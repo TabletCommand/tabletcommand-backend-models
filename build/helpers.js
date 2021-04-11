@@ -15,13 +15,9 @@ function createSchema(schemaCtor, p, o, methods) {
 exports.createSchema = createSchema;
 function createModel(mongoose, name, schema) {
     if (mongoose.models[name]) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         return mongoose.model(name);
     }
     else {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         return mongoose.model(name, schema);
     }
 }

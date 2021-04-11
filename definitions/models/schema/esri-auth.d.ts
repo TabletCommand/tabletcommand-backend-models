@@ -1,28 +1,21 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function EsriAuthModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
-    _interface: import("../../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        encrypted: {
-            type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    iv: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    encryptedData: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
+export default function EsriAuthModule(mongoose: MongooseModule): import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & import("../../helpers").PrivateSchemaInfo<import("../../helpers").MongooseInterface<{
+    username: {
+        type: StringConstructor;
+        default: string;
+    };
+    encrypted: {
+        type: import("mongoose").Schema<import("mongoose").Document<any, {}>, import("mongoose").Model<any, any>, undefined> & import("../../helpers").PrivateSchemaInfo<import("../../helpers").MongooseInterface<{
+            iv: {
+                type: StringConstructor;
+                default: string;
             };
-            default: null;
-        };
-    }>;
-    _methods: unknown;
-};
-//# sourceMappingURL=esri-auth.d.ts.map
+            encryptedData: {
+                type: StringConstructor;
+                default: string;
+            };
+        }>, unknown>;
+        default: null;
+    };
+}>, unknown>;

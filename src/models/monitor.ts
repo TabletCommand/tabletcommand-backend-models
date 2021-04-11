@@ -2,12 +2,12 @@ import {
   createModel,
   createSchema,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function MonitorModule(mongoose: MongooseModule) {
@@ -52,7 +52,7 @@ export async function MonitorModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
@@ -61,6 +61,6 @@ export async function MonitorModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Monitor", modelSchema);
 }
 
-export interface Monitor extends ItemTypeFromTypeSchemaFunction<typeof MonitorModule> { }
-export interface MonitorModel extends ModelTypeFromTypeSchemaFunction<Monitor> { }
-export default MonitorModule as ReplaceModelReturnType<typeof MonitorModule, MonitorModel>;
+export interface Monitor extends Document, ItemTypeFromTypeSchemaFunction<typeof MonitorModule> { }
+export interface MonitorModel extends Model<Monitor> { }
+export default MonitorModule as unknown as ReplaceModelReturnType<typeof MonitorModule, MonitorModel>;

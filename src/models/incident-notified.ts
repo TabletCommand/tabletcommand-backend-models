@@ -3,10 +3,10 @@ import {
   createModel,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function IncidentNotifiedModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -46,6 +46,6 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
   return createModel(mongoose, "IncidentNotified", modelSchema);
 }
 
-export interface IncidentNotified extends ItemTypeFromTypeSchemaFunction<typeof IncidentNotifiedModule> { }
-export interface IncidentNotifiedModel extends ModelTypeFromTypeSchemaFunction<IncidentNotified> { }
-export default IncidentNotifiedModule as ReplaceModelReturnType<typeof IncidentNotifiedModule, IncidentNotifiedModel>;
+export interface IncidentNotified extends Document, ItemTypeFromTypeSchemaFunction<typeof IncidentNotifiedModule> { }
+export interface IncidentNotifiedModel extends Model<IncidentNotified> { }
+export default IncidentNotifiedModule as unknown as ReplaceModelReturnType<typeof IncidentNotifiedModule, IncidentNotifiedModel>;

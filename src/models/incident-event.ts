@@ -2,12 +2,12 @@ import {
   createModel,
   createSchema,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function IncidentEventModule(mongoose: MongooseModule) {
@@ -110,7 +110,7 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
@@ -119,6 +119,6 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
   return createModel(mongoose, "IncidentEvent", modelSchema);
 }
 
-export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> { }
-export interface IncidentEventModel extends ModelTypeFromTypeSchemaFunction<IncidentEvent> { }
-export default IncidentEventModule as ReplaceModelReturnType<typeof IncidentEventModule, IncidentEventModel>;
+export interface IncidentEvent extends Document, ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> { }
+export interface IncidentEventModel extends Model<IncidentEvent> { }
+export default IncidentEventModule as unknown as ReplaceModelReturnType<typeof IncidentEventModule, IncidentEventModel>;

@@ -5,7 +5,6 @@ import {
   DocumentTypeFromSchema,
   FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime,
@@ -15,6 +14,7 @@ import FireMapperAuthModule from "./schema/firemapper-auth";
 import EsriErrorModule from "./schema/esri-error";
 import EsriMapModule from "./schema/esri-map";
 import EsriTokenModule from "./schema/esri-token";
+import { Document, Model } from "mongoose";
 
 export async function EsriModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -110,7 +110,12 @@ export async function EsriModule(mongoose: MongooseModule) {
 
   return createModel(mongoose, "Esri", modelSchema);
 }
-
-export interface Esri extends ItemTypeFromTypeSchemaFunction<typeof EsriModule> { }
-export interface EsriModel extends ModelTypeFromTypeSchemaFunction<Esri> { }
-export default EsriModule as ReplaceModelReturnType<typeof EsriModule, EsriModel>;
+declare let r: Partial<Esri>;
+r.maps?.map(m => {
+  m.offline.forEach((o) => {
+    console.log(o, o.status);
+  });
+});
+export interface Esri extends Document, ItemTypeFromTypeSchemaFunction<typeof EsriModule> { }
+export interface EsriModel extends Model<Esri> { }
+export default EsriModule as unknown as ReplaceModelReturnType<typeof EsriModule, EsriModel>;

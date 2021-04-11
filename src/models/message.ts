@@ -4,11 +4,11 @@ import {
   createSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
 import ColorModule from "./schema/color";
+import { Document, Model } from "mongoose";
 
 export async function MessageModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -82,6 +82,6 @@ export async function MessageModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Message", modelSchema);
 }
 
-export interface Message extends ItemTypeFromTypeSchemaFunction<typeof MessageModule> { }
-export interface MessageModel extends ModelTypeFromTypeSchemaFunction<Message> { }
-export default MessageModule as ReplaceModelReturnType<typeof MessageModule, MessageModel>;
+export interface Message extends Document, ItemTypeFromTypeSchemaFunction<typeof MessageModule> { }
+export interface MessageModel extends Model<Message> { }
+export default MessageModule as unknown as ReplaceModelReturnType<typeof MessageModule, MessageModel>;

@@ -3,10 +3,10 @@ import {
   createSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
+import { Document, Model } from "mongoose";
 
 export async function CADVehicleModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
@@ -73,6 +73,6 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
   return createModel(mongoose, "CADVehicle", modelSchema);
 }
 
-export interface CADVehicle extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleModule> { }
-export interface CADVehicleModel extends ModelTypeFromTypeSchemaFunction<CADVehicle> { }
-export default CADVehicleModule as ReplaceModelReturnType<typeof CADVehicleModule, CADVehicleModel>;
+export interface CADVehicle extends Document, ItemTypeFromTypeSchemaFunction<typeof CADVehicleModule> { }
+export interface CADVehicleModel extends Model<CADVehicle> { }
+export default CADVehicleModule as unknown as ReplaceModelReturnType<typeof CADVehicleModule, CADVehicleModel>;

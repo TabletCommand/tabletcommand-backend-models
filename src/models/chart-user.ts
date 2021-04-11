@@ -4,9 +4,9 @@ import {
   createSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
@@ -48,7 +48,7 @@ export async function ChartUserModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
@@ -56,6 +56,6 @@ export async function ChartUserModule(mongoose: MongooseModule) {
   return createModel(mongoose, "ChartUser", modelSchema);
 }
 
-export interface ChartUser extends ItemTypeFromTypeSchemaFunction<typeof ChartUserModule> { }
-export interface ChartUserModel extends ModelTypeFromTypeSchemaFunction<ChartUser> { }
-export default ChartUserModule as ReplaceModelReturnType<typeof ChartUserModule, ChartUserModel>;
+export interface ChartUser extends Document, ItemTypeFromTypeSchemaFunction<typeof ChartUserModule> { }
+export interface ChartUserModel extends Model<ChartUser> { }
+export default ChartUserModule as unknown as ReplaceModelReturnType<typeof ChartUserModule, ChartUserModel>;

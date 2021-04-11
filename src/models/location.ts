@@ -6,12 +6,12 @@ import {
   createSchemaDefinition,
   DocumentFromSchemaDefinition,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Document, Model } from "mongoose";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import GeoJSONPointModule from "./schema/geojson-point";
 import {  } from "uuid";
@@ -145,7 +145,7 @@ export async function LocationModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
   // Create GeoJSON index
@@ -160,6 +160,6 @@ export async function LocationModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Location", modelSchema);
 }
 
-export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> { }
-export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> { }
-export default LocationModule as ReplaceModelReturnType<typeof LocationModule, LocationModel>;
+export interface Location extends Document, ItemTypeFromTypeSchemaFunction<typeof LocationModule> { }
+export interface LocationModel extends Model<Location> { }
+export default LocationModule as unknown as ReplaceModelReturnType<typeof LocationModule, LocationModel>;

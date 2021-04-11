@@ -473,7 +473,7 @@ async function CADIncidentModule(mongoose) {
     });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
+        return this._id && this._id.toString();
     });
     const ignoreFields = ["station", "callerNumber"];
     function strictSchema(schema, ret) {

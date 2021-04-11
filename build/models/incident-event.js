@@ -100,7 +100,7 @@ async function IncidentEventModule(mongoose) {
     });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
+        return this._id && this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);

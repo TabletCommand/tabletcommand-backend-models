@@ -8,10 +8,10 @@ import {
   ModelFromSchema,
   createModel,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
+import { Document, Model } from "mongoose";
 
 export async function ChecklistModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -77,10 +77,11 @@ export async function ChecklistModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
+    return this._id && this._id.toString();
   });
 
-  function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
+  function strictSchema(schema: typeof modelSchema, ret: unknown): void
+  function strictSchema<T extends Record<string, unknown>>(schema: typeof modelSchema, ret: T) {
     Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
       if (element === "id") {
@@ -96,6 +97,6 @@ export async function ChecklistModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Checklist", modelSchema);
 }
 
-export interface Checklist extends ItemTypeFromTypeSchemaFunction<typeof ChecklistModule> { }
-export interface ChecklistModel extends ModelTypeFromTypeSchemaFunction<Checklist> { }
-export default ChecklistModule as ReplaceModelReturnType<typeof ChecklistModule, ChecklistModel>;
+export interface Checklist extends Document, ItemTypeFromTypeSchemaFunction<typeof ChecklistModule> { }
+export interface ChecklistModel extends Model<Checklist> { }
+export default ChecklistModule as unknown as ReplaceModelReturnType<typeof ChecklistModule, ChecklistModel>;

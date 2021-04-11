@@ -6,9 +6,9 @@ import {
   FieldsOfDocument,
   ReplaceModelReturnType,
   ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
 } from "../helpers";
 import * as uuid from "uuid";
+import { Document, Model } from "mongoose";
 
 export async function SessionModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
@@ -87,6 +87,6 @@ export async function SessionModule(mongoose: MongooseModule) {
   return createModel(mongoose, "Session", modelSchema);
 }
 
-export interface Session extends ItemTypeFromTypeSchemaFunction<typeof SessionModule> { }
-export interface SessionModel extends ModelTypeFromTypeSchemaFunction<Session> { }
-export default SessionModule as ReplaceModelReturnType<typeof SessionModule, SessionModel>;
+export interface Session extends Document, ItemTypeFromTypeSchemaFunction<typeof SessionModule> { }
+export interface SessionModel extends Model<Session> { }
+export default SessionModule as unknown as ReplaceModelReturnType<typeof SessionModule, SessionModel>;
