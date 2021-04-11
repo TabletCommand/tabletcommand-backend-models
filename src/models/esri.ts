@@ -110,12 +110,7 @@ export async function EsriModule(mongoose: MongooseModule) {
 
   return createModel(mongoose, "Esri", modelSchema);
 }
-declare let r: Partial<Esri>;
-r.maps?.map(m => {
-  m.offline.forEach((o) => {
-    console.log(o, o.status);
-  });
-});
+
 export interface Esri extends Document, ItemTypeFromTypeSchemaFunction<typeof EsriModule> { }
 export interface EsriModel extends Model<Esri> { }
 export default EsriModule as unknown as ReplaceModelReturnType<typeof EsriModule, EsriModel>;
