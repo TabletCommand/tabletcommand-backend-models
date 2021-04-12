@@ -1,7 +1,7 @@
 import * as uuid from "uuid";
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType, currentDate, PrivateSchemaInfo, MongooseInterface } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType, currentDate } from "../helpers";
 import { Document, Model } from "mongoose";
-export declare function UserModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & PrivateSchemaInfo<MongooseInterface<{
+export declare function UserModule(mongoose: MongooseModule): Promise<Model<Document<any, {}>, {}> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
     nick: {
         type: StringConstructor;
         default: string;
@@ -110,7 +110,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<Model<Docu
         default: string;
     };
     vehicle: {
-        type: import("mongoose").Schema<Document<any, {}>, Model<any, any>, undefined> & PrivateSchemaInfo<MongooseInterface<{
+        type: import("mongoose").Schema<Document<any, {}>, Model<any, any>, undefined> & import("../helpers").PrivateSchemaInfo<import("../helpers").MongooseInterface<{
             radioName: {
                 type: StringConstructor;
                 default: string;
