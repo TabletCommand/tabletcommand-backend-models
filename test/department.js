@@ -54,5 +54,6 @@ describe("Department", function() {
     assert.equal(sut.timeZone, testItem.timeZone);
     assert.equal(sut.firstArrivingEnabled, testItem.firstArrivingEnabled);
     assert.equal(sut.simpleSenseEnabled, testItem.simpleSenseEnabled);
+    assert.equal(JSON.stringify(sut.licensing), JSON.stringify(testItem.licensing));
   });
 });

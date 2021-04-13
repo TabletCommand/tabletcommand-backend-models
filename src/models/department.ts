@@ -51,6 +51,13 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     }
   ];
 
+  const LicensingDefault = {
+    "tcPro2Way": 0,
+    "tcPro1Way": 0,
+    "tcMobile": 0,
+    "tcWeb": 0
+  };
+
   const IncidentType = createSchema(Schema, {
     name: {
       type: String,
@@ -347,6 +354,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     remoteLoggingEnabled: {
       type: Boolean,
       default: false,
+    },
+    licensing: {
+      type: Object,
+      default: LicensingDefault,
     },
   }, {
     collection: "massive_admin",

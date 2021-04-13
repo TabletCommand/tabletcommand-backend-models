@@ -97,6 +97,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     accountType: string;
     timeZone: string;
     remoteLoggingEnabled: boolean;
+    licensing: any;
 }, {}> & {
     __methods?: unknown;
 }>;

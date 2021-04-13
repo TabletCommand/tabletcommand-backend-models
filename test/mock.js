@@ -312,7 +312,13 @@ module.exports = function(dependencies) {
     accountType: "production",
     timeZone: "America/Los_Angeles",
     firstArrivingEnabled: true,
-    simpleSenseEnabled: true
+    simpleSenseEnabled: true,
+    licensing: {
+      tcPro2Way: 0,
+      tcPro1Way: 0,
+      tcMobile: 0,
+      tcWeb: 0
+    }
   };
 
   const esriMap = {
