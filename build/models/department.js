@@ -42,7 +42,8 @@ async function DepartmentModule(mongoose) {
         "tcPro2Way": 0,
         "tcPro1Way": 0,
         "tcMobile": 0,
-        "tcWeb": 0
+        "tcWeb": 0,
+        "fireMapperPro": 0
     };
     const IncidentType = helpers_1.createSchema(Schema, {
         name: {

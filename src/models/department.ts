@@ -55,7 +55,8 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     "tcPro2Way": 0,
     "tcPro1Way": 0,
     "tcMobile": 0,
-    "tcWeb": 0
+    "tcWeb": 0,
+    "fireMapperPro": 0
   };
 
   const IncidentType = createSchema(Schema, {
