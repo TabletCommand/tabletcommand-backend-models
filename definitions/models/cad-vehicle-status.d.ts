@@ -84,7 +84,20 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             (value: any): import("mongoose").Document;
         };
         removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
         off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+        setMaxListeners: (n: number) => import("mongoose").Document;
+        getMaxListeners: () => number;
+        listeners: (event: string | symbol) => Function[];
+        rawListeners: (event: string | symbol) => Function[];
+        emit: (event: string | symbol, ...args: any[]) => boolean;
+        listenerCount: (event: string | symbol) => number;
+        prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        eventNames: () => (string | symbol)[];
         invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
         increment: () => import("mongoose").Document;
         model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
@@ -113,6 +126,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
         isSelected: (path: string) => boolean;
         markModified: (path: string) => void;
         modifiedPaths: () => string[];
+        parent: () => import("mongoose").MongooseDocument | undefined;
         populate: {
             (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
             (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
@@ -141,19 +155,6 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             [k: string]: any;
         };
         id?: any;
-        addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
-        setMaxListeners: (n: number) => import("mongoose").Document;
-        getMaxListeners: () => number;
-        listeners: (event: string | symbol) => Function[];
-        rawListeners: (event: string | symbol) => Function[];
-        emit: (event: string | symbol, ...args: any[]) => boolean;
-        listenerCount: (event: string | symbol) => number;
-        prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        eventNames: () => (string | symbol)[];
         collection: import("mongoose").Collection;
         db: import("mongoose").Connection;
     } & {
@@ -304,7 +305,20 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             (value: any): import("mongoose").Document;
         };
         removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
         off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+        setMaxListeners: (n: number) => import("mongoose").Document;
+        getMaxListeners: () => number;
+        listeners: (event: string | symbol) => Function[];
+        rawListeners: (event: string | symbol) => Function[];
+        emit: (event: string | symbol, ...args: any[]) => boolean;
+        listenerCount: (event: string | symbol) => number;
+        prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+        eventNames: () => (string | symbol)[];
         invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
         increment: () => import("mongoose").Document;
         model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
@@ -333,6 +347,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
         isSelected: (path: string) => boolean;
         markModified: (path: string) => void;
         modifiedPaths: () => string[];
+        parent: () => import("mongoose").MongooseDocument | undefined;
         populate: {
             (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
             (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
@@ -361,19 +376,6 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             [k: string]: any;
         };
         id?: any;
-        addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
-        setMaxListeners: (n: number) => import("mongoose").Document;
-        getMaxListeners: () => number;
-        listeners: (event: string | symbol) => Function[];
-        rawListeners: (event: string | symbol) => Function[];
-        emit: (event: string | symbol, ...args: any[]) => boolean;
-        listenerCount: (event: string | symbol) => number;
-        prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-        eventNames: () => (string | symbol)[];
         collection: import("mongoose").Collection;
         db: import("mongoose").Connection;
     } & {
@@ -527,7 +529,20 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 (value: any): import("mongoose").Document;
             };
             removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
             off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+            setMaxListeners: (n: number) => import("mongoose").Document;
+            getMaxListeners: () => number;
+            listeners: (event: string | symbol) => Function[];
+            rawListeners: (event: string | symbol) => Function[];
+            emit: (event: string | symbol, ...args: any[]) => boolean;
+            listenerCount: (event: string | symbol) => number;
+            prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            eventNames: () => (string | symbol)[];
             invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
             increment: () => import("mongoose").Document;
             model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
@@ -556,6 +571,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             isSelected: (path: string) => boolean;
             markModified: (path: string) => void;
             modifiedPaths: () => string[];
+            parent: () => import("mongoose").MongooseDocument | undefined;
             populate: {
                 (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
                 (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
@@ -584,19 +600,6 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 [k: string]: any;
             };
             id?: any;
-            addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
-            setMaxListeners: (n: number) => import("mongoose").Document;
-            getMaxListeners: () => number;
-            listeners: (event: string | symbol) => Function[];
-            rawListeners: (event: string | symbol) => Function[];
-            emit: (event: string | symbol, ...args: any[]) => boolean;
-            listenerCount: (event: string | symbol) => number;
-            prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            eventNames: () => (string | symbol)[];
             collection: import("mongoose").Collection;
             db: import("mongoose").Connection;
         } & {
@@ -747,7 +750,20 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 (value: any): import("mongoose").Document;
             };
             removeListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
             off: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
+            setMaxListeners: (n: number) => import("mongoose").Document;
+            getMaxListeners: () => number;
+            listeners: (event: string | symbol) => Function[];
+            rawListeners: (event: string | symbol) => Function[];
+            emit: (event: string | symbol, ...args: any[]) => boolean;
+            listenerCount: (event: string | symbol) => number;
+            prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
+            eventNames: () => (string | symbol)[];
             invalidate: (path: string, errorMsg: string | import("mongoose").NativeError, value?: any, kind?: string | undefined) => boolean | import("mongoose").Error.ValidationError;
             increment: () => import("mongoose").Document;
             model: <T_1 extends import("mongoose").Document>(name: string) => import("mongoose").Model<T_1, {}>;
@@ -776,6 +792,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
             isSelected: (path: string) => boolean;
             markModified: (path: string) => void;
             modifiedPaths: () => string[];
+            parent: () => import("mongoose").MongooseDocument | undefined;
             populate: {
                 (callback: (err: any, res: import("mongoose").Document) => void): import("mongoose").Document;
                 (path: string, callback?: ((err: any, res: import("mongoose").Document) => void) | undefined): import("mongoose").Document;
@@ -804,19 +821,6 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
                 [k: string]: any;
             };
             id?: any;
-            addListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            on: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            once: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            removeAllListeners: (event?: string | symbol | undefined) => import("mongoose").Document;
-            setMaxListeners: (n: number) => import("mongoose").Document;
-            getMaxListeners: () => number;
-            listeners: (event: string | symbol) => Function[];
-            rawListeners: (event: string | symbol) => Function[];
-            emit: (event: string | symbol, ...args: any[]) => boolean;
-            listenerCount: (event: string | symbol) => number;
-            prependListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            prependOnceListener: (event: string | symbol, listener: (...args: any[]) => void) => import("mongoose").Document;
-            eventNames: () => (string | symbol)[];
             collection: import("mongoose").Collection;
             db: import("mongoose").Connection;
         } & {

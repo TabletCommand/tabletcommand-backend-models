@@ -104,6 +104,10 @@ async function UserModule(mongoose) {
             type: Date,
             default: null
         },
+        beacons: {
+            type: [String],
+            default: [],
+        },
         salt: {
             type: String,
             default: "",

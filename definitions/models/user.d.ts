@@ -29,6 +29,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     beaconEnabled: boolean;
     userContributionEnabled: boolean;
     syncLoggingExpireDate: string;
+    beacons: string[];
     salt: string;
     pass: string;
     mapHidden: boolean;

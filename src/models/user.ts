@@ -115,6 +115,10 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Date,
       default: null
     },
+    beacons: {
+      type: [String],
+      default: [],
+    },
 
     salt: {
       type: String,
