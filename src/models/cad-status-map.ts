@@ -31,7 +31,7 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
   // so we keep the db value if no value was sent by the API/CAD
   ToStatusIdSchema.pre("save", function(this: TypedDocument<typeof ToStatusIdSchema>, next) {
     if (_.isUndefined(this.userEnabled) || _.isNull(this.userEnabled)) {
-      this.userEnabled = true;
+      this.userEnabled = false;
     }
     next();
   });
