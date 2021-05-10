@@ -721,8 +721,11 @@ module.exports = function(dependencies) {
     departmentId: "123zzz",
     radioNames: ["M10", "Z1"],
     shiftStartTime: 1559446299,
+    shiftStart: "2019-06-02T03:31:39.000Z",
     shiftEndTime: 1569446299,
-    modified_unix_date: new Date().valueOf() / 1000.0,
+    shiftEnd: "2019-09-25T21:18:19.000Z",
+    modified_unix_date: 1570446299,
+    modified: "2019-10-07T11:04:59.000Z",
     active: true,
     agencyCode: "TC",
     agencyName: "Tablet Command",
@@ -733,6 +736,7 @@ module.exports = function(dependencies) {
     config.checkIfTestDatabase();
 
     await models.Esri.deleteMany({});
+    await models.PersonnelImport.deleteMany({});
   }
 
   return {

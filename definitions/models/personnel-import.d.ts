@@ -11,6 +11,8 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     radioNames: string[];
     shiftStartTime: number;
     shiftEndTime: number;
+    shiftStart: string;
+    shiftEnd: string;
     modified_unix_date: number;
     modified: string;
     active: boolean;

@@ -53,6 +53,14 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    shiftStart: {
+      type: Date,
+      default: "",
+    },
+    shiftEnd: {
+      type: Date,
+      default: "",
+    },
 
     // Cases matches the other modified_unix_date
     modified_unix_date: {
