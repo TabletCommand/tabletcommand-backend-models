@@ -11,9 +11,13 @@ import {
   ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
+import EsriAuthModule from "./schema/esri-auth";
+import EsriErrorModule from "./schema/esri-error";
 
 export async function UserModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
+  const { Schema } = mongoose;
+  const EsriAuth = EsriAuthModule(mongoose);
+  const EsriError = EsriErrorModule(mongoose);
 
   const vehicleSchema = createSchema(Schema, {
     radioName: {
@@ -180,6 +184,16 @@ export async function UserModule(mongoose: MongooseModule) {
     fireMapperProEnabled: {
       type: Boolean,
       default: false,
+    },
+
+    // ArcGIS Auth. These fields is named auth/authError in the main collection
+    arcGISAuth: {
+      type: EsriAuth,
+      default: null,
+    },
+    arcGISAuthError: {
+      type: EsriError,
+      default: null,
     },
   }, {
     collection: "sys_user",

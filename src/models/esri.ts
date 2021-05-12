@@ -12,18 +12,18 @@ import {
   retrieveCurrentUnixTime,
 } from "../helpers";
 import EsriAuthModule from "./schema/esri-auth";
-import FireMapperAuthModule from "./schema/firemapper-auth";
 import EsriErrorModule from "./schema/esri-error";
 import EsriMapModule from "./schema/esri-map";
 import EsriTokenModule from "./schema/esri-token";
+import FireMapperAuthModule from "./schema/firemapper-auth";
 
 export async function EsriModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const EsriAuth = EsriAuthModule(mongoose);
-  const FireMapperAuth = FireMapperAuthModule(mongoose);
   const EsriError = EsriErrorModule(mongoose);
   const EsriMap = EsriMapModule(mongoose);
   const EsriToken = EsriTokenModule(mongoose);
+  const FireMapperAuth = FireMapperAuthModule(mongoose);
 
   const MapProperties = createSchema(Schema, {
     // ArcGIS Item id

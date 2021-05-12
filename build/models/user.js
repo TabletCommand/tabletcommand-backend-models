@@ -3,8 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
+const esri_auth_1 = require("./schema/esri-auth");
+const esri_error_1 = require("./schema/esri-error");
 async function UserModule(mongoose) {
-    const Schema = mongoose.Schema;
+    const { Schema } = mongoose;
+    const EsriAuth = esri_auth_1.default(mongoose);
+    const EsriError = esri_error_1.default(mongoose);
     const vehicleSchema = helpers_1.createSchema(Schema, {
         radioName: {
             type: String,
@@ -165,6 +169,15 @@ async function UserModule(mongoose) {
         fireMapperProEnabled: {
             type: Boolean,
             default: false,
+        },
+        // ArcGIS Auth. These fields is named auth/authError in the main collection
+        arcGISAuth: {
+            type: EsriAuth,
+            default: null,
+        },
+        arcGISAuthError: {
+            type: EsriError,
+            default: null,
         },
     }, {
         collection: "sys_user",

@@ -53,6 +53,46 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     shareLocationTablet: boolean;
     offlineMapsEnabled: boolean;
     fireMapperProEnabled: boolean;
+    arcGISAuth: import("../helpers").MongooseInterface<{
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        encrypted: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    iv: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    encryptedData: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: null;
+        };
+    }>;
+    arcGISAuthError: import("../helpers").MongooseInterface<{
+        code: {
+            type: NumberConstructor;
+            default: number;
+        };
+        error: {
+            type: StringConstructor;
+            default: string;
+        };
+        error_description: {
+            type: StringConstructor;
+            default: string;
+        };
+        message: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;
