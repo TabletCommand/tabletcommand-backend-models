@@ -8,6 +8,7 @@ const esri_error_1 = require("./schema/esri-error");
 const esri_map_1 = require("./schema/esri-map");
 const esri_token_1 = require("./schema/esri-token");
 const firemapper_auth_1 = require("./schema/firemapper-auth");
+const esri_group_1 = require("./schema/esri-group");
 async function EsriModule(mongoose) {
     const { Schema, Types } = mongoose;
     const EsriAuth = esri_auth_1.default(mongoose);
@@ -15,6 +16,7 @@ async function EsriModule(mongoose) {
     const EsriMap = esri_map_1.default(mongoose);
     const EsriToken = esri_token_1.default(mongoose);
     const FireMapperAuth = firemapper_auth_1.default(mongoose);
+    const EsriGroup = esri_group_1.default(mongoose);
     const MapProperties = helpers_1.createSchema(Schema, {
         // ArcGIS Item id
         itemId: {
@@ -68,6 +70,10 @@ async function EsriModule(mongoose) {
         },
         fireMapperAuth: {
             type: FireMapperAuth,
+            default: null,
+        },
+        arcGISGroup: {
+            type: EsriGroup,
             default: null,
         },
         // maps
