@@ -1,6 +1,7 @@
 /// <reference types="mongoose" />
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
+export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
 export { Assignment, AssignmentModel } from "./models/assignment";
 export { Battalion, BattalionModel } from "./models/battalion";
 export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
@@ -31,8 +32,8 @@ export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
-export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Session, SessionModel } from "./models/session";
+export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
@@ -44,6 +45,7 @@ export declare function connect(url: string): Promise<{
     models: {
         ActionLog: import("./models/action-log").ActionLogModel;
         Agency: import("./models/agency").AgencyModel;
+        ArcGISGroup: import("./models/arcgis-group").ArcGISGroupModel;
         Assignment: import("./models/assignment").AssignmentModel;
         Battalion: import("./models/battalion").BattalionModel;
         BeaconLog: import("./models/beacon-log").BeaconLogModel;
@@ -68,14 +70,14 @@ export declare function connect(url: string): Promise<{
         IncidentTakeover: import("./models/incident-takeover").IncidentTakeoverModel;
         Location: import("./models/location").LocationModel;
         MailLog: import("./models/mail-log").MailLogModel;
+        ManagedIncident: import("./models/managed-incident").ManagedIncidentModel;
         Message: import("./models/message").MessageModel;
         Monitor: import("./models/monitor").MonitorModel;
-        ManagedIncident: import("./models/managed-incident").ManagedIncidentModel;
         PersonnelImport: import("./models/personnel-import").PersonnelImportModel;
         RateLimit: import("./models/rate-limit").RateLimitModel;
         RemoteLog: import("./models/remote-log").RemoteLogModel;
-        SMTPUnhandled: import("./models/smtp-unhandled").SMTPUnhandledModel;
         Session: import("./models/session").SessionModel;
+        SMTPUnhandled: import("./models/smtp-unhandled").SMTPUnhandledModel;
         Template: import("./models/template").TemplateModel;
         User: import("./models/user").UserModel;
         UserDevice: import("./models/user-device").UserDeviceModel;

@@ -10,6 +10,7 @@ async function wireModels(mongoose: MongooseModule) {
   return {
     ActionLog: await getModel(import("./models/action-log")),
     Agency: await getModel(import("./models/agency")),
+    ArcGISGroup: await getModel(import("./models/arcgis-group")),
     Assignment: await getModel(import("./models/assignment")),
     Battalion: await getModel(import("./models/battalion")),
     BeaconLog: await getModel(import("./models/beacon-log")),
@@ -34,14 +35,14 @@ async function wireModels(mongoose: MongooseModule) {
     IncidentTakeover: await getModel(import("./models/incident-takeover")),
     Location: await getModel(import("./models/location")),
     MailLog: await getModel(import("./models/mail-log")),
+    ManagedIncident: await getModel(import("./models/managed-incident")),
     Message: await getModel(import("./models/message")),
     Monitor: await getModel(import("./models/monitor")),
-    ManagedIncident: await getModel(import("./models/managed-incident")),
     PersonnelImport: await getModel(import("./models/personnel-import")),
     RateLimit: await getModel(import("./models/rate-limit")),
     RemoteLog: await getModel(import("./models/remote-log")),
-    SMTPUnhandled: await getModel(import("./models/smtp-unhandled")),
     Session: await getModel(import("./models/session")),
+    SMTPUnhandled: await getModel(import("./models/smtp-unhandled")),
     Template: await getModel(import("./models/template")),
     User: await getModel(import("./models/user")),
     UserDevice: await getModel(import("./models/user-device")),
@@ -51,6 +52,7 @@ async function wireModels(mongoose: MongooseModule) {
 
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
+export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
 export { Assignment, AssignmentModel } from "./models/assignment";
 export { Battalion, BattalionModel } from "./models/battalion";
 export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
@@ -81,8 +83,8 @@ export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
-export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Session, SessionModel } from "./models/session";
+export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";
 export { UserDevice, UserDeviceModel } from "./models/user-device";

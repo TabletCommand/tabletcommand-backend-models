@@ -34,6 +34,36 @@ module.exports = function(dependencies) {
     personnelMonitorHours: 24
   };
 
+  const arcGISGroup = {
+    access: "private",
+    departmentIds: [
+      "56131f724143487a10000001",
+    ],
+    externalOrgIds: [
+      "MyTOuXKXZoizaaa"
+    ],
+    groupId: "c5d013e197244577a583c49984d319d9",
+    outsiders: [
+      {
+        fullName: "Michael Kallum",
+        memberType: "member",
+        orgId: "MyTOuXKXZoizaaa",
+        username: "Michael_Kallum"
+      }
+    ],
+    owner: "jane_tabletcommand",
+    protected: true,
+    title: "TC - City of Fire Department",
+    users: [
+      {
+        fullName: "Jane Serrano",
+        memberType: "admin",
+        orgId: "zGXMcUaDlMGoAAAg",
+        username: "jane_tabletcommand"
+      },
+    ]
+  };
+
   const assignment = {
     position: 1,
     active: true,
@@ -743,6 +773,7 @@ module.exports = function(dependencies) {
     actionLog,
     agency,
     assignment,
+    arcGISGroup,
     battalion,
     cadIncident,
     cadStatus,
@@ -752,13 +783,14 @@ module.exports = function(dependencies) {
     cadVehicleStatusHistory,
     checklist,
     checklistItem,
+    cleanup,
     department,
     deviceMapping,
     esri,
     gstMapping,
     incidentEvent,
-    incidentTakeover,
     incidentNotified,
+    incidentTakeover,
     location,
     mailLog,
     managedIncident,
@@ -770,6 +802,5 @@ module.exports = function(dependencies) {
     user,
     userDevice,
     userRegistration,
-    cleanup,
   };
 };

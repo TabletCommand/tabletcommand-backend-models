@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../../helpers");
-function EsriGroupModule(mongoose) {
+exports.ArcGISGroupModule = void 0;
+// import * as uuid from "uuid";
+const helpers_1 = require("../helpers");
+async function ArcGISGroupModule(mongoose) {
     const { Schema } = mongoose;
-    const EsriGroupUser = helpers_1.createSchema(Schema, {
+    const ArcGISGroupUser = helpers_1.createSchema(Schema, {
         username: {
             type: String,
             default: "",
@@ -23,10 +25,11 @@ function EsriGroupModule(mongoose) {
     }, {
         _id: false,
     });
-    const EsriGroup = helpers_1.createSchema(Schema, {
+    const modelSchema = helpers_1.createSchema(Schema, {
+        // Unique, to be able to use replaceInto
         groupId: {
             type: String,
-            default: "",
+            unique: true,
         },
         title: {
             type: String,
@@ -45,21 +48,31 @@ function EsriGroupModule(mongoose) {
             default: "",
         },
         users: {
-            type: [EsriGroupUser],
+            type: [ArcGISGroupUser],
             default: [],
         },
         outsiders: {
-            type: [EsriGroupUser],
+            type: [ArcGISGroupUser],
             default: [],
         },
         externalOrgIds: {
             type: [String],
             default: [],
         },
+        departmentIds: {
+            type: [String],
+            default: [],
+        },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
     }, {
-        _id: false,
+        collection: "massive_arcgis_group",
     });
-    return EsriGroup;
+    modelSchema.set("autoIndex", false);
+    return helpers_1.createModel(mongoose, "ArcGISGroup", modelSchema);
 }
-exports.default = EsriGroupModule;
-//# sourceMappingURL=esri-group.js.map
+exports.ArcGISGroupModule = ArcGISGroupModule;
+exports.default = ArcGISGroupModule;
+//# sourceMappingURL=arcgis-group.js.map

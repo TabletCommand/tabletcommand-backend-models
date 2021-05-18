@@ -16,7 +16,6 @@ import EsriErrorModule from "./schema/esri-error";
 import EsriMapModule from "./schema/esri-map";
 import EsriTokenModule from "./schema/esri-token";
 import FireMapperAuthModule from "./schema/firemapper-auth";
-import EsriGroupModule from "./schema/esri-group";
 
 export async function EsriModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -25,7 +24,6 @@ export async function EsriModule(mongoose: MongooseModule) {
   const EsriMap = EsriMapModule(mongoose);
   const EsriToken = EsriTokenModule(mongoose);
   const FireMapperAuth = FireMapperAuthModule(mongoose);
-  const EsriGroup = EsriGroupModule(mongoose);
 
   const MapProperties = createSchema(Schema, {
     // ArcGIS Item id
@@ -86,11 +84,6 @@ export async function EsriModule(mongoose: MongooseModule) {
       default: null,
     },
 
-    arcGISGroup: {
-      type: EsriGroup,
-      default: null,
-    },
-
     // maps
     maps: {
       type: [EsriMap],
@@ -111,11 +104,13 @@ export async function EsriModule(mongoose: MongooseModule) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
+    // Deprecated. Check which apps rely on .id instead of using ._id.
     transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       ret.id = ret._id;
     },
   });
 
+  // Deprecated. Check which apps rely on .id instead of using ._id.
   modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toHexString();
   });

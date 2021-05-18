@@ -19,11 +19,10 @@ describe(" Models", function() {
     // These should match index.js
     assert.isFunction(models.ActionLog, "Missing ActionLog");
     assert.isFunction(models.Agency, "Missing Agency");
+    assert.isFunction(models.ArcGISGroup, "Missing ArcGISGroup");
     assert.isFunction(models.Assignment, "Missing Assignment");
     assert.isFunction(models.Battalion, "Missing Battalion");
     assert.isFunction(models.BeaconLog, "Missing BeaconLog");
-    assert.isFunction(models.Checklist, "Missing Checklist");
-    assert.isFunction(models.ChecklistItem, "Missing ChecklistItem");
     assert.isFunction(models.CADIncident, "Missing CADIncident");
     assert.isFunction(models.CADIncidentStream, "Missing CADIncidentStream");
     assert.isFunction(models.CADStatus, "Missing CADStatus");
@@ -34,9 +33,12 @@ describe(" Models", function() {
     assert.isFunction(models.ChartIncident, "Missing ChartIncident");
     assert.isFunction(models.ChartManagedIncident, "Missing ChartManagedIncident");
     assert.isFunction(models.ChartUser, "Missing ChartUser");
+    assert.isFunction(models.Checklist, "Missing Checklist");
+    assert.isFunction(models.ChecklistItem, "Missing ChecklistItem");
     assert.isFunction(models.Department, "Missing Department");
     assert.isFunction(models.DeviceMapping, "Missing DeviceMapping");
     assert.isFunction(models.Esri, "Missing Esri");
+    assert.isFunction(models.GSTMapping, "Missing GSTMapping");
     assert.isFunction(models.IncidentEvent, "Missing IncidentEvent");
     assert.isFunction(models.IncidentNotified, "Missing IncidentNotified");
     assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
