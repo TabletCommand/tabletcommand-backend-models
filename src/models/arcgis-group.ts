@@ -33,7 +33,60 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     _id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const ArcGISDepartmentUser = createSchema(Schema, {
+    // ArcGIS username
+    username: {
+      type: String,
+      default: "",
+    },
+    // TC user account email
+    email: {
+      type: String,
+      default: "",
+    },
+    // TC user id
+    userId: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+  });
+
+  const ArcGISDepartment = createSchema(Schema, {
+    department: {
+      type: String,
+      default: "",
+    },
+    departmentId: {
+      type: String,
+      default: "",
+    },
+    authUsername: {
+      type: String,
+      default: "",
+    },
+    authError: {
+      type: String,
+      default: "",
+    },
+    tokenUsername: {
+      type: String,
+      default: null,
+    },
+    tokenError: {
+      type: String,
+      default: null,
+    },
+    users: {
+      type: [ArcGISDepartmentUser],
+      default: [],
+    },
+  }, {
+    _id: false,
+  });
+
+  const modelSchema = createSchema(Schema, {    
     // Unique, to be able to use replaceInto
     groupId: {
       type: String,
@@ -68,10 +121,11 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
       default: [],
     },
 
-    departmentIds: {
-      type: [String],
+    departments: {
+      type: [ArcGISDepartment],
       default: [],
     },
+
     modified: {
       type: Date,
       default: currentDate,

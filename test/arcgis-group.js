@@ -39,7 +39,19 @@ describe("ArcGISGroup", function() {
     assert.equal(sut.access, testItem.access);
     assert.equal(sut.owner, testItem.owner);
     assert.equal(sut.protected, testItem.protected);
-    assert.deepEqual(sut.departmentIds, testItem.departmentIds);
+    
+    assert.equal(sut.departments.length, 1);
+    const dept = _.first(sut.departments);
+    assert.equal(dept.department, "Demo RTS Fire Department");
+    assert.equal(dept.departmentId, "558365a198b2fa4278000053");
+    assert.equal(dept.authUsername, "tabletcmd");
+    assert.equal(dept.tokenUsername, "tc_ContraCostaCountyFire");
+
+    assert.equal(dept.users.length, 1);
+    const deptUser = _.first(dept.users);
+    assert.equal(deptUser.username, "tc_someone");
+    assert.equal(deptUser.email, "hello@tc.com");
+    assert.equal(deptUser.userId, "558365a198a2aa42780000aa");
 
     assert.equal(sut.outsiders.length, 1);
     const outsider = _.first(sut.outsiders);

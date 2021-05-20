@@ -36,8 +36,23 @@ module.exports = function(dependencies) {
 
   const arcGISGroup = {
     access: "private",
-    departmentIds: [
-      "56131f724143487a10000001",
+    departments: [
+      {
+        department: "Demo RTS Fire Department",
+        departmentId: "558365a198b2fa4278000053",
+        authUsername: "tabletcmd",
+        authError: null,
+        tokenUsername: "tc_ContraCostaCountyFire",
+        tokenError: null,
+        users: [
+          //
+          {
+            username: "tc_someone",
+            email: "hello@tc.com",
+            userId: "558365a198a2aa42780000aa",
+          }
+        ]
+      }
     ],
     externalOrgIds: [
       "MyTOuXKXZoizaaa"
