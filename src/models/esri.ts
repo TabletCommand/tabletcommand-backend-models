@@ -48,9 +48,10 @@ export async function EsriModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
-    modified: {
+    // last time when cron updated maps
+    runAt: {
       type: Date,
-      default: currentDate,
+      default: "",
     },
     departmentId: {
       type: Types.ObjectId,
@@ -83,6 +84,11 @@ export async function EsriModule(mongoose: MongooseModule) {
       type: FireMapperAuth,
       default: null,
     },
+    // Link to ArcGISGroup
+    arcGISGroupId: {
+      type: String,
+      default: null,
+    },
 
     // maps
     maps: {
@@ -95,7 +101,12 @@ export async function EsriModule(mongoose: MongooseModule) {
     mapsProperties: {
       type: [MapProperties],
       default: [],
-    }
+    },
+    // newest modified for EsriMap
+    mapLastUpdated: {
+      type: Date,
+      default: "",
+    },
   }, {
     collection: "massive_esri",
   });
