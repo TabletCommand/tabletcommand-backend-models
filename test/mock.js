@@ -36,7 +36,7 @@ module.exports = function(dependencies) {
 
   const arcGISGroup = {
     access: "private",
-    departments: [
+    resolvedDepartments: [
       {
         department: "Demo RTS Fire Department",
         departmentId: "558365a198b2fa4278000053",
