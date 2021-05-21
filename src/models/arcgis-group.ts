@@ -86,7 +86,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     _id: false,
   });
 
-  const modelSchema = createSchema(Schema, {    
+  const modelSchema = createSchema(Schema, {
     // Unique, to be able to use replaceInto
     groupId: {
       type: String,
@@ -121,7 +121,13 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
       default: [],
     },
 
-    departments: {
+    // departments that are linked to this group via group.user = dept.auth
+    resolvedDepartments: {
+      type: [ArcGISDepartment],
+      default: [],
+    },
+    // departments that are linked via arcGISGroupId (linked by a super admin)
+    linkedDepartments: {
       type: [ArcGISDepartment],
       default: [],
     },

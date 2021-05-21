@@ -2,7 +2,6 @@
 import {
   createModel,
   createSchema,
-  currentDate,
   DocumentTypeFromSchema,
   FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
