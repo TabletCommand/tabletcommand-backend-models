@@ -43,7 +43,53 @@ export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<imp
         };
     }>[];
     externalOrgIds: string[];
-    departments: import("../helpers").MongooseInterface<{
+    resolvedDepartments: import("../helpers").MongooseInterface<{
+        department: {
+            type: StringConstructor;
+            default: string;
+        };
+        departmentId: {
+            type: StringConstructor;
+            default: string;
+        };
+        authUsername: {
+            type: StringConstructor;
+            default: string;
+        };
+        authError: {
+            type: StringConstructor;
+            default: string;
+        };
+        tokenUsername: {
+            type: StringConstructor;
+            default: null;
+        };
+        tokenError: {
+            type: StringConstructor;
+            default: null;
+        };
+        users: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    username: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    email: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    userId: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>[];
+    linkedDepartments: import("../helpers").MongooseInterface<{
         department: {
             type: StringConstructor;
             default: string;

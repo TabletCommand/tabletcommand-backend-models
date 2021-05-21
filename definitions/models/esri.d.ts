@@ -3,7 +3,7 @@ import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, Mongoo
 export declare function EsriModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     modified_unix_date: number;
-    modified: string;
+    runAt: string;
     departmentId: import("bson").ObjectId;
     tokenDateExpiry: number;
     token: import("../helpers").MongooseInterface<{
@@ -124,6 +124,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: null;
         };
     }>;
+    arcGISGroupId: string;
     maps: import("../helpers").MongooseInterface<{
         mapLayers: {
             type: (import("mongoose").Schema<any> & {
@@ -295,6 +296,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: boolean;
         };
     }>[];
+    mapLastUpdated: string;
 }, {}> & {
     __methods?: unknown;
 }>;
