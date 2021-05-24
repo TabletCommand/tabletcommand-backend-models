@@ -13,7 +13,9 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     movedAt: string;
     version: number;
     session: string;
+    altitude: number;
     heading: number;
+    speed: number;
     esriId: number;
     location: {
         longitude: number;

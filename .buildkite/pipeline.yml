@@ -1,0 +1,5 @@
+steps:
+  - command: "bash build.sh"
+    label: ":hammer: build"
+    env:
+      NODE_TEST_DATABASE: "models"

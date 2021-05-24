@@ -62,7 +62,18 @@ async function LocationModule(mongoose) {
             type: String,
             default: "",
         },
+        // in meters
+        altitude: {
+            type: Number,
+            default: 0,
+        },
+        // in degrees
         heading: {
+            type: Number,
+            default: 0,
+        },
+        // meters/sec (* 2.237 to convert to MPH)
+        speed: {
             type: Number,
             default: 0,
         },
