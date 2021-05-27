@@ -17,6 +17,7 @@ export { ChartManagedIncident, ChartManagedIncidentModel } from "./models/chart-
 export { ChartUser, ChartUserModel } from "./models/chart-user";
 export { Checklist, ChecklistModel } from "./models/checklist";
 export { ChecklistItem, ChecklistItemModel } from "./models/checklist-item";
+export { CSVImport, CSVImportModel } from "./models/csv-import";
 export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
 export { Esri, EsriModel } from "./models/esri";
@@ -61,6 +62,7 @@ export declare function connect(url: string): Promise<{
         ChartUser: import("./models/chart-user").ChartUserModel;
         Checklist: import("./models/checklist").ChecklistModel;
         ChecklistItem: import("./models/checklist-item").ChecklistItemModel;
+        CSVImport: import("./models/csv-import").CSVImportModel;
         Department: import("./models/department").DepartmentModel;
         DeviceMapping: import("./models/device-mapping").DeviceMappingModel;
         Esri: import("./models/esri").EsriModel;

@@ -26,6 +26,7 @@ async function wireModels(mongoose: MongooseModule) {
     ChartUser: await getModel(import("./models/chart-user")),
     Checklist: await getModel(import("./models/checklist")),
     ChecklistItem: await getModel(import("./models/checklist-item")),
+    CSVImport: await getModel(import("./models/csv-import")),
     Department: await getModel(import("./models/department")),
     DeviceMapping: await getModel(import("./models/device-mapping")),
     Esri: await getModel(import("./models/esri")),
@@ -68,6 +69,7 @@ export { ChartManagedIncident, ChartManagedIncidentModel } from "./models/chart-
 export { ChartUser, ChartUserModel } from "./models/chart-user";
 export { Checklist, ChecklistModel } from "./models/checklist";
 export { ChecklistItem, ChecklistItemModel } from "./models/checklist-item";
+export { CSVImport, CSVImportModel } from "./models/csv-import";
 export { Department, DepartmentModel } from "./models/department";
 export { DeviceMapping, DeviceMappingModel } from "./models/device-mapping";
 export { Esri, EsriModel } from "./models/esri";

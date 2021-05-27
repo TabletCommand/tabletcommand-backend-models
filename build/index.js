@@ -35,6 +35,7 @@ async function wireModels(mongoose) {
         ChartUser: await getModel(Promise.resolve().then(() => require("./models/chart-user"))),
         Checklist: await getModel(Promise.resolve().then(() => require("./models/checklist"))),
         ChecklistItem: await getModel(Promise.resolve().then(() => require("./models/checklist-item"))),
+        CSVImport: await getModel(Promise.resolve().then(() => require("./models/csv-import"))),
         Department: await getModel(Promise.resolve().then(() => require("./models/department"))),
         DeviceMapping: await getModel(Promise.resolve().then(() => require("./models/device-mapping"))),
         Esri: await getModel(Promise.resolve().then(() => require("./models/esri"))),
