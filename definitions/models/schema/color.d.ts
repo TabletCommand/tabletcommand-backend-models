@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function ColorModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function ColorSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../../helpers").MongooseInterface<{
         background: {
             type: StringConstructor;

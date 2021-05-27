@@ -3,7 +3,7 @@ import {
   createSchema,
 } from "../../helpers";
 
-export default function ColorModule(mongoose: MongooseModule) {
+export default function ColorSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const Color = createSchema(Schema, {

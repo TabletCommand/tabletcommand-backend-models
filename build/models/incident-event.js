@@ -1,9 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IncidentEventModule = void 0;
+exports.IncidentEventSchema = exports.IncidentEventModule = void 0;
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function IncidentEventModule(mongoose) {
+    const modelSchema = IncidentEventSchema(mongoose);
+    return helpers_1.createModel(mongoose, "IncidentEvent", modelSchema);
+}
+exports.IncidentEventModule = IncidentEventModule;
+function IncidentEventSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const EventUser = helpers_1.createSchema(Schema, {
         username: {
@@ -108,8 +113,8 @@ async function IncidentEventModule(mongoose) {
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "IncidentEvent", modelSchema);
+    return modelSchema;
 }
-exports.IncidentEventModule = IncidentEventModule;
+exports.IncidentEventSchema = IncidentEventSchema;
 exports.default = IncidentEventModule;
 //# sourceMappingURL=incident-event.js.map

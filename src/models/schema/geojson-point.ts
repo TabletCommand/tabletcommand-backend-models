@@ -3,7 +3,7 @@ import {
   MongooseModule,
 } from "../../helpers";
 
-export default function GeoJSONPointModule(mongoose: MongooseModule) {
+export default function GeoJSONPointSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const GeoJSONPoint = createSchema(Schema, {

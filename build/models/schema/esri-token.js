@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function EsriTokenModule(mongoose) {
+function EsriTokenSchema(mongoose) {
     const Schema = mongoose.Schema;
     const EsriToken = helpers_1.createSchema(Schema, {
         access_token: {
@@ -29,5 +29,5 @@ function EsriTokenModule(mongoose) {
     });
     return EsriToken;
 }
-exports.default = EsriTokenModule;
+exports.default = EsriTokenSchema;
 //# sourceMappingURL=esri-token.js.map

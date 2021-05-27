@@ -12,6 +12,11 @@ import {
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function IncidentEventModule(mongoose: MongooseModule) {
+  const modelSchema = IncidentEventSchema(mongoose);
+  return createModel(mongoose, "IncidentEvent", modelSchema);
+}
+
+export function IncidentEventSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const EventUser = createSchema(Schema, {
@@ -120,8 +125,7 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
-
-  return createModel(mongoose, "IncidentEvent", modelSchema);
+  return modelSchema;
 }
 
 export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> { }

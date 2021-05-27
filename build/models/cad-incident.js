@@ -1,14 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADIncidentModule = void 0;
+exports.CADIncidentModule = exports.CADIncidentSchema = void 0;
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const incident_event_1 = require("./incident-event");
-async function CADIncidentModule(mongoose) {
+function CADIncidentSchema(mongoose) {
     const { Schema, Types } = mongoose;
-    const IncidentEventModel = await incident_event_1.IncidentEventModule(mongoose);
-    const IncidentEvent = IncidentEventModel.schema;
+    const IncidentEvent = incident_event_1.IncidentEventSchema(mongoose);
     const toJSONOpts = {
         versionKey: false,
         transform(doc, ret) {
@@ -430,6 +429,11 @@ async function CADIncidentModule(mongoose) {
         });
     }
     modelSchema.plugin(mongooseLeanVirtuals);
+    return modelSchema;
+}
+exports.CADIncidentSchema = CADIncidentSchema;
+async function CADIncidentModule(mongoose) {
+    const modelSchema = CADIncidentSchema(mongoose);
     return helpers_1.createModel(mongoose, "CADIncident", modelSchema);
 }
 exports.CADIncidentModule = CADIncidentModule;

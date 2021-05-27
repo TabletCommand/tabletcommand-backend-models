@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function FireMapperAuthModule(mongoose) {
+function FireMapperAuthSchema(mongoose) {
     const { Schema } = mongoose;
     const FireMapperEncrypted = helpers_1.createSchema(Schema, {
         iv: {
@@ -33,5 +33,5 @@ function FireMapperAuthModule(mongoose) {
     });
     return FireMapperAuth;
 }
-exports.default = FireMapperAuthModule;
+exports.default = FireMapperAuthSchema;
 //# sourceMappingURL=firemapper-auth.js.map

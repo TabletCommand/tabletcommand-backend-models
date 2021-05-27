@@ -15,7 +15,7 @@ import EsriMapModule from "./schema/esri-map";
 import EsriTokenModule from "./schema/esri-token";
 import FireMapperAuthModule from "./schema/firemapper-auth";
 
-export async function EsriModule(mongoose: MongooseModule) {
+export function EsriSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const EsriAuth = EsriAuthModule(mongoose);
   const EsriError = EsriErrorModule(mongoose);
@@ -120,7 +120,11 @@ export async function EsriModule(mongoose: MongooseModule) {
   modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toHexString();
   });
+  return modelSchema;
+}
 
+export async function EsriModule(mongoose: MongooseModule) {
+  const modelSchema = EsriSchema(mongoose);
   return createModel(mongoose, "Esri", modelSchema);
 }
 

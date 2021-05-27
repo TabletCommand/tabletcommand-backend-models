@@ -3,7 +3,7 @@ import {
   MongooseModule,
 } from "../../helpers";
 
-export default function EsriMapModule(mongoose: MongooseModule) {
+export default function EsriMapSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const MapLayer = createSchema(Schema, {

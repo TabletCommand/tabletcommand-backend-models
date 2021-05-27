@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function CADStatusOptionSelected(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function CADStatusOptionSelectedSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../../helpers").MongooseInterface<{
         name: {
             type: StringConstructor;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function GeoJSONPointModule(mongoose) {
+function GeoJSONPointSchema(mongoose) {
     const { Schema } = mongoose;
     const GeoJSONPoint = helpers_1.createSchema(Schema, {
         type: {
@@ -20,5 +20,5 @@ function GeoJSONPointModule(mongoose) {
     });
     return GeoJSONPoint;
 }
-exports.default = GeoJSONPointModule;
+exports.default = GeoJSONPointSchema;
 //# sourceMappingURL=geojson-point.js.map

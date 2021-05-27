@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function EsriErrorModule(mongoose) {
+function EsriErrorSchema(mongoose) {
     const { Schema } = mongoose;
     const EsriError = helpers_1.createSchema(Schema, {
         code: {
@@ -25,5 +25,5 @@ function EsriErrorModule(mongoose) {
     });
     return EsriError;
 }
-exports.default = EsriErrorModule;
+exports.default = EsriErrorSchema;
 //# sourceMappingURL=esri-error.js.map

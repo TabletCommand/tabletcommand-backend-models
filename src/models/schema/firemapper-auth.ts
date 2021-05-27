@@ -3,7 +3,7 @@ import {
   MongooseModule,
 } from "../../helpers";
 
-export default function FireMapperAuthModule(mongoose: MongooseModule) {
+export default function FireMapperAuthSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const FireMapperEncrypted = createSchema(Schema, {

@@ -3,7 +3,7 @@ import {
   MongooseModule,
 } from "../../helpers";
 
-export default function EsriAuthModule(mongoose: MongooseModule) {
+export default function EsriAuthSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const EsriAuthPassword = createSchema(Schema, {

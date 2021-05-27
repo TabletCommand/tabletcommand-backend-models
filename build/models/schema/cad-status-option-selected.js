@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function CADStatusOptionSelected(mongoose) {
+function CADStatusOptionSelectedSchema(mongoose) {
     const { Schema } = mongoose;
     const Item = helpers_1.createSchema(Schema, {
         name: {
@@ -25,5 +25,5 @@ function CADStatusOptionSelected(mongoose) {
     });
     return Item;
 }
-exports.default = CADStatusOptionSelected;
+exports.default = CADStatusOptionSelectedSchema;
 //# sourceMappingURL=cad-status-option-selected.js.map

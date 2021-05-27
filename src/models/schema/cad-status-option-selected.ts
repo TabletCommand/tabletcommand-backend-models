@@ -3,7 +3,7 @@ import {
   createSchema,
 } from "../../helpers";
 
-export default function CADStatusOptionSelected(mongoose: MongooseModule) {
+export default function CADStatusOptionSelectedSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const Item = createSchema(Schema, {

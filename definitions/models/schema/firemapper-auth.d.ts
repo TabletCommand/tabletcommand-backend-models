@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function FireMapperAuthModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function FireMapperAuthSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../../helpers").MongooseInterface<{
         username: {
             type: StringConstructor;

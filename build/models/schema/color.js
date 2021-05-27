@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function ColorModule(mongoose) {
+function ColorSchema(mongoose) {
     const { Schema } = mongoose;
     const Color = helpers_1.createSchema(Schema, {
         background: {
@@ -17,5 +17,5 @@ function ColorModule(mongoose) {
     });
     return Color;
 }
-exports.default = ColorModule;
+exports.default = ColorSchema;
 //# sourceMappingURL=color.js.map

@@ -14,13 +14,11 @@ import {
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import { IncidentEventModule  } from "./incident-event";
+import { IncidentEventSchema } from "./incident-event";
 
-export async function CADIncidentModule(mongoose: MongooseModule) {
+export function CADIncidentSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
-
-  const IncidentEventModel = await IncidentEventModule(mongoose);
-  const IncidentEvent = IncidentEventModel.schema;
+  const IncidentEvent = IncidentEventSchema(mongoose);
 
   const toJSONOpts = {
     versionKey: false,
@@ -392,7 +390,7 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
     },
 
     events: {
-      type: [IncidentEvent],
+      type: [IncidentEvent], // setting types as object, because it does not work with importing IncidentEvent
       default: [],
     },
 
@@ -473,7 +471,11 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
     });
   }
   modelSchema.plugin(mongooseLeanVirtuals);
+  return modelSchema;
+}
 
+export async function CADIncidentModule(mongoose: MongooseModule) {
+  const modelSchema = CADIncidentSchema(mongoose);
   return createModel(mongoose, "CADIncident", modelSchema);
 }
 

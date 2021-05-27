@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
-function EsriMapModule(mongoose) {
+function EsriMapSchema(mongoose) {
     const { Schema } = mongoose;
     const MapLayer = helpers_1.createSchema(Schema, {
         layerId: {
@@ -103,5 +103,5 @@ function EsriMapModule(mongoose) {
     });
     return Map;
 }
-exports.default = EsriMapModule;
+exports.default = EsriMapSchema;
 //# sourceMappingURL=esri-map.js.map

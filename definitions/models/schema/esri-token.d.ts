@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { MongooseModule } from "../../helpers";
-export default function EsriTokenModule(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+export default function EsriTokenSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../../helpers").MongooseInterface<{
         access_token: {
             type: StringConstructor;

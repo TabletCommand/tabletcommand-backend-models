@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EsriModule = void 0;
+exports.EsriModule = exports.EsriSchema = void 0;
 // import * as uuid from "uuid";
 const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
@@ -8,7 +8,7 @@ const esri_error_1 = require("./schema/esri-error");
 const esri_map_1 = require("./schema/esri-map");
 const esri_token_1 = require("./schema/esri-token");
 const firemapper_auth_1 = require("./schema/firemapper-auth");
-async function EsriModule(mongoose) {
+function EsriSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const EsriAuth = esri_auth_1.default(mongoose);
     const EsriError = esri_error_1.default(mongoose);
@@ -105,6 +105,11 @@ async function EsriModule(mongoose) {
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });
+    return modelSchema;
+}
+exports.EsriSchema = EsriSchema;
+async function EsriModule(mongoose) {
+    const modelSchema = EsriSchema(mongoose);
     return helpers_1.createModel(mongoose, "Esri", modelSchema);
 }
 exports.EsriModule = EsriModule;
