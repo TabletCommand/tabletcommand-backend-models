@@ -8,7 +8,6 @@ import {
   ModelTypeFromTypeSchemaFunction,
   MongooseModule,
   ReplaceModelReturnType,
-  retrieveCurrentUnixTime,
 } from "../helpers";
 import EsriAuthModule from "./schema/esri-auth";
 import EsriErrorModule from "./schema/esri-error";
@@ -43,10 +42,7 @@ export async function EsriModule(mongoose: MongooseModule) {
       type: Types.ObjectId,
       auto: true,
     },
-    modified_unix_date: {
-      type: Number,
-      default: retrieveCurrentUnixTime,
-    },
+
     // last time when cron updated maps
     runAt: {
       type: Date,

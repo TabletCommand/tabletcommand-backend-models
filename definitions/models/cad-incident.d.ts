@@ -182,13 +182,14 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             _methods: unknown;
         })[];
     }>[];
+    events: {
+        type: never;
+        default: unknown[];
+    };
     preference_location: string;
     simulation: boolean;
     notify: boolean;
     rts: boolean;
-    admin_note: string;
-    Interface: string;
-    InterfaceVersion: string;
     CADSimulator: string;
     notificationType: import("../helpers").MongooseInterface<{
         name: {
@@ -199,33 +200,6 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         };
     }>[];
     notifiedUnits: string[];
-    AgencyDeterminantCode: string;
-    AgencyIncidentCategory: string;
-    CFMap: string;
-    CallSource: string;
-    CaseNumber: string;
-    CrossRefDataOwnerAgyID1: string;
-    CrossRefDataSubmitterAgyID1: string;
-    CrossRefEventCategory1: string;
-    CrossRefEventNum1: string;
-    EventLevel: string;
-    EventNumber: string;
-    FirstDueStation: string;
-    MedicalAgencyIncidentType: string;
-    MedicalEventCode: string;
-    PopulationDensity: string;
-    Priority: string;
-    WorkstationID: string;
-    LatitudeDegree: string;
-    LatitudeMinute: string;
-    LatitudeSecond: string;
-    LongitudeDegree: string;
-    LongitudeMinute: string;
-    LongitudeSecond: string;
-    Location: string;
-    LocationType: string;
-    OrigLocation: string;
-    Jurisdiction: string;
 }, {}> & {
     __methods?: unknown;
 }>;

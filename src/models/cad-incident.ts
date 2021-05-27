@@ -14,9 +14,13 @@ import {
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { IncidentEventModule  } from "./incident-event";
 
 export async function CADIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+
+  const IncidentEventModel = await IncidentEventModule(mongoose);
+  const IncidentEvent = IncidentEventModel.schema;
 
   const toJSONOpts = {
     versionKey: false,
@@ -355,15 +359,18 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
     },
     PriorIncident: {
       type: [CADPriorIncident],
+      default: [],
     },
 
     // Caller
     CallerNumber: {
       type: String,
+      default: "",
     },
 
     tag: {
       type: String,
+      default: "",
     },
 
     // Coordinate
@@ -376,10 +383,17 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
 
     Comment: {
       type: [CADComment],
+      default: [],
     },
 
     units: {
       type: [CADUnit],
+      default: [],
+    },
+
+    events: {
+      type: [IncidentEvent],
+      default: [],
     },
 
     // Tablet Command Internal fields
@@ -402,107 +416,17 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
     },
 
     // Leaked
-    admin_note: {
-      type: String,
-    },
-    Interface: {
-      type: String,
-    },
-    InterfaceVersion: {
-      type: String,
-    },
     CADSimulator: {
       type: String,
     },
 
     notificationType: {
       type: [APNNotificationType],
+      default: [],
     },
     notifiedUnits: {
       type: [String],
-    },
-
-    // Other Agencies
-    AgencyDeterminantCode: {
-      type: String,
-    },
-    AgencyIncidentCategory: {
-      type: String,
-    },
-    CFMap: {
-      type: String,
-    },
-    CallSource: {
-      type: String,
-    },
-    CaseNumber: {
-      type: String,
-    },
-    CrossRefDataOwnerAgyID1: {
-      type: String,
-    },
-    CrossRefDataSubmitterAgyID1: {
-      type: String,
-    },
-    CrossRefEventCategory1: {
-      type: String,
-    },
-    CrossRefEventNum1: {
-      type: String,
-    },
-    EventLevel: {
-      type: String,
-    },
-    EventNumber: {
-      type: String,
-    },
-    FirstDueStation: {
-      type: String,
-    },
-    MedicalAgencyIncidentType: {
-      type: String,
-    },
-    MedicalEventCode: {
-      type: String,
-    },
-    PopulationDensity: {
-      type: String,
-    },
-    Priority: {
-      type: String,
-    },
-    WorkstationID: {
-      type: String,
-    },
-    LatitudeDegree: {
-      type: String,
-    },
-    LatitudeMinute: {
-      type: String,
-    },
-    LatitudeSecond: {
-      type: String,
-    },
-    LongitudeDegree: {
-      type: String,
-    },
-    LongitudeMinute: {
-      type: String,
-    },
-    LongitudeSecond: {
-      type: String,
-    },
-    Location: {
-      type: String,
-    },
-    LocationType: {
-      type: String,
-    },
-    OrigLocation: {
-      type: String,
-    },
-    Jurisdiction: {
-      type: String,
+      default: [],
     },
   }, {
     collection: "massive_incident_cad",

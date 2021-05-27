@@ -2,7 +2,6 @@
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function EsriModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
-    modified_unix_date: number;
     runAt: string;
     departmentId: import("bson").ObjectId;
     tokenDateExpiry: number;

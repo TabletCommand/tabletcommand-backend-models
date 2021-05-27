@@ -33,7 +33,6 @@ describe("Esri", function() {
     assert.equal(sut._id.toString(), testItem._id.toString());
     assert.equal(sut.toJSON().id, testItem._id.toString());
     assert.equal(sut.departmentId, testItem.departmentId);
-    assert.equal(sut.modified_unix_date, testItem.modified_unix_date);
     assert.equal(sut.tokenDateExpiry, testItem.tokenDateExpiry);
     assert.equal(sut.token.access_token, testItem.token.access_token);
     assert.equal(sut.token.expires_in, testItem.token.expires_in);

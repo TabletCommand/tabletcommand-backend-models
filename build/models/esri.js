@@ -33,10 +33,6 @@ async function EsriModule(mongoose) {
             type: Types.ObjectId,
             auto: true,
         },
-        modified_unix_date: {
-            type: Number,
-            default: helpers_1.retrieveCurrentUnixTime,
-        },
         // last time when cron updated maps
         runAt: {
             type: Date,
