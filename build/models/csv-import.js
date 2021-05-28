@@ -13,11 +13,12 @@ async function CSVImportModule(mongoose) {
             type: String,
             required: true,
         },
-        entryDateTime: {
-            type: String,
+        importCreated: {
+            type: Date,
+            default: helpers_1.currentDate,
         },
-        closedDateTime: {
-            type: String,
+        importEnded: {
+            type: Date,
         },
         departmentId: {
             type: String
@@ -38,16 +39,16 @@ async function CSVImportModule(mongoose) {
             type: String,
         },
         fileLastModified: {
-            type: Number,
-            default: helpers_1.retrieveCurrentUnixTime,
+            type: Date,
+            default: helpers_1.currentDate,
         },
         records: {
             type: [Object],
             default: [],
         },
-        modified_unix_date: {
-            type: Number,
-            default: helpers_1.retrieveCurrentUnixTime,
+        modifiedDate: {
+            type: Date,
+            default: helpers_1.currentDate,
         },
         userId: {
             type: String,

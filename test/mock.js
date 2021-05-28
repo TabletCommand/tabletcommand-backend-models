@@ -780,15 +780,12 @@ module.exports = function(dependencies) {
   const csvImport = {
     _id: mongoose.Types.ObjectId(),
     batchId: "AM0111",
-    entryDateTime: "2019-03-21T13:21:11-07:00",
     departmentId: "1234",
     agencyId: "abcd1234",
     importType: "users",
     fileType: "csv",
     fileName: "test file 123",
     fileSize: 800,
-    fileLastModified: 1569446299,
-    modified_unix_date: 1570446299,
     records: [],
     userId: "4321"
   };

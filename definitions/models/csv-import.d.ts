@@ -3,17 +3,17 @@ import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchema
 export declare function CSVImportModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectId;
     batchId: string;
-    entryDateTime: string;
-    closedDateTime: string;
+    importCreated: string;
+    importEnded: string;
     departmentId: string;
     agencyId: string;
     importType: string;
     fileType: string;
     fileName: string;
     fileSize: string;
-    fileLastModified: number;
+    fileLastModified: string;
     records: any[];
-    modified_unix_date: number;
+    modifiedDate: string;
     userId: string;
 }, {}> & {
     __methods?: unknown;

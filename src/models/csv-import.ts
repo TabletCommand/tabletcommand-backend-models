@@ -21,11 +21,12 @@ export async function CSVImportModule(mongoose: MongooseModule) {
       type: String,
       required: true,
     },
-    entryDateTime: {
-      type: String,
+    importCreated: {
+      type: Date,
+      default: currentDate,
     },
-    closedDateTime: {
-      type: String,
+    importEnded: {
+      type: Date,
     },
     departmentId: {
       type: String
@@ -46,16 +47,16 @@ export async function CSVImportModule(mongoose: MongooseModule) {
       type: String,
     },
     fileLastModified: {
-      type: Number,
-      default: retrieveCurrentUnixTime,
+      type: Date,
+      default: currentDate,
     },
     records: {
       type: [Object],
       default: [],
     },
-    modified_unix_date: {
-      type: Number,
-      default: retrieveCurrentUnixTime,
+    modifiedDate: {
+      type: Date,
+      default: currentDate,
     },
     userId: {
       type: String,
