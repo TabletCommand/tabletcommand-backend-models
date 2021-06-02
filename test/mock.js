@@ -787,7 +787,8 @@ module.exports = function(dependencies) {
     fileName: "test file 123",
     fileSize: 800,
     records: [],
-    userId: "4321"
+    userId: "4321",
+    status: "success"
   };
 
   async function cleanup() {

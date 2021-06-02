@@ -34,6 +34,7 @@ describe("CSVImport", function() {
     assert.equal(testItem.fileType, sut.fileType);
     assert.equal(testItem.fileName, sut.fileName);
     assert.equal(testItem.fileSize, sut.fileSize);
+    assert.equal(testItem.status, sut.status);
     // assert.equal(testItem.modifiedDate, sut.modifiedDate);
     // assert.equal(testItem.fileLastModified, sut.fileLastModified);
     assert.equal(testItem.records.length, 0);

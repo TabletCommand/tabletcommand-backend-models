@@ -5,6 +5,7 @@ export declare function CSVImportModule(mongoose: MongooseModule): Promise<impor
     batchId: string;
     importCreated: string;
     importEnded: string;
+    status: string;
     departmentId: string;
     agencyId: string;
     importType: string;

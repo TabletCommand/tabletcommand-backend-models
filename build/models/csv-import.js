@@ -20,6 +20,10 @@ async function CSVImportModule(mongoose) {
         importEnded: {
             type: Date,
         },
+        status: {
+            type: String,
+            default: "",
+        },
         departmentId: {
             type: String
         },

@@ -28,6 +28,10 @@ export async function CSVImportModule(mongoose: MongooseModule) {
     importEnded: {
       type: Date,
     },
+    status: {
+      type: String,
+      default: "",
+    },
     departmentId: {
       type: String
     },
