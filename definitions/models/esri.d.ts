@@ -19,6 +19,10 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
             type: NumberConstructor;
             default: number;
         };
+        tokenExpiry: {
+            type: DateConstructor;
+            default: string;
+        };
         token: {
             type: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
@@ -205,6 +209,14 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
                                     type: NumberConstructor;
                                     default: number;
                                 };
+                                access: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                owner: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
                             }>;
                             _methods: unknown;
                         })[];
@@ -243,6 +255,14 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
                                             opacity: {
                                                 type: NumberConstructor;
                                                 default: number;
+                                            };
+                                            access: {
+                                                type: StringConstructor;
+                                                default: string;
+                                            };
+                                            owner: {
+                                                type: StringConstructor;
+                                                default: string;
                                             };
                                         }>;
                                         _methods: unknown;
@@ -366,6 +386,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
     runAt: string;
     departmentId: import("bson").ObjectId;
     tokenDateExpiry: number;
+    tokenExpiry: string;
     token: import("../helpers").MongooseInterface<{
         access_token: {
             type: StringConstructor;
@@ -517,6 +538,14 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                         type: NumberConstructor;
                         default: number;
                     };
+                    access: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    owner: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -555,6 +584,14 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                                 opacity: {
                                     type: NumberConstructor;
                                     default: number;
+                                };
+                                access: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                owner: {
+                                    type: StringConstructor;
+                                    default: string;
                                 };
                             }>;
                             _methods: unknown;

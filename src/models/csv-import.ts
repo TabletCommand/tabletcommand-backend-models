@@ -3,7 +3,6 @@ import {
   createModel,
   currentDate,
   MongooseModule,
-  retrieveCurrentUnixTime,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,

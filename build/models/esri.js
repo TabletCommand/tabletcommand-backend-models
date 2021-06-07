@@ -47,6 +47,10 @@ function EsriSchema(mongoose) {
             type: Number,
             default: 0,
         },
+        tokenExpiry: {
+            type: Date,
+            default: "",
+        },
         token: {
             type: EsriToken,
             default: null,

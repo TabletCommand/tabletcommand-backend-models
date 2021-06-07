@@ -33,6 +33,14 @@ export default function EsriMapSchema(mongoose: MongooseModule): import("mongoos
                         type: NumberConstructor;
                         default: number;
                     };
+                    access: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    owner: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -71,6 +79,14 @@ export default function EsriMapSchema(mongoose: MongooseModule): import("mongoos
                                 opacity: {
                                     type: NumberConstructor;
                                     default: number;
+                                };
+                                access: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                owner: {
+                                    type: StringConstructor;
+                                    default: string;
                                 };
                             }>;
                             _methods: unknown;

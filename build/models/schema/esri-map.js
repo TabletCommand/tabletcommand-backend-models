@@ -32,6 +32,14 @@ function EsriMapSchema(mongoose) {
             type: Number,
             default: 1,
         },
+        access: {
+            type: String,
+            default: "",
+        },
+        owner: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
     });
