@@ -175,6 +175,34 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
             type: StringConstructor;
             default: null;
         };
+        arcGISRoot: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    username: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    encrypted: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                iv: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                encryptedData: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                        default: null;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: null;
+        };
         maps: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
@@ -506,6 +534,28 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         };
     }>;
     arcGISGroupId: string;
+    arcGISRoot: import("../helpers").MongooseInterface<{
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        encrypted: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    iv: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    encryptedData: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: null;
+        };
+    }>;
     maps: import("../helpers").MongooseInterface<{
         mapLayers: {
             type: (import("mongoose").Schema<any> & {

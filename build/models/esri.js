@@ -76,6 +76,11 @@ function EsriSchema(mongoose) {
             type: String,
             default: null,
         },
+        // ArcGIS user used to configure the ArcGIS group and all the users from that group
+        arcGISRoot: {
+            type: EsriAuth,
+            default: null,
+        },
         // maps
         maps: {
             type: [EsriMap],

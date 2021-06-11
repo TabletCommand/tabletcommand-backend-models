@@ -83,9 +83,15 @@ export function EsriSchema(mongoose: MongooseModule) {
       type: FireMapperAuth,
       default: null,
     },
+
     // Link to ArcGISGroup
     arcGISGroupId: {
       type: String,
+      default: null,
+    },
+    // ArcGIS user used to configure the ArcGIS group and all the users from that group
+    arcGISRoot: {
+      type: EsriAuth,
       default: null,
     },
 
