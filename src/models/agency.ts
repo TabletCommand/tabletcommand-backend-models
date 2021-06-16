@@ -11,6 +11,24 @@ import {
 
 export async function AgencyModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+
+  const CrossStaffedUnit = createSchema(Schema, {
+    radioName: {
+      type: String,
+      default: "",
+    },
+    crossStaffedUnits: {
+      type: [String],
+      default: [],
+    },
+    alwaysCrossStaff: {
+      type: Boolean,
+      default: true,
+    },
+  }, {
+    _id: false,
+  });
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -67,6 +85,10 @@ export async function AgencyModule(mongoose: MongooseModule) {
     personnelMonitorHours: {
       type: Number,
       default: 12
+    },
+    crossStaffing: {
+      type: [CrossStaffedUnit],
+      default: []
     }
   }, {
     collection: "massive_agency",

@@ -22,6 +22,20 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
     };
     personnelIntegration: boolean;
     personnelMonitorHours: number;
+    crossStaffing: import("../helpers").MongooseInterface<{
+        radioName: {
+            type: StringConstructor;
+            default: string;
+        };
+        crossStaffedUnits: {
+            type: StringConstructor[];
+            default: never[];
+        };
+        alwaysCrossStaff: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;

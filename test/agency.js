@@ -35,6 +35,7 @@ describe("Agency", function() {
       assert.equal(testItem.administrators.length, 1);
       assert.equal(testItem.personnelIntegration, sut.personnelIntegration);
       assert.equal(testItem.personnelMonitorHours, sut.personnelMonitorHours);
+      assert.equal(testItem.crossStaffing.length, 1);
       const expectedDate = new Date().valueOf() / 1000.0;
       const timeDelta = expectedDate - sut.modified_unix_date;
       assert.isTrue(timeDelta < 1);

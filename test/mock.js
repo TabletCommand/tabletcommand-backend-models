@@ -31,7 +31,14 @@ module.exports = function(dependencies) {
       new mongoose.Types.ObjectId()
     ],
     personnelIntegration: true,
-    personnelMonitorHours: 24
+    personnelMonitorHours: 24,
+    crossStaffing: [
+      {
+        radioName: "E1",
+        crossStaffedUnits: ["E2", "E3"],
+        alwaysCrossStaff: true
+      }
+    ]
   };
 
   const arcGISGroup = {

@@ -5,6 +5,22 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function AgencyModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const CrossStaffedUnit = helpers_1.createSchema(Schema, {
+        radioName: {
+            type: String,
+            default: "",
+        },
+        crossStaffedUnits: {
+            type: [String],
+            default: [],
+        },
+        alwaysCrossStaff: {
+            type: Boolean,
+            default: true,
+        },
+    }, {
+        _id: false,
+    });
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -61,6 +77,10 @@ async function AgencyModule(mongoose) {
         personnelMonitorHours: {
             type: Number,
             default: 12
+        },
+        crossStaffing: {
+            type: [CrossStaffedUnit],
+            default: []
         }
     }, {
         collection: "massive_agency",
