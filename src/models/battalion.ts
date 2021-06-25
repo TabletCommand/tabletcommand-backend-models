@@ -88,9 +88,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
       battalion_name: {
           type: String,
       },
-      unit_type_id: {
-          type: Number,
-      }
   }, {});
 
   BattalionUnit.set("toJSON", toJSONOpts);

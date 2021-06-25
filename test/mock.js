@@ -109,7 +109,6 @@ module.exports = function(dependencies) {
     api_battalion_id: "123",
     battalion_uuid: "",
     battalion_name: "",
-    unit_type_id: 1
   };
 
   const battalion = {
