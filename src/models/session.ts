@@ -13,7 +13,6 @@ import * as uuid from "uuid";
 export async function SessionModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  // eslint-disable-next-line no-unused-vars
   function requiredButAllowEmptyString(this: { myField: unknown }) {
     // Workaround to set required, and allow empty id
     return typeof this.myField === "string";
@@ -81,7 +80,6 @@ export async function SessionModule(mongoose: MongooseModule) {
     },
   });
 
-  // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toString();
   });

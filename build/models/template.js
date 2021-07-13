@@ -100,7 +100,6 @@ async function TemplateModule(mongoose) {
             ret.id = ret._id;
         },
     });
-    // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });

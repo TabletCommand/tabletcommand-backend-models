@@ -5,7 +5,6 @@ const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function SessionModule(mongoose) {
     const Schema = mongoose.Schema;
-    // eslint-disable-next-line no-unused-vars
     function requiredButAllowEmptyString() {
         // Workaround to set required, and allow empty id
         return typeof this.myField === "string";
@@ -69,7 +68,6 @@ async function SessionModule(mongoose) {
             ret.id = ret._id;
         },
     });
-    // eslint-disable-next-line no-unused-vars
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
     });

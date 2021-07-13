@@ -18,11 +18,13 @@ module.exports = {
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-empty-interface": 0,
-    "@typescript-eslint/no-unused-vars": [1],
-    "@typescript-eslint/require-await": 0,
-    "no-unused-vars": [1],
+    "@typescript-eslint/require-await": 0,    
     "space-before-function-paren": [0],
     quotes: [2, "double"],
-    semi: [2, "always"]
+    semi: [2, "always"],
+
+    // The correct way to use no-unused-vars in a TS project
+    "@typescript-eslint/no-unused-vars": [1],
+    "no-unused-vars": [0],
   }
 };

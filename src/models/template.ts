@@ -115,7 +115,6 @@ export async function TemplateModule(mongoose: MongooseModule) {
     },
   });
 
-  // eslint-disable-next-line no-unused-vars
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
