@@ -75,9 +75,6 @@ async function BattalionModule(mongoose) {
         battalion_name: {
             type: String,
         },
-        unit_type_id: {
-            type: Number,
-        }
     }, {});
     BattalionUnit.set("toJSON", toJSONOpts);
     const modelSchema = helpers_1.createSchema(Schema, {

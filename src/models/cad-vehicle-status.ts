@@ -1,11 +1,9 @@
 import * as  uuid from "uuid";
-import * as  _ from "lodash";
 import {
   createModel,
   createSchema,
   createSchemaDefinition,
   currentDate,
-  DocumentFromSchemaDefinition,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   MongooseModule,
@@ -92,31 +90,8 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     },
   });
 
-  type CADVehicleStatus = DocumentFromSchemaDefinition<typeof modelSchemaConfig>;
   const modelSchema = createSchema(Schema, modelSchemaConfig, {
     collection: "massive_cad_vehicle_status",
-  }, {
-    // eslint-disable-next-line no-unused-vars
-    propagateToObject<T>(dbItem: CADVehicleStatus, callback: (o: CADVehicleStatus) => T): T {
-      if (!_.isObject(dbItem)) {
-        return callback(this);
-      }
-
-      // We keep the same value for _id, uuid, departmentId
-      dbItem.vehicleId = this.vehicleId;
-      dbItem.radioName = this.radioName;
-      dbItem.requestTime = this.requestTime;
-      dbItem.responseTime = this.responseTime;
-      dbItem.status = this.status;
-      dbItem.statusCode = this.statusCode;
-      dbItem.modifiedDate = this.modifiedDate;
-      dbItem.requestStatus = this.requestStatus;
-      dbItem.owner = this.owner;
-      dbItem.incidentNumber = this.incidentNumber;
-      dbItem.options = this.options;
-
-      return callback(dbItem);
-    },
   });
 
   modelSchema.set("autoIndex", false);

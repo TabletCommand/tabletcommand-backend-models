@@ -79,9 +79,6 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         battalion_name: {
             type: StringConstructor;
         };
-        unit_type_id: {
-            type: NumberConstructor;
-        };
     }>[];
 }, {}> & {
     __methods?: unknown;
