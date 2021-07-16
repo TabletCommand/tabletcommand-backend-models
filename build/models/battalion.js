@@ -26,9 +26,6 @@ async function BattalionModule(mongoose) {
             type: String,
             default: ""
         },
-        local_id: {
-            type: Number,
-        },
         personnel: {
             type: Number,
             default: 0
@@ -59,12 +56,6 @@ async function BattalionModule(mongoose) {
         uuid: {
             type: String,
             default: uuid.v4,
-        },
-        departmentId: {
-            type: String,
-        },
-        userId: {
-            type: String,
         },
         api_battalion_id: {
             type: String,
@@ -97,11 +88,18 @@ async function BattalionModule(mongoose) {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         isMandatory: {
             type: Boolean,
             default: false,
         },
-        userId: String,
+        userId: {
+            type: String,
+            default: "",
+        },
         uuid: {
             type: String,
             default: uuid.v4,
@@ -140,15 +138,10 @@ async function BattalionModule(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    const ignoreFields = [];
     function strictSchema(schema, ret) {
         Object.keys(ret).forEach(function (element) {
             // Don't complain about the virtuals
             if (element === "id") {
-                return;
-            }
-            if (ignoreFields.indexOf(element) !== -1) {
-                delete ret[element];
                 return;
             }
             const pathSchema = schema;

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChecklistItemModule = void 0;
+exports.ChecklistItemModule = exports.ChecklistItemSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-async function ChecklistItemModule(mongoose) {
-    const { Schema, Types } = mongoose;
+function ChecklistItemSchema(mongoose) {
+    const { Schema, Types, } = mongoose;
     const modelSchema = helpers_1.createSchema(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -13,12 +13,6 @@ async function ChecklistItemModule(mongoose) {
         position: {
             type: Number,
             default: 1,
-        },
-        checked: {
-            type: Number,
-        },
-        local_id: {
-            type: Number,
         },
         userId: String,
         uuid: {
@@ -68,11 +62,15 @@ async function ChecklistItemModule(mongoose) {
         collection: "massive_checklist_item_sync",
     });
     modelSchema.set("autoIndex", false);
+    return modelSchema;
+}
+exports.ChecklistItemSchema = ChecklistItemSchema;
+async function ChecklistItemModule(mongoose) {
+    const modelSchema = ChecklistItemSchema(mongoose);
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
         transform(doc, ret) {
-            strictSchema(doc.schema, ret);
             ret.id = ret._id;
         },
     });
@@ -80,19 +78,6 @@ async function ChecklistItemModule(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    function strictSchema(schema, ret) {
-        Object.keys(ret).forEach(function (element) {
-            // Don't complain about the virtuals
-            if (element === "id") {
-                return;
-            }
-            const pathSchema = schema;
-            if (pathSchema.paths[element] === undefined) {
-                // console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
-                delete ret[element];
-            }
-        });
-    }
     return helpers_1.createModel(mongoose, "ChecklistItem", modelSchema);
 }
 exports.ChecklistItemModule = ChecklistItemModule;

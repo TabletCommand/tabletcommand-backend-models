@@ -39,9 +39,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
           type: String,
           default: ""
       },
-      local_id: {
-        type: Number,
-      },
       personnel: {
           type: Number,
           default: 0
@@ -72,12 +69,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
       uuid: {
           type: String,
           default: uuid.v4,
-      },
-      departmentId: {
-          type: String,
-      },
-      userId: {
-          type: String,
       },
       api_battalion_id: {
           type: String,
@@ -112,11 +103,18 @@ export async function BattalionModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
+    modified: {
+      type: Date,
+      default: currentDate,
+    },
     isMandatory: {
       type: Boolean,
       default: false,
     },
-    userId: String,
+    userId: {
+      type: String,
+      default: "",
+    },
     uuid: {
       type: String,
       default: uuid.v4,
@@ -157,8 +155,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
     return this._id.toString();
   });
 
-  const ignoreFields: ReadonlyArray<string> = [];
-
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
     Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
@@ -166,10 +162,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
         return;
       }
 
-      if (ignoreFields.indexOf(element) !== -1) {
-        delete ret[element];
-        return;
-      }
       const pathSchema = schema as unknown as { paths: Record<string, string> };
       if (pathSchema.paths[element] === undefined) {
         // console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);

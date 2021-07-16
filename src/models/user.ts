@@ -11,13 +11,13 @@ import {
   ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
-import EsriAuthModule from "./schema/esri-auth";
-import EsriErrorModule from "./schema/esri-error";
+import EsriAuthSchema from "./schema/esri-auth";
+import EsriErrorSchema from "./schema/esri-error";
 
 export async function UserModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
-  const EsriAuth = EsriAuthModule(mongoose);
-  const EsriError = EsriErrorModule(mongoose);
+  const EsriAuth = EsriAuthSchema(mongoose);
+  const EsriError = EsriErrorSchema(mongoose);
 
   const vehicleSchema = createSchema(Schema, {
     radioName: {

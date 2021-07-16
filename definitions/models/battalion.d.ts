@@ -7,6 +7,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
     active: boolean;
     modified_date: string;
     modified_unix_date: number;
+    modified: string;
     isMandatory: boolean;
     userId: string;
     uuid: string;
@@ -29,9 +30,6 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         friendly_id: {
             type: StringConstructor;
             default: string;
-        };
-        local_id: {
-            type: NumberConstructor;
         };
         personnel: {
             type: NumberConstructor;
@@ -63,12 +61,6 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         uuid: {
             type: StringConstructor;
             default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
-        };
-        departmentId: {
-            type: StringConstructor;
-        };
-        userId: {
-            type: StringConstructor;
         };
         api_battalion_id: {
             type: StringConstructor;

@@ -122,9 +122,29 @@ module.exports = function(dependencies) {
     units: [battalionUnit]
   };
 
-  const checklist = {
+  const checklistId = mongoose.Types.ObjectId();
+  const checklistUUID = "150cf1ca-ffbb-42c9-bd4c-fd64be45d888";
+
+  const checklistItem = {
     _id: mongoose.Types.ObjectId(),
-    uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d888",
+    uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d887",
+    checklist_uuid: checklistUUID,
+    position: 1,
+    active: true,
+    name: "TC Test Item",
+    checked: 0,
+    api_checklist_id: checklistId,
+    userId: "1234",
+    departmentId: "4321",
+    local_id: 1,
+    isMandatory: true,
+    agencyId: new mongoose.Types.ObjectId(agency._id),
+    description: "Testing Description"
+  };
+
+  const checklist = {
+    _id: checklistId,
+    uuid: checklistUUID,
     position: 1,
     active: true,
     name: "TC Test",
@@ -132,24 +152,8 @@ module.exports = function(dependencies) {
     departmentId: "4321",
     local_id: 1,
     isMandatory: true,
-    agencyId: new mongoose.Types.ObjectId(agency._id)
-  };
-
-  const checklistItem = {
-    _id: mongoose.Types.ObjectId(),
-    uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d887",
-    checklist_uuid: checklist.uuid,
-    position: 1,
-    active: true,
-    name: "TC Test Item",
-    checked: 0,
-    api_checklist_id: checklist._id.toString(),
-    userId: "1234",
-    departmentId: "4321",
-    local_id: 1,
-    isMandatory: true,
     agencyId: new mongoose.Types.ObjectId(agency._id),
-    description: "Testing Description"
+    items: [checklistItem]
   };
 
   const mailLog = {
@@ -800,8 +804,12 @@ module.exports = function(dependencies) {
   async function cleanup() {
     config.checkIfTestDatabase();
 
+    await models.CADVehicleStatus.deleteMany({});
     await models.Esri.deleteMany({});
+    await models.IncidentNotified.deleteMany({});
     await models.PersonnelImport.deleteMany({});
+    await models.UserDevice.deleteMany({});
+    await models.User.deleteMany({});
   }
 
   return {
