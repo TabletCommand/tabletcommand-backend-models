@@ -33,6 +33,9 @@ describe("ActionLog", function() {
       assert.equal(testItem.email, sut.email);
       assert.equal(testItem.userId, sut.userId);
       assert.equal(testItem.object, sut.object);
+      assert.equal(testItem.before, sut.before);
+      assert.equal(testItem.after, sut.after);
+      assert.equal(testItem.delta, sut.delta);
       const expectedDate = new Date().valueOf() / 1000.0;
       const timeDelta = expectedDate - sut.modified_unix_date;
       assert.isTrue(timeDelta < 1);

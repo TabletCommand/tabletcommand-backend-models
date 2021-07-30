@@ -18,6 +18,15 @@ module.exports = function(dependencies) {
     object: {
       vehicleId: "v1171",
       radioName: "E10"
+    },
+    before: {
+      test: "test1"
+    },
+    after: {
+      test: "test2"
+    },
+    delta: {
+      test: "test2"
     }
   };
 

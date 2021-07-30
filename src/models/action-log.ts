@@ -37,6 +37,18 @@ export async function ActionLogModule(mongoose: MongooseModule) {
       type: Object,
       default: {},
     },
+    before: {
+      type: Object,
+      default: {},
+    },
+    after: {
+      type: Object,
+      default: {},
+    },
+    delta: {
+      type: Object,
+      default: {},
+    },
     createdAt: {
       type: Date,
       default: currentDate,

@@ -29,6 +29,18 @@ async function ActionLogModule(mongoose) {
             type: Object,
             default: {},
         },
+        before: {
+            type: Object,
+            default: {},
+        },
+        after: {
+            type: Object,
+            default: {},
+        },
+        delta: {
+            type: Object,
+            default: {},
+        },
         createdAt: {
             type: Date,
             default: helpers_1.currentDate,
