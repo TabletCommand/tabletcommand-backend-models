@@ -6,6 +6,7 @@ export declare function MessageModule(mongoose: MongooseModule): Promise<import(
     userId: string;
     session: string;
     active: boolean;
+    currentVersion: boolean;
     uuid: string;
     requestId: string;
     title: string;

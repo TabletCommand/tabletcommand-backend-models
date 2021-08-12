@@ -181,6 +181,28 @@ module.exports = function(dependencies) {
     severity: "Mild"
   };
 
+  const message = {
+    departmentId: "d1234",
+    "active" : false,
+    "title" : "Upgrade App",
+    "body" : "Application out of date.",
+    "actionTitle" : "Upgrade App",
+    "color" : null,
+    "url" : "",
+    "priority" : 4,
+    "type" : {
+        "type" : "upgradeApp",
+        "typeOpts" : {
+            "major" : 3,
+            "minor" : 0,
+            "patch" : 1
+        }
+    },
+    "created" : new Date().toISOString(),
+    "uuid" : "138acffd-a94f-402d-87b3-ff6ed31a19dc",
+    "requestId" : "138acffd-a94f-402d-87b3-ff6ed31a19db",
+  };
+
   const cadIncident = {
     _id: mongoose.Types.ObjectId(),
     uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d679",
@@ -845,6 +867,7 @@ module.exports = function(dependencies) {
     incidentTakeover,
     location,
     mailLog,
+    message,
     managedIncident,
     monitor,
     personnelImport,
