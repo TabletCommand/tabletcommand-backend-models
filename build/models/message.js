@@ -42,10 +42,6 @@ async function MessageModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        currentVersion: {
-            type: Boolean,
-            default: true,
-        },
         uuid: {
             type: String,
             default: uuid.v4,
@@ -67,6 +63,10 @@ async function MessageModule(mongoose) {
             default: ""
         },
         created: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
+        updated: {
             type: Date,
             default: helpers_1.currentDate,
         },

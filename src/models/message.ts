@@ -50,10 +50,6 @@ export async function MessageModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    currentVersion: {
-      type: Boolean,
-      default: true,
-    },
     uuid: {
       type: String,
       default: uuid.v4,
@@ -75,6 +71,10 @@ export async function MessageModule(mongoose: MongooseModule) {
       default: ""
     },
     created: {
+      type: Date,
+      default: currentDate,
+    },
+    updated: {
       type: Date,
       default: currentDate,
     },
