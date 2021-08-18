@@ -602,7 +602,8 @@ module.exports = function(dependencies) {
     opAreaCode: "DAL",
     opAreaName: "Delta Operations",
     shared: true,
-    state: "CA"
+    state: "CA",
+    sendToCAD: false
   };
 
   const managedIncident = {

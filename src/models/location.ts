@@ -129,6 +129,10 @@ export async function LocationModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    sendToCAD: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   const modelSchema = createSchema(Schema, modelSchemaDefinition, {

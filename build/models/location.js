@@ -117,6 +117,10 @@ async function LocationModule(mongoose) {
             type: String,
             default: "",
         },
+        sendToCAD: {
+            type: Boolean,
+            default: false,
+        },
     });
     const modelSchema = helpers_1.createSchema(Schema, modelSchemaDefinition, {
         collection: "massive_location",

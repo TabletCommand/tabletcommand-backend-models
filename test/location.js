@@ -44,6 +44,7 @@ describe("Location", function() {
     assert.equal(testItem.opAreaName, sut.opAreaName);
     assert.equal(testItem.shared, sut.shared);
     assert.equal(testItem.state, sut.state);
+    assert.equal(testItem.sendToCAD, sut.sendToCAD);
     assert.isTrue(sut.uuid !== "");
 
     const { longitude, latitude } = sut.location;
