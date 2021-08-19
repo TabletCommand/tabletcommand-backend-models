@@ -404,7 +404,8 @@ module.exports = function(dependencies) {
       tcPro1Way: 0,
       tcMobile: 0,
       tcWeb: 0,
-      fireMapperPro: 0
+      fireMapperPro: 0,
+      sendToCAD: 0
     }
   };
 
