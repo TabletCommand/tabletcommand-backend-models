@@ -99,6 +99,7 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     }>;
     offDuty: boolean;
     criticalAlerts: boolean;
+    criticalAlertsVolume: string;
 }, {}> & {
     __methods?: unknown;
 }>;

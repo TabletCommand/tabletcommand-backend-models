@@ -51,6 +51,7 @@ describe("UserDevice", function() {
     assert.equal(testItem.notificationIncidentTypes[1], sut.notificationIncidentTypes[1]);
     assert.equal(testItem.offDuty, true);
     assert.equal(testItem.criticalAlerts, true);
+    assert.equal(testItem.criticalAlertsVolume, "MED");
 
     assert.isObject(sut.notificationSounds);
     assert.deepEqual(sut.notificationSounds, item.notificationSounds);

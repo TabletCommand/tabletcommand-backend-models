@@ -123,7 +123,11 @@ async function UserDeviceModule(mongoose) {
         criticalAlerts: {
             type: Boolean,
             default: false,
-        }
+        },
+        criticalAlertsVolume: {
+            type: String,
+            default: "MED",
+        },
     }, {
         collection: "massive_user_device",
     });

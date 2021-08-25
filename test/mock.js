@@ -797,6 +797,7 @@ module.exports = function(dependencies) {
     },
     offDuty: true,
     criticalAlerts: true,
+    criticalAlertsVolume: "MED",
   };
 
   const personnelImport = {
