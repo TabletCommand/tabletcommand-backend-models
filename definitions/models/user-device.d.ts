@@ -60,7 +60,35 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     }>[];
     notificationCount: number;
     notificationUnits: string[];
+    notificationUnitSettings: import("../helpers").MongooseInterface<{
+        radioName: {
+            type: StringConstructor;
+            default: string;
+        };
+        notificationType: {
+            type: StringConstructor;
+            default: string;
+        };
+        notificationMode: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     notificationIncidentTypes: string[];
+    notificationIncidentSettings: import("../helpers").MongooseInterface<{
+        incidentType: {
+            type: StringConstructor;
+            default: string;
+        };
+        notificationType: {
+            type: StringConstructor;
+            default: string;
+        };
+        notificationMode: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     notificationSounds: import("../helpers").MongooseInterface<{
         ios: {
             type: import("mongoose").Schema<any> & {

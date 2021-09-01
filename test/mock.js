@@ -782,6 +782,20 @@ module.exports = function(dependencies) {
     ],
     notificationCount: 12,
     notificationUnits: ["M10", "B1"],
+    notificationUnitSettings: [
+      {
+        radioName: "B1",
+        notificationType: "NORMAL",
+        notificationMode: "ON DUTY"
+      }
+    ],
+    notificationIncidentSettings: [
+      {
+        incidentType: "Cliff Rescue",
+        notificationType: "NORMAL",
+        notificationMode: "ON DUTY"
+      }
+    ],
     notificationIncidentTypes: ["cliff-rescue", "test"],
     notificationSounds: {
       ios: {

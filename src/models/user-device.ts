@@ -12,6 +12,40 @@ import {
 export async function UserDeviceModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
+  const UnitSetting = createSchema(Schema, {
+    radioName: {
+      type: String,
+      default: "",
+    },
+    notificationType: {
+      type: String,
+      default: "",
+    },
+    notificationMode: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+  });
+
+  const IncidentSetting = createSchema(Schema, {
+    incidentType: {
+      type: String,
+      default: "",
+    },
+    notificationType: {
+      type: String,
+      default: "",
+    },
+    notificationMode: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+  });
+
   const deviceSchema = createSchema(Schema, {
     token: {
       type: String,
@@ -118,9 +152,17 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: [String],
       default: [],
     },
+    notificationUnitSettings: {
+      type: [UnitSetting],
+      default: []
+    },
     notificationIncidentTypes: {
       type: [String],
       default: [],
+    },
+    notificationIncidentSettings: {
+      type: [IncidentSetting],
+      default: []
     },
     notificationSounds: {
       type: soundSchema,

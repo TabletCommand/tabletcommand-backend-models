@@ -4,6 +4,38 @@ exports.UserDeviceModule = void 0;
 const helpers_1 = require("../helpers");
 async function UserDeviceModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const UnitSetting = helpers_1.createSchema(Schema, {
+        radioName: {
+            type: String,
+            default: "",
+        },
+        notificationType: {
+            type: String,
+            default: "",
+        },
+        notificationMode: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+    });
+    const IncidentSetting = helpers_1.createSchema(Schema, {
+        incidentType: {
+            type: String,
+            default: "",
+        },
+        notificationType: {
+            type: String,
+            default: "",
+        },
+        notificationMode: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+    });
     const deviceSchema = helpers_1.createSchema(Schema, {
         token: {
             type: String,
@@ -107,9 +139,17 @@ async function UserDeviceModule(mongoose) {
             type: [String],
             default: [],
         },
+        notificationUnitSettings: {
+            type: [UnitSetting],
+            default: []
+        },
         notificationIncidentTypes: {
             type: [String],
             default: [],
+        },
+        notificationIncidentSettings: {
+            type: [IncidentSetting],
+            default: []
         },
         notificationSounds: {
             type: soundSchema,
