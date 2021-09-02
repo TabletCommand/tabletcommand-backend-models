@@ -4,7 +4,7 @@ exports.MailLogModule = void 0;
 const helpers_1 = require("../helpers");
 async function MailLogModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -72,7 +72,7 @@ async function MailLogModule(mongoose) {
         collection: "massive_mail_log",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "MailLog", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "MailLog", modelSchema);
 }
 exports.MailLogModule = MailLogModule;
 exports.default = MailLogModule;

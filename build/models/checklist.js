@@ -6,8 +6,8 @@ const helpers_1 = require("../helpers");
 const checklist_item_1 = require("./checklist-item");
 async function ChecklistModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const ChecklistItem = checklist_item_1.ChecklistItemSchema(mongoose);
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const ChecklistItem = (0, checklist_item_1.ChecklistItemSchema)(mongoose);
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -76,7 +76,7 @@ async function ChecklistModule(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    return helpers_1.createModel(mongoose, "Checklist", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Checklist", modelSchema);
 }
 exports.ChecklistModule = ChecklistModule;
 exports.default = ChecklistModule;

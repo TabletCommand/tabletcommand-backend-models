@@ -9,7 +9,7 @@ async function SessionModule(mongoose) {
         // Workaround to set required, and allow empty id
         return typeof this.myField === "string";
     }
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: String,
             default: uuid.v4,
@@ -71,7 +71,7 @@ async function SessionModule(mongoose) {
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
     });
-    return helpers_1.createModel(mongoose, "Session", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Session", modelSchema);
 }
 exports.SessionModule = SessionModule;
 exports.default = SessionModule;

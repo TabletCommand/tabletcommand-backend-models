@@ -7,14 +7,14 @@ const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const incident_event_1 = require("./incident-event");
 function CADIncidentSchema(mongoose) {
     const { Schema, Types } = mongoose;
-    const IncidentEvent = incident_event_1.IncidentEventSchema(mongoose);
+    const IncidentEvent = (0, incident_event_1.IncidentEventSchema)(mongoose);
     const toJSONOpts = {
         versionKey: false,
         transform(doc, ret) {
             strictSchema(doc.schema, ret);
         },
     };
-    const CADComment = helpers_1.createSchema(Schema, {
+    const CADComment = (0, helpers_1.createSchema)(Schema, {
         Comment: {
             type: String,
         },
@@ -32,7 +32,7 @@ function CADIncidentSchema(mongoose) {
         _id: false,
     });
     CADComment.set("toJSON", toJSONOpts);
-    const CADPerson = helpers_1.createSchema(Schema, {
+    const CADPerson = (0, helpers_1.createSchema)(Schema, {
         PersonnelID: {
             type: String,
         },
@@ -52,7 +52,7 @@ function CADIncidentSchema(mongoose) {
         _id: false,
     });
     CADPerson.set("toJSON", toJSONOpts);
-    const CADUnit = helpers_1.createSchema(Schema, {
+    const CADUnit = (0, helpers_1.createSchema)(Schema, {
         UnitID: {
             type: String,
             required: true,
@@ -99,7 +99,7 @@ function CADIncidentSchema(mongoose) {
         _id: false,
     });
     CADUnit.set("toJSON", toJSONOpts);
-    const APNNotificationType = helpers_1.createSchema(Schema, {
+    const APNNotificationType = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
         },
@@ -110,7 +110,7 @@ function CADIncidentSchema(mongoose) {
         _id: false,
     });
     APNNotificationType.set("toJSON", toJSONOpts);
-    const CADPriorIncident = helpers_1.createSchema(Schema, {
+    const CADPriorIncident = (0, helpers_1.createSchema)(Schema, {
         Address: {
             type: String,
         },
@@ -136,7 +136,7 @@ function CADIncidentSchema(mongoose) {
         _id: false,
     });
     CADPriorIncident.set("toJSON", toJSONOpts);
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -434,7 +434,7 @@ function CADIncidentSchema(mongoose) {
 exports.CADIncidentSchema = CADIncidentSchema;
 async function CADIncidentModule(mongoose) {
     const modelSchema = CADIncidentSchema(mongoose);
-    return helpers_1.createModel(mongoose, "CADIncident", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "CADIncident", modelSchema);
 }
 exports.CADIncidentModule = CADIncidentModule;
 exports.default = CADIncidentModule;

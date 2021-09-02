@@ -19,7 +19,7 @@ async function ManagedIncidentModule(mongoose) {
         }
         return "";
     }
-    const HistoryItem = helpers_1.createSchema(Schema, {
+    const HistoryItem = (0, helpers_1.createSchema)(Schema, {
         message: {
             type: String,
             default: "",
@@ -39,7 +39,7 @@ async function ManagedIncidentModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -143,7 +143,7 @@ async function ManagedIncidentModule(mongoose) {
     modelSchema.virtual("modified_date").get(function () {
         return unixTimeToLocalTime(this.modified_unix_date);
     });
-    return helpers_1.createModel(mongoose, "ManagedIncident", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "ManagedIncident", modelSchema);
 }
 exports.ManagedIncidentModule = ManagedIncidentModule;
 exports.default = ManagedIncidentModule;

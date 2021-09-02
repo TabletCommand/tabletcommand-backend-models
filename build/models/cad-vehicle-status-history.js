@@ -5,8 +5,8 @@ const helpers_1 = require("../helpers");
 const cad_status_option_selected_1 = require("./schema/cad-status-option-selected");
 async function CADVehicleStatusHistoryModule(mongoose) {
     const { Schema } = mongoose;
-    const CADStatusOptionSelected = cad_status_option_selected_1.default(mongoose);
-    const modelSchemaConfig = helpers_1.createSchemaDefinition({
+    const CADStatusOptionSelected = (0, cad_status_option_selected_1.default)(mongoose);
+    const modelSchemaConfig = (0, helpers_1.createSchemaDefinition)({
         departmentId: {
             type: String,
             default: "",
@@ -61,11 +61,11 @@ async function CADVehicleStatusHistoryModule(mongoose) {
             default: "",
         },
     });
-    const modelSchema = helpers_1.createSchema(Schema, modelSchemaConfig, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaConfig, {
         collection: "massive_cad_vehicle_status_history",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "CADVehicleStatusHistory", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "CADVehicleStatusHistory", modelSchema);
 }
 exports.CADVehicleStatusHistoryModule = CADVehicleStatusHistoryModule;
 exports.default = CADVehicleStatusHistoryModule;

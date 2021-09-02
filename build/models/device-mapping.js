@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function DeviceMappingModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -70,7 +70,7 @@ async function DeviceMappingModule(mongoose) {
         collection: "massive_device_mapping",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "DeviceMapping", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "DeviceMapping", modelSchema);
 }
 exports.DeviceMappingModule = DeviceMappingModule;
 exports.default = DeviceMappingModule;

@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function RemoteLogModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const FileSchema = helpers_1.createSchema(Schema, {
+    const FileSchema = (0, helpers_1.createSchema)(Schema, {
         originalName: {
             type: String,
             default: "", // e.g database.sqlite
@@ -37,7 +37,7 @@ async function RemoteLogModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -92,7 +92,7 @@ async function RemoteLogModule(mongoose) {
         collection: "massive_remote_log",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "RemoteLog", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "RemoteLog", modelSchema);
 }
 exports.RemoteLogModule = RemoteLogModule;
 exports.default = RemoteLogModule;

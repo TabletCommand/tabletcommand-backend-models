@@ -6,8 +6,8 @@ const helpers_1 = require("../helpers");
 const color_1 = require("./schema/color");
 async function MessageModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const Color = color_1.default(mongoose);
-    const TypeSchema = helpers_1.createSchema(Schema, {
+    const Color = (0, color_1.default)(mongoose);
+    const TypeSchema = (0, helpers_1.createSchema)(Schema, {
         type: {
             type: String,
             default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
@@ -19,7 +19,7 @@ async function MessageModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -90,7 +90,7 @@ async function MessageModule(mongoose) {
         collection: "massive_message",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "Message", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Message", modelSchema);
 }
 exports.MessageModule = MessageModule;
 exports.default = MessageModule;

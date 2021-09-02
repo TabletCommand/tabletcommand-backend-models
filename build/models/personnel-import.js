@@ -4,7 +4,7 @@ exports.PersonnelImportModule = void 0;
 const helpers_1 = require("../helpers");
 async function PersonnelImportModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -86,7 +86,7 @@ async function PersonnelImportModule(mongoose) {
         collection: "massive_personnel_import",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "PersonnelImport", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "PersonnelImport", modelSchema);
 }
 exports.PersonnelImportModule = PersonnelImportModule;
 exports.default = PersonnelImportModule;

@@ -4,7 +4,7 @@ exports.BeaconLogModule = void 0;
 const helpers_1 = require("../helpers");
 async function BeaconLogModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -33,7 +33,7 @@ async function BeaconLogModule(mongoose) {
         collection: "massive_beacon_log",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "BeaconLog", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "BeaconLog", modelSchema);
 }
 exports.BeaconLogModule = BeaconLogModule;
 exports.default = BeaconLogModule;

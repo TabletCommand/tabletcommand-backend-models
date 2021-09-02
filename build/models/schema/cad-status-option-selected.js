@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
 function CADStatusOptionSelectedSchema(mongoose) {
     const { Schema } = mongoose;
-    const Item = helpers_1.createSchema(Schema, {
+    const Item = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
             default: "",

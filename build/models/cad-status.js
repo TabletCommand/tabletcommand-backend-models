@@ -6,8 +6,8 @@ const helpers_1 = require("../helpers");
 const color_1 = require("./schema/color");
 async function CADStatusModule(mongoose) {
     const { Schema } = mongoose;
-    const Color = color_1.default(mongoose);
-    const StatusOptionValue = helpers_1.createSchema(Schema, {
+    const Color = (0, color_1.default)(mongoose);
+    const StatusOptionValue = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
             default: "",
@@ -35,7 +35,7 @@ async function CADStatusModule(mongoose) {
     }, {
         _id: false,
     });
-    const StatusOption = helpers_1.createSchema(Schema, {
+    const StatusOption = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
             default: "",
@@ -59,7 +59,7 @@ async function CADStatusModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         uuid: {
             type: String,
             index: true,
@@ -130,7 +130,7 @@ async function CADStatusModule(mongoose) {
         collection: "massive_cad_status",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "CADStatus", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "CADStatus", modelSchema);
 }
 exports.CADStatusModule = CADStatusModule;
 exports.default = CADStatusModule;

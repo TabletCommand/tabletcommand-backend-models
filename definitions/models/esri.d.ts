@@ -343,10 +343,6 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
                                 modifiedAt: {
                                     type: DateConstructor;
                                 };
-                                size: {
-                                    type: NumberConstructor;
-                                    default: number;
-                                };
                             }>;
                             _methods: unknown;
                         })[];
@@ -359,6 +355,10 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
                     development: {
                         type: BooleanConstructor;
                         default: boolean;
+                    };
+                    size: {
+                        type: NumberConstructor;
+                        default: number;
                     };
                     itemId: {
                         type: StringConstructor;
@@ -390,10 +390,6 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
                     };
                     modifiedAt: {
                         type: DateConstructor;
-                    };
-                    size: {
-                        type: NumberConstructor;
-                        default: number;
                     };
                 }>;
                 _methods: unknown;
@@ -708,10 +704,6 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                     modifiedAt: {
                         type: DateConstructor;
                     };
-                    size: {
-                        type: NumberConstructor;
-                        default: number;
-                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -724,6 +716,10 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         development: {
             type: BooleanConstructor;
             default: boolean;
+        };
+        size: {
+            type: NumberConstructor;
+            default: number;
         };
         itemId: {
             type: StringConstructor;
@@ -755,10 +751,6 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         };
         modifiedAt: {
             type: DateConstructor;
-        };
-        size: {
-            type: NumberConstructor;
-            default: number;
         };
     }>[];
     mapsProperties: import("../helpers").MongooseInterface<{

@@ -7,9 +7,9 @@ const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
 async function UserModule(mongoose) {
     const { Schema } = mongoose;
-    const EsriAuth = esri_auth_1.default(mongoose);
-    const EsriError = esri_error_1.default(mongoose);
-    const vehicleSchema = helpers_1.createSchema(Schema, {
+    const EsriAuth = (0, esri_auth_1.default)(mongoose);
+    const EsriError = (0, esri_error_1.default)(mongoose);
+    const vehicleSchema = (0, helpers_1.createSchema)(Schema, {
         radioName: {
             type: String,
             default: "",
@@ -21,7 +21,7 @@ async function UserModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         nick: {
             type: String,
             default: "",
@@ -193,7 +193,7 @@ async function UserModule(mongoose) {
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });
-    return helpers_1.createModel(mongoose, "User", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "User", modelSchema);
 }
 exports.UserModule = UserModule;
 exports.default = UserModule;

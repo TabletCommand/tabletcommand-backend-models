@@ -13,7 +13,7 @@ async function BattalionModule(mongoose) {
             ret.id = ret._id;
         },
     };
-    const BattalionUnit = helpers_1.createSchema(Schema, {
+    const BattalionUnit = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -68,7 +68,7 @@ async function BattalionModule(mongoose) {
         },
     }, {});
     BattalionUnit.set("toJSON", toJSONOpts);
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -151,7 +151,7 @@ async function BattalionModule(mongoose) {
             }
         });
     }
-    return helpers_1.createModel(mongoose, "Battalion", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Battalion", modelSchema);
 }
 exports.BattalionModule = BattalionModule;
 exports.default = BattalionModule;

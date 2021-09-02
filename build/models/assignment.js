@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function AssignmentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -55,7 +55,7 @@ async function AssignmentModule(mongoose) {
         collection: "massive_assignment",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "Assignment", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Assignment", modelSchema);
 }
 exports.AssignmentModule = AssignmentModule;
 exports.default = AssignmentModule;

@@ -6,7 +6,7 @@ const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const SafetyPriorityKeyword = helpers_1.createSchema(Schema, {
+    const SafetyPriorityKeyword = (0, helpers_1.createSchema)(Schema, {
         priority: {
             type: Number,
             default: 6,
@@ -46,7 +46,7 @@ async function DepartmentModule(mongoose) {
         "fireMapperPro": 0,
         "sendToCAD": 0
     };
-    const IncidentType = helpers_1.createSchema(Schema, {
+    const IncidentType = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
             default: "Any",
@@ -58,7 +58,7 @@ async function DepartmentModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -352,7 +352,7 @@ async function DepartmentModule(mongoose) {
         return this._id.toHexString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return helpers_1.createModel(mongoose, "Department", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Department", modelSchema);
 }
 exports.DepartmentModule = DepartmentModule;
 exports.default = DepartmentModule;

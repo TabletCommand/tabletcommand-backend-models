@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
 function EsriTokenSchema(mongoose) {
     const Schema = mongoose.Schema;
-    const EsriToken = helpers_1.createSchema(Schema, {
+    const EsriToken = (0, helpers_1.createSchema)(Schema, {
         access_token: {
             type: String,
             default: "",

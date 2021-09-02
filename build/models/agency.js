@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function AgencyModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const CrossStaffedUnit = helpers_1.createSchema(Schema, {
+    const CrossStaffedUnit = (0, helpers_1.createSchema)(Schema, {
         radioName: {
             type: String,
             default: "",
@@ -21,7 +21,7 @@ async function AgencyModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -86,7 +86,7 @@ async function AgencyModule(mongoose) {
         collection: "massive_agency",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "Agency", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Agency", modelSchema);
 }
 exports.AgencyModule = AgencyModule;
 exports.default = AgencyModule;

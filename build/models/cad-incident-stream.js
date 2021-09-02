@@ -8,7 +8,7 @@ async function CADIncidentStreamModule(mongoose) {
     const { Schema, Types } = mongoose;
     // Simplified schema.
     // Payload should confirm to cad-incident (more or less)
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -53,7 +53,7 @@ async function CADIncidentStreamModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return helpers_1.createModel(mongoose, "CADIncidentStream", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "CADIncidentStream", modelSchema);
 }
 exports.CADIncidentStreamModule = CADIncidentStreamModule;
 exports.default = CADIncidentStreamModule;

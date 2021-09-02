@@ -5,12 +5,12 @@ const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function IncidentEventModule(mongoose) {
     const modelSchema = IncidentEventSchema(mongoose);
-    return helpers_1.createModel(mongoose, "IncidentEvent", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "IncidentEvent", modelSchema);
 }
 exports.IncidentEventModule = IncidentEventModule;
 function IncidentEventSchema(mongoose) {
     const { Schema, Types } = mongoose;
-    const EventUser = helpers_1.createSchema(Schema, {
+    const EventUser = (0, helpers_1.createSchema)(Schema, {
         username: {
             type: String,
             default: "",
@@ -30,7 +30,7 @@ function IncidentEventSchema(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,

@@ -10,12 +10,12 @@ const esri_token_1 = require("./schema/esri-token");
 const firemapper_auth_1 = require("./schema/firemapper-auth");
 function EsriSchema(mongoose) {
     const { Schema, Types } = mongoose;
-    const EsriAuth = esri_auth_1.default(mongoose);
-    const EsriError = esri_error_1.default(mongoose);
-    const EsriMap = esri_map_1.default(mongoose);
-    const EsriToken = esri_token_1.default(mongoose);
-    const FireMapperAuth = firemapper_auth_1.default(mongoose);
-    const MapProperties = helpers_1.createSchema(Schema, {
+    const EsriAuth = (0, esri_auth_1.default)(mongoose);
+    const EsriError = (0, esri_error_1.default)(mongoose);
+    const EsriMap = (0, esri_map_1.default)(mongoose);
+    const EsriToken = (0, esri_token_1.default)(mongoose);
+    const FireMapperAuth = (0, firemapper_auth_1.default)(mongoose);
+    const MapProperties = (0, helpers_1.createSchema)(Schema, {
         // ArcGIS Item id
         itemId: {
             type: String,
@@ -28,7 +28,7 @@ function EsriSchema(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -119,7 +119,7 @@ function EsriSchema(mongoose) {
 exports.EsriSchema = EsriSchema;
 async function EsriModule(mongoose) {
     const modelSchema = EsriSchema(mongoose);
-    return helpers_1.createModel(mongoose, "Esri", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Esri", modelSchema);
 }
 exports.EsriModule = EsriModule;
 exports.default = EsriModule;

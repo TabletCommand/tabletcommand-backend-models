@@ -5,7 +5,7 @@ const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function CADVehicleModule(mongoose) {
     const Schema = mongoose.Schema;
-    const Station = helpers_1.createSchema(Schema, {
+    const Station = (0, helpers_1.createSchema)(Schema, {
         code: {
             type: String,
             default: "",
@@ -17,7 +17,7 @@ async function CADVehicleModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         uuid: {
             type: String,
             index: true,
@@ -66,7 +66,7 @@ async function CADVehicleModule(mongoose) {
         collection: "massive_cad_vehicle",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "CADVehicle", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "CADVehicle", modelSchema);
 }
 exports.CADVehicleModule = CADVehicleModule;
 exports.default = CADVehicleModule;

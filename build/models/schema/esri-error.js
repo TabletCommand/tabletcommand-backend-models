@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
 function EsriErrorSchema(mongoose) {
     const { Schema } = mongoose;
-    const EsriError = helpers_1.createSchema(Schema, {
+    const EsriError = (0, helpers_1.createSchema)(Schema, {
         code: {
             type: Number,
             default: 1,

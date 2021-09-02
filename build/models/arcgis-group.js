@@ -5,7 +5,7 @@ exports.ArcGISGroupModule = void 0;
 const helpers_1 = require("../helpers");
 async function ArcGISGroupModule(mongoose) {
     const { Schema } = mongoose;
-    const ArcGISGroupUser = helpers_1.createSchema(Schema, {
+    const ArcGISGroupUser = (0, helpers_1.createSchema)(Schema, {
         username: {
             type: String,
             default: "",
@@ -25,7 +25,7 @@ async function ArcGISGroupModule(mongoose) {
     }, {
         _id: false,
     });
-    const ArcGISDepartmentUser = helpers_1.createSchema(Schema, {
+    const ArcGISDepartmentUser = (0, helpers_1.createSchema)(Schema, {
         // ArcGIS username
         username: {
             type: String,
@@ -44,7 +44,7 @@ async function ArcGISGroupModule(mongoose) {
     }, {
         _id: false,
     });
-    const ArcGISDepartment = helpers_1.createSchema(Schema, {
+    const ArcGISDepartment = (0, helpers_1.createSchema)(Schema, {
         department: {
             type: String,
             default: "",
@@ -76,7 +76,7 @@ async function ArcGISGroupModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         // Unique, to be able to use replaceInto
         groupId: {
             type: String,
@@ -128,7 +128,7 @@ async function ArcGISGroupModule(mongoose) {
         collection: "massive_arcgis_group",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "ArcGISGroup", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "ArcGISGroup", modelSchema);
 }
 exports.ArcGISGroupModule = ArcGISGroupModule;
 exports.default = ArcGISGroupModule;

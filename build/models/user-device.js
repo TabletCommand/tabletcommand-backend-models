@@ -4,7 +4,7 @@ exports.UserDeviceModule = void 0;
 const helpers_1 = require("../helpers");
 async function UserDeviceModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const UnitSetting = helpers_1.createSchema(Schema, {
+    const UnitSetting = (0, helpers_1.createSchema)(Schema, {
         radioName: {
             type: String,
             default: "",
@@ -20,7 +20,7 @@ async function UserDeviceModule(mongoose) {
     }, {
         _id: false,
     });
-    const IncidentSetting = helpers_1.createSchema(Schema, {
+    const IncidentSetting = (0, helpers_1.createSchema)(Schema, {
         incidentType: {
             type: String,
             default: "",
@@ -36,7 +36,7 @@ async function UserDeviceModule(mongoose) {
     }, {
         _id: false,
     });
-    const deviceSchema = helpers_1.createSchema(Schema, {
+    const deviceSchema = (0, helpers_1.createSchema)(Schema, {
         token: {
             type: String,
             default: "",
@@ -92,7 +92,7 @@ async function UserDeviceModule(mongoose) {
     }, {
         _id: false,
     });
-    const soundSchemaItem = helpers_1.createSchema(Schema, {
+    const soundSchemaItem = (0, helpers_1.createSchema)(Schema, {
         sound: {
             type: String,
         },
@@ -106,7 +106,7 @@ async function UserDeviceModule(mongoose) {
     }, {
         _id: false,
     });
-    const soundSchema = helpers_1.createSchema(Schema, {
+    const soundSchema = (0, helpers_1.createSchema)(Schema, {
         ios: {
             type: soundSchemaItem,
         },
@@ -116,7 +116,7 @@ async function UserDeviceModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -172,7 +172,7 @@ async function UserDeviceModule(mongoose) {
         collection: "massive_user_device",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "UserDevice", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "UserDevice", modelSchema);
 }
 exports.UserDeviceModule = UserDeviceModule;
 exports.default = UserDeviceModule;

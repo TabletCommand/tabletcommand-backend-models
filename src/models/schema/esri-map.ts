@@ -93,10 +93,6 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     modifiedAt: {
       type: Date,
     },
-    size: {
-      type: Number,
-      default: 0,
-    },
   };
 
   const OfflineMap = createSchema(Schema, {
@@ -129,7 +125,11 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     development: {
       type: Boolean,
       default: false,
-    }
+    },
+    size: {
+      type: Number,
+      default: 0,
+    },
   }, {
     _id: false,
   });

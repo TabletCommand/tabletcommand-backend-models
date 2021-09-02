@@ -139,10 +139,6 @@ export default function EsriMapSchema(mongoose: MongooseModule): import("mongoos
                     modifiedAt: {
                         type: DateConstructor;
                     };
-                    size: {
-                        type: NumberConstructor;
-                        default: number;
-                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -155,6 +151,10 @@ export default function EsriMapSchema(mongoose: MongooseModule): import("mongoos
         development: {
             type: BooleanConstructor;
             default: boolean;
+        };
+        size: {
+            type: NumberConstructor;
+            default: number;
         };
         itemId: {
             type: StringConstructor;
@@ -186,10 +186,6 @@ export default function EsriMapSchema(mongoose: MongooseModule): import("mongoos
         };
         modifiedAt: {
             type: DateConstructor;
-        };
-        size: {
-            type: NumberConstructor;
-            default: number;
         };
     }>;
     _methods: unknown;

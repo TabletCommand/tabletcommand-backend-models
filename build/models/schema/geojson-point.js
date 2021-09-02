@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
 function GeoJSONPointSchema(mongoose) {
     const { Schema } = mongoose;
-    const GeoJSONPoint = helpers_1.createSchema(Schema, {
+    const GeoJSONPoint = (0, helpers_1.createSchema)(Schema, {
         type: {
             type: String,
             required: true,

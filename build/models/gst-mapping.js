@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function GSTMappingModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -66,7 +66,7 @@ async function GSTMappingModule(mongoose) {
         collection: "massive_gst_mapping",
     });
     modelSchema.set("autoIndex", false);
-    return helpers_1.createModel(mongoose, "GSTMapping", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "GSTMapping", modelSchema);
 }
 exports.GSTMappingModule = GSTMappingModule;
 exports.default = GSTMappingModule;

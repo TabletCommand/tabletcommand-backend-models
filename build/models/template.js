@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function TemplateModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const ChecklistOption = helpers_1.createSchema(Schema, {
+    const ChecklistOption = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
             default: "",
@@ -21,7 +21,7 @@ async function TemplateModule(mongoose) {
     }, {
         _id: false,
     });
-    const GroupOption = helpers_1.createSchema(Schema, {
+    const GroupOption = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
             default: "",
@@ -33,7 +33,7 @@ async function TemplateModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -117,7 +117,7 @@ async function TemplateModule(mongoose) {
         });
     }
     // modelSchema.plugin(mongooseLeanVirtuals);
-    return helpers_1.createModel(mongoose, "Template", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "Template", modelSchema);
 }
 exports.TemplateModule = TemplateModule;
 exports.default = TemplateModule;

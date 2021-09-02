@@ -5,7 +5,7 @@ const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function ChartManagedIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const ChartItem = helpers_1.createSchema(Schema, {
+    const ChartItem = (0, helpers_1.createSchema)(Schema, {
         item: {
             type: String,
             default: "",
@@ -17,7 +17,7 @@ async function ChartManagedIncidentModule(mongoose) {
     }, {
         _id: false,
     });
-    const modelSchema = helpers_1.createSchema(Schema, {
+    const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
             auto: true,
@@ -53,7 +53,7 @@ async function ChartManagedIncidentModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return helpers_1.createModel(mongoose, "ChartManagedIncident", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "ChartManagedIncident", modelSchema);
 }
 exports.ChartManagedIncidentModule = ChartManagedIncidentModule;
 exports.default = ChartManagedIncidentModule;
