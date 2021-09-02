@@ -85,6 +85,13 @@ function EsriMapSchema(mongoose) {
             type: Number,
             default: 0,
         },
+        modifiedAt: {
+            type: Date,
+        },
+        size: {
+            type: Number,
+            default: 0,
+        },
     };
     const OfflineMap = helpers_1.createSchema(Schema, Object.assign(Object.assign({}, SimpleMapSchema), { status: {
             type: String,

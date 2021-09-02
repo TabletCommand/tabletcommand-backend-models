@@ -340,6 +340,13 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
                                     type: NumberConstructor;
                                     default: number;
                                 };
+                                modifiedAt: {
+                                    type: DateConstructor;
+                                };
+                                size: {
+                                    type: NumberConstructor;
+                                    default: number;
+                                };
                             }>;
                             _methods: unknown;
                         })[];
@@ -378,6 +385,13 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
                         default: string;
                     };
                     modified: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                    modifiedAt: {
+                        type: DateConstructor;
+                    };
+                    size: {
                         type: NumberConstructor;
                         default: number;
                     };
@@ -691,6 +705,13 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
                         type: NumberConstructor;
                         default: number;
                     };
+                    modifiedAt: {
+                        type: DateConstructor;
+                    };
+                    size: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -729,6 +750,13 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: string;
         };
         modified: {
+            type: NumberConstructor;
+            default: number;
+        };
+        modifiedAt: {
+            type: DateConstructor;
+        };
+        size: {
             type: NumberConstructor;
             default: number;
         };
