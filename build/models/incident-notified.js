@@ -4,6 +4,22 @@ exports.IncidentNotifiedModule = void 0;
 const helpers_1 = require("../helpers");
 async function IncidentNotifiedModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const SentItem = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            type: String,
+            default: "",
+        },
+        type: {
+            type: String,
+            default: "",
+        },
+        date: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
+    }, {
+        _id: false,
+    });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -26,6 +42,14 @@ async function IncidentNotifiedModule(mongoose) {
         units: {
             type: [String],
             default: [],
+        },
+        sent: {
+            type: [SentItem],
+            default: [],
+        },
+        updated: {
+            type: Date,
+            default: helpers_1.currentDate,
         },
         date: {
             type: Number,

@@ -1,6 +1,7 @@
 import {
   createSchema,
   createModel,
+  currentDate,
   MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
@@ -10,6 +11,23 @@ import {
 
 export async function IncidentNotifiedModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+  
+  const SentItem = createSchema(Schema, {
+    name: {
+      type: String,
+      default: "",
+    },
+    type: {
+      type: String,
+      default: "",
+    },
+    date: {
+      type: Date,
+      default: currentDate,
+    },
+  }, {
+    _id: false,
+  });
 
   const modelSchema = createSchema(Schema, {
     _id: {
@@ -33,6 +51,14 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     units: {
       type: [String],
       default: [],
+    },
+    sent: {
+      type: [SentItem],
+      default: [],
+    },
+    updated: {
+      type: Date,
+      default: currentDate,
     },
     date: {
       type: Number,
