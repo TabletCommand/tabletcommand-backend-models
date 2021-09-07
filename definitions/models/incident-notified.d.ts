@@ -21,7 +21,6 @@ export declare function IncidentNotifiedModule(mongoose: MongooseModule): Promis
         };
     }>[];
     updated: string;
-    date: number;
 }, {}> & {
     __methods?: unknown;
 }>;

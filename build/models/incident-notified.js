@@ -51,10 +51,6 @@ async function IncidentNotifiedModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-        date: {
-            type: Number,
-            default: helpers_1.retrieveCurrentUnixTime,
-        },
     }, {
         collection: "massive_incident_notified",
     });

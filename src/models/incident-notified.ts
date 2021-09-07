@@ -6,7 +6,6 @@ import {
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
-  retrieveCurrentUnixTime,
 } from "../helpers";
 
 export async function IncidentNotifiedModule(mongoose: MongooseModule) {
@@ -59,10 +58,6 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     updated: {
       type: Date,
       default: currentDate,
-    },
-    date: {
-      type: Number,
-      default: retrieveCurrentUnixTime,
     },
   }, {
     collection: "massive_incident_notified",
