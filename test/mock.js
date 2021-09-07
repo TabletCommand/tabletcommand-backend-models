@@ -578,7 +578,9 @@ module.exports = function(dependencies) {
     units: [
       "E31"
     ],
-    date: 1536603902.196
+    sent: [
+    ],
+    updated: "2018-09-10T18:25:02.196Z"
   };
 
   const location = {

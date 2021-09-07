@@ -32,7 +32,7 @@ describe("IncidentNotified", function() {
       assert.equal(testItem.IncidentNumber, sut.IncidentNumber);
       assert.deepEqual(testItem.incidentTypes, sut.incidentTypes);
       assert.deepEqual(testItem.units, sut.units);
-      assert.equal(testItem.date, sut.date);
+      assert.equal(testItem.updated, sut.updated.toISOString());
 
       return done();
     });
