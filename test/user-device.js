@@ -42,6 +42,7 @@ describe("UserDevice", function() {
     assert.equal(testItem.devices[0].criticalAlertsEnabled, sut.devices[0].criticalAlertsEnabled);
     assert.equal(testItem.devices[0].session, sut.devices[0].session);
     assert.equal(testItem.devices[0].active, sut.devices[0].active);
+    assert.equal(testItem.devices[0].offDuty, sut.devices[0].offDuty);
     assert.equal(testItem.notificationCount, sut.notificationCount);
     assert.equal(sut.notificationUnits.length, 2);
     assert.equal(testItem.notificationUnits[0], sut.notificationUnits[0]);

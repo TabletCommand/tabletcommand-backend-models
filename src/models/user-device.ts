@@ -99,6 +99,10 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: Boolean,
       default: true,
     },
+    offDuty: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     _id: false,
   });

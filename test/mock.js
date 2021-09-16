@@ -779,7 +779,8 @@ module.exports = function(dependencies) {
         richEnabled: true,
         criticalAlertsEnabled: true,
         session: "1234321",
-        active: true
+        active: true,
+        offDuty: false
       }
     ],
     notificationCount: 12,

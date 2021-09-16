@@ -57,6 +57,10 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
             type: BooleanConstructor;
             default: boolean;
         };
+        offDuty: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
     }>[];
     notificationCount: number;
     notificationUnits: string[];
