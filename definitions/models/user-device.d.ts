@@ -1,7 +1,7 @@
 /// <reference types="mongoose" />
 import { currentDate, MongooseModule, retrieveCurrentUnixTime, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function UserDeviceModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
+    _id: import("bson").ObjectID;
     userId: string;
     departmentId: string;
     devices: import("../helpers").MongooseInterface<{
@@ -41,10 +41,6 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
             type: BooleanConstructor;
             default: boolean;
         };
-        richEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
         criticalAlertsEnabled: {
             type: BooleanConstructor;
             default: boolean;
@@ -64,6 +60,7 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     }>[];
     notificationCount: number;
     notificationUnits: string[];
+    notificationIncidentTypes: string[];
     notificationUnitSettings: import("../helpers").MongooseInterface<{
         radioName: {
             type: StringConstructor;
@@ -78,7 +75,6 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
             default: string;
         };
     }>[];
-    notificationIncidentTypes: string[];
     notificationIncidentSettings: import("../helpers").MongooseInterface<{
         incidentType: {
             type: StringConstructor;
@@ -130,7 +126,6 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
         };
     }>;
     offDuty: boolean;
-    criticalAlerts: boolean;
     criticalAlertsVolume: string;
 }, {}> & {
     __methods?: unknown;

@@ -1,7 +1,7 @@
 /// <reference types="mongoose" />
 import { currentDate, MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function IncidentNotifiedModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
+    _id: import("bson").ObjectID;
     departmentId: string;
     IncidentNumber: string;
     incidentTypes: string[];

@@ -1,7 +1,7 @@
 /// <reference types="mongoose" />
 import { MongooseModule, ModelTypeFromTypeSchemaFunction, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function ActionLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
+    _id: import("bson").ObjectID;
     departmentId: string;
     email: string;
     userId: string;

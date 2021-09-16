@@ -420,9 +420,9 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
     _methods: unknown;
 };
 export declare function EsriModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
+    _id: import("bson").ObjectID;
     runAt: string;
-    departmentId: import("bson").ObjectId;
+    departmentId: import("bson").ObjectID;
     tokenDateExpiry: number;
     tokenExpiry: string;
     token: import("../helpers").MongooseInterface<{

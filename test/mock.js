@@ -776,7 +776,6 @@ module.exports = function(dependencies) {
         drift: 1438627429.956,
         bundleIdentifier: "com.testtesttest.TCMobile",
         silentEnabled: true,
-        richEnabled: true,
         criticalAlertsEnabled: true,
         session: "1234321",
         active: true,
@@ -813,7 +812,6 @@ module.exports = function(dependencies) {
       }
     },
     offDuty: true,
-    criticalAlerts: true,
     criticalAlertsVolume: "MED",
   };
 

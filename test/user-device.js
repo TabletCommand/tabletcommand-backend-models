@@ -38,7 +38,6 @@ describe("UserDevice", function() {
     assert.equal(testItem.devices[0].drift, sut.devices[0].drift);
     assert.equal(testItem.devices[0].bundleIdentifier, sut.devices[0].bundleIdentifier);
     assert.equal(testItem.devices[0].silentEnabled, sut.devices[0].silentEnabled);
-    assert.equal(testItem.devices[0].richEnabled, sut.devices[0].richEnabled);
     assert.equal(testItem.devices[0].criticalAlertsEnabled, sut.devices[0].criticalAlertsEnabled);
     assert.equal(testItem.devices[0].session, sut.devices[0].session);
     assert.equal(testItem.devices[0].active, sut.devices[0].active);
@@ -53,7 +52,6 @@ describe("UserDevice", function() {
     assert.equal(JSON.stringify(testItem.notificationIncidentSettings[0]), JSON.stringify(sut.notificationIncidentSettings[0]));
     assert.equal(JSON.stringify(testItem.notificationUnitSettings[0]), JSON.stringify(sut.notificationUnitSettings[0]));
     assert.equal(testItem.offDuty, true);
-    assert.equal(testItem.criticalAlerts, true);
     assert.equal(testItem.criticalAlertsVolume, "MED");
 
     assert.isObject(sut.notificationSounds);

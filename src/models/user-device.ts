@@ -83,10 +83,6 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    richEnabled: {
-      type: Boolean,
-      default: false,
-    },
     criticalAlertsEnabled: {
       type: Boolean,
       default: false,
@@ -95,10 +91,12 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    // Remove this after all the code is updated to use the device.offDuty flag
     active: {
       type: Boolean,
       default: true,
     },
+    // Rename active to offDuty, to match the userDevice.offDuty flag
     offDuty: {
       type: Boolean,
       default: false,
@@ -152,17 +150,20 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+
+    // Legacy settings, will be removed when release is complete
     notificationUnits: {
       type: [String],
       default: [],
     },
-    notificationUnitSettings: {
-      type: [UnitSetting],
-      default: []
-    },
     notificationIncidentTypes: {
       type: [String],
       default: [],
+    },
+
+    notificationUnitSettings: {
+      type: [UnitSetting],
+      default: []
     },
     notificationIncidentSettings: {
       type: [IncidentSetting],
@@ -177,10 +178,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    criticalAlerts: {
-      type: Boolean,
-      default: false,
-    },
+
     criticalAlertsVolume: {
       type: String,
       default: "MED",

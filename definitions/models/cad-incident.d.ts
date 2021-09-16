@@ -477,7 +477,7 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
     _methods: unknown;
 };
 export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectId;
+    _id: import("bson").ObjectID;
     uuid: string;
     departmentId: string;
     AgencyID: string;
