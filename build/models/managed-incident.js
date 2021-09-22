@@ -1,24 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ManagedIncidentModule = void 0;
-const _ = require("lodash");
 const uuid = require("uuid");
-const moment = require("moment-timezone");
 const helpers_1 = require("../helpers");
 async function ManagedIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    function unixTimeToJSONWithTimezone(unixTime) {
-        if (_.isFinite(unixTime) && unixTime > 1) {
-            return moment.unix(unixTime).utc().format("YYYY-MM-DDTHH:mm:ssZZ");
-        }
-        return "";
-    }
-    function unixTimeToLocalTime(unixTime) {
-        if (_.isFinite(unixTime) && unixTime > 1) {
-            return moment.unix(unixTime).utc().format("YYYY-MM-DDTHH:mm:ss.SSS");
-        }
-        return "";
-    }
     const HistoryItem = (0, helpers_1.createSchema)(Schema, {
         message: {
             type: String,
@@ -120,6 +106,15 @@ async function ManagedIncidentModule(mongoose) {
             type: Boolean,
             default: true,
         },
+        start_time: {
+            type: String,
+        },
+        end_time: {
+            type: String,
+        },
+        modified_date: {
+            type: String,
+        },
     }, {
         collection: "massive_incident_managed",
     });
@@ -133,15 +128,6 @@ async function ManagedIncidentModule(mongoose) {
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
-    });
-    modelSchema.virtual("start_time").get(function () {
-        return unixTimeToJSONWithTimezone(this.start_unix_time);
-    });
-    modelSchema.virtual("end_time").get(function () {
-        return unixTimeToJSONWithTimezone(this.end_unix_time);
-    });
-    modelSchema.virtual("modified_date").get(function () {
-        return unixTimeToLocalTime(this.modified_unix_date);
     });
     return (0, helpers_1.createModel)(mongoose, "ManagedIncident", modelSchema);
 }

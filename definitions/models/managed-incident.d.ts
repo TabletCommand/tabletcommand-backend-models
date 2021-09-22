@@ -70,6 +70,9 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
     }>[];
     simulation: boolean;
     rts: boolean;
+    start_time: string;
+    end_time: string;
+    modified_date: string;
 }, {}> & {
     __methods?: unknown;
 }>;
