@@ -43,12 +43,6 @@ describe("UserDevice", function() {
     assert.equal(testItem.devices[0].active, sut.devices[0].active);
     assert.equal(testItem.devices[0].offDuty, sut.devices[0].offDuty);
     assert.equal(testItem.notificationCount, sut.notificationCount);
-    assert.equal(sut.notificationUnits.length, 2);
-    assert.equal(testItem.notificationUnits[0], sut.notificationUnits[0]);
-    assert.equal(testItem.notificationUnits[1], sut.notificationUnits[1]);
-    assert.equal(sut.notificationIncidentTypes.length, 2);
-    assert.equal(testItem.notificationIncidentTypes[0], sut.notificationIncidentTypes[0]);
-    assert.equal(testItem.notificationIncidentTypes[1], sut.notificationIncidentTypes[1]);
     assert.equal(JSON.stringify(testItem.notificationIncidentSettings[0]), JSON.stringify(sut.notificationIncidentSettings[0]));
     assert.equal(JSON.stringify(testItem.notificationUnitSettings[0]), JSON.stringify(sut.notificationUnitSettings[0]));
     assert.equal(testItem.offDuty, true);

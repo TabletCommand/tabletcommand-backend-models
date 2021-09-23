@@ -783,7 +783,6 @@ module.exports = function(dependencies) {
       }
     ],
     notificationCount: 12,
-    notificationUnits: ["M10", "B1"],
     notificationUnitSettings: [
       {
         radioName: "B1",
@@ -798,7 +797,6 @@ module.exports = function(dependencies) {
         notificationMode: "ON DUTY"
       }
     ],
-    notificationIncidentTypes: ["cliff-rescue", "test"],
     notificationSounds: {
       ios: {
         sound: "a.caf",

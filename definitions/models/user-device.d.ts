@@ -59,8 +59,6 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
         };
     }>[];
     notificationCount: number;
-    notificationUnits: string[];
-    notificationIncidentTypes: string[];
     notificationUnitSettings: import("../helpers").MongooseInterface<{
         radioName: {
             type: StringConstructor;

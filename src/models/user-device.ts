@@ -150,17 +150,6 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
-
-    // Legacy settings, will be removed when release is complete
-    notificationUnits: {
-      type: [String],
-      default: [],
-    },
-    notificationIncidentTypes: {
-      type: [String],
-      default: [],
-    },
-
     notificationUnitSettings: {
       type: [UnitSetting],
       default: []
