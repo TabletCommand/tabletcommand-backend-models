@@ -810,6 +810,7 @@ module.exports = function(dependencies) {
       }
     },
     offDuty: true,
+    offDutyEnabled: true,
     criticalAlertsVolume: "MED",
   };
 
