@@ -179,6 +179,11 @@ async function UserModule(mongoose) {
             type: EsriError,
             default: null,
         },
+        // Off Duty Allowed for this user
+        offDutyEnabled: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "sys_user",
     });

@@ -742,6 +742,7 @@ module.exports = function(dependencies) {
       }
     ],
     offlineMapsEnabled: true,
+    offDutyEnabled: true
   };
 
   const userRegistration = {
@@ -810,7 +811,6 @@ module.exports = function(dependencies) {
       }
     },
     offDuty: true,
-    offDutyEnabled: true,
     criticalAlertsVolume: "MED",
   };
 

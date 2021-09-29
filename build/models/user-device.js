@@ -154,11 +154,6 @@ async function UserDeviceModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        // Off Duty Allowed for this user
-        offDutyEnabled: {
-            type: Boolean,
-            default: false,
-        },
         criticalAlertsVolume: {
             type: String,
             default: "MED",

@@ -46,7 +46,6 @@ describe("UserDevice", function() {
     assert.equal(JSON.stringify(testItem.notificationIncidentSettings[0]), JSON.stringify(sut.notificationIncidentSettings[0]));
     assert.equal(JSON.stringify(testItem.notificationUnitSettings[0]), JSON.stringify(sut.notificationUnitSettings[0]));
     assert.equal(testItem.offDuty, true);
-    assert.equal(testItem.offDutyEnabled, true);
     assert.equal(testItem.criticalAlertsVolume, "MED");
 
     assert.isObject(sut.notificationSounds);

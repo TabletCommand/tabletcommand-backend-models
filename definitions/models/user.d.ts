@@ -93,6 +93,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
             default: string;
         };
     }>;
+    offDutyEnabled: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;
