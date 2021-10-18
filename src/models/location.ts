@@ -12,10 +12,12 @@ import {
   retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import ColorModule from "./schema/color";
 import GeoJSONPointModule from "./schema/geojson-point";
 
 export async function LocationModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+  const Color = ColorModule(mongoose);
   const GeoJSONPoint = GeoJSONPointModule(mongoose);
 
   const modelSchemaDefinition = createSchemaDefinition({
@@ -132,6 +134,12 @@ export async function LocationModule(mongoose: MongooseModule) {
     sendToCAD: {
       type: Boolean,
       default: false,
+    },
+
+    // Status color:
+    color: {
+      type: Color,
+      default: null,
     },
   });
 

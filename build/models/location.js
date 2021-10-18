@@ -4,9 +4,11 @@ exports.LocationModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const color_1 = require("./schema/color");
 const geojson_point_1 = require("./schema/geojson-point");
 async function LocationModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const Color = (0, color_1.default)(mongoose);
     const GeoJSONPoint = (0, geojson_point_1.default)(mongoose);
     const modelSchemaDefinition = (0, helpers_1.createSchemaDefinition)({
         _id: {
@@ -120,6 +122,11 @@ async function LocationModule(mongoose) {
         sendToCAD: {
             type: Boolean,
             default: false,
+        },
+        // Status color:
+        color: {
+            type: Color,
+            default: null,
         },
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaDefinition, {

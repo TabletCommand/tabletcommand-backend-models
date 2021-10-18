@@ -606,7 +606,11 @@ module.exports = function(dependencies) {
     opAreaName: "Delta Operations",
     shared: true,
     state: "CA",
-    sendToCAD: false
+    sendToCAD: false,
+    color: {
+      text: "#00AA00",
+      background: "#FFAAFF"
+    }
   };
 
   const managedIncident = {

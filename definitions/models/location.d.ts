@@ -39,6 +39,16 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     shared: boolean;
     state: string;
     sendToCAD: boolean;
+    color: import("../helpers").MongooseInterface<{
+        background: {
+            type: StringConstructor;
+            default: string;
+        };
+        text: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;
