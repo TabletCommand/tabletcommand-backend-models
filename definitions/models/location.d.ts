@@ -17,10 +17,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     heading: number;
     speed: number;
     esriId: number;
-    location: {
-        longitude: number;
-        latitude: number;
-    };
     locationGeoJSON: import("../helpers").MongooseInterface<{
         type: {
             type: StringConstructor;

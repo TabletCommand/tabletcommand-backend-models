@@ -25,6 +25,7 @@ describe("Location", function() {
   it("is saved", async function() {
     const item = new models.Location(testItem);
     const sut = await item.save();
+    const result = await models.Location.findOne({_id: testItem._id});
     assert.isNotNull(testItem._id);
     assert.equal(testItem.departmentId, sut.departmentId);
     assert.equal(testItem.userId, sut.userId);
@@ -35,11 +36,11 @@ describe("Location", function() {
     assert.equal(testItem.session, sut.session);
     assert.equal(testItem.active, sut.active);
     assert.equal(testItem.heading, sut.heading);
-    assert.equal(testItem.location.longitude, sut.location.longitude);
-    assert.equal(testItem.location.latitude, sut.location.latitude);
-    assert.equal(testItem.locationGeoJSON.type, "Point");
     assert.equal(testItem.locationGeoJSON.coordinates[0], sut.location.longitude);
     assert.equal(testItem.locationGeoJSON.coordinates[1], sut.location.latitude);
+    assert.equal(testItem.locationGeoJSON.type, "Point");
+    assert.equal(testItem.locationGeoJSON.coordinates[0], sut.locationGeoJSON.coordinates[0]);
+    assert.equal(testItem.locationGeoJSON.coordinates[1], sut.locationGeoJSON.coordinates[1]);
     assert.equal(testItem.opAreaCode, sut.opAreaCode);
     assert.equal(testItem.opAreaName, sut.opAreaName);
     assert.equal(testItem.shared, sut.shared);
@@ -64,7 +65,7 @@ describe("Location", function() {
     };
 
     try {
-      await models.Location.findOne(geoQuery);
+      const result = await models.Location.findOne(geoQuery);
       assert.isFalse(true, "Expecting above to fail.");
     } catch (error) {
       assert.isNotNull(error, "Expecting above to fail");

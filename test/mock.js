@@ -593,13 +593,9 @@ module.exports = function(dependencies) {
     device_type: "iPad",
     active: true,
     heading: 43,
-    location: {
-      longitude: -122.304,
-      latitude: 37.541
-    },
     locationGeoJSON: {
       type: "Point",
-      coordinates: [-122.304, 37.541],
+      coordinates: [-120.001, 37.001],
     },
     session: "abcd",
     opAreaCode: "DAL",

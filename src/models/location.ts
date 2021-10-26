@@ -96,18 +96,6 @@ export async function LocationModule(mongoose: MongooseModule) {
       default: 0,
     },
 
-    location: {
-      longitude: {
-        type: Number,
-        required: true,
-        default: 0,
-      },
-      latitude: {
-        type: Number,
-        required: true,
-        default: 0,
-      },
-    },
     // Shared AVL
     locationGeoJSON: {
       type: GeoJSONPoint,
@@ -154,6 +142,18 @@ export async function LocationModule(mongoose: MongooseModule) {
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
+  });
+
+  modelSchema.virtual("location").get(function(this: { locationGeoJSON: { coordinates: number[] }} | null | undefined) {
+    const location = {
+      latitude: 0,
+      longitude: 0
+    };
+    if (this && this.locationGeoJSON && this.locationGeoJSON.coordinates && this.locationGeoJSON.coordinates.length === 2) {
+      location.longitude = this.locationGeoJSON.coordinates[0];
+      location.latitude = this.locationGeoJSON.coordinates[1];
+    }
+    return location;
   });
 
   // Create GeoJSON index
