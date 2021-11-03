@@ -742,7 +742,11 @@ module.exports = function(dependencies) {
       }
     ],
     offlineMapsEnabled: true,
-    offDutyEnabled: true
+    offDutyEnabled: true,
+    webMapSettings: {
+      defaultZoomLevel: 10,
+      defaultCenter: [1,1]
+    }
   };
 
   const userRegistration = {

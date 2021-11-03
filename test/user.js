@@ -46,6 +46,9 @@ describe("User", function() {
       assert.equal(item.offDutyEnabled, sut.offDutyEnabled);
       assert.equal(item.managedAgencies[0], sut.managedAgencies[0]);
       assert.isTrue(sut.offlineMapsEnabled);
+      assert.equal(item.webMapSettings.defaultZoomLevel, 10);
+      assert.equal(item.webMapSettings.defaultCenter[0], 1);
+      assert.equal(item.webMapSettings.defaultCenter[1], 1);
       return done();
     });
   });

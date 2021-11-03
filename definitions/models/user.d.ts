@@ -94,6 +94,10 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         };
     }>;
     offDutyEnabled: boolean;
+    webMapSettings: {
+        defaultZoomLevel: number;
+        defaultCenter: number[];
+    };
 }, {}> & {
     __methods?: unknown;
 }>;

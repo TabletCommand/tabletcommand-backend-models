@@ -184,6 +184,14 @@ async function UserModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        webMapSettings: {
+            defaultZoomLevel: {
+                type: Number,
+            },
+            defaultCenter: {
+                type: [Number]
+            },
+        },
     }, {
         collection: "sys_user",
     });
