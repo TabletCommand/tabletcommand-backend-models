@@ -98,6 +98,16 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     timeZone: string;
     remoteLoggingEnabled: boolean;
     licensing: any;
+    webDisclaimer: import("../helpers").MongooseInterface<{
+        message: {
+            type: StringConstructor;
+            default: string;
+        };
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -406,6 +406,10 @@ module.exports = function(dependencies) {
       tcWeb: 0,
       fireMapperPro: 0,
       sendToCAD: 0
+    },
+    webDisclaimer: {
+      message: "test",
+      enabled: true
     }
   };
 

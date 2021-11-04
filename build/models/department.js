@@ -21,6 +21,18 @@ async function DepartmentModule(mongoose) {
     }, {
         _id: false,
     });
+    const WebDisclaimer = (0, helpers_1.createSchema)(Schema, {
+        message: {
+            type: String,
+            default: "",
+        },
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+    }, {
+        _id: false,
+    });
     const SafetyPriorityKeywordDefault = [
         {
             "keywords": [],
@@ -45,6 +57,10 @@ async function DepartmentModule(mongoose) {
         "tcWeb": 0,
         "fireMapperPro": 0,
         "sendToCAD": 0
+    };
+    const WebDisclaimerDefault = {
+        "message": "",
+        "enabled": false
     };
     const IncidentType = (0, helpers_1.createSchema)(Schema, {
         name: {
@@ -336,6 +352,10 @@ async function DepartmentModule(mongoose) {
         licensing: {
             type: Object,
             default: LicensingDefault,
+        },
+        webDisclaimer: {
+            type: WebDisclaimer,
+            default: WebDisclaimerDefault,
         },
     }, {
         collection: "massive_admin",
