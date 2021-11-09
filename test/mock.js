@@ -749,7 +749,8 @@ module.exports = function(dependencies) {
     offDutyEnabled: true,
     webMapSettings: {
       defaultZoomLevel: 10,
-      defaultCenter: [1,1]
+      defaultCenter: [1,1],
+      defaultMap: "Default"
     }
   };
 

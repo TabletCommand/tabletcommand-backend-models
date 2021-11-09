@@ -207,6 +207,9 @@ export async function UserModule(mongoose: MongooseModule) {
       defaultCenter: {
         type: [Number]
       },
+      defaultMap: {
+        type: String
+      },
     },
   }, {
     collection: "sys_user",

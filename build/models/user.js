@@ -191,6 +191,9 @@ async function UserModule(mongoose) {
             defaultCenter: {
                 type: [Number]
             },
+            defaultMap: {
+                type: String
+            },
         },
     }, {
         collection: "sys_user",

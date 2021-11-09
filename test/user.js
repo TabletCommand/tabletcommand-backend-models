@@ -49,6 +49,7 @@ describe("User", function() {
       assert.equal(item.webMapSettings.defaultZoomLevel, 10);
       assert.equal(item.webMapSettings.defaultCenter[0], 1);
       assert.equal(item.webMapSettings.defaultCenter[1], 1);
+      assert.equal(item.webMapSettings.defaultMap, "Default");
       return done();
     });
   });

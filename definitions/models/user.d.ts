@@ -97,6 +97,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     webMapSettings: {
         defaultZoomLevel: number;
         defaultCenter: number[];
+        defaultMap: string;
     };
 }, {}> & {
     __methods?: unknown;
