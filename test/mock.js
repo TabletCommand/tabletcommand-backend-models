@@ -610,7 +610,8 @@ module.exports = function(dependencies) {
     color: {
       text: "#00AA00",
       background: "#FFAAFF"
-    }
+    },
+    modified: new Date().toISOString()
   };
 
   const managedIncident = {

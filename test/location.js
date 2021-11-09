@@ -26,12 +26,13 @@ describe("Location", function() {
     const item = new models.Location(testItem);
     const sut = await item.save();
     const result = await models.Location.findOne({_id: testItem._id});
+    const modifiedToUnix = result.modified ? result.modified / 1000 : new Date() / 1000;
     assert.isNotNull(testItem._id);
     assert.equal(testItem.departmentId, sut.departmentId);
     assert.equal(testItem.userId, sut.userId);
     assert.equal(testItem.uuid, sut.uuid);
     assert.equal(testItem.username, sut.username);
-    assert.equal(testItem.modified_unix_date, sut.modified_unix_date);
+    assert.equal(modifiedToUnix, sut.modified_unix_date);
     assert.equal(testItem.device_type, sut.device_type);
     assert.equal(testItem.session, sut.session);
     assert.equal(testItem.active, sut.active);

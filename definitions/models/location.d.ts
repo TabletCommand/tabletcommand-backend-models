@@ -8,7 +8,6 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     username: string;
     device_type: string;
     active: boolean;
-    modified_unix_date: number;
     modified: string;
     movedAt: string;
     version: number;

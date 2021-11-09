@@ -43,10 +43,6 @@ async function LocationModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        modified_unix_date: {
-            type: Number,
-            default: helpers_1.retrieveCurrentUnixTime,
-        },
         modified: {
             type: Date,
             default: helpers_1.currentDate,
@@ -138,12 +134,19 @@ async function LocationModule(mongoose) {
         }
         return location;
     });
+    modelSchema.virtual("modified_unix_date").get(function () {
+        let newUnixDate = new Date().getTime() / 1000;
+        if (this && this.modified) {
+            newUnixDate = new Date(this.modified).getTime() / 1000;
+        }
+        return newUnixDate;
+    });
     // Create GeoJSON index
     modelSchema.index({
         locationGeoJSON: "2dsphere",
         shared: 1,
         departmentId: 1,
-        modified_unix_date: 1,
+        modified: 1,
     });
     modelSchema.index({
         locationGeoJSON: "2dsphere",
