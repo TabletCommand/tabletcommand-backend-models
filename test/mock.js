@@ -593,7 +593,6 @@ module.exports = function(dependencies) {
     userId: "542a40db20783c000000153d",
     uuid: "92c8f732-52b7-46cc-855a-d54fddfe3172",
     username: "E23",
-    modified_unix_date: 1426983552.49945,
     device_type: "iPad",
     active: true,
     heading: 43,

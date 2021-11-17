@@ -134,13 +134,6 @@ async function LocationModule(mongoose) {
         }
         return location;
     });
-    modelSchema.virtual("modified_unix_date").get(function () {
-        let newUnixDate = new Date().getTime() / 1000;
-        if (this && this.modified) {
-            newUnixDate = new Date(this.modified).getTime() / 1000;
-        }
-        return newUnixDate;
-    });
     // Create GeoJSON index
     modelSchema.index({
         locationGeoJSON: "2dsphere",

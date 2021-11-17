@@ -9,7 +9,6 @@ import {
   MongooseDocument,
   MongooseModule,
   ReplaceModelReturnType,
-  retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ColorModule from "./schema/color";
@@ -150,14 +149,6 @@ export async function LocationModule(mongoose: MongooseModule) {
       location.latitude = this.locationGeoJSON.coordinates[1];
     }
     return location;
-  });
-
-  modelSchema.virtual("modified_unix_date").get(function(this: { modified: Date } | null | undefined) {
-    let newUnixDate = new Date().getTime() / 1000;
-    if (this && this.modified) {
-      newUnixDate = new Date(this.modified).getTime() / 1000;
-    }
-    return newUnixDate;
   });
 
    // Create GeoJSON index
