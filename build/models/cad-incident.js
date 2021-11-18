@@ -30,6 +30,7 @@ function CADIncidentSchema(mongoose) {
         }
     }, {
         _id: false,
+        id: false,
     });
     CADComment.set("toJSON", toJSONOpts);
     const CADPerson = (0, helpers_1.createSchema)(Schema, {
@@ -50,6 +51,7 @@ function CADIncidentSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     CADPerson.set("toJSON", toJSONOpts);
     const CADUnit = (0, helpers_1.createSchema)(Schema, {
@@ -97,6 +99,7 @@ function CADIncidentSchema(mongoose) {
         Personnel: [CADPerson],
     }, {
         _id: false,
+        id: false,
     });
     CADUnit.set("toJSON", toJSONOpts);
     const APNNotificationType = (0, helpers_1.createSchema)(Schema, {
@@ -108,6 +111,7 @@ function CADIncidentSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     APNNotificationType.set("toJSON", toJSONOpts);
     const CADPriorIncident = (0, helpers_1.createSchema)(Schema, {
@@ -134,6 +138,7 @@ function CADIncidentSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     CADPriorIncident.set("toJSON", toJSONOpts);
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
@@ -403,7 +408,9 @@ function CADIncidentSchema(mongoose) {
             // Remove fields that should not be here
             delete ret.apikey;
             strictSchema(doc.schema, ret);
+            // if (ret._id) {
             ret.id = ret._id;
+            // }
         },
     });
     modelSchema.virtual("id").get(function () {

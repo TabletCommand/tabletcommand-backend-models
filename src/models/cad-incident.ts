@@ -43,6 +43,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     }
   }, {
     _id: false,
+    id: false,
   });
 
   CADComment.set("toJSON", toJSONOpts);
@@ -65,6 +66,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
   CADPerson.set("toJSON", toJSONOpts);
 
@@ -114,6 +116,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     Personnel: [CADPerson],
   }, {
     _id: false,
+    id: false,
   });
   CADUnit.set("toJSON", toJSONOpts);
 
@@ -126,6 +129,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
   APNNotificationType.set("toJSON", toJSONOpts);
 
@@ -153,6 +157,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
   CADPriorIncident.set("toJSON", toJSONOpts);
 
@@ -441,7 +446,9 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
 
       strictSchema(doc.schema as typeof modelSchema, ret);
 
-      ret.id = ret._id;
+      // if (ret._id) {
+        ret.id = ret._id;
+      // }
     },
   });
 
