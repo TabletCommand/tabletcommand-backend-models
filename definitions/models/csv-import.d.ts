@@ -16,6 +16,7 @@ export declare function CSVImportModule(mongoose: MongooseModule): Promise<impor
     records: any[];
     modifiedDate: string;
     userId: string;
+    sendNotification: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

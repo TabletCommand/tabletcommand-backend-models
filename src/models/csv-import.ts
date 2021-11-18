@@ -64,6 +64,10 @@ export async function CSVImportModule(mongoose: MongooseModule) {
     userId: {
       type: String,
     },
+    sendNotification: {
+      type: Boolean,
+      default: false
+    },
   }, {
     collection: "massive_csv_import",
   });

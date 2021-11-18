@@ -39,6 +39,7 @@ describe("CSVImport", function() {
     // assert.equal(testItem.fileLastModified, sut.fileLastModified);
     assert.equal(testItem.records.length, 0);
     assert.equal(testItem.userId, sut.userId);
+    assert.equal(testItem.sendNotification, sut.sendNotification);
   });
 });
 

@@ -855,7 +855,8 @@ module.exports = function(dependencies) {
     fileSize: 800,
     records: [],
     userId: "4321",
-    status: "success"
+    status: "success",
+    sendNotification: false
   };
 
   async function cleanup() {
