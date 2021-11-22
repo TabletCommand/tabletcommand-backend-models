@@ -14,6 +14,7 @@ function EsriAuthSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const EsriAuth = (0, helpers_1.createSchema)(Schema, {
         username: {
@@ -26,6 +27,7 @@ function EsriAuthSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     return EsriAuth;
 }

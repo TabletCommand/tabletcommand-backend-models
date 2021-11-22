@@ -17,6 +17,7 @@ function GeoJSONPointSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     return GeoJSONPoint;
 }

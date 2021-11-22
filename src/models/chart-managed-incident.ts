@@ -24,6 +24,7 @@ export async function ChartManagedIncidentModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

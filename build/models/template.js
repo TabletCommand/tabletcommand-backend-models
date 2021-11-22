@@ -20,6 +20,7 @@ async function TemplateModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const GroupOption = (0, helpers_1.createSchema)(Schema, {
         name: {
@@ -32,6 +33,7 @@ async function TemplateModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {

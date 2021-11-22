@@ -27,6 +27,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const IncidentSetting = createSchema(Schema, {
@@ -44,6 +45,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const deviceSchema = createSchema(Schema, {
@@ -103,6 +105,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const soundSchemaItem = createSchema(Schema, {
@@ -118,6 +121,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const soundSchema = createSchema(Schema, {
@@ -129,6 +133,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

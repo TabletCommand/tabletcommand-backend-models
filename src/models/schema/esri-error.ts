@@ -25,6 +25,7 @@ export default function EsriErrorSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return EsriError;

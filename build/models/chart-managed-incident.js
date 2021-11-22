@@ -16,6 +16,7 @@ async function ChartManagedIncidentModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {

@@ -32,6 +32,7 @@ export async function TemplateModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const GroupOption = createSchema(Schema, {
@@ -45,6 +46,7 @@ export async function TemplateModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

@@ -31,6 +31,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const WebDisclaimer = createSchema(Schema, {
@@ -44,6 +45,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const SafetyPriorityKeywordDefault = [
@@ -89,6 +91,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

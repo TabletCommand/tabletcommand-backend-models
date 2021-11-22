@@ -42,6 +42,7 @@ function EsriMapSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const BaseMap = (0, helpers_1.createSchema)(Schema, {
         baseMapLayers: {
@@ -54,6 +55,7 @@ function EsriMapSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     // Use a simpler set for Offline Maps
     const SimpleMapSchema = {
@@ -94,6 +96,7 @@ function EsriMapSchema(mongoose) {
             default: "",
         } }), {
         _id: false,
+        id: false,
     });
     const Map = (0, helpers_1.createSchema)(Schema, Object.assign(Object.assign({}, SimpleMapSchema), { mapLayers: {
             type: [MapLayer],
@@ -114,6 +117,7 @@ function EsriMapSchema(mongoose) {
             default: 0,
         } }), {
         _id: false,
+        id: false,
     });
     return Map;
 }

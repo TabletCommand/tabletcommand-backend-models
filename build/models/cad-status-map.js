@@ -17,6 +17,7 @@ async function CADStatusMapModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     // Using hook instead of default values,
     // so we keep the db value if no value was sent by the API/CAD

@@ -17,6 +17,7 @@ export default function FireMapperAuthSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const FireMapperAuth = createSchema(Schema, {
@@ -34,6 +35,7 @@ export default function FireMapperAuthSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return FireMapperAuth;

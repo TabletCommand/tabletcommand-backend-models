@@ -14,6 +14,7 @@ function ColorSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     return Color;
 }

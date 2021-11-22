@@ -45,6 +45,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const BaseMap = createSchema(Schema, {
@@ -58,6 +59,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   // Use a simpler set for Offline Maps
@@ -103,6 +105,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const Map = createSchema(Schema, {
@@ -132,6 +135,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return Map;

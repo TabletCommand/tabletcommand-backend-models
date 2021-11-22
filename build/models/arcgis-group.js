@@ -24,6 +24,7 @@ async function ArcGISGroupModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const ArcGISDepartmentUser = (0, helpers_1.createSchema)(Schema, {
         // ArcGIS username
@@ -43,6 +44,7 @@ async function ArcGISGroupModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const ArcGISDepartment = (0, helpers_1.createSchema)(Schema, {
         department: {
@@ -75,6 +77,7 @@ async function ArcGISGroupModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         // Unique, to be able to use replaceInto

@@ -25,6 +25,7 @@ export async function MessageModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

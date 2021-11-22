@@ -22,6 +22,7 @@ function EsriErrorSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     return EsriError;
 }

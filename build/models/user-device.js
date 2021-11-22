@@ -19,6 +19,7 @@ async function UserDeviceModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const IncidentSetting = (0, helpers_1.createSchema)(Schema, {
         incidentType: {
@@ -35,6 +36,7 @@ async function UserDeviceModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const deviceSchema = (0, helpers_1.createSchema)(Schema, {
         token: {
@@ -93,6 +95,7 @@ async function UserDeviceModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const soundSchemaItem = (0, helpers_1.createSchema)(Schema, {
         sound: {
@@ -107,6 +110,7 @@ async function UserDeviceModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const soundSchema = (0, helpers_1.createSchema)(Schema, {
         ios: {
@@ -117,6 +121,7 @@ async function UserDeviceModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {

@@ -20,6 +20,7 @@ export default function GeoJSONPointSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return GeoJSONPoint;

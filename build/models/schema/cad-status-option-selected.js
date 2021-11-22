@@ -22,6 +22,7 @@ function CADStatusOptionSelectedSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     return Item;
 }

@@ -446,9 +446,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
 
       strictSchema(doc.schema as typeof modelSchema, ret);
 
-      // if (ret._id) {
-        ret.id = ret._id;
-      // }
+      ret.id = ret._id;
     },
   });
 

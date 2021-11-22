@@ -41,6 +41,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const StatusOption = createSchema(Schema, {
@@ -66,6 +67,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

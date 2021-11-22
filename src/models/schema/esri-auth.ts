@@ -17,6 +17,7 @@ export default function EsriAuthSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const EsriAuth = createSchema(Schema, {
@@ -30,6 +31,7 @@ export default function EsriAuthSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return EsriAuth;

@@ -14,6 +14,7 @@ function FireMapperAuthSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const FireMapperAuth = (0, helpers_1.createSchema)(Schema, {
         username: {
@@ -30,6 +31,7 @@ function FireMapperAuthSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     return FireMapperAuth;
 }

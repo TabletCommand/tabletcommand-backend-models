@@ -31,6 +31,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const ArcGISDepartmentUser = createSchema(Schema, {
@@ -51,6 +52,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const ArcGISDepartment = createSchema(Schema, {
@@ -84,6 +86,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

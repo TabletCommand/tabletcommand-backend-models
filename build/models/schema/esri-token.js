@@ -26,6 +26,7 @@ function EsriTokenSchema(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     return EsriToken;
 }

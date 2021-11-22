@@ -25,6 +25,7 @@ export default function CADStatusOptionSelectedSchema(mongoose: MongooseModule) 
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return Item;

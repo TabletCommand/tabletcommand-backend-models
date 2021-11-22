@@ -29,6 +29,7 @@ export default function EsriTokenSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return EsriToken;

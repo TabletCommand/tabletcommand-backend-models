@@ -17,6 +17,7 @@ export default function ColorSchema(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   return Color;

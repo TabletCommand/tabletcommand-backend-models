@@ -26,6 +26,7 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   const modelSchema = createSchema(Schema, {

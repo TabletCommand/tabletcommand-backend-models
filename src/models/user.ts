@@ -30,6 +30,7 @@ export async function UserModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
   const modelSchema = createSchema(Schema, {
     nick: {

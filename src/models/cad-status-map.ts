@@ -25,6 +25,7 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
+    id: false,
   });
 
   // Using hook instead of default values,

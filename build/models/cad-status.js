@@ -34,6 +34,7 @@ async function CADStatusModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const StatusOption = (0, helpers_1.createSchema)(Schema, {
         name: {
@@ -58,6 +59,7 @@ async function CADStatusModule(mongoose) {
         },
     }, {
         _id: false,
+        id: false,
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         uuid: {

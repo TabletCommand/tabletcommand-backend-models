@@ -408,9 +408,7 @@ function CADIncidentSchema(mongoose) {
             // Remove fields that should not be here
             delete ret.apikey;
             strictSchema(doc.schema, ret);
-            // if (ret._id) {
             ret.id = ret._id;
-            // }
         },
     });
     modelSchema.virtual("id").get(function () {
