@@ -25,17 +25,87 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
     CommandChannel: string;
     CommonPlaceName: string;
     cross_streets: string;
+    deviceTime: string;
     extended: boolean;
+    FireMap: string;
     is_closed: boolean;
     last_view: string;
     location: string;
+    MapPages: string;
     managed: boolean;
     name: string;
     preference_location: string;
+    serverTime: string;
     slave_map_changed: boolean;
     source: string;
     TacticalAltChannel: string;
     TacticalChannel: string;
+    checklists: import("../helpers").MongooseInterface<{
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        built_in: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        isMandatory: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        items: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    active: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    checked: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    isMandatory: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    modified_date: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    position: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                    uuid: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+        modified_date: {
+            type: StringConstructor;
+            default: string;
+        };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        position: {
+            type: NumberConstructor;
+            default: number;
+        };
+        uuid: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     groups: import("../helpers").MongooseInterface<{
         location_on_map: {
             type: StringConstructor;
@@ -65,8 +135,8 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     active: {
-                        type: NumberConstructor;
-                        default: number;
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                     air_time: {
                         type: StringConstructor;
@@ -88,16 +158,16 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         };
                     };
                     AlarmAtDispatch: {
-                        type: StringConstructor;
-                        default: string;
+                        type: NumberConstructor;
+                        default: number;
                     };
                     api_unit_dispatch_number: {
                         type: StringConstructor;
                         default: string;
                     };
                     checked: {
-                        type: NumberConstructor;
-                        default: number;
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                     column_position: {
                         type: NumberConstructor;
@@ -112,12 +182,12 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         default: number;
                     };
                     isSupervisor: {
-                        type: NumberConstructor;
-                        default: number;
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                     is_part_of_group: {
-                        type: NumberConstructor;
-                        default: number;
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                     location_on_map: {
                         type: StringConstructor;
@@ -169,6 +239,24 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
         };
     }>[];
+    hazards: import("../helpers").MongooseInterface<{
+        location_on_scene: {
+            type: StringConstructor;
+            default: string;
+        };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        radius: {
+            type: NumberConstructor;
+            default: number;
+        };
+        time: {
+            type: NumberConstructor;
+            default: number;
+        };
+    }>[];
     history: import("../helpers").MongooseInterface<{
         message: {
             type: StringConstructor;
@@ -185,6 +273,10 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         entity_id: {
             type: NumberConstructor;
             default: number;
+        };
+        user: {
+            type: StringConstructor;
+            default: string;
         };
     }>[];
     notes: import("../helpers").MongooseInterface<{
@@ -204,11 +296,25 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             type: NumberConstructor;
             default: number;
         };
+        user: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
+    radioChannels: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        channel: {
+            type: StringConstructor;
+            default: string;
+        };
     }>[];
     units: import("../helpers").MongooseInterface<{
         active: {
-            type: NumberConstructor;
-            default: number;
+            type: BooleanConstructor;
+            default: boolean;
         };
         air_time: {
             type: StringConstructor;
@@ -230,16 +336,16 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             };
         };
         AlarmAtDispatch: {
-            type: StringConstructor;
-            default: string;
+            type: NumberConstructor;
+            default: number;
         };
         api_unit_dispatch_number: {
             type: StringConstructor;
             default: string;
         };
         checked: {
-            type: NumberConstructor;
-            default: number;
+            type: BooleanConstructor;
+            default: boolean;
         };
         column_position: {
             type: NumberConstructor;
@@ -254,12 +360,12 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: number;
         };
         isSupervisor: {
-            type: NumberConstructor;
-            default: number;
+            type: BooleanConstructor;
+            default: boolean;
         };
         is_part_of_group: {
-            type: NumberConstructor;
-            default: number;
+            type: BooleanConstructor;
+            default: boolean;
         };
         location_on_map: {
             type: StringConstructor;

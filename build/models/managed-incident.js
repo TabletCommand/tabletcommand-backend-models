@@ -22,6 +22,10 @@ async function ManagedIncidentModule(mongoose) {
             type: Number,
             default: 0,
         },
+        user: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
         id: false,
@@ -41,8 +45,8 @@ async function ManagedIncidentModule(mongoose) {
     });
     const IncidentUnit = (0, helpers_1.createSchema)(Schema, {
         active: {
-            type: Number,
-            default: 0,
+            type: Boolean,
+            default: true,
         },
         air_time: {
             type: String,
@@ -52,16 +56,16 @@ async function ManagedIncidentModule(mongoose) {
             type: AssignmentItem,
         },
         AlarmAtDispatch: {
-            type: String,
-            default: "",
+            type: Number,
+            default: 0,
         },
         api_unit_dispatch_number: {
             type: String,
             default: "",
         },
         checked: {
-            type: Number,
-            default: 0,
+            type: Boolean,
+            default: false,
         },
         column_position: {
             type: Number,
@@ -76,17 +80,22 @@ async function ManagedIncidentModule(mongoose) {
             default: 0,
         },
         isSupervisor: {
-            type: Number,
-            default: 0,
+            type: Boolean,
+            default: false,
         },
         is_part_of_group: {
-            type: Number,
-            default: 0,
+            type: Boolean,
+            default: false,
         },
         location_on_map: {
             type: String,
             default: "",
         },
+        // Currently not set
+        // modified: {
+        //   type: Date,
+        //   default: currentDate,
+        // },
         modified_date: {
             type: String,
             default: "",
@@ -165,6 +174,110 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const IncidentHazard = (0, helpers_1.createSchema)(Schema, {
+        location_on_scene: {
+            type: String,
+            default: "",
+        },
+        name: {
+            type: String,
+            default: "",
+        },
+        radius: {
+            type: Number,
+            default: 0,
+        },
+        time: {
+            type: Number,
+            default: 0,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const IncidentChecklistItem = (0, helpers_1.createSchema)(Schema, {
+        active: {
+            type: Boolean,
+            default: true
+        },
+        checked: {
+            type: Boolean,
+            default: false
+        },
+        isMandatory: {
+            type: Boolean,
+            default: false
+        },
+        modified_date: {
+            type: String,
+            default: "",
+        },
+        name: {
+            type: String,
+            default: "",
+        },
+        position: {
+            type: Number,
+            default: 0,
+        },
+        uuid: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const IncidentChecklist = (0, helpers_1.createSchema)(Schema, {
+        active: {
+            type: Boolean,
+            default: true
+        },
+        built_in: {
+            type: Boolean,
+            default: false
+        },
+        isMandatory: {
+            type: Boolean,
+            default: false
+        },
+        items: {
+            type: [IncidentChecklistItem],
+            default: [],
+        },
+        modified_date: {
+            type: String,
+            default: "",
+        },
+        name: {
+            type: String,
+            default: "",
+        },
+        position: {
+            type: Number,
+            default: 0,
+        },
+        uuid: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const RadioChannel = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            type: String,
+            default: "",
+        },
+        channel: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -224,25 +337,52 @@ async function ManagedIncidentModule(mongoose) {
         CommandChannel: String,
         CommonPlaceName: String,
         cross_streets: String,
+        deviceTime: {
+            type: String,
+            default: "",
+        },
         extended: {
             type: Boolean,
             default: false
         },
-        is_closed: Boolean,
+        FireMap: {
+            type: String,
+            default: "",
+        },
+        is_closed: {
+            type: Boolean,
+            default: false
+        },
         last_view: String,
         location: String,
+        MapPages: {
+            type: String,
+            default: "",
+        },
         managed: {
             type: Boolean,
             default: true,
         },
         name: String,
         preference_location: String,
+        serverTime: {
+            type: String,
+            default: "",
+        },
         slave_map_changed: Boolean,
         source: String,
         TacticalAltChannel: String,
         TacticalChannel: String,
+        checklists: {
+            type: [IncidentChecklist],
+            default: [],
+        },
         groups: {
             type: [IncidentGroup],
+            default: [],
+        },
+        hazards: {
+            type: [IncidentHazard],
             default: [],
         },
         // Incident History
@@ -253,6 +393,10 @@ async function ManagedIncidentModule(mongoose) {
         // Incident Notes
         notes: {
             type: [HistoryItem],
+            default: [],
+        },
+        radioChannels: {
+            type: [RadioChannel],
             default: [],
         },
         units: {
