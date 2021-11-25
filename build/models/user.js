@@ -151,9 +151,9 @@ async function UserModule(mongoose) {
             type: String,
             default: "",
         },
-        tokenExpireDate: {
-            type: Number,
-            default: 0,
+        tokenExpireAt: {
+            type: Date,
+            default: helpers_1.currentDate,
         },
         shareLocationPhone: {
             type: Boolean,
@@ -190,7 +190,8 @@ async function UserModule(mongoose) {
                 type: Number,
             },
             defaultCenter: {
-                type: [Number]
+                type: [Number],
+                default: [],
             },
             defaultMap: {
                 type: String
