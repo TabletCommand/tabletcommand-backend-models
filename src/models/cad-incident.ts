@@ -1,14 +1,14 @@
 import {
-  MongooseModule,
-  MongooseDocument,
+  createModel,
   createSchema,
   currentDate,
   DocumentTypeFromSchema,
-  ModelFromSchema,
-  createModel,
   FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
+  ModelFromSchema,
   ModelTypeFromTypeSchemaFunction,
+  MongooseDocument,
+  MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
 

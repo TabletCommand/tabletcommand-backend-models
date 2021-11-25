@@ -419,12 +419,6 @@ async function ManagedIncidentModule(mongoose) {
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id;
-        },
-    });
-    modelSchema.virtual("id").get(function () {
-        return this._id.toString();
     });
     return (0, helpers_1.createModel)(mongoose, "ManagedIncident", modelSchema);
 }

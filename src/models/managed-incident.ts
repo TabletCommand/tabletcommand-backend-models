@@ -1,13 +1,11 @@
 import * as uuid from "uuid";
 import {
-  createSchema,
   createModel,
+  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
-  MongooseModule,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
 
@@ -444,13 +442,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
-  });
-
-  modelSchema.virtual("id").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
-    return this._id.toString();
   });
 
   return createModel(mongoose, "ManagedIncident", modelSchema);

@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 import * as uuid from "uuid";
 export declare function CADIncidentSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../helpers").MongooseInterface<{
