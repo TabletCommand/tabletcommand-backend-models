@@ -1,10 +1,14 @@
+import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import * as uuid from "uuid";
 import {
   createModel,
   createSchema,
   currentDate,
+  DocumentTypeFromSchema,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  ModelFromSchema,
+  MongooseDocument,
   MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
@@ -442,8 +446,17 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
+    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
+      ret.id = ret._id;
+    },
   });
 
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+    // tslint:disable-next-line: no-unsafe-any
+    return this._id.toString();
+  });
+
+  modelSchema.plugin(mongooseLeanVirtuals);
   return createModel(mongoose, "ManagedIncident", modelSchema);
 }
 

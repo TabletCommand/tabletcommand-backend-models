@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ManagedIncidentModule = void 0;
+const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function ManagedIncidentModule(mongoose) {
@@ -419,7 +420,15 @@ async function ManagedIncidentModule(mongoose) {
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
+        transform(doc, ret) {
+            ret.id = ret._id;
+        },
     });
+    modelSchema.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
+        return this._id.toString();
+    });
+    modelSchema.plugin(mongooseLeanVirtuals);
     return (0, helpers_1.createModel)(mongoose, "ManagedIncident", modelSchema);
 }
 exports.ManagedIncidentModule = ManagedIncidentModule;
