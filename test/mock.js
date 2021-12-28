@@ -410,7 +410,9 @@ module.exports = function(dependencies) {
     webDisclaimer: {
       message: "test",
       enabled: true
-    }
+    },
+    notificationEmails: ["test@test.com"],
+    externalNotificationsEnabled: true
   };
 
   const esriMap = {

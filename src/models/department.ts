@@ -157,7 +157,14 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-
+    notificationEmails: {
+      type: [String],
+      default: []
+    },
+    externalNotificationsEnabled: {
+      type: Boolean,
+      default: false
+    },
     // CAD Features
     cadBidirectionalEnabled: {
       type: Boolean,

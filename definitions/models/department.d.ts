@@ -16,6 +16,8 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     apikey: string;
     partialApiKey: string;
     cadEmailUsername: string;
+    notificationEmails: string[];
+    externalNotificationsEnabled: boolean;
     cadBidirectionalEnabled: boolean;
     cadOneWayVehiclesEnabled: boolean;
     cadAllowedIPAddresses: string[];

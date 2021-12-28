@@ -58,5 +58,7 @@ describe("Department", function() {
     assert.equal(sut.webDisclaimer.message, testItem.webDisclaimer.message);
     assert.equal(sut.webDisclaimer.enabled, testItem.webDisclaimer.enabled);
     assert.equal(JSON.stringify(sut.licensing), JSON.stringify(testItem.licensing));
+    assert.equal(sut.externalNotificationsEnabled, testItem.externalNotificationsEnabled);
+    assert.equal(sut.notificationEmails.length, testItem.notificationEmails.length);
   });
 });
