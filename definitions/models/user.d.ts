@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, currentDate } from "../helpers";
 export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     nick: string;
     email: string;
@@ -47,6 +47,34 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     sessionCountiPhone: number;
     sessionCountiPad: number;
     rtsAuthKey: string;
+    pubNubV2: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        runAt: {
+            type: DateConstructor;
+            default: string;
+        };
+    }>;
+    pubNubV3: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        runAt: {
+            type: DateConstructor;
+            default: string;
+        };
+    }>;
     token: string;
     tokenExpireAt: string;
     shareLocationPhone: boolean;

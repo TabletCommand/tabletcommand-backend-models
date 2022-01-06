@@ -19,7 +19,7 @@ export async function UserModule(mongoose: MongooseModule) {
   const EsriAuth = EsriAuthSchema(mongoose);
   const EsriError = EsriErrorSchema(mongoose);
 
-  const vehicleSchema = createSchema(Schema, {
+  const VehicleSchema = createSchema(Schema, {
     radioName: {
       type: String,
       default: "",
@@ -32,6 +32,25 @@ export async function UserModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
+
+  const PubNubTokenSchema = createSchema(Schema, {
+    token: {
+      type: String,
+      default: "",
+    },
+    expireAt: {
+      type: Date,
+      default: currentDate,
+    },
+    runAt: {
+      type: Date,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const modelSchema = createSchema(Schema, {
     nick: {
       type: String,
@@ -145,7 +164,7 @@ export async function UserModule(mongoose: MongooseModule) {
       default: "",
     },
     vehicle: {
-      type: vehicleSchema,
+      type: VehicleSchema,
       default: null,
     },
     sessionCountiPhone: {
@@ -157,10 +176,21 @@ export async function UserModule(mongoose: MongooseModule) {
       default: 1,
     },
 
+    // PubNub
     rtsAuthKey: {
       type: String,
       default: "",
     },
+    pubNubV2: {
+      type: PubNubTokenSchema,
+      default: null,
+    },
+    pubNubV3: {
+      type: PubNubTokenSchema,
+      default: null,
+    },
+
+    // Password Reset
     token: {
       type: String,
       default: "",
@@ -169,6 +199,7 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
+
     shareLocationPhone: {
       type: Boolean,
       default: false,
