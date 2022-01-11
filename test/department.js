@@ -1,5 +1,3 @@
-"use strict";
-
 const assert = require("chai").assert;
 
 const m = require("..");
@@ -37,7 +35,9 @@ describe("Department", function() {
     assert.isTrue(sut.personnelStaffingEnabled);
     assert.isTrue(sut.rtsEnabled);
     assert.equal(sut.rtsChannelPrefix, testItem.rtsChannelPrefix);
-    assert.equal(sut.rtsAuthKey, testItem.rtsAuthKey);
+    assert.equal(sut.pubNubV3.token, testItem.pubNubV3.token);
+    assert.equal(sut.pubNubV3.expireAt.toISOString(), testItem.pubNubV3.expireAt);
+    assert.equal(sut.pubNubV3.runAt.toISOString(), testItem.pubNubV3.runAt);
     assert.equal(sut.signupKey, testItem.signupKey);
     assert.equal(sut.incidentTypes.length, 1);
     assert.equal(sut.agencyIds.length, 1);

@@ -4,8 +4,10 @@ exports.DepartmentModule = void 0;
 const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
+const pubnub_token_1 = require("./schema/pubnub-token");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const PubNubToken = (0, pubnub_token_1.default)(mongoose);
     const SafetyPriorityKeyword = (0, helpers_1.createSchema)(Schema, {
         priority: {
             type: Number,
@@ -285,9 +287,9 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
-        rtsAuthKey: {
-            type: String,
-            default: "",
+        pubNubV3: {
+            type: PubNubToken,
+            default: null,
         },
         // Move this to a different collection
         esriGeoJSONFilename: {

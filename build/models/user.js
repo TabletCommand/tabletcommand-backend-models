@@ -5,10 +5,12 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
+const pubnub_token_1 = require("./schema/pubnub-token");
 async function UserModule(mongoose) {
     const { Schema } = mongoose;
     const EsriAuth = (0, esri_auth_1.default)(mongoose);
     const EsriError = (0, esri_error_1.default)(mongoose);
+    const PubNubToken = (0, pubnub_token_1.default)(mongoose);
     const VehicleSchema = (0, helpers_1.createSchema)(Schema, {
         radioName: {
             type: String,
@@ -16,23 +18,6 @@ async function UserModule(mongoose) {
         },
         vehicleId: {
             type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    const PubNubTokenSchema = (0, helpers_1.createSchema)(Schema, {
-        token: {
-            type: String,
-            default: "",
-        },
-        expireAt: {
-            type: Date,
-            default: helpers_1.currentDate,
-        },
-        runAt: {
-            type: Date,
             default: "",
         },
     }, {
@@ -166,11 +151,11 @@ async function UserModule(mongoose) {
             default: "",
         },
         pubNubV2: {
-            type: PubNubTokenSchema,
+            type: PubNubToken,
             default: null,
         },
         pubNubV3: {
-            type: PubNubTokenSchema,
+            type: PubNubToken,
             default: null,
         },
         // Password Reset

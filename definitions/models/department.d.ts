@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { currentDate, MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function DepartmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectID;
     uuid: string;
@@ -59,7 +59,20 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     mowsEnabled: boolean;
     rtsEnabled: boolean;
     rtsChannelPrefix: string;
-    rtsAuthKey: string;
+    pubNubV3: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        runAt: {
+            type: DateConstructor;
+            default: string;
+        };
+    }>;
     esriGeoJSONFilename: string;
     customWebUrl: string;
     customWebName: string;

@@ -13,11 +13,13 @@ import {
 } from "../helpers";
 import EsriAuthSchema from "./schema/esri-auth";
 import EsriErrorSchema from "./schema/esri-error";
+import PubNubTokenSchema from "./schema/pubnub-token";
 
 export async function UserModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const EsriAuth = EsriAuthSchema(mongoose);
   const EsriError = EsriErrorSchema(mongoose);
+  const PubNubToken = PubNubTokenSchema(mongoose);
 
   const VehicleSchema = createSchema(Schema, {
     radioName: {
@@ -26,24 +28,6 @@ export async function UserModule(mongoose: MongooseModule) {
     },
     vehicleId: {
       type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
-
-  const PubNubTokenSchema = createSchema(Schema, {
-    token: {
-      type: String,
-      default: "",
-    },
-    expireAt: {
-      type: Date,
-      default: currentDate,
-    },
-    runAt: {
-      type: Date,
       default: "",
     },
   }, {
@@ -182,11 +166,11 @@ export async function UserModule(mongoose: MongooseModule) {
       default: "",
     },
     pubNubV2: {
-      type: PubNubTokenSchema,
+      type: PubNubToken,
       default: null,
     },
     pubNubV3: {
-      type: PubNubTokenSchema,
+      type: PubNubToken,
       default: null,
     },
 

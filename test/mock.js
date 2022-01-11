@@ -377,7 +377,11 @@ module.exports = function(dependencies) {
     personnelStaffingEnabled: true,
     rtsEnabled: true,
     rtsChannelPrefix: "CH_TEST",
-    rtsAuthKey: "CH_AUTH_KEY",
+    pubNubV3: {
+      token: "CH_AUTH_TOKEN",
+      expireAt: "2021-09-10T23:25:02.196Z",
+      runAt: "2021-09-10T08:25:02.196Z",
+    },
     agencyIds: [
       new mongoose.Types.ObjectId(agency._id)
     ],

@@ -13,9 +13,11 @@ import {
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import PubNubTokenSchema from "./schema/pubnub-token";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+  const PubNubToken = PubNubTokenSchema(mongoose);
 
   const SafetyPriorityKeyword = createSchema(Schema, {
     priority: {
@@ -296,6 +298,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false
     },
+    
     // RTS
     rtsEnabled: {
       type: Boolean,
@@ -305,9 +308,9 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-    rtsAuthKey: {
-      type: String,
-      default: "",
+    pubNubV3: {
+      type: PubNubToken,
+      default: null,
     },
 
     // Move this to a different collection
