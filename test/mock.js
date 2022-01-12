@@ -352,7 +352,9 @@ module.exports = function(dependencies) {
     modifiedDate: 1516577096,
     requestStatus: 0,
     incidentNumber: "INC19991",
-    capability: ""
+    capability: "",
+    owner: "user",
+    ownerId: "M1"
   };
 
   const cadVehicleStatusHistory = {

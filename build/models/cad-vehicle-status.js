@@ -68,6 +68,10 @@ async function CADVehicleStatusModule(mongoose) {
             type: String,
             default: "",
         },
+        ownerId: {
+            type: String,
+            default: "",
+        },
         incidentNumber: {
             type: String,
             default: "",

@@ -26,7 +26,6 @@ describe("CADVehicleStatus", function() {
     const item = new models.CADVehicleStatus(testItem);
     item.save(function(err, sut) {
       assert.isNull(err, "Should not err");
-
       assert.equal(testItem.uuid, sut.uuid);
       assert.equal(testItem.departmentId, sut.departmentId);
       assert.equal(testItem.vehicleId, sut.vehicleId);
@@ -39,6 +38,8 @@ describe("CADVehicleStatus", function() {
       assert.equal(testItem.requestStatus, sut.requestStatus);
       assert.equal(testItem.incidentNumber, sut.incidentNumber);
       assert.equal(testItem.capability, sut.capability)
+      assert.equal(testItem.owner, sut.owner)
+      assert.equal(testItem.ownerId, sut.ownerId)
 
       return done();
     });

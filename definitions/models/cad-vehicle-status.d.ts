@@ -13,6 +13,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
     modified: string;
     requestStatus: number;
     owner: string;
+    ownerId: string;
     incidentNumber: string;
     options: import("../helpers").MongooseInterface<{
         name: {
