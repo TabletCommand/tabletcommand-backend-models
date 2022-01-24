@@ -285,6 +285,10 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    expiration_date: {
+      type: Date,
+      default: null,
+    },
 
     // Address fields
     StreetName: {
