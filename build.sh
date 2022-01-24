@@ -17,9 +17,13 @@ if hash brew 2>/dev/null; then
     fi
 fi
 
-NODE_VERSION="v10.15.3"
+NODE_VERSION="v16.13.2"
 
-nvm install $NODE_VERSION
+nvm ls $NODE_VERSION
+if [[ $? -ne 0 ]] ; then
+    nvm install $NODE_VERSION
+fi
+
 nvm use $NODE_VERSION;
 npm install;
 npm test;
