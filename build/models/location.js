@@ -63,7 +63,7 @@ async function LocationModule(mongoose) {
         // in meters
         altitude: {
             type: Number,
-            default: 0,
+            default: -1,
         },
         // in degrees
         heading: {
@@ -73,7 +73,7 @@ async function LocationModule(mongoose) {
         // meters/sec (* 2.237 to convert to MPH)
         speed: {
             type: Number,
-            default: 0,
+            default: -1,
         },
         // Unsigned 32 Int that gets exposed as OBJECTID to ArcGIS Feature Services
         esriId: {
@@ -91,6 +91,15 @@ async function LocationModule(mongoose) {
             default: "",
         },
         opAreaName: {
+            type: String,
+            default: "",
+        },
+        // agency code for shared AVL unit
+        agencyCode: {
+            type: String,
+            default: "",
+        },
+        agencyName: {
             type: String,
             default: "",
         },

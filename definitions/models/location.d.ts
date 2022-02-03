@@ -31,6 +31,8 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     }>;
     opAreaCode: string;
     opAreaName: string;
+    agencyCode: string;
+    agencyName: string;
     shared: boolean;
     state: string;
     sendToCAD: boolean;
