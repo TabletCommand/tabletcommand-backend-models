@@ -63,7 +63,7 @@ async function LocationModule(mongoose) {
         // in meters
         altitude: {
             type: Number,
-            default: -1,
+            default: -9999,
         },
         // in degrees
         heading: {
