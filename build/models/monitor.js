@@ -34,6 +34,9 @@ async function MonitorModule(mongoose) {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,
         },
+        ticketId: {
+            type: String,
+        }
     }, {
         collection: "massive_monitor",
     });

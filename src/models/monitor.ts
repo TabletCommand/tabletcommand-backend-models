@@ -42,6 +42,9 @@ export async function MonitorModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
+    ticketId: {
+      type: String,
+    }
   }, {
     collection: "massive_monitor",
   });
