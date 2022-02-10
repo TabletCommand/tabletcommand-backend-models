@@ -18,67 +18,73 @@ import {
 export async function BattalionModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const toJSONOpts = {
-      virtuals: true,
-      versionKey: false,
-      transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-        strictSchema(doc.schema, ret);
-        ret.id = ret._id;
-      },
+    virtuals: true,
+    versionKey: false,
+    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
+      strictSchema(doc.schema, ret);
+      ret.id = ret._id;
+    },
   };
 
   const BattalionUnit = createSchema(Schema, {
-      _id: {
-          type: Types.ObjectId,
-          auto: true,
-      },
-      name: {
-          type: String,
-          default: ""
-      },
-      friendly_id: {
-          type: String,
-          default: ""
-      },
-      personnel: {
-          type: Number,
-          default: 0
-      },
-      position: {
-          type: Number,
-          default: 1,
-      },
-      active: {
-          type: Boolean,
-          default: true,
-      },
-      isMandatory: {
-          type: Boolean,
-          default: false,
-      },
-      modified_date: {
-          type: String,
-      },
-      modified_unix_date: {
-          type: Number,
-          default: retrieveCurrentUnixTime,
-      },
-      modified: {
-        type: Date,
-        default: currentDate,
-      },
-      uuid: {
-          type: String,
-          default: uuid.v4,
-      },
-      api_battalion_id: {
-          type: String,
-      },
-      battalion_uuid: {
-          type: String,
-      },
-      battalion_name: {
-          type: String,
-      },
+    _id: {
+      type: Types.ObjectId,
+      auto: true,
+    },
+    name: {
+      type: String,
+      default: ""
+    },
+    friendly_id: {
+      type: String,
+      default: ""
+    },
+    personnel: {
+      type: Number,
+      default: 0
+    },
+    position: {
+      type: Number,
+      default: 1,
+    },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    isMandatory: {
+      type: Boolean,
+      default: false,
+    },
+    modified_date: {
+      type: String,
+    },
+    modified_unix_date: {
+      type: Number,
+      default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
+    },
+    uuid: {
+      type: String,
+      default: uuid.v4,
+    },
+    // Deprecated: remove these from there, but include them in the output.
+    api_battalion_id: {
+      type: String,
+    },
+    battalion_uuid: {
+      type: String,
+    },
+    battalion_name: {
+      type: String,
+    },
+    agencyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Agency",
+      default: null,
+    },
   }, {});
 
   BattalionUnit.set("toJSON", toJSONOpts);
@@ -150,13 +156,13 @@ export async function BattalionModule(mongoose: MongooseModule) {
     },
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
-    Object.keys(ret).forEach(function(element) {
+    Object.keys(ret).forEach(function (element) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;

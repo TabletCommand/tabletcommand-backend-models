@@ -150,12 +150,6 @@ async function LocationModule(mongoose) {
         departmentId: 1,
         modified: 1,
     });
-    modelSchema.index({
-        locationGeoJSON: "2dsphere",
-        shared: 1,
-        departmentId: 1,
-        modified: 1,
-    });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
     return (0, helpers_1.createModel)(mongoose, "Location", modelSchema);

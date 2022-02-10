@@ -71,6 +71,11 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         battalion_name: {
             type: StringConstructor;
         };
+        agencyId: {
+            type: typeof import("mongoose").Schema.Types.ObjectId;
+            ref: string;
+            default: null;
+        };
     }>[];
 }, {}> & {
     __methods?: unknown;

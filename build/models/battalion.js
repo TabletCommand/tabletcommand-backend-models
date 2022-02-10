@@ -57,6 +57,7 @@ async function BattalionModule(mongoose) {
             type: String,
             default: uuid.v4,
         },
+        // Deprecated: remove these from there, but include them in the output.
         api_battalion_id: {
             type: String,
         },
@@ -65,6 +66,11 @@ async function BattalionModule(mongoose) {
         },
         battalion_name: {
             type: String,
+        },
+        agencyId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Agency",
+            default: null,
         },
     }, {});
     BattalionUnit.set("toJSON", toJSONOpts);
