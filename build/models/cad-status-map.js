@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CADStatusMapModule = void 0;
-const _ = require("lodash");
 const helpers_1 = require("../helpers");
 async function CADStatusMapModule(mongoose) {
     const Schema = mongoose.Schema;
@@ -18,14 +17,6 @@ async function CADStatusMapModule(mongoose) {
     }, {
         _id: false,
         id: false,
-    });
-    // Using hook instead of default values,
-    // so we keep the db value if no value was sent by the API/CAD
-    ToStatusIdSchema.pre("save", function (next) {
-        if (_.isUndefined(this.userEnabled) || _.isNull(this.userEnabled)) {
-            this.userEnabled = false;
-        }
-        next();
     });
     // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
     const modelSchema = (0, helpers_1.createSchema)(Schema, {

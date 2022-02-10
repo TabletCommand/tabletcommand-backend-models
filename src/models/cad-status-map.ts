@@ -1,4 +1,3 @@
-import * as _ from "lodash";
 import {
   createModel,
   createSchema,
@@ -7,7 +6,6 @@ import {
   ModelTypeFromTypeSchemaFunction,
   MongooseModule,
   ReplaceModelReturnType,
-  TypedDocument,
 } from "../helpers";
 
 export async function CADStatusMapModule(mongoose: MongooseModule) {
@@ -26,15 +24,6 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
   }, {
     _id: false,
     id: false,
-  });
-
-  // Using hook instead of default values,
-  // so we keep the db value if no value was sent by the API/CAD
-  ToStatusIdSchema.pre("save", function(this: TypedDocument<typeof ToStatusIdSchema>, next) {
-    if (_.isUndefined(this.userEnabled) || _.isNull(this.userEnabled)) {
-      this.userEnabled = false;
-    }
-    next();
   });
 
   // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
