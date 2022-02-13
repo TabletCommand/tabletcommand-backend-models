@@ -31,6 +31,10 @@ async function TemplateModule(mongoose) {
             type: Number,
             default: 0,
         },
+        uuid: {
+            type: String,
+            default: uuid.v4,
+        },
     }, {
         _id: false,
         id: false,

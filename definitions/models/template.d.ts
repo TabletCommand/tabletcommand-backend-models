@@ -1,4 +1,5 @@
 /// <reference types="mongoose" />
+import * as uuid from "uuid";
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function TemplateModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectID;
@@ -34,6 +35,10 @@ export declare function TemplateModule(mongoose: MongooseModule): Promise<import
         position: {
             type: NumberConstructor;
             default: number;
+        };
+        uuid: {
+            type: StringConstructor;
+            default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
         };
     }>[];
     agencyId: {

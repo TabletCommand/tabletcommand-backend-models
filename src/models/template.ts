@@ -44,6 +44,10 @@ export async function TemplateModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    uuid: {
+      type: String,
+      default: uuid.v4,
+    },
   }, {
     _id: false,
     id: false,
@@ -117,12 +121,12 @@ export async function TemplateModule(mongoose: MongooseModule) {
     },
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     return this._id.toHexString();
   });
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
-    Object.keys(ret).forEach(function(element) {
+    Object.keys(ret).forEach(function (element) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;
