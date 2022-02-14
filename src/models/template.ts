@@ -71,9 +71,6 @@ export async function TemplateModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    modified_date: {
-      type: String,
-    },
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
