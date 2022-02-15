@@ -7,7 +7,6 @@ export declare function TemplateModule(mongoose: MongooseModule): Promise<import
     userId: string;
     uuid: string;
     isMandatory: boolean;
-    modified_date: string;
     modified_unix_date: number;
     modified: string;
     departmentId: string;

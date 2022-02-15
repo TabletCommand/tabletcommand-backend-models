@@ -47,6 +47,7 @@ describe("Department", function() {
     assert.isFalse(sut.shareLocationPhones);
     assert.isTrue(sut.shareLocationTablets);
     assert.isFalse(sut.cadOneWayVehiclesEnabled);
+    assert.isFalse(sut.cadGetLocationEnabled);
     assert.isTrue(sut.mowsEnabled);
     assert.isTrue(sut.shareAVL.enabled);
     assert.equal(sut.shareAVL.opAreaCode, testItem.shareAVL.opAreaCode);

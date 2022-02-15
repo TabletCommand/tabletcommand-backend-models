@@ -180,6 +180,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [String],
       default: [],
     },
+    cadGetLocationEnabled: {
+      type: Boolean,
+      default: false
+    },
     connectivity: {
       incident: {
         enabled: {

@@ -57,9 +57,6 @@ async function TemplateModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        modified_date: {
-            type: String,
-        },
         modified_unix_date: {
             type: Number,
             default: helpers_1.retrieveCurrentUnixTime,

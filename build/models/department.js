@@ -162,6 +162,10 @@ async function DepartmentModule(mongoose) {
             type: [String],
             default: [],
         },
+        cadGetLocationEnabled: {
+            type: Boolean,
+            default: false
+        },
         connectivity: {
             incident: {
                 enabled: {

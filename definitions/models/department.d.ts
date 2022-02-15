@@ -21,6 +21,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     cadBidirectionalEnabled: boolean;
     cadOneWayVehiclesEnabled: boolean;
     cadAllowedIPAddresses: string[];
+    cadGetLocationEnabled: boolean;
     connectivity: {
         incident: {
             enabled: boolean;
