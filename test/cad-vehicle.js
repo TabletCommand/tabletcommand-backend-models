@@ -35,6 +35,7 @@ describe("CADVehicle", function() {
       assert.equal(testItem.station.code, sut.station.code);
       assert.equal(testItem.station.name, sut.station.name);
       assert.equal(testItem.station.capability, sut.station.capability);
+      assert.isFalse(sut.locationToCAD);
 
       return done();
     });
