@@ -184,6 +184,7 @@ async function UserModule(mongoose) {
             default: false,
         },
         // ArcGIS Auth. These fields is named auth/authError in the main collection
+        // These store the users' arcGISAuth (new account)
         arcGISAuth: {
             type: EsriAuth,
             default: null,

@@ -175,7 +175,7 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
             type: StringConstructor;
             default: null;
         };
-        arcGISRoot: {
+        arcGISAuth: {
             type: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     username: {
@@ -544,7 +544,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         };
     }>;
     arcGISGroupId: string;
-    arcGISRoot: import("../helpers").MongooseInterface<{
+    arcGISAuth: import("../helpers").MongooseInterface<{
         username: {
             type: StringConstructor;
             default: string;

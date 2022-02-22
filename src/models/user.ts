@@ -203,6 +203,7 @@ export async function UserModule(mongoose: MongooseModule) {
     },
 
     // ArcGIS Auth. These fields is named auth/authError in the main collection
+    // These store the users' arcGISAuth (new account)
     arcGISAuth: {
       type: EsriAuth,
       default: null,
@@ -211,6 +212,7 @@ export async function UserModule(mongoose: MongooseModule) {
       type: EsriError,
       default: null,
     },
+
     // Off Duty Allowed for this user
     offDutyEnabled: {
       type: Boolean,

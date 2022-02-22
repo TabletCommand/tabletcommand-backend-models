@@ -77,8 +77,8 @@ function EsriSchema(mongoose) {
             type: String,
             default: null,
         },
-        // ArcGIS user used to configure the ArcGIS group and all the users from that group
-        arcGISRoot: {
+        // ArcGIS user used for fallback when a new user has no ArcGIS account yet
+        arcGISAuth: {
             type: EsriAuth,
             default: null,
         },
