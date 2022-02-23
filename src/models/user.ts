@@ -234,6 +234,10 @@ export async function UserModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false
     },
+    logOffEnabled: {
+      type: Boolean,
+      default: false
+    },
   }, {
     collection: "sys_user",
   });

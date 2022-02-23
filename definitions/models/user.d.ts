@@ -128,6 +128,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         defaultMap: string;
     };
     locationToCAD: boolean;
+    logOffEnabled: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -214,6 +214,10 @@ async function UserModule(mongoose) {
             type: Boolean,
             default: false
         },
+        logOffEnabled: {
+            type: Boolean,
+            default: false
+        },
     }, {
         collection: "sys_user",
     });
