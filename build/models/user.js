@@ -209,6 +209,10 @@ async function UserModule(mongoose) {
             defaultMap: {
                 type: String
             },
+            locationToCAD: {
+                type: Boolean,
+                default: false
+            },
         },
     }, {
         collection: "sys_user",
