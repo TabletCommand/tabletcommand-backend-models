@@ -229,10 +229,10 @@ export async function UserModule(mongoose: MongooseModule) {
       defaultMap: {
         type: String
       },
-      locationToCAD: {
-        type: Boolean,
-        default: false
-      },
+    },
+    locationToCAD: {
+      type: Boolean,
+      default: false
     },
   }, {
     collection: "sys_user",

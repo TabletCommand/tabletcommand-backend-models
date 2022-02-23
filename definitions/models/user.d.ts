@@ -126,8 +126,8 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         defaultZoomLevel: number;
         defaultCenter: number[];
         defaultMap: string;
-        locationToCAD: boolean;
     };
+    locationToCAD: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;
