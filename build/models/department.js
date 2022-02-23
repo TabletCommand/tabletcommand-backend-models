@@ -354,6 +354,10 @@ async function DepartmentModule(mongoose) {
                 default: "",
             },
         },
+        speedReportingEnabled: {
+            type: Boolean,
+            default: false,
+        },
         accountType: {
             type: String,
             default: "production"

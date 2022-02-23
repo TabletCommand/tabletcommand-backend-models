@@ -302,7 +302,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false
     },
-    
+
     // RTS
     rtsEnabled: {
       type: Boolean,
@@ -380,6 +380,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         default: "",
       },
     },
+    speedReportingEnabled: {
+      type: Boolean,
+      default: false,
+    },
     accountType: {
       type: String,
       default: "production"
@@ -413,7 +417,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
   });
 
-  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
+  modelSchema.virtual("id").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toHexString();
   });
 

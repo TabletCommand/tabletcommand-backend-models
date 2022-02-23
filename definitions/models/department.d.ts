@@ -110,6 +110,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         opAreaName: string;
         opAreaCode: string;
     };
+    speedReportingEnabled: boolean;
     accountType: string;
     timeZone: string;
     remoteLoggingEnabled: boolean;
