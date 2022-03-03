@@ -16,10 +16,8 @@ module.exports = {
     project: "./src/tsconfig.json"
   },
   rules: {
-    "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-empty-interface": 0,
-    "@typescript-eslint/require-await": 0,    
-    "space-before-function-paren": [0],
+    "@typescript-eslint/require-await": 0,
     quotes: [2, "double"],
     semi: [2, "always"],
 
