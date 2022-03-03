@@ -40,8 +40,8 @@ describe("ArcGISGroup", function() {
     assert.equal(sut.owner, testItem.owner);
     assert.equal(sut.protected, testItem.protected);
 
-    assert.equal(sut.resolvedDepartments.length, 1);
-    const dept = _.first(sut.resolvedDepartments);
+    assert.equal(sut.linkedDepartments.length, 1);
+    const dept = _.first(sut.linkedDepartments);
     assert.equal(dept.department, "Demo RTS Fire Department");
     assert.equal(dept.departmentId, "558365a198b2fa4278000053");
     assert.equal(dept.authUsername, "tabletcmd");

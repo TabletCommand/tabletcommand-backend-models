@@ -124,11 +124,6 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
       default: [],
     },
 
-    // departments that are linked to this group via group.user = dept.auth
-    resolvedDepartments: {
-      type: [ArcGISDepartment],
-      default: [],
-    },
     // departments that are linked via arcGISGroupId (linked by a super admin)
     linkedDepartments: {
       type: [ArcGISDepartment],
