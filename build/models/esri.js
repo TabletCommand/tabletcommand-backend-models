@@ -73,9 +73,9 @@ function EsriSchema(mongoose) {
             default: null,
         },
         // Link to ArcGISGroup
-        arcGISGroupId: {
-            type: String,
-            default: null,
+        arcGISGroupIds: {
+            type: [String],
+            default: [],
         },
         // ArcGIS user used for fallback when a new user has no ArcGIS account yet
         arcGISAuth: {
