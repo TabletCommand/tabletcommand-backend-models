@@ -42,7 +42,15 @@
     "gulp-shell": "^0.8.0",
     "mocha": "^9.2.1",
     "ts-node": "^10.7.0",
+    "type-coverage": "^2.21.0",
     "typescript": "^4.6.2",
     "yargs-parser": ">=21.0.1"
+  },
+  "typeCoverage": {
+    "atLeast": 99.80,
+    "ignoreFiles": [
+      "definitions/**/*.ts",
+      "src/test/**/*.ts"
+    ]
   }
 }

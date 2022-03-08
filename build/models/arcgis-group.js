@@ -113,7 +113,7 @@ async function ArcGISGroupModule(mongoose) {
             type: [String],
             default: [],
         },
-        // departments that are linked via arcGISGroupIds (linked by a super admin)
+        // departments that are linked via arcGISGroupId (linked by a super admin)
         linkedDepartments: {
             type: [ArcGISDepartment],
             default: [],
