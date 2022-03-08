@@ -137,7 +137,12 @@ async function LocationModule(mongoose) {
             latitude: 0,
             longitude: 0
         };
-        if (this && this.locationGeoJSON && this.locationGeoJSON.coordinates && this.locationGeoJSON.coordinates.length === 2) {
+        if (this && this.locationGeoJSON &&
+            this.locationGeoJSON.coordinates &&
+            this.locationGeoJSON.coordinates[0] &&
+            Number.isFinite(this.locationGeoJSON.coordinates[0]) &&
+            this.locationGeoJSON.coordinates[1] &&
+            Number.isFinite(this.locationGeoJSON.coordinates[1])) {
             location.longitude = this.locationGeoJSON.coordinates[0];
             location.latitude = this.locationGeoJSON.coordinates[1];
         }

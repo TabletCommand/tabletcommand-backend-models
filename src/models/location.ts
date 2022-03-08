@@ -144,23 +144,29 @@ export async function LocationModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     return this._id.toHexString();
   });
 
-  modelSchema.virtual("location").get(function(this: { locationGeoJSON: { coordinates: number[] }} | null | undefined) {
+  modelSchema.virtual("location").get(function (this: { locationGeoJSON: { coordinates: number[] } } | null | undefined) {
     const location = {
       latitude: 0,
       longitude: 0
     };
-    if (this && this.locationGeoJSON && this.locationGeoJSON.coordinates && this.locationGeoJSON.coordinates.length === 2) {
+    if (this && this.locationGeoJSON &&
+      this.locationGeoJSON.coordinates &&
+      this.locationGeoJSON.coordinates[0] &&
+      Number.isFinite(this.locationGeoJSON.coordinates[0]) &&
+      this.locationGeoJSON.coordinates[1] &&
+      Number.isFinite(this.locationGeoJSON.coordinates[1])
+    ) {
       location.longitude = this.locationGeoJSON.coordinates[0];
       location.latitude = this.locationGeoJSON.coordinates[1];
     }
     return location;
   });
 
-   // Create GeoJSON index
+  // Create GeoJSON index
   modelSchema.index({
     locationGeoJSON: "2dsphere",
     shared: 1,

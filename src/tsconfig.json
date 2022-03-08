@@ -5,10 +5,15 @@
     "declarationMap": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
     "outDir": "../build",
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
+    // "noUnusedLocals": true,
   }
 }
