@@ -396,6 +396,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    logOffEnabled: {
+      type: Boolean,
+      default: false,
+    },
     licensing: {
       type: Object,
       default: LicensingDefault,

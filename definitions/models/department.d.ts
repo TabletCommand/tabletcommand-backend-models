@@ -114,6 +114,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     accountType: string;
     timeZone: string;
     remoteLoggingEnabled: boolean;
+    logOffEnabled: boolean;
     licensing: any;
     webDisclaimer: import("../helpers").MongooseInterface<{
         message: {

@@ -370,6 +370,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        logOffEnabled: {
+            type: Boolean,
+            default: false,
+        },
         licensing: {
             type: Object,
             default: LicensingDefault,
