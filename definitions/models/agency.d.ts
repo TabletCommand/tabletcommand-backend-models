@@ -36,6 +36,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
             default: boolean;
         };
     }>[];
+    licensing: any;
 }, {}> & {
     __methods?: unknown;
 }>;

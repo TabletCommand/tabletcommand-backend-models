@@ -30,6 +30,15 @@ export async function AgencyModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const LicensingDefault = {
+    "tcPro": 0,
+    "tcStatus": 0,
+    "tcMobile": 0,
+    "tcWeb": 0,
+    "fireMapperPro": 0,
+    "locationToCAD": 0
+  };
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -90,7 +99,11 @@ export async function AgencyModule(mongoose: MongooseModule) {
     crossStaffing: {
       type: [CrossStaffedUnit],
       default: []
-    }
+    },
+    licensing: {
+      type: Object,
+      default: LicensingDefault,
+    },
   }, {
     collection: "massive_agency",
   });
