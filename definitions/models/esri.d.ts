@@ -203,6 +203,10 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
             };
             default: null;
         };
+        arcGISMigrated: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         maps: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
@@ -566,6 +570,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
             default: null;
         };
     }>;
+    arcGISMigrated: boolean;
     maps: import("../helpers").MongooseInterface<{
         mapLayers: {
             type: (import("mongoose").Schema<any> & {

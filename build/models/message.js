@@ -10,7 +10,7 @@ async function MessageModule(mongoose) {
     const TypeSchema = (0, helpers_1.createSchema)(Schema, {
         type: {
             type: String,
-            default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
+            default: "", // generic, support, requestLogs, requestCADLogs, upgradeApp, upgradeOS
         },
         typeOpts: {
             type: Object,

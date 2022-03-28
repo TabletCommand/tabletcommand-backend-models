@@ -95,6 +95,10 @@ export function EsriSchema(mongoose: MongooseModule) {
       type: EsriAuth,
       default: null,
     },
+    arcGISMigrated: {
+      type: Boolean,
+      default: false,
+    },
 
     // maps
     maps: {

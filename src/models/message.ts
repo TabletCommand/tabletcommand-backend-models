@@ -17,7 +17,7 @@ export async function MessageModule(mongoose: MongooseModule) {
   const TypeSchema = createSchema(Schema, {
     type: {
       type: String,
-      default: "", // generic, support, requestLogs, upgradeApp, upgradeOS
+      default: "", // generic, support, requestLogs, requestCADLogs, upgradeApp, upgradeOS
     },
     typeOpts: {
       type: Object,

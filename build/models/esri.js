@@ -82,6 +82,10 @@ function EsriSchema(mongoose) {
             type: EsriAuth,
             default: null,
         },
+        arcGISMigrated: {
+            type: Boolean,
+            default: false,
+        },
         // maps
         maps: {
             type: [EsriMap],
