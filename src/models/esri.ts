@@ -99,6 +99,10 @@ export function EsriSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    review: {
+      type: Object,
+      default: {},
+    },
 
     // maps
     maps: {

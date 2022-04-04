@@ -207,6 +207,10 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
             type: BooleanConstructor;
             default: boolean;
         };
+        review: {
+            type: ObjectConstructor;
+            default: {};
+        };
         maps: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
@@ -571,6 +575,7 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
         };
     }>;
     arcGISMigrated: boolean;
+    review: any;
     maps: import("../helpers").MongooseInterface<{
         mapLayers: {
             type: (import("mongoose").Schema<any> & {

@@ -86,6 +86,10 @@ function EsriSchema(mongoose) {
             type: Boolean,
             default: false,
         },
+        review: {
+            type: Object,
+            default: {},
+        },
         // maps
         maps: {
             type: [EsriMap],
