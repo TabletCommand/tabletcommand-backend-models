@@ -101,6 +101,10 @@ async function ArcGISGroupModule(mongoose) {
             type: String,
             default: "",
         },
+        membershipAccess: {
+            type: String,
+            default: "",
+        },
         users: {
             type: [ArcGISGroupUser],
             default: [],

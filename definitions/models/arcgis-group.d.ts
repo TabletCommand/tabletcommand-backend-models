@@ -6,6 +6,7 @@ export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<imp
     protected: boolean;
     owner: string;
     access: string;
+    membershipAccess: string;
     users: import("../helpers").MongooseInterface<{
         username: {
             type: StringConstructor;
