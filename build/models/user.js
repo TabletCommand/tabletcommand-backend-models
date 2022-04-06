@@ -61,6 +61,12 @@ async function UserModule(mongoose) {
             ref: "Agency",
             default: null,
         },
+        agencyName: {
+            type: String,
+        },
+        agencyCode: {
+            type: String,
+        },
         managedAgencies: {
             type: [mongoose.Schema.Types.ObjectId],
             ref: "Agency",

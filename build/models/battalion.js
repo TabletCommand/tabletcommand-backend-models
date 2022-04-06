@@ -72,6 +72,12 @@ async function BattalionModule(mongoose) {
             ref: "Agency",
             default: null,
         },
+        agencyName: {
+            type: String,
+        },
+        agencyCode: {
+            type: String,
+        },
     }, {});
     BattalionUnit.set("toJSON", toJSONOpts);
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
@@ -119,6 +125,12 @@ async function BattalionModule(mongoose) {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
+        },
+        agencyName: {
+            type: String,
+        },
+        agencyCode: {
+            type: String,
         },
         position: {
             type: Number,

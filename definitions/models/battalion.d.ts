@@ -17,6 +17,8 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
         ref: never;
         default: never;
     };
+    agencyName: string;
+    agencyCode: string;
     position: number;
     units: import("../helpers").MongooseInterface<{
         _id: {
@@ -75,6 +77,12 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
             type: typeof import("mongoose").Schema.Types.ObjectId;
             ref: string;
             default: null;
+        };
+        agencyName: {
+            type: StringConstructor;
+        };
+        agencyCode: {
+            type: StringConstructor;
         };
     }>[];
 }, {}> & {

@@ -43,6 +43,8 @@ describe("User", function() {
       assert.isTrue(sut.shareLocationTablet);
       assert.equal(item.uuid, sut.uuid);
       assert.equal(item.agencyId, sut.agencyId);
+      assert.equal(item.agencyName, sut.agencyName);
+      assert.equal(item.agencyCode, sut.agencyCode);
       assert.equal(item.offDutyEnabled, sut.offDutyEnabled);
       assert.equal(item.managedAgencies[0], sut.managedAgencies[0]);
       assert.isTrue(sut.offlineMapsEnabled);
