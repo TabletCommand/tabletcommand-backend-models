@@ -90,6 +90,13 @@ function EsriSchema(mongoose) {
             type: Object,
             default: {},
         },
+        // last time when review cron was run
+        // if date is in the past, we should refresh this
+        // at run success, update this date to a date in the future
+        reviewRunAt: {
+            type: Date,
+            default: "",
+        },
         // maps
         maps: {
             type: [EsriMap],

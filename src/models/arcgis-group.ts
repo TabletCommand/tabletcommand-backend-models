@@ -138,6 +138,14 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
+
+    // last time when cron updated groups
+    // if date is in the past, we should refresh this
+    // at run success, update this date to a date in the future
+    runAt: {
+      type: Date,
+      default: "",
+    },
   }, {
     collection: "massive_arcgis_group",
   });
