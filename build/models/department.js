@@ -96,11 +96,19 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        address: {
+            type: String,
+            default: "",
+        },
         city: {
             type: String,
             default: "",
         },
         state: {
+            type: String,
+            default: "",
+        },
+        country: {
             type: String,
             default: "",
         },

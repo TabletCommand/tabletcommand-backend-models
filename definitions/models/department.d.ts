@@ -5,8 +5,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     uuid: string;
     department: string;
     fdid: string;
+    address: string;
     city: string;
     state: string;
+    country: string;
     contact_name: string;
     contact_phone: string;
     contact_email: string;

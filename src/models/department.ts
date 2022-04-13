@@ -114,11 +114,19 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    address: {
+      type: String,
+      default: "",
+    },
     city: {
       type: String,
       default: "",
     },
     state: {
+      type: String,
+      default: "",
+    },
+    country: {
       type: String,
       default: "",
     },
