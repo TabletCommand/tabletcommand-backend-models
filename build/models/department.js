@@ -108,6 +108,9 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        zipCode: {
+            type: String,
+        },
         country: {
             type: String,
             default: "",

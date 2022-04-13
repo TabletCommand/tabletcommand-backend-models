@@ -126,6 +126,9 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    zipCode: {
+      type: String,
+    },
     country: {
       type: String,
       default: "",
