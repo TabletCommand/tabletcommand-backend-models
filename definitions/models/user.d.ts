@@ -13,8 +13,6 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         ref: never;
         default: never;
     };
-    agencyName: string;
-    agencyCode: string;
     managedAgencies: {
         type: never;
         ref: never;

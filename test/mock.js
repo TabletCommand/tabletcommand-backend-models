@@ -118,8 +118,6 @@ module.exports = function(dependencies) {
     api_battalion_id: "123",
     battalion_uuid: "",
     battalion_name: "",
-    agencyName: agency.name,
-    agencyCode: agency.code,
   };
 
   const battalion = {
@@ -129,8 +127,6 @@ module.exports = function(dependencies) {
     userId: "123",
     departmentId: 123,
     AgencyId: new mongoose.Types.ObjectId(agency._id),
-    agencyName: agency.name,
-    agencyCode: agency.code,
     position: 1,
     units: [battalionUnit]
   };
@@ -747,8 +743,6 @@ module.exports = function(dependencies) {
     departmentId: "d123",
     isPro: true,
     agencyId: new mongoose.Types.ObjectId(agency._id),
-    agencyName: agency.agencyName,
-    agencyCode: agency.agencyCode,
     managedAgencies: [new mongoose.Types.ObjectId(agency._id)],
     shareLocationPhone: false,
     shareLocationTablet: true,

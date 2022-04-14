@@ -85,12 +85,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
       ref: "Agency",
       default: null,
     },
-    agencyName: {
-        type: String,
-    },
-    agencyCode: {
-        type: String,
-    },
   }, {});
 
   BattalionUnit.set("toJSON", toJSONOpts);
@@ -140,12 +134,6 @@ export async function BattalionModule(mongoose: MongooseModule) {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
-    },
-    agencyName: {
-        type: String,
-    },
-    agencyCode: {
-        type: String,
     },
     position: {
       type: Number,

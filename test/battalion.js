@@ -35,12 +35,8 @@ describe("Battalion", function() {
       assert.equal(testItem.userId, sut.userId);
       assert.equal(testItem.position, sut.position);
       assert.equal(testItem.agencyId, sut.agencyId);
-      assert.equal(testItem.agencyName, sut.agencyName);
-      assert.equal(testItem.agencyCode, sut.agencyCode);
       assert.equal(testItem.local_id, sut.local_id);
       assert.equal(testItem.units.length, 1);
-      assert.equal(testItem.units[0].agencyName, sut.units[0].agencyName);
-      assert.equal(testItem.units[0].agencyCode, sut.units[0].agencyCode);
       const expectedDate = new Date().valueOf() / 1000.0;
       const timeDelta = expectedDate - sut.modified_unix_date;
       assert.isTrue(timeDelta < 1);
