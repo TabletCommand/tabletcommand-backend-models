@@ -26,6 +26,23 @@ async function ArcGISGroupModule(mongoose) {
         _id: false,
         id: false,
     });
+    const ArcGISUserInvitation = (0, helpers_1.createSchema)(Schema, {
+        username: {
+            type: String,
+            default: "",
+        },
+        atDate: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
+        invitedBy: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const ArcGISDepartmentUser = (0, helpers_1.createSchema)(Schema, {
         // ArcGIS username
         username: {
@@ -115,6 +132,10 @@ async function ArcGISGroupModule(mongoose) {
         },
         externalOrgIds: {
             type: [String],
+            default: [],
+        },
+        invited: {
+            type: [ArcGISUserInvitation],
             default: [],
         },
         // departments that are linked via arcGISGroupId (linked by a super admin)

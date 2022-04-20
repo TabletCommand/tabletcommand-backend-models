@@ -34,6 +34,24 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const ArcGISUserInvitation = createSchema(Schema, {
+    username: {
+      type: String,
+      default: "",
+    },
+    atDate: {
+      type: Date,
+      default: currentDate,
+    },
+    invitedBy: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const ArcGISDepartmentUser = createSchema(Schema, {
     // ArcGIS username
     username: {
@@ -125,6 +143,10 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     },
     externalOrgIds: {
       type: [String],
+      default: [],
+    },
+    invited: {
+      type: [ArcGISUserInvitation],
       default: [],
     },
 

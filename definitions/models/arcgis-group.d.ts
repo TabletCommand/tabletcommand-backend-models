@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
+import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     groupId: string;
     title: string;
@@ -44,6 +44,20 @@ export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<imp
         };
     }>[];
     externalOrgIds: string[];
+    invited: import("../helpers").MongooseInterface<{
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        atDate: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        invitedBy: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     linkedDepartments: import("../helpers").MongooseInterface<{
         department: {
             type: StringConstructor;
