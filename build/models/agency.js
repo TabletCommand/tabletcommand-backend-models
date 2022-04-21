@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AgencyModule = void 0;
+exports.AgencyModule = exports.AgencySchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-async function AgencyModule(mongoose) {
+function AgencySchema(mongoose) {
     const { Schema, Types } = mongoose;
     const CrossStaffedUnit = (0, helpers_1.createSchema)(Schema, {
         radioName: {
@@ -99,6 +99,11 @@ async function AgencyModule(mongoose) {
         collection: "massive_agency",
     });
     modelSchema.set("autoIndex", false);
+    return modelSchema;
+}
+exports.AgencySchema = AgencySchema;
+async function AgencyModule(mongoose) {
+    const modelSchema = AgencySchema(mongoose);
     return (0, helpers_1.createModel)(mongoose, "Agency", modelSchema);
 }
 exports.AgencyModule = AgencyModule;

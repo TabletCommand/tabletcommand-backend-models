@@ -1,5 +1,98 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import * as uuid from "uuid";
+import { MongooseModule, retrieveCurrentUnixTime, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+export declare function AgencySchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+    _interface: import("../helpers").MongooseInterface<{
+        _id: {
+            type: import("mongoose").Types.ObjectIdConstructor;
+            auto: boolean;
+        };
+        code: {
+            type: StringConstructor;
+            default: string;
+        };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        domain: {
+            type: StringConstructor;
+            default: string;
+        };
+        personnelApiKey: {
+            type: StringConstructor;
+            default: string;
+            select: boolean;
+        };
+        agencyApiKey: {
+            type: StringConstructor;
+            default: string;
+            select: boolean;
+        };
+        uuid: {
+            type: StringConstructor;
+            default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+        };
+        modified_unix_date: {
+            type: NumberConstructor;
+            default: typeof retrieveCurrentUnixTime;
+        };
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        departmentId: {
+            type: typeof import("mongoose").Schema.Types.ObjectId;
+            ref: string;
+            required: boolean;
+        };
+        administrators: {
+            type: typeof import("mongoose").Schema.Types.ObjectId[];
+            ref: string;
+            default: never[];
+        };
+        personnelIntegration: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        personnelMonitorHours: {
+            type: NumberConstructor;
+            default: number;
+        };
+        crossStaffing: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    radioName: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    crossStaffedUnits: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    alwaysCrossStaff: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+        licensing: {
+            type: ObjectConstructor;
+            default: {
+                tcPro: number;
+                tcStatus: number;
+                tcMobile: number;
+                tcWeb: number;
+                fireMapperPro: number;
+                locationToCAD: number;
+            };
+        };
+    }>;
+    _methods: unknown;
+};
 export declare function AgencyModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectID;
     code: string;
