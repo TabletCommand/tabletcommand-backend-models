@@ -70,7 +70,7 @@ export declare function PersonnelImportSchema(mongoose: MongooseModule): import(
             default: string;
         };
         agencyId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
+            type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             default: null;
         };
@@ -99,11 +99,7 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     active: boolean;
     agencyName: string;
     agencyCode: string;
-    agencyId: {
-        type: never;
-        ref: never;
-        default: never;
-    };
+    agencyId: import("bson").ObjectID;
     importNotes: string;
 }, {}> & {
     __methods?: unknown;

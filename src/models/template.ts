@@ -101,7 +101,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
       default: []
     },
     agencyId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Agency",
       default: null,
     },

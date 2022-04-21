@@ -42,12 +42,12 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
             default: boolean;
         };
         departmentId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
+            type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             required: boolean;
         };
         administrators: {
-            type: typeof import("mongoose").Schema.Types.ObjectId[];
+            type: import("mongoose").Types.ObjectIdConstructor[];
             ref: string;
             default: never[];
         };
@@ -103,11 +103,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
     uuid: string;
     modified_unix_date: number;
     active: boolean;
-    departmentId: {
-        type: never;
-        ref: never;
-        required: never;
-    };
+    departmentId: import("bson").ObjectID;
     administrators: {
         type: never;
         ref: never;

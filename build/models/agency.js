@@ -70,12 +70,12 @@ function AgencySchema(mongoose) {
             default: false,
         },
         departmentId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Types.ObjectId,
             ref: "Department",
             required: true
         },
         administrators: {
-            type: [mongoose.Schema.Types.ObjectId],
+            type: [Types.ObjectId],
             ref: "User",
             default: []
         },

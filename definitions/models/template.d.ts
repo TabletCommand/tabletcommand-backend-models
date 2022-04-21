@@ -82,7 +82,7 @@ export declare function TemplateSchema(mongoose: MongooseModule): import("mongoo
             default: never[];
         };
         agencyId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
+            type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             default: null;
         };
@@ -128,11 +128,7 @@ export declare function TemplateModule(mongoose: MongooseModule): Promise<import
             default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
         };
     }>[];
-    agencyId: {
-        type: never;
-        ref: never;
-        default: never;
-    };
+    agencyId: import("bson").ObjectID;
 }, {}> & {
     __methods?: unknown;
 }>;

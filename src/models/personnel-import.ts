@@ -84,7 +84,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       default: ""
     },
     agencyId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Agency",
       default: null,
     },

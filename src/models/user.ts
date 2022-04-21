@@ -16,7 +16,7 @@ import EsriErrorSchema from "./schema/esri-error";
 import PubNubTokenSchema from "./schema/pubnub-token";
 
 export function UserSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+  const { Schema, Types } = mongoose;
   const EsriAuth = EsriAuthSchema(mongoose);
   const EsriError = EsriErrorSchema(mongoose);
   const PubNubToken = PubNubTokenSchema(mongoose);
@@ -68,12 +68,12 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Date,
     },
     agencyId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Agency",
       default: null,
     },
     managedAgencies: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: [Types.ObjectId],
       ref: "Agency",
       default: []
     },

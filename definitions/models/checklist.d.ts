@@ -48,7 +48,7 @@ export declare function ChecklistSchema(mongoose: MongooseModule): import("mongo
             required: boolean;
         };
         agencyId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
+            type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             default: null;
         };
@@ -127,11 +127,7 @@ export declare function ChecklistModule(mongoose: MongooseModule): Promise<impor
     departmentId: string;
     active: boolean;
     name: string;
-    agencyId: {
-        type: never;
-        ref: never;
-        default: never;
-    };
+    agencyId: import("bson").ObjectID;
     items: import("../helpers").MongooseInterface<{
         _id: {
             type: import("mongoose").Types.ObjectIdConstructor;

@@ -68,7 +68,7 @@ function BattalionSchema(mongoose) {
             type: String,
         },
         agencyId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Types.ObjectId,
             ref: "Agency",
             default: null,
         },
@@ -116,7 +116,7 @@ function BattalionSchema(mongoose) {
             index: true,
         },
         agencyId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Types.ObjectId,
             ref: "Agency",
             default: null,
         },

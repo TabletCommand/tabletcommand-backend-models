@@ -44,7 +44,7 @@ export declare function BattalionSchema(mongoose: MongooseModule): import("mongo
             index: true;
         };
         agencyId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
+            type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             default: null;
         };
@@ -108,7 +108,7 @@ export declare function BattalionSchema(mongoose: MongooseModule): import("mongo
                         type: StringConstructor;
                     };
                     agencyId: {
-                        type: typeof import("mongoose").Schema.Types.ObjectId;
+                        type: import("mongoose").Types.ObjectIdConstructor;
                         ref: string;
                         default: null;
                     };
@@ -131,11 +131,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
     userId: string;
     uuid: string;
     departmentId: string;
-    agencyId: {
-        type: never;
-        ref: never;
-        default: never;
-    };
+    agencyId: import("bson").ObjectID;
     position: number;
     units: import("../helpers").MongooseInterface<{
         _id: {
@@ -191,7 +187,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
             type: StringConstructor;
         };
         agencyId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
+            type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             default: null;
         };

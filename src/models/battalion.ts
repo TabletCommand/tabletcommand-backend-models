@@ -81,7 +81,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
       type: String,
     },
     agencyId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -131,7 +131,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
       index: true,
     },
     agencyId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Agency",
       default: null,
     },

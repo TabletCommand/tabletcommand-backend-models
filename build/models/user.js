@@ -7,7 +7,7 @@ const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
 const pubnub_token_1 = require("./schema/pubnub-token");
 function UserSchema(mongoose) {
-    const { Schema } = mongoose;
+    const { Schema, Types } = mongoose;
     const EsriAuth = (0, esri_auth_1.default)(mongoose);
     const EsriError = (0, esri_error_1.default)(mongoose);
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
@@ -57,12 +57,12 @@ function UserSchema(mongoose) {
             type: Date,
         },
         agencyId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Types.ObjectId,
             ref: "Agency",
             default: null,
         },
         managedAgencies: {
-            type: [mongoose.Schema.Types.ObjectId],
+            type: [Types.ObjectId],
             ref: "Agency",
             default: []
         },

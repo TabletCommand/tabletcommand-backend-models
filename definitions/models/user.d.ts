@@ -35,12 +35,12 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             type: DateConstructor;
         };
         agencyId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
+            type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             default: null;
         };
         managedAgencies: {
-            type: typeof import("mongoose").Schema.Types.ObjectId[];
+            type: import("mongoose").Types.ObjectIdConstructor[];
             ref: string;
             default: never[];
         };
@@ -289,11 +289,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     departmentId: string;
     modified_date: string;
     when: string;
-    agencyId: {
-        type: never;
-        ref: never;
-        default: never;
-    };
+    agencyId: import("bson").ObjectID;
     managedAgencies: {
         type: never;
         ref: never;

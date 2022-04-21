@@ -67,7 +67,7 @@ export function ChecklistSchema(mongoose: MongooseModule) {
       required: true
     },
     agencyId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Agency",
       default: null,
     },
