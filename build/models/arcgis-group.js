@@ -147,6 +147,11 @@ async function ArcGISGroupModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
+        // Possible values: cron, user
+        createdBy: {
+            type: String,
+            default: "",
+        },
         // last time when cron updated groups
         // if date is in the past, we should refresh this
         // at run success, update this date to a date in the future

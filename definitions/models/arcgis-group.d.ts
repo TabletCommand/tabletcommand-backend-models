@@ -105,6 +105,7 @@ export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<imp
         };
     }>[];
     modified: string;
+    createdBy: string;
     runAt: string;
 }, {}> & {
     __methods?: unknown;
