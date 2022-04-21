@@ -15,7 +15,7 @@ import EsriAuthSchema from "./schema/esri-auth";
 import EsriErrorSchema from "./schema/esri-error";
 import PubNubTokenSchema from "./schema/pubnub-token";
 
-export async function UserModule(mongoose: MongooseModule) {
+export function UserSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const EsriAuth = EsriAuthSchema(mongoose);
   const EsriError = EsriErrorSchema(mongoose);
@@ -255,6 +255,11 @@ export async function UserModule(mongoose: MongooseModule) {
     return this._id.toHexString();
   });
 
+  return modelSchema;
+}
+
+export async function UserModule(mongoose: MongooseModule) {
+  const modelSchema = UserSchema(mongoose);
   return createModel(mongoose, "User", modelSchema);
 }
 

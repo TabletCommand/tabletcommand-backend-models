@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BattalionModule = void 0;
+exports.BattalionModule = exports.BattalionSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-async function BattalionModule(mongoose) {
+function BattalionSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const toJSONOpts = {
         virtuals: true,
@@ -157,6 +157,11 @@ async function BattalionModule(mongoose) {
             }
         });
     }
+    return modelSchema;
+}
+exports.BattalionSchema = BattalionSchema;
+async function BattalionModule(mongoose) {
+    const modelSchema = BattalionSchema(mongoose);
     return (0, helpers_1.createModel)(mongoose, "Battalion", modelSchema);
 }
 exports.BattalionModule = BattalionModule;

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PersonnelImportModule = void 0;
+exports.PersonnelImportModule = exports.PersonnelImportSchema = void 0;
 const helpers_1 = require("../helpers");
-async function PersonnelImportModule(mongoose) {
+function PersonnelImportSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
@@ -86,6 +86,11 @@ async function PersonnelImportModule(mongoose) {
         collection: "massive_personnel_import",
     });
     modelSchema.set("autoIndex", false);
+    return modelSchema;
+}
+exports.PersonnelImportSchema = PersonnelImportSchema;
+async function PersonnelImportModule(mongoose) {
+    const modelSchema = PersonnelImportSchema(mongoose);
     return (0, helpers_1.createModel)(mongoose, "PersonnelImport", modelSchema);
 }
 exports.PersonnelImportModule = PersonnelImportModule;

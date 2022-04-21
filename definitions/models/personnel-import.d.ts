@@ -1,5 +1,86 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { currentDate, MongooseModule, retrieveCurrentUnixTime, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+export declare function PersonnelImportSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
+    _interface: import("../helpers").MongooseInterface<{
+        _id: {
+            type: import("mongoose").Types.ObjectIdConstructor;
+            auto: boolean;
+        };
+        PersonnelID: {
+            type: StringConstructor;
+            required: boolean;
+        };
+        PersonnelName: {
+            type: StringConstructor;
+            required: boolean;
+        };
+        PersonnelRank: {
+            type: StringConstructor;
+            default: string;
+        };
+        PersonnelWorkCode: {
+            type: StringConstructor;
+            default: string;
+        };
+        PersonnelNote: {
+            type: StringConstructor;
+            default: string;
+        };
+        departmentId: {
+            type: StringConstructor;
+        };
+        radioNames: {
+            type: StringConstructor[];
+            default: never[];
+        };
+        shiftStartTime: {
+            type: NumberConstructor;
+            default: number;
+        };
+        shiftEndTime: {
+            type: NumberConstructor;
+            default: number;
+        };
+        shiftStart: {
+            type: DateConstructor;
+            default: string;
+        };
+        shiftEnd: {
+            type: DateConstructor;
+            default: string;
+        };
+        modified_unix_date: {
+            type: NumberConstructor;
+            default: typeof retrieveCurrentUnixTime;
+        };
+        modified: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        agencyName: {
+            type: StringConstructor;
+            default: string;
+        };
+        agencyCode: {
+            type: StringConstructor;
+            default: string;
+        };
+        agencyId: {
+            type: typeof import("mongoose").Schema.Types.ObjectId;
+            ref: string;
+            default: null;
+        };
+        importNotes: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
+    _methods: unknown;
+};
 export declare function PersonnelImportModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectID;
     PersonnelID: string;

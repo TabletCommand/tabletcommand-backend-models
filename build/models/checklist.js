@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChecklistModule = void 0;
+exports.ChecklistModule = exports.ChecklistSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const checklist_item_1 = require("./checklist-item");
-async function ChecklistModule(mongoose) {
+function ChecklistSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const ChecklistItem = (0, checklist_item_1.ChecklistItemSchema)(mongoose);
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
@@ -76,6 +76,11 @@ async function ChecklistModule(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
+    return modelSchema;
+}
+exports.ChecklistSchema = ChecklistSchema;
+async function ChecklistModule(mongoose) {
+    const modelSchema = ChecklistSchema(mongoose);
     return (0, helpers_1.createModel)(mongoose, "Checklist", modelSchema);
 }
 exports.ChecklistModule = ChecklistModule;

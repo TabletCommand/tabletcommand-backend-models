@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModule = void 0;
+exports.UserModule = exports.UserSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
 const pubnub_token_1 = require("./schema/pubnub-token");
-async function UserModule(mongoose) {
+function UserSchema(mongoose) {
     const { Schema } = mongoose;
     const EsriAuth = (0, esri_auth_1.default)(mongoose);
     const EsriError = (0, esri_error_1.default)(mongoose);
@@ -232,6 +232,11 @@ async function UserModule(mongoose) {
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });
+    return modelSchema;
+}
+exports.UserSchema = UserSchema;
+async function UserModule(mongoose) {
+    const modelSchema = UserSchema(mongoose);
     return (0, helpers_1.createModel)(mongoose, "User", modelSchema);
 }
 exports.UserModule = UserModule;

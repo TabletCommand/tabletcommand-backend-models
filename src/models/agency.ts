@@ -9,7 +9,7 @@ import {
   ReplaceModelReturnType,
 } from "../helpers";
 
-export async function AgencyModule(mongoose: MongooseModule) {
+export function AgencySchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const CrossStaffedUnit = createSchema(Schema, {
@@ -109,6 +109,11 @@ export async function AgencyModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
+  return modelSchema;
+}
+
+export async function AgencyModule(mongoose: MongooseModule) {
+  const modelSchema = AgencySchema(mongoose);
   return createModel(mongoose, "Agency", modelSchema);
 }
 

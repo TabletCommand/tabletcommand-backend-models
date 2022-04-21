@@ -14,7 +14,7 @@ import {
   retrieveCurrentUnixTime
 } from "../helpers";
 
-export async function TemplateModule(mongoose: MongooseModule) {
+export function TemplateSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const ChecklistOption = createSchema(Schema, {
@@ -136,6 +136,11 @@ export async function TemplateModule(mongoose: MongooseModule) {
     });
   }
   // modelSchema.plugin(mongooseLeanVirtuals);
+  return modelSchema;
+}
+
+export async function TemplateModule(mongoose: MongooseModule) {
+  const modelSchema = TemplateSchema(mongoose);
   return createModel(mongoose, "Template", modelSchema);
 }
 

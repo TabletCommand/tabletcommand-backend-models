@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TemplateModule = void 0;
+exports.TemplateModule = exports.TemplateSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-async function TemplateModule(mongoose) {
+function TemplateSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const ChecklistOption = (0, helpers_1.createSchema)(Schema, {
         name: {
@@ -120,6 +120,11 @@ async function TemplateModule(mongoose) {
         });
     }
     // modelSchema.plugin(mongooseLeanVirtuals);
+    return modelSchema;
+}
+exports.TemplateSchema = TemplateSchema;
+async function TemplateModule(mongoose) {
+    const modelSchema = TemplateSchema(mongoose);
     return (0, helpers_1.createModel)(mongoose, "Template", modelSchema);
 }
 exports.TemplateModule = TemplateModule;

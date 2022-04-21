@@ -16,7 +16,7 @@ import {
 
 import { ChecklistItemSchema } from "./checklist-item";
 
-export async function ChecklistModule(mongoose: MongooseModule) {
+export function ChecklistSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const ChecklistItem = ChecklistItemSchema(mongoose);
@@ -92,6 +92,11 @@ export async function ChecklistModule(mongoose: MongooseModule) {
     return this._id.toString();
   });
 
+  return modelSchema;
+}
+
+export async function ChecklistModule(mongoose: MongooseModule) {
+  const modelSchema = ChecklistSchema(mongoose);
   return createModel(mongoose, "Checklist", modelSchema);
 }
 

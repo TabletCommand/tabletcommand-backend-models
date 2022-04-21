@@ -15,7 +15,7 @@ import {
   retrieveCurrentUnixTime
 } from "../helpers";
 
-export async function BattalionModule(mongoose: MongooseModule) {
+export function BattalionSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const toJSONOpts = {
     virtuals: true,
@@ -175,7 +175,11 @@ export async function BattalionModule(mongoose: MongooseModule) {
       }
     });
   }
+  return modelSchema;
+}
 
+export async function BattalionModule(mongoose: MongooseModule) {
+  const modelSchema = BattalionSchema(mongoose);
   return createModel(mongoose, "Battalion", modelSchema);
 }
 

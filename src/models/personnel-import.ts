@@ -9,7 +9,7 @@ import {
   ReplaceModelReturnType,
 } from "../helpers";
 
-export async function PersonnelImportModule(mongoose: MongooseModule) {
+export function PersonnelImportSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const modelSchema = createSchema(Schema, {
@@ -97,6 +97,11 @@ export async function PersonnelImportModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
+  return modelSchema;
+}
+
+export async function PersonnelImportModule(mongoose: MongooseModule) {
+  const modelSchema = PersonnelImportSchema(mongoose);
   return createModel(mongoose, "PersonnelImport", modelSchema);
 }
 
