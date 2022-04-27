@@ -133,6 +133,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    contact_department: {
+      type: String,
+      default: "",
+    },
     contact_name: {
       type: String,
       default: "",
