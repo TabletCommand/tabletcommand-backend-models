@@ -96,6 +96,28 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        addressDetails: {
+            address: {
+                type: String,
+                default: "",
+            },
+            city: {
+                type: String,
+                default: "",
+            },
+            state: {
+                type: String,
+                default: "",
+            },
+            zipCode: {
+                type: String,
+                default: "",
+            },
+            country: {
+                type: String,
+                default: "",
+            },
+        },
         address: {
             type: String,
             default: "",
@@ -114,6 +136,24 @@ async function DepartmentModule(mongoose) {
         country: {
             type: String,
             default: "",
+        },
+        contact: {
+            department: {
+                type: String,
+                default: "",
+            },
+            name: {
+                type: String,
+                default: "",
+            },
+            phone: {
+                type: String,
+                default: "",
+            },
+            email: {
+                type: String,
+                default: "",
+            },
         },
         contact_department: {
             type: String,
