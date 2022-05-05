@@ -143,6 +143,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: boolean;
         };
     }>;
+    addUserInstructions: string;
 }, {}> & {
     __methods?: unknown;
 }>;

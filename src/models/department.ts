@@ -463,6 +463,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: WebDisclaimer,
       default: WebDisclaimerDefault,
     },
+    addUserInstructions: {
+      type: String,
+      default: ""
+    },
   }, {
     collection: "massive_admin",
   });

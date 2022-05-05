@@ -437,6 +437,10 @@ async function DepartmentModule(mongoose) {
             type: WebDisclaimer,
             default: WebDisclaimerDefault,
         },
+        addUserInstructions: {
+            type: String,
+            default: ""
+        },
     }, {
         collection: "massive_admin",
     });
