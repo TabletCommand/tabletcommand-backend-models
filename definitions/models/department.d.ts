@@ -71,6 +71,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     firstArrivingEnabled: boolean;
     simpleSenseEnabled: boolean;
     fireMapperEnabled: boolean;
+    fleetCompleteEnabled: boolean;
     fireMapperRefreshInterval: number;
     fireMapperProLicenses: number;
     beansAIEnabled: boolean;
