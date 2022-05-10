@@ -337,10 +337,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    fleetCompleteEnabled: {
-      type: Boolean,
-      default: false,
-    },
     fireMapperRefreshInterval: {
       type: Number,
       default: 15,
