@@ -178,7 +178,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     },
     AgencyID: {
       type: String,
-      required: true,
+      default: "",
     },
     IncidentNumber: {
       type: String,
@@ -186,7 +186,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     },
     TransactionID: {
       type: String,
-      required: true,
+      default: "",
     },
 
     // Incident Specific
