@@ -8,9 +8,11 @@ import {
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
+import AgencyCronConfigModule from "./schema/agency-cron-config";
 
 export function AgencySchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+  const AgencyCronConfig = AgencyCronConfigModule(mongoose);
 
   const CrossStaffedUnit = createSchema(Schema, {
     radioName: {
@@ -103,6 +105,10 @@ export function AgencySchema(mongoose: MongooseModule) {
     licensing: {
       type: Object,
       default: LicensingDefault,
+    },
+    cronConfig: {
+      type: AgencyCronConfig,
+      default: null,
     },
   }, {
     collection: "massive_agency",

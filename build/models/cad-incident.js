@@ -158,7 +158,7 @@ function CADIncidentSchema(mongoose) {
         },
         AgencyID: {
             type: String,
-            required: true,
+            default: "",
         },
         IncidentNumber: {
             type: String,
@@ -166,7 +166,7 @@ function CADIncidentSchema(mongoose) {
         },
         TransactionID: {
             type: String,
-            required: true,
+            default: "",
         },
         // Incident Specific
         AgencyIncidentCallTypeDescription: {

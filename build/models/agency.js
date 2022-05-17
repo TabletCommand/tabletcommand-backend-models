@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AgencyModule = exports.AgencySchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
+const agency_cron_config_1 = require("./schema/agency-cron-config");
 function AgencySchema(mongoose) {
     const { Schema, Types } = mongoose;
+    const AgencyCronConfig = (0, agency_cron_config_1.default)(mongoose);
     const CrossStaffedUnit = (0, helpers_1.createSchema)(Schema, {
         radioName: {
             type: String,
@@ -94,6 +96,10 @@ function AgencySchema(mongoose) {
         licensing: {
             type: Object,
             default: LicensingDefault,
+        },
+        cronConfig: {
+            type: AgencyCronConfig,
+            default: null,
         },
     }, {
         collection: "massive_agency",

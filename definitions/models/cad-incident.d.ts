@@ -19,7 +19,7 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
         };
         AgencyID: {
             type: StringConstructor;
-            required: boolean;
+            default: string;
         };
         IncidentNumber: {
             type: StringConstructor;
@@ -27,7 +27,7 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
         };
         TransactionID: {
             type: StringConstructor;
-            required: boolean;
+            default: string;
         };
         AgencyIncidentCallTypeDescription: {
             type: StringConstructor;
