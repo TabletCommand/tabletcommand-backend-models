@@ -62,6 +62,10 @@ export async function AssignmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    full_description: {
+      type: String,
+      default: "",
+    },
   }, {
     collection: "massive_assignment",
   });

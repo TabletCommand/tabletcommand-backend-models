@@ -13,6 +13,7 @@ export declare function AssignmentModule(mongoose: MongooseModule): Promise<impo
     active: boolean;
     name: string;
     description: string;
+    full_description: string;
 }, {}> & {
     __methods?: unknown;
 }>;
