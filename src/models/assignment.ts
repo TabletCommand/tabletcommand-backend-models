@@ -8,7 +8,6 @@ import {
   ItemTypeFromTypeSchemaFunction,
   ModelFromSchema,
   ModelTypeFromTypeSchemaFunction,
-  MongooseDocument,
   MongooseModule,
   ReplaceModelReturnType,
   retrieveCurrentUnixTime,
@@ -71,13 +70,8 @@ export async function AssignmentModule(mongoose: MongooseModule) {
     virtuals: true,
     versionKey: false,
     transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id;
+      ret.id = ret._id.toString();
     },
-  });
-  
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
   });
 
   return createModel(mongoose, "Assignment", modelSchema);

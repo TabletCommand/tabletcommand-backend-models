@@ -59,12 +59,8 @@ async function AssignmentModule(mongoose) {
         virtuals: true,
         versionKey: false,
         transform(doc, ret) {
-            ret.id = ret._id;
+            ret.id = ret._id.toString();
         },
-    });
-    modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
     });
     return (0, helpers_1.createModel)(mongoose, "Assignment", modelSchema);
 }

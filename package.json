@@ -47,7 +47,7 @@
     "yargs-parser": ">=21.0.1"
   },
   "typeCoverage": {
-    "atLeast": 99.80,
+    "atLeast": 99.79,
     "ignoreFiles": [
       "definitions/**/*.ts",
       "src/test/**/*.ts"
