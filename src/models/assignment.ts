@@ -1,14 +1,17 @@
 import * as uuid from "uuid";
 
 import {
-  MongooseModule,
-  createSchema,
   createModel,
+  createSchema,
   currentDate,
-  retrieveCurrentUnixTime,
-  ModelTypeFromTypeSchemaFunction,
+  DocumentTypeFromSchema,
   ItemTypeFromTypeSchemaFunction,
+  ModelFromSchema,
+  ModelTypeFromTypeSchemaFunction,
+  MongooseDocument,
+  MongooseModule,
   ReplaceModelReturnType,
+  retrieveCurrentUnixTime,
 } from "../helpers";
 
 export async function AssignmentModule(mongoose: MongooseModule) {
@@ -64,6 +67,19 @@ export async function AssignmentModule(mongoose: MongooseModule) {
     collection: "massive_assignment",
   });
   modelSchema.set("autoIndex", false);
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
+      ret.id = ret._id;
+    },
+  });
+  
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+    // tslint:disable-next-line: no-unsafe-any
+    return this._id.toString();
+  });
+
   return createModel(mongoose, "Assignment", modelSchema);
 }
 

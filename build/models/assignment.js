@@ -55,6 +55,17 @@ async function AssignmentModule(mongoose) {
         collection: "massive_assignment",
     });
     modelSchema.set("autoIndex", false);
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+        transform(doc, ret) {
+            ret.id = ret._id;
+        },
+    });
+    modelSchema.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
+        return this._id.toString();
+    });
     return (0, helpers_1.createModel)(mongoose, "Assignment", modelSchema);
 }
 exports.AssignmentModule = AssignmentModule;
