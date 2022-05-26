@@ -169,6 +169,10 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
                         type: StringConstructor;
                         default: string;
                     };
+                    alterChunkSize: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
                 }>;
                 _methods: unknown;
             };
@@ -286,6 +290,10 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
         customApiPath: {
             type: StringConstructor;
             default: string;
+        };
+        alterChunkSize: {
+            type: BooleanConstructor;
+            default: boolean;
         };
     }>;
 }, {}> & {

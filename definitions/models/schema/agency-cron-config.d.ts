@@ -78,6 +78,10 @@ export default function AgencyCronSchema(mongoose: MongooseModule): import("mong
             type: StringConstructor;
             default: string;
         };
+        alterChunkSize: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
     }>;
     _methods: unknown;
 };

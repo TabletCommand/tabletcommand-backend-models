@@ -60,7 +60,11 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     customApiPath: {
       type: String,
       default: "",
-    }
+    },
+    alterChunkSize: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     _id: false,
     id: false,

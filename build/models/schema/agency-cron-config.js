@@ -56,7 +56,11 @@ function AgencyCronSchema(mongoose) {
         customApiPath: {
             type: String,
             default: "",
-        }
+        },
+        alterChunkSize: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         _id: false,
         id: false,
