@@ -84,6 +84,18 @@ async function CADVehicleStatusModule(mongoose) {
             type: String,
             default: "",
         },
+        locationCurrent: {
+            type: String,
+            default: "",
+        },
+        locationDestination: {
+            type: String,
+            default: "",
+        },
+        assignableByUser: {
+            type: Boolean,
+            default: false,
+        },
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaConfig, {
         collection: "massive_cad_vehicle_status",

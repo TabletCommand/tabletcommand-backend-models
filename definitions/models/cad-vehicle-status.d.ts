@@ -34,6 +34,9 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
         };
     }>[];
     capability: string;
+    locationCurrent: string;
+    locationDestination: string;
+    assignableByUser: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

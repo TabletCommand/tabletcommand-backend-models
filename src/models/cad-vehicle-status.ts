@@ -92,6 +92,18 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    locationCurrent: {
+      type: String,
+      default: "",
+    },
+    locationDestination: {
+      type: String,
+      default: "",
+    },
+    assignableByUser: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   const modelSchema = createSchema(Schema, modelSchemaConfig, {
