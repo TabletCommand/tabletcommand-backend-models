@@ -30,6 +30,8 @@ export declare function CADVehicleStatusHistoryModule(mongoose: MongooseModule):
         };
     }>[];
     e: string;
+    locationCurrent: string;
+    locationDestination: string;
 }, {}> & {
     __methods?: unknown;
 }>;

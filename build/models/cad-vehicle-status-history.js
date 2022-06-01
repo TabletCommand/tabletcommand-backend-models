@@ -60,6 +60,14 @@ async function CADVehicleStatusHistoryModule(mongoose) {
             type: String,
             default: "",
         },
+        locationCurrent: {
+            type: String,
+            default: "",
+        },
+        locationDestination: {
+            type: String,
+            default: "",
+        },
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaConfig, {
         collection: "massive_cad_vehicle_status_history",
