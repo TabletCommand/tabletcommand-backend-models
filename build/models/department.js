@@ -319,6 +319,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        incidentVehicleStatusEnabled: {
+            type: Boolean,
+            default: false
+        },
         fireMapperRefreshInterval: {
             type: Number,
             default: 15,
