@@ -10,6 +10,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     active: boolean;
     modified: string;
     movedAt: string;
+    propsChangedAt: string;
     version: number;
     session: string;
     altitude: number;
@@ -46,6 +47,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
             default: string;
         };
     }>;
+    colorChangedAt: string;
 }, {}> & {
     __methods?: unknown;
 }>;

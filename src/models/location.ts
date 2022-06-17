@@ -61,6 +61,13 @@ export async function LocationModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
+    // Used by sync v4 to mark that any of the properties that are changing rarely were updated
+    // active, agencyCode, agencyName, deviceType, opAreaCode, opAreaName, radioName, shared, state
+    // When any of them are changed, propsChangedAt will be set to now.
+    propsChangedAt: {
+      type: Date,
+      default: currentDate,
+    },
     version: {
       type: Number,
       default: 2,
@@ -132,6 +139,11 @@ export async function LocationModule(mongoose: MongooseModule) {
     color: {
       type: Color,
       default: null,
+    },
+    // See propsChangedAt
+    colorChangedAt: {
+      type: Date,
+      default: currentDate,
     },
   });
 
