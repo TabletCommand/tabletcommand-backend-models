@@ -239,6 +239,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false
     },
+    cadAllowIgnoreAfterDays: {
+      type: Number,
+      default: 21,
+    },
     connectivity: {
       incident: {
         enabled: {
