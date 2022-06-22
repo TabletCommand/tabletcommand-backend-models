@@ -103,6 +103,12 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
       type: String,
       require: true,
     },
+    // Reference uuid. Signals if this event applies to a different UUID
+    // eg. delete UUID
+    ref_uuid: {
+      type: String,
+      default: "",
+    },
     opts: {
       type: Object,
       default: {},

@@ -432,6 +432,10 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                         type: StringConstructor;
                         require: boolean;
                     };
+                    ref_uuid: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                     opts: {
                         type: ObjectConstructor;
                         default: {};
@@ -749,6 +753,10 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         uuid: {
             type: StringConstructor;
             require: boolean;
+        };
+        ref_uuid: {
+            type: StringConstructor;
+            default: string;
         };
         opts: {
             type: ObjectConstructor;

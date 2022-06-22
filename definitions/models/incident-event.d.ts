@@ -33,6 +33,7 @@ export declare function IncidentEventModule(mongoose: MongooseModule): Promise<i
     serverTime: number;
     userTime: number;
     uuid: string;
+    ref_uuid: string;
     opts: any;
     archived: boolean;
 }, {}> & {
@@ -120,6 +121,10 @@ export declare function IncidentEventSchema(mongoose: MongooseModule): import("m
         uuid: {
             type: StringConstructor;
             require: boolean;
+        };
+        ref_uuid: {
+            type: StringConstructor;
+            default: string;
         };
         opts: {
             type: ObjectConstructor;
