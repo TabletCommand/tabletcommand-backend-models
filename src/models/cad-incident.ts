@@ -281,11 +281,6 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     scheduled_at: {
       type: Number,
     },
-    // Deprecated, moved to ignored
-    blacklisted: {
-      type: Boolean,
-      default: false,
-    },
     ignored: {
       type: Boolean,
       default: false,
