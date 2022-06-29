@@ -15,66 +15,6 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
             ref: string;
             required: boolean;
         };
-        tokenDateExpiry: {
-            type: NumberConstructor;
-            default: number;
-        };
-        tokenExpiry: {
-            type: DateConstructor;
-            default: string;
-        };
-        token: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    access_token: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    refresh_token: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    username: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    ssl: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                    expires_in: {
-                        type: NumberConstructor;
-                        default: number;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        tokenError: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    code: {
-                        type: NumberConstructor;
-                        default: number;
-                    };
-                    error: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    error_description: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
         auth: {
             type: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
@@ -435,48 +375,6 @@ export declare function EsriModule(mongoose: MongooseModule): Promise<import("mo
     _id: import("bson").ObjectID;
     runAt: string;
     departmentId: import("bson").ObjectID;
-    tokenDateExpiry: number;
-    tokenExpiry: string;
-    token: import("../helpers").MongooseInterface<{
-        access_token: {
-            type: StringConstructor;
-            default: string;
-        };
-        refresh_token: {
-            type: StringConstructor;
-            default: string;
-        };
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        ssl: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        expires_in: {
-            type: NumberConstructor;
-            default: number;
-        };
-    }>;
-    tokenError: import("../helpers").MongooseInterface<{
-        code: {
-            type: NumberConstructor;
-            default: number;
-        };
-        error: {
-            type: StringConstructor;
-            default: string;
-        };
-        error_description: {
-            type: StringConstructor;
-            default: string;
-        };
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
     auth: import("../helpers").MongooseInterface<{
         username: {
             type: StringConstructor;

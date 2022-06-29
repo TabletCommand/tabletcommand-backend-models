@@ -6,14 +6,12 @@ const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
 const esri_map_1 = require("./schema/esri-map");
-const esri_token_1 = require("./schema/esri-token");
 const firemapper_auth_1 = require("./schema/firemapper-auth");
 function EsriSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const EsriAuth = (0, esri_auth_1.default)(mongoose);
     const EsriError = (0, esri_error_1.default)(mongoose);
     const EsriMap = (0, esri_map_1.default)(mongoose);
-    const EsriToken = (0, esri_token_1.default)(mongoose);
     const FireMapperAuth = (0, firemapper_auth_1.default)(mongoose);
     const MapProperties = (0, helpers_1.createSchema)(Schema, {
         // ArcGIS Item id
@@ -43,22 +41,6 @@ function EsriSchema(mongoose) {
             type: Types.ObjectId,
             ref: "Department",
             required: true
-        },
-        tokenDateExpiry: {
-            type: Number,
-            default: 0,
-        },
-        tokenExpiry: {
-            type: Date,
-            default: "",
-        },
-        token: {
-            type: EsriToken,
-            default: null,
-        },
-        tokenError: {
-            type: EsriError,
-            default: null,
         },
         auth: {
             type: EsriAuth,

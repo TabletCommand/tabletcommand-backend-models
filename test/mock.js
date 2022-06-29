@@ -58,8 +58,6 @@ module.exports = function(dependencies) {
         departmentId: "558365a198b2fa4278000053",
         authUsername: "tabletcmd",
         authError: null,
-        tokenUsername: "tc_ContraCostaCountyFire",
-        tokenError: null,
         users: [
           //
           {
@@ -489,20 +487,6 @@ module.exports = function(dependencies) {
     _id: mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
     modified_unix_date: 1432230780,
-    token: {
-      access_token: "abc_PccBHQYuj",
-      expires_in: 2800,
-      username: "hello_tc",
-      ssl: true,
-      refresh_token: "def_IZ99D6eS"
-    },
-    tokenDateExpiry: 1544475888,
-    tokenError: {
-      code: 498,
-      error: "invalid_request",
-      error_description: "refresh_token expired",
-      message: "refresh_token expired"
-    },
     auth: {
       username: "fire_maps",
       encrypted: {

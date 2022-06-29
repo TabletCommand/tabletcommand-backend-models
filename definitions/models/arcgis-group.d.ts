@@ -75,14 +75,6 @@ export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<imp
             type: StringConstructor;
             default: string;
         };
-        tokenUsername: {
-            type: StringConstructor;
-            default: null;
-        };
-        tokenError: {
-            type: StringConstructor;
-            default: null;
-        };
         users: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{

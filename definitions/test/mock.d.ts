@@ -9,8 +9,6 @@ export default function MockModule(dependecies: {
             departmentId: string;
             authUsername: string;
             authError: null;
-            tokenUsername: string;
-            tokenError: null;
             users: {
                 username: string;
                 email: string;

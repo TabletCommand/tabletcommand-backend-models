@@ -45,7 +45,6 @@ describe("ArcGISGroup", function() {
     assert.equal(dept.department, "Demo RTS Fire Department");
     assert.equal(dept.departmentId, "558365a198b2fa4278000053");
     assert.equal(dept.authUsername, "tabletcmd");
-    assert.equal(dept.tokenUsername, "tc_ContraCostaCountyFire");
 
     assert.equal(dept.users.length, 1);
     const deptUser = _.first(dept.users);

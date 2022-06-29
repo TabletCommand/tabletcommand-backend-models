@@ -33,17 +33,6 @@ describe("Esri", function() {
     assert.equal(sut._id.toString(), testItem._id.toString());
     assert.equal(sut.toJSON().id, testItem._id.toString());
     assert.equal(sut.departmentId, testItem.departmentId);
-    assert.equal(sut.tokenDateExpiry, testItem.tokenDateExpiry);
-    assert.equal(sut.token.access_token, testItem.token.access_token);
-    assert.equal(sut.token.expires_in, testItem.token.expires_in);
-    assert.equal(sut.token.username, testItem.token.username);
-    assert.isTrue(sut.token.ssl);
-    assert.equal(sut.token.refresh_token, testItem.token.refresh_token);
-
-    assert.equal(sut.tokenError.code, testItem.tokenError.code);
-    assert.equal(sut.tokenError.error, testItem.tokenError.error);
-    assert.equal(sut.tokenError.error_description, testItem.tokenError.error_description);
-    assert.equal(sut.tokenError.message, testItem.tokenError.message);
 
     assert.equal(sut.auth.username, testItem.auth.username);
     assert.equal(sut.auth.encrypted.iv, testItem.auth.encrypted.iv);

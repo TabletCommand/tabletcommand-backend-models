@@ -80,14 +80,6 @@ async function ArcGISGroupModule(mongoose) {
             type: String,
             default: "",
         },
-        tokenUsername: {
-            type: String,
-            default: null,
-        },
-        tokenError: {
-            type: String,
-            default: null,
-        },
         users: {
             type: [ArcGISDepartmentUser],
             default: [],

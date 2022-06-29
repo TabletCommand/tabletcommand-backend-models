@@ -117,10 +117,6 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
         scheduled_at: {
             type: NumberConstructor;
         };
-        blacklisted: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
         ignored: {
             type: BooleanConstructor;
             default: boolean;
@@ -524,7 +520,6 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     closed_unix_date: number;
     queued_at: number;
     scheduled_at: number;
-    blacklisted: boolean;
     ignored: boolean;
     expiration_date: string;
     StreetName: string;

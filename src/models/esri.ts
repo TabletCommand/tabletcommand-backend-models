@@ -12,7 +12,6 @@ import {
 import EsriAuthModule from "./schema/esri-auth";
 import EsriErrorModule from "./schema/esri-error";
 import EsriMapModule from "./schema/esri-map";
-import EsriTokenModule from "./schema/esri-token";
 import FireMapperAuthModule from "./schema/firemapper-auth";
 
 export function EsriSchema(mongoose: MongooseModule) {
@@ -20,7 +19,6 @@ export function EsriSchema(mongoose: MongooseModule) {
   const EsriAuth = EsriAuthModule(mongoose);
   const EsriError = EsriErrorModule(mongoose);
   const EsriMap = EsriMapModule(mongoose);
-  const EsriToken = EsriTokenModule(mongoose);
   const FireMapperAuth = FireMapperAuthModule(mongoose);
 
   const MapProperties = createSchema(Schema, {
@@ -53,23 +51,6 @@ export function EsriSchema(mongoose: MongooseModule) {
       type: Types.ObjectId,
       ref: "Department",
       required: true
-    },
-
-    tokenDateExpiry: {
-      type: Number,
-      default: 0,
-    },
-    tokenExpiry: {
-      type: Date,
-      default: "",
-    },
-    token: {
-      type: EsriToken,
-      default: null,
-    },
-    tokenError: {
-      type: EsriError,
-      default: null,
     },
 
     auth: {
