@@ -7,6 +7,21 @@ const cad_status_option_selected_1 = require("./schema/cad-status-option-selecte
 async function CADVehicleStatusModule(mongoose) {
     const { Schema } = mongoose;
     const CADStatusOptionSelected = (0, cad_status_option_selected_1.default)(mongoose);
+    const Destination = (0, helpers_1.createSchema)(Schema, {
+        // eg 1234 Main St
+        address: {
+            type: String,
+            default: "",
+        },
+        // eg General Hospital
+        name: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const modelSchemaConfig = (0, helpers_1.createSchemaDefinition)({
         uuid: {
             type: String,
@@ -91,6 +106,11 @@ async function CADVehicleStatusModule(mongoose) {
         locationDestination: {
             type: String,
             default: "",
+        },
+        // parsed from `locationDestination`
+        destination: {
+            type: Destination,
+            default: null,
         },
         assignableByUser: {
             type: Boolean,

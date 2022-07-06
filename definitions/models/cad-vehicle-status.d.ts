@@ -36,6 +36,16 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
     capability: string;
     locationCurrent: string;
     locationDestination: string;
+    destination: import("../helpers").MongooseInterface<{
+        address: {
+            type: StringConstructor;
+            default: string;
+        };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
     assignableByUser: boolean;
 }, {}> & {
     __methods?: unknown;

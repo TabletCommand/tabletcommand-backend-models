@@ -15,6 +15,22 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
+  const Destination = createSchema(Schema, {
+    // eg 1234 Main St
+    address: {
+      type: String,
+      default: "",
+    },
+    // eg General Hospital
+    name: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const modelSchemaConfig = createSchemaDefinition({
     uuid: {
       type: String,
@@ -99,6 +115,11 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     locationDestination: {
       type: String,
       default: "",
+    },
+    // parsed from `locationDestination`
+    destination: {
+      type: Destination,
+      default: null,
     },
     assignableByUser: {
       type: Boolean,
