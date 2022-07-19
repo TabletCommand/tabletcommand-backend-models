@@ -238,6 +238,10 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false
     },
+    restrictedCommentsEnabled: {
+      type: Boolean,
+      default: false,
+    }
   }, {
     collection: "sys_user",
   });

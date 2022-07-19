@@ -50,6 +50,32 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const RestrictedComments = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    callTypesAllowed: {
+      type: [String],
+      default: [],
+    },
+    statusesAllowed: {
+      type: [String],
+      default: [],
+    },
+    restrictedFields: {
+      type: [String],
+      default: [],
+    },
+    restrictedMessage: {
+      type: String,
+      default: ""
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SafetyPriorityKeywordDefault = [
     {
       "keywords": [],
@@ -81,6 +107,15 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     "message": "",
     "enabled": false
   };
+
+  const RestrictedCommentsDefault = {
+    enabled: false,
+    callTypesAllowed: [],
+    statusesAllowed: [],
+    restrictedFields: ["LocationComment", "AgencyIncidentCallTypeDescription", "Comment"],
+    restrictedMessage: "RESTRICTED"
+  };
+
 
   const IncidentType = createSchema(Schema, {
     name: {
@@ -473,8 +508,12 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
     addUserInstructions: {
       type: String,
-      default: ""
+      default: "",
     },
+    restrictedComments: {
+      type: RestrictedComments,
+      default: RestrictedCommentsDefault,
+    }
   }, {
     collection: "massive_admin",
   });

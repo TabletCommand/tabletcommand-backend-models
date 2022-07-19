@@ -61,5 +61,10 @@ describe("Department", function() {
     assert.equal(JSON.stringify(sut.licensing), JSON.stringify(testItem.licensing));
     assert.equal(sut.externalNotificationsEnabled, testItem.externalNotificationsEnabled);
     assert.equal(sut.notificationEmails.length, testItem.notificationEmails.length);
+    assert.equal(sut.restrictedComments.callTypesAllowed.length, testItem.restrictedComments.callTypesAllowed.length);
+    assert.equal(sut.restrictedComments.statusesAllowed.length, testItem.restrictedComments.statusesAllowed.length);
+    assert.equal(sut.restrictedComments.restrictedFields.length, testItem.restrictedComments.restrictedFields.length);
+    assert.equal(sut.restrictedComments.restrictedMessage, testItem.restrictedComments.restrictedMessage);
+    assert.equal(sut.restrictedComments.enabled, testItem.restrictedComments.enabled);
   });
 });

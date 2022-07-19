@@ -37,6 +37,31 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const RestrictedComments = (0, helpers_1.createSchema)(Schema, {
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        callTypesAllowed: {
+            type: [String],
+            default: [],
+        },
+        statusesAllowed: {
+            type: [String],
+            default: [],
+        },
+        restrictedFields: {
+            type: [String],
+            default: [],
+        },
+        restrictedMessage: {
+            type: String,
+            default: ""
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const SafetyPriorityKeywordDefault = [
         {
             "keywords": [],
@@ -65,6 +90,13 @@ async function DepartmentModule(mongoose) {
     const WebDisclaimerDefault = {
         "message": "",
         "enabled": false
+    };
+    const RestrictedCommentsDefault = {
+        enabled: false,
+        callTypesAllowed: [],
+        statusesAllowed: [],
+        restrictedFields: ["LocationComment", "AgencyIncidentCallTypeDescription", "Comment"],
+        restrictedMessage: "RESTRICTED"
     };
     const IncidentType = (0, helpers_1.createSchema)(Schema, {
         name: {
@@ -447,8 +479,12 @@ async function DepartmentModule(mongoose) {
         },
         addUserInstructions: {
             type: String,
-            default: ""
+            default: "",
         },
+        restrictedComments: {
+            type: RestrictedComments,
+            default: RestrictedCommentsDefault,
+        }
     }, {
         collection: "massive_admin",
     });

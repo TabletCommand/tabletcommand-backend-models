@@ -278,6 +278,10 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             type: BooleanConstructor;
             default: boolean;
         };
+        restrictedCommentsEnabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
     }>;
     _methods: unknown;
 };
@@ -406,6 +410,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     };
     locationToCAD: boolean;
     logOffEnabled: boolean;
+    restrictedCommentsEnabled: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

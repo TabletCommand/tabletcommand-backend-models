@@ -218,6 +218,10 @@ function UserSchema(mongoose) {
             type: Boolean,
             default: false
         },
+        restrictedCommentsEnabled: {
+            type: Boolean,
+            default: false,
+        }
     }, {
         collection: "sys_user",
     });

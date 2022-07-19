@@ -50,6 +50,7 @@ describe("User", function() {
       assert.equal(item.webMapSettings.defaultCenter[0], 1);
       assert.equal(item.webMapSettings.defaultCenter[1], 1);
       assert.equal(item.webMapSettings.defaultMap, "Default");
+      assert.equal(item.restrictedCommentsEnabled, true);
       return done();
     });
   });

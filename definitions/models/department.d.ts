@@ -146,6 +146,28 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         };
     }>;
     addUserInstructions: string;
+    restrictedComments: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        callTypesAllowed: {
+            type: StringConstructor[];
+            default: never[];
+        };
+        statusesAllowed: {
+            type: StringConstructor[];
+            default: never[];
+        };
+        restrictedFields: {
+            type: StringConstructor[];
+            default: never[];
+        };
+        restrictedMessage: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

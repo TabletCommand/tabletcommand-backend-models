@@ -416,7 +416,14 @@ module.exports = function(dependencies) {
       enabled: true
     },
     notificationEmails: ["test@test.com"],
-    externalNotificationsEnabled: true
+    externalNotificationsEnabled: true,
+    restrictedComments: {
+      enabled: false,
+      callTypesAllowed: [],
+      statusesAllowed: [],
+      restrictedFields: [],
+      restrictedMessage: "Restricted Message"
+    }
   };
 
   const esriMap = {
@@ -743,7 +750,8 @@ module.exports = function(dependencies) {
       defaultZoomLevel: 10,
       defaultCenter: [1,1],
       defaultMap: "Default"
-    }
+    },
+    restrictedCommentsEnabled: true
   };
 
   const userRegistration = {
