@@ -14,10 +14,12 @@ import {
   ReplaceModelReturnType,
 } from "../helpers";
 import PubNubTokenSchema from "./schema/pubnub-token";
+import ColorModule from "./schema/color";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const PubNubToken = PubNubTokenSchema(mongoose);
+  const Color = ColorModule(mongoose);
 
   const SafetyPriorityKeyword = createSchema(Schema, {
     priority: {
@@ -70,6 +72,36 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     restrictedMessage: {
       type: String,
       default: ""
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const CustomButtons = createSchema(Schema, {
+    name: {
+      type: String,
+      default: "",
+    },
+    url: {
+      type: String,
+      default: "",
+    },
+    order: {
+      type: Number,
+      default: 0,
+    },
+    allow_external: {
+      type: Boolean,
+      default: false,
+    },
+    default_to_external: {
+      type: Boolean,
+      default: false,
+    },
+    color: {
+      type: Color,
+      default: null,
     },
   }, {
     _id: false,
@@ -513,7 +545,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     restrictedComments: {
       type: RestrictedComments,
       default: RestrictedCommentsDefault,
-    }
+    },
+    customButtons: {
+      type: [CustomButtons],
+      default: []
+    },
   }, {
     collection: "massive_admin",
   });

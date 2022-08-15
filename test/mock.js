@@ -423,7 +423,20 @@ module.exports = function(dependencies) {
       statusesAllowed: [],
       restrictedFields: [],
       restrictedMessage: "Restricted Message"
-    }
+    },
+    customButtons: [
+      {
+        name: "Button Custom",
+        url: "",
+        order: 1,
+        allow_external: false,
+        default_to_external: false,
+        color: {
+          "background": "#512e5f",
+          "text": "#F8F9F9"
+        }
+      }
+    ]
   };
 
   const esriMap = {

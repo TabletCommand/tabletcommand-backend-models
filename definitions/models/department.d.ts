@@ -168,6 +168,44 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: string;
         };
     }>;
+    customButtons: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        url: {
+            type: StringConstructor;
+            default: string;
+        };
+        order: {
+            type: NumberConstructor;
+            default: number;
+        };
+        allow_external: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        default_to_external: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        color: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    background: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    text: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: null;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;

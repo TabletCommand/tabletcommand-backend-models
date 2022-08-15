@@ -5,9 +5,11 @@ const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
 const pubnub_token_1 = require("./schema/pubnub-token");
+const color_1 = require("./schema/color");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
+    const Color = (0, color_1.default)(mongoose);
     const SafetyPriorityKeyword = (0, helpers_1.createSchema)(Schema, {
         priority: {
             type: Number,
@@ -57,6 +59,35 @@ async function DepartmentModule(mongoose) {
         restrictedMessage: {
             type: String,
             default: ""
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const CustomButtons = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            type: String,
+            default: "",
+        },
+        url: {
+            type: String,
+            default: "",
+        },
+        order: {
+            type: Number,
+            default: 0,
+        },
+        allow_external: {
+            type: Boolean,
+            default: false,
+        },
+        default_to_external: {
+            type: Boolean,
+            default: false,
+        },
+        color: {
+            type: Color,
+            default: null,
         },
     }, {
         _id: false,
@@ -484,7 +515,11 @@ async function DepartmentModule(mongoose) {
         restrictedComments: {
             type: RestrictedComments,
             default: RestrictedCommentsDefault,
-        }
+        },
+        customButtons: {
+            type: [CustomButtons],
+            default: []
+        },
     }, {
         collection: "massive_admin",
     });

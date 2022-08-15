@@ -66,5 +66,11 @@ describe("Department", function() {
     assert.equal(sut.restrictedComments.restrictedFields.length, testItem.restrictedComments.restrictedFields.length);
     assert.equal(sut.restrictedComments.restrictedMessage, testItem.restrictedComments.restrictedMessage);
     assert.equal(sut.restrictedComments.enabled, testItem.restrictedComments.enabled);
+    assert.equal(sut.customButtons[0].name, testItem.customButtons[0].name);
+    assert.equal(sut.customButtons[0].url, testItem.customButtons[0].url);
+    assert.equal(sut.customButtons[0].order, testItem.customButtons[0].order);
+    assert.equal(sut.customButtons[0].allow_external, testItem.customButtons[0].allow_external);
+    assert.equal(sut.customButtons[0].default_to_external, testItem.customButtons[0].default_to_external);
+    assert.equal(JSON.stringify(sut.customButtons[0].color), JSON.stringify(testItem.customButtons[0].color));
   });
 });
