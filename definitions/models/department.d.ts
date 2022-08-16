@@ -189,6 +189,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             type: BooleanConstructor;
             default: boolean;
         };
+        allow_floating: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         color: {
             type: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{

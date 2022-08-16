@@ -431,6 +431,7 @@ module.exports = function(dependencies) {
         order: 1,
         allow_external: false,
         default_to_external: false,
+        allow_floating: false,
         color: {
           "background": "#512e5f",
           "text": "#F8F9F9"

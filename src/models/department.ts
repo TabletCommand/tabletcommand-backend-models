@@ -99,6 +99,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    allow_floating: {
+      type: Boolean,
+      default: false,
+    },
     color: {
       type: Color,
       default: null,

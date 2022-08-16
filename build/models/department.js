@@ -85,6 +85,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        allow_floating: {
+            type: Boolean,
+            default: false,
+        },
         color: {
             type: Color,
             default: null,
