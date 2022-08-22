@@ -429,9 +429,9 @@ module.exports = function(dependencies) {
         name: "Button Custom",
         url: "",
         order: 1,
-        allow_external: false,
-        default_to_external: false,
-        allow_floating: false,
+        allowExternal: false,
+        defaultToExternal: false,
+        allowFloating: false,
         color: {
           "background": "#512e5f",
           "text": "#F8F9F9"

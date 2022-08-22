@@ -91,15 +91,15 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
-    allow_external: {
+    allowExternal: {
       type: Boolean,
       default: false,
     },
-    default_to_external: {
+    defaultToExternal: {
       type: Boolean,
       default: false,
     },
-    allow_floating: {
+    allowFloating: {
       type: Boolean,
       default: false,
     },

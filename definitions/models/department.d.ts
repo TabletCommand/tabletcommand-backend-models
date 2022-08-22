@@ -181,15 +181,15 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             type: NumberConstructor;
             default: number;
         };
-        allow_external: {
+        allowExternal: {
             type: BooleanConstructor;
             default: boolean;
         };
-        default_to_external: {
+        defaultToExternal: {
             type: BooleanConstructor;
             default: boolean;
         };
-        allow_floating: {
+        allowFloating: {
             type: BooleanConstructor;
             default: boolean;
         };
