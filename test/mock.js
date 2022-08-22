@@ -430,7 +430,7 @@ module.exports = function(dependencies) {
         url: "",
         order: 1,
         allowExternal: false,
-        defaultToExternal: false,
+        defaultExternal: false,
         allowFloating: false,
         color: {
           "background": "#512e5f",

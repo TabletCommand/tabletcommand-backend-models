@@ -95,7 +95,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    defaultToExternal: {
+    defaultExternal: {
       type: Boolean,
       default: false,
     },

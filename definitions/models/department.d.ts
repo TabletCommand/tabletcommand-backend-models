@@ -185,7 +185,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             type: BooleanConstructor;
             default: boolean;
         };
-        defaultToExternal: {
+        defaultExternal: {
             type: BooleanConstructor;
             default: boolean;
         };

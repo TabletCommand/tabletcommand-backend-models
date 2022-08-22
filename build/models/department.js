@@ -81,7 +81,7 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        defaultToExternal: {
+        defaultExternal: {
             type: Boolean,
             default: false,
         },
