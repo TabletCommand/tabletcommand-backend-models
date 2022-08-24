@@ -29,6 +29,20 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const Unit = createSchema(Schema, {
+    UnitID: {
+      type: String,
+      default: "",
+    },
+    UnitDispatchNumber: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -51,6 +65,10 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     units: {
       type: [String],
       default: [],
+    },
+    unitsByDispatch: {
+      type: [Unit],
+      default: []
     },
     sent: {
       type: [SentItem],

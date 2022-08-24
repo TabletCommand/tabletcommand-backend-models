@@ -595,6 +595,12 @@ module.exports = function(dependencies) {
     units: [
       "E31"
     ],
+    unitsByDispatch: [
+      {
+        UnitID: "E31",
+        UnitDispatchNumber: "12345"
+      }
+    ],
     sent: [
     ],
     updated: "2018-09-10T18:25:02.196Z"

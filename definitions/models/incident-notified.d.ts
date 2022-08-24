@@ -6,6 +6,16 @@ export declare function IncidentNotifiedModule(mongoose: MongooseModule): Promis
     IncidentNumber: string;
     incidentTypes: string[];
     units: string[];
+    unitsByDispatch: import("../helpers").MongooseInterface<{
+        UnitID: {
+            type: StringConstructor;
+            default: string;
+        };
+        UnitDispatchNumber: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     sent: import("../helpers").MongooseInterface<{
         name: {
             type: StringConstructor;
