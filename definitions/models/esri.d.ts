@@ -8,7 +8,7 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
         };
         runAt: {
             type: DateConstructor;
-            default: string;
+            default: Date;
         };
         departmentId: {
             type: import("mongoose").Types.ObjectIdConstructor;
@@ -153,7 +153,7 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
         };
         reviewRunAt: {
             type: DateConstructor;
-            default: string;
+            default: Date;
         };
         maps: {
             type: (import("mongoose").Schema<any> & {
@@ -366,7 +366,7 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
         };
         mapLastUpdated: {
             type: DateConstructor;
-            default: string;
+            default: Date;
         };
     }>;
     _methods: unknown;

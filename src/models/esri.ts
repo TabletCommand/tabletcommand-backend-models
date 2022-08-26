@@ -45,7 +45,7 @@ export function EsriSchema(mongoose: MongooseModule) {
     // last time when cron updated maps
     runAt: {
       type: Date,
-      default: "",
+      default: new Date("1970-01-01T00:00:00.000Z"),
     },
     departmentId: {
       type: Types.ObjectId,
@@ -76,9 +76,10 @@ export function EsriSchema(mongoose: MongooseModule) {
       type: EsriAuth,
       default: null,
     },
+    // For new accounts, set the default value to true
     arcGISMigrated: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     review: {
       type: Object,
@@ -89,7 +90,7 @@ export function EsriSchema(mongoose: MongooseModule) {
     // at run success, update this date to a date in the future
     reviewRunAt: {
       type: Date,
-      default: "",
+      default: new Date("2020-02-20T02:22:20.000Z"),
     },
 
     // maps
@@ -107,7 +108,7 @@ export function EsriSchema(mongoose: MongooseModule) {
     // newest modified for EsriMap
     mapLastUpdated: {
       type: Date,
-      default: "",
+      default: new Date("1970-01-01T00:00:00.000Z"),
     },
   }, {
     collection: "massive_esri",
