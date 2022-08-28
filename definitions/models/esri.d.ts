@@ -149,11 +149,11 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
         };
         review: {
             type: ObjectConstructor;
-            default: {};
+            default: null;
         };
         reviewRunAt: {
             type: DateConstructor;
-            default: Date;
+            default: null;
         };
         maps: {
             type: (import("mongoose").Schema<any> & {

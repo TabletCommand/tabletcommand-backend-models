@@ -83,14 +83,14 @@ export function EsriSchema(mongoose: MongooseModule) {
     },
     review: {
       type: Object,
-      default: {},
+      default: null,
     },
     // last time when review cron was run
     // if date is in the past, we should refresh this
     // at run success, update this date to a date in the future
     reviewRunAt: {
       type: Date,
-      default: new Date("2020-02-20T02:22:20.000Z"),
+      default: null,
     },
 
     // maps
