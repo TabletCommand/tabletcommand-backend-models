@@ -554,6 +554,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [CustomButtons],
       default: []
     },
+    reportNumberEnabled: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "massive_admin",
   });

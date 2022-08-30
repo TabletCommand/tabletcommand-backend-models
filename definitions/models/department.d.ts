@@ -210,6 +210,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: null;
         };
     }>[];
+    reportNumberEnabled: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

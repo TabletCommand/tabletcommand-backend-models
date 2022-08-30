@@ -437,7 +437,8 @@ module.exports = function(dependencies) {
           "text": "#F8F9F9"
         }
       }
-    ]
+    ],
+    reportNumberEnabled: true
   };
 
   const esriMap = {
