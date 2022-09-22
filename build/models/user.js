@@ -82,6 +82,11 @@ function UserSchema(mongoose) {
             type: Boolean,
             default: false,
         },
+        // Allows the user to manage incidents
+        isIncidentManager: {
+            type: Boolean,
+            default: false,
+        },
         mobileAccess: {
             type: Boolean,
             default: true,

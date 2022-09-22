@@ -93,6 +93,11 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    // Allows the user to manage incidents
+    isIncidentManager: {
+      type: Boolean,
+      default: false,
+    },
     mobileAccess: {
       type: Boolean,
       default: true,

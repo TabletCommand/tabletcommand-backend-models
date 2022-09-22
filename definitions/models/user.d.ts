@@ -60,6 +60,10 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             type: BooleanConstructor;
             default: boolean;
         };
+        isIncidentManager: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         mobileAccess: {
             type: BooleanConstructor;
             default: boolean;
@@ -303,6 +307,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     admin: boolean;
     superuser: boolean;
     isPro: boolean;
+    isIncidentManager: boolean;
     mobileAccess: boolean;
     webAccess: boolean;
     outsider: boolean;
