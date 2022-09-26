@@ -22,7 +22,9 @@ NODE_VERSION="v16.13.2"
 nvm use $NODE_VERSION || nvm install $NODE_VERSION
 
 npm install;
-echo "--- test"
-npm test;
+echo "--- spelling"
+npx cspell
 echo "--- type coverage"
 npx type-coverage;
+echo "--- test"
+npm test;

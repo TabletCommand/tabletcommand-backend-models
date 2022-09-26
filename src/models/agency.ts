@@ -33,12 +33,13 @@ export function AgencySchema(mongoose: MongooseModule) {
   });
 
   const LicensingDefault = {
-    "tcPro": 0,
-    "tcStatus": 0,
-    "tcMobile": 0,
-    "tcWeb": 0,
-    "fireMapperPro": 0,
-    "locationToCAD": 0
+    tcPro: 0,
+    tcManager: 0,
+    tcStatus: 0,
+    tcMobile: 0,
+    tcWeb: 0,
+    fireMapperPro: 0,
+    locationToCAD: 0
   };
 
   const modelSchema = createSchema(Schema, {
