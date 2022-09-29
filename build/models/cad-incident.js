@@ -141,6 +141,20 @@ function CADIncidentSchema(mongoose) {
         id: false,
     });
     CADPriorIncident.set("toJSON", toJSONOpts);
+    const ReportNumber = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            type: String,
+            default: "",
+        },
+        number: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    ReportNumber.set("toJSON", toJSONOpts);
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -347,6 +361,10 @@ function CADIncidentSchema(mongoose) {
         CallerNumber: {
             type: String,
             default: "",
+        },
+        ReportNumber: {
+            type: [ReportNumber],
+            default: [],
         },
         tag: {
             type: String,

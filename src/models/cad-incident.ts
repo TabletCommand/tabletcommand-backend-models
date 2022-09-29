@@ -45,7 +45,6 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-
   CADComment.set("toJSON", toJSONOpts);
 
   const CADPerson = createSchema(Schema, {
@@ -160,6 +159,21 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     id: false,
   });
   CADPriorIncident.set("toJSON", toJSONOpts);
+
+  const ReportNumber = createSchema(Schema, {
+    name: {
+      type: String,
+      default: "",
+    },
+    number: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+  ReportNumber.set("toJSON", toJSONOpts);
 
   const modelSchema = createSchema(Schema, {
     _id: {
@@ -373,6 +387,11 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     CallerNumber: {
       type: String,
       default: "",
+    },
+
+    ReportNumber: {
+      type: [ReportNumber],
+      default: [],
     },
 
     tag: {

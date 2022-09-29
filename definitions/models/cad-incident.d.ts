@@ -244,6 +244,22 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
             type: StringConstructor;
             default: string;
         };
+        ReportNumber: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    number: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
         tag: {
             type: StringConstructor;
             default: string;
@@ -586,6 +602,16 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         };
     }>[];
     CallerNumber: string;
+    ReportNumber: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        number: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     tag: string;
     Latitude: string;
     Longitude: string;
