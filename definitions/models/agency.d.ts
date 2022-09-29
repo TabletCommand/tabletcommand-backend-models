@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import * as uuid from "uuid";
-import { MongooseModule, retrieveCurrentUnixTime, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
 export declare function AgencySchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../helpers").MongooseInterface<{
         _id: {
@@ -36,6 +36,10 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
         modified_unix_date: {
             type: NumberConstructor;
             default: typeof retrieveCurrentUnixTime;
+        };
+        modified: {
+            type: DateConstructor;
+            default: typeof currentDate;
         };
         active: {
             type: BooleanConstructor;
@@ -285,6 +289,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
     agencyApiKey: string;
     uuid: string;
     modified_unix_date: number;
+    modified: string;
     active: boolean;
     departmentId: import("bson").ObjectID;
     administrators: {

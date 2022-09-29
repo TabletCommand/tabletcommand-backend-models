@@ -1,12 +1,13 @@
 import * as uuid from "uuid";
 import {
-  createSchema,
   createModel,
-  MongooseModule,
-  retrieveCurrentUnixTime,
+  createSchema,
+  currentDate,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
   ReplaceModelReturnType,
+  retrieveCurrentUnixTime,
 } from "../helpers";
 import AgencyCronConfigModule from "./schema/agency-cron-config";
 
@@ -76,6 +77,10 @@ export function AgencySchema(mongoose: MongooseModule) {
     modified_unix_date: {
       type: Number,
       default: retrieveCurrentUnixTime,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
     },
     active: {
       type: Boolean,
