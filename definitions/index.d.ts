@@ -1,4 +1,3 @@
-/// <reference types="mongoose" />
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
@@ -25,6 +24,7 @@ export { GSTMapping, GSTMappingModel } from "./models/gst-mapping";
 export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
 export { IncidentNotified, IncidentNotifiedModel } from "./models/incident-notified";
 export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
+export { JobLog, JobLogModel } from "./models/job-log";
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
@@ -70,6 +70,7 @@ export declare function connect(url: string): Promise<{
         IncidentEvent: import("./models/incident-event").IncidentEventModel;
         IncidentNotified: import("./models/incident-notified").IncidentNotifiedModel;
         IncidentTakeover: import("./models/incident-takeover").IncidentTakeoverModel;
+        JobLog: import("./models/job-log").JobLogModel;
         Location: import("./models/location").LocationModel;
         MailLog: import("./models/mail-log").MailLogModel;
         ManagedIncident: import("./models/managed-incident").ManagedIncidentModel;

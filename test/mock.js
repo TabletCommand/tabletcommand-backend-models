@@ -30,6 +30,15 @@ module.exports = function(dependencies) {
     }
   };
 
+  const jobLog = {
+    host: "TestHost-01",
+    state: "ready",
+    bidDate: new Date(),
+    startDate: new Date(),
+    completedDate: new Date(),
+    forceClosed: false
+  };
+
   const agency = {
     _id: mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
@@ -893,6 +902,7 @@ module.exports = function(dependencies) {
 
   return {
     actionLog,
+    jobLog,
     agency,
     assignment,
     arcGISGroup,

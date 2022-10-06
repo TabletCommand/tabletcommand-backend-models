@@ -34,6 +34,7 @@ async function wireModels(mongoose: MongooseModule) {
     IncidentEvent: await getModel(import("./models/incident-event")),
     IncidentNotified: await getModel(import("./models/incident-notified")),
     IncidentTakeover: await getModel(import("./models/incident-takeover")),
+    JobLog: await getModel(import("./models/job-log")),
     Location: await getModel(import("./models/location")),
     MailLog: await getModel(import("./models/mail-log")),
     ManagedIncident: await getModel(import("./models/managed-incident")),
@@ -77,6 +78,7 @@ export { GSTMapping, GSTMappingModel } from "./models/gst-mapping";
 export { IncidentEvent, IncidentEventModel } from "./models/incident-event";
 export { IncidentNotified, IncidentNotifiedModel } from "./models/incident-notified";
 export { IncidentTakeover, IncidentTakeoverModel } from "./models/incident-takeover";
+export { JobLog, JobLogModel } from "./models/job-log";
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
