@@ -18,6 +18,10 @@ export async function JobLogModule(mongoose: MongooseModule) {
       type: Types.ObjectId,
       auto: true,
     },
+    jobName: {
+      type: String,
+      default: "",
+    },
     host: {
       type: String,
       default: "",

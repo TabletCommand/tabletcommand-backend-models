@@ -29,6 +29,7 @@ describe("JobLog", function() {
 
       assert.isNotNull(testItem._id);
       assert.equal(testItem.host, sut.host);
+      assert.equal(testItem.jobName, sut.jobName);
       assert.equal(testItem.state, sut.state);
       assert.equal(testItem.bidDate, sut.bidDate);
       assert.equal(testItem.startDate, sut.startDate);

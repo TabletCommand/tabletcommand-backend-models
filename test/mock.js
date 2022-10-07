@@ -32,6 +32,7 @@ module.exports = function(dependencies) {
 
   const jobLog = {
     host: "TestHost-01",
+    jobName: "Test Job 1",
     state: "ready",
     bidDate: new Date(),
     startDate: new Date(),

@@ -10,6 +10,10 @@ async function JobLogModule(mongoose) {
             type: Types.ObjectId,
             auto: true,
         },
+        jobName: {
+            type: String,
+            default: "",
+        },
         host: {
             type: String,
             default: "",
@@ -29,6 +33,7 @@ async function JobLogModule(mongoose) {
         },
         forceClosed: {
             type: Boolean,
+            default: false,
         },
     }, {
         collection: "massive_job_log",
