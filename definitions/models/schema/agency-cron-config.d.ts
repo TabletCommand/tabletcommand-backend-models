@@ -124,58 +124,6 @@ export default function AgencyCronSchema(mongoose: MongooseModule): import("mong
             type: BooleanConstructor;
             default: boolean;
         };
-        sourcePath: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    iv: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    encryptedData: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        sshPrivateKey: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    iv: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    encryptedData: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        sshPublicKey: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    iv: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    encryptedData: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        useSSHKey: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
     }>;
     _methods: unknown;
 };

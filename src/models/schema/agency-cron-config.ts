@@ -119,24 +119,6 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-
-    // Deprecated - migrated to source + auth
-    sourcePath: {
-      type: EncryptedData,
-      default: null,
-    },
-    sshPrivateKey: {
-      type: EncryptedData,
-      default: null,
-    },
-    sshPublicKey: {
-      type: EncryptedData,
-      default: null,
-    },
-    useSSHKey: {
-      type: Boolean,
-      default: false,
-    },
   }, {
     _id: false,
     id: false,
