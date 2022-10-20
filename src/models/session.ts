@@ -10,8 +10,11 @@ import {
 } from "../helpers";
 import * as uuid from "uuid";
 
+import OAuthSchema from "./schema/oauth";
+
 export async function SessionModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
+  const OAuthToken = OAuthSchema(mongoose);
 
   function requiredButAllowEmptyString(this: { myField: unknown }) {
     // Workaround to set required, and allow empty id
@@ -61,6 +64,21 @@ export async function SessionModule(mongoose: MongooseModule) {
     deviceId: {
       type: String,
       default: "",
+    },
+    authSource: { // user.auth, password OR o-google OR o-microsoft
+      type: String,
+      default: "",
+    },
+    // All the sessions that could be created by this oAuth user (at this time)
+    // Used externally, this value can be leaked
+    authGroupKey: {
+      type: String,
+      default: "",
+    },
+    // Store the refresh token, in use only when authSource is o-google or o-microsoft
+    oAuth: {
+      type: OAuthToken,
+      default: null,
     },
   }, {
     collection: "sys_login",

@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SessionModule = void 0;
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
+const oauth_1 = require("./schema/oauth");
 async function SessionModule(mongoose) {
     const Schema = mongoose.Schema;
+    const OAuthToken = (0, oauth_1.default)(mongoose);
     function requiredButAllowEmptyString() {
         // Workaround to set required, and allow empty id
         return typeof this.myField === "string";
@@ -52,6 +54,21 @@ async function SessionModule(mongoose) {
         deviceId: {
             type: String,
             default: "",
+        },
+        authSource: {
+            type: String,
+            default: "",
+        },
+        // All the sessions that could be created by this oAuth user (at this time)
+        // Used externally, this value can be leaked
+        authGroupKey: {
+            type: String,
+            default: "",
+        },
+        // Store the refresh token, in use only when authSource is o-google or o-microsoft
+        oAuth: {
+            type: OAuthToken,
+            default: null,
         },
     }, {
         collection: "sys_login",

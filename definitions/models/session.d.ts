@@ -15,6 +15,22 @@ export declare function SessionModule(mongoose: MongooseModule): Promise<import(
     userAgent: string;
     remoteAddress: string;
     deviceId: string;
+    authSource: string;
+    authGroupKey: string;
+    oAuth: import("../helpers").MongooseInterface<{
+        accessToken: {
+            type: StringConstructor;
+            default: string;
+        };
+        refreshToken: {
+            type: StringConstructor;
+            default: string;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: Date;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

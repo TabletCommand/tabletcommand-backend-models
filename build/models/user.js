@@ -130,6 +130,10 @@ function UserSchema(mongoose) {
             default: "",
             select: false,
         },
+        auth: {
+            type: [String],
+            default: ["password"], // password, o-google, o-microsoft
+        },
         mapHidden: {
             type: Boolean,
             default: true,

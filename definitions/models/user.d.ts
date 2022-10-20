@@ -106,6 +106,10 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             default: string;
             select: boolean;
         };
+        auth: {
+            type: StringConstructor[];
+            default: string[];
+        };
         mapHidden: {
             type: BooleanConstructor;
             default: boolean;
@@ -318,6 +322,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     beacons: string[];
     salt: string;
     pass: string;
+    auth: string[];
     mapHidden: boolean;
     mapId: string;
     vehicle: import("../helpers").MongooseInterface<{
