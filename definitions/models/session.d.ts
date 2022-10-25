@@ -1,5 +1,5 @@
 /// <reference types="mongoose" />
-import { MongooseModule, ReplaceModelReturnType, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction } from "../helpers";
+import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function SessionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: string;
     nick: string;
@@ -17,6 +17,7 @@ export declare function SessionModule(mongoose: MongooseModule): Promise<import(
     deviceId: string;
     authSource: string;
     authGroupKey: string;
+    authGroupExpireAt: string;
     oAuth: import("../helpers").MongooseInterface<{
         accessToken: {
             type: StringConstructor;

@@ -1,12 +1,13 @@
 import {
-  MongooseModule,
-  createSchema,
   createModel,
+  createSchema,
+  currentDate,
   DocumentTypeFromSchema,
   FieldsOfDocument,
-  ReplaceModelReturnType,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
+  MongooseModule,
+  ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
 
@@ -74,6 +75,10 @@ export async function SessionModule(mongoose: MongooseModule) {
     authGroupKey: {
       type: String,
       default: "",
+    },
+    authGroupExpireAt: {
+      type: Date,
+      default: currentDate,
     },
     // Store the refresh token, in use only when authSource is o-google or o-microsoft
     oAuth: {

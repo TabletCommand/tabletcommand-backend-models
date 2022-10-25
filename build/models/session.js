@@ -65,6 +65,10 @@ async function SessionModule(mongoose) {
             type: String,
             default: "",
         },
+        authGroupExpireAt: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         // Store the refresh token, in use only when authSource is o-google or o-microsoft
         oAuth: {
             type: OAuthToken,
