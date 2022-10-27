@@ -21,38 +21,42 @@ export async function AssignmentModule(mongoose: MongooseModule) {
       type: Types.ObjectId,
       auto: true,
     },
-    position: {
-      type: Number,
-      default: 1,
-    },
-    userId: String,
     uuid: {
       type: String,
       default: uuid.v4,
     },
-    isMandatory: {
+    active: {
       type: Boolean,
-      default: false,
+      default: true,
     },
-    modified_date: {
-      type: String,
-    },
-    modified_unix_date: {
-      type: Number,
-      default: retrieveCurrentUnixTime,
-    },
-    modified: {
-      type: Date,
-      default: currentDate,
-    },
+    userId: String,
     departmentId: {
       type: String,
       required: true,
       index: true,
     },
-    active: {
+    isMandatory: {
       type: Boolean,
-      default: true,
+      default: false,
+    },
+    modified: {
+      type: Date,
+      default: currentDate,
+    },
+    // Deprecated
+    modified_date: {
+      type: String,
+    },
+    // Deprecated
+    modified_unix_date: {
+      type: Number,
+      default: retrieveCurrentUnixTime,
+    },
+
+    //
+    position: {
+      type: Number,
+      default: 1,
     },
     name: {
       type: String,
