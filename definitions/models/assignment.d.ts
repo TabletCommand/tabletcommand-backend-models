@@ -2,15 +2,15 @@
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function AssignmentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectID;
-    position: number;
-    userId: string;
     uuid: string;
+    active: boolean;
+    userId: string;
+    departmentId: string;
     isMandatory: boolean;
+    modified: string;
     modified_date: string;
     modified_unix_date: number;
-    modified: string;
-    departmentId: string;
-    active: boolean;
+    position: number;
     name: string;
     description: string;
     full_description: string;

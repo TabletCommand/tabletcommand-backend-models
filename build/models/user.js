@@ -95,10 +95,6 @@ function UserSchema(mongoose) {
             type: Boolean,
             default: false,
         },
-        outsider: {
-            type: Boolean,
-            default: false,
-        },
         // Share Phone Location
         shareLocationEnabled: {
             type: Boolean,

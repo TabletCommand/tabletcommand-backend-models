@@ -72,10 +72,6 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             type: BooleanConstructor;
             default: boolean;
         };
-        outsider: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
         shareLocationEnabled: {
             type: BooleanConstructor;
             default: boolean;
@@ -314,7 +310,6 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     isIncidentManager: boolean;
     mobileAccess: boolean;
     webAccess: boolean;
-    outsider: boolean;
     shareLocationEnabled: boolean;
     beaconEnabled: boolean;
     userContributionEnabled: boolean;

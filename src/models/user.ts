@@ -106,10 +106,6 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    outsider: {
-      type: Boolean,
-      default: false,
-    },
 
     // Share Phone Location
     shareLocationEnabled: {
