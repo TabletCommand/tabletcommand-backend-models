@@ -53,6 +53,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     userContributionEnabled: boolean;
     vehicleSwapEnabled: boolean;
     personnelStaffingEnabled: boolean;
+    authSource: string[];
     defaultMapPosition: {
         longitude: number;
         latitude: number;

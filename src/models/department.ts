@@ -347,6 +347,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    // values: password, o-google, later o-microsoft, etc
+    authSource: {
+      type: [String],
+      default: ["password"],
+    },
     defaultMapPosition: {
       longitude: {
         type: Number,
