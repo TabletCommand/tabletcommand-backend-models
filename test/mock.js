@@ -380,7 +380,9 @@ module.exports = function(dependencies) {
   const department = {
     _id: mongoose.Types.ObjectId(),
     department: "Test Department",
-    city: "San Francisco",
+    addressDetails: {
+      city: "San Francisco",
+    },
     active: true,
     apikey: "abcd",
     partialApiKey: "ab",

@@ -28,7 +28,7 @@ describe("Department", function() {
     assert.isNotNull(sut._id);
     assert.isNotNull(sut.id);
     assert.equal(sut.department, testItem.department);
-    assert.equal(sut.city, testItem.city);
+    assert.equal(sut.addressDetails.city, testItem.addressDetails.city);
     assert.isTrue(sut.active);
     assert.equal(sut.apikey, testItem.apikey);
     assert.equal(sut.partialApiKey, testItem.partialApiKey);
