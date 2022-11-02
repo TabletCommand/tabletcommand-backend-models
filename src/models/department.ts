@@ -148,7 +148,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     enabled: false,
     callTypesAllowed: [],
     statusesAllowed: [],
-    restrictedFields: ["LocationComment", "AgencyIncidentCallTypeDescription", "Comment"],
+    restrictedFields: [
+      "LocationComment",
+      "AgencyIncidentCallTypeDescription",
+      "Comment"
+    ],
     restrictedMessage: "RESTRICTED"
   };
 
@@ -205,26 +209,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       country: {
         type: String,
         default: "",
-      },  
-    },
-    address: {
-      type: String,
-      default: "",
-    },
-    city: {
-      type: String,
-      default: "",
-    },
-    state: {
-      type: String,
-      default: "",
-    },
-    zipCode: {
-      type: String,
-    },
-    country: {
-      type: String,
-      default: "",
+      },
     },
     contact: {
       department: {
@@ -243,22 +228,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         type: String,
         default: "",
       },
-    },
-    contact_department: {
-      type: String,
-      default: "",
-    },
-    contact_name: {
-      type: String,
-      default: "",
-    },
-    contact_phone: {
-      type: String,
-      default: "",
-    },
-    contact_email: {
-      type: String,
-      default: "",
     },
     modified_unix_date: {
       type: Number,
@@ -571,7 +540,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
   });
 
-  modelSchema.virtual("id").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
+  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
     return this._id.toHexString();
   });
 

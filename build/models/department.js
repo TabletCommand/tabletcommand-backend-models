@@ -130,7 +130,11 @@ async function DepartmentModule(mongoose) {
         enabled: false,
         callTypesAllowed: [],
         statusesAllowed: [],
-        restrictedFields: ["LocationComment", "AgencyIncidentCallTypeDescription", "Comment"],
+        restrictedFields: [
+            "LocationComment",
+            "AgencyIncidentCallTypeDescription",
+            "Comment"
+        ],
         restrictedMessage: "RESTRICTED"
     };
     const IncidentType = (0, helpers_1.createSchema)(Schema, {
@@ -185,25 +189,6 @@ async function DepartmentModule(mongoose) {
                 default: "",
             },
         },
-        address: {
-            type: String,
-            default: "",
-        },
-        city: {
-            type: String,
-            default: "",
-        },
-        state: {
-            type: String,
-            default: "",
-        },
-        zipCode: {
-            type: String,
-        },
-        country: {
-            type: String,
-            default: "",
-        },
         contact: {
             department: {
                 type: String,
@@ -221,22 +206,6 @@ async function DepartmentModule(mongoose) {
                 type: String,
                 default: "",
             },
-        },
-        contact_department: {
-            type: String,
-            default: "",
-        },
-        contact_name: {
-            type: String,
-            default: "",
-        },
-        contact_phone: {
-            type: String,
-            default: "",
-        },
-        contact_email: {
-            type: String,
-            default: "",
         },
         modified_unix_date: {
             type: Number,
