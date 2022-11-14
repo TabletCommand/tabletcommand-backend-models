@@ -40,6 +40,7 @@ export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
+export { ValidationReport, ValidationReportModel } from "./models/validation-report";
 export * from "./helpers";
 export declare function connect(url: string): Promise<{
     mongoose: typeof import("mongoose");
@@ -86,6 +87,7 @@ export declare function connect(url: string): Promise<{
         User: import("./models/user").UserModel;
         UserDevice: import("./models/user-device").UserDeviceModel;
         UserRegistration: import("./models/user-registration").UserRegistrationModel;
+        ValidationReport: import("./models/validation-report").ValidationReportModel;
     };
 }>;
 declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;

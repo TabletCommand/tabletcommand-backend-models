@@ -62,6 +62,7 @@ async function wireModels(mongoose) {
         User: await getModel(Promise.resolve().then(() => require("./models/user"))),
         UserDevice: await getModel(Promise.resolve().then(() => require("./models/user-device"))),
         UserRegistration: await getModel(Promise.resolve().then(() => require("./models/user-registration"))),
+        ValidationReport: await getModel(Promise.resolve().then(() => require("./models/validation-report"))),
     };
 }
 __exportStar(require("./helpers"), exports);

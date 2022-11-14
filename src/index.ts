@@ -49,6 +49,7 @@ async function wireModels(mongoose: MongooseModule) {
     User: await getModel(import("./models/user")),
     UserDevice: await getModel(import("./models/user-device")),
     UserRegistration: await getModel(import("./models/user-registration")),
+    ValidationReport: await getModel(import("./models/validation-report")),
   };
 }
 
@@ -93,6 +94,7 @@ export { Template, TemplateModel } from "./models/template";
 export { User, UserModel } from "./models/user";
 export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
+export { ValidationReport, ValidationReportModel } from "./models/validation-report";
 
 export * from "./helpers";
 

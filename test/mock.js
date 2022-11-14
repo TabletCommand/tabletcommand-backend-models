@@ -191,24 +191,24 @@ module.exports = function(dependencies) {
 
   const message = {
     departmentId: "d1234",
-    "active" : false,
-    "title" : "Upgrade App",
-    "body" : "Application out of date.",
-    "actionTitle" : "Upgrade App",
-    "color" : null,
-    "url" : "",
-    "priority" : 4,
-    "type" : {
-        "type" : "upgradeApp",
-        "typeOpts" : {
-            "major" : 3,
-            "minor" : 0,
-            "patch" : 1
-        }
+    "active": false,
+    "title": "Upgrade App",
+    "body": "Application out of date.",
+    "actionTitle": "Upgrade App",
+    "color": null,
+    "url": "",
+    "priority": 4,
+    "type": {
+      "type": "upgradeApp",
+      "typeOpts": {
+        "major": 3,
+        "minor": 0,
+        "patch": 1
+      }
     },
-    "created" : new Date().toISOString(),
-    "uuid" : "138acffd-a94f-402d-87b3-ff6ed31a19dc",
-    "requestId" : "138acffd-a94f-402d-87b3-ff6ed31a19db",
+    "created": new Date().toISOString(),
+    "uuid": "138acffd-a94f-402d-87b3-ff6ed31a19dc",
+    "requestId": "138acffd-a94f-402d-87b3-ff6ed31a19db",
   };
 
   const cadIncident = {
@@ -781,7 +781,7 @@ module.exports = function(dependencies) {
     offDutyEnabled: true,
     webMapSettings: {
       defaultZoomLevel: 10,
-      defaultCenter: [1,1],
+      defaultCenter: [1, 1],
       defaultMap: "Default"
     },
     restrictedCommentsEnabled: true
@@ -892,6 +892,30 @@ module.exports = function(dependencies) {
     sendNotification: false
   };
 
+  const validationReport = {
+    _id: mongoose.Types.ObjectId(),
+    departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
+    modified: new Date("2022-11-13T22:02:01Z"),
+    location: [],
+    statusMap: [],
+    status: [],
+    vehicleStatus: [],
+    vehicle: [],
+    incident: [
+      {
+        message: "path: /ReportNumber msg: must be array",
+        firstSeenAt: new Date("2022-11-14T09:23:48.866Z"),
+        lastSeenAt: new Date("2022-11-14T09:23:48.866Z"),
+        payload: {
+          AgencyID: "99999",
+          IncidentNumber: "ABCD-1234",
+          ReportNumber: ""
+        }
+      }
+    ],
+    personnel: [],
+  };
+
   async function cleanup() {
     config.checkIfTestDatabase();
 
@@ -899,16 +923,16 @@ module.exports = function(dependencies) {
     await models.Esri.deleteMany({});
     await models.IncidentNotified.deleteMany({});
     await models.PersonnelImport.deleteMany({});
-    await models.UserDevice.deleteMany({});
     await models.User.deleteMany({});
+    await models.UserDevice.deleteMany({});
+    await models.ValidationReport.deleteMany({});
   }
 
   return {
     actionLog,
-    jobLog,
     agency,
-    assignment,
     arcGISGroup,
+    assignment,
     battalion,
     cadIncident,
     cadStatus,
@@ -919,6 +943,7 @@ module.exports = function(dependencies) {
     checklist,
     checklistItem,
     cleanup,
+    csvImport,
     department,
     deviceMapping,
     esri,
@@ -926,10 +951,11 @@ module.exports = function(dependencies) {
     incidentEvent,
     incidentNotified,
     incidentTakeover,
+    jobLog,
     location,
     mailLog,
-    message,
     managedIncident,
+    message,
     monitor,
     personnelImport,
     rateLimit,
@@ -938,6 +964,6 @@ module.exports = function(dependencies) {
     user,
     userDevice,
     userRegistration,
-    csvImport
+    validationReport,
   };
 };
