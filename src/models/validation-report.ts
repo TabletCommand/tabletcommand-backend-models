@@ -21,7 +21,8 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
     departmentId: {
       type: Types.ObjectId,
       ref: "Department",
-      required: true
+      required: true,
+      unique: true,
     },
     location: {
       type: [ValidationErrorItem],

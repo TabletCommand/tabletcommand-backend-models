@@ -10,6 +10,7 @@ export declare function ValidationReportSchema(mongoose: MongooseModule): import
             type: import("mongoose").Types.ObjectIdConstructor;
             ref: string;
             required: boolean;
+            unique: boolean;
         };
         location: {
             type: (import("mongoose").Schema<any> & {

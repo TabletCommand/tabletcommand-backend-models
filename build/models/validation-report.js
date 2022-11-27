@@ -14,7 +14,8 @@ function ValidationReportSchema(mongoose) {
         departmentId: {
             type: Types.ObjectId,
             ref: "Department",
-            required: true
+            required: true,
+            unique: true,
         },
         location: {
             type: [ValidationErrorItem],

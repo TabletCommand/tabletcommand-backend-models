@@ -15,6 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connect = void 0;
+const _ = require("lodash");
 async function wireModels(mongoose) {
     async function getModel(m) {
         const module = await m;
@@ -66,14 +67,17 @@ async function wireModels(mongoose) {
     };
 }
 __exportStar(require("./helpers"), exports);
-async function connect(url) {
+async function connect(url, overwriteOpts) {
     const mongoose = await Promise.resolve().then(() => require("mongoose"));
     mongoose.Promise = await Promise.resolve().then(() => require("bluebird"));
     const models = await wireModels(mongoose);
-    const opts = {
+    const defaultOpts = {
+        readPreference: "primaryPreferred",
         useNewUrlParser: true,
         useUnifiedTopology: true,
     };
+    // If present, overwrite options
+    const opts = _.assign({}, defaultOpts, overwriteOpts);
     const connection = await mongoose.connect(url, opts);
     return { mongoose, connection, models };
 }

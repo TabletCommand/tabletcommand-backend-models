@@ -1,4 +1,4 @@
-/// <reference types="mongoose" />
+import { ConnectionOptions } from "mongoose";
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
@@ -42,7 +42,7 @@ export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
 export { ValidationReport, ValidationReportModel } from "./models/validation-report";
 export * from "./helpers";
-export declare function connect(url: string): Promise<{
+export declare function connect(url: string, overwriteOpts?: ConnectionOptions): Promise<{
     mongoose: typeof import("mongoose");
     connection: typeof import("mongoose");
     models: {
