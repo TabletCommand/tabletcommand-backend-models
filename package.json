@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "5.27.0",
+  "version": "5.27.1",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "gulp",
@@ -19,15 +19,15 @@
     "bluebird": "^3.7.2",
     "debug": "^4.3.4",
     "lodash": "^4.17.21",
-    "moment-timezone": "^0.5.38",
+    "moment-timezone": "^0.5.39",
     "mongoose": "=5.10.19",
     "mongoose-lean-virtuals": "^0.7.6",
     "uuid": "~9.0.0"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.37",
-    "@types/chai": "^4.3.3",
-    "@types/lodash": "^4.14.186",
+    "@types/chai": "^4.3.4",
+    "@types/lodash": "^4.14.190",
     "@types/mocha": "^9.1.1",
     "@types/mongodb": "^3.6.20",
     "@types/mongoose": "~5.10.5",
@@ -35,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "~5.38.1",
     "@typescript-eslint/parser": "~5.38.1",
     "chai": "^4.3.6",
-    "cspell": "^6.12.0",
+    "cspell": "^6.15.0",
     "del": "^6.1.1",
     "eslint": "^8.24.0",
     "gulp": "^4.0.2",
@@ -43,7 +43,7 @@
     "gulp-shell": "^0.8.0",
     "mocha": "^10.0.0",
     "ts-node": "^10.9.1",
-    "type-coverage": "^2.22.0",
+    "type-coverage": "^2.24.1",
     "typescript": "~4.7.4",
     "yargs-parser": ">=21.1.1"
   },

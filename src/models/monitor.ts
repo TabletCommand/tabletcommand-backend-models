@@ -1,6 +1,7 @@
 import {
   createModel,
   createSchema,
+  currentDate,
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
@@ -42,9 +43,14 @@ export async function MonitorModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
+    sentAt: {
+      type: Date,
+      default: currentDate,
+    },
     ticketId: {
       type: String,
-    }
+      default: "",
+    },
   }, {
     collection: "massive_monitor",
   });

@@ -7,6 +7,7 @@ export declare function MonitorModule(mongoose: MongooseModule): Promise<import(
     notificationType: string;
     status: string;
     sentUnixDate: number;
+    sentAt: string;
     ticketId: string;
 }, {}> & {
     __methods?: unknown;
