@@ -152,7 +152,7 @@ function BattalionSchema(mongoose) {
             }
             const pathSchema = schema;
             if (pathSchema.paths[element] === undefined) {
-                // console.log("backend-models.cad-incident: undefined schema.paths[element]:", element, pathSchema.paths[element]);
+                // console.log("backend-models.battalion: undefined schema.paths[element]:", element, pathSchema.paths[element]);
                 delete ret[element];
             }
         });

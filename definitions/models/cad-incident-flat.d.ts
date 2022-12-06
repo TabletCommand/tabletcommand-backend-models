@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function CADIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+export declare function CADIncidentFlatModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("bson").ObjectID;
     uuid: string;
     departmentId: string;
@@ -305,10 +305,10 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
 }, {}> & {
     __methods?: unknown;
 }>;
-export interface CADIncident extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentModule> {
+export interface CADIncidentFlat extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentFlatModule> {
 }
-export interface CADIncidentModel extends ModelTypeFromTypeSchemaFunction<CADIncident> {
+export interface CADIncidentFlatModel extends ModelTypeFromTypeSchemaFunction<CADIncidentFlat> {
 }
-declare const _default: ReplaceModelReturnType<typeof CADIncidentModule, CADIncidentModel>;
+declare const _default: ReplaceModelReturnType<typeof CADIncidentFlatModule, CADIncidentFlatModel>;
 export default _default;
-//# sourceMappingURL=cad-incident.d.ts.map
+//# sourceMappingURL=cad-incident-flat.d.ts.map

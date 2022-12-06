@@ -6,6 +6,7 @@ export { Assignment, AssignmentModel } from "./models/assignment";
 export { Battalion, BattalionModel } from "./models/battalion";
 export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
+export { CADIncidentFlat, CADIncidentFlatModel } from "./models/cad-incident-flat";
 export { CADIncidentStream, CADIncidentStreamModel } from "./models/cad-incident-stream";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
@@ -53,6 +54,7 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         Battalion: import("./models/battalion").BattalionModel;
         BeaconLog: import("./models/beacon-log").BeaconLogModel;
         CADIncident: import("./models/cad-incident").CADIncidentModel;
+        CADIncidentFlat: import("./models/cad-incident-flat").CADIncidentFlatModel;
         CADIncidentStream: import("./models/cad-incident-stream").CADIncidentStreamModel;
         CADStatus: import("./models/cad-status").CADStatusModel;
         CADStatusMap: import("./models/cad-status-map").CADStatusMapModel;

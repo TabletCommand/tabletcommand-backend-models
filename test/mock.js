@@ -719,8 +719,9 @@ module.exports = function(dependencies) {
     _id: mongoose.Types.ObjectId(),
     departmentId: "546ace2b3cd8d60d1d00256a",
     agencyId: "123",
-    notificationType: "maps-token-error",
+    notificationType: "maps-auth-error",
     status: "active",
+    sentAt: new Date(1000.0 * 1603263604),
     sentUnixDate: 1603263604
   };
 
