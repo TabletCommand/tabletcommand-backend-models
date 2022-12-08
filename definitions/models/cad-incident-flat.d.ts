@@ -112,9 +112,18 @@ export declare function CADIncidentFlatModule(mongoose: MongooseModule): Promise
             default: string;
         };
     }>[];
-    tag: string;
-    Latitude: string;
-    Longitude: string;
+    radioChannels: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        channel: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
+    Latitude: number;
+    Longitude: number;
     Comment: import("../helpers").MongooseInterface<{
         Comment: {
             type: StringConstructor;
@@ -292,7 +301,6 @@ export declare function CADIncidentFlatModule(mongoose: MongooseModule): Promise
     simulation: boolean;
     notify: boolean;
     rts: boolean;
-    CADSimulator: string;
     notificationType: import("../helpers").MongooseInterface<{
         name: {
             type: StringConstructor;
@@ -301,7 +309,6 @@ export declare function CADIncidentFlatModule(mongoose: MongooseModule): Promise
             type: StringConstructor;
         };
     }>[];
-    notifiedUnits: string[];
 }, {}> & {
     __methods?: unknown;
 }>;

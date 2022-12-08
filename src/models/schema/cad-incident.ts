@@ -156,6 +156,21 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   CADPriorIncident.set("toJSON", toJSONOpts);
 
+  const RadioChannel = createSchema(Schema, {
+    name: {
+      type: String,
+      default: "",
+    },
+    channel: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+  RadioChannel.set("toJSON", toJSONOpts);
+
   const ReportNumber = createSchema(Schema, {
     name: {
       type: String,
@@ -390,17 +405,17 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       default: [],
     },
 
-    tag: {
-      type: String,
-      default: "",
+    radioChannels: {
+      type: [RadioChannel],
+      default: [],
     },
 
     // Coordinate
     Latitude: {
-      type: String,
+      type: Number,
     },
     Longitude: {
-      type: String,
+      type: Number,
     },
 
     Comment: {
@@ -437,19 +452,11 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       default: true,
     },
 
-    // Leaked
-    CADSimulator: {
-      type: String,
-    },
-
     notificationType: {
       type: [APNNotificationType],
       default: [],
     },
-    notifiedUnits: {
-      type: [String],
-      default: [],
-    },
+
   }, {
     autoIndex: false,
     // Set collection and strict after importing

@@ -260,15 +260,27 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
             })[];
             default: never[];
         };
-        tag: {
-            type: StringConstructor;
-            default: string;
+        radioChannels: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    channel: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
         };
         Latitude: {
-            type: StringConstructor;
+            type: NumberConstructor;
         };
         Longitude: {
-            type: StringConstructor;
+            type: NumberConstructor;
         };
         Comment: {
             type: (import("mongoose").Schema<any> & {
@@ -476,9 +488,6 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
             type: BooleanConstructor;
             default: boolean;
         };
-        CADSimulator: {
-            type: StringConstructor;
-        };
         notificationType: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{
@@ -491,10 +500,6 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                 }>;
                 _methods: unknown;
             })[];
-            default: never[];
-        };
-        notifiedUnits: {
-            type: StringConstructor[];
             default: never[];
         };
     }>;

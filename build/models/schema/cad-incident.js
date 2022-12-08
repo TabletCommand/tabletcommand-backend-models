@@ -141,6 +141,20 @@ function CADIncidentSchema(mongoose) {
         id: false,
     });
     CADPriorIncident.set("toJSON", toJSONOpts);
+    const RadioChannel = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            type: String,
+            default: "",
+        },
+        channel: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    RadioChannel.set("toJSON", toJSONOpts);
     const ReportNumber = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,
@@ -366,16 +380,16 @@ function CADIncidentSchema(mongoose) {
             type: [ReportNumber],
             default: [],
         },
-        tag: {
-            type: String,
-            default: "",
+        radioChannels: {
+            type: [RadioChannel],
+            default: [],
         },
         // Coordinate
         Latitude: {
-            type: String,
+            type: Number,
         },
         Longitude: {
-            type: String,
+            type: Number,
         },
         Comment: {
             type: [CADComment],
@@ -406,16 +420,8 @@ function CADIncidentSchema(mongoose) {
             type: Boolean,
             default: true,
         },
-        // Leaked
-        CADSimulator: {
-            type: String,
-        },
         notificationType: {
             type: [APNNotificationType],
-            default: [],
-        },
-        notifiedUnits: {
-            type: [String],
             default: [],
         },
     }, {
