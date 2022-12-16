@@ -125,6 +125,9 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    backupDate: {
+      type: Date,
+    },
   });
 
   const modelSchema = createSchema(Schema, modelSchemaConfig, {

@@ -73,6 +73,7 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
             default: string;
         };
     }>;
+    backupDate: string;
 }, {}> & {
     __methods?: unknown;
 }>;

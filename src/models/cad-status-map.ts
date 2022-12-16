@@ -53,6 +53,9 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
       type: [ToStatusIdSchema],
       required: true,
     },
+    backupDate: {
+      type: Date,
+    },
   }, {
     collection: "massive_cad_status_map",
   });

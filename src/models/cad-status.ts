@@ -137,6 +137,9 @@ export async function CADStatusModule(mongoose: MongooseModule) {
       type: Color,
       default: null,
     },
+    backupDate: {
+      type: Date,
+    },
   }, {
     collection: "massive_cad_status",
   });

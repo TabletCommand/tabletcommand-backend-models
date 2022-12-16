@@ -116,6 +116,9 @@ async function CADVehicleStatusModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        backupDate: {
+            type: Date,
+        },
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaConfig, {
         collection: "massive_cad_vehicle_status",

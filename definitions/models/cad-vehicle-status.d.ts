@@ -47,6 +47,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
         };
     }>;
     assignableByUser: boolean;
+    backupDate: string;
 }, {}> & {
     __methods?: unknown;
 }>;

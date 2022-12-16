@@ -75,6 +75,9 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false
     },
+    backupDate: {
+      type: Date,
+    },
   }, {
     collection: "massive_cad_vehicle",
   });
