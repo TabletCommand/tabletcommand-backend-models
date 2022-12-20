@@ -57,6 +57,15 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
                         type: NumberConstructor;
                         default: number;
                     };
+                    latitude: {
+                        type: NumberConstructor;
+                    };
+                    longitude: {
+                        type: NumberConstructor;
+                    };
+                    time: {
+                        type: NumberConstructor;
+                    };
                 }>;
                 _methods: unknown;
             })[];

@@ -14,7 +14,7 @@ async function CADStatusModule(mongoose) {
         },
         type: {
             type: String,
-            default: "string", // int, bool
+            default: "string", // int, bool, hospital, interval
         },
         visible: {
             type: Boolean,
@@ -31,6 +31,17 @@ async function CADStatusModule(mongoose) {
         position: {
             type: Number,
             default: 0,
+        },
+        // Premise lat/lon
+        latitude: {
+            type: Number,
+        },
+        longitude: {
+            type: Number,
+        },
+        // OOS time duration (seconds)
+        time: {
+            type: Number,
         },
     }, {
         _id: false,
