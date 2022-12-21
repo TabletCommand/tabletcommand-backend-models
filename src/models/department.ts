@@ -52,6 +52,38 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const AudioStream = createSchema(Schema, {
+    name: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+    url: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const AudioStreamGroup = createSchema(Schema, {
+    group: {
+      type: String,
+      default: "",
+    },
+    streams: {
+      type: [AudioStream],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const RestrictedComments = createSchema(Schema, {
     enabled: {
       type: Boolean,
@@ -531,6 +563,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     reportNumberEnabled: {
       type: Boolean,
       default: false,
+    },
+    audioConfiguration: {
+      type: [AudioStreamGroup],
+      default: [],
     },
   }, {
     collection: "massive_admin",

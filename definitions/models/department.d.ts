@@ -203,6 +203,32 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         };
     }>[];
     reportNumberEnabled: boolean;
+    audioConfiguration: import("../helpers").MongooseInterface<{
+        group: {
+            type: StringConstructor;
+            default: string;
+        };
+        streams: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    description: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    url: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;

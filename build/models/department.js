@@ -39,6 +39,36 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const AudioStream = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            type: String,
+            default: "",
+        },
+        description: {
+            type: String,
+            default: "",
+        },
+        url: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const AudioStreamGroup = (0, helpers_1.createSchema)(Schema, {
+        group: {
+            type: String,
+            default: "",
+        },
+        streams: {
+            type: [AudioStream],
+            default: [],
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const RestrictedComments = (0, helpers_1.createSchema)(Schema, {
         enabled: {
             type: Boolean,
@@ -501,6 +531,10 @@ async function DepartmentModule(mongoose) {
         reportNumberEnabled: {
             type: Boolean,
             default: false,
+        },
+        audioConfiguration: {
+            type: [AudioStreamGroup],
+            default: [],
         },
     }, {
         collection: "massive_admin",
