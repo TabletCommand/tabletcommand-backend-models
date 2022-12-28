@@ -211,11 +211,11 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         streams: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
-                    name: {
+                    description: {
                         type: StringConstructor;
                         default: string;
                     };
-                    description: {
+                    channel: {
                         type: StringConstructor;
                         default: string;
                     };

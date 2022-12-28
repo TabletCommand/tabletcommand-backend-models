@@ -53,11 +53,13 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   });
 
   const AudioStream = createSchema(Schema, {
-    name: {
+    // eg. Central Dispatch Talk Group or also Available on 89.5 MHz
+    description: {
       type: String,
       default: "",
     },
-    description: {
+    // e.g. B2 or CH99
+    channel: {
       type: String,
       default: "",
     },
