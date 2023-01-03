@@ -178,6 +178,10 @@ export function UserSchema(mongoose: MongooseModule) {
       type: PubNubToken,
       default: null,
     },
+    socketIO: {
+      type: PubNubToken,
+      default: null,
+    },
 
     // Password Reset
     token: {

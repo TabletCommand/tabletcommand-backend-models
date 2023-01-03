@@ -182,6 +182,26 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             };
             default: null;
         };
+        socketIO: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    token: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    expireAt: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                    runAt: {
+                        type: DateConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: null;
+        };
         token: {
             type: StringConstructor;
             default: string;
@@ -348,6 +368,20 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
         };
     }>;
     pubNubV3: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        runAt: {
+            type: DateConstructor;
+            default: string;
+        };
+    }>;
+    socketIO: import("../helpers").MongooseInterface<{
         token: {
             type: StringConstructor;
             default: string;

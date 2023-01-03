@@ -163,6 +163,10 @@ function UserSchema(mongoose) {
             type: PubNubToken,
             default: null,
         },
+        socketIO: {
+            type: PubNubToken,
+            default: null,
+        },
         // Password Reset
         token: {
             type: String,
