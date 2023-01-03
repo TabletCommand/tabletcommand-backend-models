@@ -458,6 +458,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: PubNubToken,
       default: null,
     },
+    socketIO: {
+      type: PubNubToken,
+      default: null,
+    },
 
     // Move this to a different collection
     esriGeoJSONFilename: {

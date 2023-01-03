@@ -85,6 +85,20 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: string;
         };
     }>;
+    socketIO: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        runAt: {
+            type: DateConstructor;
+            default: string;
+        };
+    }>;
     esriGeoJSONFilename: string;
     customWebUrl: string;
     customWebName: string;
