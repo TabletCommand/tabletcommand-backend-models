@@ -7,6 +7,7 @@ export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promis
     radioName: string;
     requestTime: number;
     responseTime: number;
+    changedAt: string;
     status: string;
     statusCode: string;
     modifiedDate: number;

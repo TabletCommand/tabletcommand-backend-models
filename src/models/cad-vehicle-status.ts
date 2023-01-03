@@ -63,6 +63,11 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    // Max of requestTime/responseTime
+    changedAt: {
+      type: Date,
+      default: new Date("2000-01-02T03:04:06.789Z"), // Date in the past
+    },
     status: {
       type: String,
       default: "",
