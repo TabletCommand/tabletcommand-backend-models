@@ -237,10 +237,18 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                         type: StringConstructor;
                         default: string;
                     };
+                    order: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
                 }>;
                 _methods: unknown;
             })[];
             default: never[];
+        };
+        order: {
+            type: NumberConstructor;
+            default: number;
         };
     }>[];
 }, {}> & {

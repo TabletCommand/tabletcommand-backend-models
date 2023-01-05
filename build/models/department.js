@@ -54,6 +54,10 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        order: {
+            type: Number,
+            default: 0,
+        }
     }, {
         _id: false,
         id: false,
@@ -67,6 +71,10 @@ async function DepartmentModule(mongoose) {
             type: [AudioStream],
             default: [],
         },
+        order: {
+            type: Number,
+            default: 0,
+        }
     }, {
         _id: false,
         id: false,
