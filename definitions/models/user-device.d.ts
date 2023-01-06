@@ -33,6 +33,10 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
             type: NumberConstructor;
             default: number;
         };
+        channelId: {
+            type: StringConstructor;
+            default: string;
+        };
         bundleIdentifier: {
             type: StringConstructor;
             default: string;

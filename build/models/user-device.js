@@ -67,6 +67,13 @@ async function UserDeviceModule(mongoose) {
             type: Number,
             default: 0
         },
+        // Used by Android, to allow changing notification channel setup between releases
+        // Android notification channels are immutable 
+        // <https://developer.android.com/develop/ui/views/notifications/channels>
+        channelId: {
+            type: String,
+            default: "",
+        },
         bundleIdentifier: {
             type: String,
             default: "",
