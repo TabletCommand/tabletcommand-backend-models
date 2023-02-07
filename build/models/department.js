@@ -550,6 +550,10 @@ async function DepartmentModule(mongoose) {
             type: [AudioStreamGroup],
             default: [],
         },
+        minPasswordLength: {
+            type: Number,
+            default: 8,
+        },
     }, {
         collection: "massive_admin",
     });

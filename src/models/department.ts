@@ -582,6 +582,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [AudioStreamGroup],
       default: [],
     },
+    minPasswordLength: {
+      type: Number,
+      default: 8,
+    },
   }, {
     collection: "massive_admin",
   });

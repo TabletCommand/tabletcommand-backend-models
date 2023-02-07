@@ -251,6 +251,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: number;
         };
     }>[];
+    minPasswordLength: number;
 }, {}> & {
     __methods?: unknown;
 }>;
