@@ -135,6 +135,23 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         opAreaName: string;
         opAreaCode: string;
     };
+    shareIncident: {
+        enabled: boolean;
+        rules: import("../helpers").MongooseInterface<{
+            ruleType: {
+                type: StringConstructor;
+                default: string;
+            };
+            departmentId: {
+                type: StringConstructor;
+                default: string;
+            };
+            configuration: {
+                type: ObjectConstructor;
+                default: null;
+            };
+        }>[];
+    };
     speedReportingEnabled: boolean;
     accountType: string;
     timeZone: string;

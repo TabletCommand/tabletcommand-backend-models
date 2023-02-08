@@ -309,6 +309,36 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             type: StringConstructor;
         };
     }>[];
+    sharedTo: import("../helpers").MongooseInterface<{
+        departmentId: {
+            type: StringConstructor;
+            default: string;
+        };
+        startAt: {
+            type: DateConstructor;
+            default: typeof import("../helpers").currentDate;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: typeof import("../helpers").currentDate;
+        };
+        reasons: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    date: {
+                        type: DateConstructor;
+                        default: typeof import("../helpers").currentDate;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;

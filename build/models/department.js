@@ -4,8 +4,8 @@ exports.DepartmentModule = void 0;
 const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
-const pubnub_token_1 = require("./schema/pubnub-token");
 const color_1 = require("./schema/color");
+const pubnub_token_1 = require("./schema/pubnub-token");
 async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
@@ -190,6 +190,24 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const ShareIncidentRule = (0, helpers_1.createSchema)(Schema, {
+        ruleType: {
+            type: String,
+            default: "",
+        },
+        departmentId: {
+            type: String,
+            default: "",
+        },
+        configuration: {
+            type: Object,
+            default: null,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    // Main schema
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -500,6 +518,16 @@ async function DepartmentModule(mongoose) {
             opAreaCode: {
                 type: String,
                 default: "",
+            },
+        },
+        shareIncident: {
+            enabled: {
+                type: Boolean,
+                default: false,
+            },
+            rules: {
+                type: [ShareIncidentRule],
+                default: [],
             },
         },
         speedReportingEnabled: {

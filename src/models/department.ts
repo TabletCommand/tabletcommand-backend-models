@@ -13,8 +13,8 @@ import {
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
 } from "../helpers";
-import PubNubTokenSchema from "./schema/pubnub-token";
 import ColorModule from "./schema/color";
+import PubNubTokenSchema from "./schema/pubnub-token";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -198,7 +198,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     restrictedMessage: "RESTRICTED"
   };
 
-
   const IncidentType = createSchema(Schema, {
     name: {
       type: String,
@@ -213,6 +212,25 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const ShareIncidentRule = createSchema(Schema, {
+    ruleType: {
+      type: String,
+      default: "",
+    },
+    departmentId: {
+      type: String,
+      default: "",
+    },
+    configuration: {
+      type: Object,
+      default: null,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  // Main schema
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -532,6 +550,16 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       opAreaCode: {
         type: String,
         default: "",
+      },
+    },
+    shareIncident: {
+      enabled: {
+        type: Boolean,
+        default: false,
+      },
+      rules: {
+        type: [ShareIncidentRule],
+        default: [],
       },
     },
     speedReportingEnabled: {

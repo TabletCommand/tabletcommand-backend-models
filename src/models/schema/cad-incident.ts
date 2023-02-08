@@ -186,6 +186,45 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   ReportNumber.set("toJSON", toJSONOpts);
 
+  const ShareReason = createSchema(Schema, {
+    name: {
+      type: String,
+      default: "",
+    },
+    date: {
+      type: Date,
+      default: currentDate,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+  ShareReason.set("toJSON", toJSONOpts);
+
+  const SharedTo = createSchema(Schema, {
+    departmentId: {
+      type: String,
+      default: "",
+    },
+    startAt: {
+      type: Date,
+      default: currentDate,
+    },
+    expireAt: {
+      type: Date,
+      default: currentDate,
+    },
+    reasons: {
+      type: [ShareReason],
+      default: [],
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+  SharedTo.set("toJSON", toJSONOpts);
+
+  // Main schema
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -457,6 +496,11 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       default: [],
     },
 
+    // Shared
+    sharedTo: {
+      type: [SharedTo],
+      default: [],
+    },
   }, {
     autoIndex: false,
     // Set collection and strict after importing

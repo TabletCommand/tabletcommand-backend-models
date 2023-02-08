@@ -502,6 +502,42 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
             })[];
             default: never[];
         };
+        sharedTo: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../../helpers").MongooseInterface<{
+                    departmentId: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    startAt: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                    expireAt: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                    reasons: {
+                        type: (import("mongoose").Schema<any> & {
+                            _interface: import("../../helpers").MongooseInterface<{
+                                name: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                date: {
+                                    type: DateConstructor;
+                                    default: typeof currentDate;
+                                };
+                            }>;
+                            _methods: unknown;
+                        })[];
+                        default: never[];
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
     }>;
     _methods: unknown;
 };

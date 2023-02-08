@@ -169,6 +169,43 @@ function CADIncidentSchema(mongoose) {
         id: false,
     });
     ReportNumber.set("toJSON", toJSONOpts);
+    const ShareReason = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            type: String,
+            default: "",
+        },
+        date: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    ShareReason.set("toJSON", toJSONOpts);
+    const SharedTo = (0, helpers_1.createSchema)(Schema, {
+        departmentId: {
+            type: String,
+            default: "",
+        },
+        startAt: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
+        expireAt: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
+        reasons: {
+            type: [ShareReason],
+            default: [],
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
+    SharedTo.set("toJSON", toJSONOpts);
+    // Main schema
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -422,6 +459,11 @@ function CADIncidentSchema(mongoose) {
         },
         notificationType: {
             type: [APNNotificationType],
+            default: [],
+        },
+        // Shared
+        sharedTo: {
+            type: [SharedTo],
             default: [],
         },
     }, {
