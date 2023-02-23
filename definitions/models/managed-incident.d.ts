@@ -209,6 +209,34 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         type: NumberConstructor;
                         default: number;
                     };
+                    Personnel: {
+                        type: (import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                PersonnelID: {
+                                    type: StringConstructor;
+                                    required: boolean;
+                                };
+                                PersonnelName: {
+                                    type: StringConstructor;
+                                    required: boolean;
+                                };
+                                PersonnelRank: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                PersonnelWorkCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                PersonnelNote: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        })[];
+                        default: never[];
+                    };
                     status: {
                         type: StringConstructor;
                         default: string;
@@ -386,6 +414,34 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         personnelOnScene: {
             type: NumberConstructor;
             default: number;
+        };
+        Personnel: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    PersonnelID: {
+                        type: StringConstructor;
+                        required: boolean;
+                    };
+                    PersonnelName: {
+                        type: StringConstructor;
+                        required: boolean;
+                    };
+                    PersonnelRank: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    PersonnelWorkCode: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    PersonnelNote: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
         };
         status: {
             type: StringConstructor;

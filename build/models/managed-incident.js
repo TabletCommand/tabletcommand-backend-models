@@ -6,6 +6,31 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function ManagedIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const Person = (0, helpers_1.createSchema)(Schema, {
+        PersonnelID: {
+            type: String,
+            required: true,
+        },
+        PersonnelName: {
+            type: String,
+            required: true,
+        },
+        PersonnelRank: {
+            type: String,
+            default: ""
+        },
+        PersonnelWorkCode: {
+            type: String,
+            default: ""
+        },
+        PersonnelNote: {
+            type: String,
+            default: ""
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
     const HistoryItem = (0, helpers_1.createSchema)(Schema, {
         message: {
             type: String,
@@ -113,7 +138,10 @@ async function ManagedIncidentModule(mongoose) {
             type: Number,
             default: 0,
         },
-        // Personnel?: Personnel[]
+        Personnel: {
+            type: [Person],
+            default: [],
+        },
         status: {
             type: String,
             default: "",

@@ -16,6 +16,33 @@ import {
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
+  const Person = createSchema(Schema, {
+       PersonnelID: {
+        type: String,
+        required: true,
+      },
+      PersonnelName: {
+        type: String,
+        required: true,
+      },
+      PersonnelRank: {
+        type: String,
+        default: ""
+      },
+      PersonnelWorkCode: {
+        type: String,
+        default: ""
+      },
+      PersonnelNote: {
+        type: String,
+        default: ""
+      }
+    },
+    {
+      _id: false,
+      id: false,
+    });
+
   const HistoryItem = createSchema(Schema, {
     message: {
       type: String,
@@ -125,7 +152,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
-    // Personnel?: Personnel[]
+    Personnel: {
+      type: [Person],
+      default: [],
+    },
     status: {
       type: String,
       default: "",
