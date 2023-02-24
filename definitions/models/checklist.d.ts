@@ -116,7 +116,7 @@ export declare function ChecklistSchema(mongoose: MongooseModule): import("mongo
     _methods: unknown;
 };
 export declare function ChecklistModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
     position: number;
     userId: string;
     uuid: string;
@@ -127,7 +127,7 @@ export declare function ChecklistModule(mongoose: MongooseModule): Promise<impor
     departmentId: string;
     active: boolean;
     name: string;
-    agencyId: import("bson").ObjectID;
+    agencyId: import("mongoose").Types.ObjectId;
     items: import("../helpers").MongooseInterface<{
         _id: {
             type: import("mongoose").Types.ObjectIdConstructor;

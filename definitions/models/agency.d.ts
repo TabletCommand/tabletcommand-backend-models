@@ -229,7 +229,7 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
     _methods: unknown;
 };
 export declare function AgencyModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
     code: string;
     name: string;
     domain: string;
@@ -239,7 +239,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
     modified_unix_date: number;
     modified: string;
     active: boolean;
-    departmentId: import("bson").ObjectID;
+    departmentId: import("mongoose").Types.ObjectId;
     administrators: {
         type: never;
         ref: never;

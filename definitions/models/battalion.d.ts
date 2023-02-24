@@ -121,7 +121,7 @@ export declare function BattalionSchema(mongoose: MongooseModule): import("mongo
     _methods: unknown;
 };
 export declare function BattalionModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
     name: string;
     active: boolean;
     modified_date: string;
@@ -131,7 +131,7 @@ export declare function BattalionModule(mongoose: MongooseModule): Promise<impor
     userId: string;
     uuid: string;
     departmentId: string;
-    agencyId: import("bson").ObjectID;
+    agencyId: import("mongoose").Types.ObjectId;
     position: number;
     units: import("../helpers").MongooseInterface<{
         _id: {

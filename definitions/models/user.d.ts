@@ -317,7 +317,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     departmentId: string;
     modified_date: string;
     when: string;
-    agencyId: import("bson").ObjectID;
+    agencyId: import("mongoose").Types.ObjectId;
     managedAgencies: {
         type: never;
         ref: never;

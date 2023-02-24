@@ -372,9 +372,9 @@ export declare function EsriSchema(mongoose: MongooseModule): import("mongoose")
     _methods: unknown;
 };
 export declare function EsriModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
     runAt: string;
-    departmentId: import("bson").ObjectID;
+    departmentId: import("mongoose").Types.ObjectId;
     auth: import("../helpers").MongooseInterface<{
         username: {
             type: StringConstructor;

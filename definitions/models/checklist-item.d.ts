@@ -59,7 +59,7 @@ export declare function ChecklistItemSchema(mongoose: MongooseModule): import("m
     _methods: unknown;
 };
 export declare function ChecklistItemModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
     position: number;
     userId: string;
     uuid: string;

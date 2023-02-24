@@ -90,7 +90,7 @@ export declare function TemplateSchema(mongoose: MongooseModule): import("mongoo
     _methods: unknown;
 };
 export declare function TemplateModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
     position: number;
     userId: string;
     uuid: string;
@@ -128,7 +128,7 @@ export declare function TemplateModule(mongoose: MongooseModule): Promise<import
             default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
         };
     }>[];
-    agencyId: import("bson").ObjectID;
+    agencyId: import("mongoose").Types.ObjectId;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -82,7 +82,7 @@ export declare function PersonnelImportSchema(mongoose: MongooseModule): import(
     _methods: unknown;
 };
 export declare function PersonnelImportModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
     PersonnelID: string;
     PersonnelName: string;
     PersonnelRank: string;
@@ -99,7 +99,7 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     active: boolean;
     agencyName: string;
     agencyCode: string;
-    agencyId: import("bson").ObjectID;
+    agencyId: import("mongoose").Types.ObjectId;
     importNotes: string;
 }, {}> & {
     __methods?: unknown;

@@ -216,8 +216,8 @@ export declare function ValidationReportSchema(mongoose: MongooseModule): import
     _methods: unknown;
 };
 export declare function ValidationReportModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("bson").ObjectID;
-    departmentId: import("bson").ObjectID;
+    _id: import("mongoose").Types.ObjectId;
+    departmentId: import("mongoose").Types.ObjectId;
     location: import("../helpers").MongooseInterface<{
         message: {
             type: StringConstructor;

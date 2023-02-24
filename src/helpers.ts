@@ -1,6 +1,4 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
-
-import { ObjectId } from "bson";
+import { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
@@ -9,7 +7,7 @@ export type MongooseSchema<T = any> = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 export type MongooseDocument = Omit<Document, "_id"> & {
-  _id: ObjectId,
+  _id: Types.ObjectId,
 };
 export type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,8 +34,8 @@ export type MongooseProperty<T extends SchemaDefinition[string]> =
   T extends { type: Schema & { _interface: infer P } } ? P :
   T extends (...a: unknown[]) => infer P ? P :
   T extends Schema & { _interface: infer P } ? P :
-  T extends { type: MongooseModule["Types"]["ObjectId"] } ? ObjectId :
-  T extends MongooseModule["Types"]["ObjectId"] ? ObjectId :
+  T extends { type: MongooseModule["Types"]["ObjectId"] } ? Types.ObjectId :
+  T extends MongooseModule["Types"]["ObjectId"] ? Types.ObjectId :
   T extends Record<string, unknown> ? { [P in keyof T]: MongooseProperty<T[P]> } :
   never;
 
