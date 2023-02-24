@@ -1,11 +1,11 @@
 import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
-import { ObjectID, ObjectId } from "bson";
+import { ObjectId } from "bson";
 export declare type MongooseModule = typeof import("mongoose");
 export declare type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
 export declare type MongooseSchema<T = any> = Schema<T>;
 declare type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 export declare type MongooseDocument = Omit<Document, "_id"> & {
-    _id: ObjectID;
+    _id: ObjectId;
 };
 export declare type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
 export declare type UnboxPromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never;

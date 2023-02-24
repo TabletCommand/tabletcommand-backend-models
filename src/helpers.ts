@@ -1,6 +1,6 @@
 import { SchemaDefinition, SchemaOptions, Schema, Document, Model } from "mongoose";
 
-import { ObjectID, ObjectId } from "bson";
+import { ObjectId } from "bson";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
@@ -9,7 +9,7 @@ export type MongooseSchema<T = any> = Schema<T>;
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 export type MongooseDocument = Omit<Document, "_id"> & {
-  _id: ObjectID,
+  _id: ObjectId,
 };
 export type UnionToIntersection<T> = (T extends unknown ? (p: T) => unknown : never) extends ((p: infer U) => unknown) ? U : never;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
