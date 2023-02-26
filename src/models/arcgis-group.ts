@@ -133,6 +133,10 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
       type: [ArcGISGroupUser],
       default: [],
     },
+    removableUsers: {
+      type: [ArcGISGroupUser],
+      default: [],
+    },
     externalOrgIds: {
       type: [String],
       default: [],

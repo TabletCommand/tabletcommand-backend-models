@@ -43,6 +43,24 @@ export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<imp
             default: string;
         };
     }>[];
+    removableUsers: import("../helpers").MongooseInterface<{
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        fullName: {
+            type: StringConstructor;
+            default: string;
+        };
+        memberType: {
+            type: StringConstructor;
+            default: string;
+        };
+        orgId: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     externalOrgIds: string[];
     invited: import("../helpers").MongooseInterface<{
         username: {

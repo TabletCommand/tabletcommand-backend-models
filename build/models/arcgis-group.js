@@ -122,6 +122,10 @@ async function ArcGISGroupModule(mongoose) {
             type: [ArcGISGroupUser],
             default: [],
         },
+        removableUsers: {
+            type: [ArcGISGroupUser],
+            default: [],
+        },
         externalOrgIds: {
             type: [String],
             default: [],
