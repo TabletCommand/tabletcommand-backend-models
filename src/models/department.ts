@@ -460,6 +460,12 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: 0,
     },
 
+    // Uses ArcGIS maps, requires ArcGIS accounts
+    arcGISMapsEnabled: {
+      type: Boolean,
+      default: false,
+    },
+
     beansAIEnabled: {
       type: Boolean,
       default: false,
@@ -493,16 +499,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     esriGeoJSONFilename: {
       type: String,
       default: ""
-    },
-
-    // Custom Button
-    customWebUrl: {
-      type: String,
-      default: "",
-    },
-    customWebName: {
-      type: String,
-      default: "",
     },
 
     // Incident Type APN

@@ -67,6 +67,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     incidentVehicleStatusEnabled: boolean;
     fireMapperRefreshInterval: number;
     fireMapperProLicenses: number;
+    arcGISMapsEnabled: boolean;
     beansAIEnabled: boolean;
     mowsEnabled: boolean;
     rtsEnabled: boolean;
@@ -100,8 +101,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         };
     }>;
     esriGeoJSONFilename: string;
-    customWebUrl: string;
-    customWebName: string;
     incidentTypes: import("../helpers").MongooseInterface<{
         name: {
             type: StringConstructor;
