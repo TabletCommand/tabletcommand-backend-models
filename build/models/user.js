@@ -95,11 +95,6 @@ function UserSchema(mongoose) {
             type: Boolean,
             default: false,
         },
-        // Share Phone Location
-        shareLocationEnabled: {
-            type: Boolean,
-            default: false,
-        },
         beaconEnabled: {
             type: Boolean,
             default: false,
@@ -176,6 +171,7 @@ function UserSchema(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
+        // Share Phone Location
         shareLocationPhone: {
             type: Boolean,
             default: false,
