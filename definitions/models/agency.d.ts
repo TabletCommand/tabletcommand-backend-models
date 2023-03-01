@@ -220,6 +220,10 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
                         type: BooleanConstructor;
                         default: boolean;
                     };
+                    reconcileEnabled: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
                 }>;
                 _methods: unknown;
             };
@@ -382,6 +386,10 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
             default: string;
         };
         alterChunkSize: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        reconcileEnabled: {
             type: BooleanConstructor;
             default: boolean;
         };

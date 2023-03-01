@@ -119,6 +119,10 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    reconcileEnabled: {
+      type: Boolean,
+      default: true
+    },
   }, {
     _id: false,
     id: false,

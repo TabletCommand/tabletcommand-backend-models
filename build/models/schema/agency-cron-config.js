@@ -110,6 +110,10 @@ function AgencyCronSchema(mongoose) {
             type: Boolean,
             default: false,
         },
+        reconcileEnabled: {
+            type: Boolean,
+            default: true
+        },
     }, {
         _id: false,
         id: false,
