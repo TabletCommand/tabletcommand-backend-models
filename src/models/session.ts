@@ -1,7 +1,6 @@
 import {
   createModel,
   createSchema,
-  currentDate,
   DocumentTypeFromSchema,
   FieldsOfDocument,
   ItemTypeFromTypeSchemaFunction,
@@ -69,16 +68,6 @@ export async function SessionModule(mongoose: MongooseModule) {
     authSource: { // user.auth, password OR o-google OR o-microsoft
       type: String,
       default: "",
-    },
-    // All the sessions that could be created by this oAuth user (at this time)
-    // Used externally, this value can be leaked
-    authGroupKey: {
-      type: String,
-      default: "",
-    },
-    authGroupExpireAt: {
-      type: Date,
-      default: currentDate,
     },
     // Store the refresh token, in use only when authSource is o-google or o-microsoft
     oAuth: {

@@ -59,16 +59,6 @@ async function SessionModule(mongoose) {
             type: String,
             default: "",
         },
-        // All the sessions that could be created by this oAuth user (at this time)
-        // Used externally, this value can be leaked
-        authGroupKey: {
-            type: String,
-            default: "",
-        },
-        authGroupExpireAt: {
-            type: Date,
-            default: helpers_1.currentDate,
-        },
         // Store the refresh token, in use only when authSource is o-google or o-microsoft
         oAuth: {
             type: OAuthToken,
