@@ -43,6 +43,17 @@ async function LocationModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        // TC/TCMobile create duplicate records, with unique session id
+        // If a session is closed, this record should be deletable after 
+        // the record TTL - department.locationStaleMinutes
+        // Any update, active or inactive, would set deleteAfterDate to now + locationStaleMinutes
+        // If date is set, and in the past, the record can be deleted
+        // A better implementation would have been to use a flag for visible and a flag for active
+        // with the clients deleting items not sent via sync
+        deleteAfterDate: {
+            type: Date,
+            default: new Date("2222-01-02T03:04:06.789Z"), // Date in the far future
+        },
         modified: {
             type: Date,
             default: helpers_1.currentDate,

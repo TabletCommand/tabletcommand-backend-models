@@ -52,6 +52,18 @@ export async function LocationModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    // TC/TCMobile create duplicate records, with unique session id
+    // If a session is closed, this record should be deletable after 
+    // the record TTL - department.locationStaleMinutes
+    // Any update, active or inactive, would set deleteAfterDate to now + locationStaleMinutes
+    // If date is set, and in the past, the record can be deleted
+    // A better implementation would have been to use a flag for visible and a flag for active
+    // with the clients deleting items not sent via sync
+    deleteAfterDate: {
+      type: Date,
+      default: new Date("2222-01-02T03:04:06.789Z"), // Date in the far future
+    },
+
     modified: {
       type: Date,
       default: currentDate,
@@ -156,11 +168,11 @@ export async function LocationModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
 
-  modelSchema.virtual("location").get(function (this: { locationGeoJSON: { coordinates: number[] } } | null | undefined) {
+  modelSchema.virtual("location").get(function(this: { locationGeoJSON: { coordinates: number[] } } | null | undefined) {
     const location = {
       latitude: 0,
       longitude: 0

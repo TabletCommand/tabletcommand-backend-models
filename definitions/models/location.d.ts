@@ -8,6 +8,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     username: string;
     device_type: string;
     active: boolean;
+    deleteAfterDate: string;
     modified: string;
     movedAt: string;
     propsChangedAt: string;
