@@ -49,11 +49,6 @@ function ChecklistItemSchema(mongoose) {
             type: String,
             required: true
         },
-        agencyId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Agency",
-            default: null,
-        },
         description: {
             type: String,
             default: ""

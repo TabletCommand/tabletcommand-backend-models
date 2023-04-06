@@ -155,7 +155,6 @@ module.exports = function(dependencies) {
     departmentId: "4321",
     local_id: 1,
     isMandatory: true,
-    agencyId: new mongoose.Types.ObjectId(agency._id),
     description: "Testing Description"
   };
 

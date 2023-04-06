@@ -98,11 +98,6 @@ export declare function ChecklistSchema(mongoose: MongooseModule): import("mongo
                         type: StringConstructor;
                         required: boolean;
                     };
-                    agencyId: {
-                        type: typeof import("mongoose").Schema.Types.ObjectId;
-                        ref: string;
-                        default: null;
-                    };
                     description: {
                         type: StringConstructor;
                         default: string;
@@ -171,11 +166,6 @@ export declare function ChecklistModule(mongoose: MongooseModule): Promise<impor
         name: {
             type: StringConstructor;
             required: boolean;
-        };
-        agencyId: {
-            type: typeof import("mongoose").Schema.Types.ObjectId;
-            ref: string;
-            default: null;
         };
         description: {
             type: StringConstructor;

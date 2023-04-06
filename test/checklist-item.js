@@ -35,10 +35,8 @@ describe("ChecklistItem", function() {
       assert.equal(testItem.userId, sut.userId);
       assert.equal(testItem.departmentId, sut.departmentId);
       assert.equal(testItem.isMandatory, sut.isMandatory);
-      assert.equal(testItem.agencyId, sut.agencyId);
       assert.equal(testItem.api_checklist_id, sut.api_checklist_id);
       assert.equal(testItem.checklist_uuid, sut.checklist_uuid);
-      assert.equal(testItem.agencyId, sut.agencyId);
       assert.equal(testItem.description, sut.description);
       const expectedDate = new Date().valueOf() / 1000.0;
       const timeDelta = expectedDate - sut.modified_unix_date;
