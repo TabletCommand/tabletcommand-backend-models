@@ -367,6 +367,10 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                         }>;
                         _methods: unknown;
                     })[];
+                    uuid: {
+                        type: StringConstructor;
+                        default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+                    };
                 }>;
                 _methods: unknown;
             })[];

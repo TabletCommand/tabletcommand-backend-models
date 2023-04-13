@@ -162,6 +162,14 @@ async function ManagedIncidentModule(mongoose) {
             type: Number,
             default: 0,
         },
+        uuid: {
+            type: String,
+            default: "",
+        },
+        parent_uuid: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
         id: false,
@@ -197,7 +205,7 @@ async function ManagedIncidentModule(mongoose) {
         },
         uuid: {
             type: String,
-            default: uuid.v4,
+            default: "",
         },
     }, {
         _id: false,

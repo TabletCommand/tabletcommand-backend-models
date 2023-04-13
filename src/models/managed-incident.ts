@@ -17,7 +17,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const Person = createSchema(Schema, {
-       PersonnelID: {
+      PersonnelID: {
         type: String,
         required: true,
       },
@@ -176,6 +176,15 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+
+    uuid: {
+      type: String,
+      default: "",
+    },
+    parent_uuid: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
     id: false,
@@ -212,7 +221,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     },
     uuid: {
       type: String,
-      default: uuid.v4,
+      default: "",
     },
   }, {
     _id: false,

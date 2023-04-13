@@ -201,6 +201,10 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             }>;
             _methods: unknown;
         })[];
+        uuid: {
+            type: StringConstructor;
+            default: (<T extends ArrayLike<number>>(options: import("uuid").V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: import("uuid").V4Options | undefined) => string);
+        };
     }>[];
     events: import("../helpers").MongooseInterface<{
         _id: {

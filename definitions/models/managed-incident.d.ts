@@ -257,6 +257,14 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         type: NumberConstructor;
                         default: number;
                     };
+                    uuid: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    parent_uuid: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -264,7 +272,7 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         };
         uuid: {
             type: StringConstructor;
-            default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+            default: string;
         };
     }>[];
     hazards: import("../helpers").MongooseInterface<{
@@ -462,6 +470,14 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         warning: {
             type: NumberConstructor;
             default: number;
+        };
+        uuid: {
+            type: StringConstructor;
+            default: string;
+        };
+        parent_uuid: {
+            type: StringConstructor;
+            default: string;
         };
     }>[];
     simulation: boolean;

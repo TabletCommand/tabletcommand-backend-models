@@ -109,6 +109,13 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       type: Number,
     },
     Personnel: [CADPerson],
+
+    // Supplied by Tablet Command
+    // Consider moving this to events (?)
+    uuid: {
+      type: String,
+      default: uuid.v4,
+    },
   }, {
     _id: false,
     id: false,
