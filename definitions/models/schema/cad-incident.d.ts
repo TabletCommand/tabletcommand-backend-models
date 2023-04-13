@@ -542,6 +542,21 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
             })[];
             default: never[];
         };
+        record: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    value: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            };
+        };
     }>;
     _methods: unknown;
 };

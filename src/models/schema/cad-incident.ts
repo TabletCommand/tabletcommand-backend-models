@@ -193,6 +193,21 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   ReportNumber.set("toJSON", toJSONOpts);
 
+  const RecordValue = createSchema(Schema, {
+    name: {
+      type: String,
+      default: "",
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+  RecordValue.set("toJSON", toJSONOpts);
+
   const ShareReason = createSchema(Schema, {
     name: {
       type: String,
@@ -507,6 +522,9 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     sharedTo: {
       type: [SharedTo],
       default: [],
+    },
+    record: {
+      type: RecordValue,
     },
   }, {
     autoIndex: false,

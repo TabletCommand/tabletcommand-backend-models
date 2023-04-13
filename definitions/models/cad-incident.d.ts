@@ -343,6 +343,16 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             default: never[];
         };
     }>[];
+    record: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        value: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

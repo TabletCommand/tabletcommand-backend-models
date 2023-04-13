@@ -343,6 +343,16 @@ export declare function CADIncidentFlatModule(mongoose: MongooseModule): Promise
             default: never[];
         };
     }>[];
+    record: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        value: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;
