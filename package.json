@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "5.29.9",
+  "version": "5.29.10",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "test": "gulp",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.38",
     "@types/chai": "^4.3.4",
-    "@types/lodash": "^4.14.192",
+    "@types/lodash": "^4.14.194",
     "@types/mocha": "^10.0.1",
     "@types/mongodb": "^3.6.20",
     "@types/mongoose": "~5.10.5",

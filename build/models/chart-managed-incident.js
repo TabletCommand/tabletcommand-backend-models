@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChartManagedIncidentModule = void 0;
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 async function ChartManagedIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const ChartItem = (0, helpers_1.createSchema)(Schema, {
@@ -13,6 +14,10 @@ async function ChartManagedIncidentModule(mongoose) {
         date: {
             type: Number,
             default: 0,
+        },
+        dateAt: {
+            type: Date,
+            default: defaultDate,
         },
     }, {
         _id: false,
@@ -27,11 +32,20 @@ async function ChartManagedIncidentModule(mongoose) {
             type: Number,
             default: 0,
         },
+        dateAt: {
+            type: Date,
+            default: defaultDate,
+        },
         departmentId: {
             type: String,
             default: "",
             required: true,
             index: true,
+        },
+        userId: {
+            type: String,
+            default: "",
+            required: true,
         },
         count: {
             type: Number,

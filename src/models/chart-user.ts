@@ -9,6 +9,7 @@ import {
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
 export async function ChartUserModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
@@ -21,6 +22,10 @@ export async function ChartUserModule(mongoose: MongooseModule) {
     date: {
       type: Number,
       default: 0,
+    },
+    dateAt: {
+      type: Date,
+      default: defaultDate,
     },
     departmentId: {
       type: String,

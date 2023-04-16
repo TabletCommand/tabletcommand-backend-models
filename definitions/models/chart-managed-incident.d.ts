@@ -3,7 +3,9 @@ import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchema
 export declare function ChartManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("mongoose").Types.ObjectId;
     date: number;
+    dateAt: string;
     departmentId: string;
+    userId: string;
     count: number;
     items: import("../helpers").MongooseInterface<{
         item: {
@@ -13,6 +15,10 @@ export declare function ChartManagedIncidentModule(mongoose: MongooseModule): Pr
         date: {
             type: NumberConstructor;
             default: number;
+        };
+        dateAt: {
+            type: DateConstructor;
+            default: Date;
         };
     }>[];
 }, {}> & {
