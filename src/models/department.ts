@@ -614,6 +614,9 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     collection: "massive_admin",
   });
   modelSchema.set("autoIndex", false);
+  modelSchema.set("timestamps", {
+    updatedAt: "modified",
+  });
 
   modelSchema.set("toJSON", {
     virtuals: true,

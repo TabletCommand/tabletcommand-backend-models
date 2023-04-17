@@ -582,6 +582,9 @@ async function DepartmentModule(mongoose) {
         collection: "massive_admin",
     });
     modelSchema.set("autoIndex", false);
+    modelSchema.set("timestamps", {
+        updatedAt: "modified",
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,

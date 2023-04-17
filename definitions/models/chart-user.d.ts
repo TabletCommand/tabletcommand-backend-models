@@ -2,7 +2,6 @@
 import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
 export declare function ChartUserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("mongoose").Types.ObjectId;
-    date: number;
     dateAt: string;
     departmentId: string;
     count: number;

@@ -11,10 +11,6 @@ async function ChartUserModule(mongoose) {
             type: Types.ObjectId,
             auto: true,
         },
-        date: {
-            type: Number,
-            default: 0,
-        },
         dateAt: {
             type: Date,
             default: defaultDate,

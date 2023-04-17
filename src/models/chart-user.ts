@@ -19,10 +19,6 @@ export async function ChartUserModule(mongoose: MongooseModule) {
       type: Types.ObjectId,
       auto: true,
     },
-    date: {
-      type: Number,
-      default: 0,
-    },
     dateAt: {
       type: Date,
       default: defaultDate,
@@ -38,7 +34,7 @@ export async function ChartUserModule(mongoose: MongooseModule) {
       default: 0,
     },
     items: {
-      type: [String],
+      type: [String], // [email]
       default: [],
     },
   }, {
