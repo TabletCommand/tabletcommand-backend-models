@@ -11,10 +11,6 @@ async function ChartIncidentModule(mongoose) {
             type: String,
             default: "",
         },
-        date: {
-            type: Number,
-            default: 0,
-        },
         dateAt: {
             type: Date,
             default: defaultDate,
@@ -27,10 +23,6 @@ async function ChartIncidentModule(mongoose) {
         _id: {
             type: Types.ObjectId,
             auto: true,
-        },
-        date: {
-            type: Number,
-            default: 0,
         },
         dateAt: {
             type: Date,

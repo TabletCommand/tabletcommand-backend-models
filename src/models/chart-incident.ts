@@ -19,10 +19,6 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-    date: {
-      type: Number,
-      default: 0,
-    },
     dateAt: {
       type: Date,
       default: defaultDate,
@@ -36,10 +32,6 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
     _id: {
       type: Types.ObjectId,
       auto: true,
-    },
-    date: {
-      type: Number,
-      default: 0,
     },
     dateAt: {
       type: Date,
