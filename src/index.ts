@@ -25,6 +25,7 @@ async function wireModels(mongoose: MongooseModule) {
     CADVehicle: await getModel(import("./models/cad-vehicle")),
     CADVehicleStatus: await getModel(import("./models/cad-vehicle-status")),
     CADVehicleStatusHistory: await getModel(import("./models/cad-vehicle-status-history")),
+    ChartDeviceStats: await getModel(import("./models/chart-device-stats")),
     ChartIncident: await getModel(import("./models/chart-incident")),
     ChartManagedIncident: await getModel(import("./models/chart-managed-incident")),
     ChartUser: await getModel(import("./models/chart-user")),
@@ -72,6 +73,7 @@ export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
 export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
 export { CADVehicleStatusHistory, CADVehicleStatusHistoryModel } from "./models/cad-vehicle-status-history";
+export { ChartDeviceStats, ChartDeviceStatsModel } from "./models/chart-device-stats";
 export { ChartIncident, ChartIncidentModel } from "./models/chart-incident";
 export { ChartManagedIncident, ChartManagedIncidentModel } from "./models/chart-managed-incident";
 export { ChartUser, ChartUserModel } from "./models/chart-user";

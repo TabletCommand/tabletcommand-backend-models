@@ -37,6 +37,7 @@ async function wireModels(mongoose) {
         CADVehicle: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle"))),
         CADVehicleStatus: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle-status"))),
         CADVehicleStatusHistory: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle-status-history"))),
+        ChartDeviceStats: await getModel(Promise.resolve().then(() => require("./models/chart-device-stats"))),
         ChartIncident: await getModel(Promise.resolve().then(() => require("./models/chart-incident"))),
         ChartManagedIncident: await getModel(Promise.resolve().then(() => require("./models/chart-managed-incident"))),
         ChartUser: await getModel(Promise.resolve().then(() => require("./models/chart-user"))),

@@ -14,6 +14,7 @@ export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
 export { CADVehicleStatus, CADVehicleStatusModel } from "./models/cad-vehicle-status";
 export { CADVehicleStatusHistory, CADVehicleStatusHistoryModel } from "./models/cad-vehicle-status-history";
+export { ChartDeviceStats, ChartDeviceStatsModel } from "./models/chart-device-stats";
 export { ChartIncident, ChartIncidentModel } from "./models/chart-incident";
 export { ChartManagedIncident, ChartManagedIncidentModel } from "./models/chart-managed-incident";
 export { ChartUser, ChartUserModel } from "./models/chart-user";
@@ -63,6 +64,7 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         CADVehicle: import("./models/cad-vehicle").CADVehicleModel;
         CADVehicleStatus: import("./models/cad-vehicle-status").CADVehicleStatusModel;
         CADVehicleStatusHistory: import("./models/cad-vehicle-status-history").CADVehicleStatusHistoryModel;
+        ChartDeviceStats: import("./models/chart-device-stats").ChartDeviceStatsModel;
         ChartIncident: import("./models/chart-incident").ChartIncidentModel;
         ChartManagedIncident: import("./models/chart-managed-incident").ChartManagedIncidentModel;
         ChartUser: import("./models/chart-user").ChartUserModel;
