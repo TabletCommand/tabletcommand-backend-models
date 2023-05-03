@@ -156,6 +156,10 @@ function CADIncidentSchema(mongoose) {
             type: String,
             default: "",
         },
+        url: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
         id: false,

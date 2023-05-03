@@ -121,6 +121,10 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             type: StringConstructor;
             default: string;
         };
+        url: {
+            type: StringConstructor;
+            default: string;
+        };
     }>[];
     Latitude: number;
     Longitude: number;

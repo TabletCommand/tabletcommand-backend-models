@@ -172,6 +172,10 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    url: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
     id: false,

@@ -271,6 +271,10 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                         type: StringConstructor;
                         default: string;
                     };
+                    url: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];

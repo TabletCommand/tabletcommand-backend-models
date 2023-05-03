@@ -17,27 +17,27 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const Person = createSchema(Schema, {
-      PersonnelID: {
-        type: String,
-        required: true,
-      },
-      PersonnelName: {
-        type: String,
-        required: true,
-      },
-      PersonnelRank: {
-        type: String,
-        default: ""
-      },
-      PersonnelWorkCode: {
-        type: String,
-        default: ""
-      },
-      PersonnelNote: {
-        type: String,
-        default: ""
-      }
+    PersonnelID: {
+      type: String,
+      required: true,
     },
+    PersonnelName: {
+      type: String,
+      required: true,
+    },
+    PersonnelRank: {
+      type: String,
+      default: ""
+    },
+    PersonnelWorkCode: {
+      type: String,
+      default: ""
+    },
+    PersonnelNote: {
+      type: String,
+      default: ""
+    }
+  },
     {
       _id: false,
       id: false,
@@ -328,6 +328,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: "",
     },
     channel: {
+      type: String,
+      default: "",
+    },
+    url: {
       type: String,
       default: "",
     },
