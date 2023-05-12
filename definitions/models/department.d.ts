@@ -133,6 +133,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         enabled: boolean;
         opAreaName: string;
         opAreaCode: string;
+        fadeZoomLevel: number;
     };
     shareIncident: {
         enabled: boolean;

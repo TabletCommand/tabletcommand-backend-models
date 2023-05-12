@@ -547,6 +547,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         type: String,
         default: "",
       },
+      fadeZoomLevel: {
+        type: Number,
+        default: 45000,
+      },
     },
     shareIncident: {
       enabled: {
