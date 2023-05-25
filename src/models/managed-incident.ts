@@ -16,14 +16,42 @@ import {
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
+  const ReportNumber = createSchema(Schema, {
+    number: {
+      type: String,
+      default: "",
+    },
+    name: {
+      type: String,
+      default: ""
+    },
+  },
+  {
+    _id: false,
+    id: false,
+  });
+
+  const Record = createSchema(Schema, {
+    value: {
+      type: String,
+      default: "",
+    },
+    name: {
+      type: String,
+      default: ""
+    },
+  },
+  {
+    _id: false,
+    id: false,
+  });
+
   const Person = createSchema(Schema, {
     PersonnelID: {
       type: String,
-      required: true,
     },
     PersonnelName: {
       type: String,
-      required: true,
     },
     PersonnelRank: {
       type: String,
@@ -77,6 +105,30 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     uuid: {
       type: String,
       default: uuid.v4,
+    },
+    modified_date: {
+      type: String,
+      default: "",
+    },
+    modified_unix_date: {
+      type: Number,
+      default: 0,
+    },
+    built_in: {
+      type: Boolean,
+      default: false,
+    },
+    isMandatory: {
+      type: Boolean,
+      default: false,
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+    active: {
+      type: Boolean,
+      default: true,
     },
   }, {
     _id: false,
@@ -176,12 +228,19 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
-
     uuid: {
       type: String,
       default: "",
     },
     parent_uuid: {
+      type: String,
+      default: "",
+    },
+    // may be deprecated
+    local_id: {
+      type: Number,
+    },
+    location_on_image: {
       type: String,
       default: "",
     },
@@ -223,6 +282,14 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    incident_id: {
+      type: String,
+      default: "",
+    },
+    location_on_image: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
     id: false,
@@ -244,6 +311,26 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     time: {
       type: Number,
       default: 0,
+    },
+    uuid: {
+      type: String,
+      default: "",
+    },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    incident_id: {
+      type: String,
+      default: "",
+    },
+    // may be deprecated
+    local_id: {
+      type: Number,
+    },
+    note: {
+      type: String,
+      default: "",
     },
   }, {
     _id: false,
@@ -276,6 +363,18 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: 0,
     },
     uuid: {
+      type: String,
+      default: "",
+    },
+    checklist_uuid: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+    id: {
       type: String,
       default: "",
     },
@@ -317,6 +416,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    // may be deprecated
+    local_id: { 
+      type: Number,
+    },
   }, {
     _id: false,
     id: false,
@@ -332,6 +435,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: "",
     },
     url: {
+      type: String,
+      default: "",
+    },
+    channelDescription: {
       type: String,
       default: "",
     },
@@ -471,7 +578,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: [IncidentUnit],
       default: [],
     },
-
     // Training
     simulation: {
       type: Boolean,
@@ -481,6 +587,25 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: true,
     },
+    // may be deprecated
+    local_id: {
+      type: Number,
+    },
+    AgencyID: {
+      type: String,
+      default: "",
+    },
+    isMandatory: {
+      type: Boolean,
+      default: false,
+    },
+    record: {
+      type: Record,
+    },
+    ReportNumber: {
+      type: [ReportNumber],
+      default: [],
+    }
   }, {
     collection: "massive_incident_managed",
   });

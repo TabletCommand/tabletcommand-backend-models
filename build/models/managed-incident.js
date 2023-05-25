@@ -6,14 +6,38 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function ManagedIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
+    const ReportNumber = (0, helpers_1.createSchema)(Schema, {
+        number: {
+            type: String,
+            default: "",
+        },
+        name: {
+            type: String,
+            default: ""
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Record = (0, helpers_1.createSchema)(Schema, {
+        value: {
+            type: String,
+            default: "",
+        },
+        name: {
+            type: String,
+            default: ""
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const Person = (0, helpers_1.createSchema)(Schema, {
         PersonnelID: {
             type: String,
-            required: true,
         },
         PersonnelName: {
             type: String,
-            required: true,
         },
         PersonnelRank: {
             type: String,
@@ -64,6 +88,30 @@ async function ManagedIncidentModule(mongoose) {
         uuid: {
             type: String,
             default: uuid.v4,
+        },
+        modified_date: {
+            type: String,
+            default: "",
+        },
+        modified_unix_date: {
+            type: Number,
+            default: 0,
+        },
+        built_in: {
+            type: Boolean,
+            default: false,
+        },
+        isMandatory: {
+            type: Boolean,
+            default: false,
+        },
+        description: {
+            type: String,
+            default: "",
+        },
+        active: {
+            type: Boolean,
+            default: true,
         },
     }, {
         _id: false,
@@ -170,6 +218,14 @@ async function ManagedIncidentModule(mongoose) {
             type: String,
             default: "",
         },
+        // may be deprecated
+        local_id: {
+            type: Number,
+        },
+        location_on_image: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
         id: false,
@@ -207,6 +263,14 @@ async function ManagedIncidentModule(mongoose) {
             type: String,
             default: "",
         },
+        incident_id: {
+            type: String,
+            default: "",
+        },
+        location_on_image: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
         id: false,
@@ -227,6 +291,26 @@ async function ManagedIncidentModule(mongoose) {
         time: {
             type: Number,
             default: 0,
+        },
+        uuid: {
+            type: String,
+            default: "",
+        },
+        active: {
+            type: Boolean,
+            default: true,
+        },
+        incident_id: {
+            type: String,
+            default: "",
+        },
+        // may be deprecated
+        local_id: {
+            type: Number,
+        },
+        note: {
+            type: String,
+            default: "",
         },
     }, {
         _id: false,
@@ -258,6 +342,18 @@ async function ManagedIncidentModule(mongoose) {
             default: 0,
         },
         uuid: {
+            type: String,
+            default: "",
+        },
+        checklist_uuid: {
+            type: String,
+            default: "",
+        },
+        description: {
+            type: String,
+            default: "",
+        },
+        id: {
             type: String,
             default: "",
         },
@@ -298,6 +394,10 @@ async function ManagedIncidentModule(mongoose) {
             type: String,
             default: "",
         },
+        // may be deprecated
+        local_id: {
+            type: Number,
+        },
     }, {
         _id: false,
         id: false,
@@ -312,6 +412,10 @@ async function ManagedIncidentModule(mongoose) {
             default: "",
         },
         url: {
+            type: String,
+            default: "",
+        },
+        channelDescription: {
             type: String,
             default: "",
         },
@@ -453,6 +557,25 @@ async function ManagedIncidentModule(mongoose) {
             type: Boolean,
             default: true,
         },
+        // may be deprecated
+        local_id: {
+            type: Number,
+        },
+        AgencyID: {
+            type: String,
+            default: "",
+        },
+        isMandatory: {
+            type: Boolean,
+            default: false,
+        },
+        record: {
+            type: Record,
+        },
+        ReportNumber: {
+            type: [ReportNumber],
+            default: [],
+        }
     }, {
         collection: "massive_incident_managed",
     });

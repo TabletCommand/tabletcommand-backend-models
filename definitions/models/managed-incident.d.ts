@@ -84,6 +84,18 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         type: StringConstructor;
                         default: string;
                     };
+                    checklist_uuid: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    description: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    id: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -104,6 +116,9 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         uuid: {
             type: StringConstructor;
             default: string;
+        };
+        local_id: {
+            type: NumberConstructor;
         };
     }>[];
     groups: import("../helpers").MongooseInterface<{
@@ -152,6 +167,30 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                                 uuid: {
                                     type: StringConstructor;
                                     default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+                                };
+                                modified_date: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                modified_unix_date: {
+                                    type: NumberConstructor;
+                                    default: number;
+                                };
+                                built_in: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                isMandatory: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                description: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                active: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
                                 };
                             }>;
                             _methods: unknown;
@@ -214,11 +253,9 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                             _interface: import("../helpers").MongooseInterface<{
                                 PersonnelID: {
                                     type: StringConstructor;
-                                    required: boolean;
                                 };
                                 PersonnelName: {
                                     type: StringConstructor;
-                                    required: boolean;
                                 };
                                 PersonnelRank: {
                                     type: StringConstructor;
@@ -265,12 +302,27 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         type: StringConstructor;
                         default: string;
                     };
+                    local_id: {
+                        type: NumberConstructor;
+                    };
+                    location_on_image: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
             default: never[];
         };
         uuid: {
+            type: StringConstructor;
+            default: string;
+        };
+        incident_id: {
+            type: StringConstructor;
+            default: string;
+        };
+        location_on_image: {
             type: StringConstructor;
             default: string;
         };
@@ -291,6 +343,25 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         time: {
             type: NumberConstructor;
             default: number;
+        };
+        uuid: {
+            type: StringConstructor;
+            default: string;
+        };
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        incident_id: {
+            type: StringConstructor;
+            default: string;
+        };
+        local_id: {
+            type: NumberConstructor;
+        };
+        note: {
+            type: StringConstructor;
+            default: string;
         };
     }>[];
     history: import("../helpers").MongooseInterface<{
@@ -350,6 +421,10 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             type: StringConstructor;
             default: string;
         };
+        channelDescription: {
+            type: StringConstructor;
+            default: string;
+        };
     }>[];
     units: import("../helpers").MongooseInterface<{
         active: {
@@ -370,6 +445,30 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                     uuid: {
                         type: StringConstructor;
                         default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
+                    };
+                    modified_date: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    modified_unix_date: {
+                        type: NumberConstructor;
+                        default: number;
+                    };
+                    built_in: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    isMandatory: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    description: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    active: {
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                 }>;
                 _methods: unknown;
@@ -432,11 +531,9 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                 _interface: import("../helpers").MongooseInterface<{
                     PersonnelID: {
                         type: StringConstructor;
-                        required: boolean;
                     };
                     PersonnelName: {
                         type: StringConstructor;
-                        required: boolean;
                     };
                     PersonnelRank: {
                         type: StringConstructor;
@@ -483,9 +580,39 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             type: StringConstructor;
             default: string;
         };
+        local_id: {
+            type: NumberConstructor;
+        };
+        location_on_image: {
+            type: StringConstructor;
+            default: string;
+        };
     }>[];
     simulation: boolean;
     rts: boolean;
+    local_id: number;
+    AgencyID: string;
+    isMandatory: boolean;
+    record: import("../helpers").MongooseInterface<{
+        value: {
+            type: StringConstructor;
+            default: string;
+        };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
+    ReportNumber: import("../helpers").MongooseInterface<{
+        number: {
+            type: StringConstructor;
+            default: string;
+        };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;
