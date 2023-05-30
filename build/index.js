@@ -60,6 +60,7 @@ async function wireModels(mongoose) {
         PersonnelImport: await getModel(Promise.resolve().then(() => require("./models/personnel-import"))),
         RateLimit: await getModel(Promise.resolve().then(() => require("./models/rate-limit"))),
         RemoteLog: await getModel(Promise.resolve().then(() => require("./models/remote-log"))),
+        SAML: await getModel(Promise.resolve().then(() => require("./models/saml"))),
         Session: await getModel(Promise.resolve().then(() => require("./models/session"))),
         SMTPUnhandled: await getModel(Promise.resolve().then(() => require("./models/smtp-unhandled"))),
         Template: await getModel(Promise.resolve().then(() => require("./models/template"))),

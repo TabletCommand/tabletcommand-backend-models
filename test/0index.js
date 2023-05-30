@@ -54,6 +54,7 @@ describe(" Models", function() {
     assert.isFunction(models.PersonnelImport, "Missing PersonnelImport");
     assert.isFunction(models.RateLimit, "Missing RateLimit");
     assert.isFunction(models.RemoteLog, "Missing RemoteLog");
+    assert.isFunction(models.SAML, "Missing SAML");
     assert.isFunction(models.Session, "Missing Session");
     assert.isFunction(models.SMTPUnhandled, "Missing SMTPUnhandled");
     assert.isFunction(models.Template, "Missing Template");
