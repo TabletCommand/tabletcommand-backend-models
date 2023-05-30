@@ -71,6 +71,17 @@ function AgencyCronSchema(mongoose) {
         sshPublicKey: null,
         useSSHKey: false,
     };
+    const CronConfigCSVFieldMap = {
+        PersonnelID: "ID",
+        PersonnelName: "Name",
+        PersonnelRank: "Position",
+        PersonnelWorkCode: "WorkCode",
+        PersonnelNote: "Note",
+        // Convert these to expected format
+        StartTime: "StartTime",
+        EndTime: "EndTime",
+        UnitName: "UnitName",
+    };
     const AgencyCronConfig = (0, helpers_1.createSchema)(Schema, {
         enabled: {
             type: Boolean,
@@ -113,6 +124,14 @@ function AgencyCronSchema(mongoose) {
         reconcileEnabled: {
             type: Boolean,
             default: true
+        },
+        hasLabelCustomization: {
+            type: Boolean,
+            default: false,
+        },
+        csvFieldMap: {
+            type: Object,
+            default: CronConfigCSVFieldMap,
         },
     }, {
         _id: false,

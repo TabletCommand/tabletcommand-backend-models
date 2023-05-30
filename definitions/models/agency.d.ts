@@ -224,6 +224,23 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
                         type: BooleanConstructor;
                         default: boolean;
                     };
+                    hasLabelCustomization: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    csvFieldMap: {
+                        type: ObjectConstructor;
+                        default: {
+                            PersonnelID: string;
+                            PersonnelName: string;
+                            PersonnelRank: string;
+                            PersonnelWorkCode: string;
+                            PersonnelNote: string;
+                            StartTime: string;
+                            EndTime: string;
+                            UnitName: string;
+                        };
+                    };
                 }>;
                 _methods: unknown;
             };
@@ -392,6 +409,23 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
         reconcileEnabled: {
             type: BooleanConstructor;
             default: boolean;
+        };
+        hasLabelCustomization: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        csvFieldMap: {
+            type: ObjectConstructor;
+            default: {
+                PersonnelID: string;
+                PersonnelName: string;
+                PersonnelRank: string;
+                PersonnelWorkCode: string;
+                PersonnelNote: string;
+                StartTime: string;
+                EndTime: string;
+                UnitName: string;
+            };
         };
     }>;
 }, {}> & {
