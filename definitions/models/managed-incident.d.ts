@@ -94,7 +94,6 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                     };
                     id: {
                         type: StringConstructor;
-                        default: string;
                     };
                 }>;
                 _methods: unknown;
@@ -119,6 +118,9 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         };
         local_id: {
             type: NumberConstructor;
+        };
+        id: {
+            type: StringConstructor;
         };
     }>[];
     groups: import("../helpers").MongooseInterface<{

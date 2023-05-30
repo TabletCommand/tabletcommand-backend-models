@@ -359,10 +359,10 @@ async function ManagedIncidentModule(mongoose) {
         },
         id: {
             type: String,
-            default: "",
         },
     }, {
         _id: false,
+        id: false,
     });
     const IncidentChecklist = (0, helpers_1.createSchema)(Schema, {
         active: {
@@ -400,6 +400,9 @@ async function ManagedIncidentModule(mongoose) {
         // may be deprecated
         local_id: {
             type: Number,
+        },
+        id: {
+            type: String,
         },
     }, {
         _id: false,
