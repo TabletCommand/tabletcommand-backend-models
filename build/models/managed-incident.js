@@ -113,6 +113,10 @@ async function ManagedIncidentModule(mongoose) {
             type: Boolean,
             default: true,
         },
+        position: {
+            type: Number,
+            default: 0,
+        },
     }, {
         _id: false,
         id: false,
@@ -359,7 +363,6 @@ async function ManagedIncidentModule(mongoose) {
         },
     }, {
         _id: false,
-        id: false,
     });
     const IncidentChecklist = (0, helpers_1.createSchema)(Schema, {
         active: {

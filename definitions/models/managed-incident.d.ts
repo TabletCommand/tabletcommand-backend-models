@@ -192,6 +192,10 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                                     type: BooleanConstructor;
                                     default: boolean;
                                 };
+                                position: {
+                                    type: NumberConstructor;
+                                    default: number;
+                                };
                             }>;
                             _methods: unknown;
                         };
@@ -469,6 +473,10 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                     active: {
                         type: BooleanConstructor;
                         default: boolean;
+                    };
+                    position: {
+                        type: NumberConstructor;
+                        default: number;
                     };
                 }>;
                 _methods: unknown;

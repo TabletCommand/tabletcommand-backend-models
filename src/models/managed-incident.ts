@@ -130,6 +130,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: true,
     },
+    position: {
+      type: Number,
+      default: 0,
+    },
   }, {
     _id: false,
     id: false,
@@ -380,7 +384,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     },
   }, {
     _id: false,
-    id: false,
   });
 
   const IncidentChecklist = createSchema(Schema, {
