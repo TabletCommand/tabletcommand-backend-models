@@ -614,6 +614,20 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: 8,
     },
+    zonehaven: {
+      enabled: {
+        type: Boolean,
+        default: false,
+      },
+      layerUrl: {
+        type: String,
+        default: "",
+      },
+      fadeZoomLevel: {
+        type: Number,
+        default: 45000,
+      },
+    },
   }, {
     collection: "massive_admin",
   });

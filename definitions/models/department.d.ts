@@ -269,6 +269,11 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         };
     }>[];
     minPasswordLength: number;
+    zonehaven: {
+        enabled: boolean;
+        layerUrl: string;
+        fadeZoomLevel: number;
+    };
 }, {}> & {
     __methods?: unknown;
 }>;
