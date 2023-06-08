@@ -619,6 +619,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         type: Boolean,
         default: false,
       },
+      visible: {
+        type: Boolean,
+        default: true,
+      },
       layerUrl: {
         type: String,
         default: "",
@@ -631,6 +635,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   }, {
     collection: "massive_admin",
   });
+
   modelSchema.set("autoIndex", false);
   modelSchema.set("timestamps", {
     updatedAt: "modified",

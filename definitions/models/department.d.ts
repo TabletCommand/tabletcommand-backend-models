@@ -271,6 +271,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     minPasswordLength: number;
     zonehaven: {
         enabled: boolean;
+        visible: boolean;
         layerUrl: string;
         fadeZoomLevel: number;
     };

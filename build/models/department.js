@@ -587,6 +587,10 @@ async function DepartmentModule(mongoose) {
                 type: Boolean,
                 default: false,
             },
+            visible: {
+                type: Boolean,
+                default: true,
+            },
             layerUrl: {
                 type: String,
                 default: "",
