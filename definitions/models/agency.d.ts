@@ -239,6 +239,7 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
                             StartTime: string;
                             EndTime: string;
                             UnitName: string;
+                            TimeFormat: string;
                         };
                     };
                 }>;
@@ -425,6 +426,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
                 StartTime: string;
                 EndTime: string;
                 UnitName: string;
+                TimeFormat: string;
             };
         };
     }>;

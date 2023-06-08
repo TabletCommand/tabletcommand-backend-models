@@ -81,6 +81,7 @@ function AgencyCronSchema(mongoose) {
         StartTime: "StartTime",
         EndTime: "EndTime",
         UnitName: "UnitName",
+        TimeFormat: "YYYY-MM-DD HH:mm",
     };
     const AgencyCronConfig = (0, helpers_1.createSchema)(Schema, {
         enabled: {

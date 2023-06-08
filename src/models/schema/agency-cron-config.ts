@@ -90,6 +90,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     StartTime: "StartTime",
     EndTime: "EndTime",
     UnitName: "UnitName",
+    TimeFormat: "YYYY-MM-DD HH:mm",
   };
 
   const AgencyCronConfig = createSchema(Schema, {

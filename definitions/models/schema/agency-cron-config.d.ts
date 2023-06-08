@@ -143,6 +143,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule): import("mong
                 StartTime: string;
                 EndTime: string;
                 UnitName: string;
+                TimeFormat: string;
             };
         };
     }>;
