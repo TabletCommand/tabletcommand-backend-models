@@ -712,7 +712,6 @@ module.exports = function(dependencies) {
         incident_position: 0,
         isSupervisor: false,
         is_part_of_group: false,
-        location_on_image: "",
         location_on_map: "",
         modified_date: "2019-04-08T00:16:30+0000",
         modified_unix_date: 1554682590.51667,

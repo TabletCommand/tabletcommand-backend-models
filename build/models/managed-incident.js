@@ -226,10 +226,6 @@ async function ManagedIncidentModule(mongoose) {
         local_id: {
             type: Number,
         },
-        location_on_image: {
-            type: String,
-            default: "",
-        },
     }, {
         _id: false,
         id: false,
@@ -268,10 +264,6 @@ async function ManagedIncidentModule(mongoose) {
             default: "",
         },
         incident_id: {
-            type: String,
-            default: "",
-        },
-        location_on_image: {
             type: String,
             default: "",
         },
@@ -511,8 +503,8 @@ async function ManagedIncidentModule(mongoose) {
             default: "",
         },
         managed: {
-            type: Boolean,
-            default: true,
+            type: Number,
+            default: 1,
         },
         name: String,
         preference_location: String,

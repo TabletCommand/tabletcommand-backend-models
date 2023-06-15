@@ -26,10 +26,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: ""
     },
   },
-  {
-    _id: false,
-    id: false,
-  });
+    {
+      _id: false,
+      id: false,
+    });
 
   const Record = createSchema(Schema, {
     value: {
@@ -41,10 +41,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: ""
     },
   },
-  {
-    _id: false,
-    id: false,
-  });
+    {
+      _id: false,
+      id: false,
+    });
 
   const Person = createSchema(Schema, {
     PersonnelID: {
@@ -244,10 +244,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     local_id: {
       type: Number,
     },
-    location_on_image: {
-      type: String,
-      default: "",
-    },
   }, {
     _id: false,
     id: false,
@@ -287,10 +283,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: "",
     },
     incident_id: {
-      type: String,
-      default: "",
-    },
-    location_on_image: {
       type: String,
       default: "",
     },
@@ -420,7 +412,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: "",
     },
     // may be deprecated
-    local_id: { 
+    local_id: {
       type: Number,
     },
     id: {
@@ -540,8 +532,8 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: "",
     },
     managed: {
-      type: Boolean,
-      default: true,
+      type: Number,
+      default: 1,
     },
     name: String,
     preference_location: String,

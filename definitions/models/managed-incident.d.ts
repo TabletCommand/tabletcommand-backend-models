@@ -32,7 +32,7 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
     last_view: string;
     location: string;
     MapPages: string;
-    managed: boolean;
+    managed: number;
     name: string;
     preference_location: string;
     serverTime: string;
@@ -311,10 +311,6 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                     local_id: {
                         type: NumberConstructor;
                     };
-                    location_on_image: {
-                        type: StringConstructor;
-                        default: string;
-                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -325,10 +321,6 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: string;
         };
         incident_id: {
-            type: StringConstructor;
-            default: string;
-        };
-        location_on_image: {
             type: StringConstructor;
             default: string;
         };
@@ -592,10 +584,6 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         };
         local_id: {
             type: NumberConstructor;
-        };
-        location_on_image: {
-            type: StringConstructor;
-            default: string;
         };
     }>[];
     simulation: boolean;
