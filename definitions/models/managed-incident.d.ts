@@ -117,7 +117,7 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: string;
         };
         local_id: {
-            type: NumberConstructor;
+            type: StringConstructor;
         };
         id: {
             type: StringConstructor;
@@ -309,7 +309,7 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         default: string;
                     };
                     local_id: {
-                        type: NumberConstructor;
+                        type: StringConstructor;
                     };
                 }>;
                 _methods: unknown;
@@ -355,7 +355,7 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: string;
         };
         local_id: {
-            type: NumberConstructor;
+            type: StringConstructor;
         };
         note: {
             type: StringConstructor;
@@ -583,12 +583,12 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: string;
         };
         local_id: {
-            type: NumberConstructor;
+            type: StringConstructor;
         };
     }>[];
     simulation: boolean;
     rts: boolean;
-    local_id: number;
+    local_id: string;
     AgencyID: string;
     isMandatory: boolean;
     record: import("../helpers").MongooseInterface<{

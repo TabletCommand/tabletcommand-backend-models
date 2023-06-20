@@ -224,7 +224,7 @@ async function ManagedIncidentModule(mongoose) {
         },
         // may be deprecated
         local_id: {
-            type: Number,
+            type: String,
         },
     }, {
         _id: false,
@@ -302,7 +302,7 @@ async function ManagedIncidentModule(mongoose) {
         },
         // may be deprecated
         local_id: {
-            type: Number,
+            type: String,
         },
         note: {
             type: String,
@@ -391,7 +391,7 @@ async function ManagedIncidentModule(mongoose) {
         },
         // may be deprecated
         local_id: {
-            type: Number,
+            type: String,
         },
         id: {
             type: String,
@@ -557,7 +557,7 @@ async function ManagedIncidentModule(mongoose) {
         },
         // may be deprecated
         local_id: {
-            type: Number,
+            type: String,
         },
         AgencyID: {
             type: String,
