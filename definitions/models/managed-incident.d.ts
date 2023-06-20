@@ -151,6 +151,10 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         units: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
+                    UnitID: {
+                        type: StringConstructor;
+                        required: boolean;
+                    };
                     active: {
                         type: BooleanConstructor;
                         default: boolean;
@@ -292,10 +296,6 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
                         type: StringConstructor;
                         default: string;
                     };
-                    UnitID: {
-                        type: StringConstructor;
-                        default: string;
-                    };
                     warning: {
                         type: NumberConstructor;
                         default: number;
@@ -376,8 +376,8 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: number;
         };
         entity_id: {
-            type: NumberConstructor;
-            default: number;
+            type: StringConstructor;
+            default: string;
         };
         user: {
             type: StringConstructor;
@@ -398,8 +398,8 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: number;
         };
         entity_id: {
-            type: NumberConstructor;
-            default: number;
+            type: StringConstructor;
+            default: string;
         };
         user: {
             type: StringConstructor;
@@ -425,6 +425,10 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
         };
     }>[];
     units: import("../helpers").MongooseInterface<{
+        UnitID: {
+            type: StringConstructor;
+            required: boolean;
+        };
         active: {
             type: BooleanConstructor;
             default: boolean;
@@ -563,10 +567,6 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: number;
         };
         time: {
-            type: StringConstructor;
-            default: string;
-        };
-        UnitID: {
             type: StringConstructor;
             default: string;
         };

@@ -85,8 +85,8 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: 0,
     },
     entity_id: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: "",
     },
     user: {
       type: String,
@@ -140,6 +140,10 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   });
 
   const IncidentUnit = createSchema(Schema, {
+    UnitID: {
+      type: String,
+      required: true,
+    },
     active: {
       type: Boolean,
       default: true,
@@ -221,10 +225,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: 0,
     },
     time: {
-      type: String,
-      default: "",
-    },
-    UnitID: {
       type: String,
       default: "",
     },

@@ -69,8 +69,8 @@ async function ManagedIncidentModule(mongoose) {
             default: 0,
         },
         entity_id: {
-            type: Number,
-            default: 0,
+            type: String,
+            default: "",
         },
         user: {
             type: String,
@@ -122,6 +122,10 @@ async function ManagedIncidentModule(mongoose) {
         id: false,
     });
     const IncidentUnit = (0, helpers_1.createSchema)(Schema, {
+        UnitID: {
+            type: String,
+            required: true,
+        },
         active: {
             type: Boolean,
             default: true,
@@ -203,10 +207,6 @@ async function ManagedIncidentModule(mongoose) {
             default: 0,
         },
         time: {
-            type: String,
-            default: "",
-        },
-        UnitID: {
             type: String,
             default: "",
         },
