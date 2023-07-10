@@ -11,6 +11,11 @@ function SAMLSchema(mongoose) {
             required: true,
             unique: true,
         },
+        agencyId: {
+            type: Types.ObjectId,
+            ref: "Agency",
+            required: true,
+        },
         idp: {
             type: String,
             default: "",

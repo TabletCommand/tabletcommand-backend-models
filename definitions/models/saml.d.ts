@@ -20,6 +20,11 @@ export declare function SAMLSchema(mongoose: MongooseModule): import("mongoose")
                         required: boolean;
                         unique: boolean;
                     };
+                    agencyId: {
+                        type: import("mongoose").Types.ObjectIdConstructor;
+                        ref: string;
+                        required: boolean;
+                    };
                     idp: {
                         type: StringConstructor;
                         default: string;
@@ -44,6 +49,11 @@ export declare function SAMLModule(mongoose: MongooseModule): Promise<import("mo
             type: StringConstructor;
             required: boolean;
             unique: boolean;
+        };
+        agencyId: {
+            type: import("mongoose").Types.ObjectIdConstructor;
+            ref: string;
+            required: boolean;
         };
         idp: {
             type: StringConstructor;
