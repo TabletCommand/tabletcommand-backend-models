@@ -133,7 +133,38 @@ export default function AgencyCronSchema(mongoose: MongooseModule): import("mong
             default: boolean;
         };
         csvFieldMap: {
-            type: ObjectConstructor;
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../../helpers").MongooseInterface<{
+                    PersonnelID: {
+                        type: StringConstructor;
+                    };
+                    PersonnelName: {
+                        type: StringConstructor;
+                    };
+                    PersonnelRank: {
+                        type: StringConstructor;
+                    };
+                    PersonnelWorkCode: {
+                        type: StringConstructor;
+                    };
+                    PersonnelNote: {
+                        type: StringConstructor;
+                    };
+                    StartTime: {
+                        type: StringConstructor;
+                    };
+                    EndTime: {
+                        type: StringConstructor;
+                    };
+                    UnitName: {
+                        type: StringConstructor;
+                    };
+                    TimeFormat: {
+                        type: StringConstructor;
+                    };
+                }>;
+                _methods: unknown;
+            };
             default: {
                 PersonnelID: string;
                 PersonnelName: string;

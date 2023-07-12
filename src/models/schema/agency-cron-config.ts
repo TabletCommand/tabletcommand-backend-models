@@ -79,7 +79,40 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     useSSHKey: false,
   };
 
-  const CronConfigCSVFieldMap = {
+  const CronConfigCSVFieldMap = createSchema(Schema, {
+    PersonnelID: {
+      type: String,
+    },
+    PersonnelName: {
+      type: String,
+    },
+    PersonnelRank: {
+      type: String,
+    },
+    PersonnelWorkCode: {
+      type: String,
+    },
+    PersonnelNote: {
+      type: String,
+    },
+    StartTime: {
+      type: String,
+    },
+    EndTime: {
+      type: String,
+    },
+    UnitName: {
+      type: String,
+    },
+    TimeFormat: {
+      type: String,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const CronConfigCSVFieldMapDefault = {
     PersonnelID: "ID",
     PersonnelName: "Name",
     PersonnelRank: "Position",
@@ -120,7 +153,6 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-
     timezone: {
       type: String,
       default: ""
@@ -137,15 +169,13 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: true
     },
-
     hasLabelCustomization: {
       type: Boolean,
       default: false,
     },
-
     csvFieldMap: {
-      type: Object,
-      default: CronConfigCSVFieldMap,
+      type: CronConfigCSVFieldMap,
+      default: CronConfigCSVFieldMapDefault,
     },
   }, {
     _id: false,
