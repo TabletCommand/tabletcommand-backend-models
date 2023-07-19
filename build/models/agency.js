@@ -4,9 +4,11 @@ exports.AgencyModule = exports.AgencySchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const agency_cron_config_1 = require("./schema/agency-cron-config");
+const agency_saml_1 = require("./schema/agency-saml");
 function AgencySchema(mongoose) {
     const { Schema, Types } = mongoose;
     const AgencyCronConfig = (0, agency_cron_config_1.default)(mongoose);
+    const AgencySAML = (0, agency_saml_1.default)(mongoose);
     const CrossStaffedUnit = (0, helpers_1.createSchema)(Schema, {
         radioName: {
             type: String,
@@ -106,6 +108,11 @@ function AgencySchema(mongoose) {
             type: AgencyCronConfig,
             default: null,
         },
+        saml: {
+            type: [AgencySAML],
+            default: [],
+            select: false, // Not a secret but not needed in all the queries
+        }
     }, {
         collection: "massive_agency",
     });

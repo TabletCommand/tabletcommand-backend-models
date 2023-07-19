@@ -49,6 +49,10 @@ export async function ActionLogModule(mongoose: MongooseModule) {
       type: Object,
       default: {},
     },
+    message: {
+      type: String,
+      default: "",
+    },
     createdAt: {
       type: Date,
       default: currentDate,

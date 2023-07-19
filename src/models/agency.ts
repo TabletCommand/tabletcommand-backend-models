@@ -10,10 +10,12 @@ import {
   retrieveCurrentUnixTime,
 } from "../helpers";
 import AgencyCronConfigModule from "./schema/agency-cron-config";
+import AgencySAMLModule from "./schema/agency-saml";
 
 export function AgencySchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const AgencyCronConfig = AgencyCronConfigModule(mongoose);
+  const AgencySAML = AgencySAMLModule(mongoose);
 
   const CrossStaffedUnit = createSchema(Schema, {
     radioName: {
@@ -116,6 +118,11 @@ export function AgencySchema(mongoose: MongooseModule) {
       type: AgencyCronConfig,
       default: null,
     },
+    saml: {
+      type: [AgencySAML],
+      default: [],
+      select: false, // Not a secret but not needed in all the queries
+    }
   }, {
     collection: "massive_agency",
   });

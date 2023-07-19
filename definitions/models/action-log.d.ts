@@ -10,6 +10,7 @@ export declare function ActionLogModule(mongoose: MongooseModule): Promise<impor
     before: any;
     after: any;
     delta: any;
+    message: string;
     createdAt: string;
     modified_unix_date: number;
 }, {}> & {

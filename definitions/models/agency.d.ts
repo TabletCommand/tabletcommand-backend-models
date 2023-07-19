@@ -278,6 +278,32 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
             };
             default: null;
         };
+        saml: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    selector: {
+                        type: StringConstructor;
+                        required: boolean;
+                        unique: boolean;
+                    };
+                    idp: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    sp: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    env: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+            select: boolean;
+        };
     }>;
     _methods: unknown;
 };
@@ -492,6 +518,25 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
             };
         };
     }>;
+    saml: import("../helpers").MongooseInterface<{
+        selector: {
+            type: StringConstructor;
+            required: boolean;
+            unique: boolean;
+        };
+        idp: {
+            type: StringConstructor;
+            default: string;
+        };
+        sp: {
+            type: StringConstructor;
+            default: string;
+        };
+        env: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -41,6 +41,10 @@ async function ActionLogModule(mongoose) {
             type: Object,
             default: {},
         },
+        message: {
+            type: String,
+            default: "",
+        },
         createdAt: {
             type: Date,
             default: helpers_1.currentDate,
