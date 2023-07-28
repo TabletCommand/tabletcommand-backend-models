@@ -37,7 +37,6 @@ export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
-export { SAML, SAMLModel } from "./models/saml";
 export { Session, SessionModel } from "./models/session";
 export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Template, TemplateModel } from "./models/template";
@@ -88,7 +87,6 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         PersonnelImport: import("./models/personnel-import").PersonnelImportModel;
         RateLimit: import("./models/rate-limit").RateLimitModel;
         RemoteLog: import("./models/remote-log").RemoteLogModel;
-        SAML: import("./models/saml").SAMLModel;
         Session: import("./models/session").SessionModel;
         SMTPUnhandled: import("./models/smtp-unhandled").SMTPUnhandledModel;
         Template: import("./models/template").TemplateModel;

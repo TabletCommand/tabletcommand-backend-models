@@ -48,7 +48,6 @@ async function wireModels(mongoose: MongooseModule) {
     PersonnelImport: await getModel(import("./models/personnel-import")),
     RateLimit: await getModel(import("./models/rate-limit")),
     RemoteLog: await getModel(import("./models/remote-log")),
-    SAML: await getModel(import("./models/saml")),
     Session: await getModel(import("./models/session")),
     SMTPUnhandled: await getModel(import("./models/smtp-unhandled")),
     Template: await getModel(import("./models/template")),
@@ -97,7 +96,6 @@ export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
-export { SAML, SAMLModel } from "./models/saml";
 export { Session, SessionModel } from "./models/session";
 export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Template, TemplateModel } from "./models/template";
