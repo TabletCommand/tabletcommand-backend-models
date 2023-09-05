@@ -128,6 +128,27 @@ export default function AgencyCronSchema(mongoose: MongooseModule): import("mong
             type: BooleanConstructor;
             default: boolean;
         };
+        reconcileTimeOptions: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../../helpers").MongooseInterface<{
+                    enabled: {
+                        type: BooleanConstructor;
+                    };
+                    startTime: {
+                        type: StringConstructor;
+                    };
+                    endTime: {
+                        type: StringConstructor;
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: {
+                enabled: boolean;
+                startTime: string;
+                endTime: string;
+            };
+        };
         hasLabelCustomization: {
             type: BooleanConstructor;
             default: boolean;

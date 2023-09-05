@@ -126,6 +126,27 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     TimeFormat: "YYYY-MM-DD HH:mm",
   };
 
+  const ReconcileTimeOptions = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+    },
+    startTime: {
+      type: String,
+    },
+    endTime: {
+      type: String,
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const ReconcileTimeOptionsDefault = {
+    enabled: false,
+    startTime: new Date().toISOString(),
+    endTime: new Date().toISOString(),
+  };
+
   const AgencyCronConfig = createSchema(Schema, {
     enabled: {
       type: Boolean,
@@ -168,6 +189,10 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     reconcileEnabled: {
       type: Boolean,
       default: true
+    },
+    reconcileTimeOptions: {
+      type: ReconcileTimeOptions,
+      default: ReconcileTimeOptionsDefault,
     },
     hasLabelCustomization: {
       type: Boolean,
