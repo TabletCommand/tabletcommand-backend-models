@@ -143,8 +143,8 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
 
   const ReconcileTimeOptionsDefault = {
     enabled: false,
-    startTime: new Date().toISOString(),
-    endTime: new Date().toISOString(),
+    startTime: "07:00",
+    endTime: "08:00",
   };
 
   const AgencyCronConfig = createSchema(Schema, {
