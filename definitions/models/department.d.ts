@@ -110,6 +110,18 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             type: StringConstructor;
             default: string;
         };
+        allowPartialMatch: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        callTypeDescription: {
+            type: StringConstructor[];
+            default: never[];
+        };
+        callType: {
+            type: StringConstructor[];
+            default: never[];
+        };
     }>[];
     agencyIds: never;
     signupKey: string;

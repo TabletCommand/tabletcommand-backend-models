@@ -186,6 +186,21 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "any",
         },
+        // If true, instead of exact match (===), use title.includes(value)
+        allowPartialMatch: {
+            type: Boolean,
+            default: false,
+        },
+        // For AgencyIncidentCallTypeDescription
+        callTypeDescription: {
+            type: [String],
+            default: [],
+        },
+        // For AgencyIncidentCallType
+        callType: {
+            type: [String],
+            default: [],
+        }
     }, {
         _id: false,
         id: false,
