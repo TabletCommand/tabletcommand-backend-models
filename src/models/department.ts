@@ -476,9 +476,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
 
     // Uses ArcGIS maps, requires ArcGIS accounts
+    // Set this to default=enabled until we figure out why we need the flag.
     arcGISMapsEnabled: {
       type: Boolean,
-      default: false,
+      default: true,
     },
 
     beansAIEnabled: {
