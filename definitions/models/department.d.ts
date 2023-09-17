@@ -123,6 +123,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: never[];
         };
     }>[];
+    callTypeBlock: string[];
     agencyIds: never;
     signupKey: string;
     signupDomains: string[];

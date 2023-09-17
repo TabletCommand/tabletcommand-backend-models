@@ -492,6 +492,11 @@ async function DepartmentModule(mongoose) {
             type: [IncidentType],
             default: [],
         },
+        // incident. AgencyIncidentCallTypeDescription  OR AgencyIncidentCallType
+        callTypeBlock: {
+            type: [String],
+            default: [],
+        },
         agencyIds: [{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Agency",
