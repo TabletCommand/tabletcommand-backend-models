@@ -5,9 +5,11 @@ const helpers_1 = require("../../helpers");
 const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const incident_event_1 = require("../incident-event");
+const report_number_1 = require("./report-number");
 function CADIncidentSchema(mongoose) {
     const { Schema, Types } = mongoose;
     const IncidentEvent = (0, incident_event_1.IncidentEventSchema)(mongoose);
+    const ReportNumber = (0, report_number_1.default)(mongoose);
     const toJSONOpts = {
         versionKey: false,
         transform(doc, ret) {
@@ -165,20 +167,6 @@ function CADIncidentSchema(mongoose) {
         id: false,
     });
     RadioChannel.set("toJSON", toJSONOpts);
-    const ReportNumber = (0, helpers_1.createSchema)(Schema, {
-        name: {
-            type: String,
-            default: "",
-        },
-        number: {
-            type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    ReportNumber.set("toJSON", toJSONOpts);
     const RecordValue = (0, helpers_1.createSchema)(Schema, {
         name: {
             type: String,

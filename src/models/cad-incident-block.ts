@@ -10,8 +10,11 @@ import {
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
+import ReportNumberModule from "./schema/report-number";
+
 export async function CADIncidentBlockModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
+  const ReportNumber = ReportNumberModule(mongoose);
 
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
@@ -41,10 +44,16 @@ export async function CADIncidentBlockModule(mongoose: MongooseModule) {
     },
     EntryDateTime: {
       type: String,
+      default: "",
     },
     ClosedDateTime: {
       type: String,
+      default: "",
     },
+    ReportNumber: {
+      type: [ReportNumber],
+      default: [],
+    }
   }, {
     collection: "massive_cad_incident_block",
     timestamps: true,

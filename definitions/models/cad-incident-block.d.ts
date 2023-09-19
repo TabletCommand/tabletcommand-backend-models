@@ -8,6 +8,16 @@ export declare function CADIncidentBlockModule(mongoose: MongooseModule): Promis
     AgencyIncidentCallTypeDescription: string;
     EntryDateTime: string;
     ClosedDateTime: string;
+    ReportNumber: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        number: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -11,10 +11,12 @@ import {
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { IncidentEventSchema } from "../incident-event";
+import ReportNumberModule from "./report-number";
 
 export function CADIncidentSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
   const IncidentEvent = IncidentEventSchema(mongoose);
+  const ReportNumber = ReportNumberModule(mongoose);
 
   const toJSONOpts = {
     versionKey: false,
@@ -181,21 +183,6 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     id: false,
   });
   RadioChannel.set("toJSON", toJSONOpts);
-
-  const ReportNumber = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    number: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
-  ReportNumber.set("toJSON", toJSONOpts);
 
   const RecordValue = createSchema(Schema, {
     name: {
