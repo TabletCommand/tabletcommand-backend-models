@@ -41,12 +41,12 @@ async function CADIncidentStreamModule(mongoose) {
             default: {}
         },
     }, {
+        autoIndex: false,
         collection: "massive_cad_incident_stream",
-    });
-    modelSchema.set("autoIndex", false);
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+        toJSON: {
+            virtuals: true,
+            versionKey: false,
+        }
     });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any

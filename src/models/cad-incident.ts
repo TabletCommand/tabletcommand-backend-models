@@ -12,6 +12,15 @@ export async function CADIncidentModule(mongoose: MongooseModule) {
   const modelSchema = CADIncidentSchema(mongoose);
   modelSchema.set("collection", "massive_incident_cad");
   modelSchema.set("strict", false); // Because we accept all kind of data in
+
+  // Indexes
+  modelSchema.index({
+    departmentId: 1,
+    IncidentNumber: 1
+  }, {
+    unique: true,
+  });
+
   return createModel(mongoose, "CADIncident", modelSchema);
 }
 

@@ -28,6 +28,7 @@ async function CADIncidentDeltaModule(mongoose) {
             type: Object,
         },
     }, {
+        autoIndex: false,
         collection: "massive_cad_incident_delta",
     });
     return (0, helpers_1.createModel)(mongoose, "CADIncidentDelta", modelSchema);

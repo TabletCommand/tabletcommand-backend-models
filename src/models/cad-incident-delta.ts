@@ -35,6 +35,7 @@ export async function CADIncidentDeltaModule(mongoose: MongooseModule) {
       type: Object,
     },
   }, {
+    autoIndex: false,
     collection: "massive_cad_incident_delta",
   });
 
