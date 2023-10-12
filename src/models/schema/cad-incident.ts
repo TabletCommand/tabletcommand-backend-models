@@ -509,17 +509,6 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       default: [],
     },
 
-    // Stream Processing
-    streamSnapshotId: {
-      type: String,
-      default: "",
-    },
-    // Already process items, processing order
-    streamIds: {
-      type: [String],
-      default: [],
-    },
-
     // Shared
     sharedTo: {
       type: [SharedTo],
