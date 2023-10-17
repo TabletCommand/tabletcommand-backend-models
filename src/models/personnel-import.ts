@@ -12,6 +12,19 @@ import {
 export function PersonnelImportSchema(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
+  const Radio = createSchema(Schema, {
+    radioName: {
+      type: String,
+    },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -43,6 +56,10 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     },
     radioNames: {
       type: [String],
+      default: [],
+    },
+    radios: {
+      type: [Radio],
       default: [],
     },
     shiftStartTime: {

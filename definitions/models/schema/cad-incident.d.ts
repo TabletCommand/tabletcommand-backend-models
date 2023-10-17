@@ -510,14 +510,6 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
             })[];
             default: never[];
         };
-        streamSnapshotId: {
-            type: StringConstructor;
-            default: string;
-        };
-        streamIds: {
-            type: StringConstructor[];
-            default: never[];
-        };
         sharedTo: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{

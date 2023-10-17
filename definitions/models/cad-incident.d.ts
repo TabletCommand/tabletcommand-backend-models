@@ -317,8 +317,6 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             type: StringConstructor;
         };
     }>[];
-    streamSnapshotId: string;
-    streamIds: string[];
     sharedTo: import("../helpers").MongooseInterface<{
         departmentId: {
             type: StringConstructor;

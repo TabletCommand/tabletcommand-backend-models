@@ -33,6 +33,21 @@ export declare function PersonnelImportSchema(mongoose: MongooseModule): import(
             type: StringConstructor[];
             default: never[];
         };
+        radios: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    radioName: {
+                        type: StringConstructor;
+                    };
+                    active: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
         shiftStartTime: {
             type: NumberConstructor;
             default: number;
@@ -90,6 +105,15 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
     PersonnelNote: string;
     departmentId: string;
     radioNames: string[];
+    radios: import("../helpers").MongooseInterface<{
+        radioName: {
+            type: StringConstructor;
+        };
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>[];
     shiftStartTime: number;
     shiftEndTime: number;
     shiftStart: string;

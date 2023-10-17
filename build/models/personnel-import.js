@@ -4,6 +4,18 @@ exports.PersonnelImportModule = exports.PersonnelImportSchema = void 0;
 const helpers_1 = require("../helpers");
 function PersonnelImportSchema(mongoose) {
     const { Schema, Types } = mongoose;
+    const Radio = (0, helpers_1.createSchema)(Schema, {
+        radioName: {
+            type: String,
+        },
+        active: {
+            type: Boolean,
+            default: true,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -34,6 +46,10 @@ function PersonnelImportSchema(mongoose) {
         },
         radioNames: {
             type: [String],
+            default: [],
+        },
+        radios: {
+            type: [Radio],
             default: [],
         },
         shiftStartTime: {
