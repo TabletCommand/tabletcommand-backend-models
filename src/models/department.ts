@@ -178,7 +178,8 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     "tcMobile": 0,
     "tcWeb": 0,
     "fireMapperPro": 0,
-    "sendToCAD": 0
+    "sendToCAD": 0,
+    "tcStreams": 0
   };
 
   const WebDisclaimerDefault = {
