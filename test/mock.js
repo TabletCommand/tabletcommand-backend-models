@@ -420,7 +420,8 @@ module.exports = function(dependencies) {
       tcMobile: 0,
       tcWeb: 0,
       fireMapperPro: 0,
-      sendToCAD: 0
+      sendToCAD: 0,
+      tcStreams: 0,
     },
     webDisclaimer: {
       message: "test",

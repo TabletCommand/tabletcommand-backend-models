@@ -137,6 +137,39 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const Licensing = (0, helpers_1.createSchema)(Schema, {
+        tcPro2Way: {
+            type: Number,
+            default: 0,
+        },
+        tcPro1Way: {
+            type: Number,
+            default: 0,
+        },
+        tcMobile: {
+            type: Number,
+            default: 0,
+        },
+        tcWeb: {
+            type: Number,
+            default: 0,
+        },
+        fireMapperPro: {
+            type: Number,
+            default: 0,
+        },
+        sendToCAD: {
+            type: Number,
+            default: 0,
+        },
+        tcStreams: {
+            type: Number,
+            default: 0,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const SafetyPriorityKeywordDefault = [
         {
             "keywords": [],
@@ -573,7 +606,7 @@ async function DepartmentModule(mongoose) {
             default: false,
         },
         licensing: {
-            type: Object,
+            type: Licensing,
             default: LicensingDefault,
         },
         webDisclaimer: {

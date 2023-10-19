@@ -170,7 +170,36 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     timeZone: string;
     remoteLoggingEnabled: boolean;
     logOffEnabled: boolean;
-    licensing: any;
+    licensing: import("../helpers").MongooseInterface<{
+        tcPro2Way: {
+            type: NumberConstructor;
+            default: number;
+        };
+        tcPro1Way: {
+            type: NumberConstructor;
+            default: number;
+        };
+        tcMobile: {
+            type: NumberConstructor;
+            default: number;
+        };
+        tcWeb: {
+            type: NumberConstructor;
+            default: number;
+        };
+        fireMapperPro: {
+            type: NumberConstructor;
+            default: number;
+        };
+        sendToCAD: {
+            type: NumberConstructor;
+            default: number;
+        };
+        tcStreams: {
+            type: NumberConstructor;
+            default: number;
+        };
+    }>;
     webDisclaimer: import("../helpers").MongooseInterface<{
         message: {
             type: StringConstructor;

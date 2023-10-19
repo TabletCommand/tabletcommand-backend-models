@@ -154,6 +154,40 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const Licensing = createSchema(Schema, {
+    tcPro2Way: {
+      type: Number,
+      default: 0,
+    },
+    tcPro1Way: {
+      type: Number,
+      default: 0,
+    },
+    tcMobile: {
+      type: Number,
+      default: 0,
+    },
+    tcWeb: {
+      type: Number,
+      default: 0,
+    },
+    fireMapperPro: {
+      type: Number,
+      default: 0,
+    },
+    sendToCAD: {
+      type: Number,
+      default: 0,
+    },
+    tcStreams: {
+      type: Number,
+      default: 0,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SafetyPriorityKeywordDefault = [
     {
       "keywords": [],
@@ -606,7 +640,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: false,
     },
     licensing: {
-      type: Object,
+      type: Licensing,
       default: LicensingDefault,
     },
     webDisclaimer: {
