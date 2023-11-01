@@ -81,6 +81,8 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+
+    // These should go to roles
     admin: {
       type: Boolean,
       default: false,
@@ -106,6 +108,12 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    cadSimulatorAccess: {
+      type: Boolean,
+      default: false,
+    },
+
+    // End fake roles
 
     beaconEnabled: {
       type: Boolean,
@@ -160,7 +168,7 @@ export function UserSchema(mongoose: MongooseModule) {
       default: 1,
     },
 
-    // PubNub
+    // PubNub - should go to a different collection
     rtsAuthKey: {
       type: String,
       default: "",
