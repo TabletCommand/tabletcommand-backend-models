@@ -100,7 +100,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             })[];
             default: never[];
         };
-        static: {
+        staticLayer: {
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     uuid: {

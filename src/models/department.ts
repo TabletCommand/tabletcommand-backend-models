@@ -206,7 +206,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
 
     // A list of items that will be added to each map
-    static: {
+    staticLayer: {
       type: [FireMapperOutline],
       default: [],
     },
