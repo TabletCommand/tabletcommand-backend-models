@@ -1,9 +1,20 @@
-module.exports = function(dependencies) {
+module.exports = function mockModule(dependencies) {
   "use strict";
 
   const uuid = require("uuid");
-  const config = require("./config");
-  config.checkIfTestDatabase();
+
+  function shouldRun() {
+    const mongoUrl = process.env.NODE_MONGO_URL || "";
+    if (!/massive-test/i.exec(mongoUrl)) {
+      console.log(`Not a test database: ${mongoUrl}? Expecting database: massive-test.`);
+      return false;
+    }
+    return true;
+  }
+
+  if (!shouldRun()) {
+    process.exit(1);
+  }
 
   const {
     models,
@@ -918,18 +929,29 @@ module.exports = function(dependencies) {
   };
 
   async function cleanup() {
-    config.checkIfTestDatabase();
+    if (!shouldRun()) {
+      process.exit(1);
+    }
 
-    await models.CADVehicleStatus.deleteMany({});
-    await models.Esri.deleteMany({});
-    await models.IncidentNotified.deleteMany({});
-    await models.PersonnelImport.deleteMany({});
-    await models.User.deleteMany({});
-    await models.UserDevice.deleteMany({});
-    await models.ValidationReport.deleteMany({});
+    const items = await mongoose.connection.db.collections();
+    for (const coll of items) {
+      // console.log(`Emptying ${coll.collectionName}.`);
+      await coll.deleteMany({});
+    }
+  }
+
+  async function beforeEach() {
+    if (!shouldRun()) {
+      process.exit(1);
+    }
+
+    await cleanup();
   }
 
   return {
+    beforeEach,
+    cleanup,
+
     actionLog,
     agency,
     arcGISGroup,
@@ -943,7 +965,6 @@ module.exports = function(dependencies) {
     cadVehicleStatusHistory,
     checklist,
     checklistItem,
-    cleanup,
     csvImport,
     department,
     deviceMapping,

@@ -17,6 +17,7 @@ describe("CADIncident", function() {
       mongoose
     });
     testItem = mock.cadIncident;
+    await mock.beforeEach();
   });
   afterEach(function() {
     mongoose.disconnect();

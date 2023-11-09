@@ -17,14 +17,16 @@ if hash brew 2>/dev/null; then
     fi
 fi
 
-NODE_VERSION="v16.13.2"
+NODE_VERSION="v16.19.0"
 
 nvm use $NODE_VERSION || nvm install $NODE_VERSION
 
-npm install;
+npm install
 echo "--- spelling"
 npx cspell
 echo "--- type coverage"
-npx type-coverage;
+npx type-coverage
+echo "--- lint"
+npm run lint
 echo "--- test"
-npm test;
+npm test

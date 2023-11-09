@@ -63,10 +63,72 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     beaconEnabled: boolean;
     firstArrivingEnabled: boolean;
     simpleSenseEnabled: boolean;
-    fireMapperEnabled: boolean;
     incidentVehicleStatusEnabled: boolean;
+    fireMapperEnabled: boolean;
     fireMapperRefreshInterval: number;
     fireMapperProLicenses: number;
+    fireMapper: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        layerRefreshInterval: {
+            type: NumberConstructor;
+            default: number;
+        };
+        proLicenseCount: {
+            type: NumberConstructor;
+            default: number;
+        };
+        host: {
+            type: StringConstructor;
+            default: string;
+        };
+        layer: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    pathname: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+        static: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    uuid: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    layer: {
+                        type: (import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                pathname: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                name: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        })[];
+                        default: never[];
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>;
     arcGISMapsEnabled: boolean;
     beansAIEnabled: boolean;
     mowsEnabled: boolean;

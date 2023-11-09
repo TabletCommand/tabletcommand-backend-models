@@ -154,6 +154,103 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const FireMapperLayer = createSchema(Schema, {
+    pathname: {
+      type: String,
+      default: "", // Eg. /api/rest/services/features/FeatureServer/0 (including 0)
+    },
+    name: {
+      type: String, // eg. FireMapper - Symbols
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const FireMapperOutline = createSchema(Schema, {
+    uuid: {
+      type: String,
+      default: "",
+    },
+    layer: {
+      type: [FireMapperLayer],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const FireMapperConfiguration = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    layerRefreshInterval: {
+      type: Number,
+      default: 15,
+    },
+    // Number of available FM Pro licenses for this department
+    proLicenseCount: {
+      type: Number,
+      default: 0,
+    },
+    host: {
+      type: String,
+      default: "", // when empty, portal.firefront.com.au
+    },
+    layer: {
+      type: [FireMapperLayer],
+      default: [],
+    },
+
+    // A list of items that will be added to each map
+    static: {
+      type: [FireMapperOutline],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  // If any of the following fields are updated/added/deleted,
+  // make sure to update the database records, before/after release (script/query)
+  const FireMapperConfigurationDefault = {
+    enabled: false,
+    layerRefreshInterval: 15,
+    proLicenseCount: 0,
+    host: "",
+    layerURL: [
+      {
+        name: "FireMapper - Symbols",
+        pathname: "/api/rest/services/features/FeatureServer/0",
+      },
+      {
+        name: "FireMapper - Lines",
+        pathname: "/api/rest/services/features/FeatureServer/1",
+      },
+      {
+        name: "FireMapper - Photos",
+        pathname: "/api/rest/services/features/FeatureServer/2",
+      },
+      {
+        name: "FireMapper - Areas",
+        pathname: "/api/rest/services/features/FeatureServer/3",
+      },
+      {
+        name: "FireMapper - PDFs",
+        pathname: "/api/rest/services/features/FeatureServer/4",
+      },
+      {
+        name: "FireMapper - Labels",
+        pathname: "/api/rest/services/features/FeatureServer/5",
+      },
+    ],
+    outline: [],
+  };
+
   const Licensing = createSchema(Schema, {
     tcPro2Way: {
       type: Number,
@@ -188,6 +285,16 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const LicensingDefault = {
+    "tcPro2Way": 0,
+    "tcPro1Way": 0,
+    "tcMobile": 0,
+    "tcWeb": 0,
+    "fireMapperPro": 0,
+    "sendToCAD": 0,
+    "tcStreams": 0
+  };
+
   const SafetyPriorityKeywordDefault = [
     {
       "keywords": [],
@@ -205,16 +312,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       "hexColor": "0A60FF"
     }
   ];
-
-  const LicensingDefault = {
-    "tcPro2Way": 0,
-    "tcPro1Way": 0,
-    "tcMobile": 0,
-    "tcWeb": 0,
-    "fireMapperPro": 0,
-    "sendToCAD": 0,
-    "tcStreams": 0
-  };
 
   const WebDisclaimerDefault = {
     "message": "",
@@ -492,13 +589,15 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    fireMapperEnabled: {
-      type: Boolean,
-      default: false,
-    },
     incidentVehicleStatusEnabled: {
       type: Boolean,
       default: false
+    },
+
+    // Legacy FireMapper fields, remove after migrating the endpoints/code to use the new object
+    fireMapperEnabled: {
+      type: Boolean,
+      default: false,
     },
     fireMapperRefreshInterval: {
       type: Number,
@@ -508,6 +607,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     fireMapperProLicenses: {
       type: Number,
       default: 0,
+    },
+
+    fireMapper: {
+      type: FireMapperConfiguration,
+      default: FireMapperConfigurationDefault,
     },
 
     // Uses ArcGIS maps, requires ArcGIS accounts

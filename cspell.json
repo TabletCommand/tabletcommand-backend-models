@@ -6,7 +6,9 @@
   "language": "en-US",
   // words - list of words to be always considered correct
   "words": [
+    "2dsphere",
     "apikey",
+    "arcgis",
     "backend",
     "bson",
     "Counti",
@@ -14,6 +16,8 @@
     "Enroute",
     "Esri",
     "fdid",
+    "firefront",
+    "firemapper",
     "flushall",
     "ipad",
     "iphone",
@@ -22,16 +26,13 @@
     "parens",
     "Postdirectional",
     "Predirectional",
+    "pubnub",
     "quotemark",
     "signup",
-    "tabletcommand",
     "tabletcmd",
+    "tabletcommand",
     "Ursache",
     "virtuals",
-    "firemapper",
-    "2dsphere",
-    "arcgis",
-    "pubnub",
     "zonehaven"
   ],
   // flagWords - list of words to be always considered incorrect
