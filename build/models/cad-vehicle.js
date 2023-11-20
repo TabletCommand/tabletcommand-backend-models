@@ -77,10 +77,10 @@ async function CADVehicleModule(mongoose) {
             trim: true,
             index: {
                 unique: true,
+                name: "email_uniq_partial",
                 partialFilterExpression: {
                     email: {
                         $type: "string",
-                        $ne: "",
                     }
                 }
             }

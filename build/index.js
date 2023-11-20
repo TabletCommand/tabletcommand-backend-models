@@ -76,6 +76,7 @@ async function connect(url, overwriteOpts) {
     mongoose.Promise = await Promise.resolve().then(() => require("bluebird"));
     const models = await wireModels(mongoose);
     const defaultOpts = {
+        autoIndex: false,
         readPreference: "primaryPreferred",
         useNewUrlParser: true,
         useUnifiedTopology: true,

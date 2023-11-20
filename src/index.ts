@@ -114,6 +114,7 @@ export async function connect(url: string, overwriteOpts?: ConnectionOptions) {
 
   const models = await wireModels(mongoose);
   const defaultOpts: ConnectionOptions = {
+    autoIndex: false,
     readPreference: "primaryPreferred",
     useNewUrlParser: true,
     useUnifiedTopology: true,
