@@ -21,6 +21,7 @@ export declare function CADVehicleModule(mongoose: MongooseModule): Promise<impo
     capability: string;
     locationToCAD: boolean;
     backupDate: string;
+    email: string;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -126,6 +126,7 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
       type: Destination,
       default: null,
     },
+    // Used by frontend
     assignableByUser: {
       type: Boolean,
       default: false,

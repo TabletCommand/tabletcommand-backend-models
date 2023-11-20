@@ -101,6 +101,12 @@ function UserSchema(mongoose) {
             default: false,
         },
         // End fake roles
+        // If allowed, a user can add(select)/remove their own vehicle
+        // A user can change vehicle regardless of the value of this flag
+        canAddRemoveVehicle: {
+            type: Boolean,
+            default: false,
+        },
         beaconEnabled: {
             type: Boolean,
             default: false,

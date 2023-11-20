@@ -117,6 +117,7 @@ async function CADVehicleStatusModule(mongoose) {
             type: Destination,
             default: null,
         },
+        // Used by frontend
         assignableByUser: {
             type: Boolean,
             default: false,

@@ -76,6 +76,10 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             type: BooleanConstructor;
             default: boolean;
         };
+        canAddRemoveVehicle: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         beaconEnabled: {
             type: BooleanConstructor;
             default: boolean;
@@ -331,6 +335,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     mobileAccess: boolean;
     webAccess: boolean;
     cadSimulatorAccess: boolean;
+    canAddRemoveVehicle: boolean;
     beaconEnabled: boolean;
     userContributionEnabled: boolean;
     syncLoggingExpireDate: string;
