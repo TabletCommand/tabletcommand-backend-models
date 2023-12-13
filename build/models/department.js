@@ -10,6 +10,24 @@ async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
     const Color = (0, color_1.default)(mongoose);
+    const SimpleSenseConfig = (0, helpers_1.createSchema)(Schema, {
+        token: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const FirstArrivingConfig = (0, helpers_1.createSchema)(Schema, {
+        token: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const SafetyPriorityKeyword = (0, helpers_1.createSchema)(Schema, {
         priority: {
             type: Number,
@@ -288,6 +306,12 @@ async function DepartmentModule(mongoose) {
             "hexColor": "0A60FF"
         }
     ];
+    const FirstArrivingConfigDefault = {
+        "token": "",
+    };
+    const SimpleSenseConfigDefault = {
+        "token": "",
+    };
     const WebDisclaimerDefault = {
         "message": "",
         "enabled": false
@@ -555,9 +579,17 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        firstArriving: {
+            type: FirstArrivingConfig,
+            default: FirstArrivingConfigDefault,
+        },
         simpleSenseEnabled: {
             type: Boolean,
             default: false,
+        },
+        simpleSense: {
+            type: SimpleSenseConfig,
+            default: SimpleSenseConfigDefault,
         },
         incidentVehicleStatusEnabled: {
             type: Boolean,

@@ -55,6 +55,8 @@ describe("Department", function() {
     assert.equal(sut.accountType, testItem.accountType);
     assert.equal(sut.timeZone, testItem.timeZone);
     assert.equal(sut.firstArrivingEnabled, testItem.firstArrivingEnabled);
+    assert.equal(sut.simpleSense.token, testItem.simpleSense.token);
+    assert.equal(sut.firstArriving.token, testItem.firstArriving.token);
     assert.equal(sut.simpleSenseEnabled, testItem.simpleSenseEnabled);
     assert.equal(sut.webDisclaimer.message, testItem.webDisclaimer.message);
     assert.equal(sut.webDisclaimer.enabled, testItem.webDisclaimer.enabled);

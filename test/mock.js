@@ -424,7 +424,13 @@ module.exports = function mockModule(dependencies) {
     accountType: "production",
     timeZone: "America/Los_Angeles",
     firstArrivingEnabled: true,
+    firstArriving: {
+      token: "123"
+    },
     simpleSenseEnabled: true,
+    simpleSense: {
+      token: "123"
+    },
     licensing: {
       tcPro2Way: 0,
       tcPro1Way: 0,

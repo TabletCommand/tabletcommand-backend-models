@@ -62,7 +62,19 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     locationStaleMinutes: number;
     beaconEnabled: boolean;
     firstArrivingEnabled: boolean;
+    firstArriving: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
     simpleSenseEnabled: boolean;
+    simpleSense: import("../helpers").MongooseInterface<{
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
     incidentVehicleStatusEnabled: boolean;
     fireMapperEnabled: boolean;
     fireMapperRefreshInterval: number;
