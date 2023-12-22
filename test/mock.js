@@ -339,7 +339,8 @@ module.exports = function mockModule(dependencies) {
       //
       {
         "statusId": 1,
-        "userEnabled": true
+        "userEnabled": true,
+        "position": 0,
       }
     ]
   };

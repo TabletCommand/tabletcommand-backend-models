@@ -15,6 +15,10 @@ export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<im
         userEnabled: {
             type: BooleanConstructor;
         };
+        position: {
+            type: NumberConstructor;
+            default: number;
+        };
     }>[];
     backupDate: string;
 }, {}> & {

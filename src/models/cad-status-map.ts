@@ -21,6 +21,10 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
     userEnabled: {
       type: Boolean,
     },
+    position: {
+      type: Number,
+      default: 0,
+    },
   }, {
     _id: false,
     id: false,

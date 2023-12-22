@@ -34,6 +34,7 @@ describe("CADStatusMap", function() {
       assert.equal(sut.toStatusIds.length, 1);
       assert.equal(testItem.toStatusIds[0].statusId, sut.toStatusIds[0].statusId);
       assert.isTrue(sut.toStatusIds[0].userEnabled);
+      assert.equal(sut.toStatusIds[0].position, 0);
 
       return done();
     });
