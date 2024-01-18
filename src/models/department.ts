@@ -699,6 +699,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: [],
     },
 
+    ackMarker: {
+      type: String,
+      default: "***"
+    },
+
     // incident. AgencyIncidentCallTypeDescription  OR AgencyIncidentCallType
     callTypeBlock: {
       type: [String],

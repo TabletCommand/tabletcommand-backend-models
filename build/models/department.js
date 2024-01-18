@@ -655,6 +655,10 @@ async function DepartmentModule(mongoose) {
             type: [IncidentType],
             default: [],
         },
+        ackMarker: {
+            type: String,
+            default: "***"
+        },
         // incident. AgencyIncidentCallTypeDescription  OR AgencyIncidentCallType
         callTypeBlock: {
             type: [String],

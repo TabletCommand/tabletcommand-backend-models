@@ -39,6 +39,12 @@ export async function CADStatusModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    // If set to true, iOS will automatically select it, so the user does not have to.
+    // The user will be able to select another status option value.
+    isDefault: {
+      type: Boolean,
+      default: false,
+    },
     // Premise lat/lon
     latitude: {
       type: Number,
