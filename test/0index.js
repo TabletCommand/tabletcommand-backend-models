@@ -26,8 +26,6 @@ describe(" Models", function() {
     assert.isFunction(models.BeaconLog, "Missing BeaconLog");
     assert.isFunction(models.CADIncident, "Missing CADIncident");
     assert.isFunction(models.CADIncidentBlock, "Missing CADIncidentBlock");
-    assert.isFunction(models.CADIncidentDelta, "Missing CADIncidentDelta");
-    assert.isFunction(models.CADIncidentFlat, "Missing CADIncidentFlat");
     assert.isFunction(models.CADIncidentStream, "Missing CADIncidentStream");
     assert.isFunction(models.CADStatus, "Missing CADStatus");
     assert.isFunction(models.CADStatusMap, "Missing CADStatusMap");

@@ -17,8 +17,8 @@ export declare function CADVehicleModule(mongoose: MongooseModule): Promise<impo
             default: string;
         };
     }>;
-    mapHidden: boolean;
     capability: string;
+    mapHidden: boolean;
     locationToCAD: boolean;
     backupDate: string;
     email: string;

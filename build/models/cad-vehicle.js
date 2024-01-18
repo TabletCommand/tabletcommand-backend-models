@@ -19,6 +19,7 @@ async function CADVehicleModule(mongoose) {
         id: false,
     });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
+        // Internal
         uuid: {
             type: String,
             index: true,
@@ -39,6 +40,7 @@ async function CADVehicleModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
+        // Provided by CAD
         vehicleId: {
             type: String,
             default: "",
@@ -55,13 +57,14 @@ async function CADVehicleModule(mongoose) {
             type: Station,
             default: null,
         },
-        mapHidden: {
-            type: Boolean,
-            default: false,
-        },
         capability: {
             type: String,
             default: "",
+        },
+        // Internal
+        mapHidden: {
+            type: Boolean,
+            default: false,
         },
         locationToCAD: {
             type: Boolean,
