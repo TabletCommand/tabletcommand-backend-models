@@ -699,7 +699,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: [],
     },
 
-    ackMarker: {
+    ackDelimiter: {
       type: String,
       default: "***"
     },

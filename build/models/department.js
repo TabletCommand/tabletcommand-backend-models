@@ -655,7 +655,7 @@ async function DepartmentModule(mongoose) {
             type: [IncidentType],
             default: [],
         },
-        ackMarker: {
+        ackDelimiter: {
             type: String,
             default: "***"
         },

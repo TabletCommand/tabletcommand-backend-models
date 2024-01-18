@@ -197,7 +197,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: never[];
         };
     }>[];
-    ackMarker: string;
+    ackDelimiter: string;
     callTypeBlock: string[];
     agencyIds: never;
     signupKey: string;
