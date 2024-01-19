@@ -16,6 +16,19 @@ function CADIncidentSchema(mongoose) {
             strictSchema(doc.schema, ret);
         },
     };
+    // Currently, supporting type: "ack", item: "knife"
+    const CADCommentOpts = (0, helpers_1.createSchema)(Schema, {
+        type: {
+            type: String,
+        },
+        item: {
+            type: String,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    CADCommentOpts.set("toJSON", toJSONOpts);
     const CADComment = (0, helpers_1.createSchema)(Schema, {
         Comment: {
             type: String,
@@ -29,6 +42,9 @@ function CADIncidentSchema(mongoose) {
         CommentConfidential: {
             type: Boolean,
             default: false
+        },
+        CommentOpts: {
+            type: CADCommentOpts,
         }
     }, {
         _id: false,

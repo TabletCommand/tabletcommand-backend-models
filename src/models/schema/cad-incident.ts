@@ -25,6 +25,20 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     },
   };
 
+  // Currently, supporting type: "ack", item: "knife"
+  const CADCommentOpts = createSchema(Schema, {
+    type: {
+      type: String,
+    },
+    item: {
+      type: String,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+  CADCommentOpts.set("toJSON", toJSONOpts);
+
   const CADComment = createSchema(Schema, {
     Comment: {
       type: String,
@@ -38,6 +52,9 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     CommentConfidential: {
       type: Boolean,
       default: false
+    },
+    CommentOpts: {
+      type: CADCommentOpts,
     }
   }, {
     _id: false,

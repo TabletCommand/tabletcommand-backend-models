@@ -216,6 +216,19 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                                     type: BooleanConstructor;
                                     default: boolean;
                                 };
+                                CommentOpts: {
+                                    type: import("mongoose").Schema<any> & {
+                                        _interface: import("../../helpers").MongooseInterface<{
+                                            type: {
+                                                type: StringConstructor;
+                                            };
+                                            item: {
+                                                type: StringConstructor;
+                                            };
+                                        }>;
+                                        _methods: unknown;
+                                    };
+                                };
                             }>;
                             _methods: unknown;
                         })[];
@@ -301,6 +314,19 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                     CommentConfidential: {
                         type: BooleanConstructor;
                         default: boolean;
+                    };
+                    CommentOpts: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../../helpers").MongooseInterface<{
+                                type: {
+                                    type: StringConstructor;
+                                };
+                                item: {
+                                    type: StringConstructor;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
                     };
                 }>;
                 _methods: unknown;
