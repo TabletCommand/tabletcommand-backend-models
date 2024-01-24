@@ -42,15 +42,18 @@ async function MonitorModule(mongoose) {
             type: String,
             default: "",
         },
+        // Manually incremented when a certain failure has occurred (status = "active")
+        // Currently, has no effect for "restored".
+        count: {
+            type: Number,
+            default: 1,
+        },
     }, {
         collection: "massive_monitor",
     });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
-    });
-    modelSchema.virtual("id").get(function () {
-        return this._id.toHexString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
