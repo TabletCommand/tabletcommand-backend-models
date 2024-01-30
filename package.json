@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "5.36.3",
+  "version": "5.36.4",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "build": "gulp build",
@@ -32,9 +32,9 @@
     "@types/mocha": "^10.0.6",
     "@types/mongodb": "^3.6.20",
     "@types/mongoose": "~5.10.5",
-    "@types/uuid": "~9.0.7",
-    "@typescript-eslint/eslint-plugin": "~6.19.1",
-    "@typescript-eslint/parser": "~6.19.1",
+    "@types/uuid": "~9.0.8",
+    "@typescript-eslint/eslint-plugin": "~6.20.0",
+    "@typescript-eslint/parser": "~6.20.0",
     "chai": "^4.3.10",
     "cspell": "^7.3.9",
     "del": "^6.1.1",

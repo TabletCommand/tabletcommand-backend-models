@@ -657,7 +657,7 @@ async function DepartmentModule(mongoose) {
         },
         ackDelimiter: {
             type: String,
-            default: "***"
+            default: ""
         },
         // incident. AgencyIncidentCallTypeDescription  OR AgencyIncidentCallType
         callTypeBlock: {

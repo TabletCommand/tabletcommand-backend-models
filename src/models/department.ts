@@ -701,7 +701,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
 
     ackDelimiter: {
       type: String,
-      default: "***"
+      default: ""
     },
 
     // incident. AgencyIncidentCallTypeDescription  OR AgencyIncidentCallType
