@@ -392,6 +392,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         layerUrl: string;
         fadeZoomLevel: number;
     };
+    activeUserCount: number;
 }, {}> & {
     __methods?: unknown;
 }>;

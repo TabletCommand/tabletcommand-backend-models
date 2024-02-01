@@ -122,7 +122,11 @@ export function AgencySchema(mongoose: MongooseModule) {
       type: [AgencySAML],
       default: [],
       select: false, // Not a secret but not needed in all the queries
-    }
+    },
+    activeUserCount: {
+      type: Number,
+      default: 0,
+    },
   }, {
     collection: "massive_agency",
   });

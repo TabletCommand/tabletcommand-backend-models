@@ -325,6 +325,10 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
             default: never[];
             select: boolean;
         };
+        activeUserCount: {
+            type: NumberConstructor;
+            default: number;
+        };
     }>;
     _methods: unknown;
 };
@@ -579,6 +583,7 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
             default: string;
         };
     }>[];
+    activeUserCount: number;
 }, {}> & {
     __methods?: unknown;
 }>;

@@ -788,6 +788,10 @@ async function DepartmentModule(mongoose) {
                 default: 45000,
             },
         },
+        activeUserCount: {
+            type: Number,
+            default: 0,
+        },
     }, {
         collection: "massive_admin",
     });
