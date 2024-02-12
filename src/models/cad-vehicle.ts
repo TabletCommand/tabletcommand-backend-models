@@ -83,22 +83,6 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
     backupDate: {
       type: Date,
     },
-
-    // The email of the TC user using this vehicle (for status)
-    // If present, should be unique
-    email: {
-      type: String,
-      trim: true,
-      index: {
-        unique: true,
-        name: "email_uniq_partial",
-        partialFilterExpression: {
-          email: {
-            $type: "string",
-          }
-        }
-      }
-    }
   }, {
     collection: "massive_cad_vehicle",
   });
