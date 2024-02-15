@@ -151,7 +151,7 @@ export function UserSchema(mongoose: MongooseModule) {
     },
     auth: {
       type: [String],
-      default: ["password"], // password, o-google, o-microsoft
+      default: ["password"], // password, saml, o-google, o-microsoft
     },
 
     mapHidden: {
