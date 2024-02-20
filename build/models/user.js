@@ -135,7 +135,7 @@ function UserSchema(mongoose) {
         },
         auth: {
             type: [String],
-            default: ["password"], // password, o-google, o-microsoft
+            default: ["password"], // password, saml, o-google, o-microsoft
         },
         mapHidden: {
             type: Boolean,

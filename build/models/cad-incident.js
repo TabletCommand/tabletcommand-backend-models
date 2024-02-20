@@ -12,7 +12,22 @@ async function CADIncidentModule(mongoose) {
         departmentId: 1,
         IncidentNumber: 1
     }, {
+        name: "departmentId_1_IncidentNumber_1_unique",
         unique: true,
+    });
+    // Search index as alternative to Atlas Search
+    modelSchema.index({
+        departmentId: 1,
+        AgencyIncidentCallTypeDescription: "text",
+        CityOrLocality: "text",
+        CommonPlaceName: "text",
+        cross_streets: "text",
+        full_address: "text",
+        IncidentNumber: "text",
+        LocationComment: "text",
+        "units.UnitID": "text",
+    }, {
+        name: "departmentId_1_search_text",
     });
     return (0, helpers_1.createModel)(mongoose, "CADIncident", modelSchema);
 }

@@ -548,7 +548,7 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        // values: password, o-google, later o-microsoft, etc
+        // values: password, saml, o-google, later o-microsoft, etc
         authSource: {
             type: [String],
             default: ["password"],
