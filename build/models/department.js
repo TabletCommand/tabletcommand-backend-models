@@ -181,6 +181,23 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const SamsaraConfiguration = (0, helpers_1.createSchema)(Schema, {
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        token: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const SamsaraConfigurationDefault = {
+        enabled: false,
+        token: "",
+    };
     const FireMapperConfiguration = (0, helpers_1.createSchema)(Schema, {
         enabled: {
             type: Boolean,
@@ -791,6 +808,10 @@ async function DepartmentModule(mongoose) {
         activeUserCount: {
             type: Number,
             default: 0,
+        },
+        samsara: {
+            type: SamsaraConfiguration,
+            default: SamsaraConfigurationDefault,
         },
     }, {
         collection: "massive_admin",

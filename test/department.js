@@ -76,5 +76,6 @@ describe("Department", function() {
     assert.equal(sut.customButtons[0].allow_floating, testItem.customButtons[0].allow_floating);
     assert.equal(JSON.stringify(sut.customButtons[0].color), JSON.stringify(testItem.customButtons[0].color));
     assert.equal(sut.reportNumberEnabled, testItem.reportNumberEnabled);
+    assert.equal(JSON.stringify(sut.samsara), JSON.stringify(testItem.samsara));
   });
 });

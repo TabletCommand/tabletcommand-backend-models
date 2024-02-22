@@ -468,7 +468,11 @@ module.exports = function mockModule(dependencies) {
         }
       }
     ],
-    reportNumberEnabled: true
+    reportNumberEnabled: true,
+    samsara: {
+      enabled: false,
+      token: "",
+    },
   };
 
   const esriMap = {

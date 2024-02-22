@@ -393,6 +393,16 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         fadeZoomLevel: number;
     };
     activeUserCount: number;
+    samsara: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;
