@@ -185,6 +185,10 @@ function AgencyCronSchema(mongoose) {
             type: Boolean,
             default: false,
         },
+        assignmentOverride: {
+            type: Boolean,
+            default: false,
+        },
         csvFieldMap: {
             type: CronConfigCSVFieldMap,
             default: CronConfigCSVFieldMapDefault,

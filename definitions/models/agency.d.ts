@@ -249,6 +249,10 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
                         type: BooleanConstructor;
                         default: boolean;
                     };
+                    assignmentOverride: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
                     csvFieldMap: {
                         type: import("mongoose").Schema<any> & {
                             _interface: import("../helpers").MongooseInterface<{
@@ -515,6 +519,10 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
             };
         };
         hasLabelCustomization: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        assignmentOverride: {
             type: BooleanConstructor;
             default: boolean;
         };

@@ -153,6 +153,10 @@ export default function AgencyCronSchema(mongoose: MongooseModule): import("mong
             type: BooleanConstructor;
             default: boolean;
         };
+        assignmentOverride: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         csvFieldMap: {
             type: import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{
