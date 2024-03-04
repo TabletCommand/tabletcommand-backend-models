@@ -216,6 +216,11 @@ function CADIncidentSchema(mongoose) {
             type: String,
             default: "",
         },
+        // Department Name
+        name: {
+            type: String,
+            default: "",
+        },
         startAt: {
             type: Date,
             default: helpers_1.currentDate,
@@ -223,6 +228,10 @@ function CADIncidentSchema(mongoose) {
         expireAt: {
             type: Date,
             default: helpers_1.currentDate,
+        },
+        active: {
+            type: Boolean,
+            default: true, // overwritten later, when expireAt is older than now
         },
         reasons: {
             type: [ShareReason],
@@ -233,6 +242,33 @@ function CADIncidentSchema(mongoose) {
         id: false,
     });
     SharedTo.set("toJSON", toJSONOpts);
+    const SharedSource = (0, helpers_1.createSchema)(Schema, {
+        // Department Name (always matches record .departmentId)
+        name: {
+            type: String,
+            default: "",
+        },
+        // Output overwritten by backend when record is included in another department's list
+        isExternal: {
+            type: Boolean,
+            default: false,
+        },
+        // Output will be overwritten by backend
+        startAt: {
+            type: Date,
+        },
+        expireAt: {
+            type: Date,
+        },
+        reasons: {
+            type: [ShareReason],
+            default: [],
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
+    SharedSource.set("toJSON", toJSONOpts);
     // Main schema
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
@@ -489,11 +525,17 @@ function CADIncidentSchema(mongoose) {
             type: [APNNotificationType],
             default: [],
         },
-        // Shared
+        // Used by incident sharing
         sharedTo: {
             type: [SharedTo],
             default: [],
         },
+        // Include current department name, to share with external departments
+        // other properties are set at output
+        sharedSource: {
+            type: SharedSource,
+        },
+        // ?
         record: {
             type: RecordValue,
         },

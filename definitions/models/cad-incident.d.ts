@@ -348,6 +348,10 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             type: StringConstructor;
             default: string;
         };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
         startAt: {
             type: DateConstructor;
             default: typeof import("../helpers").currentDate;
@@ -355,6 +359,10 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
         expireAt: {
             type: DateConstructor;
             default: typeof import("../helpers").currentDate;
+        };
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
         };
         reasons: {
             type: (import("mongoose").Schema<any> & {
@@ -373,6 +381,38 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             default: never[];
         };
     }>[];
+    sharedSource: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        isExternal: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        startAt: {
+            type: DateConstructor;
+        };
+        expireAt: {
+            type: DateConstructor;
+        };
+        reasons: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    date: {
+                        type: DateConstructor;
+                        default: typeof import("../helpers").currentDate;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>;
     record: import("../helpers").MongooseInterface<{
         name: {
             type: StringConstructor;

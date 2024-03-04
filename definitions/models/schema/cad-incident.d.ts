@@ -543,6 +543,10 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                         type: StringConstructor;
                         default: string;
                     };
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                     startAt: {
                         type: DateConstructor;
                         default: typeof currentDate;
@@ -550,6 +554,10 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                     expireAt: {
                         type: DateConstructor;
                         default: typeof currentDate;
+                    };
+                    active: {
+                        type: BooleanConstructor;
+                        default: boolean;
                     };
                     reasons: {
                         type: (import("mongoose").Schema<any> & {
@@ -571,6 +579,43 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                 _methods: unknown;
             })[];
             default: never[];
+        };
+        sharedSource: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    isExternal: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    startAt: {
+                        type: DateConstructor;
+                    };
+                    expireAt: {
+                        type: DateConstructor;
+                    };
+                    reasons: {
+                        type: (import("mongoose").Schema<any> & {
+                            _interface: import("../../helpers").MongooseInterface<{
+                                name: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                date: {
+                                    type: DateConstructor;
+                                    default: typeof currentDate;
+                                };
+                            }>;
+                            _methods: unknown;
+                        })[];
+                        default: never[];
+                    };
+                }>;
+                _methods: unknown;
+            };
         };
         record: {
             type: import("mongoose").Schema<any> & {

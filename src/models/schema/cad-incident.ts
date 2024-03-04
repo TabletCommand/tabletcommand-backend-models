@@ -236,6 +236,11 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    // Department Name
+    name: {
+      type: String,
+      default: "",
+    },
     startAt: {
       type: Date,
       default: currentDate,
@@ -243,6 +248,10 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     expireAt: {
       type: Date,
       default: currentDate,
+    },
+    active: {
+      type: Boolean,
+      default: true, // overwritten later, when expireAt is older than now
     },
     reasons: {
       type: [ShareReason],
@@ -253,6 +262,35 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     id: false,
   });
   SharedTo.set("toJSON", toJSONOpts);
+
+  const SharedSource = createSchema(Schema, {
+    // Department Name (always matches record .departmentId)
+    name: {
+      type: String,
+      default: "",
+    },
+    // Output overwritten by backend when record is included in another department's list
+    isExternal: {
+      type: Boolean,
+      default: false,
+    },
+
+    // Output will be overwritten by backend
+    startAt: {
+      type: Date,
+    },
+    expireAt: {
+      type: Date,
+    },
+    reasons: {
+      type: [ShareReason],
+      default: [],
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+  SharedSource.set("toJSON", toJSONOpts);
 
   // Main schema
   const modelSchema = createSchema(Schema, {
@@ -526,11 +564,18 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       default: [],
     },
 
-    // Shared
+    // Used by incident sharing
     sharedTo: {
       type: [SharedTo],
       default: [],
     },
+    // Include current department name, to share with external departments
+    // other properties are set at output
+    sharedSource: {
+      type: SharedSource,
+    },
+
+    // ?
     record: {
       type: RecordValue,
     },

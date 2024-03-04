@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "5.36.9",
+  "version": "5.36.10",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "build": "gulp build",
@@ -38,7 +38,7 @@
     "chai": "^4.3.10",
     "cspell": "^7.3.9",
     "del": "^6.1.1",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "gulp": "^4.0.2",
     "gulp-shell": "^0.8.0",
     "mocha": "^10.3.0",
