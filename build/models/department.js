@@ -381,6 +381,10 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        departmentName: {
+            type: String,
+            default: "",
+        },
         configuration: {
             type: Object,
             default: null,

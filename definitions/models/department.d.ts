@@ -234,6 +234,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                 type: StringConstructor;
                 default: string;
             };
+            departmentName: {
+                type: StringConstructor;
+                default: string;
+            };
             configuration: {
                 type: ObjectConstructor;
                 default: null;

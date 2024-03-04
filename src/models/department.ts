@@ -416,6 +416,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    departmentName: {
+      type: String,
+      default: "",
+    },
     configuration: {
       type: Object,
       default: null,
