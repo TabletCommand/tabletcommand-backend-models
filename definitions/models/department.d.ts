@@ -407,6 +407,24 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: string;
         };
     }>;
+    mark43: import("../helpers").MongooseInterface<{
+        baseUrl: {
+            type: StringConstructor;
+            default: string;
+        };
+        authToken: {
+            type: StringConstructor;
+            default: string;
+        };
+        userId: {
+            type: NumberConstructor;
+            default: number;
+        };
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

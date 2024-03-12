@@ -10,6 +10,27 @@ async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
     const Color = (0, color_1.default)(mongoose);
+    const Mark43Config = (0, helpers_1.createSchema)(Schema, {
+        baseUrl: {
+            type: String,
+            default: "",
+        },
+        authToken: {
+            type: String,
+            default: "",
+        },
+        userId: {
+            type: Number,
+            default: 0,
+        },
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const SimpleSenseConfig = (0, helpers_1.createSchema)(Schema, {
         token: {
             type: String,
@@ -325,6 +346,12 @@ async function DepartmentModule(mongoose) {
     ];
     const FirstArrivingConfigDefault = {
         "token": "",
+    };
+    const Mark43ConfigDefault = {
+        "baseUrl": "",
+        "authToken": "",
+        "userId": 0,
+        "enabled": false,
     };
     const SimpleSenseConfigDefault = {
         "token": "",
@@ -816,6 +843,10 @@ async function DepartmentModule(mongoose) {
         samsara: {
             type: SamsaraConfiguration,
             default: SamsaraConfigurationDefault,
+        },
+        mark43: {
+            type: Mark43Config,
+            default: Mark43ConfigDefault
         },
     }, {
         collection: "massive_admin",
