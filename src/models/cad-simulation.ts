@@ -200,6 +200,10 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       type: [Sequence],
       default: [],
     },
+    sortId: {
+      type: Number,
+      default: 1,
+    },
   }, {
     collection: "massive_cad_simulation",
   });

@@ -81,6 +81,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
             default: never[];
         };
     }>[];
+    sortId: number;
 }, {}> & {
     __methods?: unknown;
 }>;
