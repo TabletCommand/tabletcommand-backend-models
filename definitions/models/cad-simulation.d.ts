@@ -26,7 +26,16 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
     mapPages: string;
     tacticalChannel: string;
     commandChannel: string;
-    radioChannels: string[];
+    radioChannels: import("../helpers").MongooseInterface<{
+        name: {
+            title: StringConstructor;
+            default: string;
+        };
+        channel: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
     closeDelay: number;
     priorIncidents: string;
     randomPriorIncidents: boolean;

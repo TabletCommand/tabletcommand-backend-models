@@ -15,6 +15,20 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     Types,
   } = mongoose;
 
+  const SimRadioChannel = createSchema(Schema, {
+    name: {
+      title: String,
+      default: "",
+    },
+    channel: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const simComment = createSchema(Schema, {
     comment: {
       title: String,
@@ -177,7 +191,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: "",
     },
     radioChannels: {
-      type: [String],
+      type: [SimRadioChannel],
       default: [],
     },
     closeDelay: {

@@ -5,6 +5,19 @@ const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function CADSimulationModule(mongoose) {
     const { Schema, Types, } = mongoose;
+    const SimRadioChannel = (0, helpers_1.createSchema)(Schema, {
+        name: {
+            title: String,
+            default: "",
+        },
+        channel: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const simComment = (0, helpers_1.createSchema)(Schema, {
         comment: {
             title: String,
@@ -164,7 +177,7 @@ async function CADSimulationModule(mongoose) {
             default: "",
         },
         radioChannels: {
-            type: [String],
+            type: [SimRadioChannel],
             default: [],
         },
         closeDelay: {
