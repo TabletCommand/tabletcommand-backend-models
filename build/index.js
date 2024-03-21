@@ -31,6 +31,7 @@ async function wireModels(mongoose) {
         CADIncident: await getModel(Promise.resolve().then(() => require("./models/cad-incident"))),
         CADIncidentBlock: await getModel(Promise.resolve().then(() => require("./models/cad-incident-block"))),
         CADIncidentStream: await getModel(Promise.resolve().then(() => require("./models/cad-incident-stream"))),
+        CADSimulation: await getModel(Promise.resolve().then(() => require("./models/cad-simulation"))),
         CADStatus: await getModel(Promise.resolve().then(() => require("./models/cad-status"))),
         CADStatusMap: await getModel(Promise.resolve().then(() => require("./models/cad-status-map"))),
         CADVehicle: await getModel(Promise.resolve().then(() => require("./models/cad-vehicle"))),

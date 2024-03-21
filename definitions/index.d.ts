@@ -8,6 +8,7 @@ export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
 export { CADIncidentBlock, CADIncidentBlockModel } from "./models/cad-incident-block";
 export { CADIncidentStream, CADIncidentStreamModel } from "./models/cad-incident-stream";
+export { CADSimulation, CADSimulationModel } from "./models/cad-simulation";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";
@@ -57,6 +58,7 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         CADIncident: import("./models/cad-incident").CADIncidentModel;
         CADIncidentBlock: import("./models/cad-incident-block").CADIncidentBlockModel;
         CADIncidentStream: import("./models/cad-incident-stream").CADIncidentStreamModel;
+        CADSimulation: import("./models/cad-simulation").CADSimulationModel;
         CADStatus: import("./models/cad-status").CADStatusModel;
         CADStatusMap: import("./models/cad-status-map").CADStatusMapModel;
         CADVehicle: import("./models/cad-vehicle").CADVehicleModel;

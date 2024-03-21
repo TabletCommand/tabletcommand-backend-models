@@ -19,6 +19,7 @@ async function wireModels(mongoose: MongooseModule) {
     CADIncident: await getModel(import("./models/cad-incident")),
     CADIncidentBlock: await getModel(import("./models/cad-incident-block")),
     CADIncidentStream: await getModel(import("./models/cad-incident-stream")),
+    CADSimulation: await getModel(import("./models/cad-simulation")),
     CADStatus: await getModel(import("./models/cad-status")),
     CADStatusMap: await getModel(import("./models/cad-status-map")),
     CADVehicle: await getModel(import("./models/cad-vehicle")),
@@ -66,6 +67,7 @@ export { BeaconLog, BeaconLogModel } from "./models/beacon-log";
 export { CADIncident, CADIncidentModel } from "./models/cad-incident";
 export { CADIncidentBlock, CADIncidentBlockModel } from "./models/cad-incident-block";
 export { CADIncidentStream, CADIncidentStreamModel } from "./models/cad-incident-stream";
+export { CADSimulation, CADSimulationModel } from "./models/cad-simulation";
 export { CADStatus, CADStatusModel } from "./models/cad-status";
 export { CADStatusMap, CADStatusMapModel } from "./models/cad-status-map";
 export { CADVehicle, CADVehicleModel } from "./models/cad-vehicle";

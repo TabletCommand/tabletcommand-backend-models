@@ -51,6 +51,109 @@ module.exports = function mockModule(dependencies) {
     forceClosed: false
   };
 
+  const cadSimulation = {
+      "departmentId": "123",
+      "active": true,
+      "friendly_id": "test-1",
+      "modifiedDate": 1544771122.997,
+      "modified": new Date(),
+      "title": "Structure Fire with Confirming stills and Rescues",
+      "notes": "3 story apartment building ",
+      "simulation": true,
+      "notify": true,
+      "rts": true,
+      "tags":
+      [],
+      "incidentType": "Structure Fire ",
+      "streetName": "123 test Blvd.",
+      "locationComment": "3 Story Apartment building ",
+      "suite": "Apartment Building",
+      "crossStreet1": "321 Ave",
+      "city": "Test",
+      "state": "Ca",
+      "lat": "55.784387",
+      "lon": "-122.228394",
+      "firemap": "",
+      "mapPages": "",
+      "tacticalChannel": "Test 2 ",
+      "commandChannel": "",
+      "radioChannels":
+      [],
+      "closeDelay": 1800,
+      "priorIncidents": "",
+      "randomPriorIncidents": false,
+      "randomStaffing": false,
+      "sequences":
+      [
+          {
+              "title": "test Alarm ",
+              "alarm": "1",
+              "sequenceId": 0,
+              "unitsArray":
+              [
+                  {
+                      "alarmLevelAtDispatch": "1",
+                      "units":
+                      [
+                          "E13",
+                          "E4",
+                          "E18",
+                          "E16",
+                          "T2",
+                          "T6",
+                          "B4",
+                          "B2"
+                      ]
+                  }
+              ],
+              "comments":
+              [
+                  {
+                      "comment": "4-2-2 alarm assignment ",
+                      "source": "DISP2"
+                  }
+              ]
+          },
+          {
+              "title": "2nd Alarm ",
+              "alarm": "2",
+              "sequenceId": 1,
+              "unitsArray":
+              [
+                  {
+                      "alarmLevelAtDispatch": "2",
+                      "units":
+                      [
+                          "E17",
+                          "E12",
+                          "E29",
+                          "T1",
+                          "B3"
+                      ]
+                  }
+              ]
+          },
+          {
+              "title": "3 Alarm ",
+              "alarm": "3",
+              "sequenceId": 2,
+              "unitsArray":
+              [
+                  {
+                      "alarmLevelAtDispatch": "3",
+                      "units":
+                      [
+                          "E1",
+                          "E2",
+                          "E25",
+                          "T4"
+                      ]
+                  }
+              ]
+          }
+      ]
+  };
+
   const agency = {
     _id: mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
@@ -985,6 +1088,7 @@ module.exports = function mockModule(dependencies) {
     incidentNotified,
     incidentTakeover,
     jobLog,
+    cadSimulation,
     location,
     mailLog,
     managedIncident,
