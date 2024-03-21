@@ -15,6 +15,54 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     Types,
   } = mongoose;
 
+  const SimPriorComment = createSchema(Schema, {
+    Comment: {
+      title: String,
+      default: "",
+    },
+    CommentSource: {
+      type: String,
+      default: "",
+    },
+    CommentDateTime: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const SimPriorIncident = createSchema(Schema, {
+    IncidentNumber: {
+      title: String,
+      default: "",
+    },
+    IncidentDateTime: {
+      type: String,
+      default: "",
+    },
+    Problem: {
+      type: String,
+      default: "",
+    },
+    Address: {
+      type: String,
+      default: "",
+    },
+    Suite: {
+      type: String,
+      default: "",
+    },
+    Comment: {
+      type: [SimPriorComment],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SimRadioChannel = createSchema(Schema, {
     name: {
       title: String,
@@ -29,7 +77,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const simComment = createSchema(Schema, {
+  const SimComment = createSchema(Schema, {
     comment: {
       title: String,
       default: "",
@@ -43,7 +91,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const simUnit = createSchema(Schema, {
+  const SimUnit = createSchema(Schema, {
     alarmLevelAtDispatch: {
       title: String,
       default: "",
@@ -75,11 +123,11 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: 0,
     },
     unitsArray: {
-      type: [simUnit],
+      type: [SimUnit],
       default: [],
     },
     comments: {
-      type: [simComment],
+      type: [SimComment],
       default: [],
     }
   }, {});
@@ -199,8 +247,8 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: 1800,
     },
     priorIncidents: {
-      type: String,
-      default: "",
+      type: [SimPriorIncident],
+      default: [],
     },
     randomPriorIncidents: {
       type: Boolean, 
@@ -217,6 +265,10 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     sortId: {
       type: Number,
       default: 1,
+    },
+    sendStatus: {
+      type: Boolean,
+      default: false,
     },
   }, {
     collection: "massive_cad_simulation",

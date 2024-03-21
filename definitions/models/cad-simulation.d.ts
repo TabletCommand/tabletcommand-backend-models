@@ -37,7 +37,48 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
         };
     }>[];
     closeDelay: number;
-    priorIncidents: string;
+    priorIncidents: import("../helpers").MongooseInterface<{
+        IncidentNumber: {
+            title: StringConstructor;
+            default: string;
+        };
+        IncidentDateTime: {
+            type: StringConstructor;
+            default: string;
+        };
+        Problem: {
+            type: StringConstructor;
+            default: string;
+        };
+        Address: {
+            type: StringConstructor;
+            default: string;
+        };
+        Suite: {
+            type: StringConstructor;
+            default: string;
+        };
+        Comment: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    Comment: {
+                        title: StringConstructor;
+                        default: string;
+                    };
+                    CommentSource: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    CommentDateTime: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>[];
     randomPriorIncidents: boolean;
     randomStaffing: boolean;
     sequences: import("../helpers").MongooseInterface<{
@@ -91,6 +132,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
         };
     }>[];
     sortId: number;
+    sendStatus: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

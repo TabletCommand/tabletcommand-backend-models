@@ -80,7 +80,7 @@ module.exports = function mockModule(dependencies) {
       "radioChannels":
       [],
       "closeDelay": 1800,
-      "priorIncidents": "",
+      "priorIncidents": [],
       "randomPriorIncidents": false,
       "randomStaffing": false,
       "sequences":

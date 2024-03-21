@@ -5,6 +5,52 @@ const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function CADSimulationModule(mongoose) {
     const { Schema, Types, } = mongoose;
+    const SimPriorComment = (0, helpers_1.createSchema)(Schema, {
+        Comment: {
+            title: String,
+            default: "",
+        },
+        CommentSource: {
+            type: String,
+            default: "",
+        },
+        CommentDateTime: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const SimPriorIncident = (0, helpers_1.createSchema)(Schema, {
+        IncidentNumber: {
+            title: String,
+            default: "",
+        },
+        IncidentDateTime: {
+            type: String,
+            default: "",
+        },
+        Problem: {
+            type: String,
+            default: "",
+        },
+        Address: {
+            type: String,
+            default: "",
+        },
+        Suite: {
+            type: String,
+            default: "",
+        },
+        Comment: {
+            type: [SimPriorComment],
+            default: [],
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const SimRadioChannel = (0, helpers_1.createSchema)(Schema, {
         name: {
             title: String,
@@ -18,7 +64,7 @@ async function CADSimulationModule(mongoose) {
         _id: false,
         id: false,
     });
-    const simComment = (0, helpers_1.createSchema)(Schema, {
+    const SimComment = (0, helpers_1.createSchema)(Schema, {
         comment: {
             title: String,
             default: "",
@@ -31,7 +77,7 @@ async function CADSimulationModule(mongoose) {
         _id: false,
         id: false,
     });
-    const simUnit = (0, helpers_1.createSchema)(Schema, {
+    const SimUnit = (0, helpers_1.createSchema)(Schema, {
         alarmLevelAtDispatch: {
             title: String,
             default: "",
@@ -62,11 +108,11 @@ async function CADSimulationModule(mongoose) {
             default: 0,
         },
         unitsArray: {
-            type: [simUnit],
+            type: [SimUnit],
             default: [],
         },
         comments: {
-            type: [simComment],
+            type: [SimComment],
             default: [],
         }
     }, {});
@@ -185,8 +231,8 @@ async function CADSimulationModule(mongoose) {
             default: 1800,
         },
         priorIncidents: {
-            type: String,
-            default: "",
+            type: [SimPriorIncident],
+            default: [],
         },
         randomPriorIncidents: {
             type: Boolean,
@@ -203,6 +249,10 @@ async function CADSimulationModule(mongoose) {
         sortId: {
             type: Number,
             default: 1,
+        },
+        sendStatus: {
+            type: Boolean,
+            default: false,
         },
     }, {
         collection: "massive_cad_simulation",
