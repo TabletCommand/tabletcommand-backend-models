@@ -43,6 +43,121 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const IntterraFieldsDefault = [
+    {
+      "key": "IncidentNumber",
+      "value": "incidentId",
+      "required": true,
+      "enabled": true,
+      "transformationRequired": false,
+    },
+    {
+      "key": "agencyIncidentTypeDescription",
+      "value": "incidentTypeDescription",
+      "required": false,
+      "enabled": true,
+      "transformationRequired": false,
+    },
+    {
+      "key": "Units",
+      "value": "assignedUnits",
+      "required": false,
+      "enabled": true,
+      "transformationRequired": true,
+    },
+    {
+      "key": "Longitude",
+      "value": "longitude",
+      "required": false,
+      "enabled": true,
+      "transformationRequired": false,
+    },
+    {
+      "key": "Latitude",
+      "value": "latitude",
+      "required": false,
+      "enabled": true,
+      "transformationRequired": false,
+    },
+    {
+      "key": "full_address",
+      "value": "fullAddress",
+      "required": false,
+      "enabled": true,
+      "transformationRequired": false,
+    }
+  ];
+  
+  const IntterraFields = createSchema(Schema, {
+    key: {
+      type: String,
+      default: "",
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+    transformationRequired: {
+      type: Boolean,
+      default: false,
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    enabled: {
+      type: Boolean,
+      default: true,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const IntterraConnection = createSchema(Schema, {
+    active: {
+      type: Boolean,
+      default: false,
+    },
+    fields: {
+      type: [IntterraFields],
+      default: IntterraFieldsDefault,
+    },
+    callTypes: {
+      type: [String],
+      default: [],
+    },
+    authKey: {
+      type: String,
+      default: "",
+    },
+    authKeySecret: {
+      type: String,
+      default: ""
+    },
+    agency: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const IntterraConfig = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    connections: {
+      type: [IntterraConnection],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SimpleSenseConfig = createSchema(Schema, {
     token: {
       type: String,
@@ -377,6 +492,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
 
   const FirstArrivingConfigDefault = {
     "token": "",
+  };
+
+  const IntterraConfigDefault = {
+    "enabled": false,
+    "connections": [],
   };
   
   const Mark43ConfigDefault = {
@@ -898,6 +1018,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     mark43: {
       type: Mark43Config,
       default: Mark43ConfigDefault
+    },
+    intterra: {
+      type: IntterraConfig,
+      default: IntterraConfigDefault,
     },
   }, {
     collection: "massive_admin",

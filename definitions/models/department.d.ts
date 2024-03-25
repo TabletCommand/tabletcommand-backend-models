@@ -425,6 +425,74 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: boolean;
         };
     }>;
+    intterra: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        connections: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    active: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    fields: {
+                        type: (import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                key: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                value: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                transformationRequired: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                required: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                enabled: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                            }>;
+                            _methods: unknown;
+                        })[];
+                        default: {
+                            key: string;
+                            value: string;
+                            required: boolean;
+                            enabled: boolean;
+                            transformationRequired: boolean;
+                        }[];
+                    };
+                    callTypes: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    authKey: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    authKeySecret: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    agency: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;
