@@ -10,6 +10,48 @@ async function DepartmentModule(mongoose) {
     const { Schema, Types } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
     const Color = (0, color_1.default)(mongoose);
+    const Mark43StatusConfig = (0, helpers_1.createSchema)(Schema, {
+        TimeDispatched: {
+            type: [String],
+            default: []
+        },
+        TimeEnroute: {
+            type: [String],
+            default: []
+        },
+        TimeStaged: {
+            type: [String],
+            default: []
+        },
+        TimeCleared: {
+            type: [String],
+            default: []
+        },
+        TimeAtHospital: {
+            type: [String],
+            default: []
+        },
+        TimeTransporting: {
+            type: [String],
+            default: []
+        },
+        TimeArrived: {
+            type: [String],
+            default: []
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Mark43StatusConfigDefault = {
+        TimeDispatched: ["D"],
+        TimeEnroute: ["EN"],
+        TimeStaged: ["ST"],
+        TimeCleared: ["AV", "AVF", "AOR"],
+        TimeAtHospital: ["AH"],
+        TimeTransporting: ["T", "EH"],
+        TimeArrived: ["ATS", "A"],
+    };
     const Mark43Config = (0, helpers_1.createSchema)(Schema, {
         baseUrl: {
             type: String,
@@ -27,6 +69,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        unitStatusCodes: {
+            type: Mark43StatusConfig,
+            default: Mark43StatusConfigDefault,
+        }
     }, {
         _id: false,
         id: false,

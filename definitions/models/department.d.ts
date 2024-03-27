@@ -424,6 +424,50 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             type: BooleanConstructor;
             default: boolean;
         };
+        unitStatusCodes: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    TimeDispatched: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    TimeEnroute: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    TimeStaged: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    TimeCleared: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    TimeAtHospital: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    TimeTransporting: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    TimeArrived: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: {
+                TimeDispatched: string[];
+                TimeEnroute: string[];
+                TimeStaged: string[];
+                TimeCleared: string[];
+                TimeAtHospital: string[];
+                TimeTransporting: string[];
+                TimeArrived: string[];
+            };
+        };
     }>;
     intterra: import("../helpers").MongooseInterface<{
         enabled: {
