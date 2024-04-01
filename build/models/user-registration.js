@@ -75,6 +75,10 @@ async function UserRegistrationModule(mongoose) {
             type: Number,
             default: 0,
         },
+        syncedToHubSpot: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "massive_user_registration",
     });

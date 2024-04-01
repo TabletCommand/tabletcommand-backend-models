@@ -17,6 +17,7 @@ export declare function UserRegistrationModule(mongoose: MongooseModule): Promis
     firstIncidentUnixTime: number;
     lastIncidentLocation: string;
     lastIncidentUnixTime: number;
+    syncedToHubSpot: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;

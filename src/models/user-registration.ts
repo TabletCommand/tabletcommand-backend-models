@@ -82,6 +82,10 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    syncedToHubSpot: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "massive_user_registration",
   });
