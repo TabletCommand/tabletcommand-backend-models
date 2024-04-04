@@ -416,6 +416,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             type: StringConstructor;
             default: string;
         };
+        apiToken: {
+            type: StringConstructor;
+            default: string;
+        };
         userId: {
             type: NumberConstructor;
             default: number;

@@ -61,6 +61,10 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        apiToken: {
+            type: String,
+            default: "",
+        },
         userId: {
             type: Number,
             default: 0,
@@ -511,6 +515,7 @@ async function DepartmentModule(mongoose) {
     const Mark43ConfigDefault = {
         "baseUrl": "",
         "authToken": "",
+        "apiToken": "",
         "userId": 0,
         "enabled": false,
     };
