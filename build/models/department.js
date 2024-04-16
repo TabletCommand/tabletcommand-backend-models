@@ -90,7 +90,7 @@ async function DepartmentModule(mongoose) {
             "transformationRequired": false,
         },
         {
-            "key": "agencyIncidentCallTypeDescription",
+            "key": "AgencyIncidentCallTypeDescription",
             "value": "incidentTypeDescription",
             "required": false,
             "enabled": true,
