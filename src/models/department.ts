@@ -104,14 +104,14 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       "transformationRequired": false,
     },
     {
-      "key": "agencyIncidentTypeDescription",
+      "key": "agencyIncidentCallTypeDescription",
       "value": "incidentTypeDescription",
       "required": false,
       "enabled": true,
       "transformationRequired": false,
     },
     {
-      "key": "Units",
+      "key": "units",
       "value": "assignedUnits",
       "required": false,
       "enabled": true,
