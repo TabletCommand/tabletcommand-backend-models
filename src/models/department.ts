@@ -140,7 +140,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
     {
       "key": "EntryDateTime",
-      "value": "alarmDatetime",
+      "value": "alarmDatetime", // cspell:disable-line
       "required": false,
       "enabled": true,
       "transformationRequired": false,
