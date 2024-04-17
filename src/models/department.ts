@@ -137,6 +137,13 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       "required": false,
       "enabled": true,
       "transformationRequired": false,
+    },
+    {
+      "key": "EntryDateTime",
+      "value": "alarmDatetime",
+      "required": false,
+      "enabled": true,
+      "transformationRequired": false,
     }
   ];
   

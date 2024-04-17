@@ -123,6 +123,13 @@ async function DepartmentModule(mongoose) {
             "required": false,
             "enabled": true,
             "transformationRequired": false,
+        },
+        {
+            "key": "EntryDateTime",
+            "value": "alarmDatetime",
+            "required": false,
+            "enabled": true,
+            "transformationRequired": false,
         }
     ];
     const IntterraFields = (0, helpers_1.createSchema)(Schema, {
