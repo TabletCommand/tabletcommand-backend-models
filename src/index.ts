@@ -43,6 +43,7 @@ async function wireModels(mongoose: MongooseModule) {
     Location: await getModel(import("./models/location")),
     MailLog: await getModel(import("./models/mail-log")),
     ManagedIncident: await getModel(import("./models/managed-incident")),
+    Mark43IncidentRetry: await getModel(import("./models/mark43-incident-retry")),
     Message: await getModel(import("./models/message")),
     Monitor: await getModel(import("./models/monitor")),
     PersonnelImport: await getModel(import("./models/personnel-import")),
@@ -91,6 +92,7 @@ export { JobLog, JobLogModel } from "./models/job-log";
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { Mark43IncidentRetry, Mark43IncidentRetryModel } from "./models/mark43-incident-retry";
 export { Message, MessageModel } from "./models/message";
 export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";

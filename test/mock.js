@@ -21,6 +21,23 @@ module.exports = function mockModule(dependencies) {
     mongoose
   } = dependencies;
 
+  const mark43IncidentRetry = {
+    departmentId: "123",
+    incidentNumber: "abc123",
+    active: true,
+    mark43IncidentId: 123,
+    attempts: 0,
+    created: new Date(),
+    modified: new Date(),
+    retryPayload: {
+      departmentId: "mark4321",
+      activityType: "EVENT_CREATED",
+      relatedEvent: {
+        mark43Id: 1234
+      }
+    }
+  };
+
   const actionLog = {
     departmentId: "d1234",
     email: "hello@example.com",
@@ -1067,6 +1084,7 @@ module.exports = function mockModule(dependencies) {
     cleanup,
 
     actionLog,
+    mark43IncidentRetry,
     agency,
     arcGISGroup,
     assignment,

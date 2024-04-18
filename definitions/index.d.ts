@@ -32,6 +32,7 @@ export { JobLog, JobLogModel } from "./models/job-log";
 export { Location, LocationModel } from "./models/location";
 export { MailLog, MailLogModel } from "./models/mail-log";
 export { ManagedIncident, ManagedIncidentModel } from "./models/managed-incident";
+export { Mark43IncidentRetry, Mark43IncidentRetryModel } from "./models/mark43-incident-retry";
 export { Message, MessageModel } from "./models/message";
 export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
@@ -82,6 +83,7 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         Location: import("./models/location").LocationModel;
         MailLog: import("./models/mail-log").MailLogModel;
         ManagedIncident: import("./models/managed-incident").ManagedIncidentModel;
+        Mark43IncidentRetry: import("./models/mark43-incident-retry").Mark43IncidentRetryModel;
         Message: import("./models/message").MessageModel;
         Monitor: import("./models/monitor").MonitorModel;
         PersonnelImport: import("./models/personnel-import").PersonnelImportModel;
