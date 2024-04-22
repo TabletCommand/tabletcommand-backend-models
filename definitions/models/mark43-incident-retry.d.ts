@@ -8,8 +8,8 @@ export declare function Mark43IncidentRetryModule(mongoose: MongooseModule): Pro
     attempts: number;
     retryPayload: import("../helpers").MongooseInterface<{
         departmentId: {
-            type: StringConstructor;
-            default: string;
+            type: NumberConstructor;
+            default: number;
         };
         activityType: {
             type: StringConstructor;
@@ -20,6 +20,11 @@ export declare function Mark43IncidentRetryModule(mongoose: MongooseModule): Pro
                 _interface: import("../helpers").MongooseInterface<{
                     mark43Id: {
                         type: NumberConstructor;
+                        default: number;
+                    };
+                    cadAgencyEventNumber: {
+                        type: StringConstructor;
+                        default: string;
                     };
                 }>;
                 _methods: unknown;

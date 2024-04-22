@@ -30,10 +30,11 @@ module.exports = function mockModule(dependencies) {
     created: new Date(),
     modified: new Date(),
     retryPayload: {
-      departmentId: "mark4321",
+      departmentId: 4321,
       activityType: "EVENT_CREATED",
       relatedEvent: {
-        mark43Id: 1234
+        mark43Id: 1234,
+        cadAgencyEventNumber: "1234"
       }
     }
   };

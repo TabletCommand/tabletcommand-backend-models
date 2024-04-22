@@ -14,6 +14,11 @@ export async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
   const RelatedEvent = createSchema(Schema, {
     mark43Id: {
       type: Number,
+      default: 0,
+    },
+    cadAgencyEventNumber: {
+      type: String,
+      default: "",
     },
   }, {
     _id: false,
@@ -22,8 +27,8 @@ export async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
 
   const RetryPayload = createSchema(Schema, {
     departmentId: {
-      type: String,
-      default: "",
+      type: Number,
+      default: 0,
     },
     activityType: {
       type: String,

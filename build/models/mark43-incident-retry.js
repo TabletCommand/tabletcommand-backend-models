@@ -7,6 +7,11 @@ async function Mark43IncidentRetryModule(mongoose) {
     const RelatedEvent = (0, helpers_1.createSchema)(Schema, {
         mark43Id: {
             type: Number,
+            default: 0,
+        },
+        cadAgencyEventNumber: {
+            type: String,
+            default: "",
         },
     }, {
         _id: false,
@@ -14,8 +19,8 @@ async function Mark43IncidentRetryModule(mongoose) {
     });
     const RetryPayload = (0, helpers_1.createSchema)(Schema, {
         departmentId: {
-            type: String,
-            default: "",
+            type: Number,
+            default: 0,
         },
         activityType: {
             type: String,
