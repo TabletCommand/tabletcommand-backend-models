@@ -22,6 +22,10 @@ async function RateLimitModule(mongoose) {
             type: Number,
             default: 0,
         },
+        remoteAddress: {
+            type: String,
+            default: "",
+        },
     }, {
         collection: "massive_rate_limit",
     });

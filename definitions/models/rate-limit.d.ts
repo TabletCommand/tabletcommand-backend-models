@@ -6,6 +6,7 @@ export declare function RateLimitModule(mongoose: MongooseModule): Promise<impor
     modified_unix_date: number;
     modified: string;
     count: number;
+    remoteAddress: string;
 }, {}> & {
     __methods?: unknown;
 }>;
