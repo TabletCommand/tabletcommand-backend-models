@@ -17,11 +17,11 @@ import ColorModule from "./schema/color";
 import PubNubTokenSchema from "./schema/pubnub-token";
 
 export async function DepartmentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const PubNubToken = PubNubTokenSchema(mongoose);
-  const Color = ColorModule(mongoose);
+  const { Types } = mongoose;
+  const PubNubToken = PubNubTokenSchema();
+  const Color = ColorModule();
 
-  const Mark43StatusConfig = createSchema(Schema, {
+  const Mark43StatusConfig = createSchema({
     TimeDispatched: {
       type: [String],
       default: []
@@ -65,7 +65,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     TimeArrived: ["ATS", "A"],
   };
 
-  const Mark43Config = createSchema(Schema, {
+  const Mark43Config = createSchema({
     baseUrl: {
       type: String,
       default: "",
@@ -140,7 +140,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     }
   ];
   
-  const IntterraFields = createSchema(Schema, {
+  const IntterraFields = createSchema({
     key: {
       type: String,
       default: "",
@@ -166,7 +166,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IntterraConnection = createSchema(Schema, {
+  const IntterraConnection = createSchema({
     active: {
       type: Boolean,
       default: false,
@@ -196,7 +196,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IntterraConfig = createSchema(Schema, {
+  const IntterraConfig = createSchema({
     enabled: {
       type: Boolean,
       default: false,
@@ -210,7 +210,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimpleSenseConfig = createSchema(Schema, {
+  const SimpleSenseConfig = createSchema({
     token: {
       type: String,
       default: "",
@@ -220,7 +220,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FirstArrivingConfig = createSchema(Schema, {
+  const FirstArrivingConfig = createSchema({
     token: {
       type: String,
       default: "",
@@ -231,7 +231,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   });
 
 
-  const SafetyPriorityKeyword = createSchema(Schema, {
+  const SafetyPriorityKeyword = createSchema({
     priority: {
       type: Number,
       default: 6,
@@ -248,7 +248,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const WebDisclaimer = createSchema(Schema, {
+  const WebDisclaimer = createSchema({
     message: {
       type: String,
       default: "",
@@ -262,7 +262,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const AudioStream = createSchema(Schema, {
+  const AudioStream = createSchema({
     // eg. Central Dispatch Talk Group or also Available on 89.5 MHz
     description: {
       type: String,
@@ -286,7 +286,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const AudioStreamGroup = createSchema(Schema, {
+  const AudioStreamGroup = createSchema({
     group: {
       type: String,
       default: "",
@@ -304,7 +304,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const RestrictedComments = createSchema(Schema, {
+  const RestrictedComments = createSchema({
     enabled: {
       type: Boolean,
       default: false,
@@ -330,7 +330,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const CustomButtons = createSchema(Schema, {
+  const CustomButtons = createSchema({
     name: {
       type: String,
       default: "",
@@ -364,7 +364,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FireMapperLayer = createSchema(Schema, {
+  const FireMapperLayer = createSchema({
     pathname: {
       type: String,
       default: "", // Eg. /api/rest/services/features/FeatureServer/0 (including 0)
@@ -378,7 +378,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FireMapperOutline = createSchema(Schema, {
+  const FireMapperOutline = createSchema({
     uuid: {
       type: String,
       default: "",
@@ -392,7 +392,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SamsaraConfiguration = createSchema(Schema, {
+  const SamsaraConfiguration = createSchema({
     enabled: {
       type: Boolean,
       default: false,
@@ -411,7 +411,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     token: "",
   };
 
-  const FireMapperConfiguration = createSchema(Schema, {
+  const FireMapperConfiguration = createSchema({
     enabled: {
       type: Boolean,
       default: false,
@@ -480,7 +480,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     outline: [],
   };
 
-  const Licensing = createSchema(Schema, {
+  const Licensing = createSchema({
     tcPro2Way: {
       type: Number,
       default: 0,
@@ -580,7 +580,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     restrictedMessage: "RESTRICTED"
   };
 
-  const IncidentType = createSchema(Schema, {
+  const IncidentType = createSchema({
     name: {
       type: String,
       default: "Any",
@@ -609,7 +609,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ShareIncidentRule = createSchema(Schema, {
+  const ShareIncidentRule = createSchema({
     ruleType: {
       type: String,
       default: "",
@@ -632,7 +632,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   });
 
   // Main schema
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

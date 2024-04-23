@@ -11,9 +11,9 @@ import {
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function JobLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

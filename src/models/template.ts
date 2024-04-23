@@ -15,9 +15,9 @@ import {
 } from "../helpers";
 
 export function TemplateSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const ChecklistOption = createSchema(Schema, {
+  const ChecklistOption = createSchema({
     name: {
       type: String,
       default: "",
@@ -35,7 +35,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const GroupOption = createSchema(Schema, {
+  const GroupOption = createSchema({
     name: {
       type: String,
       default: "",
@@ -53,7 +53,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

@@ -1,17 +1,17 @@
 
 import { assert } from "chai";
 import "mocha";
-import * as _ from "lodash";
+// import * as _ from "lodash";
 
 import { url as mongoURL } from "./config";
 
 import { connect } from "..";
-import MockModule from "./mock";
+// import MockModule from "./mock";
 
 describe("ArcGISGroup", function () {
-  let models, 
-    mongoose: typeof import("mongoose"), 
-    mock;
+  // let models, 
+  //   mongoose: typeof import("mongoose"),
+  //   mock;
 
   beforeEach(async function () {
     const result = await connect(mongoURL);
@@ -28,7 +28,7 @@ describe("ArcGISGroup", function () {
     console.log(mongoURL);
   });
 
-  afterEach(async function() {
+  afterEach(async function () {
     // await mongoose.disconnect();
   });
 

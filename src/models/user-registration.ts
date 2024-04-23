@@ -9,9 +9,8 @@ import {
 } from "../helpers";
 
 export async function UserRegistrationModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     email: {
       type: String,
       default: "",

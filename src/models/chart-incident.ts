@@ -12,9 +12,9 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
 export async function ChartIncidentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const ChartItem = createSchema(Schema, {
+  const ChartItem = createSchema({
     item: {
       type: String,
       default: "",
@@ -28,7 +28,7 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

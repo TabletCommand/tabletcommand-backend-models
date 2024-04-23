@@ -11,8 +11,7 @@ import {
 import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
 
 export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
-  const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
+  const CADStatusOptionSelected = CADStatusOptionSelectedModule();
 
   const modelSchemaConfig = createSchemaDefinition({
     departmentId: {
@@ -78,7 +77,7 @@ export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
     },
   });
 
-  const modelSchema = createSchema(Schema, modelSchemaConfig, {
+  const modelSchema = createSchema(modelSchemaConfig, {
     collection: "massive_cad_vehicle_status_history",
   });
 

@@ -10,9 +10,8 @@ import {
 } from "../helpers";
 
 export async function ArcGISGroupModule(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
 
-  const ArcGISGroupUser = createSchema(Schema, {
+  const ArcGISGroupUser = createSchema({
     username: {
       type: String,
       default: "",
@@ -34,7 +33,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ArcGISUserInvitation = createSchema(Schema, {
+  const ArcGISUserInvitation = createSchema({
     username: {
       type: String,
       default: "",
@@ -52,7 +51,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ArcGISDepartmentUser = createSchema(Schema, {
+  const ArcGISDepartmentUser = createSchema({
     // ArcGIS username
     username: {
       type: String,
@@ -73,7 +72,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ArcGISDepartment = createSchema(Schema, {
+  const ArcGISDepartment = createSchema({
     department: {
       type: String,
       default: "",
@@ -99,7 +98,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     // Unique, to be able to use replaceInto
     groupId: {
       type: String,

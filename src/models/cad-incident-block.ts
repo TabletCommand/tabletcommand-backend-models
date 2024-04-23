@@ -13,13 +13,13 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ReportNumberModule from "./schema/report-number";
 
 export async function CADIncidentBlockModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const ReportNumber = ReportNumberModule(mongoose);
+  const { Types } = mongoose;
+  const ReportNumber = ReportNumberModule();
 
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

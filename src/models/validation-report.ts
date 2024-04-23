@@ -10,10 +10,10 @@ import {
 import ValidationErrorItemModule from "./schema/validation-error-item";
 
 export function ValidationReportSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const ValidationErrorItem = ValidationErrorItemModule(mongoose);
+  const { Types } = mongoose;
+  const ValidationErrorItem = ValidationErrorItemModule();
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

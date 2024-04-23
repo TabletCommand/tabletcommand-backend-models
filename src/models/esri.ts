@@ -15,13 +15,13 @@ import EsriMapModule from "./schema/esri-map";
 import FireMapperAuthModule from "./schema/firemapper-auth";
 
 export function EsriSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const EsriAuth = EsriAuthModule(mongoose);
-  const EsriError = EsriErrorModule(mongoose);
-  const EsriMap = EsriMapModule(mongoose);
-  const FireMapperAuth = FireMapperAuthModule(mongoose);
+  const { Types } = mongoose;
+  const EsriAuth = EsriAuthModule();
+  const EsriError = EsriErrorModule();
+  const EsriMap = EsriMapModule();
+  const FireMapperAuth = FireMapperAuthModule();
 
-  const MapProperties = createSchema(Schema, {
+  const MapProperties = createSchema({
     // ArcGIS Item id
     itemId: {
       type: String,
@@ -36,7 +36,7 @@ export function EsriSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

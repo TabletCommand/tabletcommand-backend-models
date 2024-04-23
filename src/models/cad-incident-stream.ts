@@ -13,12 +13,12 @@ import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export async function CADIncidentStreamModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

@@ -15,9 +15,9 @@ import ColorModule from "./schema/color";
 import GeoJSONPointModule from "./schema/geojson-point";
 
 export async function LocationModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const Color = ColorModule(mongoose);
-  const GeoJSONPoint = GeoJSONPointModule(mongoose);
+  const { Types } = mongoose;
+  const Color = ColorModule();
+  const GeoJSONPoint = GeoJSONPointModule();
 
   const modelSchemaDefinition = createSchemaDefinition({
     _id: {
@@ -159,7 +159,7 @@ export async function LocationModule(mongoose: MongooseModule) {
     },
   });
 
-  const modelSchema = createSchema(Schema, modelSchemaDefinition, {
+  const modelSchema = createSchema(modelSchemaDefinition, {
     collection: "massive_location",
   });
 

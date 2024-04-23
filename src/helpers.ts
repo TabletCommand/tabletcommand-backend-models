@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
+import { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types, ObjectId } from "mongoose";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
@@ -54,9 +54,9 @@ export function createSchemaDefinition<T extends SchemaDefinition>(c: T) {
 }
 
 export function createSchema
-  <T extends SchemaDefinition, TMethods>(schemaCtor: typeof Schema, p: T, o: SchemaOptions, methods?: TMethods & ThisType<DocumentFromSchemaDefinition<T>>)
+  <T extends SchemaDefinition, TMethods>(p: T, o: SchemaOptions, methods?: TMethods & ThisType<DocumentFromSchemaDefinition<T>>)
   : Schema & { _interface: MongooseInterface<T>, _methods: TMethods } {
-  const schema = new schemaCtor(p, o);
+  const schema = new Schema(p, o);
   if (methods) {
     schema.methods = methods;
   }
@@ -65,10 +65,9 @@ export function createSchema
 
 export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }) {
   if (mongoose.models[name]) {
-    return mongoose.model<Document & T & TMethods>(name) as Model<Document & T & TMethods> & { __methods?: TMethods };
-  } else {
-    return mongoose.model<Document & T & TMethods>(name, schema) as Model<Document & T & TMethods> & { __methods?: TMethods };
+    return mongoose.model<Document<ObjectId, TMethods, T>>(name) as Model<Document<ObjectId, TMethods, T>> & { __methods?: TMethods };
   }
+  return mongoose.model<Document<ObjectId, TMethods, T>>(name, schema) as Model<Document<ObjectId, TMethods, T>> & { __methods?: TMethods };
 }
 
 export type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & { _interface: MongooseInterface<T> }>;

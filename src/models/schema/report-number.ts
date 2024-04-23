@@ -1,12 +1,10 @@
 import {
-  MongooseModule,
   createSchema,
 } from "../../helpers";
 
-export default function ReportNumberModule(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function ReportNumberModule() {
 
-  const ReportNumber = createSchema(Schema, {
+  const ReportNumber = createSchema({
     name: {
       type: String,
       default: "",

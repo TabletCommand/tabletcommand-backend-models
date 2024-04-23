@@ -1,12 +1,10 @@
 import {
-  MongooseModule,
   createSchema,
 } from "../../helpers";
 
-export default function CADStatusOptionSelectedSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function CADStatusOptionSelectedSchema() {
 
-  const Item = createSchema(Schema, {
+  const Item = createSchema({
     name: {
       type: String,
       default: "",

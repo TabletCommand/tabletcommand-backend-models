@@ -14,9 +14,9 @@ import {
 } from "../helpers";
 
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const ReportNumber = createSchema(Schema, {
+  const ReportNumber = createSchema({
     number: {
       type: String,
       default: "",
@@ -31,7 +31,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       id: false,
     });
 
-  const Record = createSchema(Schema, {
+  const Record = createSchema({
     value: {
       type: String,
       default: "",
@@ -46,7 +46,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       id: false,
     });
 
-  const Person = createSchema(Schema, {
+  const Person = createSchema({
     PersonnelID: {
       type: String,
     },
@@ -71,7 +71,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       id: false,
     });
 
-  const HistoryItem = createSchema(Schema, {
+  const HistoryItem = createSchema({
     message: {
       type: String,
       default: "",
@@ -97,7 +97,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const AssignmentItem = createSchema(Schema, {
+  const AssignmentItem = createSchema({
     name: {
       type: String,
       default: "",
@@ -139,7 +139,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentUnit = createSchema(Schema, {
+  const IncidentUnit = createSchema({
     UnitID: {
       type: String,
       required: true,
@@ -249,7 +249,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentGroup = createSchema(Schema, {
+  const IncidentGroup = createSchema({
     location_on_map: {
       type: String,
       default: "",
@@ -291,7 +291,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentHazard = createSchema(Schema, {
+  const IncidentHazard = createSchema({
     location_on_scene: {
       type: String,
       default: "",
@@ -333,7 +333,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentChecklistItem = createSchema(Schema, {
+  const IncidentChecklistItem = createSchema({
     active: {
       type: Boolean,
       default: true
@@ -378,7 +378,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentChecklist = createSchema(Schema, {
+  const IncidentChecklist = createSchema({
     active: {
       type: Boolean,
       default: true
@@ -423,7 +423,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const RadioChannel = createSchema(Schema, {
+  const RadioChannel = createSchema({
     name: {
       type: String,
       default: "",
@@ -445,7 +445,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

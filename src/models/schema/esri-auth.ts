@@ -1,12 +1,10 @@
 import {
   createSchema,
-  MongooseModule,
 } from "../../helpers";
 
-export default function EsriAuthSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function EsriAuthSchema() {
 
-  const EsriAuthPassword = createSchema(Schema, {
+  const EsriAuthPassword = createSchema({
     iv: {
       type: String,
       default: "",
@@ -20,7 +18,7 @@ export default function EsriAuthSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const EsriAuth = createSchema(Schema, {
+  const EsriAuth = createSchema({
     username: {
       type: String,
       default: "",

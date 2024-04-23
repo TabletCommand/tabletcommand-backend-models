@@ -1,12 +1,10 @@
 import {
   createSchema,
-  MongooseModule,
 } from "../../helpers";
 
-export default function AgencyCronSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function AgencyCronSchema() {
 
-  const EncryptedData = createSchema(Schema, {
+  const EncryptedData = createSchema({
     iv: {
       type: String,
       default: "",
@@ -20,7 +18,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const CronConfigSource = createSchema(Schema, {
+  const CronConfigSource = createSchema({
     protocol: {
       type: String,
       default: "",
@@ -49,7 +47,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     filePath: "",
   };
 
-  const CronConfigAuth = createSchema(Schema, {
+  const CronConfigAuth = createSchema({
     password: {
       type: EncryptedData,
       default: null,
@@ -79,7 +77,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     useSSHKey: false,
   };
 
-  const CronConfigCSVFieldMap = createSchema(Schema, {
+  const CronConfigCSVFieldMap = createSchema({
     PersonnelID: {
       type: String,
     },
@@ -126,7 +124,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     TimeFormat: "YYYY-MM-DD HH:mm",
   };
 
-  const ReconcileTimeOptions = createSchema(Schema, {
+  const ReconcileTimeOptions = createSchema({
     enabled: {
       type: Boolean,
     },
@@ -147,7 +145,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     endTime: "08:00",
   };
 
-  const AgencyCronConfig = createSchema(Schema, {
+  const AgencyCronConfig = createSchema({
     enabled: {
       type: Boolean,
       default: false,

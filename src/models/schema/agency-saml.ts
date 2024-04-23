@@ -1,12 +1,10 @@
 import {
   createSchema,
-  MongooseModule,
 } from "../../helpers";
 
-export default function AgencySAMLSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function AgencySAMLSchema() {
 
-  const AgencyCronConfig = createSchema(Schema, {
+  const AgencyCronConfig = createSchema({
     selector: {
       type: String,
       required: true,

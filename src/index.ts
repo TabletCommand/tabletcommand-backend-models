@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import { ConnectionOptions } from "mongoose";
+import { ConnectOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
 
 async function wireModels(mongoose: MongooseModule) {
@@ -106,19 +106,17 @@ export { ValidationReport, ValidationReportModel } from "./models/validation-rep
 
 export * from "./helpers";
 
-export async function connect(url: string, overwriteOpts?: ConnectionOptions) {
+export async function connect(url: string, overwriteOpts?: ConnectOptions) {
   const mongoose = await import("mongoose");
   mongoose.Promise = await import("bluebird");
 
   const models = await wireModels(mongoose);
-  const defaultOpts: ConnectionOptions = {
+  const defaultOpts: ConnectOptions = {
     autoIndex: false,
     readPreference: "primaryPreferred",
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   };
   // If present, overwrite options
-  const opts: ConnectionOptions = _.assign({}, defaultOpts, overwriteOpts);
+  const opts: ConnectOptions = _.assign({}, defaultOpts, overwriteOpts);
   const connection = await mongoose.connect(url, opts);
 
   return { mongoose, connection, models };

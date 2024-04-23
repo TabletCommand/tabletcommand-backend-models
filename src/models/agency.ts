@@ -13,11 +13,11 @@ import AgencyCronConfigModule from "./schema/agency-cron-config";
 import AgencySAMLModule from "./schema/agency-saml";
 
 export function AgencySchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const AgencyCronConfig = AgencyCronConfigModule(mongoose);
-  const AgencySAML = AgencySAMLModule(mongoose);
+  const { Types } = mongoose;
+  const AgencyCronConfig = AgencyCronConfigModule();
+  const AgencySAML = AgencySAMLModule();
 
-  const CrossStaffedUnit = createSchema(Schema, {
+  const CrossStaffedUnit = createSchema({
     radioName: {
       type: String,
       default: "",
@@ -45,7 +45,7 @@ export function AgencySchema(mongoose: MongooseModule) {
     locationToCAD: 0
   };
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

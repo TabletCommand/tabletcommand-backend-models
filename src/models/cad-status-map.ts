@@ -9,9 +9,7 @@ import {
 } from "../helpers";
 
 export async function CADStatusMapModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
-
-  const ToStatusIdSchema = createSchema(Schema, {
+  const ToStatusIdSchema = createSchema({
     statusId: {
       type: Number,
       default: 0,
@@ -31,7 +29,7 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
   });
 
   // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     departmentId: {
       type: String,
       default: "",

@@ -12,10 +12,9 @@ import {
 import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
 
 export async function CADVehicleStatusModule(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
-  const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
+  const CADStatusOptionSelected = CADStatusOptionSelectedModule();
 
-  const Destination = createSchema(Schema, {
+  const Destination = createSchema({
     // eg 1234 Main St
     address: {
       type: String,
@@ -136,7 +135,7 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     },
   });
 
-  const modelSchema = createSchema(Schema, modelSchemaConfig, {
+  const modelSchema = createSchema(modelSchemaConfig, {
     collection: "massive_cad_vehicle_status",
   });
 

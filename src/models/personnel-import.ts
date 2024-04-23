@@ -10,9 +10,9 @@ import {
 } from "../helpers";
 
 export function PersonnelImportSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const Radio = createSchema(Schema, {
+  const Radio = createSchema({
     radioName: {
       type: String,
     },
@@ -25,7 +25,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

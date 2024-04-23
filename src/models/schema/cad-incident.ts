@@ -14,9 +14,9 @@ import { IncidentEventSchema } from "../incident-event";
 import ReportNumberModule from "./report-number";
 
 export function CADIncidentSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
   const IncidentEvent = IncidentEventSchema(mongoose);
-  const ReportNumber = ReportNumberModule(mongoose);
+  const ReportNumber = ReportNumberModule();
 
   const toJSONOpts = {
     versionKey: false,
@@ -26,7 +26,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   };
 
   // Currently, supporting type: "ack", item: "knife"
-  const CADCommentOpts = createSchema(Schema, {
+  const CADCommentOpts = createSchema({
     type: {
       type: String,
     },
@@ -39,7 +39,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   CADCommentOpts.set("toJSON", toJSONOpts);
 
-  const CADComment = createSchema(Schema, {
+  const CADComment = createSchema({
     Comment: {
       type: String,
     },
@@ -62,7 +62,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   CADComment.set("toJSON", toJSONOpts);
 
-  const CADPerson = createSchema(Schema, {
+  const CADPerson = createSchema({
     PersonnelID: {
       type: String,
     },
@@ -84,7 +84,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   CADPerson.set("toJSON", toJSONOpts);
 
-  const CADUnit = createSchema(Schema, {
+  const CADUnit = createSchema({
     UnitID: {
       type: String,
       required: true,
@@ -141,7 +141,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   CADUnit.set("toJSON", toJSONOpts);
 
-  const APNNotificationType = createSchema(Schema, {
+  const APNNotificationType = createSchema({
     name: {
       type: String,
     },
@@ -154,7 +154,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   APNNotificationType.set("toJSON", toJSONOpts);
 
-  const CADPriorIncident = createSchema(Schema, {
+  const CADPriorIncident = createSchema({
     Address: {
       type: String,
     },
@@ -182,7 +182,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   CADPriorIncident.set("toJSON", toJSONOpts);
 
-  const RadioChannel = createSchema(Schema, {
+  const RadioChannel = createSchema({
     name: {
       type: String,
       default: "",
@@ -201,7 +201,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   RadioChannel.set("toJSON", toJSONOpts);
 
-  const RecordValue = createSchema(Schema, {
+  const RecordValue = createSchema({
     name: {
       type: String,
       default: "",
@@ -216,7 +216,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   RecordValue.set("toJSON", toJSONOpts);
 
-  const ShareReason = createSchema(Schema, {
+  const ShareReason = createSchema({
     name: {
       type: String,
       default: "",
@@ -231,7 +231,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   ShareReason.set("toJSON", toJSONOpts);
 
-  const SharedTo = createSchema(Schema, {
+  const SharedTo = createSchema({
     departmentId: {
       type: String,
       default: "",
@@ -263,7 +263,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   });
   SharedTo.set("toJSON", toJSONOpts);
 
-  const SharedSource = createSchema(Schema, {
+  const SharedSource = createSchema({
     // Department Name (always matches record .departmentId)
     name: {
       type: String,
@@ -293,7 +293,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   SharedSource.set("toJSON", toJSONOpts);
 
   // Main schema
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

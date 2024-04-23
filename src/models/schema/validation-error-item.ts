@@ -1,13 +1,11 @@
 import {
-  MongooseModule,
   createSchema,
   currentDate,
 } from "../../helpers";
 
-export default function ValidationErrorItemSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function ValidationErrorItemSchema() {
 
-  const Item = createSchema(Schema, {
+  const Item = createSchema({
     message: {
       type: String,
       default: "",

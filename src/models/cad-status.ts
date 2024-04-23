@@ -11,10 +11,9 @@ import {
 import ColorModule from "./schema/color";
 
 export async function CADStatusModule(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
-  const Color = ColorModule(mongoose);
+  const Color = ColorModule();
 
-  const StatusOptionValue = createSchema(Schema, {
+  const StatusOptionValue = createSchema({
     name: {
       type: String,
       default: "",
@@ -61,7 +60,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const StatusOption = createSchema(Schema, {
+  const StatusOption = createSchema({
     name: {
       type: String,
       default: "",
@@ -87,7 +86,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     uuid: {
       type: String,
       index: true,

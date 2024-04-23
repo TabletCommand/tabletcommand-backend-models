@@ -12,9 +12,9 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
 
 export async function ChartDeviceStatsModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const ChartItem = createSchema(Schema, {
+  const ChartItem = createSchema({
     // used to keep track of current user, 
     // email + os + app would be a good unique key
     email: {
@@ -52,7 +52,7 @@ export async function ChartDeviceStatsModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

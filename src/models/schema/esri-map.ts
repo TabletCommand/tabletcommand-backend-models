@@ -1,12 +1,10 @@
 import {
   createSchema,
-  MongooseModule,
 } from "../../helpers";
 
-export default function EsriMapSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function EsriMapSchema() {
 
-  const MapLayer = createSchema(Schema, {
+  const MapLayer = createSchema({
     layerId: {
       type: String,
       default: "",
@@ -48,7 +46,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const BaseMap = createSchema(Schema, {
+  const BaseMap = createSchema({
     baseMapLayers: {
       type: [MapLayer],
       default: [],
@@ -97,7 +95,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     },
   };
 
-  const OfflineMap = createSchema(Schema, {
+  const OfflineMap = createSchema({
     ...SimpleMapSchema,
     status: {
       type: String,
@@ -108,7 +106,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Map = createSchema(Schema, {
+  const Map = createSchema({
     ...SimpleMapSchema,
     mapLayers: {
       type: [MapLayer],

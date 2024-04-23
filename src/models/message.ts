@@ -11,10 +11,10 @@ import {
 import ColorModule from "./schema/color";
 
 export async function MessageModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const Color = ColorModule(mongoose);
+  const { Types } = mongoose;
+  const Color = ColorModule();
 
-  const TypeSchema = createSchema(Schema, {
+  const TypeSchema = createSchema({
     type: {
       type: String,
       default: "", // generic, support, requestLogs, requestCADLogs, upgradeApp, upgradeOS
@@ -28,7 +28,7 @@ export async function MessageModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

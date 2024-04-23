@@ -1,13 +1,15 @@
 
 // import * as uuid from "uuid";
-import { Types } from "mongoose";
+// import { Types } from "mongoose";
 
 import { checkIfTestDatabase } from "./config";
 checkIfTestDatabase();
 
-export default function MockModule(dependecies: {
-  models: unknown,
-}) {
+export default function MockModule(
+  // models: unknown,
+  // dependecies: {
+  // }
+) {
 
   async function cleanup() {
     return "";

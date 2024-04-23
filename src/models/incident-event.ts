@@ -17,9 +17,9 @@ export async function IncidentEventModule(mongoose: MongooseModule) {
 }
 
 export function IncidentEventSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const EventUser = createSchema(Schema, {
+  const EventUser = createSchema({
     username: {
       type: String,
       default: "",
@@ -41,7 +41,7 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

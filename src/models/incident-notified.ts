@@ -9,9 +9,9 @@ import {
 } from "../helpers";
 
 export async function IncidentNotifiedModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
   
-  const SentItem = createSchema(Schema, {
+  const SentItem = createSchema({
     name: {
       type: String,
       default: "",
@@ -29,7 +29,7 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Unit = createSchema(Schema, {
+  const Unit = createSchema({
     UnitID: {
       type: String,
       default: "",
@@ -43,7 +43,7 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

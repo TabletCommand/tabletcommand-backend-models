@@ -1,12 +1,10 @@
 import {
-  MongooseModule,
   createSchema,
 } from "../../helpers";
 
-export default function OAuthSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function OAuthSchema() {
 
-  const Item = createSchema(Schema, {
+  const Item = createSchema({
     accessToken: {
       type: String,
       default: "",

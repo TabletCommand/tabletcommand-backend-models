@@ -10,9 +10,9 @@ import {
 } from "../helpers";
 
 export async function UserDeviceModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const UnitSetting = createSchema(Schema, {
+  const UnitSetting = createSchema({
     radioName: {
       type: String,
       default: "",
@@ -30,7 +30,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentSetting = createSchema(Schema, {
+  const IncidentSetting = createSchema({
     incidentType: {
       type: String,
       default: "",
@@ -48,7 +48,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const deviceSchema = createSchema(Schema, {
+  const deviceSchema = createSchema({
     token: {
       type: String,
       default: "",
@@ -115,7 +115,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const soundSchemaItem = createSchema(Schema, {
+  const soundSchemaItem = createSchema({
     sound: {
       type: String,
     },
@@ -131,7 +131,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const soundSchema = createSchema(Schema, {
+  const soundSchema = createSchema({
     ios: {
       type: soundSchemaItem,
     },
@@ -143,7 +143,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

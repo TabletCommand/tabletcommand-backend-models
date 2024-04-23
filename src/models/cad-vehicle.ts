@@ -10,9 +10,8 @@ import {
 import * as uuid from "uuid";
 
 export async function CADVehicleModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
 
-  const Station = createSchema(Schema, {
+  const Station = createSchema({
     code: {
       type: String,
       default: "",
@@ -26,7 +25,7 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     // Internal
     uuid: {
       type: String,

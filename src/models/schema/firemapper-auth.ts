@@ -1,12 +1,10 @@
 import {
   createSchema,
-  MongooseModule,
 } from "../../helpers";
 
-export default function FireMapperAuthSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function FireMapperAuthSchema() {
 
-  const FireMapperEncrypted = createSchema(Schema, {
+  const FireMapperEncrypted = createSchema({
     iv: {
       type: String,
       default: "",
@@ -20,7 +18,7 @@ export default function FireMapperAuthSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FireMapperAuth = createSchema(Schema, {
+  const FireMapperAuth = createSchema({
     username: {
       type: String,
       default: "",

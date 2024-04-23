@@ -1,12 +1,10 @@
 import {
   createSchema,
-  MongooseModule,
 } from "../../helpers";
 
-export default function EsriErrorSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function EsriErrorSchema() {
 
-  const EsriError = createSchema(Schema, {
+  const EsriError = createSchema({
     code: {
       type: Number,
       default: 1,

@@ -1,13 +1,11 @@
 import {
-  MongooseModule,
   createSchema,
   currentDate,
 } from "../../helpers";
 
-export default function PubNubTokenSchema(mongoose: MongooseModule) {
-  const { Schema } = mongoose;
+export default function PubNubTokenSchema() {
 
-  const Item = createSchema(Schema, {
+  const Item = createSchema({
     token: {
       type: String,
       default: "",

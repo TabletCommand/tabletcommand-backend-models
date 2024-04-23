@@ -13,15 +13,14 @@ import * as uuid from "uuid";
 import OAuthSchema from "./schema/oauth";
 
 export async function SessionModule(mongoose: MongooseModule) {
-  const Schema = mongoose.Schema;
-  const OAuthToken = OAuthSchema(mongoose);
+  const OAuthToken = OAuthSchema();
 
   function requiredButAllowEmptyString(this: { myField: unknown }) {
     // Workaround to set required, and allow empty id
     return typeof this.myField === "string";
   }
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: String,
       default: uuid.v4,

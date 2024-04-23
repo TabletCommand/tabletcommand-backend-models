@@ -16,7 +16,7 @@ import {
 } from "../helpers";
 
 export function BattalionSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
   const toJSONOpts = {
     virtuals: true,
     versionKey: false,
@@ -26,7 +26,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
     },
   };
 
-  const BattalionUnit = createSchema(Schema, {
+  const BattalionUnit = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,
@@ -89,7 +89,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
 
   BattalionUnit.set("toJSON", toJSONOpts);
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

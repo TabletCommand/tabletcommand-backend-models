@@ -10,9 +10,9 @@ import {
 } from "../helpers";
 
 export async function RemoteLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Types } = mongoose;
 
-  const FileSchema = createSchema(Schema, {
+  const FileSchema = createSchema({
     originalName: {
       type: String,
       default: "", // e.g database.sqlite
@@ -46,7 +46,7 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,

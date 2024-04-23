@@ -16,12 +16,12 @@ import EsriErrorSchema from "./schema/esri-error";
 import PubNubTokenSchema from "./schema/pubnub-token";
 
 export function UserSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const EsriAuth = EsriAuthSchema(mongoose);
-  const EsriError = EsriErrorSchema(mongoose);
-  const PubNubToken = PubNubTokenSchema(mongoose);
+  const { Types } = mongoose;
+  const EsriAuth = EsriAuthSchema();
+  const EsriError = EsriErrorSchema();
+  const PubNubToken = PubNubTokenSchema();
 
-  const VehicleSchema = createSchema(Schema, {
+  const VehicleSchema = createSchema({
     radioName: {
       type: String,
       default: "",
@@ -35,7 +35,7 @@ export function UserSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     nick: {
       type: String,
       default: "",

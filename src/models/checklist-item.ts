@@ -15,11 +15,10 @@ import {
 
 export function ChecklistItemSchema(mongoose: MongooseModule) {
   const {
-    Schema,
     Types,
   } = mongoose;
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = createSchema({
     _id: {
       type: Types.ObjectId,
       auto: true,
