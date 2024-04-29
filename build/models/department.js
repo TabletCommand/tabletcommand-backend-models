@@ -182,6 +182,10 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        description: {
+            type: String,
+            default: "",
+        },
     }, {
         _id: false,
         id: false,

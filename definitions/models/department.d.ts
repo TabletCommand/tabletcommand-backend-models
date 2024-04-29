@@ -535,6 +535,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                         type: StringConstructor;
                         default: string;
                     };
+                    description: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];

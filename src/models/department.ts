@@ -198,6 +198,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    description: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
     id: false,
