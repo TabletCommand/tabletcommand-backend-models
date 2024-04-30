@@ -47,6 +47,8 @@ async function wireModels(mongoose: MongooseModule) {
     Message: await getModel(import("./models/message")),
     Monitor: await getModel(import("./models/monitor")),
     PersonnelImport: await getModel(import("./models/personnel-import")),
+    PersonnelKnown: await getModel(import("./models/personnel-known")),
+    PersonnelRoster: await getModel(import("./models/personnel-roster")),
     RateLimit: await getModel(import("./models/rate-limit")),
     RemoteLog: await getModel(import("./models/remote-log")),
     Session: await getModel(import("./models/session")),
@@ -96,6 +98,8 @@ export { Mark43IncidentRetry, Mark43IncidentRetryModel } from "./models/mark43-i
 export { Message, MessageModel } from "./models/message";
 export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
+export { PersonnelKnown, PersonnelKnownModel } from "./models/personnel-known";
+export { PersonnelRoster, PersonnelRosterModel } from "./models/personnel-roster";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
 export { Session, SessionModel } from "./models/session";

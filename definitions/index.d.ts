@@ -36,6 +36,8 @@ export { Mark43IncidentRetry, Mark43IncidentRetryModel } from "./models/mark43-i
 export { Message, MessageModel } from "./models/message";
 export { Monitor, MonitorModel } from "./models/monitor";
 export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import";
+export { PersonnelKnown, PersonnelKnownModel } from "./models/personnel-known";
+export { PersonnelRoster, PersonnelRosterModel } from "./models/personnel-roster";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
 export { Session, SessionModel } from "./models/session";
@@ -87,6 +89,8 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         Message: import("./models/message").MessageModel;
         Monitor: import("./models/monitor").MonitorModel;
         PersonnelImport: import("./models/personnel-import").PersonnelImportModel;
+        PersonnelKnown: import("./models/personnel-known").PersonnelKnownModel;
+        PersonnelRoster: import("./models/personnel-roster").PersonnelRosterModel;
         RateLimit: import("./models/rate-limit").RateLimitModel;
         RemoteLog: import("./models/remote-log").RemoteLogModel;
         Session: import("./models/session").SessionModel;
