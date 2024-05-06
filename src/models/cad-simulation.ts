@@ -122,9 +122,9 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
-    unitsArray: {
-      type: [SimUnit],
-      default: [],
+    unitsConfig: {
+      type: SimUnit,
+      default: {},
     },
     comments: {
       type: [SimComment],
@@ -158,7 +158,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       type: Boolean, 
       default: true
     },
-    friendly_id: {
+    friendlyId: {
       type: String,
       default: "",
     },
@@ -202,7 +202,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-    crossStreet1: {
+    CrossStreet1: {
       type: String,
       default: "",
     },

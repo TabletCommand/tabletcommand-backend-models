@@ -514,6 +514,14 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
             type: BooleanConstructor;
             default: boolean;
         };
+        simulationId: {
+            type: StringConstructor;
+            default: string;
+        };
+        simulationSequences: {
+            type: NumberConstructor[];
+            default: never[];
+        };
         notify: {
             type: BooleanConstructor;
             default: boolean;

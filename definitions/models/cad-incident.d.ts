@@ -333,6 +333,8 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
     }>[];
     preference_location: string;
     simulation: boolean;
+    simulationId: string;
+    simulationSequences: number[];
     notify: boolean;
     rts: boolean;
     notificationType: import("../helpers").MongooseInterface<{

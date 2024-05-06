@@ -550,6 +550,14 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    simulationId: {
+      type: String,
+      default: "",
+    },
+    simulationSequences: {
+      type: [Number],
+      default: [],
+    },
     notify: {
       type: Boolean,
       default: true,

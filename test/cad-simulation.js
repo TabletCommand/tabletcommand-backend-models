@@ -25,11 +25,12 @@ describe("CadSimulation", function() {
   it("is saved", function(done) {
     var item = new models.CADSimulation(testItem);
     item.save(function(err, sut) {
+      console.log("err", err);
       assert.isNull(err, "Should not err");
       assert.isNotNull(testItem._id);
       assert.equal(testItem.departmentId, sut.departmentId);
       assert.equal(testItem.title, sut.title);
-      assert.equal(testItem.friendly_id, sut.friendly_id);
+      assert.equal(testItem.friendlyId, sut.friendlyId);
       return done();
     });
   });

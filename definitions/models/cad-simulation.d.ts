@@ -6,7 +6,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
     modifiedDate: number;
     modified: string;
     active: boolean;
-    friendly_id: string;
+    friendlyId: string;
     title: string;
     notes: string;
     simulation: boolean;
@@ -17,7 +17,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
     streetName: string;
     locationComment: string;
     suite: string;
-    crossStreet1: string;
+    CrossStreet1: string;
     city: string;
     state: string;
     lat: string;
@@ -98,8 +98,8 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
             type: NumberConstructor;
             default: number;
         };
-        unitsArray: {
-            type: (import("mongoose").Schema<any> & {
+        unitsConfig: {
+            type: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     alarmLevelAtDispatch: {
                         title: StringConstructor;
@@ -111,8 +111,8 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
                     };
                 }>;
                 _methods: unknown;
-            })[];
-            default: never[];
+            };
+            default: {};
         };
         comments: {
             type: (import("mongoose").Schema<any> & {

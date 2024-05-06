@@ -72,7 +72,7 @@ module.exports = function mockModule(dependencies) {
   const cadSimulation = {
       "departmentId": "123",
       "active": true,
-      "friendly_id": "test-1",
+      "friendlyId": "test-1",
       "modifiedDate": 1544771122.997,
       "modified": new Date(),
       "title": "Structure Fire with Confirming stills and Rescues",
@@ -86,7 +86,7 @@ module.exports = function mockModule(dependencies) {
       "streetName": "123 test Blvd.",
       "locationComment": "3 Story Apartment building ",
       "suite": "Apartment Building",
-      "crossStreet1": "321 Ave",
+      "CrossStreet1": "321 Ave",
       "city": "Test",
       "state": "Ca",
       "lat": "55.784387",
@@ -107,9 +107,7 @@ module.exports = function mockModule(dependencies) {
               "title": "test Alarm ",
               "alarm": "1",
               "sequenceId": 0,
-              "unitsArray":
-              [
-                  {
+              "unitsConfig": {
                       "alarmLevelAtDispatch": "1",
                       "units":
                       [
@@ -122,8 +120,7 @@ module.exports = function mockModule(dependencies) {
                           "B4",
                           "B2"
                       ]
-                  }
-              ],
+              },
               "comments":
               [
                   {
@@ -136,38 +133,32 @@ module.exports = function mockModule(dependencies) {
               "title": "2nd Alarm ",
               "alarm": "2",
               "sequenceId": 1,
-              "unitsArray":
-              [
-                  {
-                      "alarmLevelAtDispatch": "2",
-                      "units":
-                      [
-                          "E17",
-                          "E12",
-                          "E29",
-                          "T1",
-                          "B3"
-                      ]
-                  }
-              ]
+              "unitsConfig": {
+                "alarmLevelAtDispatch": "2",
+                "units":
+                [
+                    "E17",
+                    "E12",
+                    "E29",
+                    "T1",
+                    "B3"
+                ]
+              }
           },
           {
               "title": "3 Alarm ",
               "alarm": "3",
               "sequenceId": 2,
-              "unitsArray":
-              [
-                  {
-                      "alarmLevelAtDispatch": "3",
-                      "units":
-                      [
-                          "E1",
-                          "E2",
-                          "E25",
-                          "T4"
-                      ]
-                  }
-              ]
+              "unitsConfig": {
+                "alarmLevelAtDispatch": "3",
+                "units":
+                [
+                    "E1",
+                    "E2",
+                    "E25",
+                    "T4"
+                ]
+              }
           }
       ]
   };
