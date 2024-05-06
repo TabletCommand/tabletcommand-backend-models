@@ -86,8 +86,8 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
             type: import("mongoose").Types.ObjectIdConstructor;
             auto: boolean;
         };
-        code: {
-            title: StringConstructor;
+        title: {
+            type: StringConstructor;
             default: string;
         };
         alarm: {

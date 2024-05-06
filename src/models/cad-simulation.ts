@@ -110,8 +110,8 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       type: Types.ObjectId,
       auto: true,
     },
-    code: {
-      title: String,
+    title: {
+      type: String,
       default: "",
     },
     alarm: {

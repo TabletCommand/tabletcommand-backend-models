@@ -95,8 +95,8 @@ async function CADSimulationModule(mongoose) {
             type: Types.ObjectId,
             auto: true,
         },
-        code: {
-            title: String,
+        title: {
+            type: String,
             default: "",
         },
         alarm: {
