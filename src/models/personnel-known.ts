@@ -7,6 +7,7 @@ import {
   ItemTypeFromTypeSchemaFunction,
   ModelTypeFromTypeSchemaFunction,
   ReplaceModelReturnType,
+  currentDate,
 } from "../helpers";
 
 export function PersonnelKnownSchema(mongoose: MongooseModule) {
@@ -46,7 +47,10 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
       type: String,
       default: ""
     },
-
+    modified: {
+      type: Date,
+      default: currentDate,
+    },
     departmentId: {
       type: String,
     },

@@ -40,7 +40,10 @@ export function PersonnelRosterSchema(mongoose: MongooseModule) {
     departmentId: {
       type: String,
     },
-
+    modified: {
+      type: Date,
+      default: currentDate,
+    },
     action: {
       type: String,
       default: "add", // The options are "add", "remove"

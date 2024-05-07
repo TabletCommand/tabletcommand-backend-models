@@ -32,6 +32,10 @@ function PersonnelRosterSchema(mongoose) {
         departmentId: {
             type: String,
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         action: {
             type: String,
             default: "add", // The options are "add", "remove"

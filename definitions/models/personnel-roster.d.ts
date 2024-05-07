@@ -29,6 +29,10 @@ export declare function PersonnelRosterSchema(mongoose: MongooseModule): import(
         departmentId: {
             type: StringConstructor;
         };
+        modified: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
         action: {
             type: StringConstructor;
             default: string;
@@ -60,6 +64,7 @@ export declare function PersonnelRosterModule(mongoose: MongooseModule): Promise
     PersonnelWorkCode: string;
     PersonnelUUID: string;
     departmentId: string;
+    modified: string;
     action: string;
     radioName: string;
     shiftStart: string;

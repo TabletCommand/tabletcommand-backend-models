@@ -38,6 +38,10 @@ function PersonnelKnownSchema(mongoose) {
             type: String,
             default: ""
         },
+        modified: {
+            type: Date,
+            default: helpers_1.currentDate,
+        },
         departmentId: {
             type: String,
         },

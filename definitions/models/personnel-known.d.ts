@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import * as uuid from "uuid";
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
+import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, currentDate } from "../helpers";
 export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
     _interface: import("../helpers").MongooseInterface<{
         _id: {
@@ -22,6 +22,10 @@ export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("
         PersonnelWorkCode: {
             type: StringConstructor;
             default: string;
+        };
+        modified: {
+            type: DateConstructor;
+            default: typeof currentDate;
         };
         departmentId: {
             type: StringConstructor;
@@ -67,6 +71,7 @@ export declare function PersonnelKnownModule(mongoose: MongooseModule): Promise<
     PersonnelName: string;
     PersonnelRank: string;
     PersonnelWorkCode: string;
+    modified: string;
     departmentId: string;
     uuid: string;
     radios: import("../helpers").MongooseInterface<{
