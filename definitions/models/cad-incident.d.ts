@@ -138,6 +138,10 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
             type: StringConstructor;
             default: string;
         };
+        channelDescription: {
+            type: StringConstructor;
+            default: string;
+        };
     }>[];
     Latitude: number;
     Longitude: number;
@@ -221,12 +225,15 @@ export declare function CADIncidentModule(mongoose: MongooseModule): Promise<imp
                 };
                 PersonnelRank: {
                     type: StringConstructor;
+                    default: string;
                 };
                 PersonnelWorkCode: {
                     type: StringConstructor;
+                    default: string;
                 };
                 PersonnelNote: {
                     type: StringConstructor;
+                    default: string;
                 };
             }>;
             _methods: unknown;

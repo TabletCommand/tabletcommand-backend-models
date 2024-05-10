@@ -11,19 +11,39 @@ import {
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { IncidentEventSchema } from "../incident-event";
-import ReportNumberModule from "./report-number";
+import {
+  CADPersonSchema,
+  RadioChannelSchema,
+  RecordSchema,
+  ReportNumberSchema,
+  SharedSourceSchema,
+  SharedToSchema,
+} from "./shared-incident";
 
 export function CADIncidentSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const IncidentEvent = IncidentEventSchema(mongoose);
-  const ReportNumber = ReportNumberModule(mongoose);
-
   const toJSONOpts = {
     versionKey: false,
     transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
       strictSchema(doc.schema, ret);
     },
   };
+
+  const { Schema, Types } = mongoose;
+  const IncidentEvent = IncidentEventSchema(mongoose);
+
+  // Share incident properties - copy to managed incidents
+  const CADPerson = CADPersonSchema(mongoose);
+  CADPerson.set("toJSON", toJSONOpts);
+  const RadioChannel = RadioChannelSchema(mongoose);
+  RadioChannel.set("toJSON", toJSONOpts);
+  const RecordValue = RecordSchema(mongoose);
+  RecordValue.set("toJSON", toJSONOpts);
+  const ReportNumber = ReportNumberSchema(mongoose);
+  ReportNumber.set("toJSON", toJSONOpts);
+  const SharedSource = SharedSourceSchema(mongoose);
+  SharedSource.set("toJSON", toJSONOpts);
+  const SharedTo = SharedToSchema(mongoose);
+  SharedTo.set("toJSON", toJSONOpts);
 
   // Currently, supporting type: "ack", item: "knife"
   const CADCommentOpts = createSchema(Schema, {
@@ -61,28 +81,6 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     id: false,
   });
   CADComment.set("toJSON", toJSONOpts);
-
-  const CADPerson = createSchema(Schema, {
-    PersonnelID: {
-      type: String,
-    },
-    PersonnelName: {
-      type: String,
-    },
-    PersonnelRank: {
-      type: String,
-    },
-    PersonnelWorkCode: {
-      type: String,
-    },
-    PersonnelNote: {
-      type: String,
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
-  CADPerson.set("toJSON", toJSONOpts);
 
   const CADUnit = createSchema(Schema, {
     UnitID: {
@@ -181,116 +179,6 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     id: false,
   });
   CADPriorIncident.set("toJSON", toJSONOpts);
-
-  const RadioChannel = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    channel: {
-      type: String,
-      default: "",
-    },
-    url: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
-  RadioChannel.set("toJSON", toJSONOpts);
-
-  const RecordValue = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    value: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
-  RecordValue.set("toJSON", toJSONOpts);
-
-  const ShareReason = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    date: {
-      type: Date,
-      default: currentDate,
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
-  ShareReason.set("toJSON", toJSONOpts);
-
-  const SharedTo = createSchema(Schema, {
-    departmentId: {
-      type: String,
-      default: "",
-    },
-    // Department Name
-    name: {
-      type: String,
-      default: "",
-    },
-    startAt: {
-      type: Date,
-      default: currentDate,
-    },
-    expireAt: {
-      type: Date,
-      default: currentDate,
-    },
-    active: {
-      type: Boolean,
-      default: true, // overwritten later, when expireAt is older than now
-    },
-    reasons: {
-      type: [ShareReason],
-      default: [],
-    }
-  }, {
-    _id: false,
-    id: false,
-  });
-  SharedTo.set("toJSON", toJSONOpts);
-
-  const SharedSource = createSchema(Schema, {
-    // Department Name (always matches record .departmentId)
-    name: {
-      type: String,
-      default: "",
-    },
-    // Output overwritten by backend when record is included in another department's list
-    isExternal: {
-      type: Boolean,
-      default: false,
-    },
-
-    // Output will be overwritten by backend
-    startAt: {
-      type: Date,
-    },
-    expireAt: {
-      type: Date,
-    },
-    reasons: {
-      type: [ShareReason],
-      default: [],
-    }
-  }, {
-    _id: false,
-    id: false,
-  });
-  SharedSource.set("toJSON", toJSONOpts);
 
   // Main schema
   const modelSchema = createSchema(Schema, {

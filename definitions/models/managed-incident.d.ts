@@ -1,6 +1,6 @@
 /// <reference types="mongoose" />
 import * as uuid from "uuid";
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
+import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
 export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
     _id: import("mongoose").Types.ObjectId;
     departmentId: string;
@@ -406,24 +406,6 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             default: string;
         };
     }>[];
-    radioChannels: import("../helpers").MongooseInterface<{
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-        channel: {
-            type: StringConstructor;
-            default: string;
-        };
-        url: {
-            type: StringConstructor;
-            default: string;
-        };
-        channelDescription: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
     units: import("../helpers").MongooseInterface<{
         UnitID: {
             type: StringConstructor;
@@ -591,18 +573,46 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
     local_id: string;
     AgencyID: string;
     isMandatory: boolean;
-    record: import("../helpers").MongooseInterface<{
-        value: {
+    radioChannels: import("../helpers").MongooseInterface<{
+        name: {
             type: StringConstructor;
             default: string;
         };
+        channel: {
+            type: StringConstructor;
+            default: string;
+        };
+        url: {
+            type: StringConstructor;
+            default: string;
+        };
+        channelDescription: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
+    record: import("../helpers").MongooseInterface<{
         name: {
+            type: StringConstructor;
+            default: string;
+        };
+        value: {
             type: StringConstructor;
             default: string;
         };
     }>;
     ReportNumber: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
         number: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
+    sharedTo: import("../helpers").MongooseInterface<{
+        departmentId: {
             type: StringConstructor;
             default: string;
         };
@@ -610,7 +620,67 @@ export declare function ManagedIncidentModule(mongoose: MongooseModule): Promise
             type: StringConstructor;
             default: string;
         };
+        startAt: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        expireAt: {
+            type: DateConstructor;
+            default: typeof currentDate;
+        };
+        active: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        reasons: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    date: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
     }>[];
+    sharedSource: import("../helpers").MongooseInterface<{
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
+        isExternal: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        startAt: {
+            type: DateConstructor;
+        };
+        expireAt: {
+            type: DateConstructor;
+        };
+        reasons: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    name: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    date: {
+                        type: DateConstructor;
+                        default: typeof currentDate;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

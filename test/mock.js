@@ -70,96 +70,96 @@ module.exports = function mockModule(dependencies) {
   };
 
   const cadSimulation = {
-      "departmentId": "123",
-      "active": true,
-      "friendlyId": "test-1",
-      "modifiedDate": 1544771122.997,
-      "modified": new Date(),
-      "title": "Structure Fire with Confirming stills and Rescues",
-      "notes": "3 story apartment building ",
-      "simulation": true,
-      "notify": true,
-      "rts": true,
-      "tags":
+    "departmentId": "123",
+    "active": true,
+    "friendlyId": "test-1",
+    "modifiedDate": 1544771122.997,
+    "modified": new Date(),
+    "title": "Structure Fire with Confirming stills and Rescues",
+    "notes": "3 story apartment building ",
+    "simulation": true,
+    "notify": true,
+    "rts": true,
+    "tags":
       [],
-      "incidentType": "Structure Fire ",
-      "streetName": "123 test Blvd.",
-      "locationComment": "3 Story Apartment building ",
-      "suite": "Apartment Building",
-      "CrossStreet1": "321 Ave",
-      "city": "Test",
-      "state": "Ca",
-      "lat": "55.784387",
-      "lon": "-122.228394",
-      "firemap": "",
-      "mapPages": "",
-      "tacticalChannel": "Test 2 ",
-      "commandChannel": "",
-      "radioChannels":
+    "incidentType": "Structure Fire ",
+    "streetName": "123 test Blvd.",
+    "locationComment": "3 Story Apartment building ",
+    "suite": "Apartment Building",
+    "CrossStreet1": "321 Ave",
+    "city": "Test",
+    "state": "Ca",
+    "lat": "55.784387",
+    "lon": "-122.228394",
+    "firemap": "",
+    "mapPages": "",
+    "tacticalChannel": "Test 2 ",
+    "commandChannel": "",
+    "radioChannels":
       [],
-      "closeDelay": 1800,
-      "priorIncidents": [],
-      "randomPriorIncidents": false,
-      "randomStaffing": false,
-      "sequences":
+    "closeDelay": 1800,
+    "priorIncidents": [],
+    "randomPriorIncidents": false,
+    "randomStaffing": false,
+    "sequences":
       [
-          {
-              "title": "test Alarm ",
-              "alarm": "1",
-              "sequenceId": 0,
-              "unitsConfig": {
-                      "alarmLevelAtDispatch": "1",
-                      "units":
-                      [
-                          "E13",
-                          "E4",
-                          "E18",
-                          "E16",
-                          "T2",
-                          "T6",
-                          "B4",
-                          "B2"
-                      ]
-              },
-              "comments":
+        {
+          "title": "test Alarm ",
+          "alarm": "1",
+          "sequenceId": 0,
+          "unitsConfig": {
+            "alarmLevelAtDispatch": "1",
+            "units":
               [
-                  {
-                      "comment": "4-2-2 alarm assignment ",
-                      "source": "DISP2"
-                  }
+                "E13",
+                "E4",
+                "E18",
+                "E16",
+                "T2",
+                "T6",
+                "B4",
+                "B2"
               ]
           },
-          {
-              "title": "2nd Alarm ",
-              "alarm": "2",
-              "sequenceId": 1,
-              "unitsConfig": {
-                "alarmLevelAtDispatch": "2",
-                "units":
-                [
-                    "E17",
-                    "E12",
-                    "E29",
-                    "T1",
-                    "B3"
-                ]
+          "comments":
+            [
+              {
+                "comment": "4-2-2 alarm assignment ",
+                "source": "DISP2"
               }
-          },
-          {
-              "title": "3 Alarm ",
-              "alarm": "3",
-              "sequenceId": 2,
-              "unitsConfig": {
-                "alarmLevelAtDispatch": "3",
-                "units":
-                [
-                    "E1",
-                    "E2",
-                    "E25",
-                    "T4"
-                ]
-              }
+            ]
+        },
+        {
+          "title": "2nd Alarm ",
+          "alarm": "2",
+          "sequenceId": 1,
+          "unitsConfig": {
+            "alarmLevelAtDispatch": "2",
+            "units":
+              [
+                "E17",
+                "E12",
+                "E29",
+                "T1",
+                "B3"
+              ]
           }
+        },
+        {
+          "title": "3 Alarm ",
+          "alarm": "3",
+          "sequenceId": 2,
+          "unitsConfig": {
+            "alarmLevelAtDispatch": "3",
+            "units":
+              [
+                "E1",
+                "E2",
+                "E25",
+                "T4"
+              ]
+          }
+        }
       ]
   };
 
@@ -393,7 +393,23 @@ module.exports = function mockModule(dependencies) {
       {
         UnitDispatchNumber: 4067677,
         UnitID: "MA31",
-        TimeDispatched: "2019-03-21T13:21:22-07:00"
+        TimeDispatched: "2019-03-21T13:21:22-07:00",
+        Personnel: [
+          {
+            "PersonnelID": "X14",
+            "PersonnelName": "Mary Smith",
+            "PersonnelNote": "X",
+            "PersonnelRank": "Captain",
+            "PersonnelWorkCode": "TRD"
+          },
+          {
+            "PersonnelID": "Y21",
+            "PersonnelName": "Nicholas Santos",
+            "PersonnelNote": "Y",
+            "PersonnelRank": "PM",
+            "PersonnelWorkCode": "REG"
+          }
+        ]
       }
     ],
     preference_location: "address",
@@ -401,7 +417,79 @@ module.exports = function mockModule(dependencies) {
     ClosedDateTime: "",
     closed_unix_date: 0,
     start_unix_date: 1553199671,
-    modified_unix_date: 1553201071.636
+    modified_unix_date: 1553201071.636,
+
+    // Share incident properties
+    ReportNumber: [
+      //
+      {
+        "name": "A",
+        "number": "07-0351"
+      },
+      {
+        "name": "B",
+        "number": "UM-02210"
+      }
+    ],
+    radioChannels: [
+      //
+      {
+        "name": "CMD",
+        "channel": "LOCAL Tone: 3",
+        "url": "http://example.com/stream1"
+      },
+      {
+        "name": "TAC",
+        "channel": "CDF TAC 10",
+        "url": "http://example.com/stream2"
+      }
+    ],
+    record: {
+      "name": "John",
+      "value": "Smith",
+    },
+    sharedSource: {
+      isExternal: true,
+      name: "Demo RTS Fire Department",
+      reasons: [
+        {
+          date: "2024-05-03T00:00:00.000Z",
+          name: "Unit B10 assigned"
+        }
+      ]
+    },
+    sharedTo: [
+      // 
+      {
+        active: true,
+        departmentId: "5195426cc4e016a988000965",
+        expireAt: "2024-08-01T10:20:30.400Z",
+        name: "Test Fire Department",
+        reasons: [
+          {
+            date: "2024-05-03T01:01:01.010Z",
+            name: "Unit M10 assigned"
+          }
+        ],
+        startAt: "2024-05-01T01:02:03.040Z",
+      }
+    ],
+  };
+
+  const cadIncidentBlock = {
+    "EntryDateTime": "2023-09-20T09:14:37-07:00",
+    "ClosedDateTime": "2023-09-20T10:36:36-07:00",
+    "source": "callType",
+    "departmentId": "64948d8f051d17033f77d034",
+    "AgencyIncidentCallTypeDescription": "OTH, MISCELLANEOUS",
+    "IncidentNumber": "A23031",
+    "ReportNumber": [
+      {
+        "name": "Incident",
+        "number": "CA68"
+      }
+    ],
+    "createdAt": "2023-09-20T16:14:30.000+0000"
   };
 
   const cadStatus = {
@@ -839,6 +927,22 @@ module.exports = function mockModule(dependencies) {
         modified_unix_date: 1554682590.51667,
         note: "",
         personnelOnScene: 2,
+        Personnel: [
+          {
+            "PersonnelID": "X14",
+            "PersonnelName": "Mary Smith",
+            "PersonnelNote": "X",
+            "PersonnelRank": "Captain",
+            "PersonnelWorkCode": "TRD"
+          },
+          {
+            "PersonnelID": "Y21",
+            "PersonnelName": "Nicholas Santos",
+            "PersonnelNote": "Y",
+            "PersonnelRank": "PM",
+            "PersonnelWorkCode": "REG"
+          }
+        ],
         status: "Arrived",
         status_unix_date: 1554682217,
         time: "",
@@ -846,7 +950,62 @@ module.exports = function mockModule(dependencies) {
       }
     ],
     userId: "5b3e78cc944e2a18d5222424",
-    uuid: "579E2F47-7F63-4351-B41F-4A345D680B8F"
+    uuid: "579E2F47-7F63-4351-B41F-4A345D680B8F",
+    // Share incident properties
+    ReportNumber: [
+      //
+      {
+        "name": "A",
+        "number": "07-0351"
+      },
+      {
+        "name": "B",
+        "number": "UM-02210"
+      }
+    ],
+    radioChannels: [
+      //
+      {
+        "name": "CMD",
+        "channel": "LOCAL Tone: 3",
+        "url": "http://example.com/stream1"
+      },
+      {
+        "name": "TAC",
+        "channel": "CDF TAC 10",
+        "url": "http://example.com/stream2"
+      }
+    ],
+    record: {
+      "name": "John",
+      "value": "Smith",
+    },
+    sharedSource: {
+      isExternal: true,
+      name: "Demo RTS Fire Department",
+      reasons: [
+        {
+          date: "2024-05-03T00:00:00.000Z",
+          name: "Unit B10 assigned"
+        }
+      ]
+    },
+    sharedTo: [
+      // 
+      {
+        active: true,
+        departmentId: "5195426cc4e016a988000965",
+        expireAt: "2024-08-01T10:20:30.400Z",
+        name: "Test Fire Department",
+        reasons: [
+          {
+            date: "2024-05-03T01:01:01.010Z",
+            name: "Unit M10 assigned"
+          }
+        ],
+        startAt: "2024-05-01T01:02:03.040Z",
+      }
+    ],
   };
 
   const monitor = {
@@ -1082,6 +1241,7 @@ module.exports = function mockModule(dependencies) {
     assignment,
     battalion,
     cadIncident,
+    cadIncidentBlock,
     cadStatus,
     cadStatusMap,
     cadVehicle,

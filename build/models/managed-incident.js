@@ -4,57 +4,15 @@ exports.ManagedIncidentModule = void 0;
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
+const shared_incident_1 = require("./schema/shared-incident");
 async function ManagedIncidentModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const ReportNumber = (0, helpers_1.createSchema)(Schema, {
-        number: {
-            type: String,
-            default: "",
-        },
-        name: {
-            type: String,
-            default: ""
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    const Record = (0, helpers_1.createSchema)(Schema, {
-        value: {
-            type: String,
-            default: "",
-        },
-        name: {
-            type: String,
-            default: ""
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    const Person = (0, helpers_1.createSchema)(Schema, {
-        PersonnelID: {
-            type: String,
-        },
-        PersonnelName: {
-            type: String,
-        },
-        PersonnelRank: {
-            type: String,
-            default: ""
-        },
-        PersonnelWorkCode: {
-            type: String,
-            default: ""
-        },
-        PersonnelNote: {
-            type: String,
-            default: ""
-        }
-    }, {
-        _id: false,
-        id: false,
-    });
+    const CADPerson = (0, shared_incident_1.CADPersonSchema)(mongoose);
+    const RadioChannel = (0, shared_incident_1.RadioChannelSchema)(mongoose);
+    const RecordValue = (0, shared_incident_1.RecordSchema)(mongoose);
+    const ReportNumber = (0, shared_incident_1.ReportNumberSchema)(mongoose);
+    const SharedSource = (0, shared_incident_1.SharedSourceSchema)(mongoose);
+    const SharedTo = (0, shared_incident_1.SharedToSchema)(mongoose);
     const HistoryItem = (0, helpers_1.createSchema)(Schema, {
         message: {
             type: String,
@@ -195,7 +153,7 @@ async function ManagedIncidentModule(mongoose) {
             default: 0,
         },
         Personnel: {
-            type: [Person],
+            type: [CADPerson],
             default: [],
         },
         status: {
@@ -400,27 +358,6 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const RadioChannel = (0, helpers_1.createSchema)(Schema, {
-        name: {
-            type: String,
-            default: "",
-        },
-        channel: {
-            type: String,
-            default: "",
-        },
-        url: {
-            type: String,
-            default: "",
-        },
-        channelDescription: {
-            type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -538,10 +475,6 @@ async function ManagedIncidentModule(mongoose) {
             type: [HistoryItem],
             default: [],
         },
-        radioChannels: {
-            type: [RadioChannel],
-            default: [],
-        },
         units: {
             type: [IncidentUnit],
             default: [],
@@ -567,13 +500,28 @@ async function ManagedIncidentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        // Share incident properties
+        radioChannels: {
+            type: [RadioChannel],
+            default: [],
+        },
         record: {
-            type: Record,
+            type: RecordValue,
         },
         ReportNumber: {
             type: [ReportNumber],
             default: [],
-        }
+        },
+        // Shared Incident, copied by iOS
+        sharedTo: {
+            type: [SharedTo],
+            default: [],
+        },
+        // Include current department name, to share with external departments
+        // other properties are set at output
+        sharedSource: {
+            type: SharedSource,
+        },
     }, {
         collection: "massive_incident_managed",
     });

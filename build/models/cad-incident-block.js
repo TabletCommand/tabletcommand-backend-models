@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CADIncidentBlockModule = void 0;
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
-const report_number_1 = require("./schema/report-number");
+const shared_incident_1 = require("./schema/shared-incident");
 async function CADIncidentBlockModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const ReportNumber = (0, report_number_1.default)(mongoose);
+    const ReportNumber = (0, shared_incident_1.ReportNumberSchema)(mongoose);
     // Simplified schema.
     // Payload should confirm to cad-incident (more or less)
     const modelSchema = (0, helpers_1.createSchema)(Schema, {

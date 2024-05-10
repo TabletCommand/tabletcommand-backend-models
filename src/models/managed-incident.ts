@@ -12,64 +12,24 @@ import {
   MongooseModule,
   ReplaceModelReturnType,
 } from "../helpers";
+import {
+  CADPersonSchema,
+  RadioChannelSchema,
+  RecordSchema,
+  ReportNumberSchema,
+  SharedSourceSchema,
+  SharedToSchema,
+} from "./schema/shared-incident";
 
 export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
-  const ReportNumber = createSchema(Schema, {
-    number: {
-      type: String,
-      default: "",
-    },
-    name: {
-      type: String,
-      default: ""
-    },
-  },
-    {
-      _id: false,
-      id: false,
-    });
-
-  const Record = createSchema(Schema, {
-    value: {
-      type: String,
-      default: "",
-    },
-    name: {
-      type: String,
-      default: ""
-    },
-  },
-    {
-      _id: false,
-      id: false,
-    });
-
-  const Person = createSchema(Schema, {
-    PersonnelID: {
-      type: String,
-    },
-    PersonnelName: {
-      type: String,
-    },
-    PersonnelRank: {
-      type: String,
-      default: ""
-    },
-    PersonnelWorkCode: {
-      type: String,
-      default: ""
-    },
-    PersonnelNote: {
-      type: String,
-      default: ""
-    }
-  },
-    {
-      _id: false,
-      id: false,
-    });
+  const CADPerson = CADPersonSchema(mongoose);
+  const RadioChannel = RadioChannelSchema(mongoose);
+  const RecordValue = RecordSchema(mongoose);
+  const ReportNumber = ReportNumberSchema(mongoose);
+  const SharedSource = SharedSourceSchema(mongoose);
+  const SharedTo = SharedToSchema(mongoose);
 
   const HistoryItem = createSchema(Schema, {
     message: {
@@ -213,7 +173,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       default: 0,
     },
     Personnel: {
-      type: [Person],
+      type: [CADPerson],
       default: [],
     },
     status: {
@@ -423,28 +383,6 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const RadioChannel = createSchema(Schema, {
-    name: {
-      type: String,
-      default: "",
-    },
-    channel: {
-      type: String,
-      default: "",
-    },
-    url: {
-      type: String,
-      default: "",
-    },
-    channelDescription: {
-      type: String,
-      default: "",
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
-
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -568,10 +506,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: [HistoryItem],
       default: [],
     },
-    radioChannels: {
-      type: [RadioChannel],
-      default: [],
-    },
+
     units: {
       type: [IncidentUnit],
       default: [],
@@ -597,13 +532,30 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+
+    // Share incident properties
+    radioChannels: {
+      type: [RadioChannel],
+      default: [],
+    },
     record: {
-      type: Record,
+      type: RecordValue,
     },
     ReportNumber: {
       type: [ReportNumber],
       default: [],
-    }
+    },
+    // Shared Incident, copied by iOS
+    sharedTo: {
+      type: [SharedTo],
+      default: [],
+    },
+    // Include current department name, to share with external departments
+    // other properties are set at output
+    sharedSource: {
+      type: SharedSource,
+    },
+
   }, {
     collection: "massive_incident_managed",
   });

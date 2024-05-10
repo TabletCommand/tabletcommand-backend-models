@@ -288,6 +288,10 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                         type: StringConstructor;
                         default: string;
                     };
+                    channelDescription: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -387,12 +391,15 @@ export declare function CADIncidentSchema(mongoose: MongooseModule): import("mon
                             };
                             PersonnelRank: {
                                 type: StringConstructor;
+                                default: string;
                             };
                             PersonnelWorkCode: {
                                 type: StringConstructor;
+                                default: string;
                             };
                             PersonnelNote: {
                                 type: StringConstructor;
+                                default: string;
                             };
                         }>;
                         _methods: unknown;

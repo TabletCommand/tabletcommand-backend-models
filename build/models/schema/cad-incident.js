@@ -5,17 +5,29 @@ const helpers_1 = require("../../helpers");
 const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const incident_event_1 = require("../incident-event");
-const report_number_1 = require("./report-number");
+const shared_incident_1 = require("./shared-incident");
 function CADIncidentSchema(mongoose) {
-    const { Schema, Types } = mongoose;
-    const IncidentEvent = (0, incident_event_1.IncidentEventSchema)(mongoose);
-    const ReportNumber = (0, report_number_1.default)(mongoose);
     const toJSONOpts = {
         versionKey: false,
         transform(doc, ret) {
             strictSchema(doc.schema, ret);
         },
     };
+    const { Schema, Types } = mongoose;
+    const IncidentEvent = (0, incident_event_1.IncidentEventSchema)(mongoose);
+    // Share incident properties - copy to managed incidents
+    const CADPerson = (0, shared_incident_1.CADPersonSchema)(mongoose);
+    CADPerson.set("toJSON", toJSONOpts);
+    const RadioChannel = (0, shared_incident_1.RadioChannelSchema)(mongoose);
+    RadioChannel.set("toJSON", toJSONOpts);
+    const RecordValue = (0, shared_incident_1.RecordSchema)(mongoose);
+    RecordValue.set("toJSON", toJSONOpts);
+    const ReportNumber = (0, shared_incident_1.ReportNumberSchema)(mongoose);
+    ReportNumber.set("toJSON", toJSONOpts);
+    const SharedSource = (0, shared_incident_1.SharedSourceSchema)(mongoose);
+    SharedSource.set("toJSON", toJSONOpts);
+    const SharedTo = (0, shared_incident_1.SharedToSchema)(mongoose);
+    SharedTo.set("toJSON", toJSONOpts);
     // Currently, supporting type: "ack", item: "knife"
     const CADCommentOpts = (0, helpers_1.createSchema)(Schema, {
         type: {
@@ -51,27 +63,6 @@ function CADIncidentSchema(mongoose) {
         id: false,
     });
     CADComment.set("toJSON", toJSONOpts);
-    const CADPerson = (0, helpers_1.createSchema)(Schema, {
-        PersonnelID: {
-            type: String,
-        },
-        PersonnelName: {
-            type: String,
-        },
-        PersonnelRank: {
-            type: String,
-        },
-        PersonnelWorkCode: {
-            type: String,
-        },
-        PersonnelNote: {
-            type: String,
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    CADPerson.set("toJSON", toJSONOpts);
     const CADUnit = (0, helpers_1.createSchema)(Schema, {
         UnitID: {
             type: String,
@@ -165,110 +156,6 @@ function CADIncidentSchema(mongoose) {
         id: false,
     });
     CADPriorIncident.set("toJSON", toJSONOpts);
-    const RadioChannel = (0, helpers_1.createSchema)(Schema, {
-        name: {
-            type: String,
-            default: "",
-        },
-        channel: {
-            type: String,
-            default: "",
-        },
-        url: {
-            type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    RadioChannel.set("toJSON", toJSONOpts);
-    const RecordValue = (0, helpers_1.createSchema)(Schema, {
-        name: {
-            type: String,
-            default: "",
-        },
-        value: {
-            type: String,
-            default: "",
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    RecordValue.set("toJSON", toJSONOpts);
-    const ShareReason = (0, helpers_1.createSchema)(Schema, {
-        name: {
-            type: String,
-            default: "",
-        },
-        date: {
-            type: Date,
-            default: helpers_1.currentDate,
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
-    ShareReason.set("toJSON", toJSONOpts);
-    const SharedTo = (0, helpers_1.createSchema)(Schema, {
-        departmentId: {
-            type: String,
-            default: "",
-        },
-        // Department Name
-        name: {
-            type: String,
-            default: "",
-        },
-        startAt: {
-            type: Date,
-            default: helpers_1.currentDate,
-        },
-        expireAt: {
-            type: Date,
-            default: helpers_1.currentDate,
-        },
-        active: {
-            type: Boolean,
-            default: true, // overwritten later, when expireAt is older than now
-        },
-        reasons: {
-            type: [ShareReason],
-            default: [],
-        }
-    }, {
-        _id: false,
-        id: false,
-    });
-    SharedTo.set("toJSON", toJSONOpts);
-    const SharedSource = (0, helpers_1.createSchema)(Schema, {
-        // Department Name (always matches record .departmentId)
-        name: {
-            type: String,
-            default: "",
-        },
-        // Output overwritten by backend when record is included in another department's list
-        isExternal: {
-            type: Boolean,
-            default: false,
-        },
-        // Output will be overwritten by backend
-        startAt: {
-            type: Date,
-        },
-        expireAt: {
-            type: Date,
-        },
-        reasons: {
-            type: [ShareReason],
-            default: [],
-        }
-    }, {
-        _id: false,
-        id: false,
-    });
-    SharedSource.set("toJSON", toJSONOpts);
     // Main schema
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
