@@ -65,6 +65,14 @@ export async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
       type: Number,
       default: 0,
     },
+    retries: {
+      type: Number,
+      default: 0,
+    },
+    notificationSent: {
+      type: Boolean,
+      default: false,
+    },
     retryPayload: {
       type: RetryPayload,
       default: {},

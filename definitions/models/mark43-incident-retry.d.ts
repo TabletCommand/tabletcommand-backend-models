@@ -6,6 +6,8 @@ export declare function Mark43IncidentRetryModule(mongoose: MongooseModule): Pro
     modified: string;
     active: boolean;
     attempts: number;
+    retries: number;
+    notificationSent: boolean;
     retryPayload: import("../helpers").MongooseInterface<{
         departmentId: {
             type: NumberConstructor;
