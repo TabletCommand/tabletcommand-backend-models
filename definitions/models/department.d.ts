@@ -25,6 +25,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     partialApiKey: string;
     cadEmailUsername: string;
     notificationEmails: string[];
+    rosteringEnabled: boolean;
     externalNotificationsEnabled: boolean;
     cadBidirectionalEnabled: boolean;
     cadOneWayVehiclesEnabled: boolean;

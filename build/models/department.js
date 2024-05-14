@@ -684,6 +684,10 @@ async function DepartmentModule(mongoose) {
             type: [String],
             default: []
         },
+        rosteringEnabled: {
+            type: Boolean,
+            default: false,
+        },
         externalNotificationsEnabled: {
             type: Boolean,
             default: false

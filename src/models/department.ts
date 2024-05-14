@@ -730,6 +730,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: [String],
       default: []
     },
+    rosteringEnabled: {
+      type: Boolean,
+      default: false,
+    },
     externalNotificationsEnabled: {
       type: Boolean,
       default: false

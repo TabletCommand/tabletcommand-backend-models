@@ -43,6 +43,10 @@ export declare function PersonnelImportSchema(mongoose: MongooseModule): import(
                         type: BooleanConstructor;
                         default: boolean;
                     };
+                    source: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -112,6 +116,10 @@ export declare function PersonnelImportModule(mongoose: MongooseModule): Promise
         active: {
             type: BooleanConstructor;
             default: boolean;
+        };
+        source: {
+            type: StringConstructor;
+            default: string;
         };
     }>[];
     shiftStartTime: number;

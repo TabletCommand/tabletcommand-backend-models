@@ -20,6 +20,10 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       type: Boolean,
       default: true,
     },
+    source: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
     id: false,
