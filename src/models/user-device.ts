@@ -183,6 +183,13 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
       type: String,
       default: "MED",
     },
+    // When running in a production env, this flag is ignored
+    // When running in a non-production env (qa, staging), process this user only if this is true
+    // This flag would be set by a cron or some other method
+    allowInStaging: {
+      type: Boolean,
+      default: false,
+    },
   }, {
     collection: "massive_user_device",
   });

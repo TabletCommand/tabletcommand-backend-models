@@ -129,6 +129,7 @@ export declare function UserDeviceModule(mongoose: MongooseModule): Promise<impo
     }>;
     offDuty: boolean;
     criticalAlertsVolume: string;
+    allowInStaging: boolean;
 }, {}> & {
     __methods?: unknown;
 }>;
