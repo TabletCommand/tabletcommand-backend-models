@@ -4,14 +4,14 @@ import {
   MongooseModule,
   currentDate,
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface RadioType {
   radioName: string,
   active: boolean,
 }
 
-export interface PersonnelKnownType {
+export interface PersonnelKnown {
   _id: Types.ObjectId,
   PersonnelID: string,
   PersonnelName: string,
@@ -42,7 +42,7 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<PersonnelKnownType>({
+  const modelSchema = new Schema<PersonnelKnown>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -105,5 +105,7 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
 
 export default async function PersonnelKnownModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelKnownSchema(mongoose);
-  return mongoose.model<PersonnelKnownType>("PersonnelKnown", modelSchema);
+  return mongoose.model<PersonnelKnown>("PersonnelKnown", modelSchema);
 }
+
+export interface PersonnelKnownModel extends Model<PersonnelKnown> { }

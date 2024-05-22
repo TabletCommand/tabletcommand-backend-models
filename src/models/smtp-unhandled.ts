@@ -1,11 +1,11 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   MongooseDocument,
   MongooseModule,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-export interface SMTPUnhandledType {
+export interface SMTPUnhandled {
   _id: Types.ObjectId,
   email: string,
   message: string,
@@ -14,7 +14,7 @@ export interface SMTPUnhandledType {
 export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<SMTPUnhandledType>({
+  const modelSchema = new Schema<SMTPUnhandled>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -44,5 +44,7 @@ export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<SMTPUnhandledType>("SMTPUnhandled", modelSchema);
+  return mongoose.model<SMTPUnhandled>("SMTPUnhandled", modelSchema);
 }
+
+export interface SMTPUnhandledModel extends Model<SMTPUnhandled> { }

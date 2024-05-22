@@ -1,5 +1,5 @@
 // import * as uuid from "uuid";
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 import {
   MongooseModule,
 } from "../helpers";
@@ -12,7 +12,7 @@ interface MapPropertiesType {
   itemId: string,
   download: boolean,
 }
-export interface EsriType {
+export interface Esri {
   _id: Types.ObjectId,
   runAt: Date,
   departmentId: Types.ObjectId
@@ -51,7 +51,7 @@ export function EsriSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<EsriType>({
+  const modelSchema = new Schema<Esri>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -131,7 +131,7 @@ export function EsriSchema(mongoose: MongooseModule) {
   modelSchema.set("autoIndex", false);
 
   // Deprecated. Check which apps rely on .id instead of using ._id.
-  modelSchema.virtual("id").get(function (this: EsriType) {
+  modelSchema.virtual("id").get(function (this: Esri) {
     return this._id.toHexString();
   });
 
@@ -145,5 +145,7 @@ export function EsriSchema(mongoose: MongooseModule) {
 
 export default async function EsriModule(mongoose: MongooseModule) {
   const modelSchema = EsriSchema(mongoose);
-  return mongoose.model<EsriType>("Esri", modelSchema);
+  return mongoose.model<Esri>("Esri", modelSchema);
 }
+
+export interface EsriModel extends Model<Esri> { }

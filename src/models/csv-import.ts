@@ -1,10 +1,10 @@
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
 
-export interface CSVImportType {
+export interface CSVImport {
   _id: Types.ObjectId,
   batchId: string,
   importCreated: Date,
@@ -26,7 +26,7 @@ export interface CSVImportType {
 export default async function CSVImportModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<CSVImportType>({
+  const modelSchema = new Schema<CSVImport>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -88,5 +88,7 @@ export default async function CSVImportModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CSVImportType>("CSVImport", modelSchema);
+  return mongoose.model<CSVImport>("CSVImport", modelSchema);
 }
+
+export interface CSVImportModel extends Model<CSVImport> { }

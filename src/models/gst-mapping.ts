@@ -4,9 +4,9 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
-export interface GSTMappingType {
+export interface GSTMapping {
   _id: Types.ObjectId
   departmentId: string,
   gstAgency: string,
@@ -28,7 +28,7 @@ export interface GSTMappingType {
 export default async function GSTMappingModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<GSTMappingType>({
+  const modelSchema = new Schema<GSTMapping>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -90,5 +90,7 @@ export default async function GSTMappingModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<GSTMappingType>("GSTMapping", modelSchema);
+  return mongoose.model<GSTMapping>("GSTMapping", modelSchema);
 }
+
+export interface GSTMappingModel extends Model<GSTMapping> { }

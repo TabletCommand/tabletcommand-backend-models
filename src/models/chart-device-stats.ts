@@ -2,7 +2,7 @@ import {
   MongooseModule,
   MongooseDocument,
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
@@ -15,7 +15,7 @@ interface ChartItemType {
   app: string,
   appSemVer: string,
 }
-export interface ChartDeviceStatsType {
+export interface ChartDeviceStats {
   _id: Types.ObjectId,
   dateAt: Date,
   departmentId: string,
@@ -63,7 +63,7 @@ export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<ChartDeviceStatsType>({
+  const modelSchema = new Schema<ChartDeviceStats>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -99,5 +99,7 @@ export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<ChartDeviceStatsType>("ChartDeviceStat", modelSchema);
+  return mongoose.model<ChartDeviceStats>("ChartDeviceStat", modelSchema);
 }
+
+export interface ChartDeviceStatsModel extends Model<ChartDeviceStats> { }

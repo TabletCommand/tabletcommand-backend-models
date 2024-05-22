@@ -4,6 +4,7 @@ import {
   MongooseModule,
 } from "../helpers";
 import ColorModule, { ColorSchemaType } from "./schema/color";
+import { Model } from "mongoose";
 
 interface StatusOptionValueType {
   name: string,
@@ -25,7 +26,7 @@ interface StatusOptionType {
   cadKey: string,
   cadValues: StatusOptionValueType[]
 }
-export interface CADStatusType {
+export interface CADStatus {
   uuid: string,
   departmentId: string,
   modifiedDate: number,
@@ -120,7 +121,7 @@ export default async function CADStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<CADStatusType>({
+  const modelSchema = new Schema<CADStatus>({
     uuid: {
       type: String,
       index: true,
@@ -195,5 +196,7 @@ export default async function CADStatusModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CADStatusType>("CADStatus", modelSchema);
+  return mongoose.model<CADStatus>("CADStatus", modelSchema);
 }
+
+export interface CADStatusModel extends Model<CADStatus> { }

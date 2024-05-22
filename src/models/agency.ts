@@ -6,7 +6,7 @@ import {
 } from "../helpers";
 import AgencyCronConfigModule, { AgencyCronConfigType } from "./schema/agency-cron-config";
 import AgencySAMLModule, { AgencySAMLSchemaType } from "./schema/agency-saml";
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 
 interface CrossStaffedUnitType {
   radioName: string,
@@ -14,7 +14,7 @@ interface CrossStaffedUnitType {
   alwaysCrossStaff: boolean,
 }
 
-export interface AgencyType {
+export interface Agency {
   _id: Types.ObjectId
   code: string,
   name: string,
@@ -69,7 +69,7 @@ export function AgencySchema(mongoose: MongooseModule) {
     locationToCAD: 0
   };
 
-  const modelSchema = new Schema<AgencyType>({
+  const modelSchema = new Schema<Agency>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -161,5 +161,7 @@ export function AgencySchema(mongoose: MongooseModule) {
 
 export default async function AgencyModule(mongoose: MongooseModule) {
   const modelSchema = AgencySchema(mongoose);
-  return mongoose.model<AgencyType>("Agency", modelSchema);
+  return mongoose.model<Agency>("Agency", modelSchema);
 }
+
+export interface AgencyModel extends Model<Agency> { }

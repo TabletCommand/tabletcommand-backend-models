@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -13,7 +14,7 @@ interface RetryPayloadType {
   activityType: string,
   relatedEvent: RelatedEventType
 }
-export interface Mark43IncidentRetryType {
+export interface Mark43IncidentRetry {
   departmentId: string,
   created: Date,
   modified: Date,
@@ -60,7 +61,7 @@ export default async function Mark43IncidentRetryModule(mongoose: MongooseModule
     id: false,
   });
 
-  const modelSchema = new Schema<Mark43IncidentRetryType>({
+  const modelSchema = new Schema<Mark43IncidentRetry>({
     departmentId: {
       type: String,
       default: "",
@@ -106,5 +107,7 @@ export default async function Mark43IncidentRetryModule(mongoose: MongooseModule
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<Mark43IncidentRetryType>("Mark43IncidentRetry", modelSchema);
+  return mongoose.model<Mark43IncidentRetry>("Mark43IncidentRetry", modelSchema);
 }
+
+export interface Mark43IncidentRetryModel extends Model<Mark43IncidentRetry> { }

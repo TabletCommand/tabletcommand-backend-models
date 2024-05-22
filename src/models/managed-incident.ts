@@ -18,7 +18,7 @@ import {
   SharedToSchema,
   SharedToSchemaType,
 } from "./schema/shared-incident";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface HistoryItemType {
   message: string,
@@ -117,7 +117,7 @@ interface IncidentChecklistType {
   local_id: string,
   id: string,
 }
-export interface ManagedIncidentType {
+export interface ManagedIncident {
   _id: Types.ObjectId,
   departmentId: string,
   userId: string,
@@ -536,7 +536,7 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<ManagedIncidentType>({
+  const modelSchema = new Schema<ManagedIncident>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -713,7 +713,7 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  modelSchema.virtual("id").get(function (this: ManagedIncidentType) {
+  modelSchema.virtual("id").get(function (this: ManagedIncident) {
     return this._id.toString();
   });
 
@@ -724,5 +724,7 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
 
 
   modelSchema.plugin(mongooseLeanVirtuals);
-  return mongoose.model<ManagedIncidentType>("ManagedIncident", modelSchema);
+  return mongoose.model<ManagedIncident>("ManagedIncident", modelSchema);
 }
+
+export interface ManagedIncidentModel extends Model<ManagedIncident> { }

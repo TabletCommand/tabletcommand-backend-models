@@ -1,4 +1,4 @@
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseDocument,
@@ -13,7 +13,7 @@ interface EventUserType {
   radioName: string,
   userId: string,
 }
-export interface IncidentEventType {
+export interface IncidentEvent {
   _id: Types.ObjectId,
   departmentId: string,
   IncidentNumber: string,
@@ -58,7 +58,7 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<IncidentEventType>({
+  const modelSchema = new Schema<IncidentEvent>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -154,5 +154,7 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
 
 export default async function IncidentEventModule(mongoose: MongooseModule) {
   const modelSchema = IncidentEventSchema(mongoose);
-  return mongoose.model<IncidentEventType>("IncidentEvent", modelSchema);
+  return mongoose.model<IncidentEvent>("IncidentEvent", modelSchema);
 }
+
+export interface IncidentEventModel extends Model<IncidentEvent> { }

@@ -5,7 +5,7 @@ import {
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import { IncidentEventSchema, IncidentEventType } from "../incident-event";
+import { IncidentEventSchema, IncidentEvent } from "../incident-event";
 import {
   CADPersonSchema,
   CADPersonSchemaType,
@@ -136,7 +136,7 @@ export interface CADIncidentSchemaType {
   Longitude: number,
   Comment: CADCommentType[]
   units: CADUnitType[]
-  events: IncidentEventType[],
+  events: IncidentEvent[],
   preference_location: string,
   simulation: boolean,
   simulationId: string,

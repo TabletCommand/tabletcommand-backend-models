@@ -7,14 +7,14 @@ import {
 import EsriAuthSchema, { EsriAuthSchemaType } from "./schema/esri-auth";
 import EsriErrorSchema, { EsriErrorSchemaType } from "./schema/esri-error";
 import PubNubTokenSchema, { PubNubTokenSchemaType } from "./schema/pubnub-token";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface VehicleSchemaType {
   radioName: string,
   vehicleId: string,
 }
 
-export interface UserType {
+export interface User {
   nick: string,
   email: string,
   name: string,
@@ -88,7 +88,7 @@ export function UserSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<UserType>({
+  const modelSchema = new Schema<User>({
     nick: {
       type: String,
       default: "",
@@ -336,5 +336,7 @@ export function UserSchema(mongoose: MongooseModule) {
 
 export default async function UserModule(mongoose: MongooseModule) {
   const modelSchema = UserSchema(mongoose);
-  return mongoose.model<UserType>("User", modelSchema);
+  return mongoose.model<User>("User", modelSchema);
 }
+
+export interface UserModel extends Model<User> { }

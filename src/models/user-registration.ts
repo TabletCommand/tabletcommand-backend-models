@@ -1,9 +1,10 @@
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
 
-export interface UserRegistrationType {
+export interface UserRegistration {
   email: string,
   name: string,
   firstName: string,
@@ -26,7 +27,7 @@ export interface UserRegistrationType {
 export default async function UserRegistrationModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  const modelSchema = new Schema<UserRegistrationType>({
+  const modelSchema = new Schema<UserRegistration>({
     email: {
       type: String,
       default: "",
@@ -106,5 +107,7 @@ export default async function UserRegistrationModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<UserRegistrationType>("UserRegistration", modelSchema);
+  return mongoose.model<UserRegistration>("UserRegistration", modelSchema);
 }
+
+export interface UserRegistrationModel extends Model<UserRegistration> { }

@@ -6,8 +6,8 @@ import {
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 import { ReportNumberSchema, ReportNumberSchemaType } from "./schema/shared-incident";
-import { Types } from "mongoose";
-export interface CADIncidentBlockType {
+import { Model, Types } from "mongoose";
+export interface CADIncidentBlock {
   _id: Types.ObjectId
   departmentId: string,
   source: string,
@@ -25,7 +25,7 @@ export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
 
-  const modelSchema = new Schema<CADIncidentBlockType>({
+  const modelSchema = new Schema<CADIncidentBlock>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -77,5 +77,7 @@ export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<CADIncidentBlockType>("CADIncidentBlock", modelSchema);
+  return mongoose.model<CADIncidentBlock>("CADIncidentBlock", modelSchema);
 }
+
+export interface CADIncidentBlockModel extends Model<CADIncidentBlock> { }

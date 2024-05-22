@@ -1,10 +1,11 @@
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
 import CADStatusOptionSelectedModule, { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
 
-export interface CADVehicleStatusHistoryType {
+export interface CADVehicleStatusHistory {
   departmentId: string,
   vehicleId: string,
   radioName: string,
@@ -25,7 +26,7 @@ export default async function CADVehicleStatusHistoryModule(mongoose: MongooseMo
   const { Schema } = mongoose;
   const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
-  const modelSchema = new Schema<CADVehicleStatusHistoryType>({
+  const modelSchema = new Schema<CADVehicleStatusHistory>({
     departmentId: {
       type: String,
       default: "",
@@ -92,5 +93,7 @@ export default async function CADVehicleStatusHistoryModule(mongoose: MongooseMo
   });
 
   modelSchema.set("autoIndex", false);
-  return mongoose.model<CADVehicleStatusHistoryType>("CADVehicleStatusHistory", modelSchema);
+  return mongoose.model<CADVehicleStatusHistory>("CADVehicleStatusHistory", modelSchema);
 }
+
+export interface CADVehicleStatusHistoryModel extends Model<CADVehicleStatusHistory> { }

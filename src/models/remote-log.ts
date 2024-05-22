@@ -3,7 +3,7 @@ import {
   MongooseModule,
   currentDate,
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface FileSchemaType {
   originalName: string,
@@ -15,7 +15,7 @@ interface FileSchemaType {
   received: Date,
 }
 
-export interface RemoteLogType {
+export interface RemoteLog {
   _id: Types.ObjectId,
   departmentId: string,
   userId: string,
@@ -67,7 +67,7 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<RemoteLogType>({
+  const modelSchema = new Schema<RemoteLog>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -123,5 +123,7 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<RemoteLogType>("RemoteLog", modelSchema);
+  return mongoose.model<RemoteLog>("RemoteLog", modelSchema);
 }
+
+export interface RemoteLogModel extends Model<RemoteLog> { }

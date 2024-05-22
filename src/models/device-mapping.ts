@@ -3,9 +3,9 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
-export interface DeviceMappingType {
+export interface DeviceMapping {
   _id: Types.ObjectId
   departmentId: string,
   userId: string,
@@ -28,7 +28,7 @@ export interface DeviceMappingType {
 export default async function DeviceMappingModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<DeviceMappingType>({
+  const modelSchema = new Schema<DeviceMapping>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -94,5 +94,7 @@ export default async function DeviceMappingModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<DeviceMappingType>("DeviceMapping", modelSchema);
+  return mongoose.model<DeviceMapping>("DeviceMapping", modelSchema);
 }
+
+export interface DeviceMappingModel extends Model<DeviceMapping> { }

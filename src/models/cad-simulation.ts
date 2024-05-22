@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -42,7 +42,7 @@ interface SequenceType {
   comments: SimCommentType[]
 }
 
-export interface CADSimulationType {
+export interface CADSimulation {
   uuid: string,
   departmentId: string,
   modifiedDate: number,
@@ -198,7 +198,7 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
     }
   }, {});
 
-  const modelSchema = new Schema<CADSimulationType>({
+  const modelSchema = new Schema<CADSimulation>({
     // Internal
     uuid: {
       type: String,
@@ -341,5 +341,7 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CADSimulationType>("CADSimulation", modelSchema);
+  return mongoose.model<CADSimulation>("CADSimulation", modelSchema);
 }
+
+export interface CADSimulationModel extends Model<CADSimulation> { }

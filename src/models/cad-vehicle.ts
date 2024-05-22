@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -8,7 +9,7 @@ interface StationType {
   code: string,
   name: string,
 }
-export interface CADVehicleType {
+export interface CADVehicle {
   uuid: string,
   departmentId: string,
   modifiedDate: number,
@@ -39,7 +40,7 @@ export default async function CADVehicleModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<CADVehicleType>({
+  const modelSchema = new Schema<CADVehicle>({
     // Internal
     uuid: {
       type: String,
@@ -101,5 +102,7 @@ export default async function CADVehicleModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CADVehicleType>("CADVehicle", modelSchema);
+  return mongoose.model<CADVehicle>("CADVehicle", modelSchema);
 }
+
+export interface CADVehicleModel extends Model<CADVehicle> { }

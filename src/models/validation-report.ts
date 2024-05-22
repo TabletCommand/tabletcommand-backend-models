@@ -1,11 +1,11 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
 import ValidationErrorItemModule, { ValidationErrorItemSchemaType } from "./schema/validation-error-item";
 
-export interface ValidationReportType {
+export interface ValidationReport {
   _id: Types.ObjectId,
   departmentId: Types.ObjectId,
   location: ValidationErrorItemSchemaType[],
@@ -22,7 +22,7 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const ValidationErrorItem = ValidationErrorItemModule(mongoose);
 
-  const modelSchema = new Schema<ValidationReportType>({
+  const modelSchema = new Schema<ValidationReport>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -75,5 +75,7 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
 
 export default async function ValidationReportModule(mongoose: MongooseModule) {
   const modelSchema = ValidationReportSchema(mongoose);
-  return mongoose.model<ValidationReportType>("ValidationReport", modelSchema);
+  return mongoose.model<ValidationReport>("ValidationReport", modelSchema);
 }
+
+export interface ValidationReportModel extends Model<ValidationReport> { }

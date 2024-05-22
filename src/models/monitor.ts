@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -6,7 +6,7 @@ import {
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-export interface MonitorType {
+export interface Monitor {
   _id: Types.ObjectId,
   departmentId: string,
   agencyId: string,
@@ -21,7 +21,7 @@ export interface MonitorType {
 export default async function MonitorModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<MonitorType>({
+  const modelSchema = new Schema<Monitor>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -75,5 +75,7 @@ export default async function MonitorModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<MonitorType>("Monitor", modelSchema);
+  return mongoose.model<Monitor>("Monitor", modelSchema);
 }
+
+export interface MonitorModel extends Model<Monitor> { }

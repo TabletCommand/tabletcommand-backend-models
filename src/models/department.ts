@@ -8,7 +8,7 @@ import {
 } from "../helpers";
 import ColorModule, { ColorSchemaType } from "./schema/color";
 import PubNubTokenSchema, { PubNubTokenSchemaType } from "./schema/pubnub-token";
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 
 interface Mark43StatusConfigType {
   TimeDispatched: string[],
@@ -151,7 +151,7 @@ interface ShareIncidentRuleType {
   configuration: Mixed,
 }
 
-interface DepartmentType {
+export interface Department {
   _id: Types.ObjectId,
   uuid: string,
   department: string,
@@ -902,7 +902,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
   });
 
   // Main schema
-  const modelSchema = new Schema<DepartmentType>({
+  const modelSchema = new Schema<Department>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -1359,7 +1359,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     updatedAt: "modified",
   });
 
-  modelSchema.virtual("id").get(function (this: DepartmentType) {
+  modelSchema.virtual("id").get(function (this: Department) {
     return this._id.toHexString();
   });
 
@@ -1371,5 +1371,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<DepartmentType>("Department", modelSchema);
+  return mongoose.model<Department>("Department", modelSchema);
 }
+
+export interface DepartmentModel extends Model<Department> { }

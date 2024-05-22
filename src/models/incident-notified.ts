@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -14,7 +14,7 @@ interface UnitType {
   UnitID: string,
   UnitDispatchNumber: string,
 }
-export interface IncidentNotifiedType {
+export interface IncidentNotified {
   _id: Types.ObjectId,
   departmentId: string,
   IncidentNumber: string,
@@ -60,7 +60,7 @@ export default async function IncidentNotifiedModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<IncidentNotifiedType>({
+  const modelSchema = new Schema<IncidentNotified>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -100,5 +100,7 @@ export default async function IncidentNotifiedModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<IncidentNotifiedType>("IncidentNotified", modelSchema);
+  return mongoose.model<IncidentNotified>("IncidentNotified", modelSchema);
 }
+
+export interface IncidentNotifiedModel extends Model<IncidentNotified> { }

@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -44,7 +44,7 @@ interface SoundSchemaType {
   android: SoundSchemaItemType,
 }
 
-export interface UserDeviceType {
+export interface UserDevice {
   _id: Types.ObjectId,
   userId: string,
   departmentId: string,
@@ -192,7 +192,7 @@ export default async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<UserDeviceType>({
+  const modelSchema = new Schema<UserDevice>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -244,5 +244,7 @@ export default async function UserDeviceModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<UserDeviceType>("UserDevice", modelSchema);
+  return mongoose.model<UserDevice>("UserDevice", modelSchema);
 }
+
+export interface UserDeviceModel extends Model<UserDevice> { }

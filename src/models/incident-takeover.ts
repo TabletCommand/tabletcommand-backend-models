@@ -2,9 +2,9 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
-export interface IncidentTakeoverType {
+export interface IncidentTakeover {
   _id: Types.ObjectId,
   departmentId: string,
   uuid: string,
@@ -23,7 +23,7 @@ export interface IncidentTakeoverType {
 export default async function IncidentTakeoverModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<IncidentTakeoverType>({
+  const modelSchema = new Schema<IncidentTakeover>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -88,5 +88,7 @@ export default async function IncidentTakeoverModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<IncidentTakeoverType>("IncidentTakeover", modelSchema);
+  return mongoose.model<IncidentTakeover>("IncidentTakeover", modelSchema);
 }
+
+export interface IncidentTakeoverModel extends Model<IncidentTakeover> { }

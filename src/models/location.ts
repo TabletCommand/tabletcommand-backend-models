@@ -8,9 +8,9 @@ import {
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ColorModule, { ColorSchemaType } from "./schema/color";
 import GeoJSONPointModule, { GeoJSONPointType } from "./schema/geojson-point";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
-export interface LocationType {
+export interface Location {
   _id: Types.ObjectId,
   departmentId: string,
   userId: string,
@@ -185,7 +185,7 @@ export default async function LocationModule(mongoose: MongooseModule) {
     },
   });
 
-  const modelSchema = new Schema<LocationType>(modelSchemaDefinition, {
+  const modelSchema = new Schema<Location>(modelSchemaDefinition, {
     collection: "massive_location",
   });
 
@@ -226,5 +226,7 @@ export default async function LocationModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
-  return mongoose.model<LocationType>("Location", modelSchema);
+  return mongoose.model<Location>("Location", modelSchema);
 }
+
+export interface LocationModel extends Model<Location> { }

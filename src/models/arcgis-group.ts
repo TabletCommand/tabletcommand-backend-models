@@ -1,4 +1,5 @@
 // import * as uuid from "uuid";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -34,8 +35,7 @@ interface ArcGISDepartmentType {
 
 }
 
-export interface ArcGISGroupType {
-
+export interface ArcGISGroup {
   groupId: string,
   title: string,
   protected: boolean
@@ -144,7 +144,7 @@ export default async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<ArcGISGroupType>({
+  const modelSchema = new Schema<ArcGISGroup>({
     // Unique, to be able to use replaceInto
     groupId: {
       type: String,
@@ -219,5 +219,7 @@ export default async function ArcGISGroupModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<ArcGISGroupType>("ArcGISGroup", modelSchema);
+  return mongoose.model<ArcGISGroup>("ArcGISGroup", modelSchema);
 }
+
+export interface ArcGISGroupModel extends Model<ArcGISGroup> { }

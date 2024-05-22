@@ -1,10 +1,10 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   MongooseModule,
   currentDate,
 } from "../helpers";
 
-export interface PersonnelRosterType {
+export interface PersonnelRoster {
   _id: Types.ObjectId,
   PersonnelID: string,
   PersonnelName: string,
@@ -23,7 +23,7 @@ export interface PersonnelRosterType {
 export function PersonnelRosterSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<PersonnelRosterType>({
+  const modelSchema = new Schema<PersonnelRoster>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -89,5 +89,7 @@ export function PersonnelRosterSchema(mongoose: MongooseModule) {
 
 export default async function PersonnelRosterModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelRosterSchema(mongoose);
-  return mongoose.model<PersonnelRosterType>("PersonnelRoster", modelSchema);
+  return mongoose.model<PersonnelRoster>("PersonnelRoster", modelSchema);
 }
+
+export interface PersonnelRosterModel extends Model<PersonnelRoster> { }

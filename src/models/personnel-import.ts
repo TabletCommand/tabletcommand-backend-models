@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -10,7 +10,7 @@ interface RadioType {
   active: boolean,
   source: string,
 }
-export interface PersonnelImportType {
+export interface PersonnelImport {
   _id: Types.ObjectId,
   PersonnelID: string,
   PersonnelName: string,
@@ -53,7 +53,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<PersonnelImportType>({
+  const modelSchema = new Schema<PersonnelImport>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -147,5 +147,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
 
 export default async function PersonnelImportModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelImportSchema(mongoose);
-  return mongoose.model<PersonnelImportType>("PersonnelImport", modelSchema);
+  return mongoose.model<PersonnelImport>("PersonnelImport", modelSchema);
 }
+
+export interface PersonnelImportModel extends Model<PersonnelImport> { }

@@ -7,7 +7,7 @@ import {
   retrieveCurrentUnixTime
 } from "../helpers";
 
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 interface BattalionUnitType {
   _id: Types.ObjectId,
   name: string,
@@ -26,7 +26,7 @@ interface BattalionUnitType {
   agencyId: Types.ObjectId
 }
 
-export interface BattalionType {
+export interface Battalion {
   _id: Types.ObjectId
   name: string,
   active: boolean,
@@ -118,7 +118,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
   });
 
 
-  const modelSchema = new Schema<BattalionType>({
+  const modelSchema = new Schema<Battalion>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -208,5 +208,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
 
 export default async function BattalionModule(mongoose: MongooseModule) {
   const modelSchema = BattalionSchema(mongoose);
-  return mongoose.model<BattalionType>("Battalion", modelSchema);
+  return mongoose.model<Battalion>("BattalionType", modelSchema);
 }
+
+export interface BattalionModel extends Model<Battalion> { }

@@ -4,13 +4,13 @@ import {
   currentDate,
 } from "../helpers";
 import ColorModule, { ColorSchemaType } from "./schema/color";
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 
 interface TypeSchemaType {
   type: string,
   typeOpts: Mixed
 }
-export interface MessageType {
+export interface Message {
   _id: Types.ObjectId
   departmentId: string,
   userId: string,
@@ -47,7 +47,7 @@ export default async function MessageModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<MessageType>({
+  const modelSchema = new Schema<Message>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -119,5 +119,7 @@ export default async function MessageModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<MessageType>("Message", modelSchema);
+  return mongoose.model<Message>("Message", modelSchema);
 }
+
+export interface MessageModel extends Model<Message> { }

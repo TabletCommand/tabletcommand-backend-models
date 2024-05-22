@@ -5,9 +5,9 @@ import {
   MongooseDocument,
   retrieveCurrentUnixTime
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
-export interface ChecklistItemType {
+export interface ChecklistItem {
   _id: Types.ObjectId
   position: number,
   userId: string,
@@ -26,7 +26,7 @@ export interface ChecklistItemType {
 export function ChecklistItemSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<ChecklistItemType>({
+  const modelSchema = new Schema<ChecklistItem>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -95,5 +95,7 @@ export default async function ChecklistItemModule(mongoose: MongooseModule) {
   });
 
 
-  return mongoose.model("ChecklistItem", modelSchema);
+  return mongoose.model<ChecklistItem>("ChecklistItem", modelSchema);
 }
+
+export interface ChecklistItemModel extends Model<ChecklistItem> { }

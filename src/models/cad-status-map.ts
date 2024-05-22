@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -9,7 +10,7 @@ interface ToStatusIdType {
   position: number,
 }
 
-export interface CADStatusMapType {
+export interface CADStatusMap {
   departmentId: string,
   modifiedDate: number,
   modified: Date,
@@ -41,7 +42,7 @@ export default async function CADStatusMapModule(mongoose: MongooseModule) {
   });
 
   // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
-  const modelSchema = new Schema<CADStatusMapType>({
+  const modelSchema = new Schema<CADStatusMap>({
     departmentId: {
       type: String,
       default: "",
@@ -75,5 +76,7 @@ export default async function CADStatusMapModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CADStatusMapType>("CADStatusMap", modelSchema);
+  return mongoose.model<CADStatusMap>("CADStatusMap", modelSchema);
 }
+
+export interface CADStatusMapModel extends Model<CADStatusMap> { }

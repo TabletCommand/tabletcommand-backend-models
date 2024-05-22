@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   MongooseModule,
   MongooseDocument,
@@ -11,7 +11,7 @@ interface ChartItemType {
   item: string,
   dateAt: Date,
 }
-export interface ChartManagedIncidentType {
+export interface ChartManagedIncident {
   _id: Types.ObjectId,
   dateAt: Date,
   departmentId: string,
@@ -37,7 +37,7 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
     id: false,
   });
 
-  const modelSchema = new Schema<ChartManagedIncidentType>({
+  const modelSchema = new Schema<ChartManagedIncident>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -82,5 +82,7 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<ChartManagedIncidentType>("ChartManagedIncident", modelSchema);
+  return mongoose.model<ChartManagedIncident>("ChartManagedIncident", modelSchema);
 }
+
+export interface ChartManagedIncidentModel extends Model<ChartManagedIncident> { }

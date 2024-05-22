@@ -4,12 +4,13 @@ import {
   MongooseModule,
 } from "../helpers";
 import CADStatusOptionSelectedModule, { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
+import { Model } from "mongoose";
 
 interface DestinationType {
   address: string,
   name: string,
 }
-export interface CADVehicleStatusType {
+export interface CADVehicleStatus {
   uuid: string,
   departmentId: string,
   vehicleId: string,
@@ -55,7 +56,7 @@ export default async function CADVehicleStatusModule(mongoose: MongooseModule) {
   });
 
 
-  const modelSchema = new Schema<CADVehicleStatusType>({
+  const modelSchema = new Schema<CADVehicleStatus>({
     uuid: {
       type: String,
       index: true,
@@ -163,5 +164,7 @@ export default async function CADVehicleStatusModule(mongoose: MongooseModule) {
   });
 
   modelSchema.set("autoIndex", false);
-  return mongoose.model<CADVehicleStatusType>("CADVehicleStatus", modelSchema);
+  return mongoose.model<CADVehicleStatus>("CADVehicleStatus", modelSchema);
 }
+
+export interface CADVehicleStatusModel extends Model<CADVehicleStatus> { }

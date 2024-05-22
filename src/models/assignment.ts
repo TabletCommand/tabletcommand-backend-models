@@ -5,9 +5,9 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
-export type AssignmentType = {
+export type Assignment = {
   _id: Types.ObjectId
   uuid: string,
   active: boolean,
@@ -28,7 +28,7 @@ export type AssignmentType = {
 export default async function AssignmentModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<AssignmentType>({
+  const modelSchema = new Schema<Assignment>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -85,7 +85,7 @@ export default async function AssignmentModule(mongoose: MongooseModule) {
     collection: "massive_assignment",
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.virtual("id").get(function (this: AssignmentType) {
+  modelSchema.virtual("id").get(function (this: Assignment) {
     return this._id.toString();
   });
   modelSchema.set("toJSON", {
@@ -93,5 +93,7 @@ export default async function AssignmentModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  return mongoose.model<AssignmentType>("Assignment", modelSchema);
+  return mongoose.model<Assignment>("Assignment", modelSchema);
 }
+
+export interface AssignmentModel extends Model<Assignment> { }

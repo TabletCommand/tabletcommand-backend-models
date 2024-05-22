@@ -4,8 +4,9 @@ import {
 import * as uuid from "uuid";
 
 import OAuthSchema, { OAuthSchemaType } from "./schema/oauth";
+import { Model } from "mongoose";
 
-export interface SessionType {
+export interface Session {
   _id: string,
   nick: string,
   email: string,
@@ -28,12 +29,12 @@ export default async function SessionModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
   const OAuthToken = OAuthSchema(mongoose);
 
-  function requiredButAllowEmptyString(this: SessionType) {
+  function requiredButAllowEmptyString(this: Session) {
     // Workaround to set required, and allow empty id
     return typeof this.departmentId === "string";
   }
 
-  const modelSchema = new Schema<SessionType>({
+  const modelSchema = new Schema<Session>({
     _id: {
       type: String,
       default: uuid.v4,
@@ -95,7 +96,7 @@ export default async function SessionModule(mongoose: MongooseModule) {
     this._id = this.get("token"); // Copy _id from token
     next();
   });
-  modelSchema.virtual("id").get(function (this: SessionType) {
+  modelSchema.virtual("id").get(function (this: Session) {
     return this._id.toString();
   });
 
@@ -105,5 +106,7 @@ export default async function SessionModule(mongoose: MongooseModule) {
   });
 
 
-  return mongoose.model<SessionType>("Session", modelSchema);
+  return mongoose.model<Session>("Session", modelSchema);
 }
+
+export interface SessionModel extends Model<Session> { }

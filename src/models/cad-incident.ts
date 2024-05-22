@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 import {
   MongooseModule,
 } from "../helpers";
@@ -20,3 +21,5 @@ export default async function CADIncidentModule(mongoose: MongooseModule) {
 
   return mongoose.model<CADIncidentSchemaType>("CADIncident", modelSchema);
 }
+
+export interface CADIncidentModel extends Model<CADIncidentSchemaType> { }

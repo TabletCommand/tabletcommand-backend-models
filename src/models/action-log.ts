@@ -3,9 +3,9 @@ import {
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 
-export interface ActionLogType {
+export interface ActionLog {
   _id: Types.ObjectId,
   departmentId: string,
   email: string,
@@ -24,7 +24,7 @@ export interface ActionLogType {
 
 export default async function ActionLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
-  const modelSchema = new Schema<ActionLogType>({
+  const modelSchema = new Schema<ActionLog>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -77,5 +77,7 @@ export default async function ActionLogModule(mongoose: MongooseModule) {
     collection: "massive_action_log",
   });
   modelSchema.set("autoIndex", false);
-  return mongoose.model<ActionLogType>("ActionLog", modelSchema);
+  return mongoose.model<ActionLog>("ActionLog", modelSchema);
 }
+
+export interface ActionLogModel extends Model<ActionLog> { }

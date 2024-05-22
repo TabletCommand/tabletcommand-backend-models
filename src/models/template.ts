@@ -5,7 +5,7 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime
 } from "../helpers";
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface ChecklistOptionType {
   name: string,
@@ -18,7 +18,7 @@ interface GroupOptionType {
   position: number,
   uuid: string,
 }
-export interface TemplateType {
+export interface Template {
   _id: Types.ObjectId,
   position: number,
   userId: string,
@@ -73,7 +73,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<TemplateType>({
+  const modelSchema = new Schema<Template>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -129,7 +129,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
     collection: "massive_template",
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.virtual("id").get(function (this: TemplateType) {
+  modelSchema.virtual("id").get(function (this: Template) {
     return this._id.toHexString();
   });
 
@@ -161,5 +161,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
 
 export default async function TemplateModule(mongoose: MongooseModule) {
   const modelSchema = TemplateSchema(mongoose);
-  return mongoose.model<TemplateType>("Template", modelSchema);
+  return mongoose.model<Template>("Template", modelSchema);
 }
+
+export interface TemplateModel extends Model<Template> { }

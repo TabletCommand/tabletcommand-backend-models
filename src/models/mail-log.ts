@@ -1,11 +1,11 @@
-import { Mixed, Types } from "mongoose";
+import { Mixed, Model, Types } from "mongoose";
 import {
   MongooseModule,
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
 
-export interface MailLogType {
+export interface MailLog {
   _id: Types.ObjectId,
   mailId: string,
   event: string,
@@ -27,7 +27,7 @@ export interface MailLogType {
 export default async function MailLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<MailLogType>({
+  const modelSchema = new Schema<MailLog>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -96,5 +96,7 @@ export default async function MailLogModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<MailLogType>("MailLog", modelSchema);
+  return mongoose.model<MailLog>("MailLog", modelSchema);
 }
+
+export interface MailLogModel extends Model<MailLog> { }

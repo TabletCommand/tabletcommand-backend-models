@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   MongooseDocument,
   MongooseModule,
@@ -6,7 +6,7 @@ import {
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-export interface JobLogType {
+export interface JobLog {
   _id: Types.ObjectId,
   jobName: string,
   host: string,
@@ -20,7 +20,7 @@ export interface JobLogType {
 export default async function JobLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<JobLogType>({
+  const modelSchema = new Schema<JobLog>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -65,5 +65,7 @@ export default async function JobLogModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<JobLogType>("JobLog", modelSchema);
+  return mongoose.model<JobLog>("JobLog", modelSchema);
 }
+
+export interface JobLogModel extends Model<JobLog> { }

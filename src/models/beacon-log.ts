@@ -3,9 +3,9 @@ import {
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Types, Mixed } from "mongoose";
+import { Types, Mixed, Model } from "mongoose";
 
-export interface BeaconLogType {
+export interface BeaconLog {
   _id: Types.ObjectId,
   departmentId: string,
   userId: string,
@@ -17,7 +17,7 @@ export interface BeaconLogType {
 export default async function BeaconLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<BeaconLogType>({
+  const modelSchema = new Schema<BeaconLog>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -47,5 +47,7 @@ export default async function BeaconLogModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<BeaconLogType>("BeaconLog", modelSchema);
+  return mongoose.model<BeaconLog>("BeaconLog", modelSchema);
 }
+
+export interface BeaconLogModel extends Model<BeaconLog> { }

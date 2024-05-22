@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   MongooseModule,
   MongooseDocument,
@@ -7,7 +7,7 @@ import {
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
-export interface ChartUserType {
+export interface ChartUser {
   _id: Types.ObjectId,
   dateAt: Date,
   departmentId: string,
@@ -18,7 +18,7 @@ export interface ChartUserType {
 export default async function ChartUserModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<ChartUserType>({
+  const modelSchema = new Schema<ChartUser>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -58,5 +58,7 @@ export default async function ChartUserModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<ChartUserType>("ChartUser", modelSchema);
+  return mongoose.model<ChartUser>("ChartUser", modelSchema);
 }
+
+export interface ChartUserModel extends Model<ChartUser> { }
