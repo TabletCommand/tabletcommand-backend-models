@@ -10,7 +10,6 @@ export interface ActionLog {
   departmentId: string,
   email: string,
   userId: string,
-  emai: string,
   action: string,
   object: Mixed,
   before: Mixed,
