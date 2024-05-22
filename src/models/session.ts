@@ -1,11 +1,9 @@
 import {
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
   MongooseModule,
 } from "../helpers";
 import * as uuid from "uuid";
 
-import OAuthSchema from "./schema/oauth";
+import OAuthSchema, { OAuthSchemaType } from "./schema/oauth";
 
 export interface SessionType {
   _id: string,
@@ -23,16 +21,16 @@ export interface SessionType {
   remoteAddress: string,
   deviceId: string,
   authSource: string,
-  oAuth: OAuthTokenType,
+  oAuth: OAuthSchemaType,
 }
 
 export default async function SessionModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
   const OAuthToken = OAuthSchema(mongoose);
 
-  function requiredButAllowEmptyString(this: { myField: unknown }) {
+  function requiredButAllowEmptyString(this: SessionType) {
     // Workaround to set required, and allow empty id
-    return typeof this.myField === "string";
+    return typeof this.departmentId === "string";
   }
 
   const modelSchema = new Schema<SessionType>({
@@ -94,21 +92,18 @@ export default async function SessionModule(mongoose: MongooseModule) {
   modelSchema.set("autoIndex", false);
 
   modelSchema.pre("save", function (next) {
-    this._id = this.get("token") as string; // Copy _id from token
+    this._id = this.get("token"); // Copy _id from token
     next();
+  });
+  modelSchema.virtual("id").get(function (this: SessionType) {
+    return this._id.toString();
   });
 
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
   });
 
-  modelSchema.virtual("id").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
-    return this._id.toString();
-  });
 
   return mongoose.model<SessionType>("Session", modelSchema);
 }

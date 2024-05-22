@@ -87,7 +87,7 @@ export function PersonnelRosterSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function PersonnelRosterModule(mongoose: MongooseModule) {
+export default async function PersonnelRosterModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelRosterSchema(mongoose);
   return mongoose.model<PersonnelRosterType>("PersonnelRoster", modelSchema);
 }

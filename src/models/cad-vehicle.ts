@@ -22,7 +22,7 @@ export interface CADVehicleType {
   backupDate: Date,
 }
 
-export async function CADVehicleModule(mongoose: MongooseModule) {
+export default async function CADVehicleModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
   const Station = new Schema<StationType>({

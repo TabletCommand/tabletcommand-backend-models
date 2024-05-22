@@ -61,7 +61,7 @@ async function wireModels(mongoose: MongooseModule) {
   };
 }
 
-export { ActionLog, ActionLogType } from "./models/action-log";
+export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
 export { Assignment, AssignmentModel } from "./models/assignment";

@@ -103,7 +103,7 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function PersonnelKnownModule(mongoose: MongooseModule) {
+export default async function PersonnelKnownModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelKnownSchema(mongoose);
   return mongoose.model<PersonnelKnownType>("PersonnelKnown", modelSchema);
 }

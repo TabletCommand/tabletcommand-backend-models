@@ -2,18 +2,21 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import * as uuid from "uuid";
 import {
   currentDate,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
-  MongooseDocument,
   MongooseModule,
 } from "../helpers";
 import {
   CADPersonSchema,
+  CADPersonSchemaType,
   RadioChannelSchema,
+  RadioChannelSchemaType,
   RecordSchema,
+  RecordSchemaType,
   ReportNumberSchema,
+  ReportNumberSchemaType,
   SharedSourceSchema,
+  SharedSourceSchemaType,
   SharedToSchema,
+  SharedToSchemaType,
 } from "./schema/shared-incident";
 import { Types } from "mongoose";
 
@@ -55,7 +58,7 @@ interface IncidentUnitType {
   modified_unix_date: number,
   note: string,
   personnelOnScene: number,
-  Personnel: CADPersonType[],
+  Personnel: CADPersonSchemaType[],
   status: string,
   status_unix_date: number,
   time: string,
@@ -164,11 +167,11 @@ export interface ManagedIncidentType {
   local_id: string,
   AgencyID: string,
   isMandatory: boolean,
-  radioChannels: RadioChannelType[],
-  record: RecordValueType,
-  ReportNumber: ReportNumberType[],
-  sharedTo: SharedToType[],
-  sharedSource: SharedSourceType,
+  radioChannels: RadioChannelSchemaType[],
+  record: RecordSchemaType,
+  ReportNumber: ReportNumberSchemaType[],
+  sharedTo: SharedToSchemaType[],
+  sharedSource: SharedSourceSchemaType,
 }
 
 export default async function ManagedIncidentModule(mongoose: MongooseModule) {
@@ -710,18 +713,15 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
+  modelSchema.virtual("id").get(function (this: ManagedIncidentType) {
+    return this._id.toString();
+  });
+
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id;
-    },
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
 
   modelSchema.plugin(mongooseLeanVirtuals);
   return mongoose.model<ManagedIncidentType>("ManagedIncident", modelSchema);

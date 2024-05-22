@@ -5,7 +5,7 @@ import {
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-import { ReportNumberSchema } from "./schema/shared-incident";
+import { ReportNumberSchema, ReportNumberSchemaType } from "./schema/shared-incident";
 import { Types } from "mongoose";
 export interface CADIncidentBlockType {
   _id: Types.ObjectId
@@ -15,10 +15,10 @@ export interface CADIncidentBlockType {
   AgencyIncidentCallTypeDescription: string,
   EntryDateTime: string,
   ClosedDateTime: string,
-  ReportNumber: ReportNumberType[]
+  ReportNumber: ReportNumberSchemaType[]
 }
 
-export async function CADIncidentBlockModule(mongoose: MongooseModule) {
+export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const ReportNumber = ReportNumberSchema(mongoose);
 

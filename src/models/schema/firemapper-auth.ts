@@ -7,7 +7,7 @@ interface FireMapperEncryptedType {
   encryptedData: string,
 }
 
-export interface FireMapperAuth {
+export interface FireMapperAuthType {
   username: string,
   encrypted: FireMapperEncryptedType
   encryptedAccessCode: FireMapperEncryptedType
@@ -30,7 +30,7 @@ export default function FireMapperAuthSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FireMapperAuth = new Schema<FireMapperAuth>({
+  const FireMapperAuth = new Schema<FireMapperAuthType>({
     username: {
       type: String,
       default: "",

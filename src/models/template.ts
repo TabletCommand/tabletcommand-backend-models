@@ -1,16 +1,8 @@
 import * as uuid from "uuid";
 
 import {
-  createModel,
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  ItemTypeFromTypeSchemaFunction,
-  ModelFromSchema,
-  ModelTypeFromTypeSchemaFunction,
-  MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
 import { Types } from "mongoose";
@@ -137,18 +129,18 @@ export function TemplateSchema(mongoose: MongooseModule) {
     collection: "massive_template",
   });
   modelSchema.set("autoIndex", false);
+  modelSchema.virtual("id").get(function (this: TemplateType) {
+    return this._id.toHexString();
+  });
+
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
+    transform(doc, ret) {
       strictSchema(doc.schema as typeof modelSchema, ret);
-      ret.id = ret._id;
     },
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
-    return this._id.toHexString();
-  });
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
     Object.keys(ret).forEach(function (element) {

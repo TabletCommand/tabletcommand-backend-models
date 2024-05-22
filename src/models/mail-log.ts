@@ -24,7 +24,7 @@ export interface MailLogType {
   modified: Date,
 }
 
-export async function MailLogModule(mongoose: MongooseModule) {
+export default async function MailLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const modelSchema = new Schema<MailLogType>({

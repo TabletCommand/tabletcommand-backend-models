@@ -3,8 +3,6 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
   MongooseDocument,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
   retrieveCurrentUnixTime
 } from "../helpers";
 import { Types } from "mongoose";
@@ -25,7 +23,7 @@ export interface ChecklistItemType {
   description: string,
 }
 
-export default async function ChecklistItemModule(mongoose: MongooseModule) {
+export function ChecklistItemSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const modelSchema = new Schema<ChecklistItemType>({
@@ -80,19 +78,22 @@ export default async function ChecklistItemModule(mongoose: MongooseModule) {
     collection: "massive_checklist_item_sync",
   });
   modelSchema.set("autoIndex", false);
+  return modelSchema;
+}
 
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id;
-    },
-  });
+export default async function ChecklistItemModule(mongoose: MongooseModule) {
+  const modelSchema = ChecklistItemSchema(mongoose);
 
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
 
-  return mongoose.model<ChecklistItemType>("ChecklistItem", modelSchema);
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
+
+  return mongoose.model("ChecklistItem", modelSchema);
 }

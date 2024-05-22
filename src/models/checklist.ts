@@ -4,12 +4,10 @@ import {
   MongooseModule,
   MongooseDocument,
   currentDate,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
   retrieveCurrentUnixTime
 } from "../helpers";
 
-import { ChecklistItemType } from "./checklist-item";
+import { ChecklistItemSchema, ChecklistItemType } from "./checklist-item";
 import { Types } from "mongoose";
 
 export interface ChecklistType {
@@ -91,18 +89,16 @@ export function ChecklistSchema(mongoose: MongooseModule) {
     collection: "massive_checklist_sync",
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id;
-    },
-  });
-
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
+
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
 
   return modelSchema;
 }

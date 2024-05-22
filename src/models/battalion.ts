@@ -4,9 +4,6 @@ import {
   MongooseModule,
   MongooseDocument,
   currentDate,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
-  FieldsOfDocument,
   retrieveCurrentUnixTime
 } from "../helpers";
 
@@ -45,19 +42,8 @@ export interface BattalionType {
   units: BattalionUnitType[],
 }
 
-// TODO-VERSION_CHANGE: Check if id is still send to json
-
 export function BattalionSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
-  const toJSONOpts = {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      strictSchema(doc.schema, ret);
-      ret.id = ret._id;
-    },
-  };
-
   const BattalionUnit = new Schema<BattalionUnitType>({
     _id: {
       type: Schema.Types.ObjectId,
@@ -119,7 +105,18 @@ export function BattalionSchema(mongoose: MongooseModule) {
     },
   }, {});
 
-  BattalionUnit.set("toJSON", toJSONOpts);
+  BattalionUnit.virtual("id").get(function (this: MongooseDocument) {
+    // tslint:disable-next-line: no-unsafe-any
+    return this._id.toString();
+  });
+  BattalionUnit.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    },
+  });
+
 
   const modelSchema = new Schema<BattalionType>({
     _id: {
@@ -179,19 +176,18 @@ export function BattalionSchema(mongoose: MongooseModule) {
     collection: "massive_battalion",
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      strictSchema(doc.schema as typeof modelSchema, ret);
-      ret.id = ret._id;
-    },
-  });
-
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    },
+  });
+
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
     Object.keys(ret).forEach(function (element) {

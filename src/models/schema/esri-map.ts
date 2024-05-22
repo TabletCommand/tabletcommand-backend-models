@@ -32,7 +32,7 @@ interface SimpleMapSchemaType {
 
 interface OfflineMapType extends SimpleMapSchemaType { status: string }
 
-interface MapType extends SimpleMapSchemaType {
+export interface EsriMapType extends SimpleMapSchemaType {
   mapLayers: MapLayerType[]
   baseMap: BaseMapType
   offline: OfflineMapType[]
@@ -146,7 +146,7 @@ export default function EsriMapSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Map = new Schema<MapType>({
+  const Map = new Schema<EsriMapType>({
     ...SimpleMapSchema,
     mapLayers: {
       type: [MapLayer],

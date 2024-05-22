@@ -145,7 +145,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function PersonnelImportModule(mongoose: MongooseModule) {
+export default async function PersonnelImportModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelImportSchema(mongoose);
   return mongoose.model<PersonnelImportType>("PersonnelImport", modelSchema);
 }

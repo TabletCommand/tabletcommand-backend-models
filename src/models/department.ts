@@ -3,13 +3,11 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 import {
   currentDate,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import ColorModule from "./schema/color";
-import PubNubTokenSchema from "./schema/pubnub-token";
+import ColorModule, { ColorSchemaType } from "./schema/color";
+import PubNubTokenSchema, { PubNubTokenSchemaType } from "./schema/pubnub-token";
 import { Mixed, Types } from "mongoose";
 
 interface Mark43StatusConfigType {
@@ -101,7 +99,7 @@ interface CustomButtonsType {
   allowExternal: boolean,
   defaultExternal: boolean,
   allowFloating: boolean,
-  color: ColorType,
+  color: ColorSchemaType,
 }
 
 interface FireMapperLayerType {
@@ -229,8 +227,8 @@ interface DepartmentType {
   mowsEnabled: boolean,
   rtsEnabled: boolean,
   rtsChannelPrefix: string,
-  pubNubV3: PubNubTokenType,
-  socketIO: PubNubTokenType,
+  pubNubV3: PubNubTokenSchemaType,
+  socketIO: PubNubTokenSchemaType,
   esriGeoJSONFilename: string,
   incidentTypes: IncidentTypeType[],
   ackDelimiter: string,
@@ -1361,17 +1359,15 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     updatedAt: "modified",
   });
 
+  modelSchema.virtual("id").get(function (this: DepartmentType) {
+    return this._id.toHexString();
+  });
+
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
   });
 
-  modelSchema.virtual("id").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
-    return this._id.toHexString();
-  });
 
   modelSchema.plugin(mongooseLeanVirtuals);
 

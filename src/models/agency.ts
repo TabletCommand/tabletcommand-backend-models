@@ -4,8 +4,8 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import AgencyCronConfigModule from "./schema/agency-cron-config";
-import AgencySAMLModule from "./schema/agency-saml";
+import AgencyCronConfigModule, { AgencyCronConfigType } from "./schema/agency-cron-config";
+import AgencySAMLModule, { AgencySAMLSchemaType } from "./schema/agency-saml";
 import { Mixed, Types } from "mongoose";
 
 interface CrossStaffedUnitType {
@@ -32,7 +32,7 @@ export interface AgencyType {
   crossStaffing: CrossStaffedUnitType[],
   licensing: Mixed,
   cronConfig: AgencyCronConfigType,
-  saml: AgencySAMLType[],
+  saml: AgencySAMLSchemaType[],
   activeUserCount: number,
 }
 

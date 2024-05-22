@@ -3,18 +3,18 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import ValidationErrorItemModule from "./schema/validation-error-item";
+import ValidationErrorItemModule, { ValidationErrorItemSchemaType } from "./schema/validation-error-item";
 
 export interface ValidationReportType {
   _id: Types.ObjectId,
   departmentId: Types.ObjectId,
-  location: ValidationErrorItemType[],
-  statusMap: ValidationErrorItemType[],
-  status: ValidationErrorItemType[],
-  vehicleStatus: ValidationErrorItemType[],
-  vehicle: ValidationErrorItemType[],
-  incident: ValidationErrorItemType[],
-  personnel: ValidationErrorItemType[],
+  location: ValidationErrorItemSchemaType[],
+  statusMap: ValidationErrorItemSchemaType[],
+  status: ValidationErrorItemSchemaType[],
+  vehicleStatus: ValidationErrorItemSchemaType[],
+  vehicle: ValidationErrorItemSchemaType[],
+  incident: ValidationErrorItemSchemaType[],
+  personnel: ValidationErrorItemSchemaType[],
   modified: Date,
 }
 
@@ -24,11 +24,11 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
 
   const modelSchema = new Schema<ValidationReportType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Department",
       required: true,
       unique: true,

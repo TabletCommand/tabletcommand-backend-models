@@ -1,14 +1,12 @@
 // import * as uuid from "uuid";
 import { Mixed, Types } from "mongoose";
 import {
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
   MongooseModule,
 } from "../helpers";
-import EsriAuthModule from "./schema/esri-auth";
-import EsriErrorModule from "./schema/esri-error";
-import EsriMapModule from "./schema/esri-map";
-import FireMapperAuthModule from "./schema/firemapper-auth";
+import EsriAuthModule, { EsriAuthSchemaType } from "./schema/esri-auth";
+import EsriErrorModule, { EsriErrorSchemaType } from "./schema/esri-error";
+import EsriMapModule, { EsriMapType } from "./schema/esri-map";
+import FireMapperAuthModule, { FireMapperAuthType } from "./schema/firemapper-auth";
 
 interface MapPropertiesType {
   itemId: string,
@@ -18,11 +16,11 @@ export interface EsriType {
   _id: Types.ObjectId,
   runAt: Date,
   departmentId: Types.ObjectId
-  auth: EsriAuthType,
-  authError: EsriErrorType,
+  auth: EsriAuthSchemaType,
+  authError: EsriErrorSchemaType,
   fireMapperAuth: FireMapperAuthType,
   arcGISGroupIds: string[],
-  arcGISAuth: EsriAuthType,
+  arcGISAuth: EsriAuthSchemaType,
   arcGISMigrated: boolean,
   review: Mixed,
   reviewRunAt: Date,
@@ -132,19 +130,16 @@ export function EsriSchema(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
+  // Deprecated. Check which apps rely on .id instead of using ._id.
+  modelSchema.virtual("id").get(function (this: EsriType) {
+    return this._id.toHexString();
+  });
+
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    // Deprecated. Check which apps rely on .id instead of using ._id.
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
   });
 
-  // Deprecated. Check which apps rely on .id instead of using ._id.
-  modelSchema.virtual("id").get(function (this: DocumentTypeFromSchema<typeof modelSchema>) {
-    return this._id.toHexString();
-  });
   return modelSchema;
 }
 

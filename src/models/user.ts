@@ -1,14 +1,12 @@
 import * as uuid from "uuid";
 import {
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
   MongooseModule,
   MongooseDocument,
   currentDate,
 } from "../helpers";
-import EsriAuthSchema from "./schema/esri-auth";
-import EsriErrorSchema from "./schema/esri-error";
-import PubNubTokenSchema from "./schema/pubnub-token";
+import EsriAuthSchema, { EsriAuthSchemaType } from "./schema/esri-auth";
+import EsriErrorSchema, { EsriErrorSchemaType } from "./schema/esri-error";
+import PubNubTokenSchema, { PubNubTokenSchemaType } from "./schema/pubnub-token";
 import { Types } from "mongoose";
 
 interface VehicleSchemaType {
@@ -48,17 +46,17 @@ export interface UserType {
   sessionCountiPhone: number,
   sessionCountiPad: number,
   rtsAuthKey: string,
-  pubNubV2: PubNubTokenType
-  pubNubV3: PubNubTokenType
-  socketIO: PubNubTokenType,
+  pubNubV2: PubNubTokenSchemaType
+  pubNubV3: PubNubTokenSchemaType
+  socketIO: PubNubTokenSchemaType,
   token: string,
   tokenExpireAt: Date,
   shareLocationPhone: boolean,
   shareLocationTablet: boolean,
   offlineMapsEnabled: boolean,
   fireMapperProEnabled: boolean,
-  arcGISAuth: EsriAuthType,
-  arcGISAuthError: EsriErrorType,
+  arcGISAuth: EsriAuthSchemaType,
+  arcGISAuthError: EsriErrorSchemaType,
   offDutyEnabled: boolean,
   webMapSettings: {
     defaultZoomLevel: number,
@@ -322,17 +320,16 @@ export function UserSchema(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
-  });
-
+  // NO _id on User schema?
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
     return this._id.toHexString();
   });
+
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
 
   return modelSchema;
 }

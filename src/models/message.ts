@@ -3,7 +3,7 @@ import {
   MongooseModule,
   currentDate,
 } from "../helpers";
-import ColorModule from "./schema/color";
+import ColorModule, { ColorSchemaType } from "./schema/color";
 import { Mixed, Types } from "mongoose";
 
 interface TypeSchemaType {
@@ -23,13 +23,13 @@ export interface MessageType {
   actionTitle: string,
   created: Date,
   updated: Date,
-  color: ColorType,
+  color: ColorSchemaType,
   url: string,
   priority: number,
   type: TypeSchemaType
 }
 
-export async function MessageModule(mongoose: MongooseModule) {
+export default async function MessageModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const Color = ColorModule(mongoose);
 

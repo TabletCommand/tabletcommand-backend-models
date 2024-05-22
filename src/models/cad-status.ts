@@ -3,7 +3,7 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import ColorModule from "./schema/color";
+import ColorModule, { ColorSchemaType } from "./schema/color";
 
 interface StatusOptionValueType {
   name: string,
@@ -39,7 +39,7 @@ export interface CADStatusType {
   selfAssignable: boolean,
   roaming: boolean,
   options: StatusOptionValueType,
-  color: ColorType,
+  color: ColorSchemaType,
   backupDate: Date,
 }
 

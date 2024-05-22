@@ -2,7 +2,7 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
+import CADStatusOptionSelectedModule, { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
 
 export interface CADVehicleStatusHistoryType {
   departmentId: string,
@@ -15,7 +15,7 @@ export interface CADVehicleStatusHistoryType {
   requestDelay: number,
   requestedBy: string,
   incidentNumber: string,
-  options: CADStatusOptionSelectedType[]
+  options: CADStatusOptionSelectedSchemaType[]
   e: string,
   locationCurrent: string,
   locationDestination: string,

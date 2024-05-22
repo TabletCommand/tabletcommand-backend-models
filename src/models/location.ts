@@ -6,8 +6,8 @@ import {
   MongooseModule,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import ColorModule from "./schema/color";
-import GeoJSONPointModule from "./schema/geojson-point";
+import ColorModule, { ColorSchemaType } from "./schema/color";
+import GeoJSONPointModule, { GeoJSONPointType } from "./schema/geojson-point";
 import { Types } from "mongoose";
 
 export interface LocationType {
@@ -36,7 +36,7 @@ export interface LocationType {
   shared: boolean,
   state: string,
   sendToCAD: boolean,
-  color: ColorType,
+  color: ColorSchemaType,
   colorChangedAt: Date,
 }
 

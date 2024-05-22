@@ -2,7 +2,7 @@ import {
   MongooseModule,
 } from "../helpers";
 
-import { CADIncidentSchema } from "./schema/cad-incident";
+import { CADIncidentSchema, CADIncidentSchemaType } from "./schema/cad-incident";
 
 export default async function CADIncidentModule(mongoose: MongooseModule) {
   const modelSchema = CADIncidentSchema(mongoose);
@@ -18,5 +18,5 @@ export default async function CADIncidentModule(mongoose: MongooseModule) {
     unique: true,
   });
 
-  return mongoose.model<CADIncidentType>("CADIncident", modelSchema);
+  return mongoose.model<CADIncidentSchemaType>("CADIncident", modelSchema);
 }

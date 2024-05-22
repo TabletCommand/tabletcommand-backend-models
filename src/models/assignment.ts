@@ -85,18 +85,13 @@ export default async function AssignmentModule(mongoose: MongooseModule) {
     collection: "massive_assignment",
   });
   modelSchema.set("autoIndex", false);
+  modelSchema.virtual("id").get(function (this: AssignmentType) {
+    return this._id.toString();
+  });
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    // TODO-VERSION_CHANGE: Check if id is still send to json
-    // transform(doc, ret: AssignmentType & { id: string }) {
-    //   ret.id = ret._id.toString();
-    // },
   });
-  // modelSchema.virtual("id").get(function (this: MongooseDocument) {
-  //   // tslint:disable-next-line: no-unsafe-any
-  //   return this._id.toString();
-  // });
 
   return mongoose.model<AssignmentType>("Assignment", modelSchema);
 }
