@@ -22,4 +22,5 @@ export default async function CADIncidentModule(mongoose: MongooseModule) {
   return mongoose.model<CADIncidentSchemaType>("CADIncident", modelSchema);
 }
 
+export interface CADIncident extends CADIncidentSchemaType { }
 export interface CADIncidentModel extends Model<CADIncidentSchemaType> { }
