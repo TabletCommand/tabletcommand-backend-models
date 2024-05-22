@@ -3,25 +3,34 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
   DocumentTypeFromSchema,
   ModelFromSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
+import { Types } from "mongoose";
 
-export function ChecklistItemSchema(mongoose: MongooseModule) {
-  const {
-    Schema,
-    Types,
-  } = mongoose;
+export interface ChecklistItemType {
+  _id: Types.ObjectId
+  position: number,
+  userId: string,
+  uuid: string,
+  checklist_uuid: string,
+  api_checklist_id: string,
+  isMandatory: boolean,
+  modified_date: string,
+  modified_unix_date: number,
+  departmentId: string,
+  active: boolean,
+  name: string,
+  description: string,
+}
 
-  const modelSchema = createSchema(Schema, {
+export default async function ChecklistItemModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<ChecklistItemType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     position: {
@@ -71,11 +80,6 @@ export function ChecklistItemSchema(mongoose: MongooseModule) {
     collection: "massive_checklist_item_sync",
   });
   modelSchema.set("autoIndex", false);
-  return modelSchema;
-}
-
-export async function ChecklistItemModule(mongoose: MongooseModule) {
-  const modelSchema = ChecklistItemSchema(mongoose);
 
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -90,9 +94,5 @@ export async function ChecklistItemModule(mongoose: MongooseModule) {
     return this._id.toString();
   });
 
-  return createModel(mongoose, "ChecklistItem", modelSchema);
+  return mongoose.model<ChecklistItemType>("ChecklistItem", modelSchema);
 }
-
-export interface ChecklistItem extends ItemTypeFromTypeSchemaFunction<typeof ChecklistItemModule> { }
-export interface ChecklistItemModel extends ModelTypeFromTypeSchemaFunction<ChecklistItem> { }
-export default ChecklistItemModule as ReplaceModelReturnType<typeof ChecklistItemModule, ChecklistItemModel>;

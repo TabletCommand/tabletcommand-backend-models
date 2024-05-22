@@ -13,11 +13,39 @@ import {
   ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
+import { Types } from "mongoose";
+
+interface ChecklistOptionType {
+  name: string,
+  position: number,
+  id: string,
+}
+
+interface GroupOptionType {
+  name: string,
+  position: number,
+  uuid: string,
+}
+export interface TemplateType {
+  _id: Types.ObjectId,
+  position: number,
+  userId: string,
+  uuid: string,
+  isMandatory: boolean,
+  modified_unix_date: number,
+  modified: Date,
+  departmentId: string,
+  active: boolean,
+  name: string,
+  checklist: ChecklistOptionType[],
+  group: GroupOptionType[],
+  agencyId: Types.ObjectId
+}
 
 export function TemplateSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
 
-  const ChecklistOption = createSchema(Schema, {
+  const ChecklistOption = new Schema<ChecklistOptionType>({
     name: {
       type: String,
       default: "",
@@ -35,7 +63,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const GroupOption = createSchema(Schema, {
+  const GroupOption = new Schema<GroupOptionType>({
     name: {
       type: String,
       default: "",
@@ -53,9 +81,9 @@ export function TemplateSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<TemplateType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     position: {
@@ -101,7 +129,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
       default: []
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -139,11 +167,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function TemplateModule(mongoose: MongooseModule) {
+export default async function TemplateModule(mongoose: MongooseModule) {
   const modelSchema = TemplateSchema(mongoose);
-  return createModel(mongoose, "Template", modelSchema);
+  return mongoose.model<TemplateType>("Template", modelSchema);
 }
-
-export interface Template extends ItemTypeFromTypeSchemaFunction<typeof TemplateModule> { }
-export interface TemplateModel extends ModelTypeFromTypeSchemaFunction<Template> { }
-export default TemplateModule as ReplaceModelReturnType<typeof TemplateModule, TemplateModel>;

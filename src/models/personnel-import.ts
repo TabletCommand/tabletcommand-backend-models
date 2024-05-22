@@ -1,18 +1,42 @@
+import { Types } from "mongoose";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
-export function PersonnelImportSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+interface RadioType {
+  radioName: string,
+  active: boolean,
+  source: string,
+}
+export interface PersonnelImportType {
+  _id: Types.ObjectId,
+  PersonnelID: string,
+  PersonnelName: string,
+  PersonnelRank: string,
+  PersonnelWorkCode: string,
+  PersonnelNote: string,
+  departmentId: string,
+  radioNames: string[],
+  radios: RadioType[],
+  shiftStartTime: number,
+  shiftEndTime: number,
+  shiftStart: Date | string,
+  shiftEnd: Date | string,
+  modified_unix_date: number,
+  modified: Date,
+  active: boolean,
+  agencyName: string,
+  agencyCode: string,
+  agencyId: Types.ObjectId,
+  importNotes: string,
+}
 
-  const Radio = createSchema(Schema, {
+export function PersonnelImportSchema(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const Radio = new Schema<RadioType>({
     radioName: {
       type: String,
     },
@@ -29,9 +53,9 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<PersonnelImportType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     PersonnelID: {
@@ -75,11 +99,11 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       default: 0,
     },
     shiftStart: {
-      type: Date,
+      type: Date || String,
       default: "",
     },
     shiftEnd: {
-      type: Date,
+      type: Date || String,
       default: "",
     },
 
@@ -105,7 +129,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       default: ""
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -123,9 +147,5 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
 
 export async function PersonnelImportModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelImportSchema(mongoose);
-  return createModel(mongoose, "PersonnelImport", modelSchema);
+  return mongoose.model<PersonnelImportType>("PersonnelImport", modelSchema);
 }
-
-export interface PersonnelImport extends ItemTypeFromTypeSchemaFunction<typeof PersonnelImportModule> { }
-export interface PersonnelImportModel extends ModelTypeFromTypeSchemaFunction<PersonnelImport> { }
-export default PersonnelImportModule as ReplaceModelReturnType<typeof PersonnelImportModule, PersonnelImportModel>;

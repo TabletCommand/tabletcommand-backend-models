@@ -1,27 +1,82 @@
 import * as uuid from "uuid";
 import {
-  createSchema,
-  createModel,
   DocumentTypeFromSchema,
   FieldsOfDocument,
   MongooseModule,
   MongooseDocument,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
 import EsriAuthSchema from "./schema/esri-auth";
 import EsriErrorSchema from "./schema/esri-error";
 import PubNubTokenSchema from "./schema/pubnub-token";
+import { Types } from "mongoose";
+
+interface VehicleSchemaType {
+  radioName: string,
+  vehicleId: string,
+}
+
+export interface UserType {
+  nick: string,
+  email: string,
+  name: string,
+  uuid: string,
+  departmentId: string,
+  modified_date: Date,
+  when: Date,
+  agencyId: Types.ObjectId,
+  managedAgencies: Types.ObjectId[],
+  active: boolean,
+  admin: boolean,
+  superuser: boolean,
+  isPro: boolean,
+  isIncidentManager: boolean,
+  mobileAccess: boolean,
+  webAccess: boolean,
+  cadSimulatorAccess: boolean,
+  canAddRemoveVehicle: boolean,
+  beaconEnabled: boolean,
+  userContributionEnabled: boolean,
+  syncLoggingExpireDate: Date,
+  beacons: string[],
+  salt: string,
+  pass: string,
+  auth: string[],
+  mapHidden: boolean,
+  mapId: string,
+  vehicle: VehicleSchemaType,
+  sessionCountiPhone: number,
+  sessionCountiPad: number,
+  rtsAuthKey: string,
+  pubNubV2: PubNubTokenType
+  pubNubV3: PubNubTokenType
+  socketIO: PubNubTokenType,
+  token: string,
+  tokenExpireAt: Date,
+  shareLocationPhone: boolean,
+  shareLocationTablet: boolean,
+  offlineMapsEnabled: boolean,
+  fireMapperProEnabled: boolean,
+  arcGISAuth: EsriAuthType,
+  arcGISAuthError: EsriErrorType,
+  offDutyEnabled: boolean,
+  webMapSettings: {
+    defaultZoomLevel: number,
+    defaultCenter: number[],
+    defaultMap: string,
+  },
+  locationToCAD: boolean,
+  logOffEnabled: boolean,
+  restrictedCommentsEnabled: boolean,
+}
 
 export function UserSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const EsriAuth = EsriAuthSchema(mongoose);
   const EsriError = EsriErrorSchema(mongoose);
   const PubNubToken = PubNubTokenSchema(mongoose);
 
-  const VehicleSchema = createSchema(Schema, {
+  const VehicleSchema = new Schema<VehicleSchemaType>({
     radioName: {
       type: String,
       default: "",
@@ -35,7 +90,7 @@ export function UserSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<UserType>({
     nick: {
       type: String,
       default: "",
@@ -68,7 +123,7 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Date,
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -275,18 +330,14 @@ export function UserSchema(mongoose: MongooseModule) {
     },
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     return this._id.toHexString();
   });
 
   return modelSchema;
 }
 
-export async function UserModule(mongoose: MongooseModule) {
+export default async function UserModule(mongoose: MongooseModule) {
   const modelSchema = UserSchema(mongoose);
-  return createModel(mongoose, "User", modelSchema);
+  return mongoose.model<UserType>("User", modelSchema);
 }
-
-export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> { }
-export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> { }
-export default UserModule as ReplaceModelReturnType<typeof UserModule, UserModel>;

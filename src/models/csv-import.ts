@@ -1,19 +1,34 @@
+import { Mixed, Types } from "mongoose";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
-export async function CSVImportModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface CSVImportType {
+  _id: Types.ObjectId,
+  batchId: string,
+  importCreated: Date,
+  importEnded: Date,
+  status: string,
+  departmentId: string,
+  agencyId: string,
+  importType: string,
+  fileType: string,
+  fileName: string,
+  fileSize: string,
+  fileLastModified: Date,
+  records: Mixed[],
+  modifiedDate: Date,
+  userId: string,
+  sendNotification: boolean
+}
 
-  const modelSchema = createSchema(Schema, {
+export default async function CSVImportModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<CSVImportType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     batchId: {
@@ -73,9 +88,5 @@ export async function CSVImportModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CSVImport", modelSchema);
+  return mongoose.model<CSVImportType>("CSVImport", modelSchema);
 }
-
-export interface CSVImport extends ItemTypeFromTypeSchemaFunction<typeof CSVImportModule> { }
-export interface CSVImportModel extends ModelTypeFromTypeSchemaFunction<CSVImport> { }
-export default CSVImportModule as ReplaceModelReturnType<typeof CSVImportModule, CSVImportModel>;

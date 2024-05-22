@@ -1,19 +1,31 @@
 import * as uuid from "uuid";
 import {
-  createSchema,
-  createModel,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { Types } from "mongoose";
 
-export async function IncidentTakeoverModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface IncidentTakeoverType {
+  _id: Types.ObjectId,
+  departmentId: string,
+  uuid: string,
+  incident_id: string,
+  incident_name: string,
+  incident_number: string,
+  old_owner: string,
+  new_owner: string,
+  owner: string,
+  status: string,
+  request_time: number,
+  last_response_time: number,
+  response_time: number,
+}
 
-  const modelSchema = createSchema(Schema, {
+export default async function IncidentTakeoverModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<IncidentTakeoverType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -76,9 +88,5 @@ export async function IncidentTakeoverModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "IncidentTakeover", modelSchema);
+  return mongoose.model<IncidentTakeoverType>("IncidentTakeover", modelSchema);
 }
-
-export interface IncidentTakeover extends ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> { }
-export interface IncidentTakeoverModel extends ModelTypeFromTypeSchemaFunction<IncidentTakeover> { }
-export default IncidentTakeoverModule as ReplaceModelReturnType<typeof IncidentTakeoverModule, IncidentTakeoverModel>;

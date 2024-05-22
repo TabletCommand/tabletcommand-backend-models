@@ -1,13 +1,21 @@
+import { Mixed } from "mongoose";
 import {
   MongooseModule,
-  createSchema,
   currentDate,
 } from "../../helpers";
+
+export interface ValidationErrorItemSchemaType {
+  message: string,
+  firstSeenAt: Date,
+  lastSeenAt: Date,
+  clearedAt: Date,
+  payload: Mixed
+}
 
 export default function ValidationErrorItemSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Item = createSchema(Schema, {
+  const Item = new Schema<ValidationErrorItemSchemaType>({
     message: {
       type: String,
       default: "",

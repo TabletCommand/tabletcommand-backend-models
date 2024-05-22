@@ -1,19 +1,31 @@
+import { Types } from "mongoose";
 import {
-  createSchema,
-  createModel,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
 
-export function PersonnelRosterSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface PersonnelRosterType {
+  _id: Types.ObjectId,
+  PersonnelID: string,
+  PersonnelName: string,
+  PersonnelRank: string,
+  PersonnelWorkCode: string,
+  PersonnelUUID: string,
+  departmentId: string,
+  modified: Date,
+  action: string,
+  radioName: string,
+  shiftStart: Date,
+  shiftEnd: Date,
+  active: boolean,
+}
 
-  const modelSchema = createSchema(Schema, {
+export function PersonnelRosterSchema(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<PersonnelRosterType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     PersonnelID: {
@@ -77,9 +89,5 @@ export function PersonnelRosterSchema(mongoose: MongooseModule) {
 
 export async function PersonnelRosterModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelRosterSchema(mongoose);
-  return createModel(mongoose, "PersonnelRoster", modelSchema);
+  return mongoose.model<PersonnelRosterType>("PersonnelRoster", modelSchema);
 }
-
-export interface PersonnelRoster extends ItemTypeFromTypeSchemaFunction<typeof PersonnelRosterModule> { }
-export interface PersonnelRosterModel extends ModelTypeFromTypeSchemaFunction<PersonnelRoster> { }
-export default PersonnelRosterModule as ReplaceModelReturnType<typeof PersonnelRosterModule, PersonnelRosterModel>;

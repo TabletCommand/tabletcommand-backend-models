@@ -1,21 +1,29 @@
+import { Types } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-export async function MonitorModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface MonitorType {
+  _id: Types.ObjectId,
+  departmentId: string,
+  agencyId: string,
+  notificationType: string,
+  status: string,
+  sentUnixDate: number,
+  sentAt: Date,
+  ticketId: string,
+  count: number,
+}
 
-  const modelSchema = createSchema(Schema, {
+export default async function MonitorModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<MonitorType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -67,9 +75,5 @@ export async function MonitorModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "Monitor", modelSchema);
+  return mongoose.model<MonitorType>("Monitor", modelSchema);
 }
-
-export interface Monitor extends ItemTypeFromTypeSchemaFunction<typeof MonitorModule> { }
-export interface MonitorModel extends ModelTypeFromTypeSchemaFunction<Monitor> { }
-export default MonitorModule as ReplaceModelReturnType<typeof MonitorModule, MonitorModel>;

@@ -1,24 +1,36 @@
 import * as uuid from "uuid";
 
 import {
-  createModel,
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  ItemTypeFromTypeSchemaFunction,
-  ModelFromSchema,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Types } from "mongoose";
 
-export async function AssignmentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export type AssignmentType = {
+  _id: Types.ObjectId
+  uuid: string,
+  active: boolean,
+  userId: string,
+  departmentId: string,
+  isMandatory: boolean,
+  modified: Date,
+  // Deprecated
+  modified_date: string,
+  // Deprecated
+  modified_unix_date: number,
+  position: number,
+  name: string,
+  description: string,
+  full_description: string,
+}
 
-  const modelSchema = createSchema(Schema, {
+export default async function AssignmentModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<AssignmentType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     uuid: {
@@ -52,7 +64,6 @@ export async function AssignmentModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
-
     //
     position: {
       type: Number,
@@ -77,14 +88,15 @@ export async function AssignmentModule(mongoose: MongooseModule) {
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id.toString();
-    },
+    // TODO-VERSION_CHANGE: Check if id is still send to json
+    // transform(doc, ret: AssignmentType & { id: string }) {
+    //   ret.id = ret._id.toString();
+    // },
   });
+  // modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  //   // tslint:disable-next-line: no-unsafe-any
+  //   return this._id.toString();
+  // });
 
-  return createModel(mongoose, "Assignment", modelSchema);
+  return mongoose.model<AssignmentType>("Assignment", modelSchema);
 }
-
-export interface Assignment extends ItemTypeFromTypeSchemaFunction<typeof AssignmentModule> { }
-export interface AssignmentModel extends ModelTypeFromTypeSchemaFunction<Assignment> { }
-export default AssignmentModule as ReplaceModelReturnType<typeof AssignmentModule, AssignmentModel>;

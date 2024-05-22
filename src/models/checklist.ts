@@ -3,27 +3,39 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
   currentDate,
   DocumentTypeFromSchema,
   ModelFromSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
 
-import { ChecklistItemSchema } from "./checklist-item";
+import { ChecklistItemType } from "./checklist-item";
+import { Types } from "mongoose";
+
+export interface ChecklistType {
+  _id: Types.ObjectId,
+  position: number,
+  userId: string,
+  uuid: string,
+  isMandatory: boolean,
+  modified_date: string,
+  modified_unix_date: number,
+  modified: Date,
+  departmentId: string,
+  active: boolean,
+  name: string,
+  agencyId: Types.ObjectId
+  items: ChecklistItemType[]
+}
 
 export function ChecklistSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
 
   const ChecklistItem = ChecklistItemSchema(mongoose);
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ChecklistType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     position: {
@@ -67,7 +79,7 @@ export function ChecklistSchema(mongoose: MongooseModule) {
       required: true
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -95,11 +107,7 @@ export function ChecklistSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function ChecklistModule(mongoose: MongooseModule) {
+export default async function ChecklistModule(mongoose: MongooseModule) {
   const modelSchema = ChecklistSchema(mongoose);
-  return createModel(mongoose, "Checklist", modelSchema);
+  return mongoose.model<ChecklistType>("Checklist", modelSchema);
 }
-
-export interface Checklist extends ItemTypeFromTypeSchemaFunction<typeof ChecklistModule> { }
-export interface ChecklistModel extends ModelTypeFromTypeSchemaFunction<Checklist> { }
-export default ChecklistModule as ReplaceModelReturnType<typeof ChecklistModule, ChecklistModel>;

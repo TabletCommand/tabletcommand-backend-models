@@ -1,12 +1,16 @@
 import {
-  createSchema,
   MongooseModule,
 } from "../../helpers";
+
+export interface GeoJSONPointType {
+  type: string
+  coordinates: number[]
+}
 
 export default function GeoJSONPointSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const GeoJSONPoint = createSchema(Schema, {
+  const GeoJSONPoint = new Schema<GeoJSONPointType>({
     type: {
       type: String,
       required: true,

@@ -1,19 +1,28 @@
+import { Types } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import ValidationErrorItemModule from "./schema/validation-error-item";
 
+export interface ValidationReportType {
+  _id: Types.ObjectId,
+  departmentId: Types.ObjectId,
+  location: ValidationErrorItemType[],
+  statusMap: ValidationErrorItemType[],
+  status: ValidationErrorItemType[],
+  vehicleStatus: ValidationErrorItemType[],
+  vehicle: ValidationErrorItemType[],
+  incident: ValidationErrorItemType[],
+  personnel: ValidationErrorItemType[],
+  modified: Date,
+}
+
 export function ValidationReportSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const ValidationErrorItem = ValidationErrorItemModule(mongoose);
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ValidationReportType>({
     _id: {
       type: Types.ObjectId,
       auto: true,
@@ -64,11 +73,7 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function ValidationReportModule(mongoose: MongooseModule) {
+export default async function ValidationReportModule(mongoose: MongooseModule) {
   const modelSchema = ValidationReportSchema(mongoose);
-  return createModel(mongoose, "ValidationReport", modelSchema);
+  return mongoose.model<ValidationReportType>("ValidationReport", modelSchema);
 }
-
-export interface ValidationReport extends ItemTypeFromTypeSchemaFunction<typeof ValidationReportModule> { }
-export interface ValidationReportModel extends ModelTypeFromTypeSchemaFunction<ValidationReport> { }
-export default ValidationReportModule as ReplaceModelReturnType<typeof ValidationReportModule, ValidationReportModel>;

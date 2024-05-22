@@ -1,20 +1,28 @@
+import { Types } from "mongoose";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
-export async function ChartIncidentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+interface ChartItemType {
+  item: string,
+  dateAt: Date,
+}
+export interface ChartIncidentType {
+  _id: Types.ObjectId,
+  dateAt: Date,
+  departmentId: string,
+  count: number,
+  items: ChartItemType[]
+}
 
-  const ChartItem = createSchema(Schema, {
+export default async function ChartIncidentModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const ChartItem = new Schema<ChartItemType>({
     item: {
       type: String,
       default: "",
@@ -28,9 +36,9 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ChartIncidentType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     dateAt: {
@@ -61,16 +69,12 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "ChartIncident", modelSchema);
+  return mongoose.model<ChartIncidentType>("ChartIncident", modelSchema);
 }
-
-export interface ChartIncident extends ItemTypeFromTypeSchemaFunction<typeof ChartIncidentModule> { }
-export interface ChartIncidentModel extends ModelTypeFromTypeSchemaFunction<ChartIncident> { }
-export default ChartIncidentModule as ReplaceModelReturnType<typeof ChartIncidentModule, ChartIncidentModel>;

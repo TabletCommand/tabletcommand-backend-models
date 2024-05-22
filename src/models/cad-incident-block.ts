@@ -1,27 +1,33 @@
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 import { ReportNumberSchema } from "./schema/shared-incident";
+import { Types } from "mongoose";
+export interface CADIncidentBlockType {
+  _id: Types.ObjectId
+  departmentId: string,
+  source: string,
+  IncidentNumber: string,
+  AgencyIncidentCallTypeDescription: string,
+  EntryDateTime: string,
+  ClosedDateTime: string,
+  ReportNumber: ReportNumberType[]
+}
 
 export async function CADIncidentBlockModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const ReportNumber = ReportNumberSchema(mongoose);
 
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADIncidentBlockType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -64,16 +70,12 @@ export async function CADIncidentBlockModule(mongoose: MongooseModule) {
     }
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "CADIncidentBlock", modelSchema);
+  return mongoose.model<CADIncidentBlockType>("CADIncidentBlock", modelSchema);
 }
-
-export interface CADIncidentBlock extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentBlockModule> { }
-export interface CADIncidentBlockModel extends ModelTypeFromTypeSchemaFunction<CADIncidentBlock> { }
-export default CADIncidentBlockModule as ReplaceModelReturnType<typeof CADIncidentBlockModule, CADIncidentBlockModel>;

@@ -1,21 +1,44 @@
 import * as  uuid from "uuid";
 import {
-  createModel,
-  createSchema,
-  createSchemaDefinition,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
 
-export async function CADVehicleStatusModule(mongoose: MongooseModule) {
+interface DestinationType {
+  address: string,
+  name: string,
+}
+export interface CADVehicleStatusType {
+  uuid: string,
+  departmentId: string,
+  vehicleId: string,
+  radioName: string,
+  requestTime: number,
+  responseTime: number,
+  changedAt: Date,
+  status: string,
+  statusCode: string,
+  modifiedDate: number,
+  modified: Date,
+  requestStatus: number,
+  owner: string,
+  ownerId: string,
+  incidentNumber: string,
+  options: CADStatusOptionSelectedType[]
+  capability: string,
+  locationCurrent: string,
+  locationDestination: string,
+  destination: DestinationType,
+  assignableByUser: boolean,
+  backupDate: Date,
+}
+
+export default async function CADVehicleStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
-  const Destination = createSchema(Schema, {
+  const Destination = new Schema<DestinationType>({
     // eg 1234 Main St
     address: {
       type: String,
@@ -31,7 +54,8 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchemaConfig = createSchemaDefinition({
+
+  const modelSchema = new Schema<CADVehicleStatusType>({
     uuid: {
       type: String,
       index: true,
@@ -134,16 +158,10 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     backupDate: {
       type: Date,
     },
-  });
-
-  const modelSchema = createSchema(Schema, modelSchemaConfig, {
+  }, {
     collection: "massive_cad_vehicle_status",
   });
 
   modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "CADVehicleStatus", modelSchema);
+  return mongoose.model<CADVehicleStatusType>("CADVehicleStatus", modelSchema);
 }
-
-export interface CADVehicleStatus extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> { }
-export interface CADVehicleStatusModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatus> { }
-export default CADVehicleStatusModule as ReplaceModelReturnType<typeof CADVehicleStatusModule, CADVehicleStatusModel>;

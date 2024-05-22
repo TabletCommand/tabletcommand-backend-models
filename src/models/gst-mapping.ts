@@ -1,21 +1,36 @@
 import * as  uuid from "uuid";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Types } from "mongoose";
 
-export async function GSTMappingModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface GSTMappingType {
+  _id: Types.ObjectId
+  departmentId: string,
+  gstAgency: string,
+  deviceType: string,
+  unitId: string,
+  location: {
+    longitude: number,
+    latitude: number,
+  },
+  modified_unix_date: number,
+  modified: Date,
+  active: boolean,
+  mapHidden: boolean,
+  remoteAddress: string,
+  uuid: string,
+  note: string,
+}
 
-  const modelSchema = createSchema(Schema, {
+export default async function GSTMappingModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<GSTMappingType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -36,10 +51,10 @@ export async function GSTMappingModule(mongoose: MongooseModule) {
     },
     location: {
       longitude: {
-          type: Number,
+        type: Number,
       },
       latitude: {
-          type: Number,
+        type: Number,
       },
     },
     modified_unix_date: {
@@ -75,9 +90,5 @@ export async function GSTMappingModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "GSTMapping", modelSchema);
+  return mongoose.model<GSTMappingType>("GSTMapping", modelSchema);
 }
-
-export interface GSTMapping extends ItemTypeFromTypeSchemaFunction<typeof GSTMappingModule> { }
-export interface GSTMappingModel extends ModelTypeFromTypeSchemaFunction<GSTMapping> { }
-export default GSTMappingModule as ReplaceModelReturnType<typeof GSTMappingModule, GSTMappingModel>;

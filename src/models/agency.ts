@@ -1,23 +1,47 @@
 import * as uuid from "uuid";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
 import AgencyCronConfigModule from "./schema/agency-cron-config";
 import AgencySAMLModule from "./schema/agency-saml";
+import { Mixed, Types } from "mongoose";
+
+interface CrossStaffedUnitType {
+  radioName: string,
+  crossStaffedUnits: string[],
+  alwaysCrossStaff: boolean,
+}
+
+export interface AgencyType {
+  _id: Types.ObjectId
+  code: string,
+  name: string,
+  domain: string
+  personnelApiKey: string,
+  agencyApiKey: string,
+  uuid: string,
+  modified_unix_date: number,
+  modified: Date,
+  active: boolean,
+  departmentId: Types.ObjectId,
+  administrators: Types.ObjectId[],
+  personnelIntegration: boolean,
+  personnelMonitorHours: number,
+  crossStaffing: CrossStaffedUnitType[],
+  licensing: Mixed,
+  cronConfig: AgencyCronConfigType,
+  saml: AgencySAMLType[],
+  activeUserCount: number,
+}
 
 export function AgencySchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const AgencyCronConfig = AgencyCronConfigModule(mongoose);
   const AgencySAML = AgencySAMLModule(mongoose);
 
-  const CrossStaffedUnit = createSchema(Schema, {
+  const CrossStaffedUnit = new Schema<CrossStaffedUnitType>({
     radioName: {
       type: String,
       default: "",
@@ -45,9 +69,9 @@ export function AgencySchema(mongoose: MongooseModule) {
     locationToCAD: 0
   };
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<AgencyType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     code: {
@@ -89,12 +113,12 @@ export function AgencySchema(mongoose: MongooseModule) {
       default: false,
     },
     departmentId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Department",
       required: true
     },
     administrators: {
-      type: [Types.ObjectId],
+      type: [Schema.Types.ObjectId],
       ref: "User",
       default: []
     },
@@ -135,11 +159,7 @@ export function AgencySchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function AgencyModule(mongoose: MongooseModule) {
+export default async function AgencyModule(mongoose: MongooseModule) {
   const modelSchema = AgencySchema(mongoose);
-  return createModel(mongoose, "Agency", modelSchema);
+  return mongoose.model<AgencyType>("Agency", modelSchema);
 }
-
-export interface Agency extends ItemTypeFromTypeSchemaFunction<typeof AgencyModule> { }
-export interface AgencyModel extends ModelTypeFromTypeSchemaFunction<Agency> { }
-export default AgencyModule as ReplaceModelReturnType<typeof AgencyModule, AgencyModel>;

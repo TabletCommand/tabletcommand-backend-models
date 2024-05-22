@@ -1,19 +1,35 @@
 import * as uuid from "uuid";
 
 import {
-  createSchema,
-  createModel,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
+import { Types } from "mongoose";
+
+interface RadioType {
+  radioName: string,
+  active: boolean,
+}
+
+export interface PersonnelKnownType {
+  _id: Types.ObjectId,
+  PersonnelID: string,
+  PersonnelName: string,
+  PersonnelRank: string,
+  PersonnelWorkCode: string,
+  modified: Date,
+  departmentId: string,
+  uuid: string,
+  radios: RadioType[],
+  active: boolean,
+  jurisdiction: string,
+  agencyId: Types.ObjectId,
+}
 
 export function PersonnelKnownSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
 
-  const Radio = createSchema(Schema, {
+  const Radio = new Schema<RadioType>({
     radioName: {
       type: String,
     },
@@ -26,9 +42,9 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<PersonnelKnownType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     PersonnelID: {
@@ -74,7 +90,7 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
       default: ""
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -89,9 +105,5 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
 
 export async function PersonnelKnownModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelKnownSchema(mongoose);
-  return createModel(mongoose, "PersonnelKnown", modelSchema);
+  return mongoose.model<PersonnelKnownType>("PersonnelKnown", modelSchema);
 }
-
-export interface PersonnelKnown extends ItemTypeFromTypeSchemaFunction<typeof PersonnelKnownModule> { }
-export interface PersonnelKnownModel extends ModelTypeFromTypeSchemaFunction<PersonnelKnown> { }
-export default PersonnelKnownModule as ReplaceModelReturnType<typeof PersonnelKnownModule, PersonnelKnownModel>;

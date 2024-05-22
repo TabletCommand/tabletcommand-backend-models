@@ -1,20 +1,39 @@
 import * as uuid from "uuid";
 import {
   MongooseModule,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
 import ColorModule from "./schema/color";
+import { Mixed, Types } from "mongoose";
+
+interface TypeSchemaType {
+  type: string,
+  typeOpts: Mixed
+}
+export interface MessageType {
+  _id: Types.ObjectId
+  departmentId: string,
+  userId: string,
+  session: string,
+  active: boolean,
+  uuid: string,
+  requestId: string,
+  title: string,
+  body: string,
+  actionTitle: string,
+  created: Date,
+  updated: Date,
+  color: ColorType,
+  url: string,
+  priority: number,
+  type: TypeSchemaType
+}
 
 export async function MessageModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const Color = ColorModule(mongoose);
 
-  const TypeSchema = createSchema(Schema, {
+  const TypeSchema = new Schema<TypeSchemaType>({
     type: {
       type: String,
       default: "", // generic, support, requestLogs, requestCADLogs, upgradeApp, upgradeOS
@@ -28,9 +47,9 @@ export async function MessageModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<MessageType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -100,9 +119,5 @@ export async function MessageModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "Message", modelSchema);
+  return mongoose.model<MessageType>("Message", modelSchema);
 }
-
-export interface Message extends ItemTypeFromTypeSchemaFunction<typeof MessageModule> { }
-export interface MessageModel extends ModelTypeFromTypeSchemaFunction<Message> { }
-export default MessageModule as ReplaceModelReturnType<typeof MessageModule, MessageModel>;

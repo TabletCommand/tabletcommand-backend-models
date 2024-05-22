@@ -1,18 +1,39 @@
 import * as uuid from "uuid";
 import {
   MongooseModule,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
+import { Types } from "mongoose";
 
-export async function RemoteLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+interface FileSchemaType {
+  originalName: string,
+  encoding: string,
+  mimeType: string,
+  localPath: string,
+  remotePath: string,
+  size: number,
+  received: Date,
+}
 
-  const FileSchema = createSchema(Schema, {
+export interface RemoteLogType {
+  _id: Types.ObjectId,
+  departmentId: string,
+  userId: string,
+  session: string,
+  active: boolean,
+  uuid: string,
+  requestId: string,
+  received: Date,
+  hostname: string,
+  status: string,
+  lastStatusChange: Date,
+  files: FileSchemaType[]
+}
+
+export default async function RemoteLogModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const FileSchema = new Schema<FileSchemaType>({
     originalName: {
       type: String,
       default: "", // e.g database.sqlite
@@ -46,9 +67,9 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<RemoteLogType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -102,9 +123,5 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "RemoteLog", modelSchema);
+  return mongoose.model<RemoteLogType>("RemoteLog", modelSchema);
 }
-
-export interface RemoteLog extends ItemTypeFromTypeSchemaFunction<typeof RemoteLogModule> { }
-export interface RemoteLogModel extends ModelTypeFromTypeSchemaFunction<RemoteLog> { }
-export default RemoteLogModule as ReplaceModelReturnType<typeof RemoteLogModule, RemoteLogModel>;

@@ -3,20 +3,52 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
   currentDate,
   DocumentTypeFromSchema,
   ModelFromSchema,
-  createModel,
   FieldsOfDocument,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
 
+import { Types } from "mongoose";
+interface BattalionUnitType {
+  _id: Types.ObjectId,
+  name: string,
+  friendly_id: string,
+  personnel: number,
+  position: number,
+  active: boolean,
+  isMandatory: boolean,
+  modified_date: string,
+  modified_unix_date: number,
+  modified: Date,
+  uuid: string,
+  api_battalion_id: string,
+  battalion_uuid: string,
+  battalion_name: string,
+  agencyId: Types.ObjectId
+}
+
+export interface BattalionType {
+  _id: Types.ObjectId
+  name: string,
+  active: boolean,
+  modified_date: string,
+  modified_unix_date: number,
+  modified: Date,
+  isMandatory: boolean
+  userId: string,
+  uuid: string,
+  departmentId: string,
+  agencyId: Types.ObjectId,
+  position: number,
+  units: BattalionUnitType[],
+}
+
+// TODO-VERSION_CHANGE: Check if id is still send to json
+
 export function BattalionSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const toJSONOpts = {
     virtuals: true,
     versionKey: false,
@@ -26,9 +58,9 @@ export function BattalionSchema(mongoose: MongooseModule) {
     },
   };
 
-  const BattalionUnit = createSchema(Schema, {
+  const BattalionUnit = new Schema<BattalionUnitType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     name: {
@@ -81,7 +113,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
       type: String,
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -89,9 +121,9 @@ export function BattalionSchema(mongoose: MongooseModule) {
 
   BattalionUnit.set("toJSON", toJSONOpts);
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<BattalionType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     name: {
@@ -131,7 +163,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
       index: true,
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -178,11 +210,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function BattalionModule(mongoose: MongooseModule) {
+export default async function BattalionModule(mongoose: MongooseModule) {
   const modelSchema = BattalionSchema(mongoose);
-  return createModel(mongoose, "Battalion", modelSchema);
+  return mongoose.model<BattalionType>("Battalion", modelSchema);
 }
-
-export interface Battalion extends ItemTypeFromTypeSchemaFunction<typeof BattalionModule> { }
-export interface BattalionModel extends ModelTypeFromTypeSchemaFunction<Battalion> { }
-export default BattalionModule as ReplaceModelReturnType<typeof BattalionModule, BattalionModel>;

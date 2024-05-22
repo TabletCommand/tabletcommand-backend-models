@@ -1,18 +1,31 @@
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
+
+interface StationType {
+  code: string,
+  name: string,
+}
+export interface CADVehicleType {
+  uuid: string,
+  departmentId: string,
+  modifiedDate: number,
+  modified: Date,
+  vehicleId: string
+  radioName: string,
+  station: StationType,
+  capability: string,
+  mapHidden: boolean
+  locationToCAD: boolean,
+  backupDate: Date,
+}
 
 export async function CADVehicleModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  const Station = createSchema(Schema, {
+  const Station = new Schema<StationType>({
     code: {
       type: String,
       default: "",
@@ -26,7 +39,7 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADVehicleType>({
     // Internal
     uuid: {
       type: String,
@@ -88,9 +101,5 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CADVehicle", modelSchema);
+  return mongoose.model<CADVehicleType>("CADVehicle", modelSchema);
 }
-
-export interface CADVehicle extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleModule> { }
-export interface CADVehicleModel extends ModelTypeFromTypeSchemaFunction<CADVehicle> { }
-export default CADVehicleModule as ReplaceModelReturnType<typeof CADVehicleModule, CADVehicleModel>;

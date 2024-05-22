@@ -1,20 +1,35 @@
+import { Mixed, Types } from "mongoose";
 import {
   MongooseModule,
-  createSchema,
-  createModel,
   currentDate,
   retrieveCurrentUnixTime,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
-export async function MailLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface MailLogType {
+  _id: Types.ObjectId,
+  mailId: string,
+  event: string,
+  timestamp: number,
+  recipient: string,
+  recipientDomain: string,
+  tags: string[]
+  deliveryStatus: Mixed,
+  message: Mixed,
+  flags: Mixed,
+  envelope: Mixed,
+  logLevel: string,
+  reason: string,
+  severity: string,
+  modified_unix_date: number,
+  modified: Date,
+}
 
-  const modelSchema = createSchema(Schema, {
+export async function MailLogModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<MailLogType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     mailId: {
@@ -81,9 +96,5 @@ export async function MailLogModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "MailLog", modelSchema);
+  return mongoose.model<MailLogType>("MailLog", modelSchema);
 }
-
-export interface MailLog extends ItemTypeFromTypeSchemaFunction<typeof MailLogModule> { }
-export interface MailLogModel extends ModelTypeFromTypeSchemaFunction<MailLog> { }
-export default MailLogModule as ReplaceModelReturnType<typeof MailLogModule, MailLogModel>;

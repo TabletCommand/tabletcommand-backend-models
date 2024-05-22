@@ -1,20 +1,31 @@
 import {
-  createModel,
-  createSchema,
-  createSchemaDefinition,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
 
-export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
+export interface CADVehicleStatusHistoryType {
+  departmentId: string,
+  vehicleId: string,
+  radioName: string,
+  status: string,
+  statusCode: string,
+  requestedAt: number,
+  requested: Date,
+  requestDelay: number,
+  requestedBy: string,
+  incidentNumber: string,
+  options: CADStatusOptionSelectedType[]
+  e: string,
+  locationCurrent: string,
+  locationDestination: string,
+}
+
+export default async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
-  const modelSchemaConfig = createSchemaDefinition({
+  const modelSchema = new Schema<CADVehicleStatusHistoryType>({
     departmentId: {
       type: String,
       default: "",
@@ -76,16 +87,10 @@ export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-  });
-
-  const modelSchema = createSchema(Schema, modelSchemaConfig, {
+  }, {
     collection: "massive_cad_vehicle_status_history",
   });
 
   modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "CADVehicleStatusHistory", modelSchema);
+  return mongoose.model<CADVehicleStatusHistoryType>("CADVehicleStatusHistory", modelSchema);
 }
-
-export interface CADVehicleStatusHistory extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusHistoryModule> { }
-export interface CADVehicleStatusHistoryModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatusHistory> { }
-export default CADVehicleStatusHistoryModule as ReplaceModelReturnType<typeof CADVehicleStatusHistoryModule, CADVehicleStatusHistoryModel>;

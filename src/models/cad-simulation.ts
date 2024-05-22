@@ -1,21 +1,87 @@
+import { Types } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
 
-export async function CADSimulationModule(mongoose: MongooseModule) {
-  const {
-    Schema,
-    Types,
-  } = mongoose;
+interface SimPriorCommentType {
+  Comment: string,
+  CommentSource: string,
+  CommentDateTime: string,
+}
 
-  const SimPriorComment = createSchema(Schema, {
+interface SimPriorIncidentType {
+  IncidentNumber: string,
+  IncidentDateTime: string,
+  Problem: string,
+  Address: string,
+  Suite: string,
+  Comment: SimPriorCommentType[]
+}
+interface SimRadioChannelType {
+  name: string,
+  channel: string,
+}
+interface SimCommentType {
+  comment: string,
+  source: string,
+}
+
+interface SimUnitType {
+  alarmLevelAtDispatch: string,
+  units: string[]
+}
+
+interface SequenceType {
+  _id: Types.ObjectId,
+  title: string,
+  alarm: string,
+  sequenceId: number,
+  unitsConfig: SimUnitType
+  comments: SimCommentType[]
+}
+
+export interface CADSimulationType {
+  uuid: string,
+  departmentId: string,
+  modifiedDate: number,
+  modified: Date,
+  active: boolean,
+  friendlyId: string,
+  title: string,
+  notes: string,
+  simulation: boolean,
+  notify: boolean,
+  rts: boolean,
+  tags: string[],
+  incidentType: string,
+  streetName: string,
+  locationComment: string,
+  suite: string,
+  CrossStreet1: string,
+  city: string,
+  state: string,
+  lat: string,
+  lon: string,
+  firemap: string,
+  mapPages: string,
+  tacticalChannel: string,
+  commandChannel: string,
+  radioChannels: SimRadioChannelType[]
+  closeDelay: number,
+  priorIncidents: SimPriorIncidentType[]
+  randomPriorIncidents: boolean
+  randomStaffing: boolean,
+  sequences: SequenceType[]
+  sortId: number,
+  sendStatus: boolean,
+}
+
+export default async function CADSimulationModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const SimPriorComment = new Schema<SimPriorCommentType>({
     Comment: {
       title: String,
       default: "",
@@ -33,7 +99,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimPriorIncident = createSchema(Schema, {
+  const SimPriorIncident = new Schema<SimPriorIncidentType>({
     IncidentNumber: {
       title: String,
       default: "",
@@ -63,7 +129,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimRadioChannel = createSchema(Schema, {
+  const SimRadioChannel = new Schema<SimRadioChannelType>({
     name: {
       title: String,
       default: "",
@@ -77,7 +143,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimComment = createSchema(Schema, {
+  const SimComment = new Schema<SimCommentType>({
     comment: {
       title: String,
       default: "",
@@ -91,7 +157,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimUnit = createSchema(Schema, {
+  const SimUnit = new Schema<SimUnitType>({
     alarmLevelAtDispatch: {
       title: String,
       default: "",
@@ -105,9 +171,9 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Sequence = createSchema(Schema, {
-     _id: {
-      type: Types.ObjectId,
+  const Sequence = new Schema<SequenceType>({
+    _id: {
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     title: {
@@ -132,7 +198,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     }
   }, {});
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADSimulationType>({
     // Internal
     uuid: {
       type: String,
@@ -155,7 +221,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: currentDate,
     },
     active: {
-      type: Boolean, 
+      type: Boolean,
       default: true
     },
     friendlyId: {
@@ -171,7 +237,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: "",
     },
     simulation: {
-      type: Boolean, 
+      type: Boolean,
       default: true,
     },
     notify: {
@@ -179,11 +245,11 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: false,
     },
     rts: {
-      type: Boolean, 
+      type: Boolean,
       default: false
     },
     tags: {
-      type: [String], 
+      type: [String],
       default: []
     },
     incidentType: {
@@ -251,11 +317,11 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: [],
     },
     randomPriorIncidents: {
-      type: Boolean, 
+      type: Boolean,
       default: false
     },
     randomStaffing: {
-      type: Boolean, 
+      type: Boolean,
       default: false
     },
     sequences: {
@@ -275,9 +341,5 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CADSimulation", modelSchema);
+  return mongoose.model<CADSimulationType>("CADSimulation", modelSchema);
 }
-
-export interface CADSimulation extends ItemTypeFromTypeSchemaFunction<typeof CADSimulationModule> { }
-export interface CADSimulationModel extends ModelTypeFromTypeSchemaFunction<CADSimulation> { }
-export default CADSimulationModule as ReplaceModelReturnType<typeof CADSimulationModule, CADSimulationModel>;
