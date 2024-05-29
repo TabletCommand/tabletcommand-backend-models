@@ -77,6 +77,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         };
     }>;
     incidentVehicleStatusEnabled: boolean;
+    vehicleRadioNameIsStable: boolean;
     fireMapperEnabled: boolean;
     fireMapperRefreshInterval: number;
     fireMapperProLicenses: number;

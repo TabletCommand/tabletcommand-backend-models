@@ -824,6 +824,12 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false
         },
+        // When set to true, a vehicle update will propagate to user.vehicle using the radioName (changing the vehicleId)
+        // By default (false), a vehicleId change will keep the same user.vehicle vehicleId and update the radioName
+        vehicleRadioNameIsStable: {
+            type: Boolean,
+            default: false
+        },
         // Legacy FireMapper fields, remove after migrating the endpoints/code to use the new object
         fireMapperEnabled: {
             type: Boolean,

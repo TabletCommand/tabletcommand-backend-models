@@ -146,7 +146,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       "transformationRequired": false,
     }
   ];
-  
+
   const IntterraFields = createSchema(Schema, {
     key: {
       type: String,
@@ -561,7 +561,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     "enabled": false,
     "connections": [],
   };
-  
+
   const Mark43ConfigDefault = {
     "baseUrl": "",
     "authToken": "",
@@ -867,6 +867,12 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: SimpleSenseConfigDefault,
     },
     incidentVehicleStatusEnabled: {
+      type: Boolean,
+      default: false
+    },
+    // When set to true, a vehicle update will propagate to user.vehicle using the radioName (changing the vehicleId)
+    // By default (false), a vehicleId change will keep the same user.vehicle vehicleId and update the radioName
+    vehicleRadioNameIsStable: {
       type: Boolean,
       default: false
     },
