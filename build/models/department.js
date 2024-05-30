@@ -406,8 +406,11 @@ async function DepartmentModule(mongoose) {
             default: 0,
         },
         host: {
+            // when empty, portal.firefront.com.au
+            // when staging, staging.firefront.com.au
+            // when us, us.firemapper.app
             type: String,
-            default: "", // when empty, portal.firefront.com.au
+            default: "",
         },
         layer: {
             type: [FireMapperLayer],
