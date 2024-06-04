@@ -6,7 +6,7 @@ import {
 export default function AgencySAMLSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const AgencyCronConfig = createSchema(Schema, {
+  const AgencySAML = createSchema(Schema, {
     selector: {
       type: String,
       required: true,
@@ -24,6 +24,10 @@ export default function AgencySAMLSchema(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    name: {
+      type: String,
+      default: "",
+    }
   }, {
     _id: false,
     id: false,
@@ -35,5 +39,5 @@ export default function AgencySAMLSchema(mongoose: MongooseModule) {
     }
   });
 
-  return AgencyCronConfig;
+  return AgencySAML;
 }

@@ -19,6 +19,10 @@ export default function AgencySAMLSchema(mongoose: MongooseModule): import("mong
             type: StringConstructor;
             default: string;
         };
+        name: {
+            type: StringConstructor;
+            default: string;
+        };
     }>;
     _methods: unknown;
 };
