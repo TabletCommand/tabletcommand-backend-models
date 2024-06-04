@@ -432,7 +432,7 @@ async function DepartmentModule(mongoose) {
         layerRefreshInterval: 15,
         proLicenseCount: 0,
         host: "",
-        layerURL: [
+        layer: [
             {
                 name: "FireMapper - Symbols",
                 pathname: "/api/rest/services/features/FeatureServer/0",
@@ -458,7 +458,7 @@ async function DepartmentModule(mongoose) {
                 pathname: "/api/rest/services/features/FeatureServer/5",
             },
         ],
-        outline: [],
+        staticLayer: [],
     };
     const Licensing = (0, helpers_1.createSchema)(Schema, {
         tcPro2Way: {

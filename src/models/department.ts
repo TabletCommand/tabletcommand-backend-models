@@ -465,7 +465,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     layerRefreshInterval: 15,
     proLicenseCount: 0,
     host: "",
-    layerURL: [
+    layer: [
       {
         name: "FireMapper - Symbols",
         pathname: "/api/rest/services/features/FeatureServer/0",
@@ -491,7 +491,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
         pathname: "/api/rest/services/features/FeatureServer/5",
       },
     ],
-    outline: [],
+    staticLayer: [],
   };
 
   const Licensing = createSchema(Schema, {
