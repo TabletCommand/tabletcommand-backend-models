@@ -8,7 +8,7 @@ import {
 } from "../helpers";
 import ColorModule, { ColorSchemaType } from "./schema/color";
 import PubNubTokenSchema, { PubNubTokenSchemaType } from "./schema/pubnub-token";
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface Mark43StatusConfigType {
   TimeDispatched: string[],
@@ -148,7 +148,7 @@ interface ShareIncidentRuleType {
   ruleType: string,
   departmentId: string,
   departmentName: string,
-  configuration: Mixed,
+  configuration: object,
 }
 
 export interface Department {

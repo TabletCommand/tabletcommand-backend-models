@@ -1,10 +1,67 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function CADSimulationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model, Types } from "mongoose";
+import { MongooseModule } from "../helpers";
+interface SimPriorCommentType {
+    Comment?: string;
+    CommentSource?: string;
+    CommentDateTime?: string;
+}
+interface SimPriorIncidentType {
+    IncidentNumber: string;
+    IncidentDateTime: string;
+    Problem: string;
+    Address: string;
+    Suite: string;
+    Comment: SimPriorCommentType[];
+}
+interface SimRadioChannelType {
+    name: string;
+    channel: string;
+}
+interface SimCommentType {
+    comment: string;
+    source: string;
+}
+interface SimUnitType {
+    alarmLevelAtDispatch: string;
+    units: string[];
+}
+interface SequenceType {
+    _id: Types.ObjectId;
+    title: string;
+    alarm: string;
+    sequenceId: number;
+    unitsConfig: SimUnitType;
+    comments: SimCommentType[];
+}
+export interface CADSimulation {
     uuid: string;
     departmentId: string;
     modifiedDate: number;
-    modified: string;
+    modified: Date;
     active: boolean;
     friendlyId: string;
     title: string;
@@ -26,120 +83,19 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
     mapPages: string;
     tacticalChannel: string;
     commandChannel: string;
-    radioChannels: import("../helpers").MongooseInterface<{
-        name: {
-            title: StringConstructor;
-            default: string;
-        };
-        channel: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
+    radioChannels: SimRadioChannelType[];
     closeDelay: number;
-    priorIncidents: import("../helpers").MongooseInterface<{
-        IncidentNumber: {
-            title: StringConstructor;
-            default: string;
-        };
-        IncidentDateTime: {
-            type: StringConstructor;
-            default: string;
-        };
-        Problem: {
-            type: StringConstructor;
-            default: string;
-        };
-        Address: {
-            type: StringConstructor;
-            default: string;
-        };
-        Suite: {
-            type: StringConstructor;
-            default: string;
-        };
-        Comment: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    Comment: {
-                        title: StringConstructor;
-                        default: string;
-                    };
-                    CommentSource: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    CommentDateTime: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-    }>[];
+    priorIncidents: SimPriorIncidentType[];
     randomPriorIncidents: boolean;
     randomStaffing: boolean;
-    sequences: import("../helpers").MongooseInterface<{
-        _id: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            auto: boolean;
-        };
-        title: {
-            type: StringConstructor;
-            default: string;
-        };
-        alarm: {
-            type: StringConstructor;
-            default: string;
-        };
-        sequenceId: {
-            type: NumberConstructor;
-            default: number;
-        };
-        unitsConfig: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    alarmLevelAtDispatch: {
-                        title: StringConstructor;
-                        default: string;
-                    };
-                    units: {
-                        type: StringConstructor[];
-                        default: never[];
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: {};
-        };
-        comments: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    comment: {
-                        title: StringConstructor;
-                        default: string;
-                    };
-                    source: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-    }>[];
+    sequences: SequenceType[];
     sortId: number;
     sendStatus: boolean;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface CADSimulation extends ItemTypeFromTypeSchemaFunction<typeof CADSimulationModule> {
 }
-export interface CADSimulationModel extends ModelTypeFromTypeSchemaFunction<CADSimulation> {
+export default function CADSimulationModule(mongoose: MongooseModule): Promise<Model<CADSimulation, {}, {}, {}, import("mongoose").Document<unknown, {}, CADSimulation> & CADSimulation & {
+    _id: Types.ObjectId;
+}, any>>;
+export interface CADSimulationModel extends Model<CADSimulation> {
 }
-declare const _default: ReplaceModelReturnType<typeof CADSimulationModule, CADSimulationModel>;
-export default _default;
+export {};
 //# sourceMappingURL=cad-simulation.d.ts.map

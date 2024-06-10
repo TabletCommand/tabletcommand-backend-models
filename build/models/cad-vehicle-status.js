@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADVehicleStatusModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const cad_status_option_selected_1 = require("./schema/cad-status-option-selected");
 async function CADVehicleStatusModule(mongoose) {
     const { Schema } = mongoose;
     const CADStatusOptionSelected = (0, cad_status_option_selected_1.default)(mongoose);
-    const Destination = (0, helpers_1.createSchema)(Schema, {
+    const Destination = new Schema({
         // eg 1234 Main St
         address: {
             type: String,
@@ -22,7 +21,7 @@ async function CADVehicleStatusModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchemaConfig = (0, helpers_1.createSchemaDefinition)({
+    const modelSchema = new Schema({
         uuid: {
             type: String,
             index: true,
@@ -125,13 +124,11 @@ async function CADVehicleStatusModule(mongoose) {
         backupDate: {
             type: Date,
         },
-    });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaConfig, {
+    }, {
         collection: "massive_cad_vehicle_status",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "CADVehicleStatus", modelSchema);
+    return mongoose.model("CADVehicleStatus", modelSchema);
 }
-exports.CADVehicleStatusModule = CADVehicleStatusModule;
 exports.default = CADVehicleStatusModule;
 //# sourceMappingURL=cad-vehicle-status.js.map

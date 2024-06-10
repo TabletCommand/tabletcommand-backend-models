@@ -1,44 +1,49 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function CADVehicleStatusHistoryModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model } from "mongoose";
+import { MongooseModule } from "../helpers";
+import { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
+export interface CADVehicleStatusHistory {
     departmentId: string;
     vehicleId: string;
     radioName: string;
     status: string;
     statusCode: string;
     requestedAt: number;
-    requested: string;
+    requested: Date;
     requestDelay: number;
     requestedBy: string;
     incidentNumber: string;
-    options: import("../helpers").MongooseInterface<{
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-        type: {
-            type: StringConstructor;
-            default: string;
-        };
-        value: {
-            type: StringConstructor;
-            default: string;
-        };
-        key: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
+    options: CADStatusOptionSelectedSchemaType[];
     e: string;
     locationCurrent: string;
     locationDestination: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface CADVehicleStatusHistory extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusHistoryModule> {
 }
-export interface CADVehicleStatusHistoryModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatusHistory> {
+export default function CADVehicleStatusHistoryModule(mongoose: MongooseModule): Promise<Model<CADVehicleStatusHistory, {}, {}, {}, import("mongoose").Document<unknown, {}, CADVehicleStatusHistory> & CADVehicleStatusHistory & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>>;
+export interface CADVehicleStatusHistoryModel extends Model<CADVehicleStatusHistory> {
 }
-declare const _default: ReplaceModelReturnType<typeof CADVehicleStatusHistoryModule, CADVehicleStatusHistoryModel>;
-export default _default;
 //# sourceMappingURL=cad-vehicle-status-history.d.ts.map

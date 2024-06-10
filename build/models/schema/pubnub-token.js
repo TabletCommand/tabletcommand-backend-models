@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
 function PubNubTokenSchema(mongoose) {
     const { Schema } = mongoose;
-    const Item = (0, helpers_1.createSchema)(Schema, {
+    const Item = new Schema({
         token: {
             type: String,
             default: "",
@@ -13,7 +13,7 @@ function PubNubTokenSchema(mongoose) {
             default: helpers_1.currentDate,
         },
         runAt: {
-            type: Date,
+            type: Date || String,
             default: "",
         },
     }, {

@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADSimulationModule = void 0;
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function CADSimulationModule(mongoose) {
-    const { Schema, Types, } = mongoose;
-    const SimPriorComment = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const SimPriorComment = new Schema({
         Comment: {
-            title: String,
+            type: String,
             default: "",
         },
         CommentSource: {
@@ -22,9 +21,9 @@ async function CADSimulationModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SimPriorIncident = (0, helpers_1.createSchema)(Schema, {
+    const SimPriorIncident = new Schema({
         IncidentNumber: {
-            title: String,
+            type: String,
             default: "",
         },
         IncidentDateTime: {
@@ -51,9 +50,9 @@ async function CADSimulationModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SimRadioChannel = (0, helpers_1.createSchema)(Schema, {
+    const SimRadioChannel = new Schema({
         name: {
-            title: String,
+            type: String,
             default: "",
         },
         channel: {
@@ -64,9 +63,9 @@ async function CADSimulationModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SimComment = (0, helpers_1.createSchema)(Schema, {
+    const SimComment = new Schema({
         comment: {
-            title: String,
+            type: String,
             default: "",
         },
         source: {
@@ -77,9 +76,9 @@ async function CADSimulationModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SimUnit = (0, helpers_1.createSchema)(Schema, {
+    const SimUnit = new Schema({
         alarmLevelAtDispatch: {
-            title: String,
+            type: String,
             default: "",
         },
         units: {
@@ -90,9 +89,9 @@ async function CADSimulationModule(mongoose) {
         _id: false,
         id: false,
     });
-    const Sequence = (0, helpers_1.createSchema)(Schema, {
+    const Sequence = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         title: {
@@ -116,7 +115,7 @@ async function CADSimulationModule(mongoose) {
             default: [],
         }
     }, {});
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         // Internal
         uuid: {
             type: String,
@@ -258,8 +257,7 @@ async function CADSimulationModule(mongoose) {
         collection: "massive_cad_simulation",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "CADSimulation", modelSchema);
+    return mongoose.model("CADSimulation", modelSchema);
 }
-exports.CADSimulationModule = CADSimulationModule;
 exports.default = CADSimulationModule;
 //# sourceMappingURL=cad-simulation.js.map

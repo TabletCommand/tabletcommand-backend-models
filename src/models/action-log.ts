@@ -3,7 +3,7 @@ import {
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 export interface ActionLog {
   _id: Types.ObjectId,
@@ -11,10 +11,10 @@ export interface ActionLog {
   email: string,
   userId: string,
   action: string,
-  object: Mixed,
-  before: Mixed,
-  after: Mixed,
-  delta: Mixed,
+  object: object,
+  before: object,
+  after: object,
+  delta: object,
   message: string,
   createdAt: Date,
   modified_unix_date: number,

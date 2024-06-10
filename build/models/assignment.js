@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AssignmentModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function AssignmentModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         uuid: {
@@ -62,15 +61,14 @@ async function AssignmentModule(mongoose) {
         collection: "massive_assignment",
     });
     modelSchema.set("autoIndex", false);
+    modelSchema.virtual("id").get(function () {
+        return this._id.toString();
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id.toString();
-        },
     });
-    return (0, helpers_1.createModel)(mongoose, "Assignment", modelSchema);
+    return mongoose.model("Assignment", modelSchema);
 }
-exports.AssignmentModule = AssignmentModule;
 exports.default = AssignmentModule;
 //# sourceMappingURL=assignment.js.map

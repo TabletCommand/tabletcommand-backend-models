@@ -1,208 +1,81 @@
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
+/// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export default function AgencyCronSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
-    _interface: import("../../helpers").MongooseInterface<{
-        enabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        source: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    protocol: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    username: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    hostname: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    filePath: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: {
-                protocol: string;
-                username: string;
-                hostname: string;
-                filePath: string;
-            };
-        };
-        auth: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    password: {
-                        type: import("mongoose").Schema<any> & {
-                            _interface: import("../../helpers").MongooseInterface<{
-                                iv: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                                encryptedData: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                            }>;
-                            _methods: unknown;
-                        };
-                        default: null;
-                    };
-                    sshPrivateKey: {
-                        type: import("mongoose").Schema<any> & {
-                            _interface: import("../../helpers").MongooseInterface<{
-                                iv: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                                encryptedData: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                            }>;
-                            _methods: unknown;
-                        };
-                        default: null;
-                    };
-                    sshPublicKey: {
-                        type: import("mongoose").Schema<any> & {
-                            _interface: import("../../helpers").MongooseInterface<{
-                                iv: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                                encryptedData: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                            }>;
-                            _methods: unknown;
-                        };
-                        default: null;
-                    };
-                    useSSHKey: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: {
-                password: null;
-                sshPrivateKey: null;
-                sshPublicKey: null;
-                useSSHKey: boolean;
-            };
-        };
-        processPath: {
-            type: StringConstructor;
-            default: string;
-        };
-        completedPath: {
-            type: StringConstructor;
-            default: string;
-        };
-        importType: {
-            type: StringConstructor;
-            default: string;
-        };
-        timezone: {
-            type: StringConstructor;
-            default: string;
-        };
-        customApiPath: {
-            type: StringConstructor;
-            default: string;
-        };
-        alterChunkSize: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        reconcileEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        reconcileTimeOptions: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    enabled: {
-                        type: BooleanConstructor;
-                    };
-                    startTime: {
-                        type: StringConstructor;
-                    };
-                    endTime: {
-                        type: StringConstructor;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: {
-                enabled: boolean;
-                startTime: string;
-                endTime: string;
-            };
-        };
-        hasLabelCustomization: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        assignmentOverride: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        csvFieldMap: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../../helpers").MongooseInterface<{
-                    PersonnelID: {
-                        type: StringConstructor;
-                    };
-                    PersonnelName: {
-                        type: StringConstructor;
-                    };
-                    PersonnelRank: {
-                        type: StringConstructor;
-                    };
-                    PersonnelWorkCode: {
-                        type: StringConstructor;
-                    };
-                    PersonnelNote: {
-                        type: StringConstructor;
-                    };
-                    StartTime: {
-                        type: StringConstructor;
-                    };
-                    EndTime: {
-                        type: StringConstructor;
-                    };
-                    UnitName: {
-                        type: StringConstructor;
-                    };
-                    TimeFormat: {
-                        type: StringConstructor;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: {
-                PersonnelID: string;
-                PersonnelName: string;
-                PersonnelRank: string;
-                PersonnelWorkCode: string;
-                PersonnelNote: string;
-                StartTime: string;
-                EndTime: string;
-                UnitName: string;
-                TimeFormat: string;
-            };
-        };
-    }>;
-    _methods: unknown;
-};
+interface EncryptedDataType {
+    iv: string;
+    encryptedData: string;
+}
+interface CronConfigSourceType {
+    protocol: string;
+    username: string;
+    hostname: string;
+    filePath: string;
+}
+interface CronConfigAuthType {
+    password: EncryptedDataType | null;
+    sshPrivateKey: EncryptedDataType | null;
+    sshPublicKey: EncryptedDataType | null;
+    useSSHKey: boolean;
+}
+interface CronConfigCSVFieldMapType {
+    PersonnelID: string;
+    PersonnelName: string;
+    PersonnelRank: string;
+    PersonnelWorkCode: string;
+    PersonnelNote: string;
+    StartTime: string;
+    EndTime: string;
+    UnitName: string;
+    TimeFormat: string;
+}
+interface ReconcileTimeOptionsType {
+    enabled: boolean;
+    startTime: string;
+    endTime: string;
+}
+export interface AgencyCronConfigType {
+    enabled: boolean;
+    source: CronConfigSourceType;
+    auth: CronConfigAuthType;
+    processPath: string;
+    completedPath: string;
+    importType: string;
+    timezone: string;
+    customApiPath: string;
+    alterChunkSize: boolean;
+    reconcileEnabled: boolean;
+    reconcileTimeOptions: ReconcileTimeOptionsType;
+    hasLabelCustomization: boolean;
+    assignmentOverride: boolean;
+    csvFieldMap: CronConfigCSVFieldMapType;
+}
+export default function AgencyCronSchema(mongoose: MongooseModule): import("mongoose").Schema<AgencyCronConfigType, import("mongoose").Model<AgencyCronConfigType, any, any, any, import("mongoose").Document<unknown, any, AgencyCronConfigType> & AgencyCronConfigType & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, AgencyCronConfigType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<AgencyCronConfigType>> & import("mongoose").FlatRecord<AgencyCronConfigType> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;
+export {};
 //# sourceMappingURL=agency-cron-config.d.ts.map

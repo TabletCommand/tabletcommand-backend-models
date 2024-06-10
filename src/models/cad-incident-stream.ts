@@ -6,7 +6,7 @@ import {
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import { Types, Mixed, Model } from "mongoose";
+import { Types, Model } from "mongoose";
 export interface CADIncidentStream {
   _id: Types.ObjectId
   uuid: string,
@@ -14,7 +14,7 @@ export interface CADIncidentStream {
   departmentId: string,
   incidentNumber: string,
   createdAt: Date,
-  payload: Mixed,
+  payload: object,
 }
 
 export default async function CADIncidentStreamModule(mongoose: MongooseModule) {

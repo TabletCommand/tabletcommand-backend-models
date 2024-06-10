@@ -1,5 +1,5 @@
 // import * as uuid from "uuid";
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   MongooseModule,
 } from "../helpers";
@@ -22,7 +22,7 @@ export interface Esri {
   arcGISGroupIds: string[],
   arcGISAuth: EsriAuthSchemaType,
   arcGISMigrated: boolean,
-  review: Mixed,
+  review: object,
   reviewRunAt: Date,
   maps: EsriMapType[],
   mapsProperties: MapPropertiesType[],

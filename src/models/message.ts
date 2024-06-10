@@ -4,11 +4,11 @@ import {
   currentDate,
 } from "../helpers";
 import ColorModule, { ColorSchemaType } from "./schema/color";
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface TypeSchemaType {
   type: string,
-  typeOpts: Mixed
+  typeOpts: object
 }
 export interface Message {
   _id: Types.ObjectId

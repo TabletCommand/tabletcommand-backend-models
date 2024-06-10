@@ -1,4 +1,4 @@
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   MongooseModule,
   currentDate,
@@ -13,10 +13,10 @@ export interface MailLog {
   recipient: string,
   recipientDomain: string,
   tags: string[]
-  deliveryStatus: Mixed,
-  message: Mixed,
-  flags: Mixed,
-  envelope: Mixed,
+  deliveryStatus: object,
+  message: object,
+  flags: object,
+  envelope: object,
   logLevel: string,
   reason: string,
   severity: string,

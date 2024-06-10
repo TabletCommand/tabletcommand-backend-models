@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADStatusMapModule = void 0;
 const helpers_1 = require("../helpers");
 async function CADStatusMapModule(mongoose) {
     const Schema = mongoose.Schema;
-    const ToStatusIdSchema = (0, helpers_1.createSchema)(Schema, {
+    const ToStatusIdSchema = new Schema({
         statusId: {
             type: Number,
             default: 0,
@@ -23,7 +22,7 @@ async function CADStatusMapModule(mongoose) {
         id: false,
     });
     // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         departmentId: {
             type: String,
             default: "",
@@ -56,8 +55,7 @@ async function CADStatusMapModule(mongoose) {
         collection: "massive_cad_status_map",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "CADStatusMap", modelSchema);
+    return mongoose.model("CADStatusMap", modelSchema);
 }
-exports.CADStatusMapModule = CADStatusMapModule;
 exports.default = CADStatusMapModule;
 //# sourceMappingURL=cad-status-map.js.map

@@ -1,14 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChartUserModule = void 0;
-const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 async function ChartUserModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         dateAt: {
@@ -42,8 +40,7 @@ async function ChartUserModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return (0, helpers_1.createModel)(mongoose, "ChartUser", modelSchema);
+    return mongoose.model("ChartUser", modelSchema);
 }
-exports.ChartUserModule = ChartUserModule;
 exports.default = ChartUserModule;
 //# sourceMappingURL=chart-user.js.map

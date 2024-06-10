@@ -1,4 +1,4 @@
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseModule,
@@ -17,7 +17,7 @@ export interface CSVImport {
   fileName: string,
   fileSize: string,
   fileLastModified: Date,
-  records: Mixed[],
+  records: object[],
   modifiedDate: Date,
   userId: string,
   sendNotification: boolean

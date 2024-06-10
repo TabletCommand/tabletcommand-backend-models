@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.conditions = exports.currentDate = exports.retrieveCurrentUnixTime = exports.createModel = exports.createSchema = exports.createSchemaDefinition = void 0;
+exports.conditions = exports.currentDate = exports.retrieveCurrentUnixTime = exports.createSchema = exports.createSchemaDefinition = void 0;
 function createSchemaDefinition(c) {
     return c;
 }
@@ -13,15 +13,6 @@ function createSchema(schemaCtor, p, o, methods) {
     return schema;
 }
 exports.createSchema = createSchema;
-function createModel(mongoose, name, schema) {
-    if (mongoose.models[name]) {
-        return mongoose.model(name);
-    }
-    else {
-        return mongoose.model(name, schema);
-    }
-}
-exports.createModel = createModel;
 function retrieveCurrentUnixTime() {
     return Date.now() / 1000;
 }

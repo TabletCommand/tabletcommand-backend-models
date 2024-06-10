@@ -2,10 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const chai_1 = require("chai");
 require("mocha");
+// import * as _ from "lodash";
 const config_1 = require("./config");
 const __1 = require("..");
+// import MockModule from "./mock";
 describe("ArcGISGroup", function () {
-    let models, mongoose, mock;
+    // let models, 
+    //   mongoose: typeof import("mongoose"),
+    //   mock;
     beforeEach(async function () {
         const result = await (0, __1.connect)(config_1.url);
         console.log(result);

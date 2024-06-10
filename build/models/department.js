@@ -1,16 +1,172 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DepartmentModule = void 0;
 const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
 const color_1 = require("./schema/color");
 const pubnub_token_1 = require("./schema/pubnub-token");
+const Mark43StatusConfigDefault = {
+    TimeDispatched: ["D"],
+    TimeEnroute: ["EN"],
+    TimeStaged: ["ST"],
+    TimeCleared: ["AV", "AVF", "AOR"],
+    TimeAtHospital: ["AH"],
+    TimeTransporting: ["T", "EH"],
+    TimeArrived: ["ATS", "A"],
+};
+const IntterraFieldsDefault = [
+    {
+        "key": "IncidentNumber",
+        "value": "incidentId",
+        "required": true,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "AgencyIncidentCallTypeDescription",
+        "value": "incidentTypeDescription",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "units",
+        "value": "assignedUnits",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": true,
+    },
+    {
+        "key": "Longitude",
+        "value": "longitude",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "Latitude",
+        "value": "latitude",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "full_address",
+        "value": "fullAddress",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "EntryDateTime",
+        "value": "alarmDatetime",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    }
+];
+// If any of the following fields are updated/added/deleted,
+// make sure to update the database records, before/after release (script/query)
+const FireMapperConfigurationDefault = {
+    enabled: false,
+    layerRefreshInterval: 15,
+    proLicenseCount: 0,
+    host: "",
+    layerURL: [
+        {
+            name: "FireMapper - Symbols",
+            pathname: "/api/rest/services/features/FeatureServer/0",
+        },
+        {
+            name: "FireMapper - Lines",
+            pathname: "/api/rest/services/features/FeatureServer/1",
+        },
+        {
+            name: "FireMapper - Photos",
+            pathname: "/api/rest/services/features/FeatureServer/2",
+        },
+        {
+            name: "FireMapper - Areas",
+            pathname: "/api/rest/services/features/FeatureServer/3",
+        },
+        {
+            name: "FireMapper - PDFs",
+            pathname: "/api/rest/services/features/FeatureServer/4",
+        },
+        {
+            name: "FireMapper - Labels",
+            pathname: "/api/rest/services/features/FeatureServer/5",
+        },
+    ],
+    outline: [],
+};
+const LicensingDefault = {
+    "tcPro2Way": 0,
+    "tcPro1Way": 0,
+    "tcMobile": 0,
+    "tcWeb": 0,
+    "fireMapperPro": 0,
+    "sendToCAD": 0,
+    "tcStreams": 0
+};
+const SafetyPriorityKeywordDefault = [
+    {
+        "keywords": [],
+        "priority": 0,
+        "hexColor": "FF3B30"
+    },
+    {
+        "keywords": [],
+        "priority": 1,
+        "hexColor": "FEC309"
+    },
+    {
+        "keywords": [],
+        "priority": 2,
+        "hexColor": "0A60FF"
+    }
+];
+const FirstArrivingConfigDefault = {
+    "token": "",
+};
+const IntterraConfigDefault = {
+    "enabled": false,
+    "connections": [],
+};
+const Mark43ConfigDefault = {
+    "baseUrl": "",
+    "authToken": "",
+    "apiToken": "",
+    "userId": 0,
+    "enabled": false,
+};
+const SimpleSenseConfigDefault = {
+    "token": "",
+};
+const WebDisclaimerDefault = {
+    "message": "",
+    "enabled": false
+};
+const RestrictedCommentsDefault = {
+    enabled: false,
+    callTypesAllowed: [],
+    statusesAllowed: [],
+    restrictedFields: [
+        "LocationComment",
+        "AgencyIncidentCallTypeDescription",
+        "Comment"
+    ],
+    restrictedMessage: "RESTRICTED"
+};
+const SamsaraConfigurationDefault = {
+    enabled: false,
+    token: "",
+};
 async function DepartmentModule(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
     const Color = (0, color_1.default)(mongoose);
-    const Mark43StatusConfig = (0, helpers_1.createSchema)(Schema, {
+    const Mark43StatusConfig = new Schema({
         TimeDispatched: {
             type: [String],
             default: []
@@ -43,16 +199,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const Mark43StatusConfigDefault = {
-        TimeDispatched: ["D"],
-        TimeEnroute: ["EN"],
-        TimeStaged: ["ST"],
-        TimeCleared: ["AV", "AVF", "AOR"],
-        TimeAtHospital: ["AH"],
-        TimeTransporting: ["T", "EH"],
-        TimeArrived: ["ATS", "A"],
-    };
-    const Mark43Config = (0, helpers_1.createSchema)(Schema, {
+    const Mark43Config = new Schema({
         baseUrl: {
             type: String,
             default: "",
@@ -81,58 +228,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IntterraFieldsDefault = [
-        {
-            "key": "IncidentNumber",
-            "value": "incidentId",
-            "required": true,
-            "enabled": true,
-            "transformationRequired": false,
-        },
-        {
-            "key": "AgencyIncidentCallTypeDescription",
-            "value": "incidentTypeDescription",
-            "required": false,
-            "enabled": true,
-            "transformationRequired": false,
-        },
-        {
-            "key": "units",
-            "value": "assignedUnits",
-            "required": false,
-            "enabled": true,
-            "transformationRequired": true,
-        },
-        {
-            "key": "Longitude",
-            "value": "longitude",
-            "required": false,
-            "enabled": true,
-            "transformationRequired": false,
-        },
-        {
-            "key": "Latitude",
-            "value": "latitude",
-            "required": false,
-            "enabled": true,
-            "transformationRequired": false,
-        },
-        {
-            "key": "full_address",
-            "value": "fullAddress",
-            "required": false,
-            "enabled": true,
-            "transformationRequired": false,
-        },
-        {
-            "key": "EntryDateTime",
-            "value": "alarmDatetime",
-            "required": false,
-            "enabled": true,
-            "transformationRequired": false,
-        }
-    ];
-    const IntterraFields = (0, helpers_1.createSchema)(Schema, {
+    const IntterraFields = new Schema({
         key: {
             type: String,
             default: "",
@@ -157,7 +253,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IntterraConnection = (0, helpers_1.createSchema)(Schema, {
+    const IntterraConnection = new Schema({
         active: {
             type: Boolean,
             default: false,
@@ -190,7 +286,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IntterraConfig = (0, helpers_1.createSchema)(Schema, {
+    const IntterraConfig = new Schema({
         enabled: {
             type: Boolean,
             default: false,
@@ -203,7 +299,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SimpleSenseConfig = (0, helpers_1.createSchema)(Schema, {
+    const SimpleSenseConfig = new Schema({
         token: {
             type: String,
             default: "",
@@ -212,7 +308,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const FirstArrivingConfig = (0, helpers_1.createSchema)(Schema, {
+    const FirstArrivingConfig = new Schema({
         token: {
             type: String,
             default: "",
@@ -221,7 +317,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SafetyPriorityKeyword = (0, helpers_1.createSchema)(Schema, {
+    const SafetyPriorityKeyword = new Schema({
         priority: {
             type: Number,
             default: 6,
@@ -237,7 +333,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const WebDisclaimer = (0, helpers_1.createSchema)(Schema, {
+    const WebDisclaimer = new Schema({
         message: {
             type: String,
             default: "",
@@ -250,7 +346,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const AudioStream = (0, helpers_1.createSchema)(Schema, {
+    const AudioStream = new Schema({
         // eg. Central Dispatch Talk Group or also Available on 89.5 MHz
         description: {
             type: String,
@@ -273,7 +369,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const AudioStreamGroup = (0, helpers_1.createSchema)(Schema, {
+    const AudioStreamGroup = new Schema({
         group: {
             type: String,
             default: "",
@@ -290,7 +386,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const RestrictedComments = (0, helpers_1.createSchema)(Schema, {
+    const RestrictedComments = new Schema({
         enabled: {
             type: Boolean,
             default: false,
@@ -315,7 +411,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const CustomButtons = (0, helpers_1.createSchema)(Schema, {
+    const CustomButtons = new Schema({
         name: {
             type: String,
             default: "",
@@ -348,7 +444,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const FireMapperLayer = (0, helpers_1.createSchema)(Schema, {
+    const FireMapperLayer = new Schema({
         pathname: {
             type: String,
             default: "", // Eg. /api/rest/services/features/FeatureServer/0 (including 0)
@@ -361,7 +457,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const FireMapperOutline = (0, helpers_1.createSchema)(Schema, {
+    const FireMapperOutline = new Schema({
         uuid: {
             type: String,
             default: "",
@@ -374,7 +470,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SamsaraConfiguration = (0, helpers_1.createSchema)(Schema, {
+    const SamsaraConfiguration = new Schema({
         enabled: {
             type: Boolean,
             default: false,
@@ -387,11 +483,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const SamsaraConfigurationDefault = {
-        enabled: false,
-        token: "",
-    };
-    const FireMapperConfiguration = (0, helpers_1.createSchema)(Schema, {
+    const FireMapperConfiguration = new Schema({
         enabled: {
             type: Boolean,
             default: false,
@@ -422,42 +514,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    // If any of the following fields are updated/added/deleted,
-    // make sure to update the database records, before/after release (script/query)
-    const FireMapperConfigurationDefault = {
-        enabled: false,
-        layerRefreshInterval: 15,
-        proLicenseCount: 0,
-        host: "",
-        layerURL: [
-            {
-                name: "FireMapper - Symbols",
-                pathname: "/api/rest/services/features/FeatureServer/0",
-            },
-            {
-                name: "FireMapper - Lines",
-                pathname: "/api/rest/services/features/FeatureServer/1",
-            },
-            {
-                name: "FireMapper - Photos",
-                pathname: "/api/rest/services/features/FeatureServer/2",
-            },
-            {
-                name: "FireMapper - Areas",
-                pathname: "/api/rest/services/features/FeatureServer/3",
-            },
-            {
-                name: "FireMapper - PDFs",
-                pathname: "/api/rest/services/features/FeatureServer/4",
-            },
-            {
-                name: "FireMapper - Labels",
-                pathname: "/api/rest/services/features/FeatureServer/5",
-            },
-        ],
-        outline: [],
-    };
-    const Licensing = (0, helpers_1.createSchema)(Schema, {
+    const Licensing = new Schema({
         tcPro2Way: {
             type: Number,
             default: 0,
@@ -490,65 +547,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const LicensingDefault = {
-        "tcPro2Way": 0,
-        "tcPro1Way": 0,
-        "tcMobile": 0,
-        "tcWeb": 0,
-        "fireMapperPro": 0,
-        "sendToCAD": 0,
-        "tcStreams": 0
-    };
-    const SafetyPriorityKeywordDefault = [
-        {
-            "keywords": [],
-            "priority": 0,
-            "hexColor": "FF3B30"
-        },
-        {
-            "keywords": [],
-            "priority": 1,
-            "hexColor": "FEC309"
-        },
-        {
-            "keywords": [],
-            "priority": 2,
-            "hexColor": "0A60FF"
-        }
-    ];
-    const FirstArrivingConfigDefault = {
-        "token": "",
-    };
-    const IntterraConfigDefault = {
-        "enabled": false,
-        "connections": [],
-    };
-    const Mark43ConfigDefault = {
-        "baseUrl": "",
-        "authToken": "",
-        "apiToken": "",
-        "userId": 0,
-        "enabled": false,
-    };
-    const SimpleSenseConfigDefault = {
-        "token": "",
-    };
-    const WebDisclaimerDefault = {
-        "message": "",
-        "enabled": false
-    };
-    const RestrictedCommentsDefault = {
-        enabled: false,
-        callTypesAllowed: [],
-        statusesAllowed: [],
-        restrictedFields: [
-            "LocationComment",
-            "AgencyIncidentCallTypeDescription",
-            "Comment"
-        ],
-        restrictedMessage: "RESTRICTED"
-    };
-    const IncidentType = (0, helpers_1.createSchema)(Schema, {
+    const IncidentType = new Schema({
         name: {
             type: String,
             default: "Any",
@@ -576,7 +575,7 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const ShareIncidentRule = (0, helpers_1.createSchema)(Schema, {
+    const ShareIncidentRule = new Schema({
         ruleType: {
             type: String,
             default: "",
@@ -598,9 +597,9 @@ async function DepartmentModule(mongoose) {
         id: false,
     });
     // Main schema
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         uuid: {
@@ -1040,19 +1039,15 @@ async function DepartmentModule(mongoose) {
     modelSchema.set("timestamps", {
         updatedAt: "modified",
     });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id;
-        },
-    });
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+    });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return (0, helpers_1.createModel)(mongoose, "Department", modelSchema);
+    return mongoose.model("Department", modelSchema);
 }
-exports.DepartmentModule = DepartmentModule;
 exports.default = DepartmentModule;
 //# sourceMappingURL=department.js.map

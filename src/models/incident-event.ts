@@ -1,4 +1,4 @@
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 import {
   currentDate,
   MongooseDocument,
@@ -30,7 +30,7 @@ export interface IncidentEvent {
   userTime: number,
   uuid: string,
   ref_uuid: string,
-  opts: Mixed,
+  opts: object,
   archived: boolean,
 }
 export function IncidentEventSchema(mongoose: MongooseModule) {

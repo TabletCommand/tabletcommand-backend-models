@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../../helpers");
 function EsriMapSchema(mongoose) {
     const { Schema } = mongoose;
-    const MapLayer = (0, helpers_1.createSchema)(Schema, {
+    const MapLayer = new Schema({
         layerId: {
             type: String,
             default: "",
@@ -44,7 +43,7 @@ function EsriMapSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const BaseMap = (0, helpers_1.createSchema)(Schema, {
+    const BaseMap = new Schema({
         baseMapLayers: {
             type: [MapLayer],
             default: [],
@@ -91,14 +90,14 @@ function EsriMapSchema(mongoose) {
             type: Date,
         },
     };
-    const OfflineMap = (0, helpers_1.createSchema)(Schema, Object.assign(Object.assign({}, SimpleMapSchema), { status: {
+    const OfflineMap = new Schema(Object.assign(Object.assign({}, SimpleMapSchema), { status: {
             type: String,
             default: "",
         } }), {
         _id: false,
         id: false,
     });
-    const Map = (0, helpers_1.createSchema)(Schema, Object.assign(Object.assign({}, SimpleMapSchema), { mapLayers: {
+    const Map = new Schema(Object.assign(Object.assign({}, SimpleMapSchema), { mapLayers: {
             type: [MapLayer],
             default: [],
         }, baseMap: {

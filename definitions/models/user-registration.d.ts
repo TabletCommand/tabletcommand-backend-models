@@ -1,6 +1,30 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function UserRegistrationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model } from "mongoose";
+import { MongooseModule } from "../helpers";
+export interface UserRegistration {
     email: string;
     name: string;
     firstName: string;
@@ -9,7 +33,7 @@ export declare function UserRegistrationModule(mongoose: MongooseModule): Promis
     title: string;
     status: string;
     modifiedDate: number;
-    modified: string;
+    modified: Date;
     presentedAt: number;
     managedIncidentsCount: number;
     checklistsCount: number;
@@ -18,13 +42,10 @@ export declare function UserRegistrationModule(mongoose: MongooseModule): Promis
     lastIncidentLocation: string;
     lastIncidentUnixTime: number;
     syncedToHubSpot: boolean;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> {
 }
-export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> {
+export default function UserRegistrationModule(mongoose: MongooseModule): Promise<Model<UserRegistration, {}, {}, {}, import("mongoose").Document<unknown, {}, UserRegistration> & UserRegistration & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>>;
+export interface UserRegistrationModel extends Model<UserRegistration> {
 }
-declare const _default: ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;
-export default _default;
 //# sourceMappingURL=user-registration.d.ts.map

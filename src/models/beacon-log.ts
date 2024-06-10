@@ -3,13 +3,13 @@ import {
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Types, Mixed, Model } from "mongoose";
+import { Types, Model } from "mongoose";
 
 export interface BeaconLog {
   _id: Types.ObjectId,
   departmentId: string,
   userId: string,
-  object: Mixed,
+  object: object,
   createdAt: Date,
   modified_unix_date: number,
 }

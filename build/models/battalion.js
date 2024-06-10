@@ -1,21 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BattalionModule = exports.BattalionSchema = void 0;
+exports.BattalionSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 function BattalionSchema(mongoose) {
-    const { Schema, Types } = mongoose;
-    const toJSONOpts = {
-        virtuals: true,
-        versionKey: false,
-        transform(doc, ret) {
-            strictSchema(doc.schema, ret);
-            ret.id = ret._id;
-        },
-    };
-    const BattalionUnit = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const BattalionUnit = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         name: {
@@ -68,15 +60,25 @@ function BattalionSchema(mongoose) {
             type: String,
         },
         agencyId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
         },
     }, {});
-    BattalionUnit.set("toJSON", toJSONOpts);
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    BattalionUnit.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
+        return this._id.toString();
+    });
+    BattalionUnit.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        },
+    });
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         name: {
@@ -116,7 +118,7 @@ function BattalionSchema(mongoose) {
             index: true,
         },
         agencyId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
         },
@@ -132,17 +134,16 @@ function BattalionSchema(mongoose) {
         collection: "massive_battalion",
     });
     modelSchema.set("autoIndex", false);
+    modelSchema.virtual("id").get(function () {
+        // tslint:disable-next-line: no-unsafe-any
+        return this._id.toString();
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
         transform(doc, ret) {
             strictSchema(doc.schema, ret);
-            ret.id = ret._id;
         },
-    });
-    modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
     });
     function strictSchema(schema, ret) {
         Object.keys(ret).forEach(function (element) {
@@ -162,8 +163,7 @@ function BattalionSchema(mongoose) {
 exports.BattalionSchema = BattalionSchema;
 async function BattalionModule(mongoose) {
     const modelSchema = BattalionSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "Battalion", modelSchema);
+    return mongoose.model("BattalionType", modelSchema);
 }
-exports.BattalionModule = BattalionModule;
 exports.default = BattalionModule;
 //# sourceMappingURL=battalion.js.map

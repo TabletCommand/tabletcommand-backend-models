@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PersonnelImportModule = exports.PersonnelImportSchema = void 0;
+exports.PersonnelImportSchema = void 0;
 const helpers_1 = require("../helpers");
 function PersonnelImportSchema(mongoose) {
-    const { Schema, Types } = mongoose;
-    const Radio = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const Radio = new Schema({
         radioName: {
             type: String,
         },
@@ -20,9 +20,9 @@ function PersonnelImportSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         PersonnelID: {
@@ -65,11 +65,11 @@ function PersonnelImportSchema(mongoose) {
             default: 0,
         },
         shiftStart: {
-            type: Date,
+            type: Date || String,
             default: "",
         },
         shiftEnd: {
-            type: Date,
+            type: Date || String,
             default: "",
         },
         // Cases matches the other modified_unix_date
@@ -94,7 +94,7 @@ function PersonnelImportSchema(mongoose) {
             default: ""
         },
         agencyId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
         },
@@ -111,8 +111,7 @@ function PersonnelImportSchema(mongoose) {
 exports.PersonnelImportSchema = PersonnelImportSchema;
 async function PersonnelImportModule(mongoose) {
     const modelSchema = PersonnelImportSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "PersonnelImport", modelSchema);
+    return mongoose.model("PersonnelImport", modelSchema);
 }
-exports.PersonnelImportModule = PersonnelImportModule;
 exports.default = PersonnelImportModule;
 //# sourceMappingURL=personnel-import.js.map

@@ -6,7 +6,7 @@ import {
 } from "../helpers";
 import AgencyCronConfigModule, { AgencyCronConfigType } from "./schema/agency-cron-config";
 import AgencySAMLModule, { AgencySAMLSchemaType } from "./schema/agency-saml";
-import { Mixed, Model, Types } from "mongoose";
+import { Model, Types } from "mongoose";
 
 interface CrossStaffedUnitType {
   radioName: string,
@@ -30,7 +30,7 @@ export interface Agency {
   personnelIntegration: boolean,
   personnelMonitorHours: number,
   crossStaffing: CrossStaffedUnitType[],
-  licensing: Mixed,
+  licensing: object,
   cronConfig: AgencyCronConfigType,
   saml: AgencySAMLSchemaType[],
   activeUserCount: number,

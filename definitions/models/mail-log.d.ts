@@ -1,29 +1,50 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function MailLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("mongoose").Types.ObjectId;
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model, Types } from "mongoose";
+import { MongooseModule } from "../helpers";
+export interface MailLog {
+    _id: Types.ObjectId;
     mailId: string;
     event: string;
     timestamp: number;
     recipient: string;
     recipientDomain: string;
     tags: string[];
-    deliveryStatus: any;
-    message: any;
-    flags: any;
-    envelope: any;
+    deliveryStatus: object;
+    message: object;
+    flags: object;
+    envelope: object;
     logLevel: string;
     reason: string;
     severity: string;
     modified_unix_date: number;
-    modified: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface MailLog extends ItemTypeFromTypeSchemaFunction<typeof MailLogModule> {
+    modified: Date;
 }
-export interface MailLogModel extends ModelTypeFromTypeSchemaFunction<MailLog> {
+export default function MailLogModule(mongoose: MongooseModule): Promise<Model<MailLog, {}, {}, {}, import("mongoose").Document<unknown, {}, MailLog> & MailLog & Required<{
+    _id: Types.ObjectId;
+}>, any>>;
+export interface MailLogModel extends Model<MailLog> {
 }
-declare const _default: ReplaceModelReturnType<typeof MailLogModule, MailLogModel>;
-export default _default;
 //# sourceMappingURL=mail-log.d.ts.map

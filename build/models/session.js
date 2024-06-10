@@ -1,7 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SessionModule = void 0;
-const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 const oauth_1 = require("./schema/oauth");
 async function SessionModule(mongoose) {
@@ -9,9 +7,9 @@ async function SessionModule(mongoose) {
     const OAuthToken = (0, oauth_1.default)(mongoose);
     function requiredButAllowEmptyString() {
         // Workaround to set required, and allow empty id
-        return typeof this.myField === "string";
+        return typeof this.departmentId === "string";
     }
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
             type: String,
             default: uuid.v4,
@@ -72,18 +70,14 @@ async function SessionModule(mongoose) {
         this._id = this.get("token"); // Copy _id from token
         next();
     });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id;
-        },
-    });
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
     });
-    return (0, helpers_1.createModel)(mongoose, "Session", modelSchema);
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+    });
+    return mongoose.model("Session", modelSchema);
 }
-exports.SessionModule = SessionModule;
 exports.default = SessionModule;
 //# sourceMappingURL=session.js.map

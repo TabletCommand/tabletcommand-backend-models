@@ -80,8 +80,6 @@ async function connect(url, overwriteOpts) {
     const defaultOpts = {
         autoIndex: false,
         readPreference: "primaryPreferred",
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
     };
     // If present, overwrite options
     const opts = _.assign({}, defaultOpts, overwriteOpts);

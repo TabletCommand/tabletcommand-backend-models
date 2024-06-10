@@ -5,7 +5,7 @@ const assert = require("chai").assert;
 const m = require("../");
 const config = require("./config");
 
-describe(" Models", function() {
+describe("Models", function() {
   let models, mongoose;
   beforeEach(async function() {
     const c = await m.connect(config.url);

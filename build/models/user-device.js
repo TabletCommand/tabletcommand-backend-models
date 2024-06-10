@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserDeviceModule = void 0;
 const helpers_1 = require("../helpers");
 async function UserDeviceModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const UnitSetting = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const UnitSetting = new Schema({
         radioName: {
             type: String,
             default: "",
@@ -21,7 +20,7 @@ async function UserDeviceModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IncidentSetting = (0, helpers_1.createSchema)(Schema, {
+    const IncidentSetting = new Schema({
         incidentType: {
             type: String,
             default: "",
@@ -38,7 +37,7 @@ async function UserDeviceModule(mongoose) {
         _id: false,
         id: false,
     });
-    const deviceSchema = (0, helpers_1.createSchema)(Schema, {
+    const deviceSchema = new Schema({
         token: {
             type: String,
             default: "",
@@ -104,7 +103,7 @@ async function UserDeviceModule(mongoose) {
         _id: false,
         id: false,
     });
-    const soundSchemaItem = (0, helpers_1.createSchema)(Schema, {
+    const soundSchemaItem = new Schema({
         sound: {
             type: String,
         },
@@ -119,7 +118,7 @@ async function UserDeviceModule(mongoose) {
         _id: false,
         id: false,
     });
-    const soundSchema = (0, helpers_1.createSchema)(Schema, {
+    const soundSchema = new Schema({
         ios: {
             type: soundSchemaItem,
         },
@@ -130,9 +129,9 @@ async function UserDeviceModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         userId: {
@@ -181,8 +180,7 @@ async function UserDeviceModule(mongoose) {
         collection: "massive_user_device",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "UserDevice", modelSchema);
+    return mongoose.model("UserDevice", modelSchema);
 }
-exports.UserDeviceModule = UserDeviceModule;
 exports.default = UserDeviceModule;
 //# sourceMappingURL=user-device.js.map

@@ -1,332 +1,47 @@
-/// <reference types="mongoose" />
-import * as uuid from "uuid";
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, currentDate } from "../helpers";
-export declare function UserSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
-    _interface: import("../helpers").MongooseInterface<{
-        nick: {
-            type: StringConstructor;
-            default: string;
-            index: true;
-        };
-        email: {
-            type: StringConstructor;
-            default: string;
-            index: true;
-        };
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-        uuid: {
-            type: StringConstructor;
-            default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
-        };
-        departmentId: {
-            type: StringConstructor;
-            default: string;
-            required: boolean;
-            index: true;
-        };
-        modified_date: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        when: {
-            type: DateConstructor;
-        };
-        agencyId: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            ref: string;
-            default: null;
-        };
-        managedAgencies: {
-            type: import("mongoose").Types.ObjectIdConstructor[];
-            ref: string;
-            default: never[];
-        };
-        active: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        admin: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        superuser: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        isPro: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        isIncidentManager: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        mobileAccess: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        webAccess: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        cadSimulatorAccess: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        canAddRemoveVehicle: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        beaconEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        userContributionEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        syncLoggingExpireDate: {
-            type: DateConstructor;
-            default: null;
-        };
-        beacons: {
-            type: StringConstructor[];
-            default: never[];
-        };
-        salt: {
-            type: StringConstructor;
-            default: string;
-            select: boolean;
-        };
-        pass: {
-            type: StringConstructor;
-            default: string;
-            select: boolean;
-        };
-        auth: {
-            type: StringConstructor[];
-            default: string[];
-        };
-        mapHidden: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        mapId: {
-            type: StringConstructor;
-            default: string;
-        };
-        vehicle: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    radioName: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    vehicleId: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        sessionCountiPhone: {
-            type: NumberConstructor;
-            default: number;
-        };
-        sessionCountiPad: {
-            type: NumberConstructor;
-            default: number;
-        };
-        rtsAuthKey: {
-            type: StringConstructor;
-            default: string;
-        };
-        pubNubV2: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    token: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    expireAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    runAt: {
-                        type: DateConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        pubNubV3: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    token: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    expireAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    runAt: {
-                        type: DateConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        socketIO: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    token: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    expireAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    runAt: {
-                        type: DateConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        token: {
-            type: StringConstructor;
-            default: string;
-        };
-        tokenExpireAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        shareLocationPhone: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        shareLocationTablet: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        offlineMapsEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        fireMapperProEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        arcGISAuth: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    username: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    encrypted: {
-                        type: import("mongoose").Schema<any> & {
-                            _interface: import("../helpers").MongooseInterface<{
-                                iv: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                                encryptedData: {
-                                    type: StringConstructor;
-                                    default: string;
-                                };
-                            }>;
-                            _methods: unknown;
-                        };
-                        default: null;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        arcGISAuthError: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    code: {
-                        type: NumberConstructor;
-                        default: number;
-                    };
-                    error: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    error_description: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-        offDutyEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        webMapSettings: {
-            defaultZoomLevel: {
-                type: NumberConstructor;
-            };
-            defaultCenter: {
-                type: NumberConstructor[];
-                default: never[];
-            };
-            defaultMap: {
-                type: StringConstructor;
-            };
-        };
-        locationToCAD: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        logOffEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        restrictedCommentsEnabled: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-    }>;
-    _methods: unknown;
-};
-export declare function UserModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { EsriAuthSchemaType } from "./schema/esri-auth";
+import { EsriErrorSchemaType } from "./schema/esri-error";
+import { PubNubTokenSchemaType } from "./schema/pubnub-token";
+import { Model, Types } from "mongoose";
+interface VehicleSchemaType {
+    radioName: string;
+    vehicleId: string;
+}
+export interface User {
+    _id: Types.ObjectId;
     nick: string;
     email: string;
     name: string;
     uuid: string;
     departmentId: string;
-    modified_date: string;
-    when: string;
-    agencyId: import("mongoose").Types.ObjectId;
-    managedAgencies: {
-        type: never;
-        ref: never;
-        default: unknown[];
-    };
+    modified_date: Date;
+    when: Date;
+    agencyId: Types.ObjectId;
+    managedAgencies: Types.ObjectId[];
     active: boolean;
     admin: boolean;
     superuser: boolean;
@@ -338,114 +53,28 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     canAddRemoveVehicle: boolean;
     beaconEnabled: boolean;
     userContributionEnabled: boolean;
-    syncLoggingExpireDate: string;
+    syncLoggingExpireDate: Date;
     beacons: string[];
     salt: string;
     pass: string;
     auth: string[];
     mapHidden: boolean;
     mapId: string;
-    vehicle: import("../helpers").MongooseInterface<{
-        radioName: {
-            type: StringConstructor;
-            default: string;
-        };
-        vehicleId: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
+    vehicle: VehicleSchemaType;
     sessionCountiPhone: number;
     sessionCountiPad: number;
     rtsAuthKey: string;
-    pubNubV2: import("../helpers").MongooseInterface<{
-        token: {
-            type: StringConstructor;
-            default: string;
-        };
-        expireAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        runAt: {
-            type: DateConstructor;
-            default: string;
-        };
-    }>;
-    pubNubV3: import("../helpers").MongooseInterface<{
-        token: {
-            type: StringConstructor;
-            default: string;
-        };
-        expireAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        runAt: {
-            type: DateConstructor;
-            default: string;
-        };
-    }>;
-    socketIO: import("../helpers").MongooseInterface<{
-        token: {
-            type: StringConstructor;
-            default: string;
-        };
-        expireAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        runAt: {
-            type: DateConstructor;
-            default: string;
-        };
-    }>;
+    pubNubV2: PubNubTokenSchemaType;
+    pubNubV3: PubNubTokenSchemaType;
+    socketIO: PubNubTokenSchemaType;
     token: string;
-    tokenExpireAt: string;
+    tokenExpireAt: Date;
     shareLocationPhone: boolean;
     shareLocationTablet: boolean;
     offlineMapsEnabled: boolean;
     fireMapperProEnabled: boolean;
-    arcGISAuth: import("../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        encrypted: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    iv: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    encryptedData: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: null;
-        };
-    }>;
-    arcGISAuthError: import("../helpers").MongooseInterface<{
-        code: {
-            type: NumberConstructor;
-            default: number;
-        };
-        error: {
-            type: StringConstructor;
-            default: string;
-        };
-        error_description: {
-            type: StringConstructor;
-            default: string;
-        };
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
+    arcGISAuth: EsriAuthSchemaType;
+    arcGISAuthError: EsriErrorSchemaType;
     offDutyEnabled: boolean;
     webMapSettings: {
         defaultZoomLevel: number;
@@ -455,13 +84,16 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     locationToCAD: boolean;
     logOffEnabled: boolean;
     restrictedCommentsEnabled: boolean;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> {
 }
-export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> {
+export declare function UserSchema(mongoose: MongooseModule): import("mongoose").Schema<User, Model<User, any, any, any, import("mongoose").Document<unknown, any, User> & User & Required<{
+    _id: Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, User, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<User>> & import("mongoose").FlatRecord<User> & Required<{
+    _id: Types.ObjectId;
+}>>;
+export default function UserModule(mongoose: MongooseModule): Promise<Model<User, {}, {}, {}, import("mongoose").Document<unknown, {}, User> & User & Required<{
+    _id: Types.ObjectId;
+}>, any>>;
+export interface UserModel extends Model<User> {
 }
-declare const _default: ReplaceModelReturnType<typeof UserModule, UserModel>;
-export default _default;
+export {};
 //# sourceMappingURL=user.d.ts.map

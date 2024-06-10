@@ -1,19 +1,36 @@
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
+/// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export default function GeoJSONPointSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
-    _interface: import("../../helpers").MongooseInterface<{
-        type: {
-            type: StringConstructor;
-            required: boolean;
-            enum: string[];
-            default: string;
-        };
-        coordinates: {
-            type: NumberConstructor[];
-            required: boolean;
-            default: never[];
-        };
-    }>;
-    _methods: unknown;
-};
+export interface GeoJSONPointType {
+    type: string;
+    coordinates: number[];
+}
+export default function GeoJSONPointSchema(mongoose: MongooseModule): import("mongoose").Schema<GeoJSONPointType, import("mongoose").Model<GeoJSONPointType, any, any, any, import("mongoose").Document<unknown, any, GeoJSONPointType> & GeoJSONPointType & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, GeoJSONPointType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<GeoJSONPointType>> & import("mongoose").FlatRecord<GeoJSONPointType> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;
 //# sourceMappingURL=geojson-point.d.ts.map

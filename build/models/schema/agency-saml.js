@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../../helpers");
 function AgencySAMLSchema(mongoose) {
     const { Schema } = mongoose;
-    const AgencyCronConfig = (0, helpers_1.createSchema)(Schema, {
+    const AgencyCronConfig = new Schema({
         selector: {
             type: String,
             required: true,

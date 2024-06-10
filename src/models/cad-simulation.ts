@@ -6,9 +6,9 @@ import {
 import * as uuid from "uuid";
 
 interface SimPriorCommentType {
-  Comment: string,
-  CommentSource: string,
-  CommentDateTime: string,
+  Comment?: string,
+  CommentSource?: string,
+  CommentDateTime?: string,
 }
 
 interface SimPriorIncidentType {
@@ -83,7 +83,7 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimPriorComment = new Schema<SimPriorCommentType>({
     Comment: {
-      title: String,
+      type: String,
       default: "",
     },
     CommentSource: {
@@ -101,7 +101,7 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimPriorIncident = new Schema<SimPriorIncidentType>({
     IncidentNumber: {
-      title: String,
+      type: String,
       default: "",
     },
     IncidentDateTime: {
@@ -131,7 +131,7 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimRadioChannel = new Schema<SimRadioChannelType>({
     name: {
-      title: String,
+      type: String,
       default: "",
     },
     channel: {
@@ -145,7 +145,7 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimComment = new Schema<SimCommentType>({
     comment: {
-      title: String,
+      type: String,
       default: "",
     },
     source: {
@@ -159,7 +159,7 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimUnit = new Schema<SimUnitType>({
     alarmLevelAtDispatch: {
-      title: String,
+      type: String,
       default: "",
     },
     units: {

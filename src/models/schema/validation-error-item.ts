@@ -1,4 +1,3 @@
-import { Mixed } from "mongoose";
 import {
   MongooseModule,
   currentDate,
@@ -9,7 +8,7 @@ export interface ValidationErrorItemSchemaType {
   firstSeenAt: Date,
   lastSeenAt: Date,
   clearedAt: Date,
-  payload: Mixed
+  payload: object,
 }
 
 export default function ValidationErrorItemSchema(mongoose: MongooseModule) {
