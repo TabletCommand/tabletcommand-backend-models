@@ -56,8 +56,8 @@ describe("ArcGISGroup", function() {
     await mock.cleanup();
   });
 
-  afterEach(function() {
-    mongoose.disconnect();
+  afterEach(async function() {
+    await mongoose.disconnect();
   });
 
   it("is saved", async function() {

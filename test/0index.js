@@ -2,21 +2,22 @@
 
 const assert = require("chai").assert;
 
+const mongoose = require("mongoose");
 const m = require("../");
 const config = require("./config");
 
-describe("Models", function() {
-  let models, mongoose;
-  beforeEach(async function() {
+after(async function () {
+  await mongoose.disconnect();
+})
+
+describe("Models", function () {
+  let models;
+  before(async function () {
     const c = await m.connect(config.url);
     models = c.models;
-    mongoose = c.mongoose;
-  });
-  afterEach(function() {
-    mongoose.disconnect();
   });
 
-  it("are wired", function() {
+  it("are wired", function () {
     // These should match index.js
     assert.isFunction(models.ActionLog, "Missing ActionLog");
     assert.isFunction(models.Agency, "Missing Agency");
