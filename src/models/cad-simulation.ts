@@ -17,7 +17,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimPriorComment = createSchema(Schema, {
     Comment: {
-      title: String,
+      type: String,
       default: "",
     },
     CommentSource: {
@@ -35,7 +35,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimPriorIncident = createSchema(Schema, {
     IncidentNumber: {
-      title: String,
+      type: String,
       default: "",
     },
     IncidentDateTime: {
@@ -65,7 +65,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimRadioChannel = createSchema(Schema, {
     name: {
-      title: String,
+      type: String,
       default: "",
     },
     channel: {
@@ -79,7 +79,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimComment = createSchema(Schema, {
     comment: {
-      title: String,
+      type: String,
       default: "",
     },
     source: {
@@ -93,7 +93,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
 
   const SimUnit = createSchema(Schema, {
     alarmLevelAtDispatch: {
-      title: String,
+      type: String,
       default: "",
     },
     units: {

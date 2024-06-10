@@ -7,7 +7,7 @@ async function CADSimulationModule(mongoose) {
     const { Schema, Types, } = mongoose;
     const SimPriorComment = (0, helpers_1.createSchema)(Schema, {
         Comment: {
-            title: String,
+            type: String,
             default: "",
         },
         CommentSource: {
@@ -24,7 +24,7 @@ async function CADSimulationModule(mongoose) {
     });
     const SimPriorIncident = (0, helpers_1.createSchema)(Schema, {
         IncidentNumber: {
-            title: String,
+            type: String,
             default: "",
         },
         IncidentDateTime: {
@@ -53,7 +53,7 @@ async function CADSimulationModule(mongoose) {
     });
     const SimRadioChannel = (0, helpers_1.createSchema)(Schema, {
         name: {
-            title: String,
+            type: String,
             default: "",
         },
         channel: {
@@ -66,7 +66,7 @@ async function CADSimulationModule(mongoose) {
     });
     const SimComment = (0, helpers_1.createSchema)(Schema, {
         comment: {
-            title: String,
+            type: String,
             default: "",
         },
         source: {
@@ -79,7 +79,7 @@ async function CADSimulationModule(mongoose) {
     });
     const SimUnit = (0, helpers_1.createSchema)(Schema, {
         alarmLevelAtDispatch: {
-            title: String,
+            type: String,
             default: "",
         },
         units: {

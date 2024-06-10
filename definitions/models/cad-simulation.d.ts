@@ -28,7 +28,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
     commandChannel: string;
     radioChannels: import("../helpers").MongooseInterface<{
         name: {
-            title: StringConstructor;
+            type: StringConstructor;
             default: string;
         };
         channel: {
@@ -39,7 +39,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
     closeDelay: number;
     priorIncidents: import("../helpers").MongooseInterface<{
         IncidentNumber: {
-            title: StringConstructor;
+            type: StringConstructor;
             default: string;
         };
         IncidentDateTime: {
@@ -62,7 +62,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     Comment: {
-                        title: StringConstructor;
+                        type: StringConstructor;
                         default: string;
                     };
                     CommentSource: {
@@ -102,7 +102,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
             type: import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     alarmLevelAtDispatch: {
-                        title: StringConstructor;
+                        type: StringConstructor;
                         default: string;
                     };
                     units: {
@@ -118,7 +118,7 @@ export declare function CADSimulationModule(mongoose: MongooseModule): Promise<i
             type: (import("mongoose").Schema<any> & {
                 _interface: import("../helpers").MongooseInterface<{
                     comment: {
-                        title: StringConstructor;
+                        type: StringConstructor;
                         default: string;
                     };
                     source: {
