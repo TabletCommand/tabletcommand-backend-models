@@ -1,43 +1,34 @@
 "use strict";
 
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("CADVehicle", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("CADVehicle", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.cadVehicle;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     const item = new models.CADVehicle(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
 
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.modifiedDate, sut.modifiedDate);
-      assert.equal(testItem.vehicleId, sut.vehicleId);
-      assert.equal(testItem.radioName, sut.radioName);
-      assert.equal(testItem.station.code, sut.station.code);
-      assert.equal(testItem.station.name, sut.station.name);
-      assert.equal(testItem.station.capability, sut.station.capability);
-      assert.isFalse(sut.locationToCAD);
+      assert.equal(testItem.uuid, ress.uuid);
+      assert.equal(testItem.departmentId, ress.departmentId);
+      assert.equal(testItem.modifiedDate, ress.modifiedDate);
+      assert.equal(testItem.vehicleId, ress.vehicleId);
+      assert.equal(testItem.radioName, ress.radioName);
+      assert.equal(testItem.station.code, ress.station.code);
+      assert.equal(testItem.station.name, ress.station.name);
+      assert.equal(testItem.station.capability, ress.station.capability);
+      assert.isFalse(ress.locationToCAD);
 
-      return done();
-    });
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

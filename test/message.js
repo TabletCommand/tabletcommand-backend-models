@@ -1,43 +1,34 @@
 "use strict";
 
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("Message", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("Message", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.message;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     var item = new models.Message(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
 
       assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.title, sut.title);
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.requestId, sut.requestId);
-      assert.equal(testItem.body, sut.body);
-      assert.equal(testItem.actionTitle, sut.actionTitle);
-      assert.equal(testItem.url, sut.url);
-      assert.equal(testItem.priority, sut.priority);
-      assert.equal(JSON.stringify(testItem.type), JSON.stringify(sut.type));
-      return done();
-    });
+      assert.equal(testItem.departmentId, ress.departmentId);
+      assert.equal(testItem.title, ress.title);
+      assert.equal(testItem.uuid, ress.uuid);
+      assert.equal(testItem.requestId, ress.requestId);
+      assert.equal(testItem.body, ress.body);
+      assert.equal(testItem.actionTitle, ress.actionTitle);
+      assert.equal(testItem.url, ress.url);
+      assert.equal(testItem.priority, ress.priority);
+      assert.equal(JSON.stringify(testItem.type), JSON.stringify(ress.type));
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

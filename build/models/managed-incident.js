@@ -1,19 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ManagedIncidentModule = void 0;
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const shared_incident_1 = require("./schema/shared-incident");
 async function ManagedIncidentModule(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const CADPerson = (0, shared_incident_1.CADPersonSchema)(mongoose);
     const RadioChannel = (0, shared_incident_1.RadioChannelSchema)(mongoose);
     const RecordValue = (0, shared_incident_1.RecordSchema)(mongoose);
     const ReportNumber = (0, shared_incident_1.ReportNumberSchema)(mongoose);
     const SharedSource = (0, shared_incident_1.SharedSourceSchema)(mongoose);
     const SharedTo = (0, shared_incident_1.SharedToSchema)(mongoose);
-    const HistoryItem = (0, helpers_1.createSchema)(Schema, {
+    const HistoryItem = new Schema({
         message: {
             type: String,
             default: "",
@@ -38,7 +37,7 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const AssignmentItem = (0, helpers_1.createSchema)(Schema, {
+    const AssignmentItem = new Schema({
         name: {
             type: String,
             default: "",
@@ -79,7 +78,7 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IncidentUnit = (0, helpers_1.createSchema)(Schema, {
+    const IncidentUnit = new Schema({
         UnitID: {
             type: String,
             required: true,
@@ -188,7 +187,7 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IncidentGroup = (0, helpers_1.createSchema)(Schema, {
+    const IncidentGroup = new Schema({
         location_on_map: {
             type: String,
             default: "",
@@ -229,7 +228,7 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IncidentHazard = (0, helpers_1.createSchema)(Schema, {
+    const IncidentHazard = new Schema({
         location_on_scene: {
             type: String,
             default: "",
@@ -270,7 +269,7 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IncidentChecklistItem = (0, helpers_1.createSchema)(Schema, {
+    const IncidentChecklistItem = new Schema({
         active: {
             type: Boolean,
             default: true
@@ -314,7 +313,7 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const IncidentChecklist = (0, helpers_1.createSchema)(Schema, {
+    const IncidentChecklist = new Schema({
         active: {
             type: Boolean,
             default: true
@@ -358,9 +357,9 @@ async function ManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -526,20 +525,15 @@ async function ManagedIncidentModule(mongoose) {
         collection: "massive_incident_managed",
     });
     modelSchema.set("autoIndex", false);
+    modelSchema.virtual("id").get(function () {
+        return this._id.toString();
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id;
-        },
-    });
-    modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return (0, helpers_1.createModel)(mongoose, "ManagedIncident", modelSchema);
+    return mongoose.model("ManagedIncident", modelSchema);
 }
-exports.ManagedIncidentModule = ManagedIncidentModule;
 exports.default = ManagedIncidentModule;
 //# sourceMappingURL=managed-incident.js.map

@@ -1,27 +1,81 @@
 import * as uuid from "uuid";
 import {
-  createSchema,
-  createModel,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
   MongooseModule,
   MongooseDocument,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
-import EsriAuthSchema from "./schema/esri-auth";
-import EsriErrorSchema from "./schema/esri-error";
-import PubNubTokenSchema from "./schema/pubnub-token";
+import EsriAuthSchema, { EsriAuthSchemaType } from "./schema/esri-auth";
+import EsriErrorSchema, { EsriErrorSchemaType } from "./schema/esri-error";
+import PubNubTokenSchema, { PubNubTokenSchemaType } from "./schema/pubnub-token";
+import { Model, Types } from "mongoose";
+
+interface VehicleSchemaType {
+  radioName: string,
+  vehicleId: string,
+}
+
+export interface User {
+  _id: Types.ObjectId,
+  nick: string,
+  email: string,
+  name: string,
+  uuid: string,
+  departmentId: string,
+  modified_date: Date,
+  when: Date,
+  agencyId: Types.ObjectId,
+  managedAgencies: Types.ObjectId[],
+  active: boolean,
+  admin: boolean,
+  superuser: boolean,
+  isPro: boolean,
+  isIncidentManager: boolean,
+  mobileAccess: boolean,
+  webAccess: boolean,
+  cadSimulatorAccess: boolean,
+  canAddRemoveVehicle: boolean,
+  beaconEnabled: boolean,
+  userContributionEnabled: boolean,
+  syncLoggingExpireDate: Date,
+  beacons: string[],
+  salt: string,
+  pass: string,
+  auth: string[],
+  mapHidden: boolean,
+  mapId: string,
+  vehicle: VehicleSchemaType,
+  sessionCountiPhone: number,
+  sessionCountiPad: number,
+  rtsAuthKey: string,
+  pubNubV2: PubNubTokenSchemaType
+  pubNubV3: PubNubTokenSchemaType
+  socketIO: PubNubTokenSchemaType,
+  token: string,
+  tokenExpireAt: Date,
+  shareLocationPhone: boolean,
+  shareLocationTablet: boolean,
+  offlineMapsEnabled: boolean,
+  fireMapperProEnabled: boolean,
+  arcGISAuth: EsriAuthSchemaType,
+  arcGISAuthError: EsriErrorSchemaType,
+  offDutyEnabled: boolean,
+  webMapSettings: {
+    defaultZoomLevel: number,
+    defaultCenter: number[],
+    defaultMap: string,
+  },
+  locationToCAD: boolean,
+  logOffEnabled: boolean,
+  restrictedCommentsEnabled: boolean,
+}
 
 export function UserSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const EsriAuth = EsriAuthSchema(mongoose);
   const EsriError = EsriErrorSchema(mongoose);
   const PubNubToken = PubNubTokenSchema(mongoose);
 
-  const VehicleSchema = createSchema(Schema, {
+  const VehicleSchema = new Schema<VehicleSchemaType>({
     radioName: {
       type: String,
       default: "",
@@ -35,7 +89,7 @@ export function UserSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<User>({
     nick: {
       type: String,
       default: "",
@@ -68,7 +122,7 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Date,
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -267,26 +321,23 @@ export function UserSchema(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
+  // NO _id on User schema?
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+    return this._id.toHexString();
+  });
+
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    return this._id.toHexString();
-  });
 
   return modelSchema;
 }
 
-export async function UserModule(mongoose: MongooseModule) {
+export default async function UserModule(mongoose: MongooseModule) {
   const modelSchema = UserSchema(mongoose);
-  return createModel(mongoose, "User", modelSchema);
+  return mongoose.model<User>("User", modelSchema);
 }
 
-export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> { }
-export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> { }
-export default UserModule as ReplaceModelReturnType<typeof UserModule, UserModel>;
+export interface UserModel extends Model<User> { }

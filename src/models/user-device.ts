@@ -1,18 +1,68 @@
+import { Model, Types } from "mongoose";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
-export async function UserDeviceModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+interface UnitSettingType {
+  radioName: string,
+  notificationType: string,
+  notificationMode: string,
+}
+interface IncidentSettingType {
+  incidentType: string,
+  notificationType: string,
+  notificationMode: string,
+}
 
-  const UnitSetting = createSchema(Schema, {
+interface DeviceSchemaType {
+  token: string,
+  env: string,
+  ver: string,
+  ua: string,
+  time: number,
+  t: Date,
+  drift: number,
+  channelId: string,
+  bundleIdentifier: string,
+  silentEnabled: boolean,
+  criticalAlertsEnabled: boolean,
+  session: string,
+  active: boolean,
+  offDuty: boolean,
+}
+
+interface SoundSchemaItemType {
+  sound: string,
+  soundType: string,
+  os: string,
+}
+
+interface SoundSchemaType {
+  ios: SoundSchemaItemType,
+  android: SoundSchemaItemType,
+}
+
+export interface UserDevice {
+  _id: Types.ObjectId,
+  userId: string,
+  departmentId: string,
+  devices: DeviceSchemaType[],
+  notificationCount: number,
+  notificationUnitSettings: UnitSettingType[],
+  notificationIncidentSettings: IncidentSettingType[],
+  notificationSounds: SoundSchemaType
+  offDuty: boolean,
+  criticalAlertsVolume: string,
+  allowInStaging: boolean,
+  restrictedCommentsEnabled: boolean,
+}
+
+export default async function UserDeviceModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const UnitSetting = new Schema<UnitSettingType>({
     radioName: {
       type: String,
       default: "",
@@ -30,7 +80,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentSetting = createSchema(Schema, {
+  const IncidentSetting = new Schema<IncidentSettingType>({
     incidentType: {
       type: String,
       default: "",
@@ -48,7 +98,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const deviceSchema = createSchema(Schema, {
+  const deviceSchema = new Schema<DeviceSchemaType>({
     token: {
       type: String,
       default: "",
@@ -115,7 +165,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const soundSchemaItem = createSchema(Schema, {
+  const soundSchemaItem = new Schema<SoundSchemaItemType>({
     sound: {
       type: String,
     },
@@ -131,7 +181,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const soundSchema = createSchema(Schema, {
+  const soundSchema = new Schema<SoundSchemaType>({
     ios: {
       type: soundSchemaItem,
     },
@@ -143,9 +193,9 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<UserDevice>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     userId: {
@@ -200,9 +250,7 @@ export async function UserDeviceModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "UserDevice", modelSchema);
+  return mongoose.model<UserDevice>("UserDevice", modelSchema);
 }
 
-export interface UserDevice extends ItemTypeFromTypeSchemaFunction<typeof UserDeviceModule> { }
-export interface UserDeviceModel extends ModelTypeFromTypeSchemaFunction<UserDevice> { }
-export default UserDeviceModule as ReplaceModelReturnType<typeof UserDeviceModule, UserDeviceModel>;
+export interface UserDeviceModel extends Model<UserDevice> { }

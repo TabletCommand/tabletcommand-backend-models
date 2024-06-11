@@ -1,36 +1,50 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function LocationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("mongoose").Types.ObjectId;
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { ColorSchemaType } from "./schema/color";
+import { GeoJSONPointType } from "./schema/geojson-point";
+import { Model, Types } from "mongoose";
+export interface Location {
+    _id: Types.ObjectId;
     departmentId: string;
     userId: string;
     uuid: string;
     username: string;
     device_type: string;
     active: boolean;
-    deleteAfterDate: string;
-    modified: string;
-    movedAt: string;
-    propsChangedAt: string;
+    deleteAfterDate: Date;
+    modified: Date;
+    movedAt: Date;
+    propsChangedAt: Date;
     version: number;
     session: string;
     altitude: number;
     heading: number;
     speed: number;
     esriId: number;
-    locationGeoJSON: import("../helpers").MongooseInterface<{
-        type: {
-            type: StringConstructor;
-            required: boolean;
-            enum: string[];
-            default: string;
-        };
-        coordinates: {
-            type: NumberConstructor[];
-            required: boolean;
-            default: never[];
-        };
-    }>;
+    locationGeoJSON: GeoJSONPointType;
     opAreaCode: string;
     opAreaName: string;
     agencyCode: string;
@@ -38,24 +52,12 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     shared: boolean;
     state: string;
     sendToCAD: boolean;
-    color: import("../helpers").MongooseInterface<{
-        background: {
-            type: StringConstructor;
-            default: string;
-        };
-        text: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
-    colorChangedAt: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> {
+    color: ColorSchemaType;
+    colorChangedAt: Date;
 }
-export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> {
+export default function LocationModule(mongoose: MongooseModule): Promise<Model<Location, {}, {}, {}, import("mongoose").Document<unknown, {}, Location> & Location & Required<{
+    _id: Types.ObjectId;
+}>, any>>;
+export interface LocationModel extends Model<Location> {
 }
-declare const _default: ReplaceModelReturnType<typeof LocationModule, LocationModel>;
-export default _default;
 //# sourceMappingURL=location.d.ts.map

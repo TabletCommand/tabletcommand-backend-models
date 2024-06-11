@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../../helpers");
 function EsriErrorSchema(mongoose) {
     const { Schema } = mongoose;
-    const EsriError = (0, helpers_1.createSchema)(Schema, {
+    const EsriError = new Schema({
         code: {
             type: Number,
             default: 1,

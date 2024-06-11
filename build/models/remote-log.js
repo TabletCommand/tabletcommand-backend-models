@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RemoteLogModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function RemoteLogModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const FileSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const FileSchema = new Schema({
         originalName: {
             type: String,
             default: "", // e.g database.sqlite
@@ -38,9 +37,9 @@ async function RemoteLogModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -93,8 +92,7 @@ async function RemoteLogModule(mongoose) {
         collection: "massive_remote_log",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "RemoteLog", modelSchema);
+    return mongoose.model("RemoteLog", modelSchema);
 }
-exports.RemoteLogModule = RemoteLogModule;
 exports.default = RemoteLogModule;
 //# sourceMappingURL=remote-log.js.map

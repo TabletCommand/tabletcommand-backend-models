@@ -1,12 +1,19 @@
 import {
-  createSchema,
   MongooseModule,
 } from "../../helpers";
+
+export interface AgencySAMLSchemaType {
+  selector: string,
+  idp: string,
+  sp: string,
+  env: string,
+  name: string,
+}
 
 export default function AgencySAMLSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const AgencySAML = createSchema(Schema, {
+  const AgencySAML = new Schema<AgencySAMLSchemaType>({
     selector: {
       type: String,
       required: true,

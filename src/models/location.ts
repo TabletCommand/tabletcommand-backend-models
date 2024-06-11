@@ -1,27 +1,53 @@
 import * as uuid from "uuid";
 import {
-  createModel,
-  createSchema,
   createSchemaDefinition,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import ColorModule from "./schema/color";
-import GeoJSONPointModule from "./schema/geojson-point";
+import ColorModule, { ColorSchemaType } from "./schema/color";
+import GeoJSONPointModule, { GeoJSONPointType } from "./schema/geojson-point";
+import { Model, Types } from "mongoose";
 
-export async function LocationModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface Location {
+  _id: Types.ObjectId,
+  departmentId: string,
+  userId: string,
+  uuid: string,
+  username: string,
+  device_type: string,
+  active: boolean,
+  deleteAfterDate: Date,
+  modified: Date,
+  movedAt: Date,
+  propsChangedAt: Date,
+  version: number,
+  session: string,
+  altitude: number,
+  heading: number,
+  speed: number,
+  esriId: number,
+  locationGeoJSON: GeoJSONPointType,
+  opAreaCode: string
+  opAreaName: string,
+  agencyCode: string,
+  agencyName: string,
+  shared: boolean,
+  state: string,
+  sendToCAD: boolean,
+  color: ColorSchemaType,
+  colorChangedAt: Date,
+}
+
+export default async function LocationModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
   const Color = ColorModule(mongoose);
   const GeoJSONPoint = GeoJSONPointModule(mongoose);
 
   const modelSchemaDefinition = createSchemaDefinition({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -159,7 +185,7 @@ export async function LocationModule(mongoose: MongooseModule) {
     },
   });
 
-  const modelSchema = createSchema(Schema, modelSchemaDefinition, {
+  const modelSchema = new Schema<Location>(modelSchemaDefinition, {
     collection: "massive_location",
   });
 
@@ -168,11 +194,11 @@ export async function LocationModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     return this._id.toHexString();
   });
 
-  modelSchema.virtual("location").get(function(this: { locationGeoJSON: { coordinates: number[] } } | null | undefined) {
+  modelSchema.virtual("location").get(function (this: { locationGeoJSON: { coordinates: number[] } } | null | undefined) {
     const location = {
       latitude: 0,
       longitude: 0
@@ -200,9 +226,7 @@ export async function LocationModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "Location", modelSchema);
+  return mongoose.model<Location>("Location", modelSchema);
 }
 
-export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> { }
-export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> { }
-export default LocationModule as ReplaceModelReturnType<typeof LocationModule, LocationModel>;
+export interface LocationModel extends Model<Location> { }

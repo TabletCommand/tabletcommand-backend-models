@@ -1,43 +1,52 @@
-/// <reference types="mongoose" />
-import { currentDate, MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function IncidentNotifiedModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("mongoose").Types.ObjectId;
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model, Types } from "mongoose";
+import { MongooseModule } from "../helpers";
+interface SentItemType {
+    name: string;
+    type: string;
+    date: Date;
+}
+interface UnitType {
+    UnitID: string;
+    UnitDispatchNumber: string;
+}
+export interface IncidentNotified {
+    _id: Types.ObjectId;
     departmentId: string;
     IncidentNumber: string;
     incidentTypes: string[];
     units: string[];
-    unitsByDispatch: import("../helpers").MongooseInterface<{
-        UnitID: {
-            type: StringConstructor;
-            default: string;
-        };
-        UnitDispatchNumber: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
-    sent: import("../helpers").MongooseInterface<{
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-        type: {
-            type: StringConstructor;
-            default: string;
-        };
-        date: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-    }>[];
-    updated: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface IncidentNotified extends ItemTypeFromTypeSchemaFunction<typeof IncidentNotifiedModule> {
+    unitsByDispatch: UnitType[];
+    sent: SentItemType[];
+    updated: Date;
 }
-export interface IncidentNotifiedModel extends ModelTypeFromTypeSchemaFunction<IncidentNotified> {
+export default function IncidentNotifiedModule(mongoose: MongooseModule): Promise<Model<IncidentNotified, {}, {}, {}, import("mongoose").Document<unknown, {}, IncidentNotified> & IncidentNotified & Required<{
+    _id: Types.ObjectId;
+}>, any>>;
+export interface IncidentNotifiedModel extends Model<IncidentNotified> {
 }
-declare const _default: ReplaceModelReturnType<typeof IncidentNotifiedModule, IncidentNotifiedModel>;
-export default _default;
+export {};
 //# sourceMappingURL=incident-notified.d.ts.map

@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../../helpers");
 function CADStatusOptionSelectedSchema(mongoose) {
     const { Schema } = mongoose;
-    const Item = (0, helpers_1.createSchema)(Schema, {
+    const Item = new Schema({
         name: {
             type: String,
             default: "",

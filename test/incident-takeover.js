@@ -1,44 +1,35 @@
 "use strict";
 
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("IncidentTakeover", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("IncidentTakeover", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.incidentTakeover;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     var item = new models.IncidentTakeover(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
 
       assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.incident_id, sut.incident_id);
-      assert.equal(testItem.incident_name, sut.incident_name);
-      assert.equal(testItem.incident_number, sut.incident_number);
-      assert.equal(testItem.old_owner, sut.old_owner);
-      assert.equal(testItem.new_owner, sut.new_owner);
-      assert.equal(testItem.status, sut.status);
-      assert.equal(testItem.request_time, sut.request_time);
-      assert.isTrue(sut.uuid !== "");
+      assert.equal(testItem.departmentId, ress.departmentId);
+      assert.equal(testItem.incident_id, ress.incident_id);
+      assert.equal(testItem.incident_name, ress.incident_name);
+      assert.equal(testItem.incident_number, ress.incident_number);
+      assert.equal(testItem.old_owner, ress.old_owner);
+      assert.equal(testItem.new_owner, ress.new_owner);
+      assert.equal(testItem.status, ress.status);
+      assert.equal(testItem.request_time, ress.request_time);
+      assert.isTrue(ress.uuid !== "");
 
-      return done();
-    });
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

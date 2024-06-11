@@ -1,98 +1,56 @@
-/// <reference types="mongoose" />
-import * as uuid from "uuid";
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, currentDate } from "../helpers";
-export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
-    _interface: import("../helpers").MongooseInterface<{
-        _id: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            auto: boolean;
-        };
-        PersonnelID: {
-            type: StringConstructor;
-            required: boolean;
-        };
-        PersonnelName: {
-            type: StringConstructor;
-            required: boolean;
-        };
-        PersonnelRank: {
-            type: StringConstructor;
-            default: string;
-        };
-        PersonnelWorkCode: {
-            type: StringConstructor;
-            default: string;
-        };
-        modified: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        departmentId: {
-            type: StringConstructor;
-        };
-        uuid: {
-            type: StringConstructor;
-            default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
-        };
-        radios: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    radioName: {
-                        type: StringConstructor;
-                    };
-                    active: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        active: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        jurisdiction: {
-            type: StringConstructor;
-            default: string;
-        };
-        agencyId: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            ref: string;
-            default: null;
-        };
-    }>;
-    _methods: unknown;
-};
-export declare function PersonnelKnownModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("mongoose").Types.ObjectId;
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { Model, Types } from "mongoose";
+interface RadioType {
+    radioName: string;
+    active: boolean;
+}
+export interface PersonnelKnown {
+    _id: Types.ObjectId;
     PersonnelID: string;
     PersonnelName: string;
     PersonnelRank: string;
     PersonnelWorkCode: string;
-    modified: string;
+    modified: Date;
     departmentId: string;
     uuid: string;
-    radios: import("../helpers").MongooseInterface<{
-        radioName: {
-            type: StringConstructor;
-        };
-        active: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-    }>[];
+    radios: RadioType[];
     active: boolean;
     jurisdiction: string;
-    agencyId: import("mongoose").Types.ObjectId;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface PersonnelKnown extends ItemTypeFromTypeSchemaFunction<typeof PersonnelKnownModule> {
+    agencyId: Types.ObjectId;
 }
-export interface PersonnelKnownModel extends ModelTypeFromTypeSchemaFunction<PersonnelKnown> {
+export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelKnown, Model<PersonnelKnown, any, any, any, import("mongoose").Document<unknown, any, PersonnelKnown> & PersonnelKnown & Required<{
+    _id: Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelKnown, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelKnown>> & import("mongoose").FlatRecord<PersonnelKnown> & Required<{
+    _id: Types.ObjectId;
+}>>;
+export default function PersonnelKnownModule(mongoose: MongooseModule): Promise<Model<PersonnelKnown, {}, {}, {}, import("mongoose").Document<unknown, {}, PersonnelKnown> & PersonnelKnown & Required<{
+    _id: Types.ObjectId;
+}>, any>>;
+export interface PersonnelKnownModel extends Model<PersonnelKnown> {
 }
-declare const _default: ReplaceModelReturnType<typeof PersonnelKnownModule, PersonnelKnownModel>;
-export default _default;
+export {};
 //# sourceMappingURL=personnel-known.d.ts.map

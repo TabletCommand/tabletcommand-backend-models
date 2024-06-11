@@ -1,146 +1,64 @@
-/// <reference types="mongoose" />
-import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
-export declare function IncidentEventModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("mongoose").Types.ObjectId;
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model, Types } from "mongoose";
+import { MongooseModule } from "../helpers";
+interface EventUserType {
+    username: string;
+    email: string;
+    radioName: string;
+    userId: string;
+}
+export interface IncidentEvent {
+    _id: Types.ObjectId;
     departmentId: string;
     IncidentNumber: string;
     modified_unix_date: number;
-    modified: string;
+    modified: Date;
     message: string;
     location: {
         longitude: number;
         latitude: number;
     };
     type: string;
-    user: import("../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        email: {
-            type: StringConstructor;
-            default: string;
-        };
-        radioName: {
-            type: StringConstructor;
-            default: string;
-        };
-        userId: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
+    user: EventUserType;
     serverTime: number;
     userTime: number;
     uuid: string;
     ref_uuid: string;
-    opts: any;
+    opts: object;
     archived: boolean;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export declare function IncidentEventSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
-    _interface: import("../helpers").MongooseInterface<{
-        _id: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            auto: boolean;
-        };
-        departmentId: {
-            type: StringConstructor;
-            default: string;
-            required: boolean;
-            index: true;
-        };
-        IncidentNumber: {
-            type: StringConstructor;
-            default: string;
-            required: boolean;
-            index: true;
-        };
-        modified_unix_date: {
-            type: NumberConstructor;
-            default: typeof retrieveCurrentUnixTime;
-        };
-        modified: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        location: {
-            longitude: {
-                type: NumberConstructor;
-                default: number;
-            };
-            latitude: {
-                type: NumberConstructor;
-                default: number;
-            };
-        };
-        type: {
-            type: StringConstructor;
-            default: string;
-        };
-        user: {
-            type: import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    username: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    email: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    radioName: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    userId: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            };
-            default: {};
-        };
-        serverTime: {
-            type: NumberConstructor;
-            default: typeof retrieveCurrentUnixTime;
-            min: number;
-        };
-        userTime: {
-            type: NumberConstructor;
-            required: boolean;
-            default: number;
-            min: number;
-        };
-        uuid: {
-            type: StringConstructor;
-            require: boolean;
-        };
-        ref_uuid: {
-            type: StringConstructor;
-            default: string;
-        };
-        opts: {
-            type: ObjectConstructor;
-            default: {};
-        };
-        archived: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-    }>;
-    _methods: unknown;
-};
-export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> {
 }
-export interface IncidentEventModel extends ModelTypeFromTypeSchemaFunction<IncidentEvent> {
+export declare function IncidentEventSchema(mongoose: MongooseModule): import("mongoose").Schema<IncidentEvent, Model<IncidentEvent, any, any, any, import("mongoose").Document<unknown, any, IncidentEvent> & IncidentEvent & Required<{
+    _id: Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IncidentEvent, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IncidentEvent>> & import("mongoose").FlatRecord<IncidentEvent> & Required<{
+    _id: Types.ObjectId;
+}>>;
+export default function IncidentEventModule(mongoose: MongooseModule): Promise<Model<IncidentEvent, {}, {}, {}, import("mongoose").Document<unknown, {}, IncidentEvent> & IncidentEvent & Required<{
+    _id: Types.ObjectId;
+}>, any>>;
+export interface IncidentEventModel extends Model<IncidentEvent> {
 }
-declare const _default: ReplaceModelReturnType<typeof IncidentEventModule, IncidentEventModel>;
-export default _default;
+export {};
 //# sourceMappingURL=incident-event.d.ts.map

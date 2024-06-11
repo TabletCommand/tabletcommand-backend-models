@@ -1,25 +1,34 @@
+import { Model, Types } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
-import ValidationErrorItemModule from "./schema/validation-error-item";
+import ValidationErrorItemModule, { ValidationErrorItemSchemaType } from "./schema/validation-error-item";
+
+export interface ValidationReport {
+  _id: Types.ObjectId,
+  departmentId: Types.ObjectId,
+  location: ValidationErrorItemSchemaType[],
+  statusMap: ValidationErrorItemSchemaType[],
+  status: ValidationErrorItemSchemaType[],
+  vehicleStatus: ValidationErrorItemSchemaType[],
+  vehicle: ValidationErrorItemSchemaType[],
+  incident: ValidationErrorItemSchemaType[],
+  personnel: ValidationErrorItemSchemaType[],
+  modified: Date,
+}
 
 export function ValidationReportSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const ValidationErrorItem = ValidationErrorItemModule(mongoose);
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ValidationReport>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Department",
       required: true,
       unique: true,
@@ -64,11 +73,9 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function ValidationReportModule(mongoose: MongooseModule) {
+export default async function ValidationReportModule(mongoose: MongooseModule) {
   const modelSchema = ValidationReportSchema(mongoose);
-  return createModel(mongoose, "ValidationReport", modelSchema);
+  return mongoose.model<ValidationReport>("ValidationReport", modelSchema);
 }
 
-export interface ValidationReport extends ItemTypeFromTypeSchemaFunction<typeof ValidationReportModule> { }
-export interface ValidationReportModel extends ModelTypeFromTypeSchemaFunction<ValidationReport> { }
-export default ValidationReportModule as ReplaceModelReturnType<typeof ValidationReportModule, ValidationReportModel>;
+export interface ValidationReportModel extends Model<ValidationReport> { }

@@ -63,13 +63,14 @@ export function createSchema
   return schema as unknown as Schema & { _interface: MongooseInterface<T>, _methods: TMethods };
 }
 
-export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }) {
-  if (mongoose.models[name]) {
-    return mongoose.model<Document & T & TMethods>(name) as Model<Document & T & TMethods> & { __methods?: TMethods };
-  } else {
-    return mongoose.model<Document & T & TMethods>(name, schema) as Model<Document & T & TMethods> & { __methods?: TMethods };
-  }
-}
+// Deprecated
+// export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }) {
+//   if (mongoose.models[name]) {
+//     return mongoose.model<Document & T & TMethods>(name) as Model<Document & T & TMethods> & { __methods?: TMethods };
+//   } else {
+//     return mongoose.model<Document & T & TMethods>(name, schema) as Model<Document & T & TMethods> & { __methods?: TMethods };
+//   }
+// }
 
 export type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & { _interface: MongooseInterface<T> }>;
 export type ModelFromSchema<T extends Schema> = Model<DocumentTypeFromSchema<T>>;

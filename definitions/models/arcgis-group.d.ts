@@ -1,129 +1,73 @@
-/// <reference types="mongoose" />
-import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function ArcGISGroupModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model } from "mongoose";
+import { MongooseModule } from "../helpers";
+interface ArcGISGroupUserType {
+    username: string;
+    fullName: string;
+    memberType: string;
+    orgId: string;
+}
+interface ArcGISUserInvitationType {
+    username: string;
+    atDate: Date;
+    invitedBy: string;
+}
+interface ArcGISDepartmentUserType {
+    username: string;
+    email: string;
+    userId: string;
+}
+interface ArcGISDepartmentType {
+    department: string;
+    departmentId: string;
+    authUsername: string;
+    authError: string;
+    users: ArcGISDepartmentUserType[];
+}
+export interface ArcGISGroup {
     groupId: string;
     title: string;
     protected: boolean;
     owner: string;
     access: string;
     membershipAccess: string;
-    users: import("../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        fullName: {
-            type: StringConstructor;
-            default: string;
-        };
-        memberType: {
-            type: StringConstructor;
-            default: string;
-        };
-        orgId: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
-    outsiders: import("../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        fullName: {
-            type: StringConstructor;
-            default: string;
-        };
-        memberType: {
-            type: StringConstructor;
-            default: string;
-        };
-        orgId: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
-    removableUsers: import("../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        fullName: {
-            type: StringConstructor;
-            default: string;
-        };
-        memberType: {
-            type: StringConstructor;
-            default: string;
-        };
-        orgId: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
+    users: ArcGISGroupUserType[];
+    outsiders: ArcGISGroupUserType[];
+    removableUsers: ArcGISGroupUserType[];
     externalOrgIds: string[];
-    invited: import("../helpers").MongooseInterface<{
-        username: {
-            type: StringConstructor;
-            default: string;
-        };
-        atDate: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        invitedBy: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
-    linkedDepartments: import("../helpers").MongooseInterface<{
-        department: {
-            type: StringConstructor;
-            default: string;
-        };
-        departmentId: {
-            type: StringConstructor;
-            default: string;
-        };
-        authUsername: {
-            type: StringConstructor;
-            default: string;
-        };
-        authError: {
-            type: StringConstructor;
-            default: string;
-        };
-        users: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    username: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    email: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    userId: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-    }>[];
-    modified: string;
+    invited: ArcGISUserInvitationType[];
+    linkedDepartments: ArcGISDepartmentType[];
+    modified: Date;
     createdBy: string;
-    runAt: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface ArcGISGroup extends ItemTypeFromTypeSchemaFunction<typeof ArcGISGroupModule> {
+    runAt: Date | string;
 }
-export interface ArcGISGroupModel extends ModelTypeFromTypeSchemaFunction<ArcGISGroup> {
+export default function ArcGISGroupModule(mongoose: MongooseModule): Promise<Model<ArcGISGroup, {}, {}, {}, import("mongoose").Document<unknown, {}, ArcGISGroup> & ArcGISGroup & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>>;
+export interface ArcGISGroupModel extends Model<ArcGISGroup> {
 }
-declare const _default: ReplaceModelReturnType<typeof ArcGISGroupModule, ArcGISGroupModel>;
-export default _default;
+export {};
 //# sourceMappingURL=arcgis-group.d.ts.map

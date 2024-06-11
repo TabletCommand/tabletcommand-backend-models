@@ -1,38 +1,29 @@
 "use strict";
 
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("RateLimit", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("RateLimit", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.rateLimit;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     var item = new models.RateLimit(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
 
       assert.isNotNull(testItem._id);
-      assert.equal(sut.user, testItem.user);
-      assert.equal(sut.modified_unix_date, testItem.modified_unix_date);
-      assert.equal(sut.count, testItem.count);
+      assert.equal(ress.user, testItem.user);
+      assert.equal(ress.modified_unix_date, testItem.modified_unix_date);
+      assert.equal(ress.count, testItem.count);
 
-      return done();
-    });
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

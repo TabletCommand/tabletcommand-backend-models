@@ -1,12 +1,21 @@
 import {
-  createSchema,
   MongooseModule,
 } from "../../helpers";
+
+interface EsriAuthPasswordType {
+  iv: string,
+  encryptedData: string,
+}
+
+export interface EsriAuthSchemaType {
+  username: string,
+  encrypted: EsriAuthPasswordType
+}
 
 export default function EsriAuthSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const EsriAuthPassword = createSchema(Schema, {
+  const EsriAuthPassword = new Schema<EsriAuthPasswordType>({
     iv: {
       type: String,
       default: "",
@@ -20,7 +29,7 @@ export default function EsriAuthSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const EsriAuth = createSchema(Schema, {
+  const EsriAuth = new Schema<EsriAuthSchemaType>({
     username: {
       type: String,
       default: "",

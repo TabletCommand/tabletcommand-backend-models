@@ -1,18 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidationReportModule = exports.ValidationReportSchema = void 0;
+exports.ValidationReportSchema = void 0;
 const helpers_1 = require("../helpers");
 const validation_error_item_1 = require("./schema/validation-error-item");
 function ValidationReportSchema(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const ValidationErrorItem = (0, validation_error_item_1.default)(mongoose);
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Department",
             required: true,
             unique: true,
@@ -58,8 +58,7 @@ function ValidationReportSchema(mongoose) {
 exports.ValidationReportSchema = ValidationReportSchema;
 async function ValidationReportModule(mongoose) {
     const modelSchema = ValidationReportSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "ValidationReport", modelSchema);
+    return mongoose.model("ValidationReport", modelSchema);
 }
-exports.ValidationReportModule = ValidationReportModule;
 exports.default = ValidationReportModule;
 //# sourceMappingURL=validation-report.js.map

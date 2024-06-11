@@ -1,17 +1,12 @@
 "use strict";
 
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("IncidentEvent", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("IncidentEvent", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
@@ -21,28 +16,26 @@ describe("IncidentEvent", function() {
       departmentId: testItem.departmentId
     });
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", async function() {
+
+  it("is saved", async function () {
     const item = new models.IncidentEvent(testItem);
-    const sut = await item.save();
+    const ress = await item.save();
 
     assert.isNotNull(testItem._id);
-    assert.equal(testItem.departmentId, sut.departmentId);
-    assert.equal(testItem.IncidentNumber, sut.IncidentNumber);
-    assert.equal(testItem.modified_unix_date, sut.modified_unix_date);
-    assert.equal(testItem.message, sut.message);
-    assert.equal(testItem.userTime, sut.userTime);
-    assert.equal(testItem.type, sut.type);
-    assert.equal(testItem.uuid, sut.uuid);
-    assert.equal(testItem.location.latitude, sut.location.latitude);
-    assert.equal(testItem.location.longitude, sut.location.longitude);
-    assert.equal(testItem.user.email, sut.user.email);
-    assert.equal(testItem.user.username, sut.user.username);
-    assert.equal(testItem.user.radioName, sut.user.radioName);
-    assert.equal(testItem.user.userId, sut.user.userId);
+    assert.equal(testItem.departmentId, ress.departmentId);
+    assert.equal(testItem.IncidentNumber, ress.IncidentNumber);
+    assert.equal(testItem.modified_unix_date, ress.modified_unix_date);
+    assert.equal(testItem.message, ress.message);
+    assert.equal(testItem.userTime, ress.userTime);
+    assert.equal(testItem.type, ress.type);
+    assert.equal(testItem.uuid, ress.uuid);
+    assert.equal(testItem.location.latitude, ress.location.latitude);
+    assert.equal(testItem.location.longitude, ress.location.longitude);
+    assert.equal(testItem.user.email, ress.user.email);
+    assert.equal(testItem.user.username, ress.user.username);
+    assert.equal(testItem.user.radioName, ress.user.radioName);
+    assert.equal(testItem.user.userId, ress.user.userId);
 
     const items = await models.IncidentEvent.find({
       departmentId: item.departmentId

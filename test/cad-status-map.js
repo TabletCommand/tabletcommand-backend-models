@@ -2,41 +2,33 @@
 
 const assert = require("chai").assert;
 
-const m = require("..");
-const config = require("./config");
+const mongoose = require('mongoose');
 
 describe("CADStatusMap", function() {
-  let models, mongoose;
+  let models = mongoose.models;
   let testItem;
   beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.cadStatusMap;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function() {
     const item = new models.CADStatusMap(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
 
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.modifiedDate, sut.modifiedDate);
+      assert.equal(testItem.departmentId, ress.departmentId);
+      assert.equal(testItem.modifiedDate, ress.modifiedDate);
 
-      assert.equal(testItem.fromStatusId, sut.fromStatusId);
-      assert.equal(sut.toStatusIds.length, 1);
-      assert.equal(testItem.toStatusIds[0].statusId, sut.toStatusIds[0].statusId);
-      assert.isTrue(sut.toStatusIds[0].userEnabled);
-      assert.equal(sut.toStatusIds[0].position, 0);
+      assert.equal(testItem.fromStatusId, ress.fromStatusId);
+      assert.equal(ress.toStatusIds.length, 1);
+      assert.equal(testItem.toStatusIds[0].statusId, ress.toStatusIds[0].statusId);
+      assert.isTrue(ress.toStatusIds[0].userEnabled);
+      assert.equal(ress.toStatusIds[0].position, 0);
 
-      return done();
-    });
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

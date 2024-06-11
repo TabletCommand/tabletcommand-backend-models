@@ -1,16 +1,62 @@
 import {
   MongooseModule,
-  createSchema,
   currentDate,
 } from "../../helpers";
 
 // Properties shared between CAD and Managed Incident
 // They are copied on iOS
 
+export interface CADPersonSchemaType {
+  PersonnelID: string,
+  PersonnelName: string,
+  PersonnelRank: string,
+  PersonnelWorkCode: string,
+  PersonnelNote: string,
+}
+
+export interface RadioChannelSchemaType {
+  name: string,
+  channel: string,
+  url: string,
+  channelDescription: string,
+}
+
+export interface RecordSchemaType {
+  name: string,
+  value: string,
+}
+
+export interface ReportNumberSchemaType {
+  name: string,
+  number: string,
+}
+
+export interface ShareReasonSchemaType {
+  name: string,
+  date: Date,
+}
+
+export interface SharedToSchemaType {
+  departmentId: string,
+  name: string,
+  startAt: Date,
+  expireAt: Date,
+  active: boolean,
+  reasons: ShareReasonSchemaType[],
+}
+
+export interface SharedSourceSchemaType {
+  name: string,
+  isExternal: boolean,
+  startAt: Date,
+  expireAt: Date,
+  reasons: ShareReasonSchemaType[]
+}
+
 export function CADPersonSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Person = createSchema(Schema, {
+  const Person = new Schema<CADPersonSchemaType>({
     PersonnelID: {
       type: String,
     },
@@ -40,7 +86,7 @@ export function CADPersonSchema(mongoose: MongooseModule) {
 export function RadioChannelSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const RadioChannel = createSchema(Schema, {
+  const RadioChannel = new Schema<RadioChannelSchemaType>({
     name: {
       type: String,
       default: "",
@@ -71,7 +117,7 @@ export function RadioChannelSchema(mongoose: MongooseModule) {
 export function RecordSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Record = createSchema(Schema, {
+  const Record = new Schema<RecordSchemaType>({
     name: {
       type: String,
       default: ""
@@ -94,7 +140,7 @@ export function RecordSchema(mongoose: MongooseModule) {
 export function ReportNumberSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const ReportNumber = createSchema(Schema, {
+  const ReportNumber = new Schema<ReportNumberSchemaType>({
     name: {
       type: String,
       default: "",
@@ -117,7 +163,7 @@ export function ReportNumberSchema(mongoose: MongooseModule) {
 export function ShareReasonSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const ShareReason = createSchema(Schema, {
+  const ShareReason = new Schema<ShareReasonSchemaType>({
     name: {
       type: String,
       default: "",
@@ -141,7 +187,7 @@ export function SharedToSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const ShareReason = ShareReasonSchema(mongoose);
 
-  const SharedTo = createSchema(Schema, {
+  const SharedTo = new Schema<SharedToSchemaType>({
     departmentId: {
       type: String,
       default: "",
@@ -182,7 +228,7 @@ export function SharedSourceSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const ShareReason = ShareReasonSchema(mongoose);
 
-  const SharedSource = createSchema(Schema, {
+  const SharedSource = new Schema<SharedSourceSchemaType>({
     // Department Name (always matches record .departmentId)
     name: {
       type: String,

@@ -1,385 +1,50 @@
-/// <reference types="mongoose" />
-import { currentDate, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function ValidationReportSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
-    _interface: import("../helpers").MongooseInterface<{
-        _id: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            auto: boolean;
-        };
-        departmentId: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            ref: string;
-            required: boolean;
-            unique: boolean;
-        };
-        location: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    firstSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    lastSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    clearedAt: {
-                        type: DateConstructor;
-                        default: undefined;
-                    };
-                    payload: {
-                        type: ObjectConstructor;
-                        default: {};
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        statusMap: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    firstSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    lastSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    clearedAt: {
-                        type: DateConstructor;
-                        default: undefined;
-                    };
-                    payload: {
-                        type: ObjectConstructor;
-                        default: {};
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        status: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    firstSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    lastSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    clearedAt: {
-                        type: DateConstructor;
-                        default: undefined;
-                    };
-                    payload: {
-                        type: ObjectConstructor;
-                        default: {};
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        vehicleStatus: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    firstSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    lastSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    clearedAt: {
-                        type: DateConstructor;
-                        default: undefined;
-                    };
-                    payload: {
-                        type: ObjectConstructor;
-                        default: {};
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        vehicle: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    firstSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    lastSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    clearedAt: {
-                        type: DateConstructor;
-                        default: undefined;
-                    };
-                    payload: {
-                        type: ObjectConstructor;
-                        default: {};
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        incident: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    firstSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    lastSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    clearedAt: {
-                        type: DateConstructor;
-                        default: undefined;
-                    };
-                    payload: {
-                        type: ObjectConstructor;
-                        default: {};
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        personnel: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    message: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    firstSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    lastSeenAt: {
-                        type: DateConstructor;
-                        default: typeof currentDate;
-                    };
-                    clearedAt: {
-                        type: DateConstructor;
-                        default: undefined;
-                    };
-                    payload: {
-                        type: ObjectConstructor;
-                        default: {};
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-        modified: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-    }>;
-    _methods: unknown;
-};
-export declare function ValidationReportModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    _id: import("mongoose").Types.ObjectId;
-    departmentId: import("mongoose").Types.ObjectId;
-    location: import("../helpers").MongooseInterface<{
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        firstSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        lastSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        clearedAt: {
-            type: DateConstructor;
-            default: undefined;
-        };
-        payload: {
-            type: ObjectConstructor;
-            default: {};
-        };
-    }>[];
-    statusMap: import("../helpers").MongooseInterface<{
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        firstSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        lastSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        clearedAt: {
-            type: DateConstructor;
-            default: undefined;
-        };
-        payload: {
-            type: ObjectConstructor;
-            default: {};
-        };
-    }>[];
-    status: import("../helpers").MongooseInterface<{
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        firstSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        lastSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        clearedAt: {
-            type: DateConstructor;
-            default: undefined;
-        };
-        payload: {
-            type: ObjectConstructor;
-            default: {};
-        };
-    }>[];
-    vehicleStatus: import("../helpers").MongooseInterface<{
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        firstSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        lastSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        clearedAt: {
-            type: DateConstructor;
-            default: undefined;
-        };
-        payload: {
-            type: ObjectConstructor;
-            default: {};
-        };
-    }>[];
-    vehicle: import("../helpers").MongooseInterface<{
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        firstSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        lastSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        clearedAt: {
-            type: DateConstructor;
-            default: undefined;
-        };
-        payload: {
-            type: ObjectConstructor;
-            default: {};
-        };
-    }>[];
-    incident: import("../helpers").MongooseInterface<{
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        firstSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        lastSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        clearedAt: {
-            type: DateConstructor;
-            default: undefined;
-        };
-        payload: {
-            type: ObjectConstructor;
-            default: {};
-        };
-    }>[];
-    personnel: import("../helpers").MongooseInterface<{
-        message: {
-            type: StringConstructor;
-            default: string;
-        };
-        firstSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        lastSeenAt: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-        clearedAt: {
-            type: DateConstructor;
-            default: undefined;
-        };
-        payload: {
-            type: ObjectConstructor;
-            default: {};
-        };
-    }>[];
-    modified: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface ValidationReport extends ItemTypeFromTypeSchemaFunction<typeof ValidationReportModule> {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model, Types } from "mongoose";
+import { MongooseModule } from "../helpers";
+import { ValidationErrorItemSchemaType } from "./schema/validation-error-item";
+export interface ValidationReport {
+    _id: Types.ObjectId;
+    departmentId: Types.ObjectId;
+    location: ValidationErrorItemSchemaType[];
+    statusMap: ValidationErrorItemSchemaType[];
+    status: ValidationErrorItemSchemaType[];
+    vehicleStatus: ValidationErrorItemSchemaType[];
+    vehicle: ValidationErrorItemSchemaType[];
+    incident: ValidationErrorItemSchemaType[];
+    personnel: ValidationErrorItemSchemaType[];
+    modified: Date;
 }
-export interface ValidationReportModel extends ModelTypeFromTypeSchemaFunction<ValidationReport> {
+export declare function ValidationReportSchema(mongoose: MongooseModule): import("mongoose").Schema<ValidationReport, Model<ValidationReport, any, any, any, import("mongoose").Document<unknown, any, ValidationReport> & ValidationReport & Required<{
+    _id: Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, ValidationReport, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<ValidationReport>> & import("mongoose").FlatRecord<ValidationReport> & Required<{
+    _id: Types.ObjectId;
+}>>;
+export default function ValidationReportModule(mongoose: MongooseModule): Promise<Model<ValidationReport, {}, {}, {}, import("mongoose").Document<unknown, {}, ValidationReport> & ValidationReport & Required<{
+    _id: Types.ObjectId;
+}>, any>>;
+export interface ValidationReportModel extends Model<ValidationReport> {
 }
-declare const _default: ReplaceModelReturnType<typeof ValidationReportModule, ValidationReportModel>;
-export default _default;
 //# sourceMappingURL=validation-report.d.ts.map

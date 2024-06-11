@@ -1,10 +1,47 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function CADStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { ColorSchemaType } from "./schema/color";
+import { Model } from "mongoose";
+interface StatusOptionValueType {
+    name: string;
+    type: string;
+    visible: boolean;
+    value: string;
+    favorite: boolean;
+    position: number;
+    isDefault: boolean;
+    latitude: number;
+    longitude: number;
+    time: number;
+}
+export interface CADStatus {
     uuid: string;
     departmentId: string;
     modifiedDate: number;
-    modified: string;
+    modified: Date;
     statusId: number;
     code: string;
     codeDisplay: string;
@@ -13,87 +50,14 @@ export declare function CADStatusModule(mongoose: MongooseModule): Promise<impor
     normalized: string;
     selfAssignable: boolean;
     roaming: boolean;
-    options: import("../helpers").MongooseInterface<{
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-        position: {
-            type: NumberConstructor;
-            default: number;
-        };
-        visible: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        cadKey: {
-            type: StringConstructor;
-            default: string;
-        };
-        cadValues: {
-            type: (import("mongoose").Schema<any> & {
-                _interface: import("../helpers").MongooseInterface<{
-                    name: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    type: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    visible: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                    value: {
-                        type: StringConstructor;
-                        default: string;
-                    };
-                    favorite: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                    position: {
-                        type: NumberConstructor;
-                        default: number;
-                    };
-                    isDefault: {
-                        type: BooleanConstructor;
-                        default: boolean;
-                    };
-                    latitude: {
-                        type: NumberConstructor;
-                    };
-                    longitude: {
-                        type: NumberConstructor;
-                    };
-                    time: {
-                        type: NumberConstructor;
-                    };
-                }>;
-                _methods: unknown;
-            })[];
-            default: never[];
-        };
-    }>[];
-    color: import("../helpers").MongooseInterface<{
-        background: {
-            type: StringConstructor;
-            default: string;
-        };
-        text: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
-    backupDate: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> {
+    options: StatusOptionValueType;
+    color: ColorSchemaType;
+    backupDate: Date;
 }
-export interface CADStatusModel extends ModelTypeFromTypeSchemaFunction<CADStatus> {
+export default function CADStatusModule(mongoose: MongooseModule): Promise<Model<CADStatus, {}, {}, {}, import("mongoose").Document<unknown, {}, CADStatus> & CADStatus & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>>;
+export interface CADStatusModel extends Model<CADStatus> {
 }
-declare const _default: ReplaceModelReturnType<typeof CADStatusModule, CADStatusModel>;
-export default _default;
+export {};
 //# sourceMappingURL=cad-status.d.ts.map

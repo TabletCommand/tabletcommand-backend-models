@@ -1,20 +1,32 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
-  createSchemaDefinition,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
-import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
+import CADStatusOptionSelectedModule, { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
 
-export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
+export interface CADVehicleStatusHistory {
+  departmentId: string,
+  vehicleId: string,
+  radioName: string,
+  status: string,
+  statusCode: string,
+  requestedAt: number,
+  requested: Date,
+  requestDelay: number,
+  requestedBy: string,
+  incidentNumber: string,
+  options: CADStatusOptionSelectedSchemaType[]
+  e: string,
+  locationCurrent: string,
+  locationDestination: string,
+}
+
+export default async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
-  const modelSchemaConfig = createSchemaDefinition({
+  const modelSchema = new Schema<CADVehicleStatusHistory>({
     departmentId: {
       type: String,
       default: "",
@@ -76,16 +88,12 @@ export async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-  });
-
-  const modelSchema = createSchema(Schema, modelSchemaConfig, {
+  }, {
     collection: "massive_cad_vehicle_status_history",
   });
 
   modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "CADVehicleStatusHistory", modelSchema);
+  return mongoose.model<CADVehicleStatusHistory>("CADVehicleStatusHistory", modelSchema);
 }
 
-export interface CADVehicleStatusHistory extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusHistoryModule> { }
-export interface CADVehicleStatusHistoryModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatusHistory> { }
-export default CADVehicleStatusHistoryModule as ReplaceModelReturnType<typeof CADVehicleStatusHistoryModule, CADVehicleStatusHistoryModel>;
+export interface CADVehicleStatusHistoryModel extends Model<CADVehicleStatusHistory> { }

@@ -2,36 +2,28 @@
 
 const assert = require("chai").assert;
 
-const m = require("..");
-const config = require("./config");
+const mongoose = require('mongoose');
 
-describe("CadSimulation", function() {
-  let models, mongoose;
+describe("CadSimulation", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.cadSimulation;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     var item = new models.CADSimulation(testItem);
-    item.save(function(err, sut) {
-      console.log("err", err);
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
       assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.title, sut.title);
-      assert.equal(testItem.friendlyId, sut.friendlyId);
-      return done();
-    });
+      assert.equal(testItem.departmentId, ress.departmentId);
+      assert.equal(testItem.title, ress.title);
+      assert.equal(testItem.friendlyId, ress.friendlyId);
+
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

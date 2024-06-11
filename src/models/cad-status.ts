@@ -1,20 +1,54 @@
 import * as uuid from "uuid";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
-import ColorModule from "./schema/color";
+import ColorModule, { ColorSchemaType } from "./schema/color";
+import { Model } from "mongoose";
 
-export async function CADStatusModule(mongoose: MongooseModule) {
+interface StatusOptionValueType {
+  name: string,
+  type: string,
+  visible: boolean,
+  value: string,
+  favorite: boolean,
+  position: number,
+  isDefault: boolean,
+  latitude: number,
+  longitude: number,
+  time: number,
+}
+
+interface StatusOptionType {
+  name: string,
+  position: number,
+  visible: boolean,
+  cadKey: string,
+  cadValues: StatusOptionValueType[]
+}
+export interface CADStatus {
+  uuid: string,
+  departmentId: string,
+  modifiedDate: number,
+  modified: Date,
+  statusId: number
+  code: string,
+  codeDisplay: string,
+  status: string,
+  name: string,
+  normalized: string,
+  selfAssignable: boolean,
+  roaming: boolean,
+  options: StatusOptionValueType,
+  color: ColorSchemaType,
+  backupDate: Date,
+}
+
+export default async function CADStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const Color = ColorModule(mongoose);
 
-  const StatusOptionValue = createSchema(Schema, {
+  const StatusOptionValue = new Schema<StatusOptionValueType>({
     name: {
       type: String,
       default: "",
@@ -61,7 +95,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const StatusOption = createSchema(Schema, {
+  const StatusOption = new Schema<StatusOptionType>({
     name: {
       type: String,
       default: "",
@@ -87,7 +121,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADStatus>({
     uuid: {
       type: String,
       index: true,
@@ -162,9 +196,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CADStatus", modelSchema);
+  return mongoose.model<CADStatus>("CADStatus", modelSchema);
 }
 
-export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> { }
-export interface CADStatusModel extends ModelTypeFromTypeSchemaFunction<CADStatus> { }
-export default CADStatusModule as ReplaceModelReturnType<typeof CADStatusModule, CADStatusModel>;
+export interface CADStatusModel extends Model<CADStatus> { }

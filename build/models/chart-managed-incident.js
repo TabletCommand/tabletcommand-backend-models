@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChartManagedIncidentModule = void 0;
-const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 async function ChartManagedIncidentModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const ChartItem = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const ChartItem = new Schema({
         item: {
             type: String,
             default: "",
@@ -19,9 +17,9 @@ async function ChartManagedIncidentModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         dateAt: {
@@ -60,8 +58,7 @@ async function ChartManagedIncidentModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return (0, helpers_1.createModel)(mongoose, "ChartManagedIncident", modelSchema);
+    return mongoose.model("ChartManagedIncident", modelSchema);
 }
-exports.ChartManagedIncidentModule = ChartManagedIncidentModule;
 exports.default = ChartManagedIncidentModule;
 //# sourceMappingURL=chart-managed-incident.js.map

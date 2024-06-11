@@ -1,11 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ArcGISGroupModule = void 0;
-// import * as uuid from "uuid";
 const helpers_1 = require("../helpers");
 async function ArcGISGroupModule(mongoose) {
     const { Schema } = mongoose;
-    const ArcGISGroupUser = (0, helpers_1.createSchema)(Schema, {
+    const ArcGISGroupUser = new Schema({
         username: {
             type: String,
             default: "",
@@ -26,7 +24,7 @@ async function ArcGISGroupModule(mongoose) {
         _id: false,
         id: false,
     });
-    const ArcGISUserInvitation = (0, helpers_1.createSchema)(Schema, {
+    const ArcGISUserInvitation = new Schema({
         username: {
             type: String,
             default: "",
@@ -43,7 +41,7 @@ async function ArcGISGroupModule(mongoose) {
         _id: false,
         id: false,
     });
-    const ArcGISDepartmentUser = (0, helpers_1.createSchema)(Schema, {
+    const ArcGISDepartmentUser = new Schema({
         // ArcGIS username
         username: {
             type: String,
@@ -63,7 +61,7 @@ async function ArcGISGroupModule(mongoose) {
         _id: false,
         id: false,
     });
-    const ArcGISDepartment = (0, helpers_1.createSchema)(Schema, {
+    const ArcGISDepartment = new Schema({
         department: {
             type: String,
             default: "",
@@ -88,7 +86,7 @@ async function ArcGISGroupModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         // Unique, to be able to use replaceInto
         groupId: {
             type: String,
@@ -152,15 +150,14 @@ async function ArcGISGroupModule(mongoose) {
         // if date is in the past, we should refresh this
         // at run success, update this date to a date in the future
         runAt: {
-            type: Date,
+            type: Date || String,
             default: "",
         },
     }, {
         collection: "massive_arcgis_group",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "ArcGISGroup", modelSchema);
+    return mongoose.model("ArcGISGroup", modelSchema);
 }
-exports.ArcGISGroupModule = ArcGISGroupModule;
 exports.default = ArcGISGroupModule;
 //# sourceMappingURL=arcgis-group.js.map

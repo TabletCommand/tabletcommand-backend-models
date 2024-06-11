@@ -1,17 +1,33 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 
-export async function UserRegistrationModule(mongoose: MongooseModule) {
+export interface UserRegistration {
+  email: string,
+  name: string,
+  firstName: string,
+  lastName: string,
+  department: string,
+  title: string,
+  status: string,
+  modifiedDate: number,
+  modified: Date,
+  presentedAt: number,
+  managedIncidentsCount: number,
+  checklistsCount: number,
+  stage: string,
+  firstIncidentUnixTime: number,
+  lastIncidentLocation: string,
+  lastIncidentUnixTime: number,
+  syncedToHubSpot: boolean,
+}
+
+export default async function UserRegistrationModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<UserRegistration>({
     email: {
       type: String,
       default: "",
@@ -91,9 +107,7 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "UserRegistration", modelSchema);
+  return mongoose.model<UserRegistration>("UserRegistration", modelSchema);
 }
 
-export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> { }
-export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> { }
-export default UserRegistrationModule as ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;
+export interface UserRegistrationModel extends Model<UserRegistration> { }

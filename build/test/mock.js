@@ -1,8 +1,14 @@
 "use strict";
+// import * as uuid from "uuid";
+// import { Types } from "mongoose";
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = require("./config");
 (0, config_1.checkIfTestDatabase)();
-function MockModule(dependecies) {
+function MockModule(
+// dependecies: {
+//   models: unknown,
+// }
+) {
     async function cleanup() {
         return "";
     }

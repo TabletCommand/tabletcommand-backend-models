@@ -1,47 +1,38 @@
 "use strict";
 
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("CADVehicleStatus", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("CADVehicleStatus", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.cadVehicleStatus;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     const item = new models.CADVehicleStatus(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.vehicleId, sut.vehicleId);
-      assert.equal(testItem.radioName, sut.radioName);
-      assert.equal(testItem.requestTime, sut.requestTime);
-      assert.equal(testItem.responseTime, sut.responseTime);
-      assert.equal(testItem.status, sut.status);
-      assert.equal(testItem.statusCode, sut.statusCode);
-      assert.equal(testItem.modifiedDate, sut.modifiedDate);
-      assert.equal(testItem.requestStatus, sut.requestStatus);
-      assert.equal(testItem.incidentNumber, sut.incidentNumber);
-      assert.equal(testItem.capability, sut.capability)
-      assert.equal(testItem.owner, sut.owner)
-      assert.equal(testItem.ownerId, sut.ownerId)
+    item.save().then((ress) => {
+      assert.equal(testItem.uuid, ress.uuid);
+      assert.equal(testItem.departmentId, ress.departmentId);
+      assert.equal(testItem.vehicleId, ress.vehicleId);
+      assert.equal(testItem.radioName, ress.radioName);
+      assert.equal(testItem.requestTime, ress.requestTime);
+      assert.equal(testItem.responseTime, ress.responseTime);
+      assert.equal(testItem.status, ress.status);
+      assert.equal(testItem.statusCode, ress.statusCode);
+      assert.equal(testItem.modifiedDate, ress.modifiedDate);
+      assert.equal(testItem.requestStatus, ress.requestStatus);
+      assert.equal(testItem.incidentNumber, ress.incidentNumber);
+      assert.equal(testItem.capability, resFs.capability)
+      assert.equal(testItem.owner, ress.owner)
+      assert.equal(testItem.ownerId, ress.ownerId)
 
-      return done();
-    });
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

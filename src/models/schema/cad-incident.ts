@@ -1,52 +1,204 @@
 import {
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
-  ModelFromSchema,
-  MongooseDocument,
   MongooseModule,
 } from "../../helpers";
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import { IncidentEventSchema } from "../incident-event";
+import { IncidentEventSchema, IncidentEvent } from "../incident-event";
 import {
   CADPersonSchema,
+  CADPersonSchemaType,
   RadioChannelSchema,
+  RadioChannelSchemaType,
   RecordSchema,
+  RecordSchemaType,
   ReportNumberSchema,
+  ReportNumberSchemaType,
   SharedSourceSchema,
+  SharedSourceSchemaType,
   SharedToSchema,
+  SharedToSchemaType,
 } from "./shared-incident";
+import { Types } from "mongoose";
+
+interface CADCommentOptsTypes {
+  type: string,
+  item: string,
+}
+
+interface CADCommentType {
+  Comment: string,
+  CommentSource: string,
+  CommentDateTime: string,
+  CommentConfidential: boolean,
+  CommentOpts: CADCommentOptsTypes
+}
+
+interface CADUnitType {
+  UnitID: string,
+  UnitDispatchNumber: string,
+  AlarmAtDispatch: string,
+  TimeDispatched: string,
+  TimeEnroute: string,
+  TimeArrived: string,
+  TimeStaged: string,
+  TimeCleared: string,
+  TimeAtHospital: string,
+  TimePatient: string,
+  TimeTransport: string,
+  TimeTransporting: string,
+  PersonnelCount: number,
+  Personnel: CADPersonSchemaType[],
+  uuid: string,
+}
+
+interface APNNotificationTypeType {
+  name: string,
+  value: string,
+}
+
+interface CADPriorIncidentType {
+  Address: string,
+  Comment: CADCommentType[],
+  IncidentDateTime: string,
+  IncidentNumber: string,
+  Jurisdiction: string,
+  Problem: string,
+  Suite: string,
+}
+export interface CADIncidentSchemaType {
+  _id: Types.ObjectId
+  uuid: string,
+  departmentId: string,
+  AgencyID: string,
+  IncidentNumber: string,
+  TransactionID: string,
+  AgencyIncidentCallTypeDescription: string,
+  AgencyIncidentCallType: string,
+  AgencyIncidentCallSubTypeDescription: string,
+  AgencyIncidentCallSubType: string,
+  AgencyIncidentPriorityDescription: string,
+  PulsePointIncidentCallType: string,
+  PulsePointDeterminantCode: string,
+  AlarmLevel: string,
+  CommandName: string,
+  FireMap: string,
+  TBMap: string,
+  MapPages: string,
+  TacticalChannel: string,
+  TacticalAltChannel: string,
+  CommandChannel: string,
+  EntryDateTime: string,
+  ClosedDateTime: string,
+  CallReceivedDateTime: string,
+  DispatchDateTime: string,
+  IncidentLastUpdate: string,
+  EnrouteDateTime: string,
+  OnSceneDateTime: string,
+  modified_date: string,
+  modified_unix_date: number
+  modified: Date,
+  start_unix_date: number,
+  closed_unix_date: number,
+  queued_at: number,
+  scheduled_at: number,
+  ignored: boolean,
+  expiration_date: Date,
+  StreetName: string,
+  StreetSuffix: string,
+  Predirectional: string,
+  Postdirectional: string,
+  CityOrLocality: string,
+  StateOrProvince: string,
+  StateOfProvince: string,
+  CommonPlaceName: string,
+  CrossStreet1: string,
+  CrossStreet2: string,
+  StreetNumber: string,
+  Building: string,
+  Floor: string,
+  Suite: string,
+  City: string,
+  County: string,
+  PostalCode: string,
+  CrossStreetName: string,
+  LocationComment: string,
+  full_address: string,
+  address: string,
+  cross_streets: string,
+  PriorIncidentChanged: boolean,
+  PriorIncident: CADPriorIncidentType[],
+  CallerNumber: string,
+  ReportNumber: ReportNumberSchemaType[]
+  radioChannels: RadioChannelSchemaType[],
+  Latitude: number,
+  Longitude: number,
+  Comment: CADCommentType[]
+  units: CADUnitType[]
+  events: IncidentEvent[],
+  preference_location: string,
+  simulation: boolean,
+  simulationId: string,
+  simulationSequences: number[],
+  notify: boolean,
+  rts: boolean,
+  notificationType: APNNotificationTypeType[],
+  sharedTo: SharedToSchemaType[],
+  sharedSource: SharedSourceSchemaType,
+  record: RecordSchemaType,
+}
 
 export function CADIncidentSchema(mongoose: MongooseModule) {
-  const toJSONOpts = {
-    versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      strictSchema(doc.schema, ret);
-    },
-  };
-
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const IncidentEvent = IncidentEventSchema(mongoose);
 
   // Share incident properties - copy to managed incidents
   const CADPerson = CADPersonSchema(mongoose);
-  CADPerson.set("toJSON", toJSONOpts);
+  CADPerson.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const RadioChannel = RadioChannelSchema(mongoose);
-  RadioChannel.set("toJSON", toJSONOpts);
+  RadioChannel.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const RecordValue = RecordSchema(mongoose);
-  RecordValue.set("toJSON", toJSONOpts);
+  RecordValue.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const ReportNumber = ReportNumberSchema(mongoose);
-  ReportNumber.set("toJSON", toJSONOpts);
+  ReportNumber.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const SharedSource = SharedSourceSchema(mongoose);
-  SharedSource.set("toJSON", toJSONOpts);
+  SharedSource.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const SharedTo = SharedToSchema(mongoose);
-  SharedTo.set("toJSON", toJSONOpts);
+  SharedTo.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
   // Currently, supporting type: "ack", item: "knife"
-  const CADCommentOpts = createSchema(Schema, {
+  const CADCommentOpts = new Schema<CADCommentOptsTypes>({
     type: {
       type: String,
     },
@@ -57,9 +209,11 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADCommentOpts.set("toJSON", toJSONOpts);
+  CADCommentOpts.set("toJSON", {
 
-  const CADComment = createSchema(Schema, {
+  });
+
+  const CADComment = new Schema<CADCommentType>({
     Comment: {
       type: String,
     },
@@ -80,9 +234,14 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADComment.set("toJSON", toJSONOpts);
+  CADComment.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
-  const CADUnit = createSchema(Schema, {
+  const CADUnit = new Schema<CADUnitType>({
     UnitID: {
       type: String,
       required: true,
@@ -137,9 +296,14 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADUnit.set("toJSON", toJSONOpts);
+  CADUnit.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
-  const APNNotificationType = createSchema(Schema, {
+  const APNNotificationType = new Schema<APNNotificationTypeType>({
     name: {
       type: String,
     },
@@ -150,9 +314,14 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  APNNotificationType.set("toJSON", toJSONOpts);
+  APNNotificationType.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
-  const CADPriorIncident = createSchema(Schema, {
+  const CADPriorIncident = new Schema<CADPriorIncidentType>({
     Address: {
       type: String,
     },
@@ -178,12 +347,17 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADPriorIncident.set("toJSON", toJSONOpts);
+  CADPriorIncident.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
   // Main schema
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADIncidentSchemaType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     uuid: {
@@ -481,29 +655,26 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     // collection: "massive_incident_cad",
     // strict: false, // Because we accept all kind of data in
   });
+  modelSchema.virtual("id").get(function (this: CADIncidentSchemaType) {
+    return this._id.toString();
+  });
 
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
+    transform(doc, ret: Record<string, unknown>) {
       // Remove fields that should not be here
       delete (ret as unknown as { apikey: unknown }).apikey;
 
       strictSchema(doc.schema as typeof modelSchema, ret);
-
-      ret.id = ret._id;
     },
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
 
   const ignoreFields: ReadonlyArray<string> = ["station", "callerNumber"];
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
-    Object.keys(ret).forEach(function(element) {
+    Object.keys(ret).forEach(function (element) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;

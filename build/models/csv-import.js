@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CSVImportModule = void 0;
 const helpers_1 = require("../helpers");
 async function CSVImportModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         batchId: {
@@ -65,8 +64,7 @@ async function CSVImportModule(mongoose) {
         collection: "massive_csv_import",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "CSVImport", modelSchema);
+    return mongoose.model("CSVImport", modelSchema);
 }
-exports.CSVImportModule = CSVImportModule;
 exports.default = CSVImportModule;
 //# sourceMappingURL=csv-import.js.map

@@ -1,41 +1,32 @@
 "use strict";
 
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("JobLog", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("JobLog", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.jobLog;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     var item = new models.JobLog(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
 
       assert.isNotNull(testItem._id);
-      assert.equal(testItem.host, sut.host);
-      assert.equal(testItem.jobName, sut.jobName);
-      assert.equal(testItem.state, sut.state);
-      assert.equal(testItem.bidDate, sut.bidDate);
-      assert.equal(testItem.startDate, sut.startDate);
-      assert.equal(testItem.completedDate, sut.completedDate);
-      assert.equal(testItem.forceClosed, sut.forceClosed);
-      return done();
-    });
+      assert.equal(testItem.host, ress.host);
+      assert.equal(testItem.jobName, ress.jobName);
+      assert.equal(testItem.state, ress.state);
+      assert.equal(testItem.bidDate, ress.bidDate);
+      assert.equal(testItem.startDate, ress.startDate);
+      assert.equal(testItem.completedDate, ress.completedDate);
+      assert.equal(testItem.forceClosed, ress.forceClosed);
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

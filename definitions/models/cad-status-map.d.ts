@@ -1,33 +1,46 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function CADStatusMapModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model } from "mongoose";
+import { MongooseModule } from "../helpers";
+interface ToStatusIdType {
+    statusId: number;
+    userEnabled: boolean;
+    position: number;
+}
+export interface CADStatusMap {
     departmentId: string;
     modifiedDate: number;
-    modified: string;
+    modified: Date;
     fromStatusId: number;
-    toStatusIds: import("../helpers").MongooseInterface<{
-        statusId: {
-            type: NumberConstructor;
-            default: number;
-            required: boolean;
-            min: number;
-        };
-        userEnabled: {
-            type: BooleanConstructor;
-        };
-        position: {
-            type: NumberConstructor;
-            default: number;
-        };
-    }>[];
-    backupDate: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface CADStatusMap extends ItemTypeFromTypeSchemaFunction<typeof CADStatusMapModule> {
+    toStatusIds: ToStatusIdType[];
+    backupDate: Date;
 }
-export interface CADStatusMapModel extends ModelTypeFromTypeSchemaFunction<CADStatusMap> {
+export default function CADStatusMapModule(mongoose: MongooseModule): Promise<Model<CADStatusMap, {}, {}, {}, import("mongoose").Document<unknown, {}, CADStatusMap> & CADStatusMap & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>>;
+export interface CADStatusMapModel extends Model<CADStatusMap> {
 }
-declare const _default: ReplaceModelReturnType<typeof CADStatusMapModule, CADStatusMapModel>;
-export default _default;
+export {};
 //# sourceMappingURL=cad-status-map.d.ts.map

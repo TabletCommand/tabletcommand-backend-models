@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IncidentNotifiedModule = void 0;
 const helpers_1 = require("../helpers");
 async function IncidentNotifiedModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const SentItem = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const SentItem = new Schema({
         name: {
             type: String,
             default: "",
@@ -21,7 +20,7 @@ async function IncidentNotifiedModule(mongoose) {
         _id: false,
         id: false,
     });
-    const Unit = (0, helpers_1.createSchema)(Schema, {
+    const Unit = new Schema({
         UnitID: {
             type: String,
             default: "",
@@ -34,9 +33,9 @@ async function IncidentNotifiedModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -73,8 +72,7 @@ async function IncidentNotifiedModule(mongoose) {
         collection: "massive_incident_notified",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "IncidentNotified", modelSchema);
+    return mongoose.model("IncidentNotified", modelSchema);
 }
-exports.IncidentNotifiedModule = IncidentNotifiedModule;
 exports.default = IncidentNotifiedModule;
 //# sourceMappingURL=incident-notified.js.map

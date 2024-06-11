@@ -164,7 +164,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const agency = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
     code: "TC",
     name: "Tablet Command",
@@ -262,11 +262,11 @@ module.exports = function mockModule(dependencies) {
     units: [battalionUnit]
   };
 
-  const checklistId = mongoose.Types.ObjectId();
+  const checklistId = new mongoose.Types.ObjectId();
   const checklistUUID = "150cf1ca-ffbb-42c9-bd4c-fd64be45d888";
 
   const checklistItem = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d887",
     checklist_uuid: checklistUUID,
     position: 1,
@@ -334,7 +334,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const cadIncident = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d679",
     departmentId: "56131f724143487a10000001",
     AgencyID: "BDC",
@@ -493,7 +493,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const cadStatus = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     code: "AV",
     codeDisplay: "RS",
     color: {
@@ -546,7 +546,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const cadVehicle = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     uuid: "30f8d7c7-20a3-4a12-b911-a424f5037003",
     radioName: "T01",
     vehicleId: "7705",
@@ -589,7 +589,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const department = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     department: "Test Department",
     addressDetails: {
       city: "San Francisco",
@@ -726,7 +726,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const deviceMapping = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     nick: "Test",
     departmentId: "d123",
     deviceType: "hello",
@@ -740,7 +740,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const esri = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
     modified_unix_date: 1432230780,
     auth: {
@@ -774,7 +774,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const gstMapping = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "d123",
     unitId: "E123",
     modified_unix_date: 1432230780,
@@ -808,7 +808,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const incidentTakeover = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     incident_id: "i1234",
     incident_name: "Test Incident",
     incident_number: "TC-12345",
@@ -821,7 +821,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const incidentNotified = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "d123",
     IncidentNumber: "T-1536603902",
     incidentTypes: [
@@ -842,7 +842,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const location = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "d123",
     userId: "542a40db20783c000000153d",
     uuid: "92c8f732-52b7-46cc-855a-d54fddfe3172",
@@ -868,7 +868,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const managedIncident = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     CallerNumber: "(720) 275-6765",
     CommandChannel: "ACPRI",
     TacticalAltChannel: "ACOPSB",
@@ -1009,7 +1009,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const monitor = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "546ace2b3cd8d60d1d00256a",
     agencyId: "123",
     notificationType: "maps-auth-error",
@@ -1019,7 +1019,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const rateLimit = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     username: "test123",
     modified_unix_date: 1426983552.49945,
     count: 8
@@ -1054,7 +1054,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const user = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     nick: "Test",
     email: "test@save.me",
     mapId: "TEST",
@@ -1151,7 +1151,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const personnelImport = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     PersonnelID: "AM0111",
     PersonnelName: "Test User",
     PersonnelRank: "Eng",
@@ -1172,7 +1172,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const csvImport = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     batchId: "AM0111",
     departmentId: "1234",
     agencyId: "abcd1234",
@@ -1187,7 +1187,7 @@ module.exports = function mockModule(dependencies) {
   };
 
   const validationReport = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
     modified: new Date("2022-11-13T22:02:01Z"),
     location: [],

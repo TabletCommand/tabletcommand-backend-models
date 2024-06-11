@@ -1,13 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SMTPUnhandledModule = void 0;
-const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function SMTPUnhandledModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         email: {
@@ -32,8 +30,7 @@ async function SMTPUnhandledModule(mongoose) {
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "SMTPUnhandled", modelSchema);
+    return mongoose.model("SMTPUnhandled", modelSchema);
 }
-exports.SMTPUnhandledModule = SMTPUnhandledModule;
 exports.default = SMTPUnhandledModule;
 //# sourceMappingURL=smtp-unhandled.js.map

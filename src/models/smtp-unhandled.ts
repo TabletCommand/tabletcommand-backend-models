@@ -1,20 +1,22 @@
+import { Model, Types } from "mongoose";
 import {
-  createModel,
-  createSchema,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-export async function SMTPUnhandledModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface SMTPUnhandled {
+  _id: Types.ObjectId,
+  email: string,
+  message: string,
+}
 
-  const modelSchema = createSchema(Schema, {
+export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<SMTPUnhandled>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     email: {
@@ -35,16 +37,14 @@ export async function SMTPUnhandledModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
+  modelSchema.virtual("id").get(function (this: MongooseDocument) {
     return this._id.toHexString();
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "SMTPUnhandled", modelSchema);
+  return mongoose.model<SMTPUnhandled>("SMTPUnhandled", modelSchema);
 }
 
-export interface SMTPUnhandled extends ItemTypeFromTypeSchemaFunction<typeof SMTPUnhandledModule> { }
-export interface SMTPUnhandledModel extends ModelTypeFromTypeSchemaFunction<SMTPUnhandled> { }
-export default SMTPUnhandledModule as ReplaceModelReturnType<typeof SMTPUnhandledModule, SMTPUnhandledModel>;
+export interface SMTPUnhandledModel extends Model<SMTPUnhandled> { }

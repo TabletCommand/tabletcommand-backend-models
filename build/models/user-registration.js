@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRegistrationModule = void 0;
 const helpers_1 = require("../helpers");
 async function UserRegistrationModule(mongoose) {
     const Schema = mongoose.Schema;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         email: {
             type: String,
             default: "",
@@ -83,8 +82,7 @@ async function UserRegistrationModule(mongoose) {
         collection: "massive_user_registration",
     });
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "UserRegistration", modelSchema);
+    return mongoose.model("UserRegistration", modelSchema);
 }
-exports.UserRegistrationModule = UserRegistrationModule;
 exports.default = UserRegistrationModule;
 //# sourceMappingURL=user-registration.js.map

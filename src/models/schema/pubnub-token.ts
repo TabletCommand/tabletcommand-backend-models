@@ -1,13 +1,18 @@
 import {
   MongooseModule,
-  createSchema,
   currentDate,
 } from "../../helpers";
+
+export interface PubNubTokenSchemaType {
+  token: string,
+  expireAt: Date,
+  runAt: Date | string,
+}
 
 export default function PubNubTokenSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Item = createSchema(Schema, {
+  const Item = new Schema<PubNubTokenSchemaType>({
     token: {
       type: String,
       default: "",
@@ -17,13 +22,13 @@ export default function PubNubTokenSchema(mongoose: MongooseModule) {
       default: currentDate,
     },
     runAt: {
-      type: Date,
+      type: Date || String,
       default: "",
     },
   }, {
     _id: false,
     id: false,
-  });  
+  });
 
   return Item;
 }

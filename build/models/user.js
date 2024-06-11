@@ -1,17 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserModule = exports.UserSchema = void 0;
+exports.UserSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const esri_auth_1 = require("./schema/esri-auth");
 const esri_error_1 = require("./schema/esri-error");
 const pubnub_token_1 = require("./schema/pubnub-token");
+const mongoose_1 = require("mongoose");
 function UserSchema(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const EsriAuth = (0, esri_auth_1.default)(mongoose);
     const EsriError = (0, esri_error_1.default)(mongoose);
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
-    const VehicleSchema = (0, helpers_1.createSchema)(Schema, {
+    const VehicleSchema = new Schema({
         radioName: {
             type: String,
             default: "",
@@ -24,7 +25,7 @@ function UserSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         nick: {
             type: String,
             default: "",
@@ -57,12 +58,12 @@ function UserSchema(mongoose) {
             type: Date,
         },
         agencyId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
         },
         managedAgencies: {
-            type: [Types.ObjectId],
+            type: [mongoose_1.Types.ObjectId],
             ref: "Agency",
             default: []
         },
@@ -243,23 +244,20 @@ function UserSchema(mongoose) {
         collection: "sys_user",
     });
     modelSchema.set("autoIndex", false);
+    // NO _id on User schema?
+    modelSchema.virtual("id").get(function () {
+        return this._id.toHexString();
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id;
-        },
-    });
-    modelSchema.virtual("id").get(function () {
-        return this._id.toHexString();
     });
     return modelSchema;
 }
 exports.UserSchema = UserSchema;
 async function UserModule(mongoose) {
     const modelSchema = UserSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "User", modelSchema);
+    return mongoose.model("User", modelSchema);
 }
-exports.UserModule = UserModule;
 exports.default = UserModule;
 //# sourceMappingURL=user.js.map

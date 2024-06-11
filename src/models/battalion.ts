@@ -3,32 +3,50 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
-  createModel,
-  FieldsOfDocument,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
 
-export function BattalionSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  const toJSONOpts = {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      strictSchema(doc.schema, ret);
-      ret.id = ret._id;
-    },
-  };
+import { Model, Types } from "mongoose";
+interface BattalionUnitType {
+  _id: Types.ObjectId,
+  name: string,
+  friendly_id: string,
+  personnel: number,
+  position: number,
+  active: boolean,
+  isMandatory: boolean,
+  modified_date: string,
+  modified_unix_date: number,
+  modified: Date,
+  uuid: string,
+  api_battalion_id: string,
+  battalion_uuid: string,
+  battalion_name: string,
+  agencyId: Types.ObjectId
+}
 
-  const BattalionUnit = createSchema(Schema, {
+export interface Battalion {
+  _id: Types.ObjectId
+  name: string,
+  active: boolean,
+  modified_date: string,
+  modified_unix_date: number,
+  modified: Date,
+  isMandatory: boolean
+  userId: string,
+  uuid: string,
+  departmentId: string,
+  agencyId: Types.ObjectId,
+  position: number,
+  units: BattalionUnitType[],
+}
+
+export function BattalionSchema(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+  const BattalionUnit = new Schema<BattalionUnitType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     name: {
@@ -81,17 +99,28 @@ export function BattalionSchema(mongoose: MongooseModule) {
       type: String,
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
   }, {});
 
-  BattalionUnit.set("toJSON", toJSONOpts);
+  BattalionUnit.virtual("id").get(function (this: MongooseDocument) {
+    // tslint:disable-next-line: no-unsafe-any
+    return this._id.toString();
+  });
+  BattalionUnit.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    },
+  });
 
-  const modelSchema = createSchema(Schema, {
+
+  const modelSchema = new Schema<Battalion>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     name: {
@@ -131,7 +160,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
       index: true,
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -147,19 +176,18 @@ export function BattalionSchema(mongoose: MongooseModule) {
     collection: "massive_battalion",
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      strictSchema(doc.schema as typeof modelSchema, ret);
-      ret.id = ret._id;
-    },
-  });
-
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    },
+  });
+
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
     Object.keys(ret).forEach(function (element) {
@@ -178,11 +206,9 @@ export function BattalionSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export async function BattalionModule(mongoose: MongooseModule) {
+export default async function BattalionModule(mongoose: MongooseModule) {
   const modelSchema = BattalionSchema(mongoose);
-  return createModel(mongoose, "Battalion", modelSchema);
+  return mongoose.model<Battalion>("Battalion", modelSchema);
 }
 
-export interface Battalion extends ItemTypeFromTypeSchemaFunction<typeof BattalionModule> { }
-export interface BattalionModel extends ModelTypeFromTypeSchemaFunction<Battalion> { }
-export default BattalionModule as ReplaceModelReturnType<typeof BattalionModule, BattalionModel>;
+export interface BattalionModel extends Model<Battalion> { }

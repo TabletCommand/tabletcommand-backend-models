@@ -1,40 +1,31 @@
 const assert = require("chai").assert;
-
-const m = require("..");
-const config = require("./config");
-
-describe("CADVehicleStatusHistory", function() {
-  let models, mongoose;
+const mongoose = require('mongoose');
+describe("CADVehicleStatusHistory", function () {
+  let models = mongoose.models;
   let testItem;
-  beforeEach(async function() {
-    const c = await m.connect(config.url);
-    models = c.models;
-    mongoose = c.mongoose;
+  beforeEach(async function () {
+
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.cadVehicleStatusHistory;
   });
-  afterEach(function() {
-    mongoose.disconnect();
-  });
 
-  it("is saved", function(done) {
+
+  it("is saved", function () {
     const item = new models.CADVehicleStatusHistory(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    item.save().then((ress) => {
 
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.vehicleId, sut.vehicleId);
-      assert.equal(testItem.radioName, sut.radioName);
-      assert.equal(testItem.status, sut.status);
-      assert.equal(testItem.statusCode, sut.statusCode);
-      assert.equal(testItem.requestedAt, sut.requestedAt);
-      assert.equal(testItem.requestedBy, sut.requestedBy);
-      assert.equal(testItem.incidentNumber, sut.incidentNumber);
+      assert.equal(testItem.departmentId, ress.departmentId);
+      assert.equal(testItem.vehicleId, ress.vehicleId);
+      assert.equal(testItem.radioName, ress.radioName);
+      assert.equal(testItem.status, ress.status);
+      assert.equal(testItem.statusCode, ress.statusCode);
+      assert.equal(testItem.requestedAt, ress.requestedAt);
+      assert.equal(testItem.requestedBy, ress.requestedBy);
+      assert.equal(testItem.incidentNumber, ress.incidentNumber);
 
-      return done();
-    });
+    }).catch((err) => { assert.isNull(err, "Should not err"); });
   });
 });

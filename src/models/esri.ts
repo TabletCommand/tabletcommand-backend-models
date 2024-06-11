@@ -1,27 +1,42 @@
 // import * as uuid from "uuid";
+import { Model, Types } from "mongoose";
 import {
-  createModel,
-  createSchema,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
-import EsriAuthModule from "./schema/esri-auth";
-import EsriErrorModule from "./schema/esri-error";
-import EsriMapModule from "./schema/esri-map";
-import FireMapperAuthModule from "./schema/firemapper-auth";
+import EsriAuthModule, { EsriAuthSchemaType } from "./schema/esri-auth";
+import EsriErrorModule, { EsriErrorSchemaType } from "./schema/esri-error";
+import EsriMapModule, { EsriMapType } from "./schema/esri-map";
+import FireMapperAuthModule, { FireMapperAuthType } from "./schema/firemapper-auth";
+
+interface MapPropertiesType {
+  itemId: string,
+  download: boolean,
+}
+export interface Esri {
+  _id: Types.ObjectId,
+  runAt: Date,
+  departmentId: Types.ObjectId
+  auth: EsriAuthSchemaType,
+  authError: EsriErrorSchemaType,
+  fireMapperAuth: FireMapperAuthType,
+  arcGISGroupIds: string[],
+  arcGISAuth: EsriAuthSchemaType,
+  arcGISMigrated: boolean,
+  review: object,
+  reviewRunAt: Date,
+  maps: EsriMapType[],
+  mapsProperties: MapPropertiesType[],
+  mapLastUpdated: Date,
+}
 
 export function EsriSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const EsriAuth = EsriAuthModule(mongoose);
   const EsriError = EsriErrorModule(mongoose);
   const EsriMap = EsriMapModule(mongoose);
   const FireMapperAuth = FireMapperAuthModule(mongoose);
 
-  const MapProperties = createSchema(Schema, {
+  const MapProperties = new Schema<MapPropertiesType>({
     // ArcGIS Item id
     itemId: {
       type: String,
@@ -36,9 +51,9 @@ export function EsriSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<Esri>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
 
@@ -48,7 +63,7 @@ export function EsriSchema(mongoose: MongooseModule) {
       default: new Date("1970-01-01T00:00:00.000Z"),
     },
     departmentId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Department",
       required: true
     },
@@ -115,27 +130,22 @@ export function EsriSchema(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
+  // Deprecated. Check which apps rely on .id instead of using ._id.
+  modelSchema.virtual("id").get(function (this: Esri) {
+    return this._id.toHexString();
+  });
+
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    // Deprecated. Check which apps rely on .id instead of using ._id.
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
   });
 
-  // Deprecated. Check which apps rely on .id instead of using ._id.
-  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
-    return this._id.toHexString();
-  });
   return modelSchema;
 }
 
-export async function EsriModule(mongoose: MongooseModule) {
+export default async function EsriModule(mongoose: MongooseModule) {
   const modelSchema = EsriSchema(mongoose);
-  return createModel(mongoose, "Esri", modelSchema);
+  return mongoose.model<Esri>("Esri", modelSchema);
 }
 
-export interface Esri extends ItemTypeFromTypeSchemaFunction<typeof EsriModule> { }
-export interface EsriModel extends ModelTypeFromTypeSchemaFunction<Esri> { }
-export default EsriModule as ReplaceModelReturnType<typeof EsriModule, EsriModel>;
+export interface EsriModel extends Model<Esri> { }
