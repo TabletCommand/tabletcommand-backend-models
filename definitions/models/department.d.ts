@@ -268,6 +268,7 @@ export interface Department {
     samsara: SamsaraConfigurationType;
     mark43: Mark43ConfigType;
     intterra: IntterraConfigType;
+    vehicleRadioNameIsStable: boolean;
 }
 export default function DepartmentModule(mongoose: MongooseModule): Promise<Model<Department, {}, {}, {}, import("mongoose").Document<unknown, {}, Department> & Department & Required<{
     _id: Types.ObjectId;

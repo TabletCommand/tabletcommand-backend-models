@@ -272,6 +272,7 @@ export interface Department {
   samsara: SamsaraConfigurationType
   mark43: Mark43ConfigType
   intterra: IntterraConfigType
+  vehicleRadioNameIsStable: boolean,
 }
 
 const Mark43StatusConfigDefault = {
@@ -343,7 +344,7 @@ const FireMapperConfigurationDefault = {
   layerRefreshInterval: 15,
   proLicenseCount: 0,
   host: "",
-  layerURL: [
+  layer: [
     {
       name: "FireMapper - Symbols",
       pathname: "/api/rest/services/features/FeatureServer/0",
@@ -369,7 +370,7 @@ const FireMapperConfigurationDefault = {
       pathname: "/api/rest/services/features/FeatureServer/5",
     },
   ],
-  outline: [],
+  staticLayer: [],
 };
 
 const LicensingDefault = {
@@ -798,8 +799,11 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       default: 0,
     },
     host: {
+      // when empty, portal.firefront.com.au
+      // when staging, staging.firefront.com.au
+      // when us, us.firemapper.app
       type: String,
-      default: "", // when empty, portal.firefront.com.au
+      default: "",
     },
     layer: {
       type: [FireMapperLayer],
@@ -1126,6 +1130,12 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       default: SimpleSenseConfigDefault,
     },
     incidentVehicleStatusEnabled: {
+      type: Boolean,
+      default: false
+    },
+    // When set to true, a vehicle update will propagate to user.vehicle using the radioName (changing the vehicleId)
+    // By default (false), a vehicleId change will keep the same user.vehicle vehicleId and update the radioName
+    vehicleRadioNameIsStable: {
       type: Boolean,
       default: false
     },

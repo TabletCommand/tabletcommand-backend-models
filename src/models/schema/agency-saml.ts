@@ -7,12 +7,13 @@ export interface AgencySAMLSchemaType {
   idp: string,
   sp: string,
   env: string,
+  name: string,
 }
 
 export default function AgencySAMLSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const AgencyCronConfig = new Schema<AgencySAMLSchemaType>({
+  const AgencySAML = new Schema<AgencySAMLSchemaType>({
     selector: {
       type: String,
       required: true,
@@ -30,6 +31,10 @@ export default function AgencySAMLSchema(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    name: {
+      type: String,
+      default: "",
+    }
   }, {
     _id: false,
     id: false,
@@ -41,5 +46,5 @@ export default function AgencySAMLSchema(mongoose: MongooseModule) {
     }
   });
 
-  return AgencyCronConfig;
+  return AgencySAML;
 }

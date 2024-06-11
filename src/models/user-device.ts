@@ -56,6 +56,7 @@ export interface UserDevice {
   offDuty: boolean,
   criticalAlertsVolume: string,
   allowInStaging: boolean,
+  restrictedCommentsEnabled: boolean,
 }
 
 export default async function UserDeviceModule(mongoose: MongooseModule) {
@@ -236,6 +237,11 @@ export default async function UserDeviceModule(mongoose: MongooseModule) {
     // When running in a non-production env (qa, staging), process this user only if this is true
     // This flag would be set by a cron or some other method
     allowInStaging: {
+      type: Boolean,
+      default: false,
+    },
+    // Copied from user.restrictedCommentsEnabled
+    restrictedCommentsEnabled: {
       type: Boolean,
       default: false,
     },

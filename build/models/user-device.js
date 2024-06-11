@@ -176,6 +176,11 @@ async function UserDeviceModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        // Copied from user.restrictedCommentsEnabled
+        restrictedCommentsEnabled: {
+            type: Boolean,
+            default: false,
+        },
     }, {
         collection: "massive_user_device",
     });

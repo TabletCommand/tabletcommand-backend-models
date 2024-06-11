@@ -71,6 +71,7 @@ export interface UserDevice {
     offDuty: boolean;
     criticalAlertsVolume: string;
     allowInStaging: boolean;
+    restrictedCommentsEnabled: boolean;
 }
 export default function UserDeviceModule(mongoose: MongooseModule): Promise<Model<UserDevice, {}, {}, {}, import("mongoose").Document<unknown, {}, UserDevice> & UserDevice & Required<{
     _id: Types.ObjectId;

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 function AgencySAMLSchema(mongoose) {
     const { Schema } = mongoose;
-    const AgencyCronConfig = new Schema({
+    const AgencySAML = new Schema({
         selector: {
             type: String,
             required: true,
@@ -20,6 +20,10 @@ function AgencySAMLSchema(mongoose) {
             type: String,
             default: "",
         },
+        name: {
+            type: String,
+            default: "",
+        }
     }, {
         _id: false,
         id: false,
@@ -30,7 +34,7 @@ function AgencySAMLSchema(mongoose) {
             versionKey: false,
         }
     });
-    return AgencyCronConfig;
+    return AgencySAML;
 }
 exports.default = AgencySAMLSchema;
 //# sourceMappingURL=agency-saml.js.map

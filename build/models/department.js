@@ -72,7 +72,7 @@ const FireMapperConfigurationDefault = {
     layerRefreshInterval: 15,
     proLicenseCount: 0,
     host: "",
-    layerURL: [
+    layer: [
         {
             name: "FireMapper - Symbols",
             pathname: "/api/rest/services/features/FeatureServer/0",
@@ -98,7 +98,7 @@ const FireMapperConfigurationDefault = {
             pathname: "/api/rest/services/features/FeatureServer/5",
         },
     ],
-    outline: [],
+    staticLayer: [],
 };
 const LicensingDefault = {
     "tcPro2Way": 0,
@@ -498,8 +498,11 @@ async function DepartmentModule(mongoose) {
             default: 0,
         },
         host: {
+            // when empty, portal.firefront.com.au
+            // when staging, staging.firefront.com.au
+            // when us, us.firemapper.app
             type: String,
-            default: "", // when empty, portal.firefront.com.au
+            default: "",
         },
         layer: {
             type: [FireMapperLayer],
@@ -820,6 +823,12 @@ async function DepartmentModule(mongoose) {
             default: SimpleSenseConfigDefault,
         },
         incidentVehicleStatusEnabled: {
+            type: Boolean,
+            default: false
+        },
+        // When set to true, a vehicle update will propagate to user.vehicle using the radioName (changing the vehicleId)
+        // By default (false), a vehicleId change will keep the same user.vehicle vehicleId and update the radioName
+        vehicleRadioNameIsStable: {
             type: Boolean,
             default: false
         },
