@@ -208,7 +208,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
 
 export default async function BattalionModule(mongoose: MongooseModule) {
   const modelSchema = BattalionSchema(mongoose);
-  return mongoose.model<Battalion>("BattalionType", modelSchema);
+  return mongoose.model<Battalion>("Battalion", modelSchema);
 }
 
 export interface BattalionModel extends Model<Battalion> { }

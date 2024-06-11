@@ -163,7 +163,7 @@ function BattalionSchema(mongoose) {
 exports.BattalionSchema = BattalionSchema;
 async function BattalionModule(mongoose) {
     const modelSchema = BattalionSchema(mongoose);
-    return mongoose.model("BattalionType", modelSchema);
+    return mongoose.model("Battalion", modelSchema);
 }
 exports.default = BattalionModule;
 //# sourceMappingURL=battalion.js.map
