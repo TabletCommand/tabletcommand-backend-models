@@ -32,6 +32,8 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     cadAllowedIPAddresses: string[];
     cadGetLocationEnabled: boolean;
     cadAllowIgnoreAfterDays: number;
+    cadIncidentHistoryType: number[];
+    cadIncidentEventType: string[];
     connectivity: {
         incident: {
             enabled: boolean;

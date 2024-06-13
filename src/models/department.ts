@@ -762,6 +762,23 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: 21,
     },
+    // Incident History Item Type sent back to CAD
+    // These correspond to IncidentHistoryType from iOS
+    cadIncidentHistoryType: {
+      type: [Number],
+      default: [],
+    },
+
+    // Incident Event Item Type sent back to CAD
+    // These correspond to IncidentEvent.type from backend/iOS
+    cadIncidentEventType: {
+      type: [String],
+      default: [
+        "userackcomment",
+        "usercomment",
+      ],
+    },
+
     connectivity: {
       incident: {
         enabled: {
