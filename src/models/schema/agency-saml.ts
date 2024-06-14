@@ -27,7 +27,13 @@ export default function AgencySAMLSchema(mongoose: MongooseModule) {
     name: {
       type: String,
       default: "",
-    }
+    },
+    // For Google Accounts, append https://accounts.google.com/accountchooser?continue=
+    // Options: none, google
+    jumpPoint: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
     id: false,

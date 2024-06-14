@@ -327,6 +327,10 @@ export declare function AgencySchema(mongoose: MongooseModule): import("mongoose
                         type: StringConstructor;
                         default: string;
                     };
+                    jumpPoint: {
+                        type: StringConstructor;
+                        default: string;
+                    };
                 }>;
                 _methods: unknown;
             })[];
@@ -595,6 +599,10 @@ export declare function AgencyModule(mongoose: MongooseModule): Promise<import("
             default: string;
         };
         name: {
+            type: StringConstructor;
+            default: string;
+        };
+        jumpPoint: {
             type: StringConstructor;
             default: string;
         };
