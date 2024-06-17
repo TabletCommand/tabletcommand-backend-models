@@ -24,8 +24,9 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
 import { Model, Types } from "mongoose";
-export declare type Assignment = {
+export interface Assignment extends Record<string, unknown> {
     _id: Types.ObjectId;
+    id: string;
     uuid: string;
     active: boolean;
     userId: string;
@@ -38,7 +39,7 @@ export declare type Assignment = {
     name: string;
     description: string;
     full_description: string;
-};
+}
 export default function AssignmentModule(mongoose: MongooseModule): Promise<Model<Assignment, {}, {}, {}, import("mongoose").Document<unknown, {}, Assignment> & Assignment & Required<{
     _id: Types.ObjectId;
 }>, any>>;

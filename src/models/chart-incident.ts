@@ -13,6 +13,7 @@ interface ChartItemType {
 }
 export interface ChartIncident {
   _id: Types.ObjectId,
+  id:string,
   dateAt: Date,
   departmentId: string,
   count: number,

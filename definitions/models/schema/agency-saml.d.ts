@@ -24,7 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface AgencySAMLSchemaType {
+export interface AgencySAMLSchemaType extends Record<string, unknown> {
     selector: string;
     idp: string;
     sp: string;

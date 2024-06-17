@@ -8,7 +8,8 @@ import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { Types, Model } from "mongoose";
 export interface CADIncidentStream {
-  _id: Types.ObjectId
+  _id: Types.ObjectId,
+  id:string,
   uuid: string,
   tag: string,
   departmentId: string,

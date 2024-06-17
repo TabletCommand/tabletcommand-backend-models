@@ -18,8 +18,9 @@ interface GroupOptionType {
   position: number,
   uuid: string,
 }
-export interface Template {
+export interface Template extends Record<string, unknown> {
   _id: Types.ObjectId,
+  id: string,
   position: number,
   userId: string,
   uuid: string,

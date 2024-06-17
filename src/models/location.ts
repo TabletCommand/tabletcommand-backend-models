@@ -10,8 +10,9 @@ import ColorModule, { ColorSchemaType } from "./schema/color";
 import GeoJSONPointModule, { GeoJSONPointType } from "./schema/geojson-point";
 import { Model, Types } from "mongoose";
 
-export interface Location {
+export interface Location extends Record<string, unknown> {
   _id: Types.ObjectId,
+  id:string,
   departmentId: string,
   userId: string,
   uuid: string,

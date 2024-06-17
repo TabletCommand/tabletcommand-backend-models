@@ -9,6 +9,7 @@ const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date
 
 export interface ChartUser {
   _id: Types.ObjectId,
+  id:string,
   dateAt: Date,
   departmentId: string,
   count: number,

@@ -2,7 +2,7 @@ import {
   MongooseModule,
 } from "../../helpers";
 
-export interface ColorSchemaType {
+export interface ColorSchemaType extends Record<string, unknown> {
   background: string,
   text: string,
 }

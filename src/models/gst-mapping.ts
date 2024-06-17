@@ -7,7 +7,7 @@ import {
 import { Model, Types } from "mongoose";
 
 export interface GSTMapping {
-  _id: Types.ObjectId
+  _id: Types.ObjectId,
   departmentId: string,
   gstAgency: string,
   deviceType: string,

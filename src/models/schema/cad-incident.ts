@@ -27,7 +27,7 @@ interface CADCommentOptsTypes {
   item: string,
 }
 
-interface CADCommentType {
+interface CADCommentType extends Record<string, unknown> {
   Comment: string,
   CommentSource: string,
   CommentDateTime: string,
@@ -35,7 +35,7 @@ interface CADCommentType {
   CommentOpts: CADCommentOptsTypes
 }
 
-interface CADUnitType {
+interface CADUnitType extends Record<string, unknown> {
   UnitID: string,
   UnitDispatchNumber: string,
   AlarmAtDispatch: string,
@@ -67,8 +67,9 @@ interface CADPriorIncidentType {
   Problem: string,
   Suite: string,
 }
-export interface CADIncidentSchemaType {
-  _id: Types.ObjectId
+export interface CADIncidentSchemaType extends Record<string, unknown> {
+  _id: Types.ObjectId,
+  id:string,
   uuid: string,
   departmentId: string,
   AgencyID: string,

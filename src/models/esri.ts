@@ -14,6 +14,7 @@ interface MapPropertiesType {
 }
 export interface Esri {
   _id: Types.ObjectId,
+  id: string,
   runAt: Date,
   departmentId: Types.ObjectId
   auth: EsriAuthSchemaType,

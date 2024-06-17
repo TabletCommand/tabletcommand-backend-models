@@ -7,6 +7,7 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export interface SMTPUnhandled {
   _id: Types.ObjectId,
+  id:string,
   email: string,
   message: string,
 }

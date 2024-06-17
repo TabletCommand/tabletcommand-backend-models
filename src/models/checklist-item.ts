@@ -7,8 +7,9 @@ import {
 } from "../helpers";
 import { Model, Types } from "mongoose";
 
-export interface ChecklistItem {
-  _id: Types.ObjectId
+export interface ChecklistItem extends Record<string, unknown> {
+  _id: Types.ObjectId,
+  id:string,
   position: number,
   userId: string,
   uuid: string,

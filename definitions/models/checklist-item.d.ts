@@ -24,8 +24,9 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
 import { Model, Types } from "mongoose";
-export interface ChecklistItem {
+export interface ChecklistItem extends Record<string, unknown> {
     _id: Types.ObjectId;
+    id: string;
     position: number;
     userId: string;
     uuid: string;

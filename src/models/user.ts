@@ -16,6 +16,7 @@ interface VehicleSchemaType {
 
 export interface User {
   _id: Types.ObjectId,
+  id: string, // Comming from virtuals
   nick: string,
   email: string,
   name: string,

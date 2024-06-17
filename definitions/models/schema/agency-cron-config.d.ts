@@ -28,7 +28,7 @@ interface EncryptedDataType {
     iv: string;
     encryptedData: string;
 }
-interface CronConfigSourceType {
+export interface CronConfigSourceType {
     protocol: string;
     username: string;
     hostname: string;
@@ -56,7 +56,7 @@ interface ReconcileTimeOptionsType {
     startTime: string;
     endTime: string;
 }
-export interface AgencyCronConfigType {
+export interface AgencyCronConfigType extends Record<string, unknown> {
     enabled: boolean;
     source: CronConfigSourceType;
     auth: CronConfigAuthType;

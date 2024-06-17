@@ -24,8 +24,9 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
 import { Model, Types } from "mongoose";
-interface BattalionUnitType {
+interface BattalionUnitType extends Record<string, unknown> {
     _id: Types.ObjectId;
+    id: string;
     name: string;
     friendly_id: string;
     personnel: number;
@@ -41,12 +42,13 @@ interface BattalionUnitType {
     battalion_name: string;
     agencyId: Types.ObjectId;
 }
-export interface Battalion {
+export interface Battalion extends Record<string, unknown> {
     _id: Types.ObjectId;
+    id: string;
     name: string;
     active: boolean;
     modified_date: string;
-    modified_unix_date: number;
+    modified_unix_date?: number;
     modified: Date;
     isMandatory: boolean;
     userId: string;

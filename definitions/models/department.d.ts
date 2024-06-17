@@ -147,8 +147,9 @@ interface ShareIncidentRuleType {
     departmentName: string;
     configuration: object;
 }
-export interface Department {
+export interface Department extends Record<string, unknown> {
     _id: Types.ObjectId;
+    id: string;
     uuid: string;
     department: string;
     fdid: string;

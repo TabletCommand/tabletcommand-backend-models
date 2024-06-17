@@ -31,7 +31,7 @@ export interface CADPersonSchemaType {
     PersonnelWorkCode: string;
     PersonnelNote: string;
 }
-export interface RadioChannelSchemaType {
+export interface RadioChannelSchemaType extends Record<string, unknown> {
     name: string;
     channel: string;
     url: string;
@@ -49,7 +49,7 @@ export interface ShareReasonSchemaType {
     name: string;
     date: Date;
 }
-export interface SharedToSchemaType {
+export interface SharedToSchemaType extends Record<string, unknown> {
     departmentId: string;
     name: string;
     startAt: Date;
@@ -57,7 +57,7 @@ export interface SharedToSchemaType {
     active: boolean;
     reasons: ShareReasonSchemaType[];
 }
-export interface SharedSourceSchemaType {
+export interface SharedSourceSchemaType extends Record<string, unknown> {
     name: string;
     isExternal: boolean;
     startAt: Date;

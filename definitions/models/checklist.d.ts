@@ -25,8 +25,9 @@
 import { MongooseModule } from "../helpers";
 import { ChecklistItem } from "./checklist-item";
 import { Model, Types } from "mongoose";
-export interface Checklist {
+export interface Checklist extends Record<string, unknown> {
     _id: Types.ObjectId;
+    id: string;
     position: number;
     userId: string;
     uuid: string;

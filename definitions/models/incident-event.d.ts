@@ -32,6 +32,7 @@ interface EventUserType {
 }
 export interface IncidentEvent {
     _id: Types.ObjectId;
+    id: string;
     departmentId: string;
     IncidentNumber: string;
     modified_unix_date: number;

@@ -29,7 +29,7 @@ interface TypeSchemaType {
     type: string;
     typeOpts: object;
 }
-export interface Message {
+export interface Message extends Record<string, unknown> {
     _id: Types.ObjectId;
     departmentId: string;
     userId: string;

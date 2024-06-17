@@ -8,6 +8,7 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 export interface JobLog {
   _id: Types.ObjectId,
+  id:string,
   jobName: string,
   host: string,
   bidDate: Date,

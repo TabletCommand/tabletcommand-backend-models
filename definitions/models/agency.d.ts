@@ -26,12 +26,21 @@ import { MongooseModule } from "../helpers";
 import { AgencyCronConfigType } from "./schema/agency-cron-config";
 import { AgencySAMLSchemaType } from "./schema/agency-saml";
 import { Model, Types } from "mongoose";
+interface AgencyLicensing extends Record<string, unknown> {
+    tcPro: number;
+    tcManager: number;
+    tcStatus: number;
+    tcMobile: number;
+    tcWeb: number;
+    fireMapperPro: number;
+    locationToCAD: number;
+}
 interface CrossStaffedUnitType {
     radioName: string;
     crossStaffedUnits: string[];
     alwaysCrossStaff: boolean;
 }
-export interface Agency {
+export interface Agency extends Record<string, unknown> {
     _id: Types.ObjectId;
     code: string;
     name: string;
@@ -47,7 +56,7 @@ export interface Agency {
     personnelIntegration: boolean;
     personnelMonitorHours: number;
     crossStaffing: CrossStaffedUnitType[];
-    licensing: object;
+    licensing: AgencyLicensing;
     cronConfig: AgencyCronConfigType;
     saml: AgencySAMLSchemaType[];
     activeUserCount: number;

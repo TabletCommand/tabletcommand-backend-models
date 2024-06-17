@@ -8,7 +8,8 @@ import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { ReportNumberSchema, ReportNumberSchemaType } from "./schema/shared-incident";
 import { Model, Types } from "mongoose";
 export interface CADIncidentBlock {
-  _id: Types.ObjectId
+  _id: Types.ObjectId,
+  id:string,
   departmentId: string,
   source: string,
   IncidentNumber: string,

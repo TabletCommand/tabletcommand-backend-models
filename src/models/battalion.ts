@@ -8,8 +8,9 @@ import {
 } from "../helpers";
 
 import { Model, Types } from "mongoose";
-interface BattalionUnitType {
+interface BattalionUnitType extends Record<string, unknown> {
   _id: Types.ObjectId,
+  id:string,
   name: string,
   friendly_id: string,
   personnel: number,
@@ -26,12 +27,13 @@ interface BattalionUnitType {
   agencyId: Types.ObjectId
 }
 
-export interface Battalion {
-  _id: Types.ObjectId
+export interface Battalion extends Record<string, unknown> {
+  _id: Types.ObjectId,
+  id:string,
   name: string,
   active: boolean,
   modified_date: string,
-  modified_unix_date: number,
+  modified_unix_date?: number,
   modified: Date,
   isMandatory: boolean
   userId: string,

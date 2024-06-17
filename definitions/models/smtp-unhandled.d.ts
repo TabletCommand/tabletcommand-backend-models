@@ -26,6 +26,7 @@ import { Model, Types } from "mongoose";
 import { MongooseModule } from "../helpers";
 export interface SMTPUnhandled {
     _id: Types.ObjectId;
+    id: string;
     email: string;
     message: string;
 }

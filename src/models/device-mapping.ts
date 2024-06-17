@@ -6,7 +6,7 @@ import {
 import { Model, Types } from "mongoose";
 
 export interface DeviceMapping {
-  _id: Types.ObjectId
+  _id: Types.ObjectId,
   departmentId: string,
   userId: string,
   deviceType: string,

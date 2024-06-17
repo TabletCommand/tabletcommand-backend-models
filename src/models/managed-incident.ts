@@ -20,7 +20,7 @@ import {
 } from "./schema/shared-incident";
 import { Model, Types } from "mongoose";
 
-interface HistoryItemType {
+interface HistoryItemType extends Record<string, unknown> {
   message: string,
   entity_type: number,
   time: number,
@@ -40,7 +40,7 @@ interface AssignmentItemType {
   position: number,
 }
 
-interface IncidentUnitType {
+interface IncidentUnitType extends Record<string, unknown> {
   UnitID: string,
   active: boolean,
   air_time: string,
@@ -117,8 +117,9 @@ interface IncidentChecklistType {
   local_id: string,
   id: string,
 }
-export interface ManagedIncident {
+export interface ManagedIncident extends Record<string, unknown> {
   _id: Types.ObjectId,
+  id:string,
   departmentId: string,
   userId: string,
   uuid: string,

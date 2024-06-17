@@ -7,8 +7,9 @@ import {
 } from "../helpers";
 import { Model, Types } from "mongoose";
 
-export type Assignment = {
-  _id: Types.ObjectId
+export interface Assignment extends Record<string, unknown> {
+  _id: Types.ObjectId,
+  id: string,
   uuid: string,
   active: boolean,
   userId: string,
