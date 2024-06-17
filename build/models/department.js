@@ -217,6 +217,10 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        apiUrl: {
+            type: String,
+            default: "api"
+        }
     }, {
         _id: false,
         id: false,
@@ -521,6 +525,7 @@ async function DepartmentModule(mongoose) {
     ];
     const FirstArrivingConfigDefault = {
         "token": "",
+        "apiUrl": "",
     };
     const IntterraConfigDefault = {
         "enabled": false,

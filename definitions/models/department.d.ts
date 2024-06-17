@@ -70,6 +70,10 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             type: StringConstructor;
             default: string;
         };
+        apiUrl: {
+            type: StringConstructor;
+            default: string;
+        };
     }>;
     simpleSenseEnabled: boolean;
     simpleSense: import("../helpers").MongooseInterface<{

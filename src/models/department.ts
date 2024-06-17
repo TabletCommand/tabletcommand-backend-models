@@ -236,6 +236,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    apiUrl: {
+      type: String,
+      default: "api"
+    }
   }, {
     _id: false,
     id: false,
@@ -558,6 +562,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
 
   const FirstArrivingConfigDefault = {
     "token": "",
+    "apiUrl": "",
   };
 
   const IntterraConfigDefault = {
