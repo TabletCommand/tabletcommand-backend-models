@@ -238,7 +238,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
     apiUrl: {
       type: String,
-      default: "api"
+      default: ""
     }
   }, {
     _id: false,

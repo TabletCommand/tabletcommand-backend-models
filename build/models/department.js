@@ -219,7 +219,7 @@ async function DepartmentModule(mongoose) {
         },
         apiUrl: {
             type: String,
-            default: "api"
+            default: ""
         }
     }, {
         _id: false,
