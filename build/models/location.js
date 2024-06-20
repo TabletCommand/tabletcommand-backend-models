@@ -46,7 +46,7 @@ async function LocationModule(mongoose) {
             type: String,
         },
         // person, vehicle, fixed-wing, helicopter, marine
-        type: {
+        kindType: {
             type: String,
             default: "vehicle",
         },

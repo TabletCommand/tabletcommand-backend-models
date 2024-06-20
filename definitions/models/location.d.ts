@@ -8,7 +8,7 @@ export declare function LocationModule(mongoose: MongooseModule): Promise<import
     username: string;
     device_type: string;
     source: string;
-    type: string;
+    kindType: string;
     typeDetails: any;
     active: boolean;
     deleteAfterDate: string;
