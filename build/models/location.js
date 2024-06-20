@@ -35,9 +35,24 @@ async function LocationModule(mongoose) {
             default: "",
             required: true,
         },
+        // Legacy (?) - android, android-tc, cad, ipad, iphone, phone, truck
         device_type: {
             type: String,
             required: true,
+        },
+        // GST, SkyTrack, SkyMira, FleetComplete, Samsara, Somewear, 
+        // CAD, Vehicle Modem (Truck), TC, TC Mobile (iOS/Android)
+        source: {
+            type: String,
+        },
+        // person, vehicle, fixed-wing, helicopter, marine
+        type: {
+            type: String,
+            default: "vehicle",
+        },
+        // Unstructured, type: "engine", "kind": 1, rego: "FF-1123"
+        typeDetails: {
+            type: Object,
         },
         active: {
             type: Boolean,
