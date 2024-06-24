@@ -157,6 +157,14 @@ export default function AgencyCronSchema(mongoose: MongooseModule): import("mong
             type: BooleanConstructor;
             default: boolean;
         };
+        useAlternateId: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        strictAgencyCodeMatch: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         csvFieldMap: {
             type: import("mongoose").Schema<any> & {
                 _interface: import("../../helpers").MongooseInterface<{
