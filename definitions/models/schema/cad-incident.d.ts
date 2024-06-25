@@ -69,7 +69,7 @@ interface CADPriorIncidentType {
 }
 export interface CADIncidentSchemaType extends Record<string, unknown> {
     _id: Types.ObjectId;
-    id: string;
+    id?: string;
     uuid: string;
     departmentId: string;
     AgencyID: string;

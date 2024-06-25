@@ -8,7 +8,7 @@ import { Model } from "mongoose";
 
 export interface Session {
   _id: string,
-  id:string,
+  id?: string,
   nick: string,
   email: string,
   user: string,

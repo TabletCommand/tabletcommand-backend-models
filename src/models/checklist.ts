@@ -12,7 +12,7 @@ import { Model, Types } from "mongoose";
 
 export interface Checklist extends Record<string, unknown> {
   _id: Types.ObjectId,
-  id: string,
+  id?: string,
   position: number,
   userId: string,
   uuid: string,

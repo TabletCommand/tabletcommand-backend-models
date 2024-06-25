@@ -26,7 +26,7 @@ import { Model, Types } from "mongoose";
 import { MongooseModule } from "../helpers";
 export interface JobLog {
     _id: Types.ObjectId;
-    id: string;
+    id?: string;
     jobName: string;
     host: string;
     bidDate: Date;

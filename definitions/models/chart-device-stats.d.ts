@@ -34,7 +34,7 @@ interface ChartItemType {
 }
 export interface ChartDeviceStats {
     _id: Types.ObjectId;
-    id: string;
+    id?: string;
     dateAt: Date;
     departmentId: string;
     items: ChartItemType[];

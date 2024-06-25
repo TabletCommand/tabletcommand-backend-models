@@ -153,7 +153,7 @@ interface ShareIncidentRuleType {
 
 export interface Department extends Record<string, unknown> {
   _id: Types.ObjectId,
-  id: string,
+  id?: string,
   uuid: string,
   department: string,
   fdid: string,

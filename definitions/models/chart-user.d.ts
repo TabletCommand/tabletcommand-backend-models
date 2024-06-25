@@ -26,7 +26,7 @@ import { Model, Types } from "mongoose";
 import { MongooseModule } from "../helpers";
 export interface ChartUser {
     _id: Types.ObjectId;
-    id: string;
+    id?: string;
     dateAt: Date;
     departmentId: string;
     count: number;

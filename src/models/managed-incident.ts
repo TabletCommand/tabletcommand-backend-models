@@ -119,7 +119,7 @@ interface IncidentChecklistType {
 }
 export interface ManagedIncident extends Record<string, unknown> {
   _id: Types.ObjectId,
-  id:string,
+  id?: string,
   departmentId: string,
   userId: string,
   uuid: string,

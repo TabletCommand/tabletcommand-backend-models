@@ -27,7 +27,7 @@ import { ReportNumberSchemaType } from "./schema/shared-incident";
 import { Model, Types } from "mongoose";
 export interface CADIncidentBlock {
     _id: Types.ObjectId;
-    id: string;
+    id?: string;
     departmentId: string;
     source: string;
     IncidentNumber: string;

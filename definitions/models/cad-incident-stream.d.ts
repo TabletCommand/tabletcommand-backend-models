@@ -26,7 +26,7 @@ import { MongooseModule } from "../helpers";
 import { Types, Model } from "mongoose";
 export interface CADIncidentStream {
     _id: Types.ObjectId;
-    id: string;
+    id?: string;
     uuid: string;
     tag: string;
     departmentId: string;
