@@ -11,7 +11,7 @@ interface RadioType {
   active: boolean,
 }
 
-export interface PersonnelKnown {
+export interface PersonnelKnown extends Record<string, unknown> {
   _id: Types.ObjectId,
   PersonnelID: string,
   PersonnelName: string,
