@@ -1,6 +1,15 @@
 import * as _ from "lodash";
 import { ConnectionOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
+import {
+  LocationKindType,
+  LocationSource,
+} from "./constants";
+
+export {
+  LocationKindType,
+  LocationSource,
+};
 
 async function wireModels(mongoose: MongooseModule) {
   type ModelType<TModule extends Record<"default", (m: MongooseModule) => unknown>> = ReturnType<TModule["default"]>;

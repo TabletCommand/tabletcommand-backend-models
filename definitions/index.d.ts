@@ -1,4 +1,6 @@
 import { ConnectionOptions } from "mongoose";
+import { LocationKindType, LocationSource } from "./constants";
+export { LocationKindType, LocationSource, };
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
