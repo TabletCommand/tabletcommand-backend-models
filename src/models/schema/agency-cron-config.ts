@@ -7,7 +7,7 @@ interface EncryptedDataType {
   encryptedData: string,
 }
 
-export interface CronConfigSourceType {
+export interface CronConfigSourceType extends Record<string, unknown> {
   protocol: string,
   username: string,
   hostname: string,

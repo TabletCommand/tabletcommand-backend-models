@@ -28,7 +28,7 @@ interface EncryptedDataType {
     iv: string;
     encryptedData: string;
 }
-export interface CronConfigSourceType {
+export interface CronConfigSourceType extends Record<string, unknown> {
     protocol: string;
     username: string;
     hostname: string;

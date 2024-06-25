@@ -60,8 +60,8 @@ export interface SharedToSchemaType extends Record<string, unknown> {
 export interface SharedSourceSchemaType extends Record<string, unknown> {
     name: string;
     isExternal: boolean;
-    startAt: Date;
-    expireAt: Date;
+    startAt?: Date;
+    expireAt?: Date;
     reasons: ShareReasonSchemaType[];
 }
 export declare function CADPersonSchema(mongoose: MongooseModule): import("mongoose").Schema<CADPersonSchemaType, import("mongoose").Model<CADPersonSchemaType, any, any, any, import("mongoose").Document<unknown, any, CADPersonSchemaType> & CADPersonSchemaType & {
