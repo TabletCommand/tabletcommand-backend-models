@@ -31,7 +31,7 @@ interface VehicleSchemaType {
     radioName: string;
     vehicleId: string;
 }
-export interface User {
+export interface User extends Record<string, unknown> {
     _id: Types.ObjectId;
     id?: string;
     nick: string;

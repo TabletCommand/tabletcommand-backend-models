@@ -14,7 +14,7 @@ interface VehicleSchemaType {
   vehicleId: string,
 }
 
-export interface User {
+export interface User extends Record<string, unknown> {
   _id: Types.ObjectId,
   id?: string, // Comming from virtuals
   nick: string,
