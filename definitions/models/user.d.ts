@@ -56,6 +56,10 @@ export declare function UserSchema(mongoose: MongooseModule): import("mongoose")
             type: BooleanConstructor;
             default: boolean;
         };
+        superUserReadOnly: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
         isPro: {
             type: BooleanConstructor;
             default: boolean;
@@ -330,6 +334,7 @@ export declare function UserModule(mongoose: MongooseModule): Promise<import("mo
     active: boolean;
     admin: boolean;
     superuser: boolean;
+    superUserReadOnly: boolean;
     isPro: boolean;
     isIncidentManager: boolean;
     mobileAccess: boolean;
