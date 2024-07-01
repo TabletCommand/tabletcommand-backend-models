@@ -78,6 +78,10 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
       ref: "Agency",
       default: null,
     },
+    source: {
+      type: String,
+      default: ""
+    },
   }, {
     collection: "massive_personnel_known",
     timestamps: true,

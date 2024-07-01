@@ -62,6 +62,10 @@ export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("
             ref: string;
             default: null;
         };
+        source: {
+            type: StringConstructor;
+            default: string;
+        };
     }>;
     _methods: unknown;
 };
@@ -86,6 +90,7 @@ export declare function PersonnelKnownModule(mongoose: MongooseModule): Promise<
     active: boolean;
     jurisdiction: string;
     agencyId: import("mongoose").Types.ObjectId;
+    source: string;
 }, {}> & {
     __methods?: unknown;
 }>;
