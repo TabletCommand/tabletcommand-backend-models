@@ -69,6 +69,14 @@ module.exports = function mockModule(dependencies) {
     forceClosed: false
   };
 
+  const releaseNote = {
+    title: "test note",
+    notes: "long form note...",
+    version: "1.94.0",
+    releaseDate: new Date(),
+    status: "draft"
+  };
+
   const cadSimulation = {
     "departmentId": "123",
     "active": true,
@@ -1258,6 +1266,7 @@ module.exports = function mockModule(dependencies) {
     incidentNotified,
     incidentTakeover,
     jobLog,
+    releaseNote,
     cadSimulation,
     location,
     mailLog,

@@ -41,6 +41,7 @@ export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import
 export { PersonnelKnown, PersonnelKnownModel } from "./models/personnel-known";
 export { PersonnelRoster, PersonnelRosterModel } from "./models/personnel-roster";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
+export { ReleaseNote, ReleaseNoteModel } from "./models/release-note";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
 export { Session, SessionModel } from "./models/session";
 export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
@@ -94,6 +95,7 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         PersonnelKnown: import("./models/personnel-known").PersonnelKnownModel;
         PersonnelRoster: import("./models/personnel-roster").PersonnelRosterModel;
         RateLimit: import("./models/rate-limit").RateLimitModel;
+        ReleaseNote: import("./models/release-note").ReleaseNoteModel;
         RemoteLog: import("./models/remote-log").RemoteLogModel;
         Session: import("./models/session").SessionModel;
         SMTPUnhandled: import("./models/smtp-unhandled").SMTPUnhandledModel;
