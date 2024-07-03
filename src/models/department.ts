@@ -221,6 +221,54 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const SkymiraConfig = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    token: {
+      type: String,
+      default: "",
+    },
+    locationsUrl: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const SkytracConfig = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    licenseKey: {
+      type: String,
+      default: "",
+    },
+    username: {
+      type: String,
+      default: "",
+    },
+    secret: {
+      type: String,
+      default: "",
+    },
+    serviceUrl: {
+      type: String,
+      default: "",
+    },
+    configTag: {
+      type: String,
+      default: ""
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SimpleSenseConfig = createSchema(Schema, {
     token: {
       type: String,
@@ -568,6 +616,12 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   const IntterraConfigDefault = {
     "enabled": false,
     "connections": [],
+  };
+
+  const SkymiraConfigDefault = {
+    "enabled": false,
+    "token": "",
+    "locationsUrl": "",
   };
 
   const Mark43ConfigDefault = {
@@ -1121,6 +1175,14 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     intterra: {
       type: IntterraConfig,
       default: IntterraConfigDefault,
+    },
+    skymira: {
+      type: SkymiraConfig,
+      default: SkymiraConfigDefault,
+    },
+    skytrac: {
+      type: [SkytracConfig],
+      default: [],
     },
   }, {
     collection: "massive_admin",

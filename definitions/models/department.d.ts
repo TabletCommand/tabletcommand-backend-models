@@ -553,6 +553,46 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: never[];
         };
     }>;
+    skymira: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        token: {
+            type: StringConstructor;
+            default: string;
+        };
+        locationsUrl: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
+    skytrac: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        licenseKey: {
+            type: StringConstructor;
+            default: string;
+        };
+        username: {
+            type: StringConstructor;
+            default: string;
+        };
+        secret: {
+            type: StringConstructor;
+            default: string;
+        };
+        serviceUrl: {
+            type: StringConstructor;
+            default: string;
+        };
+        configTag: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>[];
 }, {}> & {
     __methods?: unknown;
 }>;
