@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RemoteLogModule = void 0;
+exports.RemoteLogStreamModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-async function RemoteLogModule(mongoose) {
+async function RemoteLogStreamModule(mongoose) {
     const { Schema, Types } = mongoose;
     const FileSchema = (0, helpers_1.createSchema)(Schema, {
         originalName: {
@@ -69,6 +69,9 @@ async function RemoteLogModule(mongoose) {
             type: String,
             default: uuid.v4,
         },
+        requested: {
+            type: Date,
+        },
         active: {
             type: Boolean,
             default: false,
@@ -84,10 +87,6 @@ async function RemoteLogModule(mongoose) {
         updatedAt: {
             type: Date,
             default: helpers_1.currentDate,
-        },
-        status: {
-            type: String,
-            default: "", // local, uploading, synced (uploaded to a remote storage) 
         },
         // Formerly message.title
         message: {
@@ -118,8 +117,8 @@ async function RemoteLogModule(mongoose) {
         collection: "massive_remote_log_stream",
         timestamps: true,
     });
-    return (0, helpers_1.createModel)(mongoose, "RemoteLog", modelSchema);
+    return (0, helpers_1.createModel)(mongoose, "RemoteLogStream", modelSchema);
 }
-exports.RemoteLogModule = RemoteLogModule;
-exports.default = RemoteLogModule;
-//# sourceMappingURL=remote-log.js.map
+exports.RemoteLogStreamModule = RemoteLogStreamModule;
+exports.default = RemoteLogStreamModule;
+//# sourceMappingURL=remote-log-stream.js.map

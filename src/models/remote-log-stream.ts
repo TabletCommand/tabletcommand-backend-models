@@ -9,7 +9,7 @@ import {
   currentDate,
 } from "../helpers";
 
-export async function RemoteLogModule(mongoose: MongooseModule) {
+export async function RemoteLogStreamModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
   const FileSchema = createSchema(Schema, {
@@ -77,6 +77,9 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
       type: String,
       default: uuid.v4,
     },
+    requested: {
+      type: Date,
+    },
     active: {
       type: Boolean,
       default: false,
@@ -92,10 +95,6 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
     updatedAt: {
       type: Date,
       default: currentDate,
-    },
-    status: {
-      type: String,
-      default: "", // local, uploading, synced (uploaded to a remote storage) 
     },
     // Formerly message.title
     message: {
@@ -127,9 +126,9 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
     timestamps: true,
   });
 
-  return createModel(mongoose, "RemoteLog", modelSchema);
+  return createModel(mongoose, "RemoteLogStream", modelSchema);
 }
 
-export interface RemoteLog extends ItemTypeFromTypeSchemaFunction<typeof RemoteLogModule> { }
-export interface RemoteLogModel extends ModelTypeFromTypeSchemaFunction<RemoteLog> { }
-export default RemoteLogModule as ReplaceModelReturnType<typeof RemoteLogModule, RemoteLogModel>;
+export interface RemoteLogStream extends ItemTypeFromTypeSchemaFunction<typeof RemoteLogStreamModule> { }
+export interface RemoteLogStreamModel extends ModelTypeFromTypeSchemaFunction<RemoteLogStream> { }
+export default RemoteLogStreamModule as ReplaceModelReturnType<typeof RemoteLogStreamModule, RemoteLogStreamModel>;
