@@ -83,6 +83,196 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         };
     }>;
     incidentVehicleStatusEnabled: boolean;
+    incidentVehicleStatus: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        statusMappings: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    TimeDispatched: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimeEnroute: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimeStaged: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimeArrived: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimeCleared: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimeAtHospital: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimePatient: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimeTransporting: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    TimeTransportComplete: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                status: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                statusCode: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                }>;
+                _methods: unknown;
+            };
+            default: {
+                TimeDispatched: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimeEnroute: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimeStaged: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimeArrived: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimeCleared: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimeAtHospital: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimePatient: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimeTransporting: {
+                    status: string;
+                    statusCode: string;
+                };
+                TimeTransportComplete: {
+                    status: string;
+                    statusCode: string;
+                };
+            };
+        };
+        statusExclusions: {
+            type: StringConstructor[];
+            default: never[];
+        };
+    }>;
     vehicleRadioNameIsStable: boolean;
     fireMapperEnabled: boolean;
     fireMapperRefreshInterval: number;

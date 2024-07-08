@@ -279,6 +279,111 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const StatusMappingObjectConfig = createSchema(Schema, {
+    status: {
+      type: String,
+      default: "",
+    },
+    statusCode: {
+      type: String,
+      default: "",
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const StatusMappingConfig = createSchema(Schema, {
+    TimeDispatched: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeEnroute: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeStaged: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeArrived: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeCleared: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeAtHospital: {
+      type: StatusMappingObjectConfig,
+    },
+    TimePatient: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeTransporting: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeTransportComplete: {
+      type: StatusMappingObjectConfig,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const StatusMappingConfigDefault = {
+    TimeDispatched: {
+      "status": "Unit Dispatched",
+      "statusCode": "DSP"
+    },
+    TimeEnroute: {
+      "status": "Unit is Enroute",
+      "statusCode": "ENR"
+    },
+    TimeStaged: {
+      "status": "Unit is Staging",
+      "statusCode": "STG"
+    },
+    TimeArrived: {
+      "status": "Unit is On Scene",
+      "statusCode": "ONS"
+    },
+    TimeCleared: {
+      "status": "Available on Radio",
+      "statusCode": "AOR"
+    },
+    TimeAtHospital: {
+      "status": "Transport Arrive",
+      "statusCode": "TAR"
+    },
+    // added to exclusions unused
+    TimePatient: {
+      "status": "Available",
+      "statusCode": "AV"
+    },
+    TimeTransporting: {
+      "status": "Transporting",
+      "statusCode": "TRN"
+    },
+    TimeTransportComplete: {
+      "status": "Transport Complete",
+      "statusCode": "TCM"
+    }
+  };
+
+  const IncidentVehicleStatusConfig = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    statusMappings: {
+      type: StatusMappingConfig,
+      default: StatusMappingConfigDefault,
+    },
+    statusExclusions: {
+      type: [String],
+      default: [],
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const FirstArrivingConfig = createSchema(Schema, {
     token: {
       type: String,
@@ -948,6 +1053,9 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     incidentVehicleStatusEnabled: {
       type: Boolean,
       default: false
+    },
+    incidentVehicleStatus: {
+      type: IncidentVehicleStatusConfig,
     },
     // When set to true, a vehicle update will propagate to user.vehicle using the radioName (changing the vehicleId)
     // By default (false), a vehicleId change will keep the same user.vehicle vehicleId and update the radioName
