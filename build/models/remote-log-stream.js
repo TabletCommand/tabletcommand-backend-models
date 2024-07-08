@@ -108,9 +108,8 @@ async function RemoteLogStreamModule(mongoose) {
             type: String,
             default: "",
         },
-        files: {
-            type: [FileSchema],
-            default: [],
+        file: {
+            type: FileSchema,
         },
     }, {
         autoIndex: false,

@@ -15,7 +15,7 @@ export declare function RemoteLogStreamModule(mongoose: MongooseModule): Promise
     manifest: string[];
     userAgent: string;
     appVersion: string;
-    files: import("../helpers").MongooseInterface<{
+    file: import("../helpers").MongooseInterface<{
         originalName: {
             type: StringConstructor;
             default: string;
@@ -52,7 +52,7 @@ export declare function RemoteLogStreamModule(mongoose: MongooseModule): Promise
             type: DateConstructor;
             default: typeof currentDate;
         };
-    }>[];
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

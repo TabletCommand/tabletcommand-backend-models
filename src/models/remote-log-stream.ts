@@ -116,9 +116,8 @@ export async function RemoteLogStreamModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-    files: {
-      type: [FileSchema],
-      default: [],
+    file: {
+      type: FileSchema,
     },
   }, {
     autoIndex: false,
