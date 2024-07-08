@@ -64,6 +64,7 @@ async function wireModels(mongoose) {
         RateLimit: await getModel(Promise.resolve().then(() => require("./models/rate-limit"))),
         ReleaseNote: await getModel(Promise.resolve().then(() => require("./models/release-note"))),
         RemoteLog: await getModel(Promise.resolve().then(() => require("./models/remote-log"))),
+        RemoteLogStream: await getModel(Promise.resolve().then(() => require("./models/remote-log-stream"))),
         Session: await getModel(Promise.resolve().then(() => require("./models/session"))),
         SMTPUnhandled: await getModel(Promise.resolve().then(() => require("./models/smtp-unhandled"))),
         Template: await getModel(Promise.resolve().then(() => require("./models/template"))),

@@ -27,6 +27,7 @@ describe(" Models", function() {
     assert.isFunction(models.CADIncident, "Missing CADIncident");
     assert.isFunction(models.CADIncidentBlock, "Missing CADIncidentBlock");
     assert.isFunction(models.CADIncidentStream, "Missing CADIncidentStream");
+    assert.isFunction(models.CADSimulation, "Missing CADSimulation");
     assert.isFunction(models.CADStatus, "Missing CADStatus");
     assert.isFunction(models.CADStatusMap, "Missing CADStatusMap");
     assert.isFunction(models.CADVehicle, "Missing CADVehicle");
@@ -38,6 +39,7 @@ describe(" Models", function() {
     assert.isFunction(models.ChartUser, "Missing ChartUser");
     assert.isFunction(models.Checklist, "Missing Checklist");
     assert.isFunction(models.ChecklistItem, "Missing ChecklistItem");
+    assert.isFunction(models.CSVImport, "Missing CSVImport");
     assert.isFunction(models.Department, "Missing Department");
     assert.isFunction(models.DeviceMapping, "Missing DeviceMapping");
     assert.isFunction(models.Esri, "Missing Esri");
@@ -45,14 +47,20 @@ describe(" Models", function() {
     assert.isFunction(models.IncidentEvent, "Missing IncidentEvent");
     assert.isFunction(models.IncidentNotified, "Missing IncidentNotified");
     assert.isFunction(models.IncidentTakeover, "Missing IncidentTakeover");
+    assert.isFunction(models.JobLog, "Missing JobLog");
     assert.isFunction(models.Location, "Missing Location");
     assert.isFunction(models.MailLog, "Missing MailLog");
     assert.isFunction(models.ManagedIncident, "Missing ManagedIncident");
+    assert.isFunction(models.Mark43IncidentRetry, "Missing Mark43IncidentRetry");
     assert.isFunction(models.Message, "Missing Message");
     assert.isFunction(models.Monitor, "Missing Monitor");
     assert.isFunction(models.PersonnelImport, "Missing PersonnelImport");
+    assert.isFunction(models.PersonnelKnown, "Missing PersonnelKnown");
+    assert.isFunction(models.PersonnelRoster, "Missing PersonnelRoster");
     assert.isFunction(models.RateLimit, "Missing RateLimit");
+    assert.isFunction(models.ReleaseNote, "Missing ReleaseNote");
     assert.isFunction(models.RemoteLog, "Missing RemoteLog");
+    assert.isFunction(models.RemoteLogStream, "Missing RemoteLogStream");
     assert.isFunction(models.Session, "Missing Session");
     assert.isFunction(models.SMTPUnhandled, "Missing SMTPUnhandled");
     assert.isFunction(models.Template, "Missing Template");

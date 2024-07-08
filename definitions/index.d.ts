@@ -43,6 +43,7 @@ export { PersonnelRoster, PersonnelRosterModel } from "./models/personnel-roster
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
 export { ReleaseNote, ReleaseNoteModel } from "./models/release-note";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
+export { RemoteLogStream, RemoteLogStreamModel } from "./models/remote-log-stream";
 export { Session, SessionModel } from "./models/session";
 export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Template, TemplateModel } from "./models/template";
@@ -97,6 +98,7 @@ export declare function connect(url: string, overwriteOpts?: ConnectionOptions):
         RateLimit: import("./models/rate-limit").RateLimitModel;
         ReleaseNote: import("./models/release-note").ReleaseNoteModel;
         RemoteLog: import("./models/remote-log").RemoteLogModel;
+        RemoteLogStream: import("./models/remote-log-stream").RemoteLogStreamModel;
         Session: import("./models/session").SessionModel;
         SMTPUnhandled: import("./models/smtp-unhandled").SMTPUnhandledModel;
         Template: import("./models/template").TemplateModel;
