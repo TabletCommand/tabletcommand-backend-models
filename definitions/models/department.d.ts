@@ -670,6 +670,70 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
                 TimeArrived: string[];
             };
         };
+        process: {
+            type: import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    location: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                enabled: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                locationUrl: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    comment: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                enabled: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                commentUrl: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                usersUrl: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                defaultUserId: {
+                                    type: NumberConstructor;
+                                    default: number;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                    vehicleStatus: {
+                        type: import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                enabled: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                vehicleStatusUrl: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                vehicleStatusListUrl: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                            }>;
+                            _methods: unknown;
+                        };
+                    };
+                }>;
+                _methods: unknown;
+            };
+        };
     }>;
     intterra: import("../helpers").MongooseInterface<{
         enabled: {

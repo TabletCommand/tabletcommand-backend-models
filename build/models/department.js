@@ -52,6 +52,71 @@ async function DepartmentModule(mongoose) {
         TimeTransporting: ["T", "EH"],
         TimeArrived: ["ATS", "A"],
     };
+    const Mark43ProcessLocationConfig = (0, helpers_1.createSchema)(Schema, {
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        locationUrl: {
+            type: String,
+            default: "",
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Mark43ProcessCommentConfig = (0, helpers_1.createSchema)(Schema, {
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        commentUrl: {
+            type: String,
+            default: ""
+        },
+        usersUrl: {
+            type: String,
+            default: "",
+        },
+        defaultUserId: {
+            type: Number,
+            default: 0,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Mark43ProcessVehicleStatusConfig = (0, helpers_1.createSchema)(Schema, {
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        vehicleStatusUrl: {
+            type: String,
+            default: ""
+        },
+        vehicleStatusListUrl: {
+            type: String,
+            default: ""
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Mark43ProcessConfig = (0, helpers_1.createSchema)(Schema, {
+        location: {
+            type: Mark43ProcessLocationConfig,
+        },
+        comment: {
+            type: Mark43ProcessCommentConfig,
+        },
+        vehicleStatus: {
+            type: Mark43ProcessVehicleStatusConfig,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const Mark43Config = (0, helpers_1.createSchema)(Schema, {
         baseUrl: {
             type: String,
@@ -76,7 +141,10 @@ async function DepartmentModule(mongoose) {
         unitStatusCodes: {
             type: Mark43StatusConfig,
             default: Mark43StatusConfigDefault,
-        }
+        },
+        process: {
+            type: Mark43ProcessConfig,
+        },
     }, {
         _id: false,
         id: false,
