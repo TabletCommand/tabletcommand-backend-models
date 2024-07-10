@@ -24,6 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { ConnectOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
+import { LocationKindType, LocationSource } from "./constants";
+export { LocationKindType, LocationSource, };
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
@@ -64,7 +66,9 @@ export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import
 export { PersonnelKnown, PersonnelKnownModel } from "./models/personnel-known";
 export { PersonnelRoster, PersonnelRosterModel } from "./models/personnel-roster";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
+export { ReleaseNote, ReleaseNoteModel } from "./models/release-note";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
+export { RemoteLogStream, RemoteLogStreamModel } from "./models/remote-log-stream";
 export { Session, SessionModel } from "./models/session";
 export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Template, TemplateModel } from "./models/template";
@@ -197,7 +201,13 @@ export declare function connect(url: string, overwriteOpts?: ConnectOptions): Pr
         RateLimit: import("mongoose").Model<import("./models/rate-limit").RateLimit, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/rate-limit").RateLimit> & import("./models/rate-limit").RateLimit & Required<{
             _id: import("mongoose").Types.ObjectId;
         }>, any>;
+        ReleaseNote: import("mongoose").Model<import("./models/release-note").ReleaseNote, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/release-note").ReleaseNote> & import("./models/release-note").ReleaseNote & Required<{
+            _id: import("mongoose").Types.ObjectId;
+        }>, any>;
         RemoteLog: import("mongoose").Model<import("./models/remote-log").RemoteLog, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/remote-log").RemoteLog> & import("./models/remote-log").RemoteLog & Required<{
+            _id: import("mongoose").Types.ObjectId;
+        }>, any>;
+        RemoteLogStream: import("mongoose").Model<import("./models/remote-log-stream").RemoteLogStream, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/remote-log-stream").RemoteLogStream> & import("./models/remote-log-stream").RemoteLogStream & Required<{
             _id: import("mongoose").Types.ObjectId;
         }>, any>;
         Session: import("mongoose").Model<import("./models/session").Session, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/session").Session> & import("./models/session").Session & Required<{

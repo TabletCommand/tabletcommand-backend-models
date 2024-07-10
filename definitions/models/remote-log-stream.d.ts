@@ -24,34 +24,40 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
 import { Model, Types } from "mongoose";
-interface RadioType {
-    radioName: string;
-    active: boolean;
+interface FileSchemaType {
+    originalName: string;
+    encoding: string;
+    mimeType: string;
+    fieldname: string;
+    localPath: string;
+    remotePath: string;
+    hostname: string;
+    size: number;
+    received: Date;
 }
-export interface PersonnelKnown extends Record<string, unknown> {
+export interface RemoteLogStream extends Record<string, unknown> {
     _id: Types.ObjectId;
-    PersonnelID: string;
-    PersonnelName: string;
-    PersonnelRank: string;
-    PersonnelWorkCode: string;
-    modified: Date;
     departmentId: string;
-    uuid: string;
-    radios: RadioType[];
+    userId: string;
+    isCADRequest: boolean;
+    session: string;
+    requestId: string;
+    requested: Date;
     active: boolean;
-    jurisdiction: string;
-    agencyId: Types.ObjectId;
-    source: string;
+    uuid: string;
+    createdAt: Date;
+    updatedAt: Date;
+    status: string;
+    message: string;
+    manifest: string[];
+    userAgent: string;
+    appVersion: string;
+    file: FileSchemaType;
 }
-export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelKnown, Model<PersonnelKnown, any, any, any, import("mongoose").Document<unknown, any, PersonnelKnown> & PersonnelKnown & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelKnown, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelKnown>> & import("mongoose").FlatRecord<PersonnelKnown> & Required<{
-    _id: Types.ObjectId;
-}>>;
-export default function PersonnelKnownModule(mongoose: MongooseModule): Promise<Model<PersonnelKnown, {}, {}, {}, import("mongoose").Document<unknown, {}, PersonnelKnown> & PersonnelKnown & Required<{
+export default function RemoteLogStreamModule(mongoose: MongooseModule): Promise<Model<RemoteLogStream, {}, {}, {}, import("mongoose").Document<unknown, {}, RemoteLogStream> & RemoteLogStream & Required<{
     _id: Types.ObjectId;
 }>, any>>;
-export interface PersonnelKnownModel extends Model<PersonnelKnown> {
+export interface RemoteLogStreamModel extends Model<RemoteLogStream> {
 }
 export {};
-//# sourceMappingURL=personnel-known.d.ts.map
+//# sourceMappingURL=remote-log-stream.d.ts.map

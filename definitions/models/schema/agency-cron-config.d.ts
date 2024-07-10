@@ -71,6 +71,8 @@ export interface AgencyCronConfigType extends Record<string, unknown> {
     hasLabelCustomization: boolean;
     assignmentOverride: boolean;
     csvFieldMap: CronConfigCSVFieldMapType;
+    useAlternateId: boolean;
+    strictAgencyCodeMatch: boolean;
 }
 export default function AgencyCronSchema(mongoose: MongooseModule): import("mongoose").Schema<AgencyCronConfigType, import("mongoose").Model<AgencyCronConfigType, any, any, any, import("mongoose").Document<unknown, any, AgencyCronConfigType> & AgencyCronConfigType & {
     _id: import("mongoose").Types.ObjectId;

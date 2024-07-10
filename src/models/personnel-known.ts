@@ -24,6 +24,7 @@ export interface PersonnelKnown extends Record<string, unknown> {
   active: boolean,
   jurisdiction: string,
   agencyId: Types.ObjectId,
+  source: string,
 }
 
 export function PersonnelKnownSchema(mongoose: MongooseModule) {
@@ -93,6 +94,10 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
       type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
+    },
+    source: {
+      type: String,
+      default: ""
     },
   }, {
     timestamps: true,

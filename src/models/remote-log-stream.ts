@@ -6,40 +6,38 @@ import {
 import { Model, Types } from "mongoose";
 
 interface FileSchemaType {
-  originalName: string,
-  encoding: string,
-  mimeType: string,
-  localPath: string,
-  remotePath: string,
-  size: number,
-  received: Date,
-  fieldname: string,
-  hostname: string,
+  originalName: string
+  encoding: string
+  mimeType: string
+  fieldname: string
+  localPath: string
+  remotePath: string
+  hostname: string
+  size: number
+  received: Date
 }
 
-export interface RemoteLog {
-  _id: Types.ObjectId,
-  departmentId: string,
-  userId: string,
-  session: string,
-  active: boolean,
-  uuid: string,
-  requestId: string,
-  received: Date,
-  hostname: string,
-  status: string,
-  lastStatusChange: Date,
-  isCADRequest: boolean,
-  createdAt: Date,
+export interface RemoteLogStream extends Record<string, unknown> {
+  _id: Types.ObjectId
+  departmentId: string
+  userId: string
+  isCADRequest: boolean
+  session: string
+  requestId: string
+  requested: Date
+  active: boolean
+  uuid: string
+  createdAt: Date
   updatedAt: Date
-  message: string,
-  manifest: string[],
-  userAgent: string,
-  appVersion: string,
-  files: FileSchemaType[],
+  status: string
+  message: string
+  manifest: string[]
+  userAgent: string
+  appVersion: string
+  file: FileSchemaType
 }
 
-export default async function RemoteLogModule(mongoose: MongooseModule) {
+export default async function RemoteLogStreamModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const FileSchema = new Schema<FileSchemaType>({
@@ -84,7 +82,7 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<RemoteLog>({
+  const modelSchema = new Schema<RemoteLogStream>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -110,6 +108,9 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
     requestId: {
       type: String,
       default: uuid.v4,
+    },
+    requested: {
+      type: Date,
     },
     active: {
       type: Boolean,
@@ -151,16 +152,15 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
-    files: {
-      type: [FileSchema],
-      default: [],
+    file: {
+      type: FileSchema,
     },
   }, {
     autoIndex: false,
     timestamps: true,
   });
 
-  return mongoose.model<RemoteLog>("RemoteLog", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
+  return mongoose.model<RemoteLogStream>("RemoteLogStream", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
 }
 
-export interface RemoteLogModel extends Model<RemoteLog> { }
+export interface RemoteLogStreamModel extends Model<RemoteLogStream> { }

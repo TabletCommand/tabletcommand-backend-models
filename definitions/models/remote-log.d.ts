@@ -32,6 +32,8 @@ interface FileSchemaType {
     remotePath: string;
     size: number;
     received: Date;
+    fieldname: string;
+    hostname: string;
 }
 export interface RemoteLog {
     _id: Types.ObjectId;
@@ -45,6 +47,13 @@ export interface RemoteLog {
     hostname: string;
     status: string;
     lastStatusChange: Date;
+    isCADRequest: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    message: string;
+    manifest: string[];
+    userAgent: string;
+    appVersion: string;
     files: FileSchemaType[];
 }
 export default function RemoteLogModule(mongoose: MongooseModule): Promise<Model<RemoteLog, {}, {}, {}, import("mongoose").Document<unknown, {}, RemoteLog> & RemoteLog & Required<{

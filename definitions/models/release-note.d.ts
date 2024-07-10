@@ -22,46 +22,20 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { MongooseModule } from "../helpers";
-import { ColorSchemaType } from "./schema/color";
-import { GeoJSONPointType } from "./schema/geojson-point";
 import { Model, Types } from "mongoose";
-export interface Location extends Record<string, unknown> {
+import { MongooseModule } from "../helpers";
+export interface ReleaseNote extends Record<string, unknown> {
     _id: Types.ObjectId;
-    id?: string;
-    departmentId: string;
-    userId: string;
-    uuid: string;
-    username: string;
-    device_type: string;
-    active: boolean;
-    deleteAfterDate: Date;
+    title: string;
+    notes: string;
+    version: string;
+    releaseDate: Date;
+    status: string;
     modified: Date;
-    movedAt: Date;
-    propsChangedAt: Date;
-    version: number;
-    session: string;
-    altitude: number;
-    heading: number;
-    speed: number;
-    esriId: number;
-    locationGeoJSON: GeoJSONPointType;
-    opAreaCode: string;
-    opAreaName: string;
-    agencyCode: string;
-    agencyName: string;
-    shared: boolean;
-    state: string;
-    sendToCAD: boolean;
-    color: ColorSchemaType;
-    colorChangedAt: Date;
-    source: string;
-    kindType: string;
-    typeDetails: object;
 }
-export default function LocationModule(mongoose: MongooseModule): Promise<Model<Location, {}, {}, {}, import("mongoose").Document<unknown, {}, Location> & Location & Required<{
+export default function ReleaseNoteModule(mongoose: MongooseModule): Promise<Model<ReleaseNote, {}, {}, {}, import("mongoose").Document<unknown, {}, ReleaseNote> & ReleaseNote & Required<{
     _id: Types.ObjectId;
 }>, any>>;
-export interface LocationModel extends Model<Location> {
+export interface ReleaseNoteModel extends Model<ReleaseNote> {
 }
-//# sourceMappingURL=location.d.ts.map
+//# sourceMappingURL=release-note.d.ts.map

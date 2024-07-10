@@ -80,6 +80,10 @@ function UserSchema(mongoose) {
             type: Boolean,
             default: false,
         },
+        superUserReadOnly: {
+            type: Boolean,
+            default: false,
+        },
         isPro: {
             type: Boolean,
             default: false,

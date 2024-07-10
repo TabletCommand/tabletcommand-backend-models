@@ -30,6 +30,7 @@ export interface AgencySAMLSchemaType extends Record<string, unknown> {
     sp: string;
     env: string;
     name: string;
+    jumpPoint: string;
 }
 export default function AgencySAMLSchema(mongoose: MongooseModule): import("mongoose").Schema<AgencySAMLSchemaType, import("mongoose").Model<AgencySAMLSchemaType, any, any, any, import("mongoose").Document<unknown, any, AgencySAMLSchemaType> & AgencySAMLSchemaType & {
     _id: import("mongoose").Types.ObjectId;

@@ -68,6 +68,7 @@ export interface User extends Record<string, unknown> {
   locationToCAD: boolean,
   logOffEnabled: boolean,
   restrictedCommentsEnabled: boolean,
+  superUserReadOnly: boolean
 }
 
 export function UserSchema(mongoose: MongooseModule) {
@@ -143,6 +144,10 @@ export function UserSchema(mongoose: MongooseModule) {
       default: false,
     },
     superuser: {
+      type: Boolean,
+      default: false,
+    },
+    superUserReadOnly: {
       type: Boolean,
       default: false,
     },

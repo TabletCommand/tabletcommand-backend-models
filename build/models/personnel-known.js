@@ -68,6 +68,10 @@ function PersonnelKnownSchema(mongoose) {
             ref: "Agency",
             default: null,
         },
+        source: {
+            type: String,
+            default: ""
+        },
     }, {
         timestamps: true,
         autoIndex: false,

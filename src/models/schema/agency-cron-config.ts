@@ -54,6 +54,8 @@ export interface AgencyCronConfigType extends Record<string, unknown> {
   hasLabelCustomization: boolean
   assignmentOverride: boolean,
   csvFieldMap: CronConfigCSVFieldMapType
+  useAlternateId: boolean
+  strictAgencyCodeMatch: boolean
 }
 
 export default function AgencyCronSchema(mongoose: MongooseModule) {
@@ -252,6 +254,14 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
       default: false,
     },
     assignmentOverride: {
+      type: Boolean,
+      default: false,
+    },
+    useAlternateId: {
+      type: Boolean,
+      default: false,
+    },
+    strictAgencyCodeMatch: {
       type: Boolean,
       default: false,
     },

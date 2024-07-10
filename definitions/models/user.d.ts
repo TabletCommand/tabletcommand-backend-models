@@ -85,6 +85,7 @@ export interface User extends Record<string, unknown> {
     locationToCAD: boolean;
     logOffEnabled: boolean;
     restrictedCommentsEnabled: boolean;
+    superUserReadOnly: boolean;
 }
 export declare function UserSchema(mongoose: MongooseModule): import("mongoose").Schema<User, Model<User, any, any, any, import("mongoose").Document<unknown, any, User> & User & Required<{
     _id: Types.ObjectId;

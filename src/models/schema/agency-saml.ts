@@ -2,12 +2,13 @@ import {
   MongooseModule,
 } from "../../helpers";
 
-export interface AgencySAMLSchemaType extends Record<string, unknown>  {
+export interface AgencySAMLSchemaType extends Record<string, unknown> {
   selector: string,
   idp: string,
   sp: string,
   env: string,
   name: string,
+  jumpPoint: string,
 }
 
 export default function AgencySAMLSchema(mongoose: MongooseModule) {
@@ -34,7 +35,13 @@ export default function AgencySAMLSchema(mongoose: MongooseModule) {
     name: {
       type: String,
       default: "",
-    }
+    },
+    // For Google Accounts, append https://accounts.google.com/accountchooser?continue=
+    // Options: none, google
+    jumpPoint: {
+      type: String,
+      default: "",
+    },
   }, {
     _id: false,
     id: false,

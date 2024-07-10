@@ -128,10 +128,16 @@ const SafetyPriorityKeywordDefault = [
 ];
 const FirstArrivingConfigDefault = {
     "token": "",
+    "apiUrl": "",
 };
 const IntterraConfigDefault = {
     "enabled": false,
     "connections": [],
+};
+const SkymiraConfigDefault = {
+    "enabled": false,
+    "token": "",
+    "locationsUrl": "",
 };
 const Mark43ConfigDefault = {
     "baseUrl": "",
@@ -199,6 +205,71 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const Mark43ProcessLocationConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        locationUrl: {
+            type: String,
+            default: "",
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Mark43ProcessCommentConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        commentUrl: {
+            type: String,
+            default: ""
+        },
+        usersUrl: {
+            type: String,
+            default: "",
+        },
+        defaultUserId: {
+            type: Number,
+            default: 0,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Mark43ProcessVehicleStatusConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        vehicleStatusUrl: {
+            type: String,
+            default: ""
+        },
+        vehicleStatusListUrl: {
+            type: String,
+            default: ""
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const Mark43ProcessConfig = new Schema({
+        location: {
+            type: Mark43ProcessLocationConfig,
+        },
+        comment: {
+            type: Mark43ProcessCommentConfig,
+        },
+        vehicleStatus: {
+            type: Mark43ProcessVehicleStatusConfig,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const Mark43Config = new Schema({
         baseUrl: {
             type: String,
@@ -223,7 +294,10 @@ async function DepartmentModule(mongoose) {
         unitStatusCodes: {
             type: Mark43StatusConfig,
             default: Mark43StatusConfigDefault,
-        }
+        },
+        process: {
+            type: Mark43ProcessConfig,
+        },
     }, {
         _id: false,
         id: false,
@@ -299,6 +373,52 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const SkymiraConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        token: {
+            type: String,
+            default: "",
+        },
+        locationsUrl: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const SkytracConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        licenseKey: {
+            type: String,
+            default: "",
+        },
+        username: {
+            type: String,
+            default: "",
+        },
+        secret: {
+            type: String,
+            default: "",
+        },
+        serviceUrl: {
+            type: String,
+            default: "",
+        },
+        configTag: {
+            type: String,
+            default: ""
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const SimpleSenseConfig = new Schema({
         token: {
             type: String,
@@ -308,11 +428,116 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const StatusMappingObjectConfig = new Schema({
+        status: {
+            type: String,
+            default: "",
+        },
+        statusCode: {
+            type: String,
+            default: "",
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
+    const StatusMappingConfig = new Schema({
+        TimeDispatched: {
+            type: StatusMappingObjectConfig,
+        },
+        TimeEnroute: {
+            type: StatusMappingObjectConfig,
+        },
+        TimeStaged: {
+            type: StatusMappingObjectConfig,
+        },
+        TimeArrived: {
+            type: StatusMappingObjectConfig,
+        },
+        TimeCleared: {
+            type: StatusMappingObjectConfig,
+        },
+        TimeAtHospital: {
+            type: StatusMappingObjectConfig,
+        },
+        TimePatient: {
+            type: StatusMappingObjectConfig,
+        },
+        TimeTransporting: {
+            type: StatusMappingObjectConfig,
+        },
+        TimeTransportComplete: {
+            type: StatusMappingObjectConfig,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const StatusMappingConfigDefault = {
+        TimeDispatched: {
+            "status": "Unit Dispatched",
+            "statusCode": "DSP"
+        },
+        TimeEnroute: {
+            "status": "Unit is Enroute",
+            "statusCode": "ENR"
+        },
+        TimeStaged: {
+            "status": "Unit is Staging",
+            "statusCode": "STG"
+        },
+        TimeArrived: {
+            "status": "Unit is On Scene",
+            "statusCode": "ONS"
+        },
+        TimeCleared: {
+            "status": "Available on Radio",
+            "statusCode": "AOR"
+        },
+        TimeAtHospital: {
+            "status": "Transport Arrive",
+            "statusCode": "TAR"
+        },
+        // added to exclusions unused
+        TimePatient: {
+            "status": "Available",
+            "statusCode": "AV"
+        },
+        TimeTransporting: {
+            "status": "Transporting",
+            "statusCode": "TRN"
+        },
+        TimeTransportComplete: {
+            "status": "Transport Complete",
+            "statusCode": "TCM"
+        }
+    };
+    const IncidentVehicleStatusConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        statusMappings: {
+            type: StatusMappingConfig,
+            default: StatusMappingConfigDefault,
+        },
+        statusExclusions: {
+            type: [String],
+            default: [],
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
     const FirstArrivingConfig = new Schema({
         token: {
             type: String,
             default: "",
         },
+        apiUrl: {
+            type: String,
+            default: ""
+        }
     }, {
         _id: false,
         id: false,
@@ -715,6 +940,21 @@ async function DepartmentModule(mongoose) {
             type: Number,
             default: 21,
         },
+        // Incident History Item Type sent back to CAD
+        // These correspond to IncidentHistoryType from iOS
+        cadIncidentHistoryType: {
+            type: [Number],
+            default: [],
+        },
+        // Incident Event Item Type sent back to CAD
+        // These correspond to IncidentEvent.type from backend/iOS
+        cadIncidentEventType: {
+            type: [String],
+            default: [
+                "userackcomment",
+                "usercomment",
+            ],
+        },
         connectivity: {
             incident: {
                 enabled: {
@@ -825,6 +1065,9 @@ async function DepartmentModule(mongoose) {
         incidentVehicleStatusEnabled: {
             type: Boolean,
             default: false
+        },
+        incidentVehicleStatus: {
+            type: IncidentVehicleStatusConfig,
         },
         // When set to true, a vehicle update will propagate to user.vehicle using the radioName (changing the vehicleId)
         // By default (false), a vehicleId change will keep the same user.vehicle vehicleId and update the radioName
@@ -1040,6 +1283,14 @@ async function DepartmentModule(mongoose) {
         intterra: {
             type: IntterraConfig,
             default: IntterraConfigDefault,
+        },
+        skymira: {
+            type: SkymiraConfig,
+            default: SkymiraConfigDefault,
+        },
+        skytrac: {
+            type: [SkytracConfig],
+            default: [],
         },
     }, {});
     modelSchema.set("autoIndex", false);

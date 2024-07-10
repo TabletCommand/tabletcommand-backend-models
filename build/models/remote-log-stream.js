@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-async function RemoteLogModule(mongoose) {
+async function RemoteLogStreamModule(mongoose) {
     const { Schema } = mongoose;
     const FileSchema = new Schema({
         originalName: {
@@ -72,6 +72,9 @@ async function RemoteLogModule(mongoose) {
             type: String,
             default: uuid.v4,
         },
+        requested: {
+            type: Date,
+        },
         active: {
             type: Boolean,
             default: false,
@@ -112,15 +115,14 @@ async function RemoteLogModule(mongoose) {
             type: String,
             default: "",
         },
-        files: {
-            type: [FileSchema],
-            default: [],
+        file: {
+            type: FileSchema,
         },
     }, {
         autoIndex: false,
         timestamps: true,
     });
-    return mongoose.model("RemoteLog", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
+    return mongoose.model("RemoteLogStream", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
 }
-exports.default = RemoteLogModule;
-//# sourceMappingURL=remote-log.js.map
+exports.default = RemoteLogStreamModule;
+//# sourceMappingURL=remote-log-stream.js.map

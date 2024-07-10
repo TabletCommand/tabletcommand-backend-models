@@ -1,6 +1,15 @@
 import * as _ from "lodash";
 import { ConnectOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
+import {
+  LocationKindType,
+  LocationSource,
+} from "./constants";
+
+export {
+  LocationKindType,
+  LocationSource,
+};
 
 async function wireModels(mongoose: MongooseModule) {
   type ModelType<TModule extends Record<"default", (m: MongooseModule) => unknown>> = ReturnType<TModule["default"]>;
@@ -50,7 +59,9 @@ async function wireModels(mongoose: MongooseModule) {
     PersonnelKnown: await getModel(import("./models/personnel-known")),
     PersonnelRoster: await getModel(import("./models/personnel-roster")),
     RateLimit: await getModel(import("./models/rate-limit")),
+    ReleaseNote: await getModel(import("./models/release-note")),
     RemoteLog: await getModel(import("./models/remote-log")),
+    RemoteLogStream: await getModel(import("./models/remote-log-stream")),
     Session: await getModel(import("./models/session")),
     SMTPUnhandled: await getModel(import("./models/smtp-unhandled")),
     Template: await getModel(import("./models/template")),
@@ -101,7 +112,9 @@ export { PersonnelImport, PersonnelImportModel } from "./models/personnel-import
 export { PersonnelKnown, PersonnelKnownModel } from "./models/personnel-known";
 export { PersonnelRoster, PersonnelRosterModel } from "./models/personnel-roster";
 export { RateLimit, RateLimitModel } from "./models/rate-limit";
+export { ReleaseNote, ReleaseNoteModel } from "./models/release-note";
 export { RemoteLog, RemoteLogModel } from "./models/remote-log";
+export { RemoteLogStream, RemoteLogStreamModel } from "./models/remote-log-stream";
 export { Session, SessionModel } from "./models/session";
 export { SMTPUnhandled, SMTPUnhandledModel } from "./models/smtp-unhandled";
 export { Template, TemplateModel } from "./models/template";

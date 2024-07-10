@@ -39,6 +39,9 @@ export interface Location extends Record<string, unknown> {
   sendToCAD: boolean,
   color: ColorSchemaType,
   colorChangedAt: Date,
+  source: string,
+  kindType: string,
+  typeDetails: object
 }
 
 export default async function LocationModule(mongoose: MongooseModule) {
@@ -71,10 +74,26 @@ export default async function LocationModule(mongoose: MongooseModule) {
       default: "",
       required: true,
     },
+    // Legacy (?) - android, android-tc, cad, ipad, iphone, phone, truck
     device_type: {
       type: String,
       required: true,
     },
+    // GST, SkyTrack, SkyMira, FleetComplete, Samsara, Somewear, 
+    // CAD, Vehicle Modem (Truck), TC, TC Mobile (iOS/Android)
+    source: {
+      type: String,
+    },
+    // person, vehicle, fixed-wing, helicopter, marine
+    kindType: {
+      type: String,
+      default: "vehicle",
+    },
+    // Unstructured, type: "engine", "kind": 1, rego: "FF-1123"
+    typeDetails: {
+      type: Object,
+    },
+
     active: {
       type: Boolean,
       default: false,

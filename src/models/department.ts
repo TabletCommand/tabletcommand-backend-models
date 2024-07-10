@@ -20,6 +20,30 @@ interface Mark43StatusConfigType {
   TimeArrived: string[],
 }
 
+interface Mark43ProcessLocationConfigType {
+  enabled: boolean,
+  locationUrl: string,
+}
+
+interface Mark43ProcessCommentConfigType {
+  enabled: boolean,
+  commentUrl: string,
+  usersUrl: string,
+  defaultUserId: number,
+}
+
+interface Mark43ProcessVehicleStatusConfigType {
+  enabled: boolean,
+  vehicleStatusUrl: string,
+  vehicleStatusListUrl: string,
+}
+
+interface Mark43ProcessConfigType {
+  location: Mark43ProcessLocationConfigType
+  comment: Mark43ProcessCommentConfigType
+  vehicleStatus: Mark43ProcessVehicleStatusConfigType
+}
+
 interface Mark43ConfigType {
   baseUrl: string,
   authToken: string,
@@ -27,6 +51,7 @@ interface Mark43ConfigType {
   userId: number,
   enabled: boolean,
   unitStatusCodes: Mark43StatusConfigType,
+  process: Mark43ProcessConfigType
 }
 
 interface IntterraFieldsType {
@@ -52,12 +77,50 @@ interface IntterraConfigType {
   connections: IntterraConnectionType[],
 }
 
+interface SkymiraConfigType {
+  enabled: boolean,
+  token: string,
+  locationsUrl: string,
+}
+
+interface SkytracConfigType {
+  enabled: boolean
+  licenseKey: string,
+  username: string,
+  secret: string,
+  serviceUrl: string,
+  configTag: string,
+}
 interface SimpleSenseConfigType {
   token: string,
 }
 
+interface StatusMappingObjectConfigType {
+  status: string,
+  statusCode: string,
+}
+
+interface StatusMappingConfigType {
+  TimeDispatched: StatusMappingObjectConfigType
+  TimeEnroute: StatusMappingObjectConfigType
+  TimeStaged: StatusMappingObjectConfigType
+  TimeArrived: StatusMappingObjectConfigType
+  TimeCleared: StatusMappingObjectConfigType
+  TimeAtHospital: StatusMappingObjectConfigType
+  TimePatient: StatusMappingObjectConfigType
+  TimeTransporting: StatusMappingObjectConfigType
+  TimeTransportComplete: StatusMappingObjectConfigType
+}
+
+interface IncidentVehicleStatusConfigType {
+  enabled: boolean
+  statusMappings: StatusMappingConfigType
+  statusExclusions: string[]
+}
+
 interface FirstArrivingConfigType {
   token: string,
+  apiUrl: string
 }
 
 interface SafetyPriorityKeywordType {
@@ -274,6 +337,7 @@ export interface Department extends Record<string, unknown> {
   mark43: Mark43ConfigType
   intterra: IntterraConfigType
   vehicleRadioNameIsStable: boolean,
+  cadIncidentHistoryType: number[],
 }
 
 const Mark43StatusConfigDefault = {
@@ -404,11 +468,18 @@ const SafetyPriorityKeywordDefault = [
 
 const FirstArrivingConfigDefault = {
   "token": "",
+  "apiUrl": "",
 };
 
 const IntterraConfigDefault = {
   "enabled": false,
   "connections": [],
+};
+
+const SkymiraConfigDefault = {
+  "enabled": false,
+  "token": "",
+  "locationsUrl": "",
 };
 
 const Mark43ConfigDefault = {
@@ -485,6 +556,75 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const Mark43ProcessLocationConfig = new Schema<Mark43ProcessLocationConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    locationUrl: {
+      type: String,
+      default: "",
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const Mark43ProcessCommentConfig = new Schema<Mark43ProcessCommentConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    commentUrl: {
+      type: String,
+      default: ""
+    },
+    usersUrl: {
+      type: String,
+      default: "",
+    },
+    defaultUserId: {
+      type: Number,
+      default: 0,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const Mark43ProcessVehicleStatusConfig = new Schema<Mark43ProcessVehicleStatusConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    vehicleStatusUrl: {
+      type: String,
+      default: ""
+    },
+    vehicleStatusListUrl: {
+      type: String,
+      default: ""
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const Mark43ProcessConfig = new Schema<Mark43ProcessConfigType>({
+    location: {
+      type: Mark43ProcessLocationConfig,
+    },
+    comment: {
+      type: Mark43ProcessCommentConfig,
+    },
+    vehicleStatus: {
+      type: Mark43ProcessVehicleStatusConfig,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const Mark43Config = new Schema<Mark43ConfigType>({
     baseUrl: {
       type: String,
@@ -509,7 +649,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     unitStatusCodes: {
       type: Mark43StatusConfig,
       default: Mark43StatusConfigDefault,
-    }
+    },
+    process: {
+      type: Mark43ProcessConfig,
+    },
   }, {
     _id: false,
     id: false,
@@ -589,6 +732,54 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const SkymiraConfig = new Schema<SkymiraConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    token: {
+      type: String,
+      default: "",
+    },
+    locationsUrl: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const SkytracConfig = new Schema<SkytracConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    licenseKey: {
+      type: String,
+      default: "",
+    },
+    username: {
+      type: String,
+      default: "",
+    },
+    secret: {
+      type: String,
+      default: "",
+    },
+    serviceUrl: {
+      type: String,
+      default: "",
+    },
+    configTag: {
+      type: String,
+      default: ""
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SimpleSenseConfig = new Schema<SimpleSenseConfigType>({
     token: {
       type: String,
@@ -599,11 +790,122 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+
+  const StatusMappingObjectConfig = new Schema<StatusMappingObjectConfigType>({
+    status: {
+      type: String,
+      default: "",
+    },
+    statusCode: {
+      type: String,
+      default: "",
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const StatusMappingConfig = new Schema<StatusMappingConfigType>({
+    TimeDispatched: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeEnroute: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeStaged: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeArrived: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeCleared: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeAtHospital: {
+      type: StatusMappingObjectConfig,
+    },
+    TimePatient: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeTransporting: {
+      type: StatusMappingObjectConfig,
+    },
+    TimeTransportComplete: {
+      type: StatusMappingObjectConfig,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const StatusMappingConfigDefault = {
+    TimeDispatched: {
+      "status": "Unit Dispatched",
+      "statusCode": "DSP"
+    },
+    TimeEnroute: {
+      "status": "Unit is Enroute",
+      "statusCode": "ENR"
+    },
+    TimeStaged: {
+      "status": "Unit is Staging",
+      "statusCode": "STG"
+    },
+    TimeArrived: {
+      "status": "Unit is On Scene",
+      "statusCode": "ONS"
+    },
+    TimeCleared: {
+      "status": "Available on Radio",
+      "statusCode": "AOR"
+    },
+    TimeAtHospital: {
+      "status": "Transport Arrive",
+      "statusCode": "TAR"
+    },
+    // added to exclusions unused
+    TimePatient: {
+      "status": "Available",
+      "statusCode": "AV"
+    },
+    TimeTransporting: {
+      "status": "Transporting",
+      "statusCode": "TRN"
+    },
+    TimeTransportComplete: {
+      "status": "Transport Complete",
+      "statusCode": "TCM"
+    }
+  };
+
+
+  const IncidentVehicleStatusConfig = new Schema<IncidentVehicleStatusConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    statusMappings: {
+      type: StatusMappingConfig,
+      default: StatusMappingConfigDefault,
+    },
+    statusExclusions: {
+      type: [String],
+      default: [],
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const FirstArrivingConfig = new Schema<FirstArrivingConfigType>({
     token: {
       type: String,
       default: "",
     },
+    apiUrl: {
+      type: String,
+      default: ""
+    }
   }, {
     _id: false,
     id: false,
@@ -855,6 +1157,16 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+
+
+
+
+
+
+
+
+
+
   const IncidentType = new Schema<IncidentTypeType>({
     name: {
       type: String,
@@ -1023,6 +1335,23 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: 21,
     },
+    // Incident History Item Type sent back to CAD
+    // These correspond to IncidentHistoryType from iOS
+    cadIncidentHistoryType: {
+      type: [Number],
+      default: [],
+    },
+
+    // Incident Event Item Type sent back to CAD
+    // These correspond to IncidentEvent.type from backend/iOS
+    cadIncidentEventType: {
+      type: [String],
+      default: [
+        "userackcomment",
+        "usercomment",
+      ],
+    },
+
     connectivity: {
       incident: {
         enabled: {
@@ -1133,6 +1462,9 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     incidentVehicleStatusEnabled: {
       type: Boolean,
       default: false
+    },
+    incidentVehicleStatus: {
+      type: IncidentVehicleStatusConfig,
     },
     // When set to true, a vehicle update will propagate to user.vehicle using the radioName (changing the vehicleId)
     // By default (false), a vehicleId change will keep the same user.vehicle vehicleId and update the radioName
@@ -1360,6 +1692,14 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     intterra: {
       type: IntterraConfig,
       default: IntterraConfigDefault,
+    },
+    skymira: {
+      type: SkymiraConfig,
+      default: SkymiraConfigDefault,
+    },
+    skytrac: {
+      type: [SkytracConfig],
+      default: [],
     },
   }, {
   });

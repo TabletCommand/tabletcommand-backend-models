@@ -188,6 +188,14 @@ function AgencyCronSchema(mongoose) {
             type: Boolean,
             default: false,
         },
+        useAlternateId: {
+            type: Boolean,
+            default: false,
+        },
+        strictAgencyCodeMatch: {
+            type: Boolean,
+            default: false,
+        },
         csvFieldMap: {
             type: CronConfigCSVFieldMap,
             default: CronConfigCSVFieldMapDefault,

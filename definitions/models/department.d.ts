@@ -35,6 +35,26 @@ interface Mark43StatusConfigType {
     TimeTransporting: string[];
     TimeArrived: string[];
 }
+interface Mark43ProcessLocationConfigType {
+    enabled: boolean;
+    locationUrl: string;
+}
+interface Mark43ProcessCommentConfigType {
+    enabled: boolean;
+    commentUrl: string;
+    usersUrl: string;
+    defaultUserId: number;
+}
+interface Mark43ProcessVehicleStatusConfigType {
+    enabled: boolean;
+    vehicleStatusUrl: string;
+    vehicleStatusListUrl: string;
+}
+interface Mark43ProcessConfigType {
+    location: Mark43ProcessLocationConfigType;
+    comment: Mark43ProcessCommentConfigType;
+    vehicleStatus: Mark43ProcessVehicleStatusConfigType;
+}
 interface Mark43ConfigType {
     baseUrl: string;
     authToken: string;
@@ -42,6 +62,7 @@ interface Mark43ConfigType {
     userId: number;
     enabled: boolean;
     unitStatusCodes: Mark43StatusConfigType;
+    process: Mark43ProcessConfigType;
 }
 interface IntterraFieldsType {
     key: string;
@@ -68,6 +89,7 @@ interface SimpleSenseConfigType {
 }
 interface FirstArrivingConfigType {
     token: string;
+    apiUrl: string;
 }
 interface SafetyPriorityKeywordType {
     priority: number;
@@ -270,6 +292,7 @@ export interface Department extends Record<string, unknown> {
     mark43: Mark43ConfigType;
     intterra: IntterraConfigType;
     vehicleRadioNameIsStable: boolean;
+    cadIncidentHistoryType: number[];
 }
 export default function DepartmentModule(mongoose: MongooseModule): Promise<Model<Department, {}, {}, {}, import("mongoose").Document<unknown, {}, Department> & Department & Required<{
     _id: Types.ObjectId;
