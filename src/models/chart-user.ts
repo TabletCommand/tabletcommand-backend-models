@@ -43,7 +43,6 @@ export default async function ChartUserModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_chart_user",
   });
   modelSchema.set("autoIndex", false);
 
@@ -59,7 +58,7 @@ export default async function ChartUserModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<ChartUser>("ChartUser", modelSchema);
+  return mongoose.model<ChartUser>("ChartUser", modelSchema, "massive_chart_user", { overwriteModels: true });
 }
 
 export interface ChartUserModel extends Model<ChartUser> { }

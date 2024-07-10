@@ -95,7 +95,6 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
       default: null,
     },
   }, {
-    collection: "massive_personnel_known",
     timestamps: true,
     autoIndex: false,
   });
@@ -105,7 +104,7 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
 
 export default async function PersonnelKnownModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelKnownSchema(mongoose);
-  return mongoose.model<PersonnelKnown>("PersonnelKnown", modelSchema);
+  return mongoose.model<PersonnelKnown>("PersonnelKnown", modelSchema, "massive_personnel_known", { overwriteModels: true });
 }
 
 export interface PersonnelKnownModel extends Model<PersonnelKnown> { }

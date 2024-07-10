@@ -79,10 +79,9 @@ async function UserRegistrationModule(mongoose) {
             default: false,
         },
     }, {
-        collection: "massive_user_registration",
+        autoIndex: false
     });
-    modelSchema.set("autoIndex", false);
-    return mongoose.model("UserRegistration", modelSchema);
+    return mongoose.model("UserRegistration", modelSchema, "massive_user_registration", { overwriteModels: true });
 }
 exports.default = UserRegistrationModule;
 //# sourceMappingURL=user-registration.js.map

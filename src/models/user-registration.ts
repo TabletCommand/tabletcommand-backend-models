@@ -103,11 +103,10 @@ export default async function UserRegistrationModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_user_registration",
+    autoIndex: false
   });
-  modelSchema.set("autoIndex", false);
 
-  return mongoose.model<UserRegistration>("UserRegistration", modelSchema);
+  return mongoose.model<UserRegistration>("UserRegistration", modelSchema, "massive_user_registration", { overwriteModels: true });
 }
 
 export interface UserRegistrationModel extends Model<UserRegistration> { }

@@ -92,11 +92,10 @@ export default async function MailLogModule(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
-    collection: "massive_mail_log",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<MailLog>("MailLog", modelSchema);
+  return mongoose.model<MailLog>("MailLog", modelSchema, "massive_mail_log", { overwriteModels: true });
 }
 
 export interface MailLogModel extends Model<MailLog> { }

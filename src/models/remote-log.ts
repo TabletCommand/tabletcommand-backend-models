@@ -119,11 +119,10 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_remote_log",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<RemoteLog>("RemoteLog", modelSchema);
+  return mongoose.model<RemoteLog>("RemoteLog", modelSchema, "massive_remote_log", { overwriteModels: true });
 }
 
 export interface RemoteLogModel extends Model<RemoteLog> { }

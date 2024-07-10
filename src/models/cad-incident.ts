@@ -7,7 +7,6 @@ import { CADIncidentSchema, CADIncidentSchemaType } from "./schema/cad-incident"
 
 export default async function CADIncidentModule(mongoose: MongooseModule) {
   const modelSchema = CADIncidentSchema(mongoose);
-  modelSchema.set("collection", "massive_incident_cad");
   modelSchema.set("strict", false); // Because we accept all kind of data in
 
   // Indexes
@@ -19,7 +18,7 @@ export default async function CADIncidentModule(mongoose: MongooseModule) {
     unique: true,
   });
 
-  return mongoose.model<CADIncidentSchemaType>("CADIncident", modelSchema);
+  return mongoose.model<CADIncidentSchemaType>("CADIncident", modelSchema, "massive_incident_cad", { overwriteModels: true });
 }
 
 export interface CADIncident extends CADIncidentSchemaType { }

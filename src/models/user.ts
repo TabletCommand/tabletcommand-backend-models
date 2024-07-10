@@ -318,9 +318,8 @@ export function UserSchema(mongoose: MongooseModule) {
       default: false,
     }
   }, {
-    collection: "sys_user",
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   // NO _id on User schema?
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
@@ -338,7 +337,7 @@ export function UserSchema(mongoose: MongooseModule) {
 
 export default async function UserModule(mongoose: MongooseModule) {
   const modelSchema = UserSchema(mongoose);
-  return mongoose.model<User>("User", modelSchema);
+  return mongoose.model<User>("User", modelSchema, "sys_user", { overwriteModels: true });
 }
 
 export interface UserModel extends Model<User> { }

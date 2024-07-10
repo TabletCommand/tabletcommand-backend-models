@@ -29,10 +29,9 @@ async function BeaconLogModule(mongoose) {
             default: helpers_1.retrieveCurrentUnixTime,
         },
     }, {
-        collection: "massive_beacon_log",
+        autoIndex: false,
     });
-    modelSchema.set("autoIndex", false);
-    return mongoose.model("BeaconLog", modelSchema);
+    return mongoose.model("BeaconLog", modelSchema, "massive_beacon_log", { overwriteModels: true });
 }
 exports.default = BeaconLogModule;
 //# sourceMappingURL=beacon-log.js.map

@@ -89,7 +89,6 @@ export default async function SessionModule(mongoose: MongooseModule) {
       default: null,
     },
   }, {
-    collection: "sys_login",
   });
   modelSchema.set("autoIndex", false);
 
@@ -107,7 +106,7 @@ export default async function SessionModule(mongoose: MongooseModule) {
   });
 
 
-  return mongoose.model<Session>("Session", modelSchema);
+  return mongoose.model<Session>("Session", modelSchema, "sys_login", { overwriteModels: true });
 }
 
 export interface SessionModel extends Model<Session> { }

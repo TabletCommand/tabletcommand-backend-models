@@ -60,9 +60,7 @@ async function ChartDeviceStatsModule(mongoose) {
             type: [ChartItem],
             default: [],
         },
-    }, {
-        collection: "massive_chart_device_stat",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
         virtuals: true,
@@ -73,7 +71,7 @@ async function ChartDeviceStatsModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return mongoose.model("ChartDeviceStat", modelSchema);
+    return mongoose.model("ChartDeviceStat", modelSchema, "massive_chart_device_stat", { overwriteModels: true });
 }
 exports.default = ChartDeviceStatsModule;
 //# sourceMappingURL=chart-device-stats.js.map

@@ -102,9 +102,7 @@ function IncidentEventSchema(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_incident_event",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -120,7 +118,7 @@ function IncidentEventSchema(mongoose) {
 exports.IncidentEventSchema = IncidentEventSchema;
 async function IncidentEventModule(mongoose) {
     const modelSchema = IncidentEventSchema(mongoose);
-    return mongoose.model("IncidentEvent", modelSchema);
+    return mongoose.model("IncidentEvent", modelSchema, "massive_incident_event", { overwriteModels: true });
 }
 exports.default = IncidentEventModule;
 //# sourceMappingURL=incident-event.js.map

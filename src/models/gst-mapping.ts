@@ -86,11 +86,10 @@ export default async function GSTMappingModule(mongoose: MongooseModule) {
       default: "",
     },
   }, {
-    collection: "massive_gst_mapping",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<GSTMapping>("GSTMapping", modelSchema);
+  return mongoose.model<GSTMapping>("GSTMapping", modelSchema, "massive_gst_mapping", { overwriteModels: true });
 }
 
 export interface GSTMappingModel extends Model<GSTMapping> { }

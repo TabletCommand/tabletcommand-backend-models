@@ -73,10 +73,9 @@ export default async function ActionLogModule(mongoose: MongooseModule) {
       default: retrieveCurrentUnixTime,
     },
   }, {
-    collection: "massive_action_log",
+    autoIndex: false
   });
-  modelSchema.set("autoIndex", false);
-  return mongoose.model<ActionLog>("ActionLog", modelSchema);
+  return mongoose.model<ActionLog>("ActionLog", modelSchema, "massive_action_log", { overwriteModels: true });
 }
 
 export interface ActionLogModel extends Model<ActionLog> { }

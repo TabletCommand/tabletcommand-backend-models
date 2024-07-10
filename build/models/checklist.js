@@ -61,9 +61,7 @@ function ChecklistSchema(mongoose) {
             type: [ChecklistItem],
             default: [],
         }
-    }, {
-        collection: "massive_checklist_sync",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
@@ -78,7 +76,7 @@ function ChecklistSchema(mongoose) {
 exports.ChecklistSchema = ChecklistSchema;
 async function ChecklistModule(mongoose) {
     const modelSchema = ChecklistSchema(mongoose);
-    return mongoose.model("Checklist", modelSchema);
+    return mongoose.model("Checklist", modelSchema, "massive_checklist_sync", { overwriteModels: true });
 }
 exports.default = ChecklistModule;
 //# sourceMappingURL=checklist.js.map

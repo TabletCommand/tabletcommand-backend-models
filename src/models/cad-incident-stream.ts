@@ -58,7 +58,6 @@ export default async function CADIncidentStreamModule(mongoose: MongooseModule) 
     },
   }, {
     autoIndex: false,
-    collection: "massive_cad_incident_stream",
     toJSON: {
       virtuals: true,
       versionKey: false,
@@ -72,7 +71,7 @@ export default async function CADIncidentStreamModule(mongoose: MongooseModule) 
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<CADIncidentStream>("CADIncidentStream", modelSchema);
+  return mongoose.model<CADIncidentStream>("CADIncidentStream", modelSchema, "massive_cad_incident_stream", { overwriteModels: true });
 }
 
 export interface CADIncidentStreamModel extends Model<CADIncidentStream> { }

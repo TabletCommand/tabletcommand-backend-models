@@ -138,7 +138,6 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       default: "",
     },
   }, {
-    collection: "massive_personnel_import",
   });
   modelSchema.set("autoIndex", false);
 
@@ -147,7 +146,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
 
 export default async function PersonnelImportModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelImportSchema(mongoose);
-  return mongoose.model<PersonnelImport>("PersonnelImport", modelSchema);
+  return mongoose.model<PersonnelImport>("PersonnelImport", modelSchema, "massive_personnel_import", { overwriteModels: true });
 }
 
 export interface PersonnelImportModel extends Model<PersonnelImport> { }

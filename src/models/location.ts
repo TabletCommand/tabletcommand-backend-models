@@ -187,7 +187,6 @@ export default async function LocationModule(mongoose: MongooseModule) {
   });
 
   const modelSchema = new Schema<Location>(modelSchemaDefinition, {
-    collection: "massive_location",
   });
 
   modelSchema.set("toJSON", {
@@ -227,7 +226,7 @@ export default async function LocationModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
-  return mongoose.model<Location>("Location", modelSchema);
+  return mongoose.model<Location>("Location", modelSchema, "massive_location", { overwriteModels: true });
 }
 
 export interface LocationModel extends Model<Location> { }

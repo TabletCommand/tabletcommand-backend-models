@@ -147,11 +147,9 @@ async function CADStatusModule(mongoose) {
         backupDate: {
             type: Date,
         },
-    }, {
-        collection: "massive_cad_status",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("CADStatus", modelSchema);
+    return mongoose.model("CADStatus", modelSchema, "massive_cad_status", { overwriteModels: true });
 }
 exports.default = CADStatusModule;
 //# sourceMappingURL=cad-status.js.map

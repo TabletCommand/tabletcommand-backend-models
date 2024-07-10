@@ -69,7 +69,6 @@ function PersonnelKnownSchema(mongoose) {
             default: null,
         },
     }, {
-        collection: "massive_personnel_known",
         timestamps: true,
         autoIndex: false,
     });
@@ -78,7 +77,7 @@ function PersonnelKnownSchema(mongoose) {
 exports.PersonnelKnownSchema = PersonnelKnownSchema;
 async function PersonnelKnownModule(mongoose) {
     const modelSchema = PersonnelKnownSchema(mongoose);
-    return mongoose.model("PersonnelKnown", modelSchema);
+    return mongoose.model("PersonnelKnown", modelSchema, "massive_personnel_known", { overwriteModels: true });
 }
 exports.default = PersonnelKnownModule;
 //# sourceMappingURL=personnel-known.js.map

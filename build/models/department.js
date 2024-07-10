@@ -1041,9 +1041,7 @@ async function DepartmentModule(mongoose) {
             type: IntterraConfig,
             default: IntterraConfigDefault,
         },
-    }, {
-        collection: "massive_admin",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.set("timestamps", {
         updatedAt: "modified",
@@ -1056,7 +1054,7 @@ async function DepartmentModule(mongoose) {
         versionKey: false,
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return mongoose.model("Department", modelSchema);
+    return mongoose.model("Department", modelSchema, "massive_admin", { overwriteModels: true });
 }
 exports.default = DepartmentModule;
 //# sourceMappingURL=department.js.map

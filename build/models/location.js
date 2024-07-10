@@ -144,9 +144,7 @@ async function LocationModule(mongoose) {
             default: helpers_1.currentDate,
         },
     });
-    const modelSchema = new Schema(modelSchemaDefinition, {
-        collection: "massive_location",
-    });
+    const modelSchema = new Schema(modelSchemaDefinition, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -179,7 +177,7 @@ async function LocationModule(mongoose) {
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return mongoose.model("Location", modelSchema);
+    return mongoose.model("Location", modelSchema, "massive_location", { overwriteModels: true });
 }
 exports.default = LocationModule;
 //# sourceMappingURL=location.js.map

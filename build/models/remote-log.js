@@ -88,11 +88,9 @@ async function RemoteLogModule(mongoose) {
             type: [FileSchema],
             default: [],
         },
-    }, {
-        collection: "massive_remote_log",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("RemoteLog", modelSchema);
+    return mongoose.model("RemoteLog", modelSchema, "massive_remote_log", { overwriteModels: true });
 }
 exports.default = RemoteLogModule;
 //# sourceMappingURL=remote-log.js.map

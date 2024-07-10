@@ -65,11 +65,9 @@ async function DeviceMappingModule(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_device_mapping",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("DeviceMapping", modelSchema);
+    return mongoose.model("DeviceMapping", modelSchema, "massive_device_mapping", { overwriteModels: true });
 }
 exports.default = DeviceMappingModule;
 //# sourceMappingURL=device-mapping.js.map

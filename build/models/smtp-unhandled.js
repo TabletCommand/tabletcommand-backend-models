@@ -18,9 +18,7 @@ async function SMTPUnhandledModule(mongoose) {
             default: "",
             required: true,
         },
-    }, {
-        collection: "massive_smtp_unhandled",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -30,7 +28,7 @@ async function SMTPUnhandledModule(mongoose) {
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return mongoose.model("SMTPUnhandled", modelSchema);
+    return mongoose.model("SMTPUnhandled", modelSchema, "massive_smtp_unhandled", { overwriteModels: true });
 }
 exports.default = SMTPUnhandledModule;
 //# sourceMappingURL=smtp-unhandled.js.map

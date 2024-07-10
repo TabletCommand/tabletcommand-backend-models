@@ -98,11 +98,10 @@ export default async function CADVehicleModule(mongoose: MongooseModule) {
       type: Date,
     },
   }, {
-    collection: "massive_cad_vehicle",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CADVehicle>("CADVehicle", modelSchema);
+  return mongoose.model<CADVehicle>("CADVehicle", modelSchema, "massive_cad_vehicle", { overwriteModels: true });
 }
 
 export interface CADVehicleModel extends Model<CADVehicle> { }

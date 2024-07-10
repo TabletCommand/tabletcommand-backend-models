@@ -154,10 +154,9 @@ async function ArcGISGroupModule(mongoose) {
             default: "",
         },
     }, {
-        collection: "massive_arcgis_group",
+        autoIndex: false,
     });
-    modelSchema.set("autoIndex", false);
-    return mongoose.model("ArcGISGroup", modelSchema);
+    return mongoose.model("ArcGISGroup", modelSchema, "massive_arcgis_group", { overwriteModels: true });
 }
 exports.default = ArcGISGroupModule;
 //# sourceMappingURL=arcgis-group.js.map

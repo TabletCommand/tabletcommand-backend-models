@@ -23,6 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { ConnectOptions } from "mongoose";
+import { MongooseModule } from "./helpers";
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";
@@ -222,7 +223,9 @@ export declare function connect(url: string, overwriteOpts?: ConnectOptions): Pr
         }>, any>;
     };
 }>;
+export declare function getMongoose(): Promise<typeof import("mongoose")>;
 declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
 export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
+export declare type MongooseTypes = MongooseModule;
 export default connect;
 //# sourceMappingURL=index.d.ts.map

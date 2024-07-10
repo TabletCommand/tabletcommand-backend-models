@@ -253,11 +253,9 @@ async function CADSimulationModule(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_cad_simulation",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("CADSimulation", modelSchema);
+    return mongoose.model("CADSimulation", modelSchema, "massive_cad_simulation", { overwriteModels: true });
 }
 exports.default = CADSimulationModule;
 //# sourceMappingURL=cad-simulation.js.map

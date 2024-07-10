@@ -215,11 +215,10 @@ export default async function ArcGISGroupModule(mongoose: MongooseModule) {
       default: "",
     },
   }, {
-    collection: "massive_arcgis_group",
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
-  return mongoose.model<ArcGISGroup>("ArcGISGroup", modelSchema);
+  return mongoose.model<ArcGISGroup>("ArcGISGroup", modelSchema, "massive_arcgis_group", { overwriteModels: true });
 }
 
 export interface ArcGISGroupModel extends Model<ArcGISGroup> { }

@@ -136,7 +136,6 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_incident_event",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -155,7 +154,7 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
 
 export default async function IncidentEventModule(mongoose: MongooseModule) {
   const modelSchema = IncidentEventSchema(mongoose);
-  return mongoose.model<IncidentEvent>("IncidentEvent", modelSchema);
+  return mongoose.model<IncidentEvent>("IncidentEvent", modelSchema, "massive_incident_event", { overwriteModels: true });
 }
 
 export interface IncidentEventModel extends Model<IncidentEvent> { }

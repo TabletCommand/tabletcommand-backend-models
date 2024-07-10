@@ -241,9 +241,8 @@ function UserSchema(mongoose) {
             default: false,
         }
     }, {
-        collection: "sys_user",
+        autoIndex: false,
     });
-    modelSchema.set("autoIndex", false);
     // NO _id on User schema?
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
@@ -257,7 +256,7 @@ function UserSchema(mongoose) {
 exports.UserSchema = UserSchema;
 async function UserModule(mongoose) {
     const modelSchema = UserSchema(mongoose);
-    return mongoose.model("User", modelSchema);
+    return mongoose.model("User", modelSchema, "sys_user", { overwriteModels: true });
 }
 exports.default = UserModule;
 //# sourceMappingURL=user.js.map

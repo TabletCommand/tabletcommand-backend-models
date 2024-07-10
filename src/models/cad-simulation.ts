@@ -337,11 +337,10 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_cad_simulation",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CADSimulation>("CADSimulation", modelSchema);
+  return mongoose.model<CADSimulation>("CADSimulation", modelSchema, "massive_cad_simulation", { overwriteModels: true });
 }
 
 export interface CADSimulationModel extends Model<CADSimulation> { }

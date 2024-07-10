@@ -40,9 +40,7 @@ async function ChartIncidentModule(mongoose) {
             type: [ChartItem],
             default: [],
         },
-    }, {
-        collection: "massive_chart_incident",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
         virtuals: true,
@@ -53,7 +51,7 @@ async function ChartIncidentModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return mongoose.model("ChartIncident", modelSchema);
+    return mongoose.model("ChartIncident", modelSchema, "massive_chart_incident", { overwriteModels: true });
 }
 exports.default = ChartIncidentModule;
 //# sourceMappingURL=chart-incident.js.map

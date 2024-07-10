@@ -71,6 +71,7 @@ export declare type FieldsOfDocument<T extends Document> = T extends Document & 
 } : never;
 export declare function retrieveCurrentUnixTime(): number;
 export declare function currentDate(): Date;
+export declare function convertToObjectId(id: string): Types.ObjectId;
 declare type Or<T> = T & {
     $or?: Or<T>[];
 };

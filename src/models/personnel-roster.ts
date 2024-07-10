@@ -79,7 +79,6 @@ export function PersonnelRosterSchema(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_personnel_roster",
     autoIndex: false,
     timestamps: true,
   });
@@ -89,7 +88,7 @@ export function PersonnelRosterSchema(mongoose: MongooseModule) {
 
 export default async function PersonnelRosterModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelRosterSchema(mongoose);
-  return mongoose.model<PersonnelRoster>("PersonnelRoster", modelSchema);
+  return mongoose.model<PersonnelRoster>("PersonnelRoster", modelSchema, "massive_personnel_roster", { overwriteModels: true });
 }
 
 export interface PersonnelRosterModel extends Model<PersonnelRoster> { }

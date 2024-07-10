@@ -34,9 +34,7 @@ async function JobLogModule(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_job_log",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -46,7 +44,7 @@ async function JobLogModule(mongoose) {
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return mongoose.model("JobLog", modelSchema);
+    return mongoose.model("JobLog", modelSchema, "massive_job_log", { overwriteModels: true });
 }
 exports.default = JobLogModule;
 //# sourceMappingURL=job-log.js.map

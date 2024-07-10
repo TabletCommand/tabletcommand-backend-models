@@ -49,16 +49,14 @@ function ValidationReportSchema(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-    }, {
-        collection: "massive_validation_report",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     return modelSchema;
 }
 exports.ValidationReportSchema = ValidationReportSchema;
 async function ValidationReportModule(mongoose) {
     const modelSchema = ValidationReportSchema(mongoose);
-    return mongoose.model("ValidationReport", modelSchema);
+    return mongoose.model("ValidationReport", modelSchema, "massive_validation_report", { overwriteModels: true });
 }
 exports.default = ValidationReportModule;
 //# sourceMappingURL=validation-report.js.map

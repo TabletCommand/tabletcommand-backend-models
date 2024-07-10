@@ -84,7 +84,6 @@ export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_chart_device_stat",
   });
   modelSchema.set("autoIndex", false);
 
@@ -100,7 +99,7 @@ export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<ChartDeviceStats>("ChartDeviceStat", modelSchema);
+  return mongoose.model<ChartDeviceStats>("ChartDeviceStat", modelSchema, "massive_chart_device_stat", { overwriteModels: true });
 }
 
 export interface ChartDeviceStatsModel extends Model<ChartDeviceStats> { }

@@ -73,11 +73,9 @@ async function Mark43IncidentRetryModule(mongoose) {
         incidentNumber: {
             type: String,
         },
-    }, {
-        collection: "massive_mark43_incident_retry",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("Mark43IncidentRetry", modelSchema);
+    return mongoose.model("Mark43IncidentRetry", modelSchema, "massive_mark43_incident_retry", { overwriteModels: true });
 }
 exports.default = Mark43IncidentRetryModule;
 //# sourceMappingURL=mark43-incident-retry.js.map

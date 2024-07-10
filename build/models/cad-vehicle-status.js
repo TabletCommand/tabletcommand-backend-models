@@ -124,11 +124,9 @@ async function CADVehicleStatusModule(mongoose) {
         backupDate: {
             type: Date,
         },
-    }, {
-        collection: "massive_cad_vehicle_status",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("CADVehicleStatus", modelSchema);
+    return mongoose.model("CADVehicleStatus", modelSchema, "massive_cad_vehicle_status", { overwriteModels: true });
 }
 exports.default = CADVehicleStatusModule;
 //# sourceMappingURL=cad-vehicle-status.js.map

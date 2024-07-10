@@ -52,7 +52,6 @@ export default async function JobLogModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_job_log",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -66,7 +65,7 @@ export default async function JobLogModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<JobLog>("JobLog", modelSchema);
+  return mongoose.model<JobLog>("JobLog", modelSchema, "massive_job_log", { overwriteModels: true });
 }
 
 export interface JobLogModel extends Model<JobLog> { }

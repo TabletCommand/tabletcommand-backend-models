@@ -115,7 +115,6 @@ export * from "./helpers";
 export async function connect(url: string, overwriteOpts?: ConnectOptions) {
   const mongoose = await import("mongoose");
   mongoose.Promise = await import("bluebird");
-
   const models = await wireModels(mongoose);
   const defaultOpts: ConnectOptions = {
     autoIndex: false,
@@ -128,6 +127,12 @@ export async function connect(url: string, overwriteOpts?: ConnectOptions) {
   return { mongoose, connection, models };
 }
 
+export async function getMongoose() {
+  const mongoose = await import("mongoose");
+  return mongoose;
+}
+
 type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
 export type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
+export type MongooseTypes = MongooseModule;
 export default connect;

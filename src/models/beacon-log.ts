@@ -43,11 +43,10 @@ export default async function BeaconLogModule(mongoose: MongooseModule) {
       default: retrieveCurrentUnixTime,
     },
   }, {
-    collection: "massive_beacon_log",
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
-  return mongoose.model<BeaconLog>("BeaconLog", modelSchema);
+  return mongoose.model<BeaconLog>("BeaconLog", modelSchema, "massive_beacon_log", { overwriteModels: true });
 }
 
 export interface BeaconLogModel extends Model<BeaconLog> { }

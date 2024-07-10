@@ -53,10 +53,9 @@ async function ActionLogModule(mongoose) {
             default: helpers_1.retrieveCurrentUnixTime,
         },
     }, {
-        collection: "massive_action_log",
+        autoIndex: false
     });
-    modelSchema.set("autoIndex", false);
-    return mongoose.model("ActionLog", modelSchema);
+    return mongoose.model("ActionLog", modelSchema, "massive_action_log", { overwriteModels: true });
 }
 exports.default = ActionLogModule;
 //# sourceMappingURL=action-log.js.map

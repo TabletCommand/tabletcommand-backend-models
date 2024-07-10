@@ -47,16 +47,14 @@ async function MonitorModule(mongoose) {
             type: Number,
             default: 1,
         },
-    }, {
-        collection: "massive_monitor",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return mongoose.model("Monitor", modelSchema);
+    return mongoose.model("Monitor", modelSchema, "massive_monitor", { overwriteModels: true });
 }
 exports.default = MonitorModule;
 //# sourceMappingURL=monitor.js.map

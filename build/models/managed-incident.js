@@ -521,19 +521,17 @@ async function ManagedIncidentModule(mongoose) {
         sharedSource: {
             type: SharedSource,
         },
-    }, {
-        collection: "massive_incident_managed",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.virtual("id").get(function () {
-        return this._id.toString();
+        return this._id.toHexString();
     });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return mongoose.model("ManagedIncident", modelSchema);
+    return mongoose.model("ManagedIncident", modelSchema, "massive_incident_managed", { overwriteModels: true });
 }
 exports.default = ManagedIncidentModule;
 //# sourceMappingURL=managed-incident.js.map

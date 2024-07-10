@@ -27,9 +27,7 @@ async function ChartUserModule(mongoose) {
             type: [String],
             default: [],
         },
-    }, {
-        collection: "massive_chart_user",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
         virtuals: true,
@@ -40,7 +38,7 @@ async function ChartUserModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return mongoose.model("ChartUser", modelSchema);
+    return mongoose.model("ChartUser", modelSchema, "massive_chart_user", { overwriteModels: true });
 }
 exports.default = ChartUserModule;
 //# sourceMappingURL=chart-user.js.map

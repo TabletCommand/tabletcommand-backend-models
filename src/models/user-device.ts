@@ -246,11 +246,10 @@ export default async function UserDeviceModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_user_device",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<UserDevice>("UserDevice", modelSchema);
+  return mongoose.model<UserDevice>("UserDevice", modelSchema, "massive_user_device", { overwriteModels: true });
 }
 
 export interface UserDeviceModel extends Model<UserDevice> { }

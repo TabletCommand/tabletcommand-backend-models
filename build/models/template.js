@@ -91,9 +91,7 @@ function TemplateSchema(mongoose) {
             ref: "Agency",
             default: null,
         },
-    }, {
-        collection: "massive_template",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
@@ -124,7 +122,7 @@ function TemplateSchema(mongoose) {
 exports.TemplateSchema = TemplateSchema;
 async function TemplateModule(mongoose) {
     const modelSchema = TemplateSchema(mongoose);
-    return mongoose.model("Template", modelSchema);
+    return mongoose.model("Template", modelSchema, "massive_template", { overwriteModels: true });
 }
 exports.default = TemplateModule;
 //# sourceMappingURL=template.js.map

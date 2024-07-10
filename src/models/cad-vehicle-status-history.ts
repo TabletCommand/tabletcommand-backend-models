@@ -89,11 +89,10 @@ export default async function CADVehicleStatusHistoryModule(mongoose: MongooseMo
       default: "",
     },
   }, {
-    collection: "massive_cad_vehicle_status_history",
   });
 
   modelSchema.set("autoIndex", false);
-  return mongoose.model<CADVehicleStatusHistory>("CADVehicleStatusHistory", modelSchema);
+  return mongoose.model<CADVehicleStatusHistory>("CADVehicleStatusHistory", modelSchema, "massive_cad_vehicle_status_history", { overwriteModels: true });
 }
 
 export interface CADVehicleStatusHistoryModel extends Model<CADVehicleStatusHistory> { }

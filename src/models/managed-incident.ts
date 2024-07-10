@@ -710,12 +710,11 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: SharedSource,
     },
   }, {
-    collection: "massive_incident_managed",
   });
   modelSchema.set("autoIndex", false);
 
   modelSchema.virtual("id").get(function (this: ManagedIncident) {
-    return this._id.toString();
+    return this._id.toHexString();
   });
 
   modelSchema.set("toJSON", {
@@ -725,7 +724,7 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
 
 
   modelSchema.plugin(mongooseLeanVirtuals);
-  return mongoose.model<ManagedIncident>("ManagedIncident", modelSchema);
+  return mongoose.model<ManagedIncident>("ManagedIncident", modelSchema, "massive_incident_managed", { overwriteModels: true });
 }
 
 export interface ManagedIncidentModel extends Model<ManagedIncident> { }

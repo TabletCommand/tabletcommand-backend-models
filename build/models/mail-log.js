@@ -67,11 +67,9 @@ async function MailLogModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-    }, {
-        collection: "massive_mail_log",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("MailLog", modelSchema);
+    return mongoose.model("MailLog", modelSchema, "massive_mail_log", { overwriteModels: true });
 }
 exports.default = MailLogModule;
 //# sourceMappingURL=mail-log.js.map

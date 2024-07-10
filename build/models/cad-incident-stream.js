@@ -41,7 +41,6 @@ async function CADIncidentStreamModule(mongoose) {
         },
     }, {
         autoIndex: false,
-        collection: "massive_cad_incident_stream",
         toJSON: {
             virtuals: true,
             versionKey: false,
@@ -52,7 +51,7 @@ async function CADIncidentStreamModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return mongoose.model("CADIncidentStream", modelSchema);
+    return mongoose.model("CADIncidentStream", modelSchema, "massive_cad_incident_stream", { overwriteModels: true });
 }
 exports.default = CADIncidentStreamModule;
 //# sourceMappingURL=cad-incident-stream.js.map

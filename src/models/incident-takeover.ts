@@ -84,11 +84,10 @@ export default async function IncidentTakeoverModule(mongoose: MongooseModule) {
       default: 0,
     },
   }, {
-    collection: "massive_incident_takeover",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<IncidentTakeover>("IncidentTakeover", modelSchema);
+  return mongoose.model<IncidentTakeover>("IncidentTakeover", modelSchema, "massive_incident_takeover", { overwriteModels: true });
 }
 
 export interface IncidentTakeoverModel extends Model<IncidentTakeover> { }

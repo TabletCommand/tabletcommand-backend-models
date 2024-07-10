@@ -57,7 +57,6 @@ function PersonnelRosterSchema(mongoose) {
             default: false,
         },
     }, {
-        collection: "massive_personnel_roster",
         autoIndex: false,
         timestamps: true,
     });
@@ -66,7 +65,7 @@ function PersonnelRosterSchema(mongoose) {
 exports.PersonnelRosterSchema = PersonnelRosterSchema;
 async function PersonnelRosterModule(mongoose) {
     const modelSchema = PersonnelRosterSchema(mongoose);
-    return mongoose.model("PersonnelRoster", modelSchema);
+    return mongoose.model("PersonnelRoster", modelSchema, "massive_personnel_roster", { overwriteModels: true });
 }
 exports.default = PersonnelRosterModule;
 //# sourceMappingURL=personnel-roster.js.map

@@ -83,7 +83,7 @@ export default async function AssignmentModule(mongoose: MongooseModule) {
       default: "",
     },
   }, {
-    collection: "massive_assignment",
+    autoIndex: false,
   });
   modelSchema.set("autoIndex", false);
   modelSchema.virtual("id").get(function (this: Assignment) {
@@ -94,7 +94,7 @@ export default async function AssignmentModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  return mongoose.model<Assignment>("Assignment", modelSchema);
+  return mongoose.model<Assignment>("Assignment", modelSchema, "massive_assignment", { overwriteModels: true });
 }
 
 export interface AssignmentModel extends Model<Assignment> { }

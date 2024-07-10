@@ -102,16 +102,14 @@ function PersonnelImportSchema(mongoose) {
             type: String,
             default: "",
         },
-    }, {
-        collection: "massive_personnel_import",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     return modelSchema;
 }
 exports.PersonnelImportSchema = PersonnelImportSchema;
 async function PersonnelImportModule(mongoose) {
     const modelSchema = PersonnelImportSchema(mongoose);
-    return mongoose.model("PersonnelImport", modelSchema);
+    return mongoose.model("PersonnelImport", modelSchema, "massive_personnel_import", { overwriteModels: true });
 }
 exports.default = PersonnelImportModule;
 //# sourceMappingURL=personnel-import.js.map

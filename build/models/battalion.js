@@ -131,7 +131,7 @@ function BattalionSchema(mongoose) {
             default: []
         },
     }, {
-        collection: "massive_battalion",
+        autoIndex: false,
     });
     modelSchema.set("autoIndex", false);
     modelSchema.virtual("id").get(function () {
@@ -163,7 +163,7 @@ function BattalionSchema(mongoose) {
 exports.BattalionSchema = BattalionSchema;
 async function BattalionModule(mongoose) {
     const modelSchema = BattalionSchema(mongoose);
-    return mongoose.model("Battalion", modelSchema);
+    return mongoose.model("Battalion", modelSchema, "massive_battalion", { overwriteModels: true });
 }
 exports.default = BattalionModule;
 //# sourceMappingURL=battalion.js.map

@@ -62,7 +62,6 @@ export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
       default: [],
     }
   }, {
-    collection: "massive_cad_incident_block",
     timestamps: true,
     autoIndex: false,
     toJSON: {
@@ -78,7 +77,7 @@ export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<CADIncidentBlock>("CADIncidentBlock", modelSchema);
+  return mongoose.model<CADIncidentBlock>("CADIncidentBlock", modelSchema, "massive_cad_incident_block", { overwriteModels: true });
 }
 
 export interface CADIncidentBlockModel extends Model<CADIncidentBlock> { }

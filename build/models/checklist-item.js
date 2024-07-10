@@ -53,9 +53,7 @@ function ChecklistItemSchema(mongoose) {
             type: String,
             default: ""
         }
-    }, {
-        collection: "massive_checklist_item_sync",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     return modelSchema;
 }
@@ -70,7 +68,7 @@ async function ChecklistItemModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
-    return mongoose.model("ChecklistItem", modelSchema);
+    return mongoose.model("ChecklistItem", modelSchema, "massive_checklist_item_sync", { overwriteModels: true });
 }
 exports.default = ChecklistItemModule;
 //# sourceMappingURL=checklist-item.js.map

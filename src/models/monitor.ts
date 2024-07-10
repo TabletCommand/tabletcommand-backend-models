@@ -65,7 +65,6 @@ export default async function MonitorModule(mongoose: MongooseModule) {
       default: 1,
     },
   }, {
-    collection: "massive_monitor",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -75,7 +74,7 @@ export default async function MonitorModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<Monitor>("Monitor", modelSchema);
+  return mongoose.model<Monitor>("Monitor", modelSchema, "massive_monitor", { overwriteModels: true });
 }
 
 export interface MonitorModel extends Model<Monitor> { }

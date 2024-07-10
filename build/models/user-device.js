@@ -181,11 +181,9 @@ async function UserDeviceModule(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_user_device",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return mongoose.model("UserDevice", modelSchema);
+    return mongoose.model("UserDevice", modelSchema, "massive_user_device", { overwriteModels: true });
 }
 exports.default = UserDeviceModule;
 //# sourceMappingURL=user-device.js.map

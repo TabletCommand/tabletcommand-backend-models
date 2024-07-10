@@ -62,9 +62,7 @@ async function SessionModule(mongoose) {
             type: OAuthToken,
             default: null,
         },
-    }, {
-        collection: "sys_login",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.pre("save", function (next) {
         this._id = this.get("token"); // Copy _id from token
@@ -77,7 +75,7 @@ async function SessionModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
-    return mongoose.model("Session", modelSchema);
+    return mongoose.model("Session", modelSchema, "sys_login", { overwriteModels: true });
 }
 exports.default = SessionModule;
 //# sourceMappingURL=session.js.map

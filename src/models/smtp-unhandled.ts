@@ -31,7 +31,6 @@ export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
       required: true,
     },
   }, {
-    collection: "massive_smtp_unhandled",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -45,7 +44,7 @@ export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<SMTPUnhandled>("SMTPUnhandled", modelSchema);
+  return mongoose.model<SMTPUnhandled>("SMTPUnhandled", modelSchema, "massive_smtp_unhandled", { overwriteModels: true });
 }
 
 export interface SMTPUnhandledModel extends Model<SMTPUnhandled> { }

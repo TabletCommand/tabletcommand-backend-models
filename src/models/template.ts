@@ -127,7 +127,6 @@ export function TemplateSchema(mongoose: MongooseModule) {
       default: null,
     },
   }, {
-    collection: "massive_template",
   });
   modelSchema.set("autoIndex", false);
   modelSchema.virtual("id").get(function (this: Template) {
@@ -162,7 +161,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
 
 export default async function TemplateModule(mongoose: MongooseModule) {
   const modelSchema = TemplateSchema(mongoose);
-  return mongoose.model<Template>("Template", modelSchema);
+  return mongoose.model<Template>("Template", modelSchema, "massive_template", { overwriteModels: true });
 }
 
 export interface TemplateModel extends Model<Template> { }

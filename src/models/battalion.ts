@@ -10,7 +10,7 @@ import {
 import { Model, Types } from "mongoose";
 interface BattalionUnitType extends Record<string, unknown> {
   _id: Types.ObjectId,
-  id:string,
+  id: string,
   name: string,
   friendly_id: string,
   personnel: number,
@@ -29,7 +29,7 @@ interface BattalionUnitType extends Record<string, unknown> {
 
 export interface Battalion extends Record<string, unknown> {
   _id: Types.ObjectId,
-  id?:string,
+  id?: string,
   name: string,
   active: boolean,
   modified_date: string,
@@ -175,7 +175,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
       default: []
     },
   }, {
-    collection: "massive_battalion",
+    autoIndex: false,
   });
   modelSchema.set("autoIndex", false);
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
@@ -210,7 +210,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
 
 export default async function BattalionModule(mongoose: MongooseModule) {
   const modelSchema = BattalionSchema(mongoose);
-  return mongoose.model<Battalion>("Battalion", modelSchema);
+  return mongoose.model<Battalion>("Battalion", modelSchema, "massive_battalion", { overwriteModels: true });
 }
 
 export interface BattalionModel extends Model<Battalion> { }

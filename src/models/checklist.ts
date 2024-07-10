@@ -87,7 +87,6 @@ export function ChecklistSchema(mongoose: MongooseModule) {
       default: [],
     }
   }, {
-    collection: "massive_checklist_sync",
   });
   modelSchema.set("autoIndex", false);
   modelSchema.virtual("id").get(function (this: MongooseDocument) {
@@ -106,7 +105,7 @@ export function ChecklistSchema(mongoose: MongooseModule) {
 
 export default async function ChecklistModule(mongoose: MongooseModule) {
   const modelSchema = ChecklistSchema(mongoose);
-  return mongoose.model<Checklist>("Checklist", modelSchema);
+  return mongoose.model<Checklist>("Checklist", modelSchema, "massive_checklist_sync", { overwriteModels: true });
 }
 
 export interface ChecklistModel extends Model<Checklist> { }

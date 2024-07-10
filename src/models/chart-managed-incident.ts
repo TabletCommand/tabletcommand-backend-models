@@ -67,7 +67,6 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
       default: [],
     },
   }, {
-    collection: "massive_chart_managed_incident",
   });
   modelSchema.set("autoIndex", false);
 
@@ -83,7 +82,7 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<ChartManagedIncident>("ChartManagedIncident", modelSchema);
+  return mongoose.model<ChartManagedIncident>("ChartManagedIncident", modelSchema, "massive_chart_managed_incident", { overwriteModels: true });
 }
 
 export interface ChartManagedIncidentModel extends Model<ChartManagedIncident> { }

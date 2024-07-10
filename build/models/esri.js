@@ -95,9 +95,7 @@ function EsriSchema(mongoose) {
             type: Date,
             default: new Date("1970-01-01T00:00:00.000Z"),
         },
-    }, {
-        collection: "massive_esri",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     // Deprecated. Check which apps rely on .id instead of using ._id.
     modelSchema.virtual("id").get(function () {
@@ -112,7 +110,7 @@ function EsriSchema(mongoose) {
 exports.EsriSchema = EsriSchema;
 async function EsriModule(mongoose) {
     const modelSchema = EsriSchema(mongoose);
-    return mongoose.model("Esri", modelSchema);
+    return mongoose.model("Esri", modelSchema, "massive_esri", { overwriteModels: true });
 }
 exports.default = EsriModule;
 //# sourceMappingURL=esri.js.map

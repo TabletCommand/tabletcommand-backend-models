@@ -162,16 +162,14 @@ export function AgencySchema(mongoose: MongooseModule) {
       default: 0,
     },
   }, {
-    collection: "massive_agency",
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
-
   return modelSchema;
 }
 
 export default async function AgencyModule(mongoose: MongooseModule) {
   const modelSchema = AgencySchema(mongoose);
-  return mongoose.model<Agency>("Agency", modelSchema);
+  return mongoose.model<Agency>("Agency", modelSchema, "massive_agency", { overwriteModels: true });
 }
 
 export interface AgencyModel extends Model<Agency> { }

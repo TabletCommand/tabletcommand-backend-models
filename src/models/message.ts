@@ -115,11 +115,10 @@ export default async function MessageModule(mongoose: MongooseModule) {
       default: {},
     },
   }, {
-    collection: "massive_message",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<Message>("Message", modelSchema);
+  return mongoose.model<Message>("Message", modelSchema, "massive_message", { overwriteModels: true });
 }
 
 export interface MessageModel extends Model<Message> { }

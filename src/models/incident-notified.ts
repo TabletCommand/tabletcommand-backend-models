@@ -96,11 +96,10 @@ export default async function IncidentNotifiedModule(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
-    collection: "massive_incident_notified",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<IncidentNotified>("IncidentNotified", modelSchema);
+  return mongoose.model<IncidentNotified>("IncidentNotified", modelSchema, "massive_incident_notified", { overwriteModels: true });
 }
 
 export interface IncidentNotifiedModel extends Model<IncidentNotified> { }

@@ -90,11 +90,10 @@ export default async function DeviceMappingModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_device_mapping",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<DeviceMapping>("DeviceMapping", modelSchema);
+  return mongoose.model<DeviceMapping>("DeviceMapping", modelSchema, "massive_device_mapping", { overwriteModels: true });
 }
 
 export interface DeviceMappingModel extends Model<DeviceMapping> { }

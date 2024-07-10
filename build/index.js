@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connect = void 0;
+exports.getMongoose = exports.connect = void 0;
 const _ = require("lodash");
 async function wireModels(mongoose) {
     async function getModel(m) {
@@ -87,5 +87,10 @@ async function connect(url, overwriteOpts) {
     return { mongoose, connection, models };
 }
 exports.connect = connect;
+async function getMongoose() {
+    const mongoose = await Promise.resolve().then(() => require("mongoose"));
+    return mongoose;
+}
+exports.getMongoose = getMongoose;
 exports.default = connect;
 //# sourceMappingURL=index.js.map

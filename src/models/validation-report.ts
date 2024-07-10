@@ -66,7 +66,6 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
-    collection: "massive_validation_report",
   });
   modelSchema.set("autoIndex", false);
 
@@ -75,7 +74,7 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
 
 export default async function ValidationReportModule(mongoose: MongooseModule) {
   const modelSchema = ValidationReportSchema(mongoose);
-  return mongoose.model<ValidationReport>("ValidationReport", modelSchema);
+  return mongoose.model<ValidationReport>("ValidationReport", modelSchema, "massive_validation_report", { overwriteModels: true });
 }
 
 export interface ValidationReportModel extends Model<ValidationReport> { }

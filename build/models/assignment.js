@@ -58,7 +58,7 @@ async function AssignmentModule(mongoose) {
             default: "",
         },
     }, {
-        collection: "massive_assignment",
+        autoIndex: false,
     });
     modelSchema.set("autoIndex", false);
     modelSchema.virtual("id").get(function () {
@@ -68,7 +68,7 @@ async function AssignmentModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
-    return mongoose.model("Assignment", modelSchema);
+    return mongoose.model("Assignment", modelSchema, "massive_assignment", { overwriteModels: true });
 }
 exports.default = AssignmentModule;
 //# sourceMappingURL=assignment.js.map

@@ -43,7 +43,6 @@ async function CADIncidentBlockModule(mongoose) {
             default: [],
         }
     }, {
-        collection: "massive_cad_incident_block",
         timestamps: true,
         autoIndex: false,
         toJSON: {
@@ -56,7 +55,7 @@ async function CADIncidentBlockModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return mongoose.model("CADIncidentBlock", modelSchema);
+    return mongoose.model("CADIncidentBlock", modelSchema, "massive_cad_incident_block", { overwriteModels: true });
 }
 exports.default = CADIncidentBlockModule;
 //# sourceMappingURL=cad-incident-block.js.map

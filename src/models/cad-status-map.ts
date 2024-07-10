@@ -72,11 +72,10 @@ export default async function CADStatusMapModule(mongoose: MongooseModule) {
       type: Date,
     },
   }, {
-    collection: "massive_cad_status_map",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CADStatusMap>("CADStatusMap", modelSchema);
+  return mongoose.model<CADStatusMap>("CADStatusMap", modelSchema, "massive_cad_status_map", { overwriteModels: true });
 }
 
 export interface CADStatusMapModel extends Model<CADStatusMap> { }

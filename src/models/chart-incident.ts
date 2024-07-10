@@ -13,7 +13,7 @@ interface ChartItemType {
 }
 export interface ChartIncident {
   _id: Types.ObjectId,
-  id?:string,
+  id?: string,
   dateAt: Date,
   departmentId: string,
   count: number,
@@ -61,7 +61,6 @@ export default async function ChartIncidentModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_chart_incident",
   });
   modelSchema.set("autoIndex", false);
 
@@ -77,7 +76,7 @@ export default async function ChartIncidentModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<ChartIncident>("ChartIncident", modelSchema);
+  return mongoose.model<ChartIncident>("ChartIncident", modelSchema, "massive_chart_incident", { overwriteModels: true });
 }
 
 export interface ChartIncidentModel extends Model<ChartIncident> { }

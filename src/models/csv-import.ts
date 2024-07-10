@@ -84,11 +84,10 @@ export default async function CSVImportModule(mongoose: MongooseModule) {
       default: false
     },
   }, {
-    collection: "massive_csv_import",
   });
   modelSchema.set("autoIndex", false);
 
-  return mongoose.model<CSVImport>("CSVImport", modelSchema);
+  return mongoose.model<CSVImport>("CSVImport", modelSchema, "massive_csv_import", { overwriteModels: true });
 }
 
 export interface CSVImportModel extends Model<CSVImport> { }

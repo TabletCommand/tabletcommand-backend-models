@@ -1362,7 +1362,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       default: IntterraConfigDefault,
     },
   }, {
-    collection: "massive_admin",
   });
 
   modelSchema.set("autoIndex", false);
@@ -1382,7 +1381,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return mongoose.model<Department>("Department", modelSchema);
+  return mongoose.model<Department>("Department", modelSchema, "massive_admin", { overwriteModels: true });
 }
 
 export interface DepartmentModel extends Model<Department> { }

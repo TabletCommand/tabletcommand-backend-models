@@ -118,15 +118,14 @@ function AgencySchema(mongoose) {
             default: 0,
         },
     }, {
-        collection: "massive_agency",
+        autoIndex: false,
     });
-    modelSchema.set("autoIndex", false);
     return modelSchema;
 }
 exports.AgencySchema = AgencySchema;
 async function AgencyModule(mongoose) {
     const modelSchema = AgencySchema(mongoose);
-    return mongoose.model("Agency", modelSchema);
+    return mongoose.model("Agency", modelSchema, "massive_agency", { overwriteModels: true });
 }
 exports.default = AgencyModule;
 //# sourceMappingURL=agency.js.map
