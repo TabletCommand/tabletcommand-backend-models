@@ -42,29 +42,25 @@
     "userackcomment",
     "usercomment",
     "virtuals",
+    "TCIOS",
     "zonehaven"
   ],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
   // For example "hte" should be "the"
-  "flagWords": [
-    "hte"
-  ],
+  "flagWords": ["hte"],
   "ignoreWords": [],
-  "languageSettings": [{
-    "languageId": "*",
-    "dictionaries": []
-  }],
+  "languageSettings": [
+    {
+      "languageId": "*",
+      "dictionaries": []
+    }
+  ],
   "files": [
     // "README.md",
     ".buildkite/**",
     "src/**"
     // "test/**"
   ],
-  "ignorePaths": [
-    "node_modules",
-    "build",
-    "src/test",
-    "/project-words.txt",
-  ]
+  "ignorePaths": ["node_modules", "build", "src/test", "/project-words.txt"]
 }
