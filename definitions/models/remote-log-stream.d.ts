@@ -4,6 +4,7 @@ export declare function RemoteLogStreamModule(mongoose: MongooseModule): Promise
     _id: import("mongoose").Types.ObjectId;
     departmentId: string;
     userId: string;
+    isCADRequest: boolean;
     session: string;
     requestId: string;
     requested: string;
@@ -11,6 +12,7 @@ export declare function RemoteLogStreamModule(mongoose: MongooseModule): Promise
     uuid: string;
     createdAt: string;
     updatedAt: string;
+    status: string;
     message: string;
     manifest: string[];
     userAgent: string;

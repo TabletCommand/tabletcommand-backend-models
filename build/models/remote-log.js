@@ -61,6 +61,10 @@ async function RemoteLogModule(mongoose) {
             type: String,
             default: "",
         },
+        isCADRequest: {
+            type: Boolean,
+            default: false,
+        },
         session: {
             type: String,
             default: "",

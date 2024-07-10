@@ -61,6 +61,10 @@ async function RemoteLogStreamModule(mongoose) {
             type: String,
             default: "",
         },
+        isCADRequest: {
+            type: Boolean,
+            default: false,
+        },
         session: {
             type: String,
             default: "",
@@ -87,6 +91,10 @@ async function RemoteLogStreamModule(mongoose) {
         updatedAt: {
             type: Date,
             default: helpers_1.currentDate,
+        },
+        status: {
+            type: String,
+            default: "", // local, uploading, synced (uploaded to a remote storage) 
         },
         // Formerly message.title
         message: {

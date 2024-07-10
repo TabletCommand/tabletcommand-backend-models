@@ -4,6 +4,7 @@ export declare function RemoteLogModule(mongoose: MongooseModule): Promise<impor
     _id: import("mongoose").Types.ObjectId;
     departmentId: string;
     userId: string;
+    isCADRequest: boolean;
     session: string;
     requestId: string;
     active: boolean;
