@@ -5,6 +5,7 @@
     "declarationMap": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "newLine": "lf",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
