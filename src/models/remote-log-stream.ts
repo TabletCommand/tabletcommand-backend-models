@@ -9,51 +9,14 @@ import {
   currentDate,
 } from "../helpers";
 
+import RemoteFileSchema from "./schema/remote-file";
+
 export async function RemoteLogStreamModule(mongoose: MongooseModule) {
   const { Schema, Types } = mongoose;
 
-  const FileSchema = createSchema(Schema, {
-    originalName: {
-      type: String,
-      default: "", // e.g database.sqlite
-    },
-    encoding: {
-      type: String,
-      default: "", // e.g utf8
-    },
-    mimeType: {
-      type: String,
-      default: "", // e.g application/text
-    },
-    fieldname: {
-      type: String,
-      default: "", // e.g "database" or "logs"
-    },
-    localPath: {
-      type: String,
-      default: "", // e.g /tmp/some/path
-    },
-    remotePath: {
-      type: String,
-      default: "", // e.g https://google.com?
-    },
-    hostname: {
-      type: String,
-      default: "", // e.g ip-10-6-56-205.ca-central-1.compute.internal
-    },
-    size: {
-      type: Number,
-      default: 0,
-    },
-    received: {
-      type: Date,
-      default: currentDate,
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
+  const RemoteFile = RemoteFileSchema(mongoose);
 
+  // This is almost identical to RemoteLog
   const modelSchema = createSchema(Schema, {
     _id: {
       type: Types.ObjectId,
@@ -125,7 +88,16 @@ export async function RemoteLogStreamModule(mongoose: MongooseModule) {
       default: "",
     },
     file: {
-      type: FileSchema,
+      type: RemoteFile,
+    },
+    // Google Drive
+    remoteFolderPath: {
+      type: String,
+      default: "", // e.g https://drive.google.com/drive/folders/1efgEFG
+    },
+    remoteFolderId: {
+      type: String,
+      default: "", // e.g 1efgEFG
     },
   }, {
     autoIndex: false,

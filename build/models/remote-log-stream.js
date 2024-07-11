@@ -3,49 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RemoteLogStreamModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
+const remote_file_1 = require("./schema/remote-file");
 async function RemoteLogStreamModule(mongoose) {
     const { Schema, Types } = mongoose;
-    const FileSchema = (0, helpers_1.createSchema)(Schema, {
-        originalName: {
-            type: String,
-            default: "", // e.g database.sqlite
-        },
-        encoding: {
-            type: String,
-            default: "", // e.g utf8
-        },
-        mimeType: {
-            type: String,
-            default: "", // e.g application/text
-        },
-        fieldname: {
-            type: String,
-            default: "", // e.g "database" or "logs"
-        },
-        localPath: {
-            type: String,
-            default: "", // e.g /tmp/some/path
-        },
-        remotePath: {
-            type: String,
-            default: "", // e.g https://google.com?
-        },
-        hostname: {
-            type: String,
-            default: "", // e.g ip-10-6-56-205.ca-central-1.compute.internal
-        },
-        size: {
-            type: Number,
-            default: 0,
-        },
-        received: {
-            type: Date,
-            default: helpers_1.currentDate,
-        },
-    }, {
-        _id: false,
-        id: false,
-    });
+    const RemoteFile = (0, remote_file_1.default)(mongoose);
+    // This is almost identical to RemoteLog
     const modelSchema = (0, helpers_1.createSchema)(Schema, {
         _id: {
             type: Types.ObjectId,
@@ -117,7 +79,16 @@ async function RemoteLogStreamModule(mongoose) {
             default: "",
         },
         file: {
-            type: FileSchema,
+            type: RemoteFile,
+        },
+        // Google Drive
+        remoteFolderPath: {
+            type: String,
+            default: "", // e.g https://drive.google.com/drive/folders/1efgEFG
+        },
+        remoteFolderId: {
+            type: String,
+            default: "", // e.g 1efgEFG
         },
     }, {
         autoIndex: false,

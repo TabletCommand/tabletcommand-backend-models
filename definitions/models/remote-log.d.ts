@@ -37,7 +37,7 @@ export declare function RemoteLogModule(mongoose: MongooseModule): Promise<impor
             type: StringConstructor;
             default: string;
         };
-        remotePath: {
+        remoteFilePath: {
             type: StringConstructor;
             default: string;
         };
@@ -54,6 +54,8 @@ export declare function RemoteLogModule(mongoose: MongooseModule): Promise<impor
             default: typeof currentDate;
         };
     }>[];
+    remoteFolderPath: string;
+    remoteFolderId: string;
 }, {}> & {
     __methods?: unknown;
 }>;
