@@ -82,7 +82,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: string;
         };
     }>;
-    incidentVehicleStatusEnabled: boolean;
     incidentVehicleStatus: import("../helpers").MongooseInterface<{
         enabled: {
             type: BooleanConstructor;

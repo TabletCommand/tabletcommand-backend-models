@@ -1123,10 +1123,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: SimpleSenseConfig,
       default: SimpleSenseConfigDefault,
     },
-    incidentVehicleStatusEnabled: {
-      type: Boolean,
-      default: false
-    },
     incidentVehicleStatus: {
       type: IncidentVehicleStatusConfig,
     },
