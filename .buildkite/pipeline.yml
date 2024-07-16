@@ -1,14 +1,4 @@
 steps:
-  - input: "Synced with mongoose 7.X branch"
-    fields:
-      - select: "Choice"
-        required: true
-        key: "sync_option"
-        options:
-          - label: "Yes"
-            value: "yes"
-          - label: "No"
-            value: "no"
   - command: "bash test.sh"
     label: ":hammer: Test"
     env:
