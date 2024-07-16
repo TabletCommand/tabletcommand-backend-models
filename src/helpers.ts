@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
+import mongoose, { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
@@ -123,4 +123,20 @@ type Conditions<T> = {
 };
 export function conditions<T extends import("mongoose").Document>(items: import("mongoose").Model<T>, c: Or<Conditions<T>>) {
   return c;
+}
+
+export async function getMongoose() {
+  return mongoose;
+}
+
+export async function disconnectMongoose() {
+  return mongoose.disconnect();
+}
+
+export async function closeMongooseConnections() {
+  if (mongoose.connections.length) {
+    for (const connection of mongoose.connections) {
+      await connection.close();
+    }
+  }
 }

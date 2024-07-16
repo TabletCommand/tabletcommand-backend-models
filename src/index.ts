@@ -140,11 +140,6 @@ export async function connect(url: string, overwriteOpts?: ConnectOptions) {
   return { mongoose, connection, models };
 }
 
-export async function getMongoose() {
-  const mongoose = await import("mongoose");
-  return mongoose;
-}
-
 type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
 export type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
 export type MongooseTypes = MongooseModule;

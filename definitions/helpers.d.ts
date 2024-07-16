@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
+import mongoose, { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
 export declare type MongooseModule = typeof import("mongoose");
 export declare type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
 export declare type MongooseSchema<T = any> = Schema<T>;
@@ -105,5 +105,8 @@ declare type Conditions<T> = {
     [P in NonFunctionKeys<T>]?: T[P] | PropConditions<T[P]>;
 };
 export declare function conditions<T extends import("mongoose").Document>(items: import("mongoose").Model<T>, c: Or<Conditions<T>>): Or<Conditions<T>>;
+export declare function getMongoose(): Promise<typeof mongoose>;
+export declare function disconnectMongoose(): Promise<void>;
+export declare function closeMongooseConnections(): Promise<void>;
 export {};
 //# sourceMappingURL=helpers.d.ts.map

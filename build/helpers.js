@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.conditions = exports.convertToObjectId = exports.currentDate = exports.retrieveCurrentUnixTime = exports.createSchema = exports.createSchemaDefinition = void 0;
+exports.closeMongooseConnections = exports.disconnectMongoose = exports.getMongoose = exports.conditions = exports.convertToObjectId = exports.currentDate = exports.retrieveCurrentUnixTime = exports.createSchema = exports.createSchemaDefinition = void 0;
 const mongoose_1 = require("mongoose");
 function createSchemaDefinition(c) {
     return c;
@@ -33,4 +33,20 @@ function conditions(items, c) {
     return c;
 }
 exports.conditions = conditions;
+async function getMongoose() {
+    return mongoose_1.default;
+}
+exports.getMongoose = getMongoose;
+async function disconnectMongoose() {
+    return mongoose_1.default.disconnect();
+}
+exports.disconnectMongoose = disconnectMongoose;
+async function closeMongooseConnections() {
+    if (mongoose_1.default.connections.length) {
+        for (const connection of mongoose_1.default.connections) {
+            await connection.close();
+        }
+    }
+}
+exports.closeMongooseConnections = closeMongooseConnections;
 //# sourceMappingURL=helpers.js.map

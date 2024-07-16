@@ -233,7 +233,6 @@ export declare function connect(url: string, overwriteOpts?: ConnectOptions): Pr
         }>, any>;
     };
 }>;
-export declare function getMongoose(): Promise<typeof import("mongoose")>;
 declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
 export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
 export declare type MongooseTypes = MongooseModule;

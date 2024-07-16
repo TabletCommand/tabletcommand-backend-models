@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMongoose = exports.connect = exports.LocationSource = exports.LocationKindType = void 0;
+exports.connect = exports.LocationSource = exports.LocationKindType = void 0;
 const _ = require("lodash");
 const constants_1 = require("./constants");
 Object.defineProperty(exports, "LocationKindType", { enumerable: true, get: function () { return constants_1.LocationKindType; } });
@@ -92,10 +92,5 @@ async function connect(url, overwriteOpts) {
     return { mongoose, connection, models };
 }
 exports.connect = connect;
-async function getMongoose() {
-    const mongoose = await Promise.resolve().then(() => require("mongoose"));
-    return mongoose;
-}
-exports.getMongoose = getMongoose;
 exports.default = connect;
 //# sourceMappingURL=index.js.map
