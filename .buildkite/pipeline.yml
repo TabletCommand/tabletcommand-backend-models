@@ -1,4 +1,12 @@
 steps:
+  - input: "Reminder to sync with new mongoose branch."
+    fields:
+      - select: "Unblock Build"
+        required: true
+        key: "sync_option"
+        options:
+          - label: "Unblock"
+            value: "unblock"
   - command: "bash test.sh"
     label: ":hammer: Test"
     env:
