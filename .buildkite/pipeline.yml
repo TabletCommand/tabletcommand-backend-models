@@ -13,4 +13,3 @@ steps:
     label: ":hammer: Test"
     env:
       NODE_TEST_DATABASE: "models"
-    if: $(buildkite-agent meta-data get sync_option) == "yes" || $(buildkite-agent meta-data get sync_option) == "no"
