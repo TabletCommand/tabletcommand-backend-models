@@ -3,6 +3,7 @@ steps:
     fields:
       - select: "Choice"
         required: true
+        key: "sync-option"
         options:
           - label: "Yes"
             value: "yes"
