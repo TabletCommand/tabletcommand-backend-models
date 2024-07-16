@@ -3,7 +3,7 @@ steps:
     fields:
       - select: "Choice"
         required: true
-        key: "sync-option"
+        key: "sync_option"
         options:
           - label: "Yes"
             value: "yes"
@@ -13,4 +13,4 @@ steps:
     label: ":hammer: Test"
     env:
       NODE_TEST_DATABASE: "models"
-    if: $(buildkite-agent meta-dataget sync-option) == "yes" || $(buildkite-agent meta-dataget sync-option) == "no"
+    if: build.env("BUILDKITE_BUILD_USER_INPUT_sync_option") == "yes" || build.env("BUILDKITE_BUILD_USER_INPUT_sync_option") == "no"
