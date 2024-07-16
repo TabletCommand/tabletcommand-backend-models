@@ -3,12 +3,16 @@
 const assert = require("chai").assert;
 const _ = require("lodash");
 
-const mongoose = require('mongoose');
+const m = require("..");
+const config = require("./config");
 
-describe("ArcGISGroup", function () {
-  const models = mongoose.models;
-  let mock;
-  beforeEach(async function () {
+describe("ArcGISGroup", function() {
+  let models, mongoose, mock;
+
+  beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
     mock = require("./mock")({
       models,
       mongoose,
@@ -16,7 +20,11 @@ describe("ArcGISGroup", function () {
     await mock.cleanup();
   });
 
-  it("is saved", async function () {
+  afterEach(function() {
+    mongoose.disconnect();
+  });
+
+  it("is saved", async function() {
     const testItem = mock.arcGISGroup;
     assert.isObject(testItem);
     const item = new models.ArcGISGroup(testItem);

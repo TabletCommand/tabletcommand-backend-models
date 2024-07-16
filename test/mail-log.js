@@ -1,42 +1,48 @@
 "use strict";
 
 const assert = require("chai").assert;
-const mongoose = require('mongoose');
-describe("MailLog", function () {
-  let models = mongoose.models;
-  let testItem;
-  beforeEach(async function () {
 
+const m = require("..");
+const config = require("./config");
+
+describe("MailLog", function() {
+  let models, mongoose;
+  let testItem;
+  beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.mailLog;
   });
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
+  it("is saved", async function() {
+    const item = new models.MailLog(testItem);
+    const sut = await item.save();
 
-  it("is saved", function () {
-    var item = new models.MailLog(testItem);
-    item.save().then((ress) => {
-
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.mailId, ress.mailId);
-      assert.equal(testItem.event, ress.event);
-      assert.equal(testItem.timestamp, ress.timestamp);
-      assert.equal(testItem.recipient, ress.recipient);
-      assert.equal(testItem.recipientDomain, ress.recipientDomain);
-      assert.equal(testItem.tags[0], ress.tags[0]);
-      assert.equal(testItem.deliveryStatus, ress.deliveryStatus);
-      assert.equal(testItem.message, ress.message);
-      assert.equal(testItem.deliveryStatus, ress.deliveryStatus);
-      assert.equal(testItem.flags, ress.flags);
-      assert.equal(testItem.envelope, ress.envelope);
-      assert.equal(testItem.logLevel, ress.logLevel);
-      assert.equal(testItem.reason, ress.reason);
-      assert.equal(testItem.severity, ress.severity);
-      const expectedDate = new Date().valueOf() / 1000.0;
-      const timeDelta = expectedDate - ress.modified_unix_date;
-      assert.isTrue(timeDelta < 1);
-    }).catch((err) => { assert.isNull(err, "Should not err"); });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.mailId, sut.mailId);
+    assert.equal(testItem.event, sut.event);
+    assert.equal(testItem.timestamp, sut.timestamp);
+    assert.equal(testItem.recipient, sut.recipient);
+    assert.equal(testItem.recipientDomain, sut.recipientDomain);
+    assert.equal(testItem.tags[0], sut.tags[0]);
+    assert.equal(testItem.deliveryStatus, sut.deliveryStatus);
+    assert.equal(testItem.message, sut.message);
+    assert.equal(testItem.deliveryStatus, sut.deliveryStatus);
+    assert.equal(testItem.flags, sut.flags);
+    assert.equal(testItem.envelope, sut.envelope);
+    assert.equal(testItem.logLevel, sut.logLevel);
+    assert.equal(testItem.reason, sut.reason);
+    assert.equal(testItem.severity, sut.severity);
+    const expectedDate = new Date().valueOf() / 1000.0;
+    const timeDelta = expectedDate - sut.modified_unix_date;
+    assert.isTrue(timeDelta < 1);
   });
 });

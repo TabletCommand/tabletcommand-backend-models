@@ -1,49 +1,56 @@
 "use strict";
 
 const assert = require("chai").assert;
-const mongoose = require('mongoose');
-describe("UserDevice", function () {
-  let models = mongoose.models;
-  let testItem;
-  beforeEach(async function () {
 
+const m = require("..");
+const config = require("./config");
+
+describe("UserDevice", function() {
+  let models, mongoose;
+  let testItem;
+  beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.userDevice;
   });
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
-
-  it("is saved", async function () {
+  it("is saved", async function() {
     const item = new models.UserDevice(testItem);
-    const ress = await item.save();
+    const sut = await item.save();
 
     assert.isNotNull(testItem._id);
-    assert.equal(ress.id, ress._id);
-    assert.equal(testItem.userId, ress.userId);
-    assert.equal(testItem.departmentId, ress.departmentId);
-    assert.equal(ress.devices.length, 1);
-    assert.equal(testItem.devices[0].token, ress.devices[0].token);
-    assert.equal(testItem.devices[0].env, ress.devices[0].env);
-    assert.equal(testItem.devices[0].ua, ress.devices[0].ua);
-    assert.equal(testItem.devices[0].time, ress.devices[0].time);
-    assert.equal(testItem.devices[0].drift, ress.devices[0].drift);
-    assert.equal(testItem.devices[0].bundleIdentifier, ress.devices[0].bundleIdentifier);
-    assert.equal(testItem.devices[0].silentEnabled, ress.devices[0].silentEnabled);
-    assert.equal(testItem.devices[0].criticalAlertsEnabled, ress.devices[0].criticalAlertsEnabled);
-    assert.equal(testItem.devices[0].session, ress.devices[0].session);
-    assert.equal(testItem.devices[0].active, ress.devices[0].active);
-    assert.equal(testItem.devices[0].offDuty, ress.devices[0].offDuty);
-    assert.equal(testItem.notificationCount, ress.notificationCount);
-    assert.equal(JSON.stringify(testItem.notificationIncidentSettings[0]), JSON.stringify(ress.notificationIncidentSettings[0]));
-    assert.equal(JSON.stringify(testItem.notificationUnitSettings[0]), JSON.stringify(ress.notificationUnitSettings[0]));
+    assert.equal(sut.id, sut._id);
+    assert.equal(testItem.userId, sut.userId);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(sut.devices.length, 1);
+    assert.equal(testItem.devices[0].token, sut.devices[0].token);
+    assert.equal(testItem.devices[0].env, sut.devices[0].env);
+    assert.equal(testItem.devices[0].ua, sut.devices[0].ua);
+    assert.equal(testItem.devices[0].time, sut.devices[0].time);
+    assert.equal(testItem.devices[0].drift, sut.devices[0].drift);
+    assert.equal(testItem.devices[0].bundleIdentifier, sut.devices[0].bundleIdentifier);
+    assert.equal(testItem.devices[0].silentEnabled, sut.devices[0].silentEnabled);
+    assert.equal(testItem.devices[0].criticalAlertsEnabled, sut.devices[0].criticalAlertsEnabled);
+    assert.equal(testItem.devices[0].session, sut.devices[0].session);
+    assert.equal(testItem.devices[0].active, sut.devices[0].active);
+    assert.equal(testItem.devices[0].offDuty, sut.devices[0].offDuty);
+    assert.equal(testItem.notificationCount, sut.notificationCount);
+    assert.equal(JSON.stringify(testItem.notificationIncidentSettings[0]), JSON.stringify(sut.notificationIncidentSettings[0]));
+    assert.equal(JSON.stringify(testItem.notificationUnitSettings[0]), JSON.stringify(sut.notificationUnitSettings[0]));
     assert.equal(testItem.offDuty, true);
     assert.equal(testItem.criticalAlertsVolume, "MED");
 
-    assert.isObject(ress.notificationSounds);
-    assert.deepEqual(ress.notificationSounds, item.notificationSounds);
-    assert.isObject(ress.notificationSounds.ios);
-    assert.isObject(ress.notificationSounds.android);
+    assert.isObject(sut.notificationSounds);
+    assert.deepEqual(sut.notificationSounds, item.notificationSounds);
+    assert.isObject(sut.notificationSounds.ios);
+    assert.isObject(sut.notificationSounds.android);
   });
 });

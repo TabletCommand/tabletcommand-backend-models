@@ -1,48 +1,55 @@
 "use strict";
 
 const assert = require("chai").assert;
-const mongoose = require('mongoose');
-describe("Location", function () {
-  let models = mongoose.models;
-  let testItem;
-  beforeEach(async function () {
 
+const m = require("..");
+const config = require("./config");
+
+describe("Location", function() {
+  let models, mongoose;
+  let testItem;
+  beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.location;
   });
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
-
-  it("is saved", async function () {
+  it("is saved", async function() {
     const item = new models.Location(testItem);
-    const ress = await item.save();
+    const sut = await item.save();
     const result = await models.Location.findOne({ _id: testItem._id });
     assert.isNotNull(testItem._id);
-    assert.equal(testItem.departmentId, ress.departmentId);
-    assert.equal(testItem.userId, ress.userId);
-    assert.equal(testItem.uuid, ress.uuid);
-    assert.equal(testItem.username, ress.username);
-    assert.equal(testItem.device_type, ress.device_type);
-    assert.equal(testItem.session, ress.session);
-    assert.equal(testItem.active, ress.active);
-    assert.equal(testItem.heading, ress.heading);
-    assert.equal(testItem.locationGeoJSON.coordinates[0], ress.location.longitude);
-    assert.equal(testItem.locationGeoJSON.coordinates[1], ress.location.latitude);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.userId, sut.userId);
+    assert.equal(testItem.uuid, sut.uuid);
+    assert.equal(testItem.username, sut.username);
+    assert.equal(testItem.device_type, sut.device_type);
+    assert.equal(testItem.session, sut.session);
+    assert.equal(testItem.active, sut.active);
+    assert.equal(testItem.heading, sut.heading);
+    assert.equal(testItem.locationGeoJSON.coordinates[0], sut.location.longitude);
+    assert.equal(testItem.locationGeoJSON.coordinates[1], sut.location.latitude);
     assert.equal(testItem.locationGeoJSON.type, "Point");
-    assert.equal(testItem.locationGeoJSON.coordinates[0], ress.locationGeoJSON.coordinates[0]);
-    assert.equal(testItem.locationGeoJSON.coordinates[1], ress.locationGeoJSON.coordinates[1]);
-    assert.equal(testItem.opAreaCode, ress.opAreaCode);
-    assert.equal(testItem.opAreaName, ress.opAreaName);
-    assert.equal(testItem.shared, ress.shared);
-    assert.equal(testItem.state, ress.state);
-    assert.equal(testItem.sendToCAD, ress.sendToCAD);
-    assert.equal(testItem.color.text, ress.color.text);
-    assert.equal(testItem.color.background, ress.color.background);
-    assert.isTrue(ress.uuid !== "");
+    assert.equal(testItem.locationGeoJSON.coordinates[0], sut.locationGeoJSON.coordinates[0]);
+    assert.equal(testItem.locationGeoJSON.coordinates[1], sut.locationGeoJSON.coordinates[1]);
+    assert.equal(testItem.opAreaCode, sut.opAreaCode);
+    assert.equal(testItem.opAreaName, sut.opAreaName);
+    assert.equal(testItem.shared, sut.shared);
+    assert.equal(testItem.state, sut.state);
+    assert.equal(testItem.sendToCAD, sut.sendToCAD);
+    assert.equal(testItem.color.text, sut.color.text);
+    assert.equal(testItem.color.background, sut.color.background);
+    assert.isTrue(sut.uuid !== "");
 
-    const { longitude, latitude } = ress.location;
+    const { longitude, latitude } = sut.location;
     const maxDistance = 10000;
     const geoQuery = {
       locationGeoJSON: {

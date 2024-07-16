@@ -1,29 +1,36 @@
 "use strict";
 
 const assert = require("chai").assert;
-const mongoose = require('mongoose');
-describe("Monitor", function () {
-  let models = mongoose.models;
-  let testItem;
-  beforeEach(async function () {
 
+const m = require("..");
+const config = require("./config");
+
+describe("Monitor", function() {
+  let models, mongoose;
+  let testItem;
+  beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.monitor;
   });
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
-
-  it("is saved", async function () {
+  it("is saved", async function() {
     const item = new models.Monitor(testItem);
-    const ress = await item.save();
-    assert.isNotNull(ress._id);
+    const sut = await item.save();
+    assert.isNotNull(sut._id);
 
-    assert.equal(testItem.departmentId, ress.departmentId);
-    assert.equal(testItem.agencyId, ress.agencyId);
-    assert.equal(testItem.notificationType, ress.notificationType);
-    assert.equal(testItem.status, ress.status);
-    assert.equal(testItem.sentUnixDate, ress.sentUnixDate);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.agencyId, sut.agencyId);
+    assert.equal(testItem.notificationType, sut.notificationType);
+    assert.equal(testItem.status, sut.status);
+    assert.equal(testItem.sentUnixDate, sut.sentUnixDate);
   });
 });

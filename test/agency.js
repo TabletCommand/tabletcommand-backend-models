@@ -1,33 +1,42 @@
 "use strict";
 
 const assert = require("chai").assert;
-const mongoose = require('mongoose');
 
-describe("Agency", function () {
-  let models = mongoose.models;;
+const m = require("..");
+const config = require("./config");
+
+describe("Agency", function() {
+  let models, mongoose;
   let testItem;
-  beforeEach(async function () {
+  beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
+
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.agency;
   });
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
-  it("is saved", async function () {
+  it("is saved", async function() {
     const item = new models.Agency(testItem);
-    item.save().then((ress) => {
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, ress.departmentId);
-      assert.equal(testItem.active, ress.active);
-      assert.equal(testItem.code, ress.code);
-      assert.equal(testItem.name, ress.name);
-      assert.equal(testItem.administrators.length, 1);
-      assert.equal(testItem.personnelIntegration, ress.personnelIntegration);
-      assert.equal(testItem.personnelMonitorHours, ress.personnelMonitorHours);
-      assert.equal(testItem.crossStaffing.length, 1);
-      const expectedDate = new Date().valueOf() / 1000.0;
-      const timeDelta = expectedDate - ress.modified_unix_date;
-      assert.isTrue(timeDelta < 1);
-    }).catch((err) => { assert.isNull(err, "Should not err"); });
+    const sut = await item.save();
+
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.active, sut.active);
+    assert.equal(testItem.code, sut.code);
+    assert.equal(testItem.name, sut.name);
+    assert.equal(testItem.administrators.length, 1);
+    assert.equal(testItem.personnelIntegration, sut.personnelIntegration);
+    assert.equal(testItem.personnelMonitorHours, sut.personnelMonitorHours);
+    assert.equal(testItem.crossStaffing.length, 1);
+    const expectedDate = new Date().valueOf() / 1000.0;
+    const timeDelta = expectedDate - sut.modified_unix_date;
+    assert.isTrue(timeDelta < 1);
   });
 });

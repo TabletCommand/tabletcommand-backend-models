@@ -3,12 +3,16 @@
 const _ = require("lodash");
 const assert = require("chai").assert;
 
-const mongoose = require('mongoose');
+const m = require("..");
+const config = require("./config");
 
 describe("CADIncidentBlock", function() {
-  let models = mongoose.models;
+  let models, mongoose;
   let testItem;
   beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
@@ -16,22 +20,24 @@ describe("CADIncidentBlock", function() {
     testItem = mock.cadIncidentBlock;
     await mock.beforeEach();
   });
-
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
   it("is saved", async function() {
     const item = new models.CADIncidentBlock(testItem);
-    const ress = await item.save();
+    const sut = await item.save();
 
     assert.isNotNull(testItem._id);
-    assert.equal(ress.EntryDateTime, testItem.EntryDateTime);
-    assert.equal(ress.ClosedDateTime, testItem.ClosedDateTime);
-    assert.equal(ress.source, testItem.source);
-    assert.equal(ress.IncidentNumber, testItem.IncidentNumber);
-    assert.equal(ress.departmentId, testItem.departmentId);
-    assert.equal(ress.AgencyIncidentCallTypeDescription, testItem.AgencyIncidentCallTypeDescription);
-    assert.equal(ress.createdAt.toISOString(), new Date(testItem.createdAt).toISOString());
-    assert.equal(ress.ReportNumber.length, 1);
-    const rn = _.first(ress.ReportNumber);
+    assert.equal(sut.EntryDateTime, testItem.EntryDateTime);
+    assert.equal(sut.ClosedDateTime, testItem.ClosedDateTime);
+    assert.equal(sut.source, testItem.source);
+    assert.equal(sut.IncidentNumber, testItem.IncidentNumber);
+    assert.equal(sut.departmentId, testItem.departmentId);
+    assert.equal(sut.AgencyIncidentCallTypeDescription, testItem.AgencyIncidentCallTypeDescription);
+    assert.equal(sut.createdAt.toISOString(), new Date(testItem.createdAt).toISOString());
+    assert.equal(sut.ReportNumber.length, 1);
+    const rn = _.first(sut.ReportNumber);
     assert.equal(rn.name, "Incident");
     assert.equal(rn.number, "CA68");
   });

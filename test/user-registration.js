@@ -1,41 +1,46 @@
 "use strict";
 
 const assert = require("chai").assert;
-const mongoose = require('mongoose');
-describe("UserRegistration", function () {
-  let models = mongoose.models;
-  let testItem;
-  beforeEach(async function () {
 
+const m = require("..");
+const config = require("./config");
+
+describe("UserRegistration", function() {
+  let models, mongoose;
+  let testItem;
+  beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.userRegistration;
   });
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
-
-  it("is saved", function () {
+  it("is saved", async function() {
     const item = new models.UserRegistration(testItem);
-    item.save().then((ress) => {
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(ress.id, ress._id);
-      assert.equal(testItem.email, ress.email);
-      assert.equal(testItem.name, ress.name);
-      assert.equal(testItem.firstName, ress.firstName);
-      assert.equal(testItem.lastName, ress.lastName);
-      assert.equal(testItem.department, ress.department);
-      assert.equal(testItem.title, ress.title);
-      assert.equal(testItem.modifiedDate, ress.modifiedDate);
-      assert.equal(testItem.stage, ress.stage);
-      assert.equal(testItem.presentedAt, ress.presentedAt);
-      assert.equal(testItem.managedIncidentsCount, ress.managedIncidentsCount);
-      assert.equal(testItem.checklistsCount, ress.checklistsCount);
-      assert.equal(testItem.firstIncidentUnixTime, ress.firstIncidentUnixTime);
-      assert.equal(testItem.lastIncidentLocation, ress.lastIncidentLocation);
-      assert.equal(testItem.lastIncidentUnixTime, ress.lastIncidentUnixTime);
-
-    }).catch((err) => { assert.isNull(err, "Should not err"); });
+    assert.isNotNull(testItem._id);
+    assert.equal(sut.id, sut._id);
+    assert.equal(testItem.email, sut.email);
+    assert.equal(testItem.name, sut.name);
+    assert.equal(testItem.firstName, sut.firstName);
+    assert.equal(testItem.lastName, sut.lastName);
+    assert.equal(testItem.department, sut.department);
+    assert.equal(testItem.title, sut.title);
+    assert.equal(testItem.modifiedDate, sut.modifiedDate);
+    assert.equal(testItem.stage, sut.stage);
+    assert.equal(testItem.presentedAt, sut.presentedAt);
+    assert.equal(testItem.managedIncidentsCount, sut.managedIncidentsCount);
+    assert.equal(testItem.checklistsCount, sut.checklistsCount);
+    assert.equal(testItem.firstIncidentUnixTime, sut.firstIncidentUnixTime);
+    assert.equal(testItem.lastIncidentLocation, sut.lastIncidentLocation);
+    assert.equal(testItem.lastIncidentUnixTime, sut.lastIncidentUnixTime);
   });
 });

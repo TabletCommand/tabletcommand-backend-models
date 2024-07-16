@@ -2,33 +2,37 @@
 
 const assert = require("chai").assert;
 
-const mongoose = require('mongoose');
+const m = require("..");
+const config = require("./config");
 
 describe("CADStatusMap", function() {
-  let models = mongoose.models;
+  let models, mongoose;
   let testItem;
   beforeEach(async function() {
+    const c = await m.connect(config.url);
+    models = c.models;
+    mongoose = c.mongoose;
 
     const mock = require("./mock")({
       mongoose
     });
     testItem = mock.cadStatusMap;
   });
+  afterEach(function() {
+    mongoose.disconnect();
+  });
 
-
-  it("is saved", function() {
+  it("is saved", async function() {
     const item = new models.CADStatusMap(testItem);
-    item.save().then((ress) => {
+    const sut = await item.save();
 
-      assert.equal(testItem.departmentId, ress.departmentId);
-      assert.equal(testItem.modifiedDate, ress.modifiedDate);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.modifiedDate, sut.modifiedDate);
 
-      assert.equal(testItem.fromStatusId, ress.fromStatusId);
-      assert.equal(ress.toStatusIds.length, 1);
-      assert.equal(testItem.toStatusIds[0].statusId, ress.toStatusIds[0].statusId);
-      assert.isTrue(ress.toStatusIds[0].userEnabled);
-      assert.equal(ress.toStatusIds[0].position, 0);
-
-    }).catch((err) => { assert.isNull(err, "Should not err"); });
+    assert.equal(testItem.fromStatusId, sut.fromStatusId);
+    assert.equal(sut.toStatusIds.length, 1);
+    assert.equal(testItem.toStatusIds[0].statusId, sut.toStatusIds[0].statusId);
+    assert.isTrue(sut.toStatusIds[0].userEnabled);
+    assert.equal(sut.toStatusIds[0].position, 0);
   });
 });
