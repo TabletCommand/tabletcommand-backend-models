@@ -107,7 +107,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
     },
   }, {});
 
-  BattalionUnit.virtual("id").get(function (this: MongooseDocument) {
+  BattalionUnit.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
@@ -178,7 +178,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
     autoIndex: false,
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
@@ -192,7 +192,7 @@ export function BattalionSchema(mongoose: MongooseModule) {
 
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
-    Object.keys(ret).forEach(function (element) {
+    Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;

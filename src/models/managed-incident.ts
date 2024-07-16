@@ -713,7 +713,7 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
   });
   modelSchema.set("autoIndex", false);
 
-  modelSchema.virtual("id").get(function (this: ManagedIncident) {
+  modelSchema.virtual("id").get(function(this: ManagedIncident) {
     return this._id.toHexString();
   });
 

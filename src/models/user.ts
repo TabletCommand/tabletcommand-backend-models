@@ -16,7 +16,7 @@ interface VehicleSchemaType {
 
 export interface User extends Record<string, unknown> {
   _id: Types.ObjectId,
-  id?: string, // Coming from virtuals
+  id?: string,
   nick: string,
   email: string,
   name: string,
@@ -327,7 +327,7 @@ export function UserSchema(mongoose: MongooseModule) {
   });
 
   // NO _id on User schema?
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
 

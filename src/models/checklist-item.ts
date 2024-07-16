@@ -84,7 +84,7 @@ export function ChecklistItemSchema(mongoose: MongooseModule) {
 export default async function ChecklistItemModule(mongoose: MongooseModule) {
   const modelSchema = ChecklistItemSchema(mongoose);
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });

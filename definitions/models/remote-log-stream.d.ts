@@ -24,17 +24,7 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
 import { Model, Types } from "mongoose";
-interface FileSchemaType {
-    originalName: string;
-    encoding: string;
-    mimeType: string;
-    fieldname: string;
-    localPath: string;
-    remotePath: string;
-    hostname: string;
-    size: number;
-    received: Date;
-}
+import { RemoteFileSchemaType } from "./schema/remote-file";
 export interface RemoteLogStream extends Record<string, unknown> {
     _id: Types.ObjectId;
     departmentId: string;
@@ -52,12 +42,13 @@ export interface RemoteLogStream extends Record<string, unknown> {
     manifest: string[];
     userAgent: string;
     appVersion: string;
-    file: FileSchemaType;
+    file: RemoteFileSchemaType;
+    remoteFolderPath: string;
+    remoteFolderId: string;
 }
 export default function RemoteLogStreamModule(mongoose: MongooseModule): Promise<Model<RemoteLogStream, {}, {}, {}, import("mongoose").Document<unknown, {}, RemoteLogStream> & RemoteLogStream & Required<{
     _id: Types.ObjectId;
 }>, any>>;
 export interface RemoteLogStreamModel extends Model<RemoteLogStream> {
 }
-export {};
 //# sourceMappingURL=remote-log-stream.d.ts.map

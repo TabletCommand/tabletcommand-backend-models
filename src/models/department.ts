@@ -281,7 +281,6 @@ export interface Department extends Record<string, unknown> {
   firstArriving: FirstArrivingConfigType,
   simpleSenseEnabled: boolean,
   simpleSense: SimpleSenseConfigType,
-  incidentVehicleStatusEnabled: boolean,
   fireMapperEnabled: boolean,
   fireMapperRefreshInterval: number,
   fireMapperProLicenses: number,
@@ -338,6 +337,10 @@ export interface Department extends Record<string, unknown> {
   intterra: IntterraConfigType
   vehicleRadioNameIsStable: boolean,
   cadIncidentHistoryType: number[],
+  cadIncidentEventType: string[],
+  incidentVehicleStatus: IncidentVehicleStatusConfigType,
+  skymira: SkymiraConfigType,
+  skytrac: SkytracConfigType[],
 }
 
 const Mark43StatusConfigDefault = {
@@ -1459,10 +1462,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       type: SimpleSenseConfig,
       default: SimpleSenseConfigDefault,
     },
-    incidentVehicleStatusEnabled: {
-      type: Boolean,
-      default: false
-    },
     incidentVehicleStatus: {
       type: IncidentVehicleStatusConfig,
     },
@@ -1709,7 +1708,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     updatedAt: "modified",
   });
 
-  modelSchema.virtual("id").get(function (this: Department) {
+  modelSchema.virtual("id").get(function(this: Department) {
     return this._id.toHexString();
   });
 

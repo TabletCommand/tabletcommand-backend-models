@@ -129,7 +129,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
   }, {
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.virtual("id").get(function (this: Template) {
+  modelSchema.virtual("id").get(function(this: Template) {
     return this._id.toHexString();
   });
 
@@ -143,7 +143,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
 
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
-    Object.keys(ret).forEach(function (element) {
+    Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;

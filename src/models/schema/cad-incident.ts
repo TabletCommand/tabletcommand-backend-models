@@ -656,7 +656,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     // collection: "massive_incident_cad",
     // strict: false, // Because we accept all kind of data in
   });
-  modelSchema.virtual("id").get(function (this: CADIncidentSchemaType) {
+  modelSchema.virtual("id").get(function(this: CADIncidentSchemaType) {
     return this._id.toString();
   });
 
@@ -675,7 +675,7 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
   const ignoreFields: ReadonlyArray<string> = ["station", "callerNumber"];
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
-    Object.keys(ret).forEach(function (element) {
+    Object.keys(ret).forEach(function(element) {
       // Don't complain about the virtuals
       if (element === "id") {
         return;

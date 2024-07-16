@@ -4,19 +4,7 @@ import {
   currentDate,
 } from "../helpers";
 import { Model, Types } from "mongoose";
-
-interface FileSchemaType {
-  originalName: string,
-  encoding: string,
-  mimeType: string,
-  localPath: string,
-  remotePath: string,
-  size: number,
-  received: Date,
-  fieldname: string,
-  hostname: string,
-}
-
+import RemoteFileSchema, { RemoteFileSchemaType } from "./schema/remote-file";
 export interface RemoteLog {
   _id: Types.ObjectId,
   departmentId: string,
@@ -36,53 +24,15 @@ export interface RemoteLog {
   manifest: string[],
   userAgent: string,
   appVersion: string,
-  files: FileSchemaType[],
+  remoteFolderPath: string,
+  remoteFolderId: string,
+  files: RemoteFileSchemaType[],
 }
 
 export default async function RemoteLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const FileSchema = new Schema<FileSchemaType>({
-    originalName: {
-      type: String,
-      default: "", // e.g database.sqlite
-    },
-    encoding: {
-      type: String,
-      default: "", // e.g utf8
-    },
-    mimeType: {
-      type: String,
-      default: "", // e.g application/text
-    },
-    fieldname: {
-      type: String,
-      default: "", // e.g "database" or "logs"
-    },
-    localPath: {
-      type: String,
-      default: "", // e.g /tmp/some/path
-    },
-    remotePath: {
-      type: String,
-      default: "", // e.g https://google.com?
-    },
-    hostname: {
-      type: String,
-      default: "", // e.g ip-10-6-56-205.ca-central-1.compute.internal
-    },
-    size: {
-      type: Number,
-      default: 0,
-    },
-    received: {
-      type: Date,
-      default: currentDate,
-    },
-  }, {
-    _id: false,
-    id: false,
-  });
+  const RemoteFile = RemoteFileSchema(mongoose);
 
   const modelSchema = new Schema<RemoteLog>({
     _id: {
@@ -152,8 +102,17 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
       default: "",
     },
     files: {
-      type: [FileSchema],
+      type: [RemoteFile],
       default: [],
+    },
+    // Google Drive
+    remoteFolderPath: {
+      type: String,
+      default: "", // e.g https://drive.google.com/drive/folders/1efgEFG
+    },
+    remoteFolderId: {
+      type: String,
+      default: "", // e.g 1efgEFG
     },
   }, {
     autoIndex: false,

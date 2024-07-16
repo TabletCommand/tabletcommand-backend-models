@@ -213,11 +213,11 @@ export default async function LocationModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
 
-  modelSchema.virtual("location").get(function (this: { locationGeoJSON: { coordinates: number[] } } | null | undefined) {
+  modelSchema.virtual("location").get(function(this: { locationGeoJSON: { coordinates: number[] } } | null | undefined) {
     const location = {
       latitude: 0,
       longitude: 0

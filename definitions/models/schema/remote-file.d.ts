@@ -21,36 +21,24 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-import { RemoteFileSchemaType } from "./schema/remote-file";
-export interface RemoteLog {
-    _id: Types.ObjectId;
-    departmentId: string;
-    userId: string;
-    session: string;
-    active: boolean;
-    uuid: string;
-    requestId: string;
-    received: Date;
+import { MongooseModule } from "../../helpers";
+export interface RemoteFileSchemaType {
+    originalName: string;
+    encoding: string;
+    mimeType: string;
+    fieldname: string;
+    localPath: string;
+    remotePath: string;
     hostname: string;
-    status: string;
-    lastStatusChange: Date;
-    isCADRequest: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-    message: string;
-    manifest: string[];
-    userAgent: string;
-    appVersion: string;
-    remoteFolderPath: string;
-    remoteFolderId: string;
-    files: RemoteFileSchemaType[];
+    size: number;
+    received: Date;
+    remoteFilePath: string;
 }
-export default function RemoteLogModule(mongoose: MongooseModule): Promise<Model<RemoteLog, {}, {}, {}, import("mongoose").Document<unknown, {}, RemoteLog> & RemoteLog & Required<{
-    _id: Types.ObjectId;
-}>, any>>;
-export interface RemoteLogModel extends Model<RemoteLog> {
-}
-//# sourceMappingURL=remote-log.d.ts.map
+export default function RemoteFileSchema(mongoose: MongooseModule): import("mongoose").Schema<RemoteFileSchemaType, import("mongoose").Model<RemoteFileSchemaType, any, any, any, import("mongoose").Document<unknown, any, RemoteFileSchemaType> & RemoteFileSchemaType & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, RemoteFileSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<RemoteFileSchemaType>> & import("mongoose").FlatRecord<RemoteFileSchemaType> & {
+    _id: import("mongoose").Types.ObjectId;
+}>;
+//# sourceMappingURL=remote-file.d.ts.map

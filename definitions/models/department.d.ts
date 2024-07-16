@@ -84,8 +84,41 @@ interface IntterraConfigType {
     enabled: boolean;
     connections: IntterraConnectionType[];
 }
+interface SkymiraConfigType {
+    enabled: boolean;
+    token: string;
+    locationsUrl: string;
+}
+interface SkytracConfigType {
+    enabled: boolean;
+    licenseKey: string;
+    username: string;
+    secret: string;
+    serviceUrl: string;
+    configTag: string;
+}
 interface SimpleSenseConfigType {
     token: string;
+}
+interface StatusMappingObjectConfigType {
+    status: string;
+    statusCode: string;
+}
+interface StatusMappingConfigType {
+    TimeDispatched: StatusMappingObjectConfigType;
+    TimeEnroute: StatusMappingObjectConfigType;
+    TimeStaged: StatusMappingObjectConfigType;
+    TimeArrived: StatusMappingObjectConfigType;
+    TimeCleared: StatusMappingObjectConfigType;
+    TimeAtHospital: StatusMappingObjectConfigType;
+    TimePatient: StatusMappingObjectConfigType;
+    TimeTransporting: StatusMappingObjectConfigType;
+    TimeTransportComplete: StatusMappingObjectConfigType;
+}
+interface IncidentVehicleStatusConfigType {
+    enabled: boolean;
+    statusMappings: StatusMappingConfigType;
+    statusExclusions: string[];
 }
 interface FirstArrivingConfigType {
     token: string;
@@ -236,7 +269,6 @@ export interface Department extends Record<string, unknown> {
     firstArriving: FirstArrivingConfigType;
     simpleSenseEnabled: boolean;
     simpleSense: SimpleSenseConfigType;
-    incidentVehicleStatusEnabled: boolean;
     fireMapperEnabled: boolean;
     fireMapperRefreshInterval: number;
     fireMapperProLicenses: number;
@@ -293,6 +325,10 @@ export interface Department extends Record<string, unknown> {
     intterra: IntterraConfigType;
     vehicleRadioNameIsStable: boolean;
     cadIncidentHistoryType: number[];
+    cadIncidentEventType: string[];
+    incidentVehicleStatus: IncidentVehicleStatusConfigType;
+    skymira: SkymiraConfigType;
+    skytrac: SkytracConfigType[];
 }
 export default function DepartmentModule(mongoose: MongooseModule): Promise<Model<Department, {}, {}, {}, import("mongoose").Document<unknown, {}, Department> & Department & Required<{
     _id: Types.ObjectId;
