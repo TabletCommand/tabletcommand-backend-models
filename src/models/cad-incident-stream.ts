@@ -6,17 +6,10 @@ import {
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import { Types, Model } from "mongoose";
-export interface CADIncidentStream {
-  _id: Types.ObjectId,
-  id?: string,
-  uuid: string,
-  tag: string,
-  departmentId: string,
-  incidentNumber: string,
-  createdAt: Date,
-  payload: object,
-}
+import { Model } from "mongoose";
+import { CADIncidentStreamType } from "../types/cad";
+
+export interface CADIncidentStream extends CADIncidentStreamType { }
 
 export default async function CADIncidentStreamModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -24,7 +17,7 @@ export default async function CADIncidentStreamModule(mongoose: MongooseModule) 
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
 
-  const modelSchema = new Schema<CADIncidentStream>({
+  const modelSchema = new Schema<CADIncidentStreamType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -64,7 +57,7 @@ export default async function CADIncidentStreamModule(mongoose: MongooseModule) 
     }
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });

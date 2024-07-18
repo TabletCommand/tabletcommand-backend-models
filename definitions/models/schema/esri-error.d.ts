@@ -24,12 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface EsriErrorSchemaType {
-    code: number;
-    error: string;
-    error_description: string;
-    message: string;
-}
+import { EsriErrorSchemaType } from "../../types/esri";
 export default function EsriErrorSchema(mongoose: MongooseModule): import("mongoose").Schema<EsriErrorSchemaType, import("mongoose").Model<EsriErrorSchemaType, any, any, any, import("mongoose").Document<unknown, any, EsriErrorSchemaType> & EsriErrorSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, EsriErrorSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<EsriErrorSchemaType>> & import("mongoose").FlatRecord<EsriErrorSchemaType> & {

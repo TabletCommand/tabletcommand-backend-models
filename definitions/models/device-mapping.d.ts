@@ -23,28 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-export interface DeviceMapping {
-    _id: Types.ObjectId;
-    departmentId: string;
-    userId: string;
-    deviceType: string;
-    mapId: string;
-    deviceId: string;
-    location: {
-        longitude: number;
-        latitude: number;
-    };
-    modified_unix_date: number;
-    modified: Date;
-    active: boolean;
-    remoteAddress: string;
-    uuid: string;
-    note: string;
-    mapHidden: boolean;
+import { Model } from "mongoose";
+import { DeviceMappingType } from "../types/device-mapping";
+export interface DeviceMapping extends DeviceMappingType {
 }
 export default function DeviceMappingModule(mongoose: MongooseModule): Promise<Model<DeviceMapping, {}, {}, {}, import("mongoose").Document<unknown, {}, DeviceMapping> & DeviceMapping & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface DeviceMappingModel extends Model<DeviceMapping> {
 }

@@ -4,28 +4,10 @@ import {
   MongooseModule,
   currentDate,
 } from "../helpers";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
+import { PersonnelKnownType, RadioType } from "../types/personnel";
 
-interface RadioType {
-  radioName: string,
-  active: boolean,
-}
-
-export interface PersonnelKnown extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  PersonnelID: string,
-  PersonnelName: string,
-  PersonnelRank: string,
-  PersonnelWorkCode: string,
-  modified: Date,
-  departmentId: string,
-  uuid: string,
-  radios: RadioType[],
-  active: boolean,
-  jurisdiction: string,
-  agencyId: Types.ObjectId,
-  source: string,
-}
+export interface PersonnelKnown extends PersonnelKnownType, Record<string, unknown> { }
 
 export function PersonnelKnownSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -43,7 +25,7 @@ export function PersonnelKnownSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<PersonnelKnown>({
+  const modelSchema = new Schema<PersonnelKnownType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

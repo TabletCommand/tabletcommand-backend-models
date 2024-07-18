@@ -23,27 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-export interface GSTMapping {
-    _id: Types.ObjectId;
-    departmentId: string;
-    gstAgency: string;
-    deviceType: string;
-    unitId: string;
-    location: {
-        longitude: number;
-        latitude: number;
-    };
-    modified_unix_date: number;
-    modified: Date;
-    active: boolean;
-    mapHidden: boolean;
-    remoteAddress: string;
-    uuid: string;
-    note: string;
+import { Model } from "mongoose";
+import { GSTMappingType } from "../types/gst-mapping";
+export interface GSTMapping extends GSTMappingType {
 }
 export default function GSTMappingModule(mongoose: MongooseModule): Promise<Model<GSTMapping, {}, {}, {}, import("mongoose").Document<unknown, {}, GSTMapping> & GSTMapping & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface GSTMappingModel extends Model<GSTMapping> {
 }

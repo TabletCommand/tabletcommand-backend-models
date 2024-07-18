@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SharedSourceSchema = exports.SharedToSchema = exports.ShareReasonSchema = exports.ReportNumberSchema = exports.RecordSchema = exports.RadioChannelSchema = exports.CADPersonSchema = void 0;
 const helpers_1 = require("../../helpers");
+// Properties shared between CAD and Managed Incident
+// They are copied on iOS
 function CADPersonSchema(mongoose) {
     const { Schema } = mongoose;
     const Person = new Schema({

@@ -24,46 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface CADPersonSchemaType {
-    PersonnelID: string;
-    PersonnelName: string;
-    PersonnelRank: string;
-    PersonnelWorkCode: string;
-    PersonnelNote: string;
-}
-export interface RadioChannelSchemaType extends Record<string, unknown> {
-    name: string;
-    channel: string;
-    url: string;
-    channelDescription: string;
-}
-export interface RecordSchemaType {
-    name: string;
-    value: string;
-}
-export interface ReportNumberSchemaType {
-    name: string;
-    number: string;
-}
-export interface ShareReasonSchemaType {
-    name: string;
-    date: Date;
-}
-export interface SharedToSchemaType extends Record<string, unknown> {
-    departmentId: string;
-    name: string;
-    startAt: Date;
-    expireAt: Date;
-    active: boolean;
-    reasons: ShareReasonSchemaType[];
-}
-export interface SharedSourceSchemaType extends Record<string, unknown> {
-    name: string;
-    isExternal: boolean;
-    startAt?: Date;
-    expireAt?: Date;
-    reasons: ShareReasonSchemaType[];
-}
+import { CADPersonSchemaType, RadioChannelSchemaType, RecordSchemaType, ReportNumberSchemaType, ShareReasonSchemaType, SharedToSchemaType, SharedSourceSchemaType } from "../../types/shared-incident";
 export declare function CADPersonSchema(mongoose: MongooseModule): import("mongoose").Schema<CADPersonSchemaType, import("mongoose").Model<CADPersonSchemaType, any, any, any, import("mongoose").Document<unknown, any, CADPersonSchemaType> & CADPersonSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, CADPersonSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<CADPersonSchemaType>> & import("mongoose").FlatRecord<CADPersonSchemaType> & {

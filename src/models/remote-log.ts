@@ -3,38 +3,18 @@ import {
   MongooseModule,
   currentDate,
 } from "../helpers";
-import { Model, Types } from "mongoose";
-import RemoteFileSchema, { RemoteFileSchemaType } from "./schema/remote-file";
-export interface RemoteLog {
-  _id: Types.ObjectId,
-  departmentId: string,
-  userId: string,
-  session: string,
-  active: boolean,
-  uuid: string,
-  requestId: string,
-  received: Date,
-  hostname: string,
-  status: string,
-  lastStatusChange: Date,
-  isCADRequest: boolean,
-  createdAt: Date,
-  updatedAt: Date
-  message: string,
-  manifest: string[],
-  userAgent: string,
-  appVersion: string,
-  remoteFolderPath: string,
-  remoteFolderId: string,
-  files: RemoteFileSchemaType[],
-}
+import { Model } from "mongoose";
+import RemoteFileSchema from "./schema/remote-file";
+import { RemoteLogType } from "../types/remote-log";
+
+export interface RemoteLog extends RemoteLogType { }
 
 export default async function RemoteLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const RemoteFile = RemoteFileSchema(mongoose);
 
-  const modelSchema = new Schema<RemoteLog>({
+  const modelSchema = new Schema<RemoteLogType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

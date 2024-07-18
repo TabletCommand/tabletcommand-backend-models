@@ -1,4 +1,4 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseDocument,
@@ -6,34 +6,10 @@ import {
   retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { EventUserType, IncidentEventType } from "../types/incident-events";
 
-interface EventUserType {
-  username: string,
-  email: string,
-  radioName: string,
-  userId: string,
-}
-export interface IncidentEvent {
-  _id: Types.ObjectId,
-  id?: string,
-  departmentId: string,
-  IncidentNumber: string,
-  modified_unix_date: number,
-  modified: Date,
-  message: string,
-  location: {
-    longitude: number,
-    latitude: number,
-  },
-  type: string,
-  user: EventUserType,
-  serverTime: number,
-  userTime: number,
-  uuid: string,
-  ref_uuid: string,
-  opts: object,
-  archived: boolean,
-}
+export interface IncidentEvent extends IncidentEventType { }
+
 export function IncidentEventSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
@@ -59,7 +35,7 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<IncidentEvent>({
+  const modelSchema = new Schema<IncidentEventType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -142,7 +118,7 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });

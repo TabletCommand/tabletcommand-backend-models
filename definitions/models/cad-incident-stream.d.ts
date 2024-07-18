@@ -23,19 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Types, Model } from "mongoose";
-export interface CADIncidentStream {
-    _id: Types.ObjectId;
-    id?: string;
-    uuid: string;
-    tag: string;
-    departmentId: string;
-    incidentNumber: string;
-    createdAt: Date;
-    payload: object;
+import { Model } from "mongoose";
+import { CADIncidentStreamType } from "../types/cad";
+export interface CADIncidentStream extends CADIncidentStreamType {
 }
 export default function CADIncidentStreamModule(mongoose: MongooseModule): Promise<Model<CADIncidentStream, {}, {}, {}, import("mongoose").Document<unknown, {}, CADIncidentStream> & CADIncidentStream & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface CADIncidentStreamModel extends Model<CADIncidentStream> {
 }

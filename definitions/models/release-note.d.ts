@@ -22,19 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface ReleaseNote extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    title: string;
-    notes: string;
-    version: string;
-    releaseDate: Date;
-    status: string;
-    modified: Date;
+import { ReleaseNoteType } from "../types/release-note";
+export interface ReleaseNote extends ReleaseNoteType, Record<string, unknown> {
 }
 export default function ReleaseNoteModule(mongoose: MongooseModule): Promise<Model<ReleaseNote, {}, {}, {}, import("mongoose").Document<unknown, {}, ReleaseNote> & ReleaseNote & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface ReleaseNoteModel extends Model<ReleaseNote> {
 }

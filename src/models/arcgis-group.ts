@@ -4,55 +4,15 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-interface ArcGISGroupUserType {
-  username: string,
-  fullName: string,
-  memberType: string,
-  orgId: string,
-}
+import {
+  ArcGISGroupUserType,
+  ArcGISUserInvitationType,
+  ArcGISDepartmentUserType,
+  ArcGISDepartmentType,
+  ArcGISGroupType
+} from "../types/arcgis-group";
 
-interface ArcGISUserInvitationType {
-  username: string,
-  atDate: Date,
-  invitedBy: string,
-}
-
-interface ArcGISDepartmentUserType {
-  username: string,
-  // TC user account email
-  email: string,
-  // TC user id
-  userId: string,
-}
-
-interface ArcGISDepartmentType {
-
-  department: string,
-  departmentId: string,
-  authUsername: string,
-  authError: string,
-  users: ArcGISDepartmentUserType[]
-
-}
-
-export interface ArcGISGroup {
-  groupId: string,
-  title: string,
-  protected: boolean
-  owner: string,
-  access: string,
-  membershipAccess: string,
-  users: ArcGISGroupUserType[]
-  outsiders: ArcGISGroupUserType[]
-  removableUsers: ArcGISGroupUserType[]
-  externalOrgIds: string[]
-  invited: ArcGISUserInvitationType[]
-  linkedDepartments: ArcGISDepartmentType[]
-  modified: Date,
-  createdBy: string,
-  runAt: Date | string,
-
-}
+export interface ArcGISGroup extends ArcGISGroupType { }
 
 export default async function ArcGISGroupModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -144,7 +104,7 @@ export default async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<ArcGISGroup>({
+  const modelSchema = new Schema<ArcGISGroupType>({
     // Unique, to be able to use replaceInto
     groupId: {
       type: String,

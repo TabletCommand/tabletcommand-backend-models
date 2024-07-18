@@ -2,28 +2,15 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
 } from "../helpers";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
+import { IncidentTakeoverType } from "../types/incident-events";
 
-export interface IncidentTakeover {
-  _id: Types.ObjectId,
-  departmentId: string,
-  uuid: string,
-  incident_id: string,
-  incident_name: string,
-  incident_number: string,
-  old_owner: string,
-  new_owner: string,
-  owner: string,
-  status: string,
-  request_time: number,
-  last_response_time: number,
-  response_time: number,
-}
+export interface IncidentTakeover extends IncidentTakeoverType { }
 
 export default async function IncidentTakeoverModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<IncidentTakeover>({
+  const modelSchema = new Schema<IncidentTakeoverType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

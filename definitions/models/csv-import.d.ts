@@ -22,28 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface CSVImport {
-    _id: Types.ObjectId;
-    batchId: string;
-    importCreated: Date;
-    importEnded: Date;
-    status: string;
-    departmentId: string;
-    agencyId: string;
-    importType: string;
-    fileType: string;
-    fileName: string;
-    fileSize: string;
-    fileLastModified: Date;
-    records: object[];
-    modifiedDate: Date;
-    userId: string;
-    sendNotification: boolean;
+import { CSVImportType } from "../types/csv-import";
+export interface CSVImport extends CSVImportType {
 }
 export default function CSVImportModule(mongoose: MongooseModule): Promise<Model<CSVImport, {}, {}, {}, import("mongoose").Document<unknown, {}, CSVImport> & CSVImport & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface CSVImportModel extends Model<CSVImport> {
 }

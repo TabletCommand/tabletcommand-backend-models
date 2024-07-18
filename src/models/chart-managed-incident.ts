@@ -1,25 +1,15 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   MongooseModule,
   MongooseDocument,
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { ChartItemType, ChartManagedIncidentType } from "../types/chart";
+
+export interface ChartManagedIncident extends ChartManagedIncidentType { }
 
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
-interface ChartItemType {
-  item: string,
-  dateAt: Date,
-}
-export interface ChartManagedIncident {
-  _id: Types.ObjectId,
-  id?: string,
-  dateAt: Date,
-  departmentId: string,
-  userId: string,
-  count: number,
-  items: ChartItemType[]
-}
 
 export default async function ChartManagedIncidentModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -38,7 +28,7 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
     id: false,
   });
 
-  const modelSchema = new Schema<ChartManagedIncident>({
+  const modelSchema = new Schema<ChartManagedIncidentType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -75,7 +65,7 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });

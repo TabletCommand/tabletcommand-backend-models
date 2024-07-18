@@ -3,31 +3,11 @@ import {
   MongooseModule,
   currentDate,
 } from "../helpers";
-import ColorModule, { ColorSchemaType } from "./schema/color";
-import { Model, Types } from "mongoose";
+import ColorModule from "./schema/color";
+import { Model } from "mongoose";
+import { MessageType, TypeSchemaType } from "../types/message";
 
-interface TypeSchemaType {
-  type: string,
-  typeOpts: object
-}
-export interface Message extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  departmentId: string,
-  userId: string,
-  session: string,
-  active: boolean,
-  uuid: string,
-  requestId: string,
-  title: string,
-  body: string,
-  actionTitle: string,
-  created: Date,
-  updated: Date,
-  color: ColorSchemaType,
-  url: string,
-  priority: number,
-  type: TypeSchemaType
-}
+export interface Message extends MessageType, Record<string, unknown> { }
 
 export default async function MessageModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -47,7 +27,7 @@ export default async function MessageModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<Message>({
+  const modelSchema = new Schema<MessageType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

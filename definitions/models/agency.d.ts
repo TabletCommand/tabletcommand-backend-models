@@ -23,53 +23,18 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { AgencyCronConfigType } from "./schema/agency-cron-config";
-import { AgencySAMLSchemaType } from "./schema/agency-saml";
-import { Model, Types } from "mongoose";
-interface AgencyLicensing extends Record<string, unknown> {
-    tcPro: number;
-    tcManager: number;
-    tcStatus: number;
-    tcMobile: number;
-    tcWeb: number;
-    fireMapperPro: number;
-    locationToCAD: number;
+import { Model } from "mongoose";
+import { AgencyType } from "../types/agency";
+export interface Agency extends AgencyType, Record<string, unknown> {
 }
-interface CrossStaffedUnitType {
-    radioName: string;
-    crossStaffedUnits: string[];
-    alwaysCrossStaff: boolean;
-}
-export interface Agency extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    code: string;
-    name: string;
-    domain: string;
-    personnelApiKey: string;
-    agencyApiKey: string;
-    uuid: string;
-    modified_unix_date: number;
-    modified: Date;
-    active: boolean;
-    departmentId: Types.ObjectId;
-    administrators: Types.ObjectId[];
-    personnelIntegration: boolean;
-    personnelMonitorHours: number;
-    crossStaffing: CrossStaffedUnitType[];
-    licensing: AgencyLicensing;
-    cronConfig: AgencyCronConfigType;
-    saml: AgencySAMLSchemaType[];
-    activeUserCount: number;
-}
-export declare function AgencySchema(mongoose: MongooseModule): import("mongoose").Schema<Agency, Model<Agency, any, any, any, import("mongoose").Document<unknown, any, Agency> & Agency & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Agency, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Agency>> & import("mongoose").FlatRecord<Agency> & Required<{
-    _id: Types.ObjectId;
+export declare function AgencySchema(mongoose: MongooseModule): import("mongoose").Schema<AgencyType, Model<AgencyType, any, any, any, import("mongoose").Document<unknown, any, AgencyType> & AgencyType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, AgencyType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<AgencyType>> & import("mongoose").FlatRecord<AgencyType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function AgencyModule(mongoose: MongooseModule): Promise<Model<Agency, {}, {}, {}, import("mongoose").Document<unknown, {}, Agency> & Agency & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface AgencyModel extends Model<Agency> {
 }
-export {};
 //# sourceMappingURL=agency.d.ts.map

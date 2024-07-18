@@ -24,23 +24,12 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface ToStatusIdType {
-    statusId: number;
-    userEnabled: boolean;
-    position: number;
-}
-export interface CADStatusMap {
-    departmentId: string;
-    modifiedDate: number;
-    modified: Date;
-    fromStatusId: number;
-    toStatusIds: ToStatusIdType[];
-    backupDate: Date;
+import { CADStatusMapType } from "../types/cad";
+export interface CADStatusMap extends CADStatusMapType {
 }
 export default function CADStatusMapModule(mongoose: MongooseModule): Promise<Model<CADStatusMap, {}, {}, {}, import("mongoose").Document<unknown, {}, CADStatusMap> & CADStatusMap & {
     _id: import("mongoose").Types.ObjectId;
 }, any>>;
 export interface CADStatusMapModel extends Model<CADStatusMap> {
 }
-export {};
 //# sourceMappingURL=cad-status-map.d.ts.map

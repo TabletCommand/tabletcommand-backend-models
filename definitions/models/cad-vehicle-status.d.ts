@@ -23,40 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
 import { Model } from "mongoose";
-interface DestinationType {
-    address: string;
-    name: string;
-}
-export interface CADVehicleStatus {
-    uuid: string;
-    departmentId: string;
-    vehicleId: string;
-    radioName: string;
-    requestTime: number;
-    responseTime: number;
-    changedAt: Date;
-    status: string;
-    statusCode: string;
-    modifiedDate: number;
-    modified: Date;
-    requestStatus: number;
-    owner: string;
-    ownerId: string;
-    incidentNumber: string;
-    options: CADStatusOptionSelectedSchemaType[];
-    capability: string;
-    locationCurrent: string;
-    locationDestination: string;
-    destination: DestinationType;
-    assignableByUser: boolean;
-    backupDate: Date;
+import { CADVehicleStatusType } from "../types/cad";
+export interface CADVehicleStatus extends CADVehicleStatusType {
 }
 export default function CADVehicleStatusModule(mongoose: MongooseModule): Promise<Model<CADVehicleStatus, {}, {}, {}, import("mongoose").Document<unknown, {}, CADVehicleStatus> & CADVehicleStatus & {
     _id: import("mongoose").Types.ObjectId;
 }, any>>;
 export interface CADVehicleStatusModel extends Model<CADVehicleStatus> {
 }
-export {};
 //# sourceMappingURL=cad-vehicle-status.d.ts.map

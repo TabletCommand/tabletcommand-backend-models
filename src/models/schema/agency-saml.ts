@@ -1,15 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-export interface AgencySAMLSchemaType extends Record<string, unknown> {
-  selector: string,
-  idp: string,
-  sp: string,
-  env: string,
-  name: string,
-  jumpPoint: string,
-}
+import { AgencySAMLSchemaType } from "../../types/agency";
 
 export default function AgencySAMLSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

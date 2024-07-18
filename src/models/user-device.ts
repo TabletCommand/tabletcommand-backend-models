@@ -1,63 +1,12 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { UnitSettingType, IncidentSettingType, DeviceSchemaType, SoundSchemaItemType, SoundSchemaType, UserDeviceType } from "../types/user";
 
-interface UnitSettingType {
-  radioName: string,
-  notificationType: string,
-  notificationMode: string,
-}
-interface IncidentSettingType {
-  incidentType: string,
-  notificationType: string,
-  notificationMode: string,
-}
-
-interface DeviceSchemaType {
-  token: string,
-  env: string,
-  ver: string,
-  ua: string,
-  time: number,
-  t: Date,
-  drift: number,
-  channelId: string,
-  bundleIdentifier: string,
-  silentEnabled: boolean,
-  criticalAlertsEnabled: boolean,
-  session: string,
-  active: boolean,
-  offDuty: boolean,
-}
-
-interface SoundSchemaItemType {
-  sound: string,
-  soundType: string,
-  os: string,
-}
-
-interface SoundSchemaType {
-  ios: SoundSchemaItemType,
-  android: SoundSchemaItemType,
-}
-
-export interface UserDevice {
-  _id: Types.ObjectId,
-  userId: string,
-  departmentId: string,
-  devices: DeviceSchemaType[],
-  notificationCount: number,
-  notificationUnitSettings: UnitSettingType[],
-  notificationIncidentSettings: IncidentSettingType[],
-  notificationSounds: SoundSchemaType
-  offDuty: boolean,
-  criticalAlertsVolume: string,
-  allowInStaging: boolean,
-  restrictedCommentsEnabled: boolean,
-}
+export interface UserDevice extends UserDeviceType { }
 
 export default async function UserDeviceModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -193,7 +142,7 @@ export default async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<UserDevice>({
+  const modelSchema = new Schema<UserDeviceType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

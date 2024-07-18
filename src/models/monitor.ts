@@ -1,27 +1,18 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { MonitorType } from "../types/monitor";
 
-export interface Monitor {
-  _id: Types.ObjectId,
-  departmentId: string,
-  agencyId: string,
-  notificationType: string,
-  status: string,
-  sentUnixDate: number,
-  sentAt: Date,
-  ticketId: string,
-  count: number,
-}
+export interface Monitor extends MonitorType { }
 
 export default async function MonitorModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<Monitor>({
+  const modelSchema = new Schema<MonitorType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

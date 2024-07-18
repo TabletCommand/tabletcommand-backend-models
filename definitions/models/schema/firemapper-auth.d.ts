@@ -24,19 +24,10 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-interface FireMapperEncryptedType {
-    iv: string;
-    encryptedData: string;
-}
-export interface FireMapperAuthType {
-    username: string;
-    encrypted: FireMapperEncryptedType;
-    encryptedAccessCode: FireMapperEncryptedType;
-}
+import { FireMapperAuthType } from "../../types/firemapper-auth";
 export default function FireMapperAuthSchema(mongoose: MongooseModule): import("mongoose").Schema<FireMapperAuthType, import("mongoose").Model<FireMapperAuthType, any, any, any, import("mongoose").Document<unknown, any, FireMapperAuthType> & FireMapperAuthType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FireMapperAuthType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FireMapperAuthType>> & import("mongoose").FlatRecord<FireMapperAuthType> & {
     _id: import("mongoose").Types.ObjectId;
 }>;
-export {};
 //# sourceMappingURL=firemapper-auth.d.ts.map

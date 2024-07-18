@@ -22,30 +22,18 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface PersonnelRoster {
-    _id: Types.ObjectId;
-    PersonnelID: string;
-    PersonnelName: string;
-    PersonnelRank: string;
-    PersonnelWorkCode: string;
-    PersonnelUUID: string;
-    departmentId: string;
-    modified: Date;
-    action: string;
-    radioName: string;
-    shiftStart: Date;
-    shiftEnd: Date;
-    active: boolean;
+import { PersonnelRosterType } from "../types/personnel";
+export interface PersonnelRoster extends PersonnelRosterType {
 }
-export declare function PersonnelRosterSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelRoster, Model<PersonnelRoster, any, any, any, import("mongoose").Document<unknown, any, PersonnelRoster> & PersonnelRoster & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelRoster, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelRoster>> & import("mongoose").FlatRecord<PersonnelRoster> & Required<{
-    _id: Types.ObjectId;
+export declare function PersonnelRosterSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelRosterType, Model<PersonnelRosterType, any, any, any, import("mongoose").Document<unknown, any, PersonnelRosterType> & PersonnelRosterType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelRosterType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelRosterType>> & import("mongoose").FlatRecord<PersonnelRosterType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function PersonnelRosterModule(mongoose: MongooseModule): Promise<Model<PersonnelRoster, {}, {}, {}, import("mongoose").Document<unknown, {}, PersonnelRoster> & PersonnelRoster & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface PersonnelRosterModel extends Model<PersonnelRoster> {
 }

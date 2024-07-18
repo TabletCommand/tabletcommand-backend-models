@@ -23,25 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-export interface Assignment extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    id: string;
-    uuid: string;
-    active: boolean;
-    userId: string;
-    departmentId: string;
-    isMandatory: boolean;
-    modified: Date;
-    modified_date: string;
-    modified_unix_date: number;
-    position: number;
-    name: string;
-    description: string;
-    full_description: string;
+import { Model } from "mongoose";
+import { AssignmentType } from "../types/assignment";
+export interface Assignment extends AssignmentType, Record<string, unknown> {
 }
 export default function AssignmentModule(mongoose: MongooseModule): Promise<Model<Assignment, {}, {}, {}, import("mongoose").Document<unknown, {}, Assignment> & Assignment & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface AssignmentModel extends Model<Assignment> {
 }

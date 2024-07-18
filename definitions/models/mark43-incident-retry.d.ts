@@ -24,31 +24,12 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface RelatedEventType {
-    mark43Id: number;
-    cadAgencyEventNumber: string;
-}
-interface RetryPayloadType {
-    departmentId: number;
-    activityType: string;
-    relatedEvent: RelatedEventType;
-}
-export interface Mark43IncidentRetry {
-    departmentId: string;
-    created: Date;
-    modified: Date;
-    active: boolean;
-    attempts: number;
-    retries: number;
-    notificationSent: boolean;
-    retryPayload: RetryPayloadType;
-    mark43IncidentId: number;
-    incidentNumber: string;
+import { Mark43IncidentRetryType } from "../types/mark43-incident-retry";
+export interface Mark43IncidentRetry extends Mark43IncidentRetryType {
 }
 export default function Mark43IncidentRetryModule(mongoose: MongooseModule): Promise<Model<Mark43IncidentRetry, {}, {}, {}, import("mongoose").Document<unknown, {}, Mark43IncidentRetry> & Mark43IncidentRetry & {
     _id: import("mongoose").Types.ObjectId;
 }, any>>;
 export interface Mark43IncidentRetryModel extends Model<Mark43IncidentRetry> {
 }
-export {};
 //# sourceMappingURL=mark43-incident-retry.d.ts.map

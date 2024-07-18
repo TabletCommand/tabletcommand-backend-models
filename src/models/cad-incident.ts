@@ -3,7 +3,10 @@ import {
   MongooseModule,
 } from "../helpers";
 
-import { CADIncidentSchema, CADIncidentSchemaType } from "./schema/cad-incident";
+import { CADIncidentSchema } from "./schema/cad-incident";
+import { CADIncidentSchemaType } from "../types/cad-incident";
+
+export interface CADIncident extends CADIncidentSchemaType, Record<string, unknown> { }
 
 export default async function CADIncidentModule(mongoose: MongooseModule) {
   const modelSchema = CADIncidentSchema(mongoose);
@@ -18,8 +21,8 @@ export default async function CADIncidentModule(mongoose: MongooseModule) {
     unique: true,
   });
 
-  return mongoose.model<CADIncidentSchemaType>("CADIncident", modelSchema, "massive_incident_cad", { overwriteModels: true });
+  return mongoose.model<CADIncident>("CADIncident", modelSchema, "massive_incident_cad", { overwriteModels: true });
 }
 
-export interface CADIncident extends CADIncidentSchemaType { }
-export interface CADIncidentModel extends Model<CADIncidentSchemaType> { }
+
+export interface CADIncidentModel extends Model<CADIncident> { }

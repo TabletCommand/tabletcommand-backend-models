@@ -23,41 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { ColorSchemaType } from "./schema/color";
 import { Model } from "mongoose";
-interface StatusOptionValueType {
-    name: string;
-    type: string;
-    visible: boolean;
-    value: string;
-    favorite: boolean;
-    position: number;
-    isDefault: boolean;
-    latitude: number;
-    longitude: number;
-    time: number;
-}
-export interface CADStatus {
-    uuid: string;
-    departmentId: string;
-    modifiedDate: number;
-    modified: Date;
-    statusId: number;
-    code: string;
-    codeDisplay: string;
-    status: string;
-    name: string;
-    normalized: string;
-    selfAssignable: boolean;
-    roaming: boolean;
-    options: StatusOptionValueType;
-    color: ColorSchemaType;
-    backupDate: Date;
+import { CADStatusType } from "../types/cad";
+export interface CADStatus extends CADStatusType {
 }
 export default function CADStatusModule(mongoose: MongooseModule): Promise<Model<CADStatus, {}, {}, {}, import("mongoose").Document<unknown, {}, CADStatus> & CADStatus & {
     _id: import("mongoose").Types.ObjectId;
 }, any>>;
 export interface CADStatusModel extends Model<CADStatus> {
 }
-export {};
 //# sourceMappingURL=cad-status.d.ts.map

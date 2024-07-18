@@ -1,11 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-export interface GeoJSONPointType {
-  type: string
-  coordinates: number[]
-}
+import { GeoJSONPointType } from "../../types/geojson-point";
 
 export default function GeoJSONPointSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

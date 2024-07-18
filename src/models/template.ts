@@ -5,35 +5,10 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime
 } from "../helpers";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
+import { ChecklistOptionType, GroupOptionType, TemplateType } from "../types/template";
 
-interface ChecklistOptionType {
-  name: string,
-  position: number,
-  id: string,
-}
-
-interface GroupOptionType {
-  name: string,
-  position: number,
-  uuid: string,
-}
-export interface Template extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  id?: string,
-  position: number,
-  userId: string,
-  uuid: string,
-  isMandatory: boolean,
-  modified_unix_date: number,
-  modified: Date,
-  departmentId: string,
-  active: boolean,
-  name: string,
-  checklist: ChecklistOptionType[],
-  group: GroupOptionType[],
-  agencyId: Types.ObjectId
-}
+export interface Template extends TemplateType, Record<string, unknown> { }
 
 export function TemplateSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -74,7 +49,7 @@ export function TemplateSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<Template>({
+  const modelSchema = new Schema<TemplateType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

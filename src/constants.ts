@@ -1,6 +1,3 @@
-// These should be converted to Typescript Enum after upgrading mongoose to 6.x or newer
-
-
 export enum LocationSource {
   CAD = "CAD",
   FleetComplete = "FleetComplete",

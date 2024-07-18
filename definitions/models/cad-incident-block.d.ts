@@ -23,21 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { ReportNumberSchemaType } from "./schema/shared-incident";
-import { Model, Types } from "mongoose";
-export interface CADIncidentBlock {
-    _id: Types.ObjectId;
-    id?: string;
-    departmentId: string;
-    source: string;
-    IncidentNumber: string;
-    AgencyIncidentCallTypeDescription: string;
-    EntryDateTime: string;
-    ClosedDateTime: string;
-    ReportNumber: ReportNumberSchemaType[];
+import { Model } from "mongoose";
+import { CADIncidentBlockType } from "../types/cad";
+export interface CADIncidentBlock extends CADIncidentBlockType {
 }
 export default function CADIncidentBlockModule(mongoose: MongooseModule): Promise<Model<CADIncidentBlock, {}, {}, {}, import("mongoose").Document<unknown, {}, CADIncidentBlock> & CADIncidentBlock & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface CADIncidentBlockModel extends Model<CADIncidentBlock> {
 }

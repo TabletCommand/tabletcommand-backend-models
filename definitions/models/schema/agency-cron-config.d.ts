@@ -24,60 +24,10 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-interface EncryptedDataType {
-    iv: string;
-    encryptedData: string;
-}
-export interface CronConfigSourceType extends Record<string, unknown> {
-    protocol: string;
-    username: string;
-    hostname: string;
-    filePath: string;
-}
-interface CronConfigAuthType {
-    password: EncryptedDataType | null;
-    sshPrivateKey: EncryptedDataType | null;
-    sshPublicKey: EncryptedDataType | null;
-    useSSHKey: boolean;
-}
-interface CronConfigCSVFieldMapType {
-    PersonnelID: string;
-    PersonnelName: string;
-    PersonnelRank: string;
-    PersonnelWorkCode: string;
-    PersonnelNote: string;
-    StartTime: string;
-    EndTime: string;
-    UnitName: string;
-    TimeFormat: string;
-}
-interface ReconcileTimeOptionsType {
-    enabled: boolean;
-    startTime: string;
-    endTime: string;
-}
-export interface AgencyCronConfigType extends Record<string, unknown> {
-    enabled: boolean;
-    source: CronConfigSourceType;
-    auth: CronConfigAuthType;
-    processPath: string;
-    completedPath: string;
-    importType: string;
-    timezone: string;
-    customApiPath: string;
-    alterChunkSize: boolean;
-    reconcileEnabled: boolean;
-    reconcileTimeOptions: ReconcileTimeOptionsType;
-    hasLabelCustomization: boolean;
-    assignmentOverride: boolean;
-    csvFieldMap: CronConfigCSVFieldMapType;
-    useAlternateId: boolean;
-    strictAgencyCodeMatch: boolean;
-}
+import { AgencyCronConfigType } from "../../types/agency";
 export default function AgencyCronSchema(mongoose: MongooseModule): import("mongoose").Schema<AgencyCronConfigType, import("mongoose").Model<AgencyCronConfigType, any, any, any, import("mongoose").Document<unknown, any, AgencyCronConfigType> & AgencyCronConfigType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, AgencyCronConfigType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<AgencyCronConfigType>> & import("mongoose").FlatRecord<AgencyCronConfigType> & {
     _id: import("mongoose").Types.ObjectId;
 }>;
-export {};
 //# sourceMappingURL=agency-cron-config.d.ts.map

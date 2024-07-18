@@ -3,30 +3,16 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import CADStatusOptionSelectedModule, { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
+import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
+import { CADVehicleStatusHistoryType } from "../types/cad";
 
-export interface CADVehicleStatusHistory {
-  departmentId: string,
-  vehicleId: string,
-  radioName: string,
-  status: string,
-  statusCode: string,
-  requestedAt: number,
-  requested: Date,
-  requestDelay: number,
-  requestedBy: string,
-  incidentNumber: string,
-  options: CADStatusOptionSelectedSchemaType[]
-  e: string,
-  locationCurrent: string,
-  locationDestination: string,
-}
+export interface CADVehicleStatusHistory extends CADVehicleStatusHistoryType { }
 
 export default async function CADVehicleStatusHistoryModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
-  const modelSchema = new Schema<CADVehicleStatusHistory>({
+  const modelSchema = new Schema<CADVehicleStatusHistoryType>({
     departmentId: {
       type: String,
       default: "",

@@ -24,12 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface CADStatusOptionSelectedSchemaType {
-    name: string;
-    type: string;
-    value: string;
-    key: string;
-}
+import { CADStatusOptionSelectedSchemaType } from "../../types/cad";
 export default function CADStatusOptionSelectedSchema(mongoose: MongooseModule): import("mongoose").Schema<CADStatusOptionSelectedSchemaType, import("mongoose").Model<CADStatusOptionSelectedSchemaType, any, any, any, import("mongoose").Document<unknown, any, CADStatusOptionSelectedSchemaType> & CADStatusOptionSelectedSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, CADStatusOptionSelectedSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<CADStatusOptionSelectedSchemaType>> & import("mongoose").FlatRecord<CADStatusOptionSelectedSchemaType> & {

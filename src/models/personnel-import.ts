@@ -1,37 +1,12 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { PersonnelImportType, RadioType } from "../types/personnel";
 
-interface RadioType {
-  radioName: string,
-  active: boolean,
-  source: string,
-}
-export interface PersonnelImport {
-  _id: Types.ObjectId,
-  PersonnelID: string,
-  PersonnelName: string,
-  PersonnelRank: string,
-  PersonnelWorkCode: string,
-  PersonnelNote: string,
-  departmentId: string,
-  radioNames: string[],
-  radios: RadioType[],
-  shiftStartTime: number,
-  shiftEndTime: number,
-  shiftStart: Date | string,
-  shiftEnd: Date | string,
-  modified_unix_date: number,
-  modified: Date,
-  active: boolean,
-  agencyName: string,
-  agencyCode: string,
-  agencyId: Types.ObjectId,
-  importNotes: string,
-}
+export interface PersonnelImport extends PersonnelImportType { }
 
 export function PersonnelImportSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -53,7 +28,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<PersonnelImport>({
+  const modelSchema = new Schema<PersonnelImportType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

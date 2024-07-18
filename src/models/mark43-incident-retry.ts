@@ -3,29 +3,9 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
+import { Mark43IncidentRetryType, RelatedEventType, RetryPayloadType } from "../types/mark43-incident-retry";
 
-interface RelatedEventType {
-  mark43Id: number,
-  cadAgencyEventNumber: string,
-}
-
-interface RetryPayloadType {
-  departmentId: number,
-  activityType: string,
-  relatedEvent: RelatedEventType
-}
-export interface Mark43IncidentRetry {
-  departmentId: string,
-  created: Date,
-  modified: Date,
-  active: boolean,
-  attempts: number,
-  retries: number,
-  notificationSent: boolean,
-  retryPayload: RetryPayloadType,
-  mark43IncidentId: number,
-  incidentNumber: string,
-}
+export interface Mark43IncidentRetry extends Mark43IncidentRetryType { }
 
 export default async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
@@ -61,7 +41,7 @@ export default async function Mark43IncidentRetryModule(mongoose: MongooseModule
     id: false,
   });
 
-  const modelSchema = new Schema<Mark43IncidentRetry>({
+  const modelSchema = new Schema<Mark43IncidentRetryType>({
     departmentId: {
       type: String,
       default: "",

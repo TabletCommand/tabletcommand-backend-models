@@ -7,32 +7,18 @@ import {
   retrieveCurrentUnixTime
 } from "../helpers";
 
-import { ChecklistItemSchema, ChecklistItem } from "./checklist-item";
-import { Model, Types } from "mongoose";
+import { ChecklistItemSchema } from "./checklist-item";
+import { Model } from "mongoose";
+import { ChecklistType } from "../types/checklist";
 
-export interface Checklist extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  id?: string,
-  position: number,
-  userId: string,
-  uuid: string,
-  isMandatory: boolean,
-  modified_date: string,
-  modified_unix_date: number,
-  modified: Date,
-  departmentId: string,
-  active: boolean,
-  name: string,
-  agencyId: Types.ObjectId
-  items: ChecklistItem[]
-}
+export interface Checklist extends ChecklistType, Record<string, unknown> { }
 
 export function ChecklistSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
   const ChecklistItem = ChecklistItemSchema(mongoose);
 
-  const modelSchema = new Schema<Checklist>({
+  const modelSchema = new Schema<ChecklistType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

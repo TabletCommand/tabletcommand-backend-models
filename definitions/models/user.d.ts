@@ -23,73 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { EsriAuthSchemaType } from "./schema/esri-auth";
-import { EsriErrorSchemaType } from "./schema/esri-error";
-import { PubNubTokenSchemaType } from "./schema/pubnub-token";
 import { Model, Types } from "mongoose";
-interface VehicleSchemaType {
-    radioName: string;
-    vehicleId: string;
+import { UserType } from "../types/user";
+export interface User extends UserType, Record<string, unknown> {
 }
-export interface User extends Record<string, unknown> {
+export declare function UserSchema(mongoose: MongooseModule): import("mongoose").Schema<UserType, Model<UserType, any, any, any, import("mongoose").Document<unknown, any, UserType> & UserType & Required<{
     _id: Types.ObjectId;
-    id?: string;
-    nick: string;
-    email: string;
-    name: string;
-    uuid: string;
-    departmentId: string;
-    modified_date: Date;
-    when: Date;
-    agencyId: Types.ObjectId;
-    managedAgencies: Types.ObjectId[];
-    active: boolean;
-    admin: boolean;
-    superuser: boolean;
-    isPro: boolean;
-    isIncidentManager: boolean;
-    mobileAccess: boolean;
-    webAccess: boolean;
-    cadSimulatorAccess: boolean;
-    canAddRemoveVehicle: boolean;
-    beaconEnabled: boolean;
-    userContributionEnabled: boolean;
-    syncLoggingExpireDate: Date;
-    beacons: string[];
-    salt: string;
-    pass: string;
-    auth: string[];
-    mapHidden: boolean;
-    mapId: string;
-    vehicle: VehicleSchemaType;
-    sessionCountiPhone: number;
-    sessionCountiPad: number;
-    rtsAuthKey: string;
-    pubNubV2: PubNubTokenSchemaType;
-    pubNubV3: PubNubTokenSchemaType;
-    socketIO: PubNubTokenSchemaType;
-    token: string;
-    tokenExpireAt: Date;
-    shareLocationPhone: boolean;
-    shareLocationTablet: boolean;
-    offlineMapsEnabled: boolean;
-    fireMapperProEnabled: boolean;
-    arcGISAuth: EsriAuthSchemaType;
-    arcGISAuthError: EsriErrorSchemaType;
-    offDutyEnabled: boolean;
-    webMapSettings: {
-        defaultZoomLevel: number;
-        defaultCenter: number[];
-        defaultMap: string;
-    };
-    locationToCAD: boolean;
-    logOffEnabled: boolean;
-    restrictedCommentsEnabled: boolean;
-    superUserReadOnly: boolean;
-}
-export declare function UserSchema(mongoose: MongooseModule): import("mongoose").Schema<User, Model<User, any, any, any, import("mongoose").Document<unknown, any, User> & User & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, User, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<User>> & import("mongoose").FlatRecord<User> & Required<{
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, UserType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<UserType>> & import("mongoose").FlatRecord<UserType> & Required<{
     _id: Types.ObjectId;
 }>>;
 export default function UserModule(mongoose: MongooseModule): Promise<Model<User, {}, {}, {}, import("mongoose").Document<unknown, {}, User> & User & Required<{
@@ -97,5 +37,4 @@ export default function UserModule(mongoose: MongooseModule): Promise<Model<User
 }>, any>>;
 export interface UserModel extends Model<User> {
 }
-export {};
 //# sourceMappingURL=user.d.ts.map

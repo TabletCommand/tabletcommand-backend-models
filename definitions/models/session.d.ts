@@ -23,26 +23,9 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { OAuthSchemaType } from "./schema/oauth";
 import { Model } from "mongoose";
-export interface Session {
-    _id: string;
-    id?: string;
-    nick: string;
-    email: string;
-    user: string;
-    active: boolean;
-    token: string;
-    source: string;
-    departmentId: string;
-    why: string;
-    when: string;
-    ended: string;
-    userAgent: string;
-    remoteAddress: string;
-    deviceId: string;
-    authSource: string;
-    oAuth: OAuthSchemaType;
+import { SessionType } from "../types/session";
+export interface Session extends SessionType {
 }
 export default function SessionModule(mongoose: MongooseModule): Promise<Model<Session, {}, {}, {}, import("mongoose").Document<unknown, {}, Session> & Session & Required<{
     _id: string;

@@ -24,18 +24,10 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-interface EsriAuthPasswordType {
-    iv: string;
-    encryptedData: string;
-}
-export interface EsriAuthSchemaType {
-    username: string;
-    encrypted: EsriAuthPasswordType;
-}
+import { EsriAuthSchemaType } from "../../types/esri";
 export default function EsriAuthSchema(mongoose: MongooseModule): import("mongoose").Schema<EsriAuthSchemaType, import("mongoose").Model<EsriAuthSchemaType, any, any, any, import("mongoose").Document<unknown, any, EsriAuthSchemaType> & EsriAuthSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, EsriAuthSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<EsriAuthSchemaType>> & import("mongoose").FlatRecord<EsriAuthSchemaType> & {
     _id: import("mongoose").Types.ObjectId;
 }>;
-export {};
 //# sourceMappingURL=esri-auth.d.ts.map

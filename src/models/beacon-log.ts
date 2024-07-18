@@ -3,21 +3,15 @@ import {
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Types, Model } from "mongoose";
+import { Model } from "mongoose";
+import { BeaconLogType } from "../types/beacon-log";
 
-export interface BeaconLog {
-  _id: Types.ObjectId,
-  departmentId: string,
-  userId: string,
-  object: object,
-  createdAt: Date,
-  modified_unix_date: number,
-}
+export interface BeaconLog extends BeaconLogType { }
 
 export default async function BeaconLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<BeaconLog>({
+  const modelSchema = new Schema<BeaconLogType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

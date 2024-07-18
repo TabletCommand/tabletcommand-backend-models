@@ -1,12 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-export interface OAuthSchemaType {
-  accessToken: string,
-  refreshToken: string,
-  expireAt: Date,
-}
+import { OAuthSchemaType } from "../../types/oauth";
 
 export default function OAuthSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

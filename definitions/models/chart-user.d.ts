@@ -22,18 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface ChartUser {
-    _id: Types.ObjectId;
-    id?: string;
-    dateAt: Date;
-    departmentId: string;
-    count: number;
-    items: string[];
+import { ChartUserType } from "../types/chart";
+export interface ChartUser extends ChartUserType {
 }
 export default function ChartUserModule(mongoose: MongooseModule): Promise<Model<ChartUser, {}, {}, {}, import("mongoose").Document<unknown, {}, ChartUser> & ChartUser & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface ChartUserModel extends Model<ChartUser> {
 }

@@ -22,28 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface MailLog {
-    _id: Types.ObjectId;
-    mailId: string;
-    event: string;
-    timestamp: number;
-    recipient: string;
-    recipientDomain: string;
-    tags: string[];
-    deliveryStatus: object;
-    message: object;
-    flags: object;
-    envelope: object;
-    logLevel: string;
-    reason: string;
-    severity: string;
-    modified_unix_date: number;
-    modified: Date;
+import { MailLogType } from "../types/mail-log";
+export interface MailLog extends MailLogType {
 }
 export default function MailLogModule(mongoose: MongooseModule): Promise<Model<MailLog, {}, {}, {}, import("mongoose").Document<unknown, {}, MailLog> & MailLog & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface MailLogModel extends Model<MailLog> {
 }

@@ -1,29 +1,11 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
+import { IncidentNotifiedType, SentItemType, UnitType } from "../types/incident-events";
 
-interface SentItemType {
-  name: string,
-  type: string,
-  date: Date,
-}
-
-interface UnitType {
-  UnitID: string,
-  UnitDispatchNumber: string,
-}
-export interface IncidentNotified {
-  _id: Types.ObjectId,
-  departmentId: string,
-  IncidentNumber: string,
-  incidentTypes: string[],
-  units: string[],
-  unitsByDispatch: UnitType[],
-  sent: SentItemType[],
-  updated: Date,
-}
+export interface IncidentNotified extends IncidentNotifiedType { }
 
 export default async function IncidentNotifiedModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -60,7 +42,7 @@ export default async function IncidentNotifiedModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<IncidentNotified>({
+  const modelSchema = new Schema<IncidentNotifiedType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

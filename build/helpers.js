@@ -1,19 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.closeMongooseConnections = exports.disconnectMongoose = exports.getMongoose = exports.conditions = exports.convertToObjectId = exports.currentDate = exports.retrieveCurrentUnixTime = exports.createSchema = exports.createSchemaDefinition = void 0;
+exports.closeAllMongooseConnections = exports.disconnectMongoose = exports.convertToObjectId = exports.conditions = exports.currentDate = exports.retrieveCurrentUnixTime = void 0;
 const mongoose_1 = require("mongoose");
-function createSchemaDefinition(c) {
-    return c;
-}
-exports.createSchemaDefinition = createSchemaDefinition;
-function createSchema(schemaCtor, p, o, methods) {
-    const schema = new schemaCtor(p, o);
-    if (methods) {
-        schema.methods = methods;
-    }
-    return schema;
-}
-exports.createSchema = createSchema;
 function retrieveCurrentUnixTime() {
     return Date.now() / 1000;
 }
@@ -22,31 +10,27 @@ function currentDate() {
     return new Date();
 }
 exports.currentDate = currentDate;
-function convertToObjectId(id) {
-    if (id) {
-        return new mongoose_1.Types.ObjectId(id);
-    }
-    return new mongoose_1.Types.ObjectId();
-}
-exports.convertToObjectId = convertToObjectId;
 function conditions(items, c) {
     return c;
 }
 exports.conditions = conditions;
-async function getMongoose() {
-    return mongoose_1.default;
+function convertToObjectId(id) {
+    if (id) {
+        return new mongoose_1.Types.ObjectId(id);
+    }
+    return new mongoose_1.Types.ObjectId(); // falback if user provides empty string
 }
-exports.getMongoose = getMongoose;
+exports.convertToObjectId = convertToObjectId;
 async function disconnectMongoose() {
     return mongoose_1.default.disconnect();
 }
 exports.disconnectMongoose = disconnectMongoose;
-async function closeMongooseConnections() {
+async function closeAllMongooseConnections() {
     if (mongoose_1.default.connections.length) {
         for (const connection of mongoose_1.default.connections) {
             await connection.close();
         }
     }
 }
-exports.closeMongooseConnections = closeMongooseConnections;
+exports.closeAllMongooseConnections = closeAllMongooseConnections;
 //# sourceMappingURL=helpers.js.map

@@ -23,50 +23,18 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-interface BattalionUnitType extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    id: string;
-    name: string;
-    friendly_id: string;
-    personnel: number;
-    position: number;
-    active: boolean;
-    isMandatory: boolean;
-    modified_date: string;
-    modified_unix_date: number;
-    modified: Date;
-    uuid: string;
-    api_battalion_id: string;
-    battalion_uuid: string;
-    battalion_name: string;
-    agencyId: Types.ObjectId;
+import { Model } from "mongoose";
+import { BattalionType } from "../types/battalion";
+export interface Battalion extends BattalionType, Record<string, unknown> {
 }
-export interface Battalion extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    id?: string;
-    name: string;
-    active: boolean;
-    modified_date: string;
-    modified_unix_date?: number;
-    modified: Date;
-    isMandatory: boolean;
-    userId: string;
-    uuid: string;
-    departmentId: string;
-    agencyId: Types.ObjectId;
-    position: number;
-    units: BattalionUnitType[];
-}
-export declare function BattalionSchema(mongoose: MongooseModule): import("mongoose").Schema<Battalion, Model<Battalion, any, any, any, import("mongoose").Document<unknown, any, Battalion> & Battalion & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Battalion, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Battalion>> & import("mongoose").FlatRecord<Battalion> & Required<{
-    _id: Types.ObjectId;
+export declare function BattalionSchema(mongoose: MongooseModule): import("mongoose").Schema<BattalionType, Model<BattalionType, any, any, any, import("mongoose").Document<unknown, any, BattalionType> & BattalionType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, BattalionType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<BattalionType>> & import("mongoose").FlatRecord<BattalionType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function BattalionModule(mongoose: MongooseModule): Promise<Model<Battalion, {}, {}, {}, import("mongoose").Document<unknown, {}, Battalion> & Battalion & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface BattalionModel extends Model<Battalion> {
 }
-export {};
 //# sourceMappingURL=battalion.d.ts.map

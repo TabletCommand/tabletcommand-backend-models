@@ -1,13 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-export interface EsriErrorSchemaType {
-  code: number,
-  error: string,
-  error_description: string,
-  message: string,
-}
+import { EsriErrorSchemaType } from "../../types/esri";
 
 export default function EsriErrorSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

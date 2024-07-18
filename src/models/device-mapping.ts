@@ -3,32 +3,15 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
+import { DeviceMappingType } from "../types/device-mapping";
 
-export interface DeviceMapping {
-  _id: Types.ObjectId,
-  departmentId: string,
-  userId: string,
-  deviceType: string,
-  mapId: string,
-  deviceId: string,
-  location: {
-    longitude: number,
-    latitude: number,
-  },
-  modified_unix_date: number,
-  modified: Date,
-  active: boolean,
-  remoteAddress: string,
-  uuid: string,
-  note: string,
-  mapHidden: boolean,
-}
+export interface DeviceMapping extends DeviceMappingType { }
 
 export default async function DeviceMappingModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<DeviceMapping>({
+  const modelSchema = new Schema<DeviceMappingType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

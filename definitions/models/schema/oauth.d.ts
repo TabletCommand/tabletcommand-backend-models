@@ -24,11 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface OAuthSchemaType {
-    accessToken: string;
-    refreshToken: string;
-    expireAt: Date;
-}
+import { OAuthSchemaType } from "../../types/oauth";
 export default function OAuthSchema(mongoose: MongooseModule): import("mongoose").Schema<OAuthSchemaType, import("mongoose").Model<OAuthSchemaType, any, any, any, import("mongoose").Document<unknown, any, OAuthSchemaType> & OAuthSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OAuthSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OAuthSchemaType>> & import("mongoose").FlatRecord<OAuthSchemaType> & {

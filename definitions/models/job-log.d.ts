@@ -22,21 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface JobLog {
-    _id: Types.ObjectId;
-    id?: string;
-    jobName: string;
-    host: string;
-    bidDate: Date;
-    startDate: Date;
-    completedDate: Date;
-    state: string;
-    forceClosed: boolean;
+import { JobLogType } from "../types/job-log";
+export interface JobLog extends JobLogType {
 }
 export default function JobLogModule(mongoose: MongooseModule): Promise<Model<JobLog, {}, {}, {}, import("mongoose").Document<unknown, {}, JobLog> & JobLog & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface JobLogModel extends Model<JobLog> {
 }

@@ -24,10 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface GeoJSONPointType {
-    type: string;
-    coordinates: number[];
-}
+import { GeoJSONPointType } from "../../types/geojson-point";
 export default function GeoJSONPointSchema(mongoose: MongooseModule): import("mongoose").Schema<GeoJSONPointType, import("mongoose").Model<GeoJSONPointType, any, any, any, import("mongoose").Document<unknown, any, GeoJSONPointType> & GeoJSONPointType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, GeoJSONPointType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<GeoJSONPointType>> & import("mongoose").FlatRecord<GeoJSONPointType> & {

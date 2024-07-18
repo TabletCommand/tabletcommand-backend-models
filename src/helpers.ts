@@ -1,4 +1,4 @@
-import mongoose, { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
+import mongoose, { SchemaDefinition, Schema, Document, Model, Types } from "mongoose";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
@@ -49,19 +49,6 @@ export type TypedDocument<T extends TypedSchema<any>> = Document & (
   T extends { _interface: infer U } ? U : never
 );
 
-export function createSchemaDefinition<T extends SchemaDefinition>(c: T) {
-  return c;
-}
-
-export function createSchema
-  <T extends SchemaDefinition, TMethods>(schemaCtor: typeof Schema, p: T, o: SchemaOptions, methods?: TMethods & ThisType<DocumentFromSchemaDefinition<T>>)
-  : Schema & { _interface: MongooseInterface<T>, _methods: TMethods } {
-  const schema = new schemaCtor(p, o);
-  if (methods) {
-    schema.methods = methods;
-  }
-  return schema as unknown as Schema & { _interface: MongooseInterface<T>, _methods: TMethods };
-}
 
 export type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & { _interface: MongooseInterface<T> }>;
 export type ModelFromSchema<T extends Schema> = Model<DocumentTypeFromSchema<T>>;
@@ -76,13 +63,6 @@ export function retrieveCurrentUnixTime(): number {
 
 export function currentDate() {
   return new Date();
-}
-
-export function convertToObjectId(id: string): Types.ObjectId {
-  if (id) {
-    return new Types.ObjectId(id);
-  }
-  return new Types.ObjectId();
 }
 
 type Or<T> = T & {
@@ -125,15 +105,18 @@ export function conditions<T extends import("mongoose").Document>(items: import(
   return c;
 }
 
-export async function getMongoose() {
-  return mongoose;
+export function convertToObjectId(id: string): Types.ObjectId {
+  if (id) {
+    return new Types.ObjectId(id);
+  }
+  return new Types.ObjectId(); // falback if user provides empty string
 }
 
 export async function disconnectMongoose() {
   return mongoose.disconnect();
 }
 
-export async function closeMongooseConnections() {
+export async function closeAllMongooseConnections() {
   if (mongoose.connections.length) {
     for (const connection of mongoose.connections) {
       await connection.close();

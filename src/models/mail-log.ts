@@ -1,33 +1,17 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   MongooseModule,
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { MailLogType } from "../types/mail-log";
 
-export interface MailLog {
-  _id: Types.ObjectId,
-  mailId: string,
-  event: string,
-  timestamp: number,
-  recipient: string,
-  recipientDomain: string,
-  tags: string[]
-  deliveryStatus: object,
-  message: object,
-  flags: object,
-  envelope: object,
-  logLevel: string,
-  reason: string,
-  severity: string,
-  modified_unix_date: number,
-  modified: Date,
-}
+export interface MailLog extends MailLogType { }
 
 export default async function MailLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<MailLog>({
+  const modelSchema = new Schema<MailLogType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

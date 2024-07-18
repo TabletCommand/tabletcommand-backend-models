@@ -24,10 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface ColorSchemaType extends Record<string, unknown> {
-    background: string;
-    text: string;
-}
+import { ColorSchemaType } from "../../types/color";
 export default function ColorSchema(mongoose: MongooseModule): import("mongoose").Schema<ColorSchemaType, import("mongoose").Model<ColorSchemaType, any, any, any, import("mongoose").Document<unknown, any, ColorSchemaType> & ColorSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, ColorSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<ColorSchemaType>> & import("mongoose").FlatRecord<ColorSchemaType> & {

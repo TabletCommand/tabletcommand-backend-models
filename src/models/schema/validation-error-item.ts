@@ -2,14 +2,7 @@ import {
   MongooseModule,
   currentDate,
 } from "../../helpers";
-
-export interface ValidationErrorItemSchemaType {
-  message: string,
-  firstSeenAt: Date,
-  lastSeenAt: Date,
-  clearedAt: Date,
-  payload: object,
-}
+import { ValidationErrorItemSchemaType } from "../../types/validation";
 
 export default function ValidationErrorItemSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

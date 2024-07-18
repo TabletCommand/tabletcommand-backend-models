@@ -1,17 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-interface FireMapperEncryptedType {
-  iv: string,
-  encryptedData: string,
-}
-
-export interface FireMapperAuthType {
-  username: string,
-  encrypted: FireMapperEncryptedType
-  encryptedAccessCode: FireMapperEncryptedType
-}
+import { FireMapperEncryptedType, FireMapperAuthType } from "../../types/firemapper-auth";
 
 export default function FireMapperAuthSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

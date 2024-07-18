@@ -23,42 +23,18 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-interface ChecklistOptionType {
-    name: string;
-    position: number;
-    id: string;
+import { Model } from "mongoose";
+import { TemplateType } from "../types/template";
+export interface Template extends TemplateType, Record<string, unknown> {
 }
-interface GroupOptionType {
-    name: string;
-    position: number;
-    uuid: string;
-}
-export interface Template extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    id?: string;
-    position: number;
-    userId: string;
-    uuid: string;
-    isMandatory: boolean;
-    modified_unix_date: number;
-    modified: Date;
-    departmentId: string;
-    active: boolean;
-    name: string;
-    checklist: ChecklistOptionType[];
-    group: GroupOptionType[];
-    agencyId: Types.ObjectId;
-}
-export declare function TemplateSchema(mongoose: MongooseModule): import("mongoose").Schema<Template, Model<Template, any, any, any, import("mongoose").Document<unknown, any, Template> & Template & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Template, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Template>> & import("mongoose").FlatRecord<Template> & Required<{
-    _id: Types.ObjectId;
+export declare function TemplateSchema(mongoose: MongooseModule): import("mongoose").Schema<TemplateType, Model<TemplateType, any, any, any, import("mongoose").Document<unknown, any, TemplateType> & TemplateType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, TemplateType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<TemplateType>> & import("mongoose").FlatRecord<TemplateType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function TemplateModule(mongoose: MongooseModule): Promise<Model<Template, {}, {}, {}, import("mongoose").Document<unknown, {}, Template> & Template & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface TemplateModel extends Model<Template> {
 }
-export {};
 //# sourceMappingURL=template.d.ts.map

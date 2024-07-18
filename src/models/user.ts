@@ -4,72 +4,13 @@ import {
   MongooseDocument,
   currentDate,
 } from "../helpers";
-import EsriAuthSchema, { EsriAuthSchemaType } from "./schema/esri-auth";
-import EsriErrorSchema, { EsriErrorSchemaType } from "./schema/esri-error";
-import PubNubTokenSchema, { PubNubTokenSchemaType } from "./schema/pubnub-token";
+import EsriAuthSchema from "./schema/esri-auth";
+import EsriErrorSchema from "./schema/esri-error";
+import PubNubTokenSchema from "./schema/pubnub-token";
 import { Model, Types } from "mongoose";
+import { UserType, VehicleSchemaType } from "../types/user";
 
-interface VehicleSchemaType {
-  radioName: string,
-  vehicleId: string,
-}
-
-export interface User extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  id?: string,
-  nick: string,
-  email: string,
-  name: string,
-  uuid: string,
-  departmentId: string,
-  modified_date: Date,
-  when: Date,
-  agencyId: Types.ObjectId,
-  managedAgencies: Types.ObjectId[],
-  active: boolean,
-  admin: boolean,
-  superuser: boolean,
-  isPro: boolean,
-  isIncidentManager: boolean,
-  mobileAccess: boolean,
-  webAccess: boolean,
-  cadSimulatorAccess: boolean,
-  canAddRemoveVehicle: boolean,
-  beaconEnabled: boolean,
-  userContributionEnabled: boolean,
-  syncLoggingExpireDate: Date,
-  beacons: string[],
-  salt: string,
-  pass: string,
-  auth: string[],
-  mapHidden: boolean,
-  mapId: string,
-  vehicle: VehicleSchemaType,
-  sessionCountiPhone: number,
-  sessionCountiPad: number,
-  rtsAuthKey: string,
-  pubNubV2: PubNubTokenSchemaType
-  pubNubV3: PubNubTokenSchemaType
-  socketIO: PubNubTokenSchemaType,
-  token: string,
-  tokenExpireAt: Date,
-  shareLocationPhone: boolean,
-  shareLocationTablet: boolean,
-  offlineMapsEnabled: boolean,
-  fireMapperProEnabled: boolean,
-  arcGISAuth: EsriAuthSchemaType,
-  arcGISAuthError: EsriErrorSchemaType,
-  offDutyEnabled: boolean,
-  webMapSettings: {
-    defaultZoomLevel: number,
-    defaultCenter: number[],
-    defaultMap: string,
-  },
-  locationToCAD: boolean,
-  logOffEnabled: boolean,
-  restrictedCommentsEnabled: boolean,
-  superUserReadOnly: boolean
-}
+export interface User extends UserType, Record<string, unknown> { }
 
 export function UserSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -91,7 +32,7 @@ export function UserSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<User>({
+  const modelSchema = new Schema<UserType>({
     nick: {
       type: String,
       default: "",

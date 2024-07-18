@@ -3,27 +3,14 @@ import {
   currentDate,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
+import { ActionLogType } from "../types/action-log";
 
-export interface ActionLog {
-  _id: Types.ObjectId,
-  departmentId: string,
-  email: string,
-  userId: string,
-  action: string,
-  object: object,
-  before: object,
-  after: object,
-  delta: object,
-  message: string,
-  createdAt: Date,
-  modified_unix_date: number,
-
-}
+export interface ActionLog extends ActionLogType { }
 
 export default async function ActionLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
-  const modelSchema = new Schema<ActionLog>({
+  const modelSchema = new Schema<ActionLogType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

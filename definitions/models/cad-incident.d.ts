@@ -24,12 +24,12 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-import { CADIncidentSchemaType } from "./schema/cad-incident";
-export default function CADIncidentModule(mongoose: MongooseModule): Promise<Model<CADIncidentSchemaType, {}, {}, {}, import("mongoose").Document<unknown, {}, CADIncidentSchemaType> & CADIncidentSchemaType & Required<{
+import { CADIncidentSchemaType } from "../types/cad-incident";
+export interface CADIncident extends CADIncidentSchemaType, Record<string, unknown> {
+}
+export default function CADIncidentModule(mongoose: MongooseModule): Promise<Model<CADIncident, {}, {}, {}, import("mongoose").Document<unknown, {}, CADIncident> & CADIncident & Required<{
     _id: import("mongoose").Types.ObjectId;
 }>, any>>;
-export interface CADIncident extends CADIncidentSchemaType {
-}
-export interface CADIncidentModel extends Model<CADIncidentSchemaType> {
+export interface CADIncidentModel extends Model<CADIncident> {
 }
 //# sourceMappingURL=cad-incident.d.ts.map

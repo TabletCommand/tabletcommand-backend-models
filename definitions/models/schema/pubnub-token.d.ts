@@ -24,11 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface PubNubTokenSchemaType {
-    token: string;
-    expireAt: Date;
-    runAt: Date | string;
-}
+import { PubNubTokenSchemaType } from "../../types/pubnub-token";
 export default function PubNubTokenSchema(mongoose: MongooseModule): import("mongoose").Schema<PubNubTokenSchemaType, import("mongoose").Model<PubNubTokenSchemaType, any, any, any, import("mongoose").Document<unknown, any, PubNubTokenSchemaType> & PubNubTokenSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PubNubTokenSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PubNubTokenSchemaType>> & import("mongoose").FlatRecord<PubNubTokenSchemaType> & {

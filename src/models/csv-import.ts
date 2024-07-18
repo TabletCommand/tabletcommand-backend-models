@@ -1,32 +1,16 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
+import { CSVImportType } from "../types/csv-import";
 
-export interface CSVImport {
-  _id: Types.ObjectId,
-  batchId: string,
-  importCreated: Date,
-  importEnded: Date,
-  status: string,
-  departmentId: string,
-  agencyId: string,
-  importType: string,
-  fileType: string,
-  fileName: string,
-  fileSize: string,
-  fileLastModified: Date,
-  records: object[],
-  modifiedDate: Date,
-  userId: string,
-  sendNotification: boolean
-}
+export interface CSVImport extends CSVImportType { }
 
 export default async function CSVImportModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<CSVImport>({
+  const modelSchema = new Schema<CSVImportType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

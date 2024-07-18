@@ -1,21 +1,17 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   MongooseDocument,
   MongooseModule,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { SMTPUnhandledType } from "../types/smtp-unhandled";
 
-export interface SMTPUnhandled {
-  _id: Types.ObjectId,
-  id?: string,
-  email: string,
-  message: string,
-}
+export interface SMTPUnhandled extends SMTPUnhandledType { }
 
 export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<SMTPUnhandled>({
+  const modelSchema = new Schema<SMTPUnhandledType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -37,7 +33,7 @@ export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
 

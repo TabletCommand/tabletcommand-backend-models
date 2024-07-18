@@ -2,19 +2,7 @@ import {
   MongooseModule,
   currentDate,
 } from "../../helpers";
-
-export interface RemoteFileSchemaType {
-  originalName: string
-  encoding: string
-  mimeType: string
-  fieldname: string
-  localPath: string
-  remotePath: string
-  hostname: string
-  size: number
-  received: Date
-  remoteFilePath: string,
-}
+import { RemoteFileSchemaType } from "../../types/remote-file";
 
 export default function RemoteFileSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

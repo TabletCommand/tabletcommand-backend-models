@@ -1,45 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-interface MapLayerType {
-  layerId: string,
-  itemId: string,
-  title: string,
-  layerType: string,
-  url: string,
-  visibility: boolean,
-  opacity: number,
-  access: string,
-  owner: string,
-}
-
-interface BaseMapType {
-  baseMapLayers: MapLayerType[],
-  title: string,
-}
-
-interface SimpleMapSchemaType {
-  itemId: string,
-  title: string,
-  url: string,
-  access: string,
-  owner: string,
-  type: string,
-  modified: number,
-  modifiedAt: Date,
-}
-
-interface OfflineMapType extends SimpleMapSchemaType { status: string }
-
-export interface EsriMapType extends SimpleMapSchemaType {
-  mapLayers: MapLayerType[]
-  baseMap: BaseMapType
-  offline: OfflineMapType[]
-  tags: string[],
-  development: boolean,
-  size: number,
-}
+import { MapLayerType, BaseMapType, OfflineMapType, EsriMapType } from "../../types/esri";
 
 export default function EsriMapSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

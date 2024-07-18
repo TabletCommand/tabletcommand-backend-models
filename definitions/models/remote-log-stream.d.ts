@@ -23,31 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-import { RemoteFileSchemaType } from "./schema/remote-file";
-export interface RemoteLogStream extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    departmentId: string;
-    userId: string;
-    isCADRequest: boolean;
-    session: string;
-    requestId: string;
-    requested: Date;
-    active: boolean;
-    uuid: string;
-    createdAt: Date;
-    updatedAt: Date;
-    status: string;
-    message: string;
-    manifest: string[];
-    userAgent: string;
-    appVersion: string;
-    file: RemoteFileSchemaType;
-    remoteFolderPath: string;
-    remoteFolderId: string;
+import { Model } from "mongoose";
+import { RemoteLogStreamType } from "../types/remote-log";
+export interface RemoteLogStream extends RemoteLogStreamType, Record<string, unknown> {
 }
 export default function RemoteLogStreamModule(mongoose: MongooseModule): Promise<Model<RemoteLogStream, {}, {}, {}, import("mongoose").Document<unknown, {}, RemoteLogStream> & RemoteLogStream & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface RemoteLogStreamModel extends Model<RemoteLogStream> {
 }

@@ -24,50 +24,12 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface ArcGISGroupUserType {
-    username: string;
-    fullName: string;
-    memberType: string;
-    orgId: string;
-}
-interface ArcGISUserInvitationType {
-    username: string;
-    atDate: Date;
-    invitedBy: string;
-}
-interface ArcGISDepartmentUserType {
-    username: string;
-    email: string;
-    userId: string;
-}
-interface ArcGISDepartmentType {
-    department: string;
-    departmentId: string;
-    authUsername: string;
-    authError: string;
-    users: ArcGISDepartmentUserType[];
-}
-export interface ArcGISGroup {
-    groupId: string;
-    title: string;
-    protected: boolean;
-    owner: string;
-    access: string;
-    membershipAccess: string;
-    users: ArcGISGroupUserType[];
-    outsiders: ArcGISGroupUserType[];
-    removableUsers: ArcGISGroupUserType[];
-    externalOrgIds: string[];
-    invited: ArcGISUserInvitationType[];
-    linkedDepartments: ArcGISDepartmentType[];
-    modified: Date;
-    createdBy: string;
-    runAt: Date | string;
+import { ArcGISGroupType } from "../types/arcgis-group";
+export interface ArcGISGroup extends ArcGISGroupType {
 }
 export default function ArcGISGroupModule(mongoose: MongooseModule): Promise<Model<ArcGISGroup, {}, {}, {}, import("mongoose").Document<unknown, {}, ArcGISGroup> & ArcGISGroup & {
     _id: import("mongoose").Types.ObjectId;
 }, any>>;
 export interface ArcGISGroupModel extends Model<ArcGISGroup> {
 }
-export {};
 //# sourceMappingURL=arcgis-group.d.ts.map

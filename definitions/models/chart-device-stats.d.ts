@@ -23,26 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-interface ChartItemType {
-    email: string;
-    dateAt: Date;
-    os: string;
-    osSemVer: string;
-    app: string;
-    appSemVer: string;
-}
-export interface ChartDeviceStats {
-    _id: Types.ObjectId;
-    id?: string;
-    dateAt: Date;
-    departmentId: string;
-    items: ChartItemType[];
+import { Model } from "mongoose";
+import { ChartDeviceStatsType } from "../types/chart";
+export interface ChartDeviceStats extends ChartDeviceStatsType {
 }
 export default function ChartDeviceStatsModule(mongoose: MongooseModule): Promise<Model<ChartDeviceStats, {}, {}, {}, import("mongoose").Document<unknown, {}, ChartDeviceStats> & ChartDeviceStats & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface ChartDeviceStatsModel extends Model<ChartDeviceStats> {
 }
-export {};
 //# sourceMappingURL=chart-device-stats.d.ts.map

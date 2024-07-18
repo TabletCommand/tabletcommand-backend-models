@@ -3,21 +3,9 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
+import { CADStatusMapType, ToStatusIdType } from "../types/cad";
 
-interface ToStatusIdType {
-  statusId: number,
-  userEnabled: boolean,
-  position: number,
-}
-
-export interface CADStatusMap {
-  departmentId: string,
-  modifiedDate: number,
-  modified: Date,
-  fromStatusId: number,
-  toStatusIds: ToStatusIdType[]
-  backupDate: Date,
-}
+export interface CADStatusMap extends CADStatusMapType { }
 
 export default async function CADStatusMapModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;

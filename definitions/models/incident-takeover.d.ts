@@ -23,24 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-export interface IncidentTakeover {
-    _id: Types.ObjectId;
-    departmentId: string;
-    uuid: string;
-    incident_id: string;
-    incident_name: string;
-    incident_number: string;
-    old_owner: string;
-    new_owner: string;
-    owner: string;
-    status: string;
-    request_time: number;
-    last_response_time: number;
-    response_time: number;
+import { Model } from "mongoose";
+import { IncidentTakeoverType } from "../types/incident-events";
+export interface IncidentTakeover extends IncidentTakeoverType {
 }
 export default function IncidentTakeoverModule(mongoose: MongooseModule): Promise<Model<IncidentTakeover, {}, {}, {}, import("mongoose").Document<unknown, {}, IncidentTakeover> & IncidentTakeover & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface IncidentTakeoverModel extends Model<IncidentTakeover> {
 }

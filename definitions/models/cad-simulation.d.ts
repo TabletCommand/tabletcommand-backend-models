@@ -22,80 +22,14 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface SimPriorCommentType {
-    Comment?: string;
-    CommentSource?: string;
-    CommentDateTime?: string;
-}
-interface SimPriorIncidentType {
-    IncidentNumber: string;
-    IncidentDateTime: string;
-    Problem: string;
-    Address: string;
-    Suite: string;
-    Comment: SimPriorCommentType[];
-}
-interface SimRadioChannelType {
-    name: string;
-    channel: string;
-}
-interface SimCommentType {
-    comment: string;
-    source: string;
-}
-interface SimUnitType {
-    alarmLevelAtDispatch: string;
-    units: string[];
-}
-interface SequenceType {
-    _id: Types.ObjectId;
-    title: string;
-    alarm: string;
-    sequenceId: number;
-    unitsConfig: SimUnitType;
-    comments: SimCommentType[];
-}
-export interface CADSimulation {
-    uuid: string;
-    departmentId: string;
-    modifiedDate: number;
-    modified: Date;
-    active: boolean;
-    friendlyId: string;
-    title: string;
-    notes: string;
-    simulation: boolean;
-    notify: boolean;
-    rts: boolean;
-    tags: string[];
-    incidentType: string;
-    streetName: string;
-    locationComment: string;
-    suite: string;
-    CrossStreet1: string;
-    city: string;
-    state: string;
-    lat: string;
-    lon: string;
-    firemap: string;
-    mapPages: string;
-    tacticalChannel: string;
-    commandChannel: string;
-    radioChannels: SimRadioChannelType[];
-    closeDelay: number;
-    priorIncidents: SimPriorIncidentType[];
-    randomPriorIncidents: boolean;
-    randomStaffing: boolean;
-    sequences: SequenceType[];
-    sortId: number;
-    sendStatus: boolean;
+import { CADSimulationType } from "../types/cad";
+export interface CADSimulation extends CADSimulationType {
 }
 export default function CADSimulationModule(mongoose: MongooseModule): Promise<Model<CADSimulation, {}, {}, {}, import("mongoose").Document<unknown, {}, CADSimulation> & CADSimulation & {
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }, any>>;
 export interface CADSimulationModel extends Model<CADSimulation> {
 }
-export {};
 //# sourceMappingURL=cad-simulation.d.ts.map

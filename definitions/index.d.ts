@@ -99,7 +99,7 @@ export declare function connect(url: string, overwriteOpts?: ConnectOptions): Pr
         BeaconLog: import("mongoose").Model<import("./models/beacon-log").BeaconLog, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/beacon-log").BeaconLog> & import("./models/beacon-log").BeaconLog & Required<{
             _id: import("mongoose").Types.ObjectId;
         }>, any>;
-        CADIncident: import("mongoose").Model<import("./models/schema/cad-incident").CADIncidentSchemaType, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/schema/cad-incident").CADIncidentSchemaType> & import("./models/schema/cad-incident").CADIncidentSchemaType & Required<{
+        CADIncident: import("mongoose").Model<import("./models/cad-incident").CADIncident, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/cad-incident").CADIncident> & import("./models/cad-incident").CADIncident & Required<{
             _id: import("mongoose").Types.ObjectId;
         }>, any>;
         CADIncidentBlock: import("mongoose").Model<import("./models/cad-incident-block").CADIncidentBlock, {}, {}, {}, import("mongoose").Document<unknown, {}, import("./models/cad-incident-block").CADIncidentBlock> & import("./models/cad-incident-block").CADIncidentBlock & Required<{

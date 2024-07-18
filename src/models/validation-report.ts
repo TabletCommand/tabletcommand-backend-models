@@ -1,22 +1,12 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import ValidationErrorItemModule, { ValidationErrorItemSchemaType } from "./schema/validation-error-item";
+import ValidationErrorItemModule from "./schema/validation-error-item";
+import { ValidationReportType } from "../types/validation";
 
-export interface ValidationReport {
-  _id: Types.ObjectId,
-  departmentId: Types.ObjectId,
-  location: ValidationErrorItemSchemaType[],
-  statusMap: ValidationErrorItemSchemaType[],
-  status: ValidationErrorItemSchemaType[],
-  vehicleStatus: ValidationErrorItemSchemaType[],
-  vehicle: ValidationErrorItemSchemaType[],
-  incident: ValidationErrorItemSchemaType[],
-  personnel: ValidationErrorItemSchemaType[],
-  modified: Date,
-}
+export interface ValidationReport extends ValidationReportType { }
 
 export function ValidationReportSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

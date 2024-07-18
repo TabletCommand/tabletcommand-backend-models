@@ -3,31 +3,14 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
+import { UserRegistrationType } from "../types/user";
 
-export interface UserRegistration {
-  email: string,
-  name: string,
-  firstName: string,
-  lastName: string,
-  department: string,
-  title: string,
-  status: string,
-  modifiedDate: number,
-  modified: Date,
-  presentedAt: number,
-  managedIncidentsCount: number,
-  checklistsCount: number,
-  stage: string,
-  firstIncidentUnixTime: number,
-  lastIncidentLocation: string,
-  lastIncidentUnixTime: number,
-  syncedToHubSpot: boolean,
-}
+export interface UserRegistration extends UserRegistrationType { }
 
 export default async function UserRegistrationModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  const modelSchema = new Schema<UserRegistration>({
+  const modelSchema = new Schema<UserRegistrationType>({
     email: {
       type: String,
       default: "",

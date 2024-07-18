@@ -22,16 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface SMTPUnhandled {
-    _id: Types.ObjectId;
-    id?: string;
-    email: string;
-    message: string;
+import { SMTPUnhandledType } from "../types/smtp-unhandled";
+export interface SMTPUnhandled extends SMTPUnhandledType {
 }
 export default function SMTPUnhandledModule(mongoose: MongooseModule): Promise<Model<SMTPUnhandled, {}, {}, {}, import("mongoose").Document<unknown, {}, SMTPUnhandled> & SMTPUnhandled & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface SMTPUnhandledModel extends Model<SMTPUnhandled> {
 }

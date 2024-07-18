@@ -23,23 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-export interface ActionLog {
-    _id: Types.ObjectId;
-    departmentId: string;
-    email: string;
-    userId: string;
-    action: string;
-    object: object;
-    before: object;
-    after: object;
-    delta: object;
-    message: string;
-    createdAt: Date;
-    modified_unix_date: number;
+import { Model } from "mongoose";
+import { ActionLogType } from "../types/action-log";
+export interface ActionLog extends ActionLogType {
 }
 export default function ActionLogModule(mongoose: MongooseModule): Promise<Model<ActionLog, {}, {}, {}, import("mongoose").Document<unknown, {}, ActionLog> & ActionLog & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface ActionLogModel extends Model<ActionLog> {
 }

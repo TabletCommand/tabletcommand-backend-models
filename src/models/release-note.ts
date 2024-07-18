@@ -1,23 +1,16 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   MongooseModule,
   currentDate,
 } from "../helpers";
+import { ReleaseNoteType } from "../types/release-note";
 
-export interface ReleaseNote extends Record<string, unknown> {
-  _id: Types.ObjectId
-  title: string
-  notes: string
-  version: string
-  releaseDate: Date
-  status: string
-  modified: Date
-}
+export interface ReleaseNote extends ReleaseNoteType, Record<string, unknown> { }
 
 export default async function ReleaseNoteModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<ReleaseNote>({
+  const modelSchema = new Schema<ReleaseNoteType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

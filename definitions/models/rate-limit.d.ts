@@ -22,18 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface RateLimit {
-    _id: Types.ObjectId;
-    username: string;
-    modified_unix_date: number;
-    modified: Date;
-    count: number;
-    remoteAddress: string;
+import { RateLimitType } from "../types/rate-limit";
+export interface RateLimit extends RateLimitType {
 }
 export default function RateLimitModule(mongoose: MongooseModule): Promise<Model<RateLimit, {}, {}, {}, import("mongoose").Document<unknown, {}, RateLimit> & RateLimit & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface RateLimitModel extends Model<RateLimit> {
 }

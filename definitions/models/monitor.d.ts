@@ -22,21 +22,13 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface Monitor {
-    _id: Types.ObjectId;
-    departmentId: string;
-    agencyId: string;
-    notificationType: string;
-    status: string;
-    sentUnixDate: number;
-    sentAt: Date;
-    ticketId: string;
-    count: number;
+import { MonitorType } from "../types/monitor";
+export interface Monitor extends MonitorType {
 }
 export default function MonitorModule(mongoose: MongooseModule): Promise<Model<Monitor, {}, {}, {}, import("mongoose").Document<unknown, {}, Monitor> & Monitor & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface MonitorModel extends Model<Monitor> {
 }

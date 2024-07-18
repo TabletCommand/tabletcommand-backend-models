@@ -1,27 +1,18 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   MongooseDocument,
   MongooseModule,
   currentDate,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { JobLogType } from "../types/job-log";
 
-export interface JobLog {
-  _id: Types.ObjectId,
-  id?: string,
-  jobName: string,
-  host: string,
-  bidDate: Date,
-  startDate: Date,
-  completedDate: Date,
-  state: string
-  forceClosed: boolean,
-}
+export interface JobLog extends JobLogType { }
 
 export default async function JobLogModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<JobLog>({
+  const modelSchema = new Schema<JobLogType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -58,7 +49,7 @@ export default async function JobLogModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
 

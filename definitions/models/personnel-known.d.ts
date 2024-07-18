@@ -23,35 +23,18 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-interface RadioType {
-    radioName: string;
-    active: boolean;
+import { Model } from "mongoose";
+import { PersonnelKnownType } from "../types/personnel";
+export interface PersonnelKnown extends PersonnelKnownType, Record<string, unknown> {
 }
-export interface PersonnelKnown extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    PersonnelID: string;
-    PersonnelName: string;
-    PersonnelRank: string;
-    PersonnelWorkCode: string;
-    modified: Date;
-    departmentId: string;
-    uuid: string;
-    radios: RadioType[];
-    active: boolean;
-    jurisdiction: string;
-    agencyId: Types.ObjectId;
-    source: string;
-}
-export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelKnown, Model<PersonnelKnown, any, any, any, import("mongoose").Document<unknown, any, PersonnelKnown> & PersonnelKnown & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelKnown, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelKnown>> & import("mongoose").FlatRecord<PersonnelKnown> & Required<{
-    _id: Types.ObjectId;
+export declare function PersonnelKnownSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelKnownType, Model<PersonnelKnownType, any, any, any, import("mongoose").Document<unknown, any, PersonnelKnownType> & PersonnelKnownType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelKnownType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelKnownType>> & import("mongoose").FlatRecord<PersonnelKnownType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function PersonnelKnownModule(mongoose: MongooseModule): Promise<Model<PersonnelKnown, {}, {}, {}, import("mongoose").Document<unknown, {}, PersonnelKnown> & PersonnelKnown & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface PersonnelKnownModel extends Model<PersonnelKnown> {
 }
-export {};
 //# sourceMappingURL=personnel-known.d.ts.map

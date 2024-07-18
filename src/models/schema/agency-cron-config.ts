@@ -1,62 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-interface EncryptedDataType {
-  iv: string,
-  encryptedData: string,
-}
-
-export interface CronConfigSourceType extends Record<string, unknown> {
-  protocol: string,
-  username: string,
-  hostname: string,
-  filePath: string,
-}
-
-interface CronConfigAuthType {
-  password: EncryptedDataType | null,
-  sshPrivateKey: EncryptedDataType | null,
-  sshPublicKey: EncryptedDataType | null,
-  useSSHKey: boolean,
-}
-
-interface CronConfigCSVFieldMapType {
-  PersonnelID: string,
-  PersonnelName: string,
-  PersonnelRank: string,
-  PersonnelWorkCode: string,
-  PersonnelNote: string,
-  StartTime: string,
-  EndTime: string,
-  UnitName: string,
-  TimeFormat: string,
-}
-
-interface ReconcileTimeOptionsType {
-  enabled: boolean,
-  startTime: string,
-  endTime: string,
-}
-
-export interface AgencyCronConfigType extends Record<string, unknown> {
-  enabled: boolean
-  source: CronConfigSourceType,
-  auth: CronConfigAuthType
-  processPath: string,
-  completedPath: string,
-  importType: string,
-  timezone: string,
-  customApiPath: string,
-  alterChunkSize: boolean,
-  reconcileEnabled: boolean,
-  reconcileTimeOptions: ReconcileTimeOptionsType,
-  hasLabelCustomization: boolean
-  assignmentOverride: boolean,
-  csvFieldMap: CronConfigCSVFieldMapType
-  useAlternateId: boolean
-  strictAgencyCodeMatch: boolean
-}
+import { EncryptedDataType, CronConfigSourceType, CronConfigAuthType, CronConfigCSVFieldMapType, ReconcileTimeOptionsType, AgencyCronConfigType } from "../../types/agency";
 
 export default function AgencyCronSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

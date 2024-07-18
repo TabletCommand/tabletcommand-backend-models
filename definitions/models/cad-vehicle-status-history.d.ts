@@ -24,22 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-import { CADStatusOptionSelectedSchemaType } from "./schema/cad-status-option-selected";
-export interface CADVehicleStatusHistory {
-    departmentId: string;
-    vehicleId: string;
-    radioName: string;
-    status: string;
-    statusCode: string;
-    requestedAt: number;
-    requested: Date;
-    requestDelay: number;
-    requestedBy: string;
-    incidentNumber: string;
-    options: CADStatusOptionSelectedSchemaType[];
-    e: string;
-    locationCurrent: string;
-    locationDestination: string;
+import { CADVehicleStatusHistoryType } from "../types/cad";
+export interface CADVehicleStatusHistory extends CADVehicleStatusHistoryType {
 }
 export default function CADVehicleStatusHistoryModule(mongoose: MongooseModule): Promise<Model<CADVehicleStatusHistory, {}, {}, {}, import("mongoose").Document<unknown, {}, CADVehicleStatusHistory> & CADVehicleStatusHistory & {
     _id: import("mongoose").Types.ObjectId;

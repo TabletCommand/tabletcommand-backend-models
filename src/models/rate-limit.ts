@@ -1,22 +1,16 @@
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   currentDate,
   MongooseModule,
 } from "../helpers";
+import { RateLimitType } from "../types/rate-limit";
 
-export interface RateLimit {
-  _id: Types.ObjectId,
-  username: string,
-  modified_unix_date: number,
-  modified: Date,
-  count: number,
-  remoteAddress: string,
-}
+export interface RateLimit extends RateLimitType { }
 
 export default async function RateLimitModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<RateLimit>({
+  const modelSchema = new Schema<RateLimitType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,

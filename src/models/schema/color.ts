@@ -1,11 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-export interface ColorSchemaType extends Record<string, unknown> {
-  background: string,
-  text: string,
-}
+import { ColorSchemaType } from "../../types/color";
 
 export default function ColorSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

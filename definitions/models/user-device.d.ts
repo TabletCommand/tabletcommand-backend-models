@@ -22,61 +22,14 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface UnitSettingType {
-    radioName: string;
-    notificationType: string;
-    notificationMode: string;
-}
-interface IncidentSettingType {
-    incidentType: string;
-    notificationType: string;
-    notificationMode: string;
-}
-interface DeviceSchemaType {
-    token: string;
-    env: string;
-    ver: string;
-    ua: string;
-    time: number;
-    t: Date;
-    drift: number;
-    channelId: string;
-    bundleIdentifier: string;
-    silentEnabled: boolean;
-    criticalAlertsEnabled: boolean;
-    session: string;
-    active: boolean;
-    offDuty: boolean;
-}
-interface SoundSchemaItemType {
-    sound: string;
-    soundType: string;
-    os: string;
-}
-interface SoundSchemaType {
-    ios: SoundSchemaItemType;
-    android: SoundSchemaItemType;
-}
-export interface UserDevice {
-    _id: Types.ObjectId;
-    userId: string;
-    departmentId: string;
-    devices: DeviceSchemaType[];
-    notificationCount: number;
-    notificationUnitSettings: UnitSettingType[];
-    notificationIncidentSettings: IncidentSettingType[];
-    notificationSounds: SoundSchemaType;
-    offDuty: boolean;
-    criticalAlertsVolume: string;
-    allowInStaging: boolean;
-    restrictedCommentsEnabled: boolean;
+import { UserDeviceType } from "../types/user";
+export interface UserDevice extends UserDeviceType {
 }
 export default function UserDeviceModule(mongoose: MongooseModule): Promise<Model<UserDevice, {}, {}, {}, import("mongoose").Document<unknown, {}, UserDevice> & UserDevice & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface UserDeviceModel extends Model<UserDevice> {
 }
-export {};
 //# sourceMappingURL=user-device.d.ts.map

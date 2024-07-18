@@ -4,24 +4,9 @@ import {
   MongooseModule,
 } from "../helpers";
 import * as uuid from "uuid";
+import { CADVehicleType, StationType } from "../types/cad";
 
-interface StationType {
-  code: string,
-  name: string,
-}
-export interface CADVehicle {
-  uuid: string,
-  departmentId: string,
-  modifiedDate: number,
-  modified: Date,
-  vehicleId: string
-  radioName: string,
-  station: StationType,
-  capability: string,
-  mapHidden: boolean
-  locationToCAD: boolean,
-  backupDate: Date,
-}
+export interface CADVehicle extends CADVehicleType { }
 
 export default async function CADVehicleModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
@@ -40,7 +25,7 @@ export default async function CADVehicleModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<CADVehicle>({
+  const modelSchema = new Schema<CADVehicleType>({
     // Internal
     uuid: {
       type: String,

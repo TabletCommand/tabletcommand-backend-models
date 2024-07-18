@@ -23,30 +23,17 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Model, Types } from "mongoose";
-export interface ChecklistItem extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    id?: string;
-    position: number;
-    userId: string;
-    uuid: string;
-    checklist_uuid: string;
-    api_checklist_id: string;
-    isMandatory: boolean;
-    modified_date: string;
-    modified_unix_date: number;
-    departmentId: string;
-    active: boolean;
-    name: string;
-    description: string;
+import { Model } from "mongoose";
+import { ChecklistItemType } from "../types/checklist";
+export interface ChecklistItem extends ChecklistItemType, Record<string, unknown> {
 }
-export declare function ChecklistItemSchema(mongoose: MongooseModule): import("mongoose").Schema<ChecklistItem, Model<ChecklistItem, any, any, any, import("mongoose").Document<unknown, any, ChecklistItem> & ChecklistItem & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, ChecklistItem, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<ChecklistItem>> & import("mongoose").FlatRecord<ChecklistItem> & Required<{
-    _id: Types.ObjectId;
+export declare function ChecklistItemSchema(mongoose: MongooseModule): import("mongoose").Schema<ChecklistItemType, Model<ChecklistItemType, any, any, any, import("mongoose").Document<unknown, any, ChecklistItemType> & ChecklistItemType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, ChecklistItemType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<ChecklistItemType>> & import("mongoose").FlatRecord<ChecklistItemType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function ChecklistItemModule(mongoose: MongooseModule): Promise<Model<ChecklistItem, {}, {}, {}, import("mongoose").Document<unknown, {}, ChecklistItem> & ChecklistItem & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface ChecklistItemModel extends Model<ChecklistItem> {
 }

@@ -24,13 +24,7 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../../helpers";
-export interface ValidationErrorItemSchemaType {
-    message: string;
-    firstSeenAt: Date;
-    lastSeenAt: Date;
-    clearedAt: Date;
-    payload: object;
-}
+import { ValidationErrorItemSchemaType } from "../../types/validation";
 export default function ValidationErrorItemSchema(mongoose: MongooseModule): import("mongoose").Schema<ValidationErrorItemSchemaType, import("mongoose").Model<ValidationErrorItemSchemaType, any, any, any, import("mongoose").Document<unknown, any, ValidationErrorItemSchemaType> & ValidationErrorItemSchemaType & {
     _id: import("mongoose").Types.ObjectId;
 }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, ValidationErrorItemSchemaType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<ValidationErrorItemSchemaType>> & import("mongoose").FlatRecord<ValidationErrorItemSchemaType> & {

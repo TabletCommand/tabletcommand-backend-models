@@ -23,34 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { ColorSchemaType } from "./schema/color";
-import { Model, Types } from "mongoose";
-interface TypeSchemaType {
-    type: string;
-    typeOpts: object;
-}
-export interface Message extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    departmentId: string;
-    userId: string;
-    session: string;
-    active: boolean;
-    uuid: string;
-    requestId: string;
-    title: string;
-    body: string;
-    actionTitle: string;
-    created: Date;
-    updated: Date;
-    color: ColorSchemaType;
-    url: string;
-    priority: number;
-    type: TypeSchemaType;
+import { Model } from "mongoose";
+import { MessageType } from "../types/message";
+export interface Message extends MessageType, Record<string, unknown> {
 }
 export default function MessageModule(mongoose: MongooseModule): Promise<Model<Message, {}, {}, {}, import("mongoose").Document<unknown, {}, Message> & Message & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface MessageModel extends Model<Message> {
 }
-export {};
 //# sourceMappingURL=message.d.ts.map

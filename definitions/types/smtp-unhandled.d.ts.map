@@ -1,0 +1,1 @@
+{"version":3,"file":"smtp-unhandled.d.ts","sourceRoot":"","sources":["../../src/types/smtp-unhandled.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,UAAU,CAAC;AAEjC,MAAM,WAAW,iBAAiB;IAChC,GAAG,EAAE,KAAK,CAAC,QAAQ,CAAC;IACpB,EAAE,CAAC,EAAE,MAAM,CAAC;IACZ,KAAK,EAAE,MAAM,CAAC;IACd,OAAO,EAAE,MAAM,CAAC;CACjB"}

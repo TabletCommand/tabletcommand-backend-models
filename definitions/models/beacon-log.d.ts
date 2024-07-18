@@ -23,17 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { Types, Model } from "mongoose";
-export interface BeaconLog {
-    _id: Types.ObjectId;
-    departmentId: string;
-    userId: string;
-    object: object;
-    createdAt: Date;
-    modified_unix_date: number;
+import { Model } from "mongoose";
+import { BeaconLogType } from "../types/beacon-log";
+export interface BeaconLog extends BeaconLogType {
 }
 export default function BeaconLogModule(mongoose: MongooseModule): Promise<Model<BeaconLog, {}, {}, {}, import("mongoose").Document<unknown, {}, BeaconLog> & BeaconLog & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface BeaconLogModel extends Model<BeaconLog> {
 }

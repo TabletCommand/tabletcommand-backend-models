@@ -24,24 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-export interface UserRegistration {
-    email: string;
-    name: string;
-    firstName: string;
-    lastName: string;
-    department: string;
-    title: string;
-    status: string;
-    modifiedDate: number;
-    modified: Date;
-    presentedAt: number;
-    managedIncidentsCount: number;
-    checklistsCount: number;
-    stage: string;
-    firstIncidentUnixTime: number;
-    lastIncidentLocation: string;
-    lastIncidentUnixTime: number;
-    syncedToHubSpot: boolean;
+import { UserRegistrationType } from "../types/user";
+export interface UserRegistration extends UserRegistrationType {
 }
 export default function UserRegistrationModule(mongoose: MongooseModule): Promise<Model<UserRegistration, {}, {}, {}, import("mongoose").Document<unknown, {}, UserRegistration> & UserRegistration & {
     _id: import("mongoose").Types.ObjectId;

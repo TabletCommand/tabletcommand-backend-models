@@ -8,12 +8,12 @@ import { url as mongoURL } from "./config";
 import { connect } from "..";
 // import MockModule from "./mock";
 
-describe("ArcGISGroup", function () {
+describe("ArcGISGroup", function() {
   // let models, 
   //   mongoose: typeof import("mongoose"),
   //   mock;
 
-  beforeEach(async function () {
+  beforeEach(async function() {
     const result = await connect(mongoURL);
     console.log(result);
     // models = result.models;
@@ -32,7 +32,7 @@ describe("ArcGISGroup", function () {
     // await mongoose.disconnect();
   });
 
-  it("is saved", async function () {
+  it("is saved", async function() {
     assert.isTrue(true);
   });
 });

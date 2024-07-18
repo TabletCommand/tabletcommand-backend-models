@@ -24,27 +24,12 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface StationType {
-    code: string;
-    name: string;
-}
-export interface CADVehicle {
-    uuid: string;
-    departmentId: string;
-    modifiedDate: number;
-    modified: Date;
-    vehicleId: string;
-    radioName: string;
-    station: StationType;
-    capability: string;
-    mapHidden: boolean;
-    locationToCAD: boolean;
-    backupDate: Date;
+import { CADVehicleType } from "../types/cad";
+export interface CADVehicle extends CADVehicleType {
 }
 export default function CADVehicleModule(mongoose: MongooseModule): Promise<Model<CADVehicle, {}, {}, {}, import("mongoose").Document<unknown, {}, CADVehicle> & CADVehicle & {
     _id: import("mongoose").Types.ObjectId;
 }, any>>;
 export interface CADVehicleModel extends Model<CADVehicle> {
 }
-export {};
 //# sourceMappingURL=cad-vehicle.d.ts.map

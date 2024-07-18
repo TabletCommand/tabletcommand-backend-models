@@ -2,12 +2,7 @@ import {
   MongooseModule,
   currentDate,
 } from "../../helpers";
-
-export interface PubNubTokenSchemaType {
-  token: string,
-  expireAt: Date,
-  runAt: Date | string,
-}
+import { PubNubTokenSchemaType } from "../../types/pubnub-token";
 
 export default function PubNubTokenSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

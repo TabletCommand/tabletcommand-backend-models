@@ -1,16 +1,7 @@
 import {
   MongooseModule,
 } from "../../helpers";
-
-interface EsriAuthPasswordType {
-  iv: string,
-  encryptedData: string,
-}
-
-export interface EsriAuthSchemaType {
-  username: string,
-  encrypted: EsriAuthPasswordType
-}
+import { EsriAuthPasswordType, EsriAuthSchemaType } from "../../types/esri";
 
 export default function EsriAuthSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;

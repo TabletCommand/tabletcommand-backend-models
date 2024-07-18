@@ -1,34 +1,15 @@
 // import * as uuid from "uuid";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import {
   MongooseModule,
 } from "../helpers";
-import EsriAuthModule, { EsriAuthSchemaType } from "./schema/esri-auth";
-import EsriErrorModule, { EsriErrorSchemaType } from "./schema/esri-error";
-import EsriMapModule, { EsriMapType } from "./schema/esri-map";
-import FireMapperAuthModule, { FireMapperAuthType } from "./schema/firemapper-auth";
+import EsriAuthModule from "./schema/esri-auth";
+import EsriErrorModule from "./schema/esri-error";
+import EsriMapModule from "./schema/esri-map";
+import FireMapperAuthModule from "./schema/firemapper-auth";
+import { EsriType, MapPropertiesType } from "../types/esri";
 
-interface MapPropertiesType {
-  itemId: string,
-  download: boolean,
-}
-export interface Esri {
-  _id: Types.ObjectId,
-  id?: string,
-  runAt: Date,
-  departmentId: Types.ObjectId
-  auth: EsriAuthSchemaType,
-  authError: EsriErrorSchemaType,
-  fireMapperAuth: FireMapperAuthType,
-  arcGISGroupIds: string[],
-  arcGISAuth: EsriAuthSchemaType,
-  arcGISMigrated: boolean,
-  review: object,
-  reviewRunAt: Date,
-  maps: EsriMapType[],
-  mapsProperties: MapPropertiesType[],
-  mapLastUpdated: Date,
-}
+export interface Esri extends EsriType { }
 
 export function EsriSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -52,7 +33,7 @@ export function EsriSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<Esri>({
+  const modelSchema = new Schema<EsriType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -131,7 +112,7 @@ export function EsriSchema(mongoose: MongooseModule) {
   modelSchema.set("autoIndex", false);
 
   // Deprecated. Check which apps rely on .id instead of using ._id.
-  modelSchema.virtual("id").get(function (this: Esri) {
+  modelSchema.virtual("id").get(function(this: Esri) {
     return this._id.toHexString();
   });
 

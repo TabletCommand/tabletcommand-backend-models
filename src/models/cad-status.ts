@@ -3,46 +3,11 @@ import {
   currentDate,
   MongooseModule,
 } from "../helpers";
-import ColorModule, { ColorSchemaType } from "./schema/color";
+import ColorModule from "./schema/color";
 import { Model } from "mongoose";
+import { StatusOptionValueType, StatusOptionType, CADStatusType } from "../types/cad";
 
-interface StatusOptionValueType {
-  name: string,
-  type: string,
-  visible: boolean,
-  value: string,
-  favorite: boolean,
-  position: number,
-  isDefault: boolean,
-  latitude: number,
-  longitude: number,
-  time: number,
-}
-
-interface StatusOptionType {
-  name: string,
-  position: number,
-  visible: boolean,
-  cadKey: string,
-  cadValues: StatusOptionValueType[]
-}
-export interface CADStatus {
-  uuid: string,
-  departmentId: string,
-  modifiedDate: number,
-  modified: Date,
-  statusId: number
-  code: string,
-  codeDisplay: string,
-  status: string,
-  name: string,
-  normalized: string,
-  selfAssignable: boolean,
-  roaming: boolean,
-  options: StatusOptionValueType,
-  color: ColorSchemaType,
-  backupDate: Date,
-}
+export interface CADStatus extends CADStatusType { }
 
 export default async function CADStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;

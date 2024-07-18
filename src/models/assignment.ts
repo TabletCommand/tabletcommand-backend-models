@@ -5,31 +5,15 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
+import { AssignmentType } from "../types/assignment";
 
-export interface Assignment extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  id: string,
-  uuid: string,
-  active: boolean,
-  userId: string,
-  departmentId: string,
-  isMandatory: boolean,
-  modified: Date,
-  // Deprecated
-  modified_date: string,
-  // Deprecated
-  modified_unix_date: number,
-  position: number,
-  name: string,
-  description: string,
-  full_description: string,
-}
+export interface Assignment extends AssignmentType, Record<string, unknown> { }
 
 export default async function AssignmentModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const modelSchema = new Schema<Assignment>({
+  const modelSchema = new Schema<AssignmentType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -86,7 +70,7 @@ export default async function AssignmentModule(mongoose: MongooseModule) {
     autoIndex: false,
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.virtual("id").get(function(this: Assignment) {
+  modelSchema.virtual("id").get(function(this: AssignmentType) {
     return this._id.toString();
   });
   modelSchema.set("toJSON", {

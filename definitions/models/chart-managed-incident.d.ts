@@ -22,25 +22,14 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface ChartItemType {
-    item: string;
-    dateAt: Date;
-}
-export interface ChartManagedIncident {
-    _id: Types.ObjectId;
-    id?: string;
-    dateAt: Date;
-    departmentId: string;
-    userId: string;
-    count: number;
-    items: ChartItemType[];
+import { ChartManagedIncidentType } from "../types/chart";
+export interface ChartManagedIncident extends ChartManagedIncidentType {
 }
 export default function ChartManagedIncidentModule(mongoose: MongooseModule): Promise<Model<ChartManagedIncident, {}, {}, {}, import("mongoose").Document<unknown, {}, ChartManagedIncident> & ChartManagedIncident & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface ChartManagedIncidentModel extends Model<ChartManagedIncident> {
 }
-export {};
 //# sourceMappingURL=chart-managed-incident.d.ts.map

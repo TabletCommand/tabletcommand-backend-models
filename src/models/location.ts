@@ -1,55 +1,24 @@
 import * as uuid from "uuid";
 import {
-  createSchemaDefinition,
   currentDate,
   MongooseDocument,
   MongooseModule,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
-import ColorModule, { ColorSchemaType } from "./schema/color";
-import GeoJSONPointModule, { GeoJSONPointType } from "./schema/geojson-point";
-import { Model, Types } from "mongoose";
+import ColorModule from "./schema/color";
+import GeoJSONPointModule from "./schema/geojson-point";
+import { Model } from "mongoose";
+import { LocationType } from "../types/location";
 
-export interface Location extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  id?: string,
-  departmentId: string,
-  userId: string,
-  uuid: string,
-  username: string,
-  device_type: string,
-  active: boolean,
-  deleteAfterDate: Date,
-  modified: Date,
-  movedAt: Date,
-  propsChangedAt: Date,
-  version: number,
-  session: string,
-  altitude: number,
-  heading: number,
-  speed: number,
-  esriId: number,
-  locationGeoJSON: GeoJSONPointType,
-  opAreaCode: string
-  opAreaName: string,
-  agencyCode: string,
-  agencyName: string,
-  shared: boolean,
-  state: string,
-  sendToCAD: boolean,
-  color: ColorSchemaType,
-  colorChangedAt: Date,
-  source: string,
-  kindType: string,
-  typeDetails: object
-}
+export interface Location extends LocationType, Record<string, unknown> { }
 
 export default async function LocationModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const Color = ColorModule(mongoose);
   const GeoJSONPoint = GeoJSONPointModule(mongoose);
 
-  const modelSchemaDefinition = createSchemaDefinition({
+
+  const modelSchema = new Schema<LocationType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -203,9 +172,7 @@ export default async function LocationModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
-  });
-
-  const modelSchema = new Schema<Location>(modelSchemaDefinition, {
+  }, {
   });
 
   modelSchema.set("toJSON", {

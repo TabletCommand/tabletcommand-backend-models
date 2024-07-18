@@ -23,44 +23,12 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { MongooseModule } from "../helpers";
-import { ColorSchemaType } from "./schema/color";
-import { GeoJSONPointType } from "./schema/geojson-point";
-import { Model, Types } from "mongoose";
-export interface Location extends Record<string, unknown> {
-    _id: Types.ObjectId;
-    id?: string;
-    departmentId: string;
-    userId: string;
-    uuid: string;
-    username: string;
-    device_type: string;
-    active: boolean;
-    deleteAfterDate: Date;
-    modified: Date;
-    movedAt: Date;
-    propsChangedAt: Date;
-    version: number;
-    session: string;
-    altitude: number;
-    heading: number;
-    speed: number;
-    esriId: number;
-    locationGeoJSON: GeoJSONPointType;
-    opAreaCode: string;
-    opAreaName: string;
-    agencyCode: string;
-    agencyName: string;
-    shared: boolean;
-    state: string;
-    sendToCAD: boolean;
-    color: ColorSchemaType;
-    colorChangedAt: Date;
-    source: string;
-    kindType: string;
-    typeDetails: object;
+import { Model } from "mongoose";
+import { LocationType } from "../types/location";
+export interface Location extends LocationType, Record<string, unknown> {
 }
 export default function LocationModule(mongoose: MongooseModule): Promise<Model<Location, {}, {}, {}, import("mongoose").Document<unknown, {}, Location> & Location & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface LocationModel extends Model<Location> {
 }

@@ -22,28 +22,18 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-import { ValidationErrorItemSchemaType } from "./schema/validation-error-item";
-export interface ValidationReport {
-    _id: Types.ObjectId;
-    departmentId: Types.ObjectId;
-    location: ValidationErrorItemSchemaType[];
-    statusMap: ValidationErrorItemSchemaType[];
-    status: ValidationErrorItemSchemaType[];
-    vehicleStatus: ValidationErrorItemSchemaType[];
-    vehicle: ValidationErrorItemSchemaType[];
-    incident: ValidationErrorItemSchemaType[];
-    personnel: ValidationErrorItemSchemaType[];
-    modified: Date;
+import { ValidationReportType } from "../types/validation";
+export interface ValidationReport extends ValidationReportType {
 }
 export declare function ValidationReportSchema(mongoose: MongooseModule): import("mongoose").Schema<ValidationReport, Model<ValidationReport, any, any, any, import("mongoose").Document<unknown, any, ValidationReport> & ValidationReport & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, ValidationReport, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<ValidationReport>> & import("mongoose").FlatRecord<ValidationReport> & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function ValidationReportModule(mongoose: MongooseModule): Promise<Model<ValidationReport, {}, {}, {}, import("mongoose").Document<unknown, {}, ValidationReport> & ValidationReport & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface ValidationReportModel extends Model<ValidationReport> {
 }

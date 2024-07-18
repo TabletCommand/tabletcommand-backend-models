@@ -22,44 +22,19 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface RadioType {
-    radioName: string;
-    active: boolean;
-    source: string;
+import { PersonnelImportType } from "../types/personnel";
+export interface PersonnelImport extends PersonnelImportType {
 }
-export interface PersonnelImport {
-    _id: Types.ObjectId;
-    PersonnelID: string;
-    PersonnelName: string;
-    PersonnelRank: string;
-    PersonnelWorkCode: string;
-    PersonnelNote: string;
-    departmentId: string;
-    radioNames: string[];
-    radios: RadioType[];
-    shiftStartTime: number;
-    shiftEndTime: number;
-    shiftStart: Date | string;
-    shiftEnd: Date | string;
-    modified_unix_date: number;
-    modified: Date;
-    active: boolean;
-    agencyName: string;
-    agencyCode: string;
-    agencyId: Types.ObjectId;
-    importNotes: string;
-}
-export declare function PersonnelImportSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelImport, Model<PersonnelImport, any, any, any, import("mongoose").Document<unknown, any, PersonnelImport> & PersonnelImport & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelImport, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelImport>> & import("mongoose").FlatRecord<PersonnelImport> & Required<{
-    _id: Types.ObjectId;
+export declare function PersonnelImportSchema(mongoose: MongooseModule): import("mongoose").Schema<PersonnelImportType, Model<PersonnelImportType, any, any, any, import("mongoose").Document<unknown, any, PersonnelImportType> & PersonnelImportType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, PersonnelImportType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<PersonnelImportType>> & import("mongoose").FlatRecord<PersonnelImportType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function PersonnelImportModule(mongoose: MongooseModule): Promise<Model<PersonnelImport, {}, {}, {}, import("mongoose").Document<unknown, {}, PersonnelImport> & PersonnelImport & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface PersonnelImportModel extends Model<PersonnelImport> {
 }
-export {};
 //# sourceMappingURL=personnel-import.d.ts.map

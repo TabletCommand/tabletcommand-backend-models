@@ -2,26 +2,13 @@ import {
   MongooseModule,
   MongooseDocument,
 } from "../helpers";
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { ChartDeviceStatsType, ChartItemType } from "../types/chart";
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
 
-interface ChartItemType {
-  email: string,
-  dateAt: Date,
-  os: string,
-  osSemVer: string,
-  app: string,
-  appSemVer: string,
-}
-export interface ChartDeviceStats {
-  _id: Types.ObjectId,
-  id?: string,
-  dateAt: Date,
-  departmentId: string,
-  items: ChartItemType[],
-}
+export interface ChartDeviceStats extends ChartDeviceStatsType { }
 
 export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -64,7 +51,7 @@ export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = new Schema<ChartDeviceStats>({
+  const modelSchema = new Schema<ChartDeviceStatsType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
@@ -92,7 +79,7 @@ export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
     versionKey: false,
   });
 
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });

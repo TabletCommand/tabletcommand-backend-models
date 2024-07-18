@@ -1,4 +1,4 @@
-import mongoose, { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
+import { SchemaDefinition, Schema, Document, Model, Types } from "mongoose";
 export declare type MongooseModule = typeof import("mongoose");
 export declare type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
 export declare type MongooseSchema<T = any> = Schema<T>;
@@ -47,11 +47,6 @@ export declare type TypedSchema<T extends SchemaDefinition> = Schema & {
 export declare type TypedDocument<T extends TypedSchema<any>> = Document & (T extends {
     _interface: infer U;
 } ? U : never);
-export declare function createSchemaDefinition<T extends SchemaDefinition>(c: T): T;
-export declare function createSchema<T extends SchemaDefinition, TMethods>(schemaCtor: typeof Schema, p: T, o: SchemaOptions, methods?: TMethods & ThisType<DocumentFromSchemaDefinition<T>>): Schema & {
-    _interface: MongooseInterface<T>;
-    _methods: TMethods;
-};
 export declare type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & {
     _interface: MongooseInterface<T>;
 }>;
@@ -71,7 +66,6 @@ export declare type FieldsOfDocument<T extends Document> = T extends Document & 
 } : never;
 export declare function retrieveCurrentUnixTime(): number;
 export declare function currentDate(): Date;
-export declare function convertToObjectId(id: string): Types.ObjectId;
 declare type Or<T> = T & {
     $or?: Or<T>[];
 };
@@ -105,8 +99,8 @@ declare type Conditions<T> = {
     [P in NonFunctionKeys<T>]?: T[P] | PropConditions<T[P]>;
 };
 export declare function conditions<T extends import("mongoose").Document>(items: import("mongoose").Model<T>, c: Or<Conditions<T>>): Or<Conditions<T>>;
-export declare function getMongoose(): Promise<typeof mongoose>;
+export declare function convertToObjectId(id: string): Types.ObjectId;
 export declare function disconnectMongoose(): Promise<void>;
-export declare function closeMongooseConnections(): Promise<void>;
+export declare function closeAllMongooseConnections(): Promise<void>;
 export {};
 //# sourceMappingURL=helpers.d.ts.map

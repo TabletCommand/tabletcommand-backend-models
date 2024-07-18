@@ -9,7 +9,7 @@ async function LocationModule(mongoose) {
     const { Schema } = mongoose;
     const Color = (0, color_1.default)(mongoose);
     const GeoJSONPoint = (0, geojson_point_1.default)(mongoose);
-    const modelSchemaDefinition = (0, helpers_1.createSchemaDefinition)({
+    const modelSchema = new Schema({
         _id: {
             type: Schema.Types.ObjectId,
             auto: true,
@@ -158,8 +158,7 @@ async function LocationModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-    });
-    const modelSchema = new Schema(modelSchemaDefinition, {});
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,

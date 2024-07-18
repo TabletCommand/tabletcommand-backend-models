@@ -22,44 +22,19 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model, Types } from "mongoose";
+import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
-interface EventUserType {
-    username: string;
-    email: string;
-    radioName: string;
-    userId: string;
+import { IncidentEventType } from "../types/incident-events";
+export interface IncidentEvent extends IncidentEventType {
 }
-export interface IncidentEvent {
-    _id: Types.ObjectId;
-    id?: string;
-    departmentId: string;
-    IncidentNumber: string;
-    modified_unix_date: number;
-    modified: Date;
-    message: string;
-    location: {
-        longitude: number;
-        latitude: number;
-    };
-    type: string;
-    user: EventUserType;
-    serverTime: number;
-    userTime: number;
-    uuid: string;
-    ref_uuid: string;
-    opts: object;
-    archived: boolean;
-}
-export declare function IncidentEventSchema(mongoose: MongooseModule): import("mongoose").Schema<IncidentEvent, Model<IncidentEvent, any, any, any, import("mongoose").Document<unknown, any, IncidentEvent> & IncidentEvent & Required<{
-    _id: Types.ObjectId;
-}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IncidentEvent, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IncidentEvent>> & import("mongoose").FlatRecord<IncidentEvent> & Required<{
-    _id: Types.ObjectId;
+export declare function IncidentEventSchema(mongoose: MongooseModule): import("mongoose").Schema<IncidentEventType, Model<IncidentEventType, any, any, any, import("mongoose").Document<unknown, any, IncidentEventType> & IncidentEventType & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IncidentEventType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IncidentEventType>> & import("mongoose").FlatRecord<IncidentEventType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
 }>>;
 export default function IncidentEventModule(mongoose: MongooseModule): Promise<Model<IncidentEvent, {}, {}, {}, import("mongoose").Document<unknown, {}, IncidentEvent> & IncidentEvent & Required<{
-    _id: Types.ObjectId;
+    _id: import("mongoose").Types.ObjectId;
 }>, any>>;
 export interface IncidentEventModel extends Model<IncidentEvent> {
 }
-export {};
 //# sourceMappingURL=incident-event.d.ts.map

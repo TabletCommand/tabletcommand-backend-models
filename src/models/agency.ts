@@ -4,47 +4,12 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import AgencyCronConfigModule, { AgencyCronConfigType } from "./schema/agency-cron-config";
-import AgencySAMLModule, { AgencySAMLSchemaType } from "./schema/agency-saml";
-import { Model, Types } from "mongoose";
+import AgencyCronConfigModule from "./schema/agency-cron-config";
+import AgencySAMLModule from "./schema/agency-saml";
+import { Model } from "mongoose";
+import { CrossStaffedUnitType, AgencyType } from "../types/agency";
 
-interface AgencyLicensing extends Record<string, unknown> {
-  tcPro: number,
-  tcManager: number,
-  tcStatus: number,
-  tcMobile: number,
-  tcWeb: number,
-  fireMapperPro: number,
-  locationToCAD: number,
-}
-
-interface CrossStaffedUnitType {
-  radioName: string,
-  crossStaffedUnits: string[],
-  alwaysCrossStaff: boolean,
-}
-
-export interface Agency extends Record<string, unknown> {
-  _id: Types.ObjectId,
-  code: string,
-  name: string,
-  domain: string
-  personnelApiKey: string,
-  agencyApiKey: string,
-  uuid: string,
-  modified_unix_date: number,
-  modified: Date,
-  active: boolean,
-  departmentId: Types.ObjectId,
-  administrators: Types.ObjectId[],
-  personnelIntegration: boolean,
-  personnelMonitorHours: number,
-  crossStaffing: CrossStaffedUnitType[],
-  licensing: AgencyLicensing,
-  cronConfig: AgencyCronConfigType,
-  saml: AgencySAMLSchemaType[],
-  activeUserCount: number,
-}
+export interface Agency extends AgencyType, Record<string, unknown> { }
 
 export function AgencySchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -79,7 +44,7 @@ export function AgencySchema(mongoose: MongooseModule) {
     locationToCAD: 0
   };
 
-  const modelSchema = new Schema<Agency>({
+  const modelSchema = new Schema<AgencyType>({
     _id: {
       type: Schema.Types.ObjectId,
       auto: true,
