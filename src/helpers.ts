@@ -109,7 +109,7 @@ export function convertToObjectId(id: string): Types.ObjectId {
   if (id) {
     return new Types.ObjectId(id);
   }
-  return new Types.ObjectId(); // falback if user provides empty string
+  return new Types.ObjectId(); // fal;back if user provides empty string
 }
 
 export async function disconnectMongoose() {

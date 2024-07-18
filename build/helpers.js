@@ -18,7 +18,7 @@ function convertToObjectId(id) {
     if (id) {
         return new mongoose_1.Types.ObjectId(id);
     }
-    return new mongoose_1.Types.ObjectId(); // falback if user provides empty string
+    return new mongoose_1.Types.ObjectId(); // fal;back if user provides empty string
 }
 exports.convertToObjectId = convertToObjectId;
 async function disconnectMongoose() {
