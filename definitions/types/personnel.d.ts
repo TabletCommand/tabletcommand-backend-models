@@ -16,8 +16,8 @@ export interface PersonnelImportType {
     radios: RadioType[];
     shiftStartTime: number;
     shiftEndTime: number;
-    shiftStart: Date | string;
-    shiftEnd: Date | string;
+    shiftStart: Date;
+    shiftEnd: Date;
     modified_unix_date: number;
     modified: Date;
     active: boolean;

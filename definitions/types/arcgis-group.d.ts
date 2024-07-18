@@ -36,6 +36,6 @@ export interface ArcGISGroupType {
     linkedDepartments: ArcGISDepartmentType[];
     modified: Date;
     createdBy: string;
-    runAt: Date | string;
+    runAt: Date;
 }
 //# sourceMappingURL=arcgis-group.d.ts.map

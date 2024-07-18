@@ -65,12 +65,10 @@ function PersonnelImportSchema(mongoose) {
             default: 0,
         },
         shiftStart: {
-            type: Date || String,
-            default: "",
+            type: Date,
         },
         shiftEnd: {
-            type: Date || String,
-            default: "",
+            type: Date,
         },
         // Cases matches the other modified_unix_date
         modified_unix_date: {

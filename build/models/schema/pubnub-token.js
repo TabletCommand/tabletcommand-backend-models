@@ -13,8 +13,7 @@ function PubNubTokenSchema(mongoose) {
             default: helpers_1.currentDate,
         },
         runAt: {
-            type: Date || String,
-            default: "",
+            type: Date,
         },
     }, {
         _id: false,

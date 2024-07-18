@@ -150,8 +150,7 @@ async function ArcGISGroupModule(mongoose) {
         // if date is in the past, we should refresh this
         // at run success, update this date to a date in the future
         runAt: {
-            type: Date || String,
-            default: "",
+            type: Date,
         },
     }, {
         autoIndex: false,

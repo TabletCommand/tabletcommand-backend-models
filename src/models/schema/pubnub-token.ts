@@ -17,8 +17,7 @@ export default function PubNubTokenSchema(mongoose: MongooseModule) {
       default: currentDate,
     },
     runAt: {
-      type: Date || String,
-      default: "",
+      type: Date,
     },
   }, {
     _id: false,
