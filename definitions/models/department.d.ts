@@ -846,6 +846,16 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: string;
         };
     }>[];
+    gst: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        code: {
+            type: StringConstructor;
+            default: string;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;

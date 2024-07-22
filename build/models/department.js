@@ -288,6 +288,19 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const GSTConfig = (0, helpers_1.createSchema)(Schema, {
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        code: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const SkytracConfig = (0, helpers_1.createSchema)(Schema, {
         enabled: {
             type: Boolean,
@@ -745,6 +758,10 @@ async function DepartmentModule(mongoose) {
     const IntterraConfigDefault = {
         "enabled": false,
         "connections": [],
+    };
+    const GSTConfigDefault = {
+        "enabled": false,
+        "code": "",
     };
     const SkymiraConfigDefault = {
         "enabled": false,
@@ -1288,6 +1305,10 @@ async function DepartmentModule(mongoose) {
         skytrac: {
             type: [SkytracConfig],
             default: [],
+        },
+        gst: {
+            type: GSTConfig,
+            default: GSTConfigDefault,
         },
     }, {
         collection: "massive_admin",
