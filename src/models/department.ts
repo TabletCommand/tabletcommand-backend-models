@@ -326,6 +326,34 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const ReplayOption = createSchema(Schema, {
+    departmentId: {
+      type: String,
+      default: "",
+    },
+    url: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const IncidentReplay = createSchema(Schema, {
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    replays: {
+      type: [ReplayOption],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SkytracConfig = createSchema(Schema, {
     enabled: {
       type: Boolean,
@@ -809,6 +837,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     "enabled": false,
     "connections": [],
   };
+
+  const IncidentReplayDefault = {
+    "enabled": false,
+    "replays": [],
+  };    
 
   const GSTConfigDefault = {
     "enabled": false,
@@ -1383,6 +1416,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     gst: {
       type: GSTConfig,
       default: GSTConfigDefault,
+    },
+    incidentReplay: {
+      type: IncidentReplay,
+      default: IncidentReplayDefault,
     },
   }, {
     collection: "massive_admin",
