@@ -72,6 +72,10 @@ export interface SkytracConfigType {
     serviceUrl: string;
     configTag: string;
 }
+export interface GSTConfigType {
+    enabled: boolean;
+    code: string;
+}
 export interface SimpleSenseConfigType {
     token: string;
 }
@@ -304,5 +308,6 @@ export interface DepartmentType {
     incidentVehicleStatus: IncidentVehicleStatusConfigType;
     skymira: SkymiraConfigType;
     skytrac: SkytracConfigType[];
+    gst: GSTConfigType;
 }
 //# sourceMappingURL=department.d.ts.map

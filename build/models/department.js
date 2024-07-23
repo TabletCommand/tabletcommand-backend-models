@@ -168,6 +168,10 @@ const SamsaraConfigurationDefault = {
     enabled: false,
     token: "",
 };
+const GSTConfigDefault = {
+    "enabled": false,
+    "code": "",
+};
 async function DepartmentModule(mongoose) {
     const { Schema } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
@@ -383,6 +387,19 @@ async function DepartmentModule(mongoose) {
             default: "",
         },
         locationsUrl: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const GSTConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        code: {
             type: String,
             default: "",
         },
@@ -1287,6 +1304,10 @@ async function DepartmentModule(mongoose) {
         skytrac: {
             type: [SkytracConfig],
             default: [],
+        },
+        gst: {
+            type: GSTConfig,
+            default: GSTConfigDefault,
         },
     }, {});
     modelSchema.set("autoIndex", false);

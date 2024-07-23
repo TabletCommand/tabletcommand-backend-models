@@ -18,6 +18,7 @@ import {
   FireMapperLayerType,
   FireMapperOutlineType,
   FirstArrivingConfigType,
+  GSTConfigType,
   IncidentTypeType,
   IncidentVehicleStatusConfigType,
   IntterraConfigType,
@@ -220,6 +221,10 @@ const SamsaraConfigurationDefault = {
   token: "",
 };
 
+const GSTConfigDefault = {
+  "enabled": false,
+  "code": "",
+};
 
 export default async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -446,6 +451,20 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       default: "",
     },
     locationsUrl: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const GSTConfig = new Schema<GSTConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    code: {
       type: String,
       default: "",
     },
@@ -860,16 +879,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-
-
-
-
-
-
-
-
-
-
 
   const IncidentType = new Schema<IncidentTypeType>({
     name: {
@@ -1400,6 +1409,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     skytrac: {
       type: [SkytracConfig],
       default: [],
+    },
+    gst: {
+      type: GSTConfig,
+      default: GSTConfigDefault,
     },
   }, {
   });
