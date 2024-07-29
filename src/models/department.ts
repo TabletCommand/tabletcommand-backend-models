@@ -19,6 +19,7 @@ import {
   FireMapperOutlineType,
   FirstArrivingConfigType,
   GSTConfigType,
+  IncidentReplayType,
   IncidentTypeType,
   IncidentVehicleStatusConfigType,
   IntterraConfigType,
@@ -31,6 +32,7 @@ import {
   Mark43ProcessLocationConfigType,
   Mark43ProcessVehicleStatusConfigType,
   Mark43StatusConfigType,
+  ReplayOptionType,
   RestrictedCommentsType,
   SafetyPriorityKeywordType,
   SamsaraConfigurationType,
@@ -181,6 +183,16 @@ const IntterraConfigDefault = {
   "connections": [],
 };
 
+const IncidentReplayDefault = {
+  "enabled": false,
+  "replays": [],
+};
+
+const GSTConfigDefault = {
+  "enabled": false,
+  "code": "",
+};
+
 const SkymiraConfigDefault = {
   "enabled": false,
   "token": "",
@@ -219,11 +231,6 @@ const RestrictedCommentsDefault = {
 const SamsaraConfigurationDefault = {
   enabled: false,
   token: "",
-};
-
-const GSTConfigDefault = {
-  "enabled": false,
-  "code": "",
 };
 
 export default async function DepartmentModule(mongoose: MongooseModule) {
@@ -467,6 +474,35 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     code: {
       type: String,
       default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+
+  const ReplayOption = new Schema<ReplayOptionType>({
+    departmentId: {
+      type: String,
+      default: "",
+    },
+    url: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const IncidentReplay = new Schema<IncidentReplayType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    replays: {
+      type: [ReplayOption],
+      default: [],
     },
   }, {
     _id: false,
@@ -879,6 +915,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
+
 
   const IncidentType = new Schema<IncidentTypeType>({
     name: {
@@ -1413,6 +1450,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     gst: {
       type: GSTConfig,
       default: GSTConfigDefault,
+    },
+    incidentReplay: {
+      type: IncidentReplay,
+      default: IncidentReplayDefault,
     },
   }, {
   });

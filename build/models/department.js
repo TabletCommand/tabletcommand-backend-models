@@ -134,6 +134,14 @@ const IntterraConfigDefault = {
     "enabled": false,
     "connections": [],
 };
+const IncidentReplayDefault = {
+    "enabled": false,
+    "replays": [],
+};
+const GSTConfigDefault = {
+    "enabled": false,
+    "code": "",
+};
 const SkymiraConfigDefault = {
     "enabled": false,
     "token": "",
@@ -167,10 +175,6 @@ const RestrictedCommentsDefault = {
 const SamsaraConfigurationDefault = {
     enabled: false,
     token: "",
-};
-const GSTConfigDefault = {
-    "enabled": false,
-    "code": "",
 };
 async function DepartmentModule(mongoose) {
     const { Schema } = mongoose;
@@ -402,6 +406,32 @@ async function DepartmentModule(mongoose) {
         code: {
             type: String,
             default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const ReplayOption = new Schema({
+        departmentId: {
+            type: String,
+            default: "",
+        },
+        url: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const IncidentReplay = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        replays: {
+            type: [ReplayOption],
+            default: [],
         },
     }, {
         _id: false,
@@ -1308,6 +1338,10 @@ async function DepartmentModule(mongoose) {
         gst: {
             type: GSTConfig,
             default: GSTConfigDefault,
+        },
+        incidentReplay: {
+            type: IncidentReplay,
+            default: IncidentReplayDefault,
         },
     }, {});
     modelSchema.set("autoIndex", false);

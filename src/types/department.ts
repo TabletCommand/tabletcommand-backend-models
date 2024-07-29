@@ -88,6 +88,17 @@ export interface GSTConfigType {
   enabled: boolean,
   code: string,
 }
+
+export interface ReplayOptionType {
+  departmentId: string,
+  url: string,
+}
+
+export interface IncidentReplayType {
+  enabled: boolean,
+  replays: ReplayOptionType[],
+}
+
 export interface SimpleSenseConfigType {
   token: string,
 }
@@ -339,4 +350,5 @@ export interface DepartmentType {
   skymira: SkymiraConfigType,
   skytrac: SkytracConfigType[],
   gst: GSTConfigType,
+  incidentReplay: IncidentReplayType,
 }
