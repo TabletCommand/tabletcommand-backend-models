@@ -878,6 +878,12 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: never[];
         };
     }>;
+    somewear: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;
