@@ -40,6 +40,7 @@ import {
   SimpleSenseConfigType,
   SkymiraConfigType,
   SkytracConfigType,
+  SomewearType,
   StatusMappingConfigType,
   StatusMappingObjectConfigType,
   WebDisclaimerType
@@ -188,6 +189,10 @@ const IncidentReplayDefault = {
   "replays": [],
 };
 
+const SomewearDefault = {
+  "enabled": false,
+};
+
 const GSTConfigDefault = {
   "enabled": false,
   "code": "",
@@ -226,6 +231,46 @@ const RestrictedCommentsDefault = {
     "Comment"
   ],
   restrictedMessage: "RESTRICTED"
+};
+
+const StatusMappingConfigDefault = {
+  TimeDispatched: {
+    "status": "Unit Dispatched",
+    "statusCode": "DSP"
+  },
+  TimeEnroute: {
+    "status": "Unit is Enroute",
+    "statusCode": "ENR"
+  },
+  TimeStaged: {
+    "status": "Unit is Staging",
+    "statusCode": "STG"
+  },
+  TimeArrived: {
+    "status": "Unit is On Scene",
+    "statusCode": "ONS"
+  },
+  TimeCleared: {
+    "status": "Available on Radio",
+    "statusCode": "AOR"
+  },
+  TimeAtHospital: {
+    "status": "Transport Arrive",
+    "statusCode": "TAR"
+  },
+  // added to exclusions unused
+  TimePatient: {
+    "status": "Available",
+    "statusCode": "AV"
+  },
+  TimeTransporting: {
+    "status": "Transporting",
+    "statusCode": "TRN"
+  },
+  TimeTransportComplete: {
+    "status": "Transport Complete",
+    "statusCode": "TCM"
+  }
 };
 
 const SamsaraConfigurationDefault = {
@@ -509,6 +554,16 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const Somewear = new Schema<SomewearType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const SkytracConfig = new Schema<SkytracConfigType>({
     enabled: {
       type: Boolean,
@@ -596,47 +651,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-
-  const StatusMappingConfigDefault = {
-    TimeDispatched: {
-      "status": "Unit Dispatched",
-      "statusCode": "DSP"
-    },
-    TimeEnroute: {
-      "status": "Unit is Enroute",
-      "statusCode": "ENR"
-    },
-    TimeStaged: {
-      "status": "Unit is Staging",
-      "statusCode": "STG"
-    },
-    TimeArrived: {
-      "status": "Unit is On Scene",
-      "statusCode": "ONS"
-    },
-    TimeCleared: {
-      "status": "Available on Radio",
-      "statusCode": "AOR"
-    },
-    TimeAtHospital: {
-      "status": "Transport Arrive",
-      "statusCode": "TAR"
-    },
-    // added to exclusions unused
-    TimePatient: {
-      "status": "Available",
-      "statusCode": "AV"
-    },
-    TimeTransporting: {
-      "status": "Transporting",
-      "statusCode": "TRN"
-    },
-    TimeTransportComplete: {
-      "status": "Transport Complete",
-      "statusCode": "TCM"
-    }
-  };
-
 
   const IncidentVehicleStatusConfig = new Schema<IncidentVehicleStatusConfigType>({
     enabled: {
@@ -915,7 +929,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-
 
   const IncidentType = new Schema<IncidentTypeType>({
     name: {
@@ -1220,10 +1233,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     },
 
     // Legacy FireMapper fields, remove after migrating the endpoints/code to use the new object
-    fireMapperEnabled: {
-      type: Boolean,
-      default: false,
-    },
     fireMapperRefreshInterval: {
       type: Number,
       default: 15,
@@ -1454,6 +1463,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     incidentReplay: {
       type: IncidentReplay,
       default: IncidentReplayDefault,
+    },
+    somewear: {
+      type: Somewear,
+      default: SomewearDefault,
     },
   }, {
   });

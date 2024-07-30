@@ -75,6 +75,10 @@ export interface SkymiraConfigType {
   locationsUrl: string,
 }
 
+export interface SomewearType {
+  enabled: boolean
+}
+
 export interface SkytracConfigType {
   enabled: boolean
   licenseKey: string,
@@ -289,7 +293,6 @@ export interface DepartmentType {
   firstArriving: FirstArrivingConfigType,
   simpleSenseEnabled: boolean,
   simpleSense: SimpleSenseConfigType,
-  fireMapperEnabled: boolean,
   fireMapperRefreshInterval: number,
   fireMapperProLicenses: number,
   fireMapper: FireMapperConfigurationType,
@@ -351,4 +354,5 @@ export interface DepartmentType {
   skytrac: SkytracConfigType[],
   gst: GSTConfigType,
   incidentReplay: IncidentReplayType,
+  somewear: SomewearType,
 }
