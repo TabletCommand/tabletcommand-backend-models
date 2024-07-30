@@ -851,11 +851,11 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   const IncidentReplayDefault = {
     "enabled": false,
     "replays": [],
-  };    
+  };
 
   const SomewearDefault = {
     "enabled": false,
-  };   
+  };
 
   const GSTConfigDefault = {
     "enabled": false,
@@ -1200,10 +1200,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     },
 
     // Legacy FireMapper fields, remove after migrating the endpoints/code to use the new object
-    fireMapperEnabled: {
-      type: Boolean,
-      default: false,
-    },
     fireMapperRefreshInterval: {
       type: Number,
       default: 15,

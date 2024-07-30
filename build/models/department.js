@@ -1132,10 +1132,6 @@ async function DepartmentModule(mongoose) {
             default: false
         },
         // Legacy FireMapper fields, remove after migrating the endpoints/code to use the new object
-        fireMapperEnabled: {
-            type: Boolean,
-            default: false,
-        },
         fireMapperRefreshInterval: {
             type: Number,
             default: 15,

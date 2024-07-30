@@ -273,7 +273,6 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
         };
     }>;
     vehicleRadioNameIsStable: boolean;
-    fireMapperEnabled: boolean;
     fireMapperRefreshInterval: number;
     fireMapperProLicenses: number;
     fireMapper: import("../helpers").MongooseInterface<{
