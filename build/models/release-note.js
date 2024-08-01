@@ -17,6 +17,10 @@ async function ReleaseNoteModule(mongoose) {
             type: String,
             default: "",
         },
+        devNotes: {
+            type: String,
+            default: "",
+        },
         version: {
             type: String,
             default: "",

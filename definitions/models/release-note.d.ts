@@ -4,6 +4,7 @@ export declare function ReleaseNoteModule(mongoose: MongooseModule): Promise<imp
     _id: import("mongoose").Types.ObjectId;
     title: string;
     notes: string;
+    devNotes: string;
     version: string;
     releaseDate: string;
     status: string;
