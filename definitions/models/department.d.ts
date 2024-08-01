@@ -29,6 +29,7 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
     externalNotificationsEnabled: boolean;
     cadBidirectionalEnabled: boolean;
     cadOneWayVehiclesEnabled: boolean;
+    cadBidirectionalException: boolean;
     cadAllowedIPAddresses: string[];
     cadGetLocationEnabled: boolean;
     cadAllowIgnoreAfterDays: number;

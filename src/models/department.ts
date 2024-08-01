@@ -1053,6 +1053,10 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    cadBidirectionalException: {
+      type: Boolean,
+      default: false,
+    },
     cadAllowedIPAddresses: {
       type: [String],
       default: [],

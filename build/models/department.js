@@ -988,6 +988,10 @@ async function DepartmentModule(mongoose) {
             type: Boolean,
             default: false,
         },
+        cadBidirectionalException: {
+            type: Boolean,
+            default: false,
+        },
         cadAllowedIPAddresses: {
             type: [String],
             default: [],
