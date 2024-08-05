@@ -7,5 +7,6 @@ export interface ReleaseNoteType {
     releaseDate: Date;
     status: string;
     modified: Date;
+    devNotes: string;
 }
 //# sourceMappingURL=release-note.d.ts.map

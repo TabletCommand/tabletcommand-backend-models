@@ -8,4 +8,5 @@ export interface ReleaseNoteType {
   releaseDate: Date
   status: string
   modified: Date
+  devNotes: string
 }

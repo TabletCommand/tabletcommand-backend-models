@@ -321,5 +321,6 @@ export interface DepartmentType {
     gst: GSTConfigType;
     incidentReplay: IncidentReplayType;
     somewear: SomewearType;
+    cadBidirectionalException: boolean;
 }
 //# sourceMappingURL=department.d.ts.map

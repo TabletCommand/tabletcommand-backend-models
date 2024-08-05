@@ -23,6 +23,10 @@ export default async function ReleaseNoteModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    devNotes: {
+      type: String,
+      default: "",
+    },
     version: {
       type: String,
       default: "",
