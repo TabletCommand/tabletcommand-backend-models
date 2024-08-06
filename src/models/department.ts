@@ -18,6 +18,9 @@ import {
   FireMapperLayerType,
   FireMapperOutlineType,
   FirstArrivingConfigType,
+  ForwardFieldsType,
+  ForwardingConfigType,
+  ForwardingConnectionType,
   GSTConfigType,
   IncidentReplayType,
   IncidentTypeType,
@@ -146,6 +149,7 @@ const FireMapperConfigurationDefault = {
   staticLayer: [],
 };
 
+
 const LicensingDefault = {
   "tcPro2Way": 0,
   "tcPro1Way": 0,
@@ -180,6 +184,11 @@ const FirstArrivingConfigDefault = {
 };
 
 const IntterraConfigDefault = {
+  "enabled": false,
+  "connections": [],
+};
+
+const ForwardingConfigDefault = {
   "enabled": false,
   "connections": [],
 };
@@ -272,6 +281,58 @@ const StatusMappingConfigDefault = {
     "statusCode": "TCM"
   }
 };
+
+const ForwardFieldsDefault = [
+  {
+    "key": "IncidentNumber",
+    "value": "IncidentNumber",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "AgencyIncidentCallTypeDescription",
+    "value": "AgencyIncidentCallTypeDescription",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "units",
+    "value": "units",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": true,
+  },
+  {
+    "key": "Longitude",
+    "value": "Longitude",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "Latitude",
+    "value": "Latitude",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "full_address",
+    "value": "full_address",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "EntryDateTime",
+    "value": "EntryDateTime", // cspell:disable-line
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  }
+];
 
 const SamsaraConfigurationDefault = {
   enabled: false,
@@ -479,6 +540,82 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const ForwardFields = new Schema<ForwardFieldsType>({
+    key: {
+      type: String,
+      default: "",
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+    transformationRequired: {
+      type: Boolean,
+      default: false,
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    enabled: {
+      type: Boolean,
+      default: true,
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+  const ForwardingConnection = new Schema<ForwardingConnectionType>({
+    active: {
+      type: Boolean,
+      default: false,
+    },
+    connectionType: {
+      type: String,
+      default: "",
+    },
+    fields: {
+      type: [ForwardFields],
+      default: ForwardFieldsDefault,
+    },
+    callTypes: {
+      type: [String],
+      default: [],
+    },
+    apiUrl: {
+      type: String,
+      default: "",
+    },
+    authType: {
+      type: String,
+      default: "",
+    },
+    authUser: {
+      type: String,
+      default: "",
+    },
+    authKey: {
+      type: String,
+      default: "",
+    },
+    authKeySecret: {
+      type: String,
+      default: ""
+    },
+    label: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const IntterraConfig = new Schema<IntterraConfigType>({
     enabled: {
       type: Boolean,
@@ -486,6 +623,21 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     },
     connections: {
       type: [IntterraConnection],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
+
+  const ForwardingConfig = new Schema<ForwardingConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    connections: {
+      type: [ForwardingConnection],
       default: [],
     },
   }, {
@@ -1471,6 +1623,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     somewear: {
       type: Somewear,
       default: SomewearDefault,
+    },
+    forwarding: {
+      type: ForwardingConfig,
+      default: ForwardingConfigDefault,
     },
   }, {
   });

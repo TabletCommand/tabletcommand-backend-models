@@ -226,6 +226,33 @@ export interface ShareIncidentRuleType {
   configuration: object,
 }
 
+export interface ForwardFieldsType {
+  key: string,
+  value: string,
+  transformationRequired: boolean,
+  required: boolean,
+  enabled: boolean,
+}
+
+export interface ForwardingConnectionType {
+  active: boolean,
+  connectionType: string,
+  fields: ForwardFieldsType[],
+  callTypes: string[],
+  apiUrl: string,
+  authType: string,
+  authUser: string,
+  authKey: string,
+  authKeySecret: string,
+  label: string,
+  description: string,
+}
+
+export interface ForwardingConfigType {
+  enabled: boolean,
+  connections: ForwardingConnectionType[],
+}
+
 export interface DepartmentType {
   _id: Types.ObjectId,
   id?: string,
@@ -356,4 +383,5 @@ export interface DepartmentType {
   incidentReplay: IncidentReplayType,
   somewear: SomewearType,
   cadBidirectionalException: boolean,
+  forwarding: ForwardingConfigType,
 }

@@ -134,6 +134,10 @@ const IntterraConfigDefault = {
     "enabled": false,
     "connections": [],
 };
+const ForwardingConfigDefault = {
+    "enabled": false,
+    "connections": [],
+};
 const IncidentReplayDefault = {
     "enabled": false,
     "replays": [],
@@ -214,6 +218,57 @@ const StatusMappingConfigDefault = {
         "statusCode": "TCM"
     }
 };
+const ForwardFieldsDefault = [
+    {
+        "key": "IncidentNumber",
+        "value": "IncidentNumber",
+        "required": true,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "AgencyIncidentCallTypeDescription",
+        "value": "AgencyIncidentCallTypeDescription",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "units",
+        "value": "units",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": true,
+    },
+    {
+        "key": "Longitude",
+        "value": "Longitude",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "Latitude",
+        "value": "Latitude",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "full_address",
+        "value": "full_address",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    },
+    {
+        "key": "EntryDateTime",
+        "value": "EntryDateTime",
+        "required": false,
+        "enabled": true,
+        "transformationRequired": false,
+    }
+];
 const SamsaraConfigurationDefault = {
     enabled: false,
     token: "",
@@ -410,6 +465,80 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const ForwardFields = new Schema({
+        key: {
+            type: String,
+            default: "",
+        },
+        value: {
+            type: String,
+            default: "",
+        },
+        transformationRequired: {
+            type: Boolean,
+            default: false,
+        },
+        required: {
+            type: Boolean,
+            default: false,
+        },
+        enabled: {
+            type: Boolean,
+            default: true,
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const ForwardingConnection = new Schema({
+        active: {
+            type: Boolean,
+            default: false,
+        },
+        connectionType: {
+            type: String,
+            default: "",
+        },
+        fields: {
+            type: [ForwardFields],
+            default: ForwardFieldsDefault,
+        },
+        callTypes: {
+            type: [String],
+            default: [],
+        },
+        apiUrl: {
+            type: String,
+            default: "",
+        },
+        authType: {
+            type: String,
+            default: "",
+        },
+        authUser: {
+            type: String,
+            default: "",
+        },
+        authKey: {
+            type: String,
+            default: "",
+        },
+        authKeySecret: {
+            type: String,
+            default: ""
+        },
+        label: {
+            type: String,
+            default: "",
+        },
+        description: {
+            type: String,
+            default: "",
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
     const IntterraConfig = new Schema({
         enabled: {
             type: Boolean,
@@ -417,6 +546,19 @@ async function DepartmentModule(mongoose) {
         },
         connections: {
             type: [IntterraConnection],
+            default: [],
+        },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const ForwardingConfig = new Schema({
+        enabled: {
+            type: Boolean,
+            default: false,
+        },
+        connections: {
+            type: [ForwardingConnection],
             default: [],
         },
     }, {
@@ -1358,6 +1500,10 @@ async function DepartmentModule(mongoose) {
         somewear: {
             type: Somewear,
             default: SomewearDefault,
+        },
+        forwarding: {
+            type: ForwardingConfig,
+            default: ForwardingConfigDefault,
         },
     }, {});
     modelSchema.set("autoIndex", false);
