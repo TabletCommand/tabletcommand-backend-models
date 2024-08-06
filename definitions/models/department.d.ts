@@ -884,6 +884,94 @@ export declare function DepartmentModule(mongoose: MongooseModule): Promise<impo
             default: boolean;
         };
     }>;
+    forwarding: import("../helpers").MongooseInterface<{
+        enabled: {
+            type: BooleanConstructor;
+            default: boolean;
+        };
+        connections: {
+            type: (import("mongoose").Schema<any> & {
+                _interface: import("../helpers").MongooseInterface<{
+                    active: {
+                        type: BooleanConstructor;
+                        default: boolean;
+                    };
+                    connectionType: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    fields: {
+                        type: (import("mongoose").Schema<any> & {
+                            _interface: import("../helpers").MongooseInterface<{
+                                key: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                value: {
+                                    type: StringConstructor;
+                                    default: string;
+                                };
+                                transformationRequired: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                required: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                                enabled: {
+                                    type: BooleanConstructor;
+                                    default: boolean;
+                                };
+                            }>;
+                            _methods: unknown;
+                        })[];
+                        default: {
+                            key: string;
+                            value: string;
+                            required: boolean;
+                            enabled: boolean;
+                            transformationRequired: boolean;
+                        }[];
+                    };
+                    callTypes: {
+                        type: StringConstructor[];
+                        default: never[];
+                    };
+                    apiUrl: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    authType: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    authUser: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    authKey: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    authKeySecret: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    label: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                    description: {
+                        type: StringConstructor;
+                        default: string;
+                    };
+                }>;
+                _methods: unknown;
+            })[];
+            default: never[];
+        };
+    }>;
 }, {}> & {
     __methods?: unknown;
 }>;
