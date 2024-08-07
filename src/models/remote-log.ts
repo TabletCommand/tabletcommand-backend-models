@@ -48,10 +48,6 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    uuid: {
-      type: String,
-      default: uuid.v4,
-    },
     createdAt: {
       type: Date,
       default: currentDate,
@@ -59,6 +55,9 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
     updatedAt: {
       type: Date,
       default: currentDate,
+    },
+    notifiedAt: {
+      type: Date,
     },
     status: {
       type: String,
@@ -99,7 +98,7 @@ export async function RemoteLogModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
-    collection: "massive_remote_log_stream",
+    collection: "massive_remote_log",
     timestamps: true,
   });
 

@@ -8,9 +8,9 @@ export declare function RemoteLogModule(mongoose: MongooseModule): Promise<impor
     session: string;
     requestId: string;
     active: boolean;
-    uuid: string;
     createdAt: string;
     updatedAt: string;
+    notifiedAt: string;
     status: string;
     message: string;
     manifest: string[];
