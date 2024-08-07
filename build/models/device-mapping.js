@@ -23,10 +23,12 @@ async function DeviceMappingModule(mongoose) {
         },
         mapId: {
             type: String,
+            trim: true,
             default: "",
         },
         deviceId: {
             type: String,
+            trim: true,
             default: "",
         },
         location: {
@@ -51,6 +53,7 @@ async function DeviceMappingModule(mongoose) {
         },
         remoteAddress: {
             type: String,
+            trim: true,
             default: "0.0.0.0",
         },
         uuid: {
@@ -59,6 +62,7 @@ async function DeviceMappingModule(mongoose) {
         },
         note: {
             type: String,
+            trim: true,
             default: "",
         },
         mapHidden: {
