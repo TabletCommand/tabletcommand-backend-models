@@ -37,10 +37,6 @@ async function RemoteLogModule(mongoose) {
             type: Boolean,
             default: false,
         },
-        uuid: {
-            type: String,
-            default: uuid.v4,
-        },
         createdAt: {
             type: Date,
             default: helpers_1.currentDate,
@@ -48,6 +44,9 @@ async function RemoteLogModule(mongoose) {
         updatedAt: {
             type: Date,
             default: helpers_1.currentDate,
+        },
+        notifiedAt: {
+            type: Date,
         },
         status: {
             type: String,
@@ -90,7 +89,7 @@ async function RemoteLogModule(mongoose) {
         autoIndex: false,
         timestamps: true,
     });
-    return mongoose.model("RemoteLog", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
+    return mongoose.model("RemoteLog", modelSchema, "massive_remote_log", { overwriteModels: true });
 }
 exports.default = RemoteLogModule;
 //# sourceMappingURL=remote-log.js.map

@@ -6,7 +6,6 @@ export interface RemoteLogType {
     userId: string;
     session: string;
     active: boolean;
-    uuid: string;
     requestId: string;
     received: Date;
     hostname: string;
@@ -15,6 +14,7 @@ export interface RemoteLogType {
     isCADRequest: boolean;
     createdAt: Date;
     updatedAt: Date;
+    notifiedAt: Date;
     message: string;
     manifest: string[];
     userAgent: string;

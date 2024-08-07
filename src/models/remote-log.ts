@@ -45,10 +45,6 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
-    uuid: {
-      type: String,
-      default: uuid.v4,
-    },
     createdAt: {
       type: Date,
       default: currentDate,
@@ -56,6 +52,9 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
     updatedAt: {
       type: Date,
       default: currentDate,
+    },
+    notifiedAt: {
+      type: Date,
     },
     status: {
       type: String,
@@ -99,7 +98,7 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
     timestamps: true,
   });
 
-  return mongoose.model<RemoteLog>("RemoteLog", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
+  return mongoose.model<RemoteLog>("RemoteLog", modelSchema, "massive_remote_log", { overwriteModels: true });
 }
 
 export interface RemoteLogModel extends Model<RemoteLog> { }
