@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PersonnelKnownModule = exports.PersonnelKnownSchema = void 0;
+exports.PersonnelKnownSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 function PersonnelKnownSchema(mongoose) {
-    const { Schema, Types } = mongoose;
-    const Radio = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const Radio = new Schema({
         radioName: {
             type: String,
         },
@@ -17,9 +17,9 @@ function PersonnelKnownSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         PersonnelID: {
@@ -64,7 +64,7 @@ function PersonnelKnownSchema(mongoose) {
             default: ""
         },
         agencyId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
         },
@@ -73,7 +73,6 @@ function PersonnelKnownSchema(mongoose) {
             default: ""
         },
     }, {
-        collection: "massive_personnel_known",
         timestamps: true,
         autoIndex: false,
     });
@@ -82,8 +81,7 @@ function PersonnelKnownSchema(mongoose) {
 exports.PersonnelKnownSchema = PersonnelKnownSchema;
 async function PersonnelKnownModule(mongoose) {
     const modelSchema = PersonnelKnownSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "PersonnelKnown", modelSchema);
+    return mongoose.model("PersonnelKnown", modelSchema, "massive_personnel_known", { overwriteModels: true });
 }
-exports.PersonnelKnownModule = PersonnelKnownModule;
 exports.default = PersonnelKnownModule;
 //# sourceMappingURL=personnel-known.js.map

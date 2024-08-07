@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../../helpers");
 function RemoteFileSchema(mongoose) {
     const { Schema } = mongoose;
-    const Item = (0, helpers_1.createSchema)(Schema, {
+    const Item = new Schema({
         originalName: {
             type: String,
             default: "", // e.g database.sqlite

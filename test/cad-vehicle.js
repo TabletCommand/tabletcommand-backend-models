@@ -22,22 +22,18 @@ describe("CADVehicle", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
+  it("is saved", async function() {
     const item = new models.CADVehicle(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    const sut = await item.save()
 
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.modifiedDate, sut.modifiedDate);
-      assert.equal(testItem.vehicleId, sut.vehicleId);
-      assert.equal(testItem.radioName, sut.radioName);
-      assert.equal(testItem.station.code, sut.station.code);
-      assert.equal(testItem.station.name, sut.station.name);
-      assert.equal(testItem.station.capability, sut.station.capability);
-      assert.isFalse(sut.locationToCAD);
-
-      return done();
-    });
+    assert.equal(testItem.uuid, sut.uuid);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.modifiedDate, sut.modifiedDate);
+    assert.equal(testItem.vehicleId, sut.vehicleId);
+    assert.equal(testItem.radioName, sut.radioName);
+    assert.equal(testItem.station.code, sut.station.code);
+    assert.equal(testItem.station.name, sut.station.name);
+    assert.equal(testItem.station.capability, sut.station.capability);
+    assert.isFalse(sut.locationToCAD);
   });
 });

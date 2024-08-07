@@ -1,21 +1,20 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { MonitorType } from "../types/monitor";
 
-export async function MonitorModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface Monitor extends MonitorType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function MonitorModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<MonitorType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -57,7 +56,6 @@ export async function MonitorModule(mongoose: MongooseModule) {
       default: 1,
     },
   }, {
-    collection: "massive_monitor",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -67,9 +65,7 @@ export async function MonitorModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "Monitor", modelSchema);
+  return mongoose.model<Monitor>("Monitor", modelSchema, "massive_monitor", { overwriteModels: true });
 }
 
-export interface Monitor extends ItemTypeFromTypeSchemaFunction<typeof MonitorModule> { }
-export interface MonitorModel extends ModelTypeFromTypeSchemaFunction<Monitor> { }
-export default MonitorModule as ReplaceModelReturnType<typeof MonitorModule, MonitorModel>;
+export interface MonitorModel extends Model<Monitor> { }

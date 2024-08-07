@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChartDeviceStatsModule = void 0;
-const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
 async function ChartDeviceStatsModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const ChartItem = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const ChartItem = new Schema({
         // used to keep track of current user, 
         // email + os + app would be a good unique key
         email: {
@@ -43,9 +41,9 @@ async function ChartDeviceStatsModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         dateAt: {
@@ -62,9 +60,7 @@ async function ChartDeviceStatsModule(mongoose) {
             type: [ChartItem],
             default: [],
         },
-    }, {
-        collection: "massive_chart_device_stat",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     modelSchema.set("toJSON", {
         virtuals: true,
@@ -75,8 +71,7 @@ async function ChartDeviceStatsModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return (0, helpers_1.createModel)(mongoose, "ChartDeviceStat", modelSchema);
+    return mongoose.model("ChartDeviceStat", modelSchema, "massive_chart_device_stat", { overwriteModels: true });
 }
-exports.ChartDeviceStatsModule = ChartDeviceStatsModule;
 exports.default = ChartDeviceStatsModule;
 //# sourceMappingURL=chart-device-stats.js.map

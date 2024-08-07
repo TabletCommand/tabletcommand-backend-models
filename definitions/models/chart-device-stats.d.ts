@@ -1,42 +1,35 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ChartDeviceStatsModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { Model } from "mongoose";
+import { ChartDeviceStatsType } from "../types/chart";
+export interface ChartDeviceStats extends ChartDeviceStatsType {
+}
+export default function ChartDeviceStatsModule(mongoose: MongooseModule): Promise<Model<ChartDeviceStats, {}, {}, {}, import("mongoose").Document<unknown, {}, ChartDeviceStats> & ChartDeviceStats & Required<{
     _id: import("mongoose").Types.ObjectId;
-    dateAt: string;
-    departmentId: string;
-    items: import("../helpers").MongooseInterface<{
-        email: {
-            type: StringConstructor;
-            default: string;
-        };
-        dateAt: {
-            type: DateConstructor;
-            default: Date;
-        };
-        os: {
-            type: StringConstructor;
-            default: string;
-        };
-        osSemVer: {
-            type: StringConstructor;
-            default: string;
-        };
-        app: {
-            type: StringConstructor;
-            default: string;
-        };
-        appSemVer: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface ChartDeviceStats extends ItemTypeFromTypeSchemaFunction<typeof ChartDeviceStatsModule> {
+}>, any>>;
+export interface ChartDeviceStatsModel extends Model<ChartDeviceStats> {
 }
-export interface ChartDeviceStatsModel extends ModelTypeFromTypeSchemaFunction<ChartDeviceStats> {
-}
-declare const _default: ReplaceModelReturnType<typeof ChartDeviceStatsModule, ChartDeviceStatsModel>;
-export default _default;
 //# sourceMappingURL=chart-device-stats.d.ts.map

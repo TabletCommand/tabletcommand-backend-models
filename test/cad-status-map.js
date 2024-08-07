@@ -22,21 +22,17 @@ describe("CADStatusMap", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
+  it("is saved", async function() {
     const item = new models.CADStatusMap(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    const sut = await item.save();
 
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.modifiedDate, sut.modifiedDate);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.modifiedDate, sut.modifiedDate);
 
-      assert.equal(testItem.fromStatusId, sut.fromStatusId);
-      assert.equal(sut.toStatusIds.length, 1);
-      assert.equal(testItem.toStatusIds[0].statusId, sut.toStatusIds[0].statusId);
-      assert.isTrue(sut.toStatusIds[0].userEnabled);
-      assert.equal(sut.toStatusIds[0].position, 0);
-
-      return done();
-    });
+    assert.equal(testItem.fromStatusId, sut.fromStatusId);
+    assert.equal(sut.toStatusIds.length, 1);
+    assert.equal(testItem.toStatusIds[0].statusId, sut.toStatusIds[0].statusId);
+    assert.isTrue(sut.toStatusIds[0].userEnabled);
+    assert.equal(sut.toStatusIds[0].position, 0);
   });
 });

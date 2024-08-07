@@ -1,20 +1,19 @@
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { Model } from "mongoose";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { ChartDeviceStatsType, ChartItemType } from "../types/chart";
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
 
-export async function ChartDeviceStatsModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface ChartDeviceStats extends ChartDeviceStatsType { }
 
-  const ChartItem = createSchema(Schema, {
+export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const ChartItem = new Schema<ChartItemType>({
     // used to keep track of current user, 
     // email + os + app would be a good unique key
     email: {
@@ -52,9 +51,9 @@ export async function ChartDeviceStatsModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ChartDeviceStatsType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     dateAt: {
@@ -72,7 +71,6 @@ export async function ChartDeviceStatsModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_chart_device_stat",
   });
   modelSchema.set("autoIndex", false);
 
@@ -88,9 +86,7 @@ export async function ChartDeviceStatsModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "ChartDeviceStat", modelSchema);
+  return mongoose.model<ChartDeviceStats>("ChartDeviceStat", modelSchema, "massive_chart_device_stat", { overwriteModels: true });
 }
 
-export interface ChartDeviceStats extends ItemTypeFromTypeSchemaFunction<typeof ChartDeviceStatsModule> { }
-export interface ChartDeviceStatsModel extends ModelTypeFromTypeSchemaFunction<ChartDeviceStats> { }
-export default ChartDeviceStatsModule as ReplaceModelReturnType<typeof ChartDeviceStatsModule, ChartDeviceStatsModel>;
+export interface ChartDeviceStatsModel extends Model<ChartDeviceStats> { }

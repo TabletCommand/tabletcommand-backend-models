@@ -1,19 +1,18 @@
+import { Model } from "mongoose";
 import {
   MongooseModule,
-  createSchema,
-  createModel,
   currentDate,
-  ModelTypeFromTypeSchemaFunction,
-  ItemTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { ReleaseNoteType } from "../types/release-note";
 
-export async function ReleaseNoteModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface ReleaseNote extends ReleaseNoteType, Record<string, unknown> { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function ReleaseNoteModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<ReleaseNoteType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     title: {
@@ -43,13 +42,8 @@ export async function ReleaseNoteModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
-  }, {
-    collection: "massive_release_note",
-  });
-  modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "ReleaseNote", modelSchema);
+  }, { autoIndex: false });
+  return mongoose.model<ReleaseNote>("ReleaseNote", modelSchema, "massive_release_note", { overwriteModels: true });
 }
 
-export interface ReleaseNote extends ItemTypeFromTypeSchemaFunction<typeof ReleaseNoteModule> { }
-export interface ReleaseNoteModel extends ModelTypeFromTypeSchemaFunction<ReleaseNote> { }
-export default ReleaseNoteModule as ReplaceModelReturnType<typeof ReleaseNoteModule, ReleaseNoteModel>;
+export interface ReleaseNoteModel extends Model<ReleaseNote> { }

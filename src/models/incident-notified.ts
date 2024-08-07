@@ -1,17 +1,16 @@
+import { Model } from "mongoose";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { IncidentNotifiedType, SentItemType, UnitType } from "../types/incident-events";
 
-export async function IncidentNotifiedModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
-  
-  const SentItem = createSchema(Schema, {
+export interface IncidentNotified extends IncidentNotifiedType { }
+
+export default async function IncidentNotifiedModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const SentItem = new Schema<SentItemType>({
     name: {
       type: String,
       default: "",
@@ -29,7 +28,7 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Unit = createSchema(Schema, {
+  const Unit = new Schema<UnitType>({
     UnitID: {
       type: String,
       default: "",
@@ -43,9 +42,9 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<IncidentNotifiedType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -79,13 +78,10 @@ export async function IncidentNotifiedModule(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
-    collection: "massive_incident_notified",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "IncidentNotified", modelSchema);
+  return mongoose.model<IncidentNotified>("IncidentNotified", modelSchema, "massive_incident_notified", { overwriteModels: true });
 }
 
-export interface IncidentNotified extends ItemTypeFromTypeSchemaFunction<typeof IncidentNotifiedModule> { }
-export interface IncidentNotifiedModel extends ModelTypeFromTypeSchemaFunction<IncidentNotified> { }
-export default IncidentNotifiedModule as ReplaceModelReturnType<typeof IncidentNotifiedModule, IncidentNotifiedModel>;
+export interface IncidentNotifiedModel extends Model<IncidentNotified> { }

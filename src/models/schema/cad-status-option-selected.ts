@@ -1,12 +1,12 @@
 import {
   MongooseModule,
-  createSchema,
 } from "../../helpers";
+import { CADStatusOptionSelectedSchemaType } from "../../types/cad";
 
 export default function CADStatusOptionSelectedSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Item = createSchema(Schema, {
+  const Item = new Schema<CADStatusOptionSelectedSchemaType>({
     name: {
       type: String,
       default: "",

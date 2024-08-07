@@ -1,19 +1,18 @@
+import { Model } from "mongoose";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { RateLimitType } from "../types/rate-limit";
 
-export async function RateLimitModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface RateLimit extends RateLimitType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function RateLimitModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<RateLimitType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     username: String,
@@ -34,13 +33,10 @@ export async function RateLimitModule(mongoose: MongooseModule) {
       default: "",
     },
   }, {
-    collection: "massive_rate_limit",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "RateLimit", modelSchema);
+  return mongoose.model<RateLimit>("RateLimit", modelSchema, "massive_rate_limit", { overwriteModels: true });
 }
 
-export interface RateLimit extends ItemTypeFromTypeSchemaFunction<typeof RateLimitModule> { }
-export interface RateLimitModel extends ModelTypeFromTypeSchemaFunction<RateLimit> { }
-export default RateLimitModule as ReplaceModelReturnType<typeof RateLimitModule, RateLimitModel>;
+export interface RateLimitModel extends Model<RateLimit> { }

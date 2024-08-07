@@ -1,61 +1,35 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function CADVehicleStatusModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
-    uuid: string;
-    departmentId: string;
-    vehicleId: string;
-    radioName: string;
-    requestTime: number;
-    responseTime: number;
-    changedAt: string;
-    status: string;
-    statusCode: string;
-    modifiedDate: number;
-    modified: string;
-    requestStatus: number;
-    owner: string;
-    ownerId: string;
-    incidentNumber: string;
-    options: import("../helpers").MongooseInterface<{
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-        type: {
-            type: StringConstructor;
-            default: string;
-        };
-        value: {
-            type: StringConstructor;
-            default: string;
-        };
-        key: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>[];
-    capability: string;
-    locationCurrent: string;
-    locationDestination: string;
-    destination: import("../helpers").MongooseInterface<{
-        address: {
-            type: StringConstructor;
-            default: string;
-        };
-        name: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
-    assignableByUser: boolean;
-    backupDate: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface CADVehicleStatus extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { Model } from "mongoose";
+import { CADVehicleStatusType } from "../types/cad";
+export interface CADVehicleStatus extends CADVehicleStatusType {
 }
-export interface CADVehicleStatusModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatus> {
+export default function CADVehicleStatusModule(mongoose: MongooseModule): Promise<Model<CADVehicleStatus, {}, {}, {}, import("mongoose").Document<unknown, {}, CADVehicleStatus> & CADVehicleStatus & {
+    _id: import("mongoose").Types.ObjectId;
+}, any>>;
+export interface CADVehicleStatusModel extends Model<CADVehicleStatus> {
 }
-declare const _default: ReplaceModelReturnType<typeof CADVehicleStatusModule, CADVehicleStatusModel>;
-export default _default;
 //# sourceMappingURL=cad-vehicle-status.d.ts.map

@@ -3,25 +3,19 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
+import { Model } from "mongoose";
+import { ChecklistItemType } from "../types/checklist";
+
+export interface ChecklistItem extends ChecklistItemType, Record<string, unknown> { }
 
 export function ChecklistItemSchema(mongoose: MongooseModule) {
-  const {
-    Schema,
-    Types,
-  } = mongoose;
+  const { Schema } = mongoose;
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ChecklistItemType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     position: {
@@ -68,31 +62,26 @@ export function ChecklistItemSchema(mongoose: MongooseModule) {
       default: ""
     }
   }, {
-    collection: "massive_checklist_item_sync",
   });
   modelSchema.set("autoIndex", false);
   return modelSchema;
 }
 
-export async function ChecklistItemModule(mongoose: MongooseModule) {
+export default async function ChecklistItemModule(mongoose: MongooseModule) {
   const modelSchema = ChecklistItemSchema(mongoose);
 
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id;
-    },
-  });
-
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
 
-  return createModel(mongoose, "ChecklistItem", modelSchema);
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
+
+  return mongoose.model<ChecklistItem>("ChecklistItem", modelSchema, "massive_checklist_item_sync", { overwriteModels: true });
 }
 
-export interface ChecklistItem extends ItemTypeFromTypeSchemaFunction<typeof ChecklistItemModule> { }
-export interface ChecklistItemModel extends ModelTypeFromTypeSchemaFunction<ChecklistItem> { }
-export default ChecklistItemModule as ReplaceModelReturnType<typeof ChecklistItemModule, ChecklistItemModel>;
+export interface ChecklistItemModel extends Model<ChecklistItem> { }

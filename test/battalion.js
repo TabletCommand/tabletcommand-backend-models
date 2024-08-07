@@ -22,25 +22,22 @@ describe("Battalion", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.Battalion(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.Battalion(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.active, sut.active);
-      assert.equal(testItem.isMandatory, sut.isMandatory);
-      assert.equal(testItem.name, sut.name);
-      assert.equal(testItem.userId, sut.userId);
-      assert.equal(testItem.position, sut.position);
-      assert.equal(testItem.agencyId, sut.agencyId);
-      assert.equal(testItem.local_id, sut.local_id);
-      assert.equal(testItem.units.length, 1);
-      const expectedDate = new Date().valueOf() / 1000.0;
-      const timeDelta = expectedDate - sut.modified_unix_date;
-      assert.isTrue(timeDelta < 1);
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.active, sut.active);
+    assert.equal(testItem.isMandatory, sut.isMandatory);
+    assert.equal(testItem.name, sut.name);
+    assert.equal(testItem.userId, sut.userId);
+    assert.equal(testItem.position, sut.position);
+    assert.equal(testItem.agencyId, sut.agencyId);
+    assert.equal(testItem.local_id, sut.local_id);
+    assert.equal(testItem.units.length, 1);
+    const expectedDate = new Date().valueOf() / 1000.0;
+    const timeDelta = expectedDate - sut.modified_unix_date;
+    assert.isTrue(timeDelta < 1);
   });
 });

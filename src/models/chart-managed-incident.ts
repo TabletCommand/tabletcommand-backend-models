@@ -1,21 +1,20 @@
+import { Model } from "mongoose";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { ChartItemType, ChartManagedIncidentType } from "../types/chart";
+
+export interface ChartManagedIncident extends ChartManagedIncidentType { }
 
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
-export async function ChartManagedIncidentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export default async function ChartManagedIncidentModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
 
-  const ChartItem = createSchema(Schema, {
+  const ChartItem = new Schema<ChartItemType>({
     item: {
       type: String,
       default: "",
@@ -29,9 +28,9 @@ export async function ChartManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ChartManagedIncidentType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     dateAt: {
@@ -58,7 +57,6 @@ export async function ChartManagedIncidentModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_chart_managed_incident",
   });
   modelSchema.set("autoIndex", false);
 
@@ -74,9 +72,7 @@ export async function ChartManagedIncidentModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "ChartManagedIncident", modelSchema);
+  return mongoose.model<ChartManagedIncident>("ChartManagedIncident", modelSchema, "massive_chart_managed_incident", { overwriteModels: true });
 }
 
-export interface ChartManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ChartManagedIncidentModule> { }
-export interface ChartManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ChartManagedIncident> { }
-export default ChartManagedIncidentModule as ReplaceModelReturnType<typeof ChartManagedIncidentModule, ChartManagedIncidentModel>;
+export interface ChartManagedIncidentModel extends Model<ChartManagedIncident> { }

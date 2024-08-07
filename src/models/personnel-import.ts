@@ -1,18 +1,17 @@
+import { Model } from "mongoose";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { PersonnelImportType, RadioType } from "../types/personnel";
+
+export interface PersonnelImport extends PersonnelImportType { }
 
 export function PersonnelImportSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
 
-  const Radio = createSchema(Schema, {
+  const Radio = new Schema<RadioType>({
     radioName: {
       type: String,
     },
@@ -29,9 +28,9 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<PersonnelImportType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     PersonnelID: {
@@ -76,11 +75,9 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     },
     shiftStart: {
       type: Date,
-      default: "",
     },
     shiftEnd: {
       type: Date,
-      default: "",
     },
 
     // Cases matches the other modified_unix_date
@@ -105,7 +102,7 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       default: ""
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -114,18 +111,15 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       default: "",
     },
   }, {
-    collection: "massive_personnel_import",
   });
   modelSchema.set("autoIndex", false);
 
   return modelSchema;
 }
 
-export async function PersonnelImportModule(mongoose: MongooseModule) {
+export default async function PersonnelImportModule(mongoose: MongooseModule) {
   const modelSchema = PersonnelImportSchema(mongoose);
-  return createModel(mongoose, "PersonnelImport", modelSchema);
+  return mongoose.model<PersonnelImport>("PersonnelImport", modelSchema, "massive_personnel_import", { overwriteModels: true });
 }
 
-export interface PersonnelImport extends ItemTypeFromTypeSchemaFunction<typeof PersonnelImportModule> { }
-export interface PersonnelImportModel extends ModelTypeFromTypeSchemaFunction<PersonnelImport> { }
-export default PersonnelImportModule as ReplaceModelReturnType<typeof PersonnelImportModule, PersonnelImportModel>;
+export interface PersonnelImportModel extends Model<PersonnelImport> { }

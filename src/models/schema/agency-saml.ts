@@ -1,12 +1,12 @@
 import {
-  createSchema,
   MongooseModule,
 } from "../../helpers";
+import { AgencySAMLSchemaType } from "../../types/agency";
 
 export default function AgencySAMLSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const AgencySAML = createSchema(Schema, {
+  const AgencySAML = new Schema<AgencySAMLSchemaType>({
     selector: {
       type: String,
       required: true,

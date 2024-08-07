@@ -1,20 +1,19 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { SMTPUnhandledType } from "../types/smtp-unhandled";
 
-export async function SMTPUnhandledModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface SMTPUnhandled extends SMTPUnhandledType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<SMTPUnhandledType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     email: {
@@ -28,7 +27,6 @@ export async function SMTPUnhandledModule(mongoose: MongooseModule) {
       required: true,
     },
   }, {
-    collection: "massive_smtp_unhandled",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -42,9 +40,7 @@ export async function SMTPUnhandledModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "SMTPUnhandled", modelSchema);
+  return mongoose.model<SMTPUnhandled>("SMTPUnhandled", modelSchema, "massive_smtp_unhandled", { overwriteModels: true });
 }
 
-export interface SMTPUnhandled extends ItemTypeFromTypeSchemaFunction<typeof SMTPUnhandledModule> { }
-export interface SMTPUnhandledModel extends ModelTypeFromTypeSchemaFunction<SMTPUnhandled> { }
-export default SMTPUnhandledModule as ReplaceModelReturnType<typeof SMTPUnhandledModule, SMTPUnhandledModel>;
+export interface SMTPUnhandledModel extends Model<SMTPUnhandled> { }

@@ -1,18 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LocationModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const color_1 = require("./schema/color");
 const geojson_point_1 = require("./schema/geojson-point");
 async function LocationModule(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const Color = (0, color_1.default)(mongoose);
     const GeoJSONPoint = (0, geojson_point_1.default)(mongoose);
-    const modelSchemaDefinition = (0, helpers_1.createSchemaDefinition)({
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -159,10 +158,7 @@ async function LocationModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-    });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaDefinition, {
-        collection: "massive_location",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -195,8 +191,7 @@ async function LocationModule(mongoose) {
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "Location", modelSchema);
+    return mongoose.model("Location", modelSchema, "massive_location", { overwriteModels: true });
 }
-exports.LocationModule = LocationModule;
 exports.default = LocationModule;
 //# sourceMappingURL=location.js.map

@@ -1,20 +1,19 @@
+import { Model } from "mongoose";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { ChartIncidentType, ChartItemType } from "../types/chart";
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
-export async function ChartIncidentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface ChartIncident extends ChartIncidentType { }
 
-  const ChartItem = createSchema(Schema, {
+export default async function ChartIncidentModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const ChartItem = new Schema<ChartItemType>({
     item: {
       type: String,
       default: "",
@@ -28,9 +27,9 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ChartIncidentType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     dateAt: {
@@ -52,7 +51,6 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_chart_incident",
   });
   modelSchema.set("autoIndex", false);
 
@@ -68,9 +66,7 @@ export async function ChartIncidentModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "ChartIncident", modelSchema);
+  return mongoose.model<ChartIncident>("ChartIncident", modelSchema, "massive_chart_incident", { overwriteModels: true });
 }
 
-export interface ChartIncident extends ItemTypeFromTypeSchemaFunction<typeof ChartIncidentModule> { }
-export interface ChartIncidentModel extends ModelTypeFromTypeSchemaFunction<ChartIncident> { }
-export default ChartIncidentModule as ReplaceModelReturnType<typeof ChartIncidentModule, ChartIncidentModel>;
+export interface ChartIncidentModel extends Model<ChartIncident> { }

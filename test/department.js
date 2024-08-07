@@ -24,7 +24,7 @@ describe("Department", function() {
     assert.isObject(testItem);
     const item = new models.Department(testItem);
     const sut = await item.save();
-    const result = await models.Department.findOne({_id: testItem._id}).lean();
+    const result = await models.Department.findOne({ _id: testItem._id }).lean();
     assert.isNotNull(sut._id);
     assert.isNotNull(sut.id);
     assert.equal(sut.department, testItem.department);

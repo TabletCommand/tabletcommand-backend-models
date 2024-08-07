@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChecklistItemModule = exports.ChecklistItemSchema = void 0;
+exports.ChecklistItemSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 function ChecklistItemSchema(mongoose) {
-    const { Schema, Types, } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         position: {
@@ -53,28 +53,22 @@ function ChecklistItemSchema(mongoose) {
             type: String,
             default: ""
         }
-    }, {
-        collection: "massive_checklist_item_sync",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
     return modelSchema;
 }
 exports.ChecklistItemSchema = ChecklistItemSchema;
 async function ChecklistItemModule(mongoose) {
     const modelSchema = ChecklistItemSchema(mongoose);
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id;
-        },
-    });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    return (0, helpers_1.createModel)(mongoose, "ChecklistItem", modelSchema);
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
+    });
+    return mongoose.model("ChecklistItem", modelSchema, "massive_checklist_item_sync", { overwriteModels: true });
 }
-exports.ChecklistItemModule = ChecklistItemModule;
 exports.default = ChecklistItemModule;
 //# sourceMappingURL=checklist-item.js.map

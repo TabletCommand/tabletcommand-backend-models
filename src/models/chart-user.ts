@@ -1,22 +1,21 @@
+import { Model } from "mongoose";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { ChartUserType } from "../types/chart";
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
-export async function ChartUserModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface ChartUser extends ChartUserType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function ChartUserModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<ChartUserType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     dateAt: {
@@ -38,7 +37,6 @@ export async function ChartUserModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
-    collection: "massive_chart_user",
   });
   modelSchema.set("autoIndex", false);
 
@@ -54,9 +52,7 @@ export async function ChartUserModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "ChartUser", modelSchema);
+  return mongoose.model<ChartUser>("ChartUser", modelSchema, "massive_chart_user", { overwriteModels: true });
 }
 
-export interface ChartUser extends ItemTypeFromTypeSchemaFunction<typeof ChartUserModule> { }
-export interface ChartUserModel extends ModelTypeFromTypeSchemaFunction<ChartUser> { }
-export default ChartUserModule as ReplaceModelReturnType<typeof ChartUserModule, ChartUserModel>;
+export interface ChartUserModel extends Model<ChartUser> { }

@@ -1,27 +1,26 @@
 import * as uuid from "uuid";
 import {
-  createModel,
-  createSchema,
-  createSchemaDefinition,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ColorModule from "./schema/color";
 import GeoJSONPointModule from "./schema/geojson-point";
+import { Model } from "mongoose";
+import { LocationType } from "../types/location";
 
-export async function LocationModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface Location extends LocationType, Record<string, unknown> { }
+
+export default async function LocationModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
   const Color = ColorModule(mongoose);
   const GeoJSONPoint = GeoJSONPointModule(mongoose);
 
-  const modelSchemaDefinition = createSchemaDefinition({
+
+  const modelSchema = new Schema<LocationType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -173,10 +172,7 @@ export async function LocationModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
-  });
-
-  const modelSchema = createSchema(Schema, modelSchemaDefinition, {
-    collection: "massive_location",
+  }, {
   });
 
   modelSchema.set("toJSON", {
@@ -216,9 +212,7 @@ export async function LocationModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "Location", modelSchema);
+  return mongoose.model<Location>("Location", modelSchema, "massive_location", { overwriteModels: true });
 }
 
-export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> { }
-export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> { }
-export default LocationModule as ReplaceModelReturnType<typeof LocationModule, LocationModel>;
+export interface LocationModel extends Model<Location> { }

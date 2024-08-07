@@ -1,25 +1,24 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import ValidationErrorItemModule from "./schema/validation-error-item";
+import { ValidationReportType } from "../types/validation";
+
+export interface ValidationReport extends ValidationReportType { }
 
 export function ValidationReportSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const ValidationErrorItem = ValidationErrorItemModule(mongoose);
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ValidationReport>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Department",
       required: true,
       unique: true,
@@ -57,18 +56,15 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
-    collection: "massive_validation_report",
   });
   modelSchema.set("autoIndex", false);
 
   return modelSchema;
 }
 
-export async function ValidationReportModule(mongoose: MongooseModule) {
+export default async function ValidationReportModule(mongoose: MongooseModule) {
   const modelSchema = ValidationReportSchema(mongoose);
-  return createModel(mongoose, "ValidationReport", modelSchema);
+  return mongoose.model<ValidationReport>("ValidationReport", modelSchema, "massive_validation_report", { overwriteModels: true });
 }
 
-export interface ValidationReport extends ItemTypeFromTypeSchemaFunction<typeof ValidationReportModule> { }
-export interface ValidationReportModel extends ModelTypeFromTypeSchemaFunction<ValidationReport> { }
-export default ValidationReportModule as ReplaceModelReturnType<typeof ValidationReportModule, ValidationReportModel>;
+export interface ValidationReportModel extends Model<ValidationReport> { }

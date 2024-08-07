@@ -1,19 +1,18 @@
 import * as uuid from "uuid";
 import {
-  createSchema,
-  createModel,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { Model } from "mongoose";
+import { IncidentTakeoverType } from "../types/incident-events";
 
-export async function IncidentTakeoverModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface IncidentTakeover extends IncidentTakeoverType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function IncidentTakeoverModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<IncidentTakeoverType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -72,13 +71,10 @@ export async function IncidentTakeoverModule(mongoose: MongooseModule) {
       default: 0,
     },
   }, {
-    collection: "massive_incident_takeover",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "IncidentTakeover", modelSchema);
+  return mongoose.model<IncidentTakeover>("IncidentTakeover", modelSchema, "massive_incident_takeover", { overwriteModels: true });
 }
 
-export interface IncidentTakeover extends ItemTypeFromTypeSchemaFunction<typeof IncidentTakeoverModule> { }
-export interface IncidentTakeoverModel extends ModelTypeFromTypeSchemaFunction<IncidentTakeover> { }
-export default IncidentTakeoverModule as ReplaceModelReturnType<typeof IncidentTakeoverModule, IncidentTakeoverModel>;
+export interface IncidentTakeoverModel extends Model<IncidentTakeover> { }

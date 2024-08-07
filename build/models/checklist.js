@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChecklistModule = exports.ChecklistSchema = void 0;
+exports.ChecklistSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const checklist_item_1 = require("./checklist-item");
 function ChecklistSchema(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const ChecklistItem = (0, checklist_item_1.ChecklistItemSchema)(mongoose);
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         position: {
@@ -53,7 +53,7 @@ function ChecklistSchema(mongoose) {
             required: true
         },
         agencyId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
         },
@@ -61,28 +61,22 @@ function ChecklistSchema(mongoose) {
             type: [ChecklistItem],
             default: [],
         }
-    }, {
-        collection: "massive_checklist_sync",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
-        transform(doc, ret) {
-            ret.id = ret._id;
-        },
-    });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
+    });
+    modelSchema.set("toJSON", {
+        virtuals: true,
+        versionKey: false,
     });
     return modelSchema;
 }
 exports.ChecklistSchema = ChecklistSchema;
 async function ChecklistModule(mongoose) {
     const modelSchema = ChecklistSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "Checklist", modelSchema);
+    return mongoose.model("Checklist", modelSchema, "massive_checklist_sync", { overwriteModels: true });
 }
-exports.ChecklistModule = ChecklistModule;
 exports.default = ChecklistModule;
 //# sourceMappingURL=checklist.js.map

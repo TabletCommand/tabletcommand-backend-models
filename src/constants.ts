@@ -1,8 +1,22 @@
-// These should be converted to Typescript Enum after upgrading mongoose to 6.x or newer
+export enum LocationSource {
+  CAD = "CAD",
+  FleetComplete = "FleetComplete",
+  GST = "GST",
+  Samsara = "Samsara",
+  Skymira = "Skymira",
+  SKYTRAC = "SKYTRAC",
+  Somewear = "Somewear",
+  TCAndroid = "TC-Android",
+  TCIOS = "TC-iOS",
+  TCMobileAndroid = "TCMobile-Android",
+  TCMobileIOS = "TCMobile-iOS",
+  VehicleModem = "VehicleModem"
+}
 
-export type LocationSource =
-  "CAD" | "FleetComplete" | "GST" |
-  "Samsara" | "Skymira" | "SKYTRAC" | "Somewear" |
-  "TC-Android" | "TC-iOS" | "TCMobile-Android" | "TCMobile-iOS" |
-  "VehicleModem";
-export type LocationKindType = "fixed-wing" | "helicopter" | "marine" | "person" | "vehicle";
+export enum LocationKindType {
+  FixedWing = "fixed-wing",
+  Helicopter = "helicopter",
+  Marine = "marine",
+  Person = "person",
+  Vehicle = "vehicle"
+}

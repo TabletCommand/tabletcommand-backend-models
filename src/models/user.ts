@@ -1,27 +1,24 @@
 import * as uuid from "uuid";
 import {
-  createSchema,
-  createModel,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
   MongooseModule,
   MongooseDocument,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
 import EsriAuthSchema from "./schema/esri-auth";
 import EsriErrorSchema from "./schema/esri-error";
 import PubNubTokenSchema from "./schema/pubnub-token";
+import { Model, Types } from "mongoose";
+import { UserType, VehicleSchemaType } from "../types/user";
+
+export interface User extends UserType, Record<string, unknown> { }
 
 export function UserSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const EsriAuth = EsriAuthSchema(mongoose);
   const EsriError = EsriErrorSchema(mongoose);
   const PubNubToken = PubNubTokenSchema(mongoose);
 
-  const VehicleSchema = createSchema(Schema, {
+  const VehicleSchema = new Schema<VehicleSchemaType>({
     radioName: {
       type: String,
       default: "",
@@ -35,7 +32,7 @@ export function UserSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<UserType>({
     nick: {
       type: String,
       default: "",
@@ -68,7 +65,7 @@ export function UserSchema(mongoose: MongooseModule) {
       type: Date,
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -267,30 +264,26 @@ export function UserSchema(mongoose: MongooseModule) {
       default: false,
     }
   }, {
-    collection: "sys_user",
-  });
-  modelSchema.set("autoIndex", false);
-
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
+    autoIndex: false,
   });
 
+  // NO _id on User schema?
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     return this._id.toHexString();
   });
 
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
+
   return modelSchema;
 }
 
-export async function UserModule(mongoose: MongooseModule) {
+export default async function UserModule(mongoose: MongooseModule) {
   const modelSchema = UserSchema(mongoose);
-  return createModel(mongoose, "User", modelSchema);
+  return mongoose.model<User>("User", modelSchema, "sys_user", { overwriteModels: true });
 }
 
-export interface User extends ItemTypeFromTypeSchemaFunction<typeof UserModule> { }
-export interface UserModel extends ModelTypeFromTypeSchemaFunction<User> { }
-export default UserModule as ReplaceModelReturnType<typeof UserModule, UserModel>;
+export interface UserModel extends Model<User> { }

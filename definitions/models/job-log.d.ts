@@ -1,21 +1,35 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function JobLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { Model } from "mongoose";
+import { MongooseModule } from "../helpers";
+import { JobLogType } from "../types/job-log";
+export interface JobLog extends JobLogType {
+}
+export default function JobLogModule(mongoose: MongooseModule): Promise<Model<JobLog, {}, {}, {}, import("mongoose").Document<unknown, {}, JobLog> & JobLog & Required<{
     _id: import("mongoose").Types.ObjectId;
-    jobName: string;
-    host: string;
-    bidDate: string;
-    startDate: string;
-    completedDate: string;
-    state: string;
-    forceClosed: boolean;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface JobLog extends ItemTypeFromTypeSchemaFunction<typeof JobLogModule> {
+}>, any>>;
+export interface JobLogModel extends Model<JobLog> {
 }
-export interface JobLogModel extends ModelTypeFromTypeSchemaFunction<JobLog> {
-}
-declare const _default: ReplaceModelReturnType<typeof JobLogModule, JobLogModel>;
-export default _default;
 //# sourceMappingURL=job-log.d.ts.map

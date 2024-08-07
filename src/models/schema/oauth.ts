@@ -1,12 +1,12 @@
 import {
   MongooseModule,
-  createSchema,
 } from "../../helpers";
+import { OAuthSchemaType } from "../../types/oauth";
 
 export default function OAuthSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Item = createSchema(Schema, {
+  const Item = new Schema<OAuthSchemaType>({
     accessToken: {
       type: String,
       default: "",
@@ -22,7 +22,7 @@ export default function OAuthSchema(mongoose: MongooseModule) {
   }, {
     _id: false,
     id: false,
-  });  
+  });
 
   return Item;
 }

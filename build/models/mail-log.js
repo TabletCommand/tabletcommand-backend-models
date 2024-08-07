@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MailLogModule = void 0;
 const helpers_1 = require("../helpers");
 async function MailLogModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         mailId: {
@@ -68,12 +67,9 @@ async function MailLogModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-    }, {
-        collection: "massive_mail_log",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "MailLog", modelSchema);
+    return mongoose.model("MailLog", modelSchema, "massive_mail_log", { overwriteModels: true });
 }
-exports.MailLogModule = MailLogModule;
 exports.default = MailLogModule;
 //# sourceMappingURL=mail-log.js.map

@@ -22,24 +22,21 @@ describe("Agency", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.Agency(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.Agency(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.active, sut.active);
-      assert.equal(testItem.code, sut.code);
-      assert.equal(testItem.name, sut.name);
-      assert.equal(testItem.administrators.length, 1);
-      assert.equal(testItem.personnelIntegration, sut.personnelIntegration);
-      assert.equal(testItem.personnelMonitorHours, sut.personnelMonitorHours);
-      assert.equal(testItem.crossStaffing.length, 1);
-      const expectedDate = new Date().valueOf() / 1000.0;
-      const timeDelta = expectedDate - sut.modified_unix_date;
-      assert.isTrue(timeDelta < 1);
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.active, sut.active);
+    assert.equal(testItem.code, sut.code);
+    assert.equal(testItem.name, sut.name);
+    assert.equal(testItem.administrators.length, 1);
+    assert.equal(testItem.personnelIntegration, sut.personnelIntegration);
+    assert.equal(testItem.personnelMonitorHours, sut.personnelMonitorHours);
+    assert.equal(testItem.crossStaffing.length, 1);
+    const expectedDate = new Date().valueOf() / 1000.0;
+    const timeDelta = expectedDate - sut.modified_unix_date;
+    assert.isTrue(timeDelta < 1);
   });
 });

@@ -1,17 +1,16 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { UserRegistrationType } from "../types/user";
 
-export async function UserRegistrationModule(mongoose: MongooseModule) {
+export interface UserRegistration extends UserRegistrationType { }
+
+export default async function UserRegistrationModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<UserRegistrationType>({
     email: {
       type: String,
       default: "",
@@ -87,13 +86,10 @@ export async function UserRegistrationModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_user_registration",
+    autoIndex: false
   });
-  modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "UserRegistration", modelSchema);
+  return mongoose.model<UserRegistration>("UserRegistration", modelSchema, "massive_user_registration", { overwriteModels: true });
 }
 
-export interface UserRegistration extends ItemTypeFromTypeSchemaFunction<typeof UserRegistrationModule> { }
-export interface UserRegistrationModel extends ModelTypeFromTypeSchemaFunction<UserRegistration> { }
-export default UserRegistrationModule as ReplaceModelReturnType<typeof UserRegistrationModule, UserRegistrationModel>;
+export interface UserRegistrationModel extends Model<UserRegistration> { }

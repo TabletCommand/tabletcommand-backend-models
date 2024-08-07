@@ -1,18 +1,23 @@
 // import * as uuid from "uuid";
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
+import {
+  ArcGISGroupUserType,
+  ArcGISUserInvitationType,
+  ArcGISDepartmentUserType,
+  ArcGISDepartmentType,
+  ArcGISGroupType
+} from "../types/arcgis-group";
 
-export async function ArcGISGroupModule(mongoose: MongooseModule) {
+export interface ArcGISGroup extends ArcGISGroupType { }
+
+export default async function ArcGISGroupModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const ArcGISGroupUser = createSchema(Schema, {
+  const ArcGISGroupUser = new Schema<ArcGISGroupUserType>({
     username: {
       type: String,
       default: "",
@@ -34,7 +39,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ArcGISUserInvitation = createSchema(Schema, {
+  const ArcGISUserInvitation = new Schema<ArcGISUserInvitationType>({
     username: {
       type: String,
       default: "",
@@ -52,7 +57,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ArcGISDepartmentUser = createSchema(Schema, {
+  const ArcGISDepartmentUser = new Schema<ArcGISDepartmentUserType>({
     // ArcGIS username
     username: {
       type: String,
@@ -73,7 +78,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ArcGISDepartment = createSchema(Schema, {
+  const ArcGISDepartment = new Schema<ArcGISDepartmentType>({
     department: {
       type: String,
       default: "",
@@ -99,7 +104,7 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ArcGISGroupType>({
     // Unique, to be able to use replaceInto
     groupId: {
       type: String,
@@ -167,16 +172,12 @@ export async function ArcGISGroupModule(mongoose: MongooseModule) {
     // at run success, update this date to a date in the future
     runAt: {
       type: Date,
-      default: "",
     },
   }, {
-    collection: "massive_arcgis_group",
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "ArcGISGroup", modelSchema);
+  return mongoose.model<ArcGISGroup>("ArcGISGroup", modelSchema, "massive_arcgis_group", { overwriteModels: true });
 }
 
-export interface ArcGISGroup extends ItemTypeFromTypeSchemaFunction<typeof ArcGISGroupModule> { }
-export interface ArcGISGroupModel extends ModelTypeFromTypeSchemaFunction<ArcGISGroup> { }
-export default ArcGISGroupModule as ReplaceModelReturnType<typeof ArcGISGroupModule, ArcGISGroupModel>;
+export interface ArcGISGroupModel extends Model<ArcGISGroup> { }

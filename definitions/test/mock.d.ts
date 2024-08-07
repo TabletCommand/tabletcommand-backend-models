@@ -1,6 +1,4 @@
-export default function MockModule(dependecies: {
-    models: unknown;
-}): {
+export default function MockModule(): {
     cleanup: () => Promise<string>;
     arcGISGroup: {
         access: string;

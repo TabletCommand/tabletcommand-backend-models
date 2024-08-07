@@ -22,19 +22,15 @@ describe("ReleaseNote", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.ReleaseNote(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.ReleaseNote(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.title, sut.title);
-      assert.equal(testItem.notes, sut.notes);
-      assert.equal(testItem.version, sut.version);
-      assert.equal(testItem.releaseDate, sut.releaseDate);
-      assert.equal(testItem.status, sut.status);
-
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.title, sut.title);
+    assert.equal(testItem.notes, sut.notes);
+    assert.equal(testItem.version, sut.version);
+    assert.equal(testItem.releaseDate, sut.releaseDate);
+    assert.equal(testItem.status, sut.status);
   });
 });

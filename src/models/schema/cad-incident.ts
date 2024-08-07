@@ -1,10 +1,5 @@
 import {
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
-  ModelFromSchema,
-  MongooseDocument,
   MongooseModule,
 } from "../../helpers";
 
@@ -19,34 +14,58 @@ import {
   SharedSourceSchema,
   SharedToSchema,
 } from "./shared-incident";
+import { CADCommentOptsTypes, CADCommentType, CADUnitType, APNNotificationTypeType, CADPriorIncidentType, CADIncidentSchemaType } from "../../types/cad-incident";
 
 export function CADIncidentSchema(mongoose: MongooseModule) {
-  const toJSONOpts = {
-    versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      strictSchema(doc.schema, ret);
-    },
-  };
-
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const IncidentEvent = IncidentEventSchema(mongoose);
 
   // Share incident properties - copy to managed incidents
   const CADPerson = CADPersonSchema(mongoose);
-  CADPerson.set("toJSON", toJSONOpts);
+  CADPerson.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const RadioChannel = RadioChannelSchema(mongoose);
-  RadioChannel.set("toJSON", toJSONOpts);
+  RadioChannel.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const RecordValue = RecordSchema(mongoose);
-  RecordValue.set("toJSON", toJSONOpts);
+  RecordValue.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const ReportNumber = ReportNumberSchema(mongoose);
-  ReportNumber.set("toJSON", toJSONOpts);
+  ReportNumber.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const SharedSource = SharedSourceSchema(mongoose);
-  SharedSource.set("toJSON", toJSONOpts);
+  SharedSource.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
   const SharedTo = SharedToSchema(mongoose);
-  SharedTo.set("toJSON", toJSONOpts);
+  SharedTo.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
   // Currently, supporting type: "ack", item: "knife"
-  const CADCommentOpts = createSchema(Schema, {
+  const CADCommentOpts = new Schema<CADCommentOptsTypes>({
     type: {
       type: String,
     },
@@ -57,9 +76,11 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADCommentOpts.set("toJSON", toJSONOpts);
+  CADCommentOpts.set("toJSON", {
 
-  const CADComment = createSchema(Schema, {
+  });
+
+  const CADComment = new Schema<CADCommentType>({
     Comment: {
       type: String,
     },
@@ -80,9 +101,14 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADComment.set("toJSON", toJSONOpts);
+  CADComment.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
-  const CADUnit = createSchema(Schema, {
+  const CADUnit = new Schema<CADUnitType>({
     UnitID: {
       type: String,
       required: true,
@@ -137,9 +163,14 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADUnit.set("toJSON", toJSONOpts);
+  CADUnit.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
-  const APNNotificationType = createSchema(Schema, {
+  const APNNotificationType = new Schema<APNNotificationTypeType>({
     name: {
       type: String,
     },
@@ -150,9 +181,14 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  APNNotificationType.set("toJSON", toJSONOpts);
+  APNNotificationType.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
-  const CADPriorIncident = createSchema(Schema, {
+  const CADPriorIncident = new Schema<CADPriorIncidentType>({
     Address: {
       type: String,
     },
@@ -178,12 +214,17 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-  CADPriorIncident.set("toJSON", toJSONOpts);
+  CADPriorIncident.set("toJSON", {
+    versionKey: false,
+    transform(doc, ret) {
+      strictSchema(doc.schema as typeof modelSchema, ret);
+    }
+  });
 
   // Main schema
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADIncidentSchemaType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     uuid: {
@@ -481,24 +522,21 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
     // collection: "massive_incident_cad",
     // strict: false, // Because we accept all kind of data in
   });
+  modelSchema.virtual("id").get(function(this: CADIncidentSchemaType) {
+    return this._id.toString();
+  });
 
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
+    transform(doc, ret: Record<string, unknown>) {
       // Remove fields that should not be here
       delete (ret as unknown as { apikey: unknown }).apikey;
 
       strictSchema(doc.schema as typeof modelSchema, ret);
-
-      ret.id = ret._id;
     },
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
 
   const ignoreFields: ReadonlyArray<string> = ["station", "callerNumber"];
 

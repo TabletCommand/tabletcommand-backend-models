@@ -1,12 +1,12 @@
 import {
   MongooseModule,
-  createSchema,
 } from "../../helpers";
+import { ColorSchemaType } from "../../types/color";
 
 export default function ColorSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Color = createSchema(Schema, {
+  const Color = new Schema<ColorSchemaType>({
     background: {
       type: String,
       default: "#851414", // Red-like

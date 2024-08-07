@@ -22,28 +22,24 @@ describe("Session", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.Session(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.Session(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(sut.user, testItem.user);
-      assert.equal(sut.email, testItem.email);
-      assert.equal(sut.nick, testItem.nick);
-      assert.equal(sut.departmentId, testItem.departmentId);
-      assert.isFalse(sut.active);
-      assert.equal(sut.deviceId, testItem.deviceId);
-      assert.equal(sut.remoteAddress, testItem.remoteAddress);
-      assert.equal(sut.userAgent, testItem.userAgent);
-      assert.equal(sut.source, testItem.source);
-      assert.equal(sut.token, testItem.token);
-      assert.equal(sut.ended, testItem.ended);
-      assert.equal(sut.departmentId, testItem.departmentId);
-      assert.equal(sut.when, testItem.when);
-      assert.equal(sut.id, sut._id);
-
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(sut.user, testItem.user);
+    assert.equal(sut.email, testItem.email);
+    assert.equal(sut.nick, testItem.nick);
+    assert.equal(sut.departmentId, testItem.departmentId);
+    assert.isFalse(sut.active);
+    assert.equal(sut.deviceId, testItem.deviceId);
+    assert.equal(sut.remoteAddress, testItem.remoteAddress);
+    assert.equal(sut.userAgent, testItem.userAgent);
+    assert.equal(sut.source, testItem.source);
+    assert.equal(sut.token, testItem.token);
+    assert.equal(sut.ended, testItem.ended);
+    assert.equal(sut.departmentId, testItem.departmentId);
+    assert.equal(sut.when, testItem.when);
+    assert.equal(sut.id, sut._id);
   });
 });

@@ -1,16 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IncidentEventSchema = exports.IncidentEventModule = void 0;
+exports.IncidentEventSchema = void 0;
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
-async function IncidentEventModule(mongoose) {
-    const modelSchema = IncidentEventSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "IncidentEvent", modelSchema);
-}
-exports.IncidentEventModule = IncidentEventModule;
 function IncidentEventSchema(mongoose) {
-    const { Schema, Types } = mongoose;
-    const EventUser = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const EventUser = new Schema({
         username: {
             type: String,
             default: "",
@@ -31,9 +26,9 @@ function IncidentEventSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -107,9 +102,7 @@ function IncidentEventSchema(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_incident_event",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -123,5 +116,9 @@ function IncidentEventSchema(mongoose) {
     return modelSchema;
 }
 exports.IncidentEventSchema = IncidentEventSchema;
+async function IncidentEventModule(mongoose) {
+    const modelSchema = IncidentEventSchema(mongoose);
+    return mongoose.model("IncidentEvent", modelSchema, "massive_incident_event", { overwriteModels: true });
+}
 exports.default = IncidentEventModule;
 //# sourceMappingURL=incident-event.js.map

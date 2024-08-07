@@ -25,7 +25,7 @@ describe("Location", function() {
   it("is saved", async function() {
     const item = new models.Location(testItem);
     const sut = await item.save();
-    const result = await models.Location.findOne({_id: testItem._id});
+    const result = await models.Location.findOne({ _id: testItem._id });
     assert.isNotNull(testItem._id);
     assert.equal(testItem.departmentId, sut.departmentId);
     assert.equal(testItem.userId, sut.userId);

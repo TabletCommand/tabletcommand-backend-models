@@ -2,26 +2,349 @@ import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 import {
-  createSchema,
-  createModel,
   currentDate,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
   MongooseModule,
   retrieveCurrentUnixTime,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 import ColorModule from "./schema/color";
 import PubNubTokenSchema from "./schema/pubnub-token";
+import { Model } from "mongoose";
+import {
+  AudioStreamGroupType,
+  AudioStreamType,
+  CustomButtonsType,
+  DepartmentType,
+  FireMapperConfigurationType,
+  FireMapperLayerType,
+  FireMapperOutlineType,
+  FirstArrivingConfigType,
+  ForwardFieldsType,
+  ForwardingConfigType,
+  ForwardingConnectionType,
+  GSTConfigType,
+  IncidentReplayType,
+  IncidentTypeType,
+  IncidentVehicleStatusConfigType,
+  IntterraConfigType,
+  IntterraConnectionType,
+  IntterraFieldsType,
+  LicensingType,
+  Mark43ConfigType,
+  Mark43ProcessCommentConfigType,
+  Mark43ProcessConfigType,
+  Mark43ProcessLocationConfigType,
+  Mark43ProcessVehicleStatusConfigType,
+  Mark43StatusConfigType,
+  ReplayOptionType,
+  RestrictedCommentsType,
+  SafetyPriorityKeywordType,
+  SamsaraConfigurationType,
+  ShareIncidentRuleType,
+  SimpleSenseConfigType,
+  SkymiraConfigType,
+  SkytracConfigType,
+  SomewearType,
+  StatusMappingConfigType,
+  StatusMappingObjectConfigType,
+  WebDisclaimerType
+} from "../types/department";
 
-export async function DepartmentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface Department extends DepartmentType, Record<string, unknown> { }
+
+const Mark43StatusConfigDefault = {
+  TimeDispatched: ["D"],
+  TimeEnroute: ["EN"],
+  TimeStaged: ["ST"],
+  TimeCleared: ["AV", "AVF", "AOR"],
+  TimeAtHospital: ["AH"],
+  TimeTransporting: ["T", "EH"],
+  TimeArrived: ["ATS", "A"],
+};
+
+const IntterraFieldsDefault = [
+  {
+    "key": "IncidentNumber",
+    "value": "incidentId",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "AgencyIncidentCallTypeDescription",
+    "value": "incidentTypeDescription",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "units",
+    "value": "assignedUnits",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": true,
+  },
+  {
+    "key": "Longitude",
+    "value": "longitude",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "Latitude",
+    "value": "latitude",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "full_address",
+    "value": "fullAddress",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "EntryDateTime",
+    "value": "alarmDatetime", // cspell:disable-line
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  }
+];
+
+// If any of the following fields are updated/added/deleted,
+// make sure to update the database records, before/after release (script/query)
+const FireMapperConfigurationDefault = {
+  enabled: false,
+  layerRefreshInterval: 15,
+  proLicenseCount: 0,
+  host: "",
+  layer: [
+    {
+      name: "FireMapper - Symbols",
+      pathname: "/api/rest/services/features/FeatureServer/0",
+    },
+    {
+      name: "FireMapper - Lines",
+      pathname: "/api/rest/services/features/FeatureServer/1",
+    },
+    {
+      name: "FireMapper - Photos",
+      pathname: "/api/rest/services/features/FeatureServer/2",
+    },
+    {
+      name: "FireMapper - Areas",
+      pathname: "/api/rest/services/features/FeatureServer/3",
+    },
+    {
+      name: "FireMapper - PDFs",
+      pathname: "/api/rest/services/features/FeatureServer/4",
+    },
+    {
+      name: "FireMapper - Labels",
+      pathname: "/api/rest/services/features/FeatureServer/5",
+    },
+  ],
+  staticLayer: [],
+};
+
+
+const LicensingDefault = {
+  "tcPro2Way": 0,
+  "tcPro1Way": 0,
+  "tcMobile": 0,
+  "tcWeb": 0,
+  "fireMapperPro": 0,
+  "sendToCAD": 0,
+  "tcStreams": 0
+};
+
+const SafetyPriorityKeywordDefault = [
+  {
+    "keywords": [],
+    "priority": 0,
+    "hexColor": "FF3B30"
+  },
+  {
+    "keywords": [],
+    "priority": 1,
+    "hexColor": "FEC309"
+  },
+  {
+    "keywords": [],
+    "priority": 2,
+    "hexColor": "0A60FF"
+  }
+];
+
+const FirstArrivingConfigDefault = {
+  "token": "",
+  "apiUrl": "",
+};
+
+const IntterraConfigDefault = {
+  "enabled": false,
+  "connections": [],
+};
+
+const ForwardingConfigDefault = {
+  "enabled": false,
+  "connections": [],
+};
+
+const IncidentReplayDefault = {
+  "enabled": false,
+  "replays": [],
+};
+
+const SomewearDefault = {
+  "enabled": false,
+};
+
+const GSTConfigDefault = {
+  "enabled": false,
+  "code": "",
+};
+
+const SkymiraConfigDefault = {
+  "enabled": false,
+  "token": "",
+  "locationsUrl": "",
+};
+
+const Mark43ConfigDefault = {
+  "baseUrl": "",
+  "authToken": "",
+  "apiToken": "",
+  "userId": 0,
+  "enabled": false,
+};
+
+const SimpleSenseConfigDefault = {
+  "token": "",
+};
+
+const WebDisclaimerDefault = {
+  "message": "",
+  "enabled": false
+};
+
+const RestrictedCommentsDefault = {
+  enabled: false,
+  callTypesAllowed: [],
+  statusesAllowed: [],
+  restrictedFields: [
+    "LocationComment",
+    "AgencyIncidentCallTypeDescription",
+    "Comment"
+  ],
+  restrictedMessage: "RESTRICTED"
+};
+
+const StatusMappingConfigDefault = {
+  TimeDispatched: {
+    "status": "Unit Dispatched",
+    "statusCode": "DSP"
+  },
+  TimeEnroute: {
+    "status": "Unit is Enroute",
+    "statusCode": "ENR"
+  },
+  TimeStaged: {
+    "status": "Unit is Staging",
+    "statusCode": "STG"
+  },
+  TimeArrived: {
+    "status": "Unit is On Scene",
+    "statusCode": "ONS"
+  },
+  TimeCleared: {
+    "status": "Available on Radio",
+    "statusCode": "AOR"
+  },
+  TimeAtHospital: {
+    "status": "Transport Arrive",
+    "statusCode": "TAR"
+  },
+  // added to exclusions unused
+  TimePatient: {
+    "status": "Available",
+    "statusCode": "AV"
+  },
+  TimeTransporting: {
+    "status": "Transporting",
+    "statusCode": "TRN"
+  },
+  TimeTransportComplete: {
+    "status": "Transport Complete",
+    "statusCode": "TCM"
+  }
+};
+
+const ForwardFieldsDefault = [
+  {
+    "key": "IncidentNumber",
+    "value": "IncidentNumber",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "AgencyIncidentCallTypeDescription",
+    "value": "AgencyIncidentCallTypeDescription",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "units",
+    "value": "units",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": true,
+  },
+  {
+    "key": "Longitude",
+    "value": "Longitude",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "Latitude",
+    "value": "Latitude",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "full_address",
+    "value": "full_address",
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "EntryDateTime",
+    "value": "EntryDateTime", // cspell:disable-line
+    "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  }
+];
+
+const SamsaraConfigurationDefault = {
+  enabled: false,
+  token: "",
+};
+
+export default async function DepartmentModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
   const PubNubToken = PubNubTokenSchema(mongoose);
   const Color = ColorModule(mongoose);
 
-  const Mark43StatusConfig = createSchema(Schema, {
+  const Mark43StatusConfig = new Schema<Mark43StatusConfigType>({
     TimeDispatched: {
       type: [String],
       default: []
@@ -55,17 +378,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Mark43StatusConfigDefault = {
-    TimeDispatched: ["D"],
-    TimeEnroute: ["EN"],
-    TimeStaged: ["ST"],
-    TimeCleared: ["AV", "AVF", "AOR"],
-    TimeAtHospital: ["AH"],
-    TimeTransporting: ["T", "EH"],
-    TimeArrived: ["ATS", "A"],
-  };
-
-  const Mark43ProcessLocationConfig = createSchema(Schema, {
+  const Mark43ProcessLocationConfig = new Schema<Mark43ProcessLocationConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -79,8 +392,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-
-  const Mark43ProcessCommentConfig = createSchema(Schema, {
+  const Mark43ProcessCommentConfig = new Schema<Mark43ProcessCommentConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -102,7 +414,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Mark43ProcessVehicleStatusConfig = createSchema(Schema, {
+  const Mark43ProcessVehicleStatusConfig = new Schema<Mark43ProcessVehicleStatusConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -120,7 +432,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Mark43ProcessConfig = createSchema(Schema, {
+  const Mark43ProcessConfig = new Schema<Mark43ProcessConfigType>({
     location: {
       type: Mark43ProcessLocationConfig,
     },
@@ -135,7 +447,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Mark43Config = createSchema(Schema, {
+  const Mark43Config = new Schema<Mark43ConfigType>({
     baseUrl: {
       type: String,
       default: "",
@@ -168,59 +480,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IntterraFieldsDefault = [
-    {
-      "key": "IncidentNumber",
-      "value": "incidentId",
-      "required": true,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "AgencyIncidentCallTypeDescription",
-      "value": "incidentTypeDescription",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "units",
-      "value": "assignedUnits",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": true,
-    },
-    {
-      "key": "Longitude",
-      "value": "longitude",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "Latitude",
-      "value": "latitude",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "full_address",
-      "value": "fullAddress",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "EntryDateTime",
-      "value": "alarmDatetime", // cspell:disable-line
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    }
-  ];
-
-  const IntterraFields = createSchema(Schema, {
+  const IntterraFields = new Schema<IntterraFieldsType>({
     key: {
       type: String,
       default: "",
@@ -246,7 +506,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IntterraConnection = createSchema(Schema, {
+  const IntterraConnection = new Schema<IntterraConnectionType>({
     active: {
       type: Boolean,
       default: false,
@@ -280,59 +540,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ForwardFieldsDefault = [
-    {
-      "key": "IncidentNumber",
-      "value": "IncidentNumber",
-      "required": true,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "AgencyIncidentCallTypeDescription",
-      "value": "AgencyIncidentCallTypeDescription",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "units",
-      "value": "units",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": true,
-    },
-    {
-      "key": "Longitude",
-      "value": "Longitude",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "Latitude",
-      "value": "Latitude",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "full_address",
-      "value": "full_address",
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    },
-    {
-      "key": "EntryDateTime",
-      "value": "EntryDateTime", // cspell:disable-line
-      "required": false,
-      "enabled": true,
-      "transformationRequired": false,
-    }
-  ];
-
-  const ForwardFields = createSchema(Schema, {
+  const ForwardFields = new Schema<ForwardFieldsType>({
     key: {
       type: String,
       default: "",
@@ -358,7 +566,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ForwardingConnection = createSchema(Schema, {
+  const ForwardingConnection = new Schema<ForwardingConnectionType>({
     active: {
       type: Boolean,
       default: false,
@@ -408,7 +616,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IntterraConfig = createSchema(Schema, {
+  const IntterraConfig = new Schema<IntterraConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -422,7 +630,8 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ForwardingConfig = createSchema(Schema, {
+
+  const ForwardingConfig = new Schema<ForwardingConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -436,7 +645,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SkymiraConfig = createSchema(Schema, {
+  const SkymiraConfig = new Schema<SkymiraConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -454,7 +663,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const GSTConfig = createSchema(Schema, {
+  const GSTConfig = new Schema<GSTConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -468,7 +677,8 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ReplayOption = createSchema(Schema, {
+
+  const ReplayOption = new Schema<ReplayOptionType>({
     departmentId: {
       type: String,
       default: "",
@@ -482,7 +692,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentReplay = createSchema(Schema, {
+  const IncidentReplay = new Schema<IncidentReplayType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -496,7 +706,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Somewear = createSchema(Schema, {
+  const Somewear = new Schema<SomewearType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -506,7 +716,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SkytracConfig = createSchema(Schema, {
+  const SkytracConfig = new Schema<SkytracConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -536,7 +746,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimpleSenseConfig = createSchema(Schema, {
+  const SimpleSenseConfig = new Schema<SimpleSenseConfigType>({
     token: {
       type: String,
       default: "",
@@ -546,7 +756,8 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const StatusMappingObjectConfig = createSchema(Schema, {
+
+  const StatusMappingObjectConfig = new Schema<StatusMappingObjectConfigType>({
     status: {
       type: String,
       default: "",
@@ -560,7 +771,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const StatusMappingConfig = createSchema(Schema, {
+  const StatusMappingConfig = new Schema<StatusMappingConfigType>({
     TimeDispatched: {
       type: StatusMappingObjectConfig,
     },
@@ -593,47 +804,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const StatusMappingConfigDefault = {
-    TimeDispatched: {
-      "status": "Unit Dispatched",
-      "statusCode": "DSP"
-    },
-    TimeEnroute: {
-      "status": "Unit is Enroute",
-      "statusCode": "ENR"
-    },
-    TimeStaged: {
-      "status": "Unit is Staging",
-      "statusCode": "STG"
-    },
-    TimeArrived: {
-      "status": "Unit is On Scene",
-      "statusCode": "ONS"
-    },
-    TimeCleared: {
-      "status": "Available on Radio",
-      "statusCode": "AOR"
-    },
-    TimeAtHospital: {
-      "status": "Transport Arrive",
-      "statusCode": "TAR"
-    },
-    // added to exclusions unused
-    TimePatient: {
-      "status": "Available",
-      "statusCode": "AV"
-    },
-    TimeTransporting: {
-      "status": "Transporting",
-      "statusCode": "TRN"
-    },
-    TimeTransportComplete: {
-      "status": "Transport Complete",
-      "statusCode": "TCM"
-    }
-  };
-
-  const IncidentVehicleStatusConfig = createSchema(Schema, {
+  const IncidentVehicleStatusConfig = new Schema<IncidentVehicleStatusConfigType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -651,7 +822,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FirstArrivingConfig = createSchema(Schema, {
+  const FirstArrivingConfig = new Schema<FirstArrivingConfigType>({
     token: {
       type: String,
       default: "",
@@ -666,7 +837,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   });
 
 
-  const SafetyPriorityKeyword = createSchema(Schema, {
+  const SafetyPriorityKeyword = new Schema<SafetyPriorityKeywordType>({
     priority: {
       type: Number,
       default: 6,
@@ -683,7 +854,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const WebDisclaimer = createSchema(Schema, {
+  const WebDisclaimer = new Schema<WebDisclaimerType>({
     message: {
       type: String,
       default: "",
@@ -697,7 +868,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const AudioStream = createSchema(Schema, {
+  const AudioStream = new Schema<AudioStreamType>({
     // eg. Central Dispatch Talk Group or also Available on 89.5 MHz
     description: {
       type: String,
@@ -721,7 +892,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const AudioStreamGroup = createSchema(Schema, {
+  const AudioStreamGroup = new Schema<AudioStreamGroupType>({
     group: {
       type: String,
       default: "",
@@ -739,7 +910,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const RestrictedComments = createSchema(Schema, {
+  const RestrictedComments = new Schema<RestrictedCommentsType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -765,7 +936,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const CustomButtons = createSchema(Schema, {
+  const CustomButtons = new Schema<CustomButtonsType>({
     name: {
       type: String,
       default: "",
@@ -799,7 +970,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FireMapperLayer = createSchema(Schema, {
+  const FireMapperLayer = new Schema<FireMapperLayerType>({
     pathname: {
       type: String,
       default: "", // Eg. /api/rest/services/features/FeatureServer/0 (including 0)
@@ -813,7 +984,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const FireMapperOutline = createSchema(Schema, {
+  const FireMapperOutline = new Schema<FireMapperOutlineType>({
     uuid: {
       type: String,
       default: "",
@@ -827,7 +998,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SamsaraConfiguration = createSchema(Schema, {
+  const SamsaraConfiguration = new Schema<SamsaraConfigurationType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -841,12 +1012,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SamsaraConfigurationDefault = {
-    enabled: false,
-    token: "",
-  };
-
-  const FireMapperConfiguration = createSchema(Schema, {
+  const FireMapperConfiguration = new Schema<FireMapperConfigurationType>({
     enabled: {
       type: Boolean,
       default: false,
@@ -882,43 +1048,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  // If any of the following fields are updated/added/deleted,
-  // make sure to update the database records, before/after release (script/query)
-  const FireMapperConfigurationDefault = {
-    enabled: false,
-    layerRefreshInterval: 15,
-    proLicenseCount: 0,
-    host: "",
-    layer: [
-      {
-        name: "FireMapper - Symbols",
-        pathname: "/api/rest/services/features/FeatureServer/0",
-      },
-      {
-        name: "FireMapper - Lines",
-        pathname: "/api/rest/services/features/FeatureServer/1",
-      },
-      {
-        name: "FireMapper - Photos",
-        pathname: "/api/rest/services/features/FeatureServer/2",
-      },
-      {
-        name: "FireMapper - Areas",
-        pathname: "/api/rest/services/features/FeatureServer/3",
-      },
-      {
-        name: "FireMapper - PDFs",
-        pathname: "/api/rest/services/features/FeatureServer/4",
-      },
-      {
-        name: "FireMapper - Labels",
-        pathname: "/api/rest/services/features/FeatureServer/5",
-      },
-    ],
-    staticLayer: [],
-  };
-
-  const Licensing = createSchema(Schema, {
+  const Licensing = new Schema<LicensingType>({
     tcPro2Way: {
       type: Number,
       default: 0,
@@ -952,99 +1082,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const LicensingDefault = {
-    "tcPro2Way": 0,
-    "tcPro1Way": 0,
-    "tcMobile": 0,
-    "tcWeb": 0,
-    "fireMapperPro": 0,
-    "sendToCAD": 0,
-    "tcStreams": 0
-  };
-
-  const SafetyPriorityKeywordDefault = [
-    {
-      "keywords": [],
-      "priority": 0,
-      "hexColor": "FF3B30"
-    },
-    {
-      "keywords": [],
-      "priority": 1,
-      "hexColor": "FEC309"
-    },
-    {
-      "keywords": [],
-      "priority": 2,
-      "hexColor": "0A60FF"
-    }
-  ];
-
-  const FirstArrivingConfigDefault = {
-    "token": "",
-    "apiUrl": "",
-  };
-
-  const IntterraConfigDefault = {
-    "enabled": false,
-    "connections": [],
-  };
-
-  const ForwardingConfigDefault = {
-    "enabled": false,
-    "connections": [],
-  };
-
-  const IncidentReplayDefault = {
-    "enabled": false,
-    "replays": [],
-  };
-
-  const SomewearDefault = {
-    "enabled": false,
-  };
-
-  const GSTConfigDefault = {
-    "enabled": false,
-    "code": "",
-  };
-
-  const SkymiraConfigDefault = {
-    "enabled": false,
-    "token": "",
-    "locationsUrl": "",
-  };
-
-  const Mark43ConfigDefault = {
-    "baseUrl": "",
-    "authToken": "",
-    "apiToken": "",
-    "userId": 0,
-    "enabled": false,
-  };
-
-  const SimpleSenseConfigDefault = {
-    "token": "",
-  };
-
-  const WebDisclaimerDefault = {
-    "message": "",
-    "enabled": false
-  };
-
-  const RestrictedCommentsDefault = {
-    enabled: false,
-    callTypesAllowed: [],
-    statusesAllowed: [],
-    restrictedFields: [
-      "LocationComment",
-      "AgencyIncidentCallTypeDescription",
-      "Comment"
-    ],
-    restrictedMessage: "RESTRICTED"
-  };
-
-  const IncidentType = createSchema(Schema, {
+  const IncidentType = new Schema<IncidentTypeType>({
     name: {
       type: String,
       default: "Any",
@@ -1073,7 +1111,7 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const ShareIncidentRule = createSchema(Schema, {
+  const ShareIncidentRule = new Schema<ShareIncidentRuleType>({
     ruleType: {
       type: String,
       default: "",
@@ -1096,9 +1134,9 @@ export async function DepartmentModule(mongoose: MongooseModule) {
   });
 
   // Main schema
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<DepartmentType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     uuid: {
@@ -1591,7 +1629,6 @@ export async function DepartmentModule(mongoose: MongooseModule) {
       default: ForwardingConfigDefault,
     },
   }, {
-    collection: "massive_admin",
   });
 
   modelSchema.set("autoIndex", false);
@@ -1599,23 +1636,19 @@ export async function DepartmentModule(mongoose: MongooseModule) {
     updatedAt: "modified",
   });
 
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
-  });
-
-  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
+  modelSchema.virtual("id").get(function(this: Department) {
     return this._id.toHexString();
   });
 
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
+
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "Department", modelSchema);
+  return mongoose.model<Department>("Department", modelSchema, "massive_admin", { overwriteModels: true });
 }
 
-export interface Department extends ItemTypeFromTypeSchemaFunction<typeof DepartmentModule> { }
-export interface DepartmentModel extends ModelTypeFromTypeSchemaFunction<Department> { }
-export default DepartmentModule as ReplaceModelReturnType<typeof DepartmentModule, DepartmentModel>;
+export interface DepartmentModel extends Model<Department> { }

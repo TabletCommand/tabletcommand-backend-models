@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JobLogModule = void 0;
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function JobLogModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         jobName: {
@@ -35,9 +34,7 @@ async function JobLogModule(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_job_log",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -47,8 +44,7 @@ async function JobLogModule(mongoose) {
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "JobLog", modelSchema);
+    return mongoose.model("JobLog", modelSchema, "massive_job_log", { overwriteModels: true });
 }
-exports.JobLogModule = JobLogModule;
 exports.default = JobLogModule;
 //# sourceMappingURL=job-log.js.map

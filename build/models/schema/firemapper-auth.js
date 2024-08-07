@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../../helpers");
 function FireMapperAuthSchema(mongoose) {
     const { Schema } = mongoose;
-    const FireMapperEncrypted = (0, helpers_1.createSchema)(Schema, {
+    const FireMapperEncrypted = new Schema({
         iv: {
             type: String,
             default: "",
@@ -16,7 +15,7 @@ function FireMapperAuthSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const FireMapperAuth = (0, helpers_1.createSchema)(Schema, {
+    const FireMapperAuth = new Schema({
         username: {
             type: String,
             default: "",

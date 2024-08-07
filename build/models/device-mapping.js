@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeviceMappingModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function DeviceMappingModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -66,12 +65,9 @@ async function DeviceMappingModule(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {
-        collection: "massive_device_mapping",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "DeviceMapping", modelSchema);
+    return mongoose.model("DeviceMapping", modelSchema, "massive_device_mapping", { overwriteModels: true });
 }
-exports.DeviceMappingModule = DeviceMappingModule;
 exports.default = DeviceMappingModule;
 //# sourceMappingURL=device-mapping.js.map

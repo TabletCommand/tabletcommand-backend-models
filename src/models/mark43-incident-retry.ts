@@ -1,17 +1,16 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { Mark43IncidentRetryType, RelatedEventType, RetryPayloadType } from "../types/mark43-incident-retry";
 
-export async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
+export interface Mark43IncidentRetry extends Mark43IncidentRetryType { }
+
+export default async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
-  
-  const RelatedEvent = createSchema(Schema, {
+
+  const RelatedEvent = new Schema<RelatedEventType>({
     mark43Id: {
       type: Number,
       default: 0,
@@ -25,7 +24,7 @@ export async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const RetryPayload = createSchema(Schema, {
+  const RetryPayload = new Schema<RetryPayloadType>({
     departmentId: {
       type: Number,
       default: 0,
@@ -42,7 +41,7 @@ export async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<Mark43IncidentRetryType>({
     departmentId: {
       type: String,
       default: "",
@@ -84,13 +83,10 @@ export async function Mark43IncidentRetryModule(mongoose: MongooseModule) {
       type: String,
     },
   }, {
-    collection: "massive_mark43_incident_retry",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "Mark43IncidentRetry", modelSchema);
+  return mongoose.model<Mark43IncidentRetry>("Mark43IncidentRetry", modelSchema, "massive_mark43_incident_retry", { overwriteModels: true });
 }
 
-export interface Mark43IncidentRetry extends ItemTypeFromTypeSchemaFunction<typeof Mark43IncidentRetryModule> { }
-export interface Mark43IncidentRetryModel extends ModelTypeFromTypeSchemaFunction<Mark43IncidentRetry> { }
-export default Mark43IncidentRetryModule as ReplaceModelReturnType<typeof Mark43IncidentRetryModule, Mark43IncidentRetryModel>;
+export interface Mark43IncidentRetryModel extends Model<Mark43IncidentRetry> { }

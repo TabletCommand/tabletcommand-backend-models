@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RateLimitModule = void 0;
 const helpers_1 = require("../helpers");
 async function RateLimitModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         username: String,
@@ -26,12 +25,9 @@ async function RateLimitModule(mongoose) {
             type: String,
             default: "",
         },
-    }, {
-        collection: "massive_rate_limit",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "RateLimit", modelSchema);
+    return mongoose.model("RateLimit", modelSchema, "massive_rate_limit", { overwriteModels: true });
 }
-exports.RateLimitModule = RateLimitModule;
 exports.default = RateLimitModule;
 //# sourceMappingURL=rate-limit.js.map

@@ -1,16 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RemoteLogModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const remote_file_1 = require("./schema/remote-file");
 async function RemoteLogModule(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const RemoteFile = (0, remote_file_1.default)(mongoose);
-    // This is almost identical to RemoteLogStream
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -89,11 +87,9 @@ async function RemoteLogModule(mongoose) {
         },
     }, {
         autoIndex: false,
-        collection: "massive_remote_log",
         timestamps: true,
     });
-    return (0, helpers_1.createModel)(mongoose, "RemoteLog", modelSchema);
+    return mongoose.model("RemoteLog", modelSchema, "massive_remote_log", { overwriteModels: true });
 }
-exports.RemoteLogModule = RemoteLogModule;
 exports.default = RemoteLogModule;
 //# sourceMappingURL=remote-log.js.map

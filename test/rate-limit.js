@@ -22,17 +22,13 @@ describe("RateLimit", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.RateLimit(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.RateLimit(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(sut.user, testItem.user);
-      assert.equal(sut.modified_unix_date, testItem.modified_unix_date);
-      assert.equal(sut.count, testItem.count);
-
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(sut.user, testItem.user);
+    assert.equal(sut.modified_unix_date, testItem.modified_unix_date);
+    assert.equal(sut.count, testItem.count);
   });
 });

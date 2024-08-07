@@ -22,36 +22,33 @@ describe("User", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.User(testItem);
+  it("is saved", async function() {
+    const item = new models.User(testItem);
     assert.isNotNull(item.uuid);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(sut.nick, testItem.nick);
-      assert.equal(sut.email, testItem.email);
-      assert.equal(sut.mapId, testItem.mapId);
-      assert.equal(sut.departmentId, testItem.departmentId);
-      assert.isFalse(sut.active);
-      assert.isFalse(sut.admin);
-      assert.isFalse(sut.superuser);
-      assert.isTrue(sut.isPro);
-      assert.isTrue(sut.mobileAccess);
-      assert.isFalse(sut.webAccess);
-      assert.isFalse(sut.shareLocationPhone);
-      assert.isTrue(sut.shareLocationTablet);
-      assert.equal(item.uuid, sut.uuid);
-      assert.equal(item.agencyId, sut.agencyId);
-      assert.equal(item.offDutyEnabled, sut.offDutyEnabled);
-      assert.equal(item.managedAgencies[0], sut.managedAgencies[0]);
-      assert.isTrue(sut.offlineMapsEnabled);
-      assert.equal(item.webMapSettings.defaultZoomLevel, 10);
-      assert.equal(item.webMapSettings.defaultCenter[0], 1);
-      assert.equal(item.webMapSettings.defaultCenter[1], 1);
-      assert.equal(item.webMapSettings.defaultMap, "Default");
-      assert.equal(item.restrictedCommentsEnabled, true);
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(sut.nick, testItem.nick);
+    assert.equal(sut.email, testItem.email);
+    assert.equal(sut.mapId, testItem.mapId);
+    assert.equal(sut.departmentId, testItem.departmentId);
+    assert.isFalse(sut.active);
+    assert.isFalse(sut.admin);
+    assert.isFalse(sut.superuser);
+    assert.isTrue(sut.isPro);
+    assert.isTrue(sut.mobileAccess);
+    assert.isFalse(sut.webAccess);
+    assert.isFalse(sut.shareLocationPhone);
+    assert.isTrue(sut.shareLocationTablet);
+    assert.equal(item.uuid, sut.uuid);
+    assert.equal(item.agencyId, sut.agencyId);
+    assert.equal(item.offDutyEnabled, sut.offDutyEnabled);
+    assert.equal(item.managedAgencies[0], sut.managedAgencies[0]);
+    assert.isTrue(sut.offlineMapsEnabled);
+    assert.equal(item.webMapSettings.defaultZoomLevel, 10);
+    assert.equal(item.webMapSettings.defaultCenter[0], 1);
+    assert.equal(item.webMapSettings.defaultCenter[1], 1);
+    assert.equal(item.webMapSettings.defaultMap, "Default");
+    assert.equal(item.restrictedCommentsEnabled, true);
   });
 });

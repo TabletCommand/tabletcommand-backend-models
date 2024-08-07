@@ -1,19 +1,18 @@
+import { Model } from "mongoose";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { CSVImportType } from "../types/csv-import";
 
-export async function CSVImportModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface CSVImport extends CSVImportType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function CSVImportModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<CSVImportType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     batchId: {
@@ -69,13 +68,10 @@ export async function CSVImportModule(mongoose: MongooseModule) {
       default: false
     },
   }, {
-    collection: "massive_csv_import",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CSVImport", modelSchema);
+  return mongoose.model<CSVImport>("CSVImport", modelSchema, "massive_csv_import", { overwriteModels: true });
 }
 
-export interface CSVImport extends ItemTypeFromTypeSchemaFunction<typeof CSVImportModule> { }
-export interface CSVImportModel extends ModelTypeFromTypeSchemaFunction<CSVImport> { }
-export default CSVImportModule as ReplaceModelReturnType<typeof CSVImportModule, CSVImportModel>;
+export interface CSVImportModel extends Model<CSVImport> { }

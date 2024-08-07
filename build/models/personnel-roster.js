@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PersonnelRosterModule = exports.PersonnelRosterSchema = void 0;
+exports.PersonnelRosterSchema = void 0;
 const helpers_1 = require("../helpers");
 function PersonnelRosterSchema(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         PersonnelID: {
@@ -57,7 +57,6 @@ function PersonnelRosterSchema(mongoose) {
             default: false,
         },
     }, {
-        collection: "massive_personnel_roster",
         autoIndex: false,
         timestamps: true,
     });
@@ -66,8 +65,7 @@ function PersonnelRosterSchema(mongoose) {
 exports.PersonnelRosterSchema = PersonnelRosterSchema;
 async function PersonnelRosterModule(mongoose) {
     const modelSchema = PersonnelRosterSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "PersonnelRoster", modelSchema);
+    return mongoose.model("PersonnelRoster", modelSchema, "massive_personnel_roster", { overwriteModels: true });
 }
-exports.PersonnelRosterModule = PersonnelRosterModule;
 exports.default = PersonnelRosterModule;
 //# sourceMappingURL=personnel-roster.js.map

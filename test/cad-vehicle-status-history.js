@@ -20,21 +20,17 @@ describe("CADVehicleStatusHistory", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
+  it("is saved", async function() {
     const item = new models.CADVehicleStatusHistory(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    const sut = await item.save();
 
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.vehicleId, sut.vehicleId);
-      assert.equal(testItem.radioName, sut.radioName);
-      assert.equal(testItem.status, sut.status);
-      assert.equal(testItem.statusCode, sut.statusCode);
-      assert.equal(testItem.requestedAt, sut.requestedAt);
-      assert.equal(testItem.requestedBy, sut.requestedBy);
-      assert.equal(testItem.incidentNumber, sut.incidentNumber);
-
-      return done();
-    });
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.vehicleId, sut.vehicleId);
+    assert.equal(testItem.radioName, sut.radioName);
+    assert.equal(testItem.status, sut.status);
+    assert.equal(testItem.statusCode, sut.statusCode);
+    assert.equal(testItem.requestedAt, sut.requestedAt);
+    assert.equal(testItem.requestedBy, sut.requestedBy);
+    assert.equal(testItem.incidentNumber, sut.incidentNumber);
   });
 });

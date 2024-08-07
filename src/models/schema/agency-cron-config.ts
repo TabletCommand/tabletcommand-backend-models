@@ -1,12 +1,12 @@
 import {
-  createSchema,
   MongooseModule,
 } from "../../helpers";
+import { EncryptedDataType, CronConfigSourceType, CronConfigAuthType, CronConfigCSVFieldMapType, ReconcileTimeOptionsType, AgencyCronConfigType } from "../../types/agency";
 
 export default function AgencyCronSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const EncryptedData = createSchema(Schema, {
+  const EncryptedData = new Schema<EncryptedDataType>({
     iv: {
       type: String,
       default: "",
@@ -20,7 +20,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const CronConfigSource = createSchema(Schema, {
+  const CronConfigSource = new Schema<CronConfigSourceType>({
     protocol: {
       type: String,
       default: "",
@@ -49,7 +49,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     filePath: "",
   };
 
-  const CronConfigAuth = createSchema(Schema, {
+  const CronConfigAuth = new Schema<CronConfigAuthType>({
     password: {
       type: EncryptedData,
       default: null,
@@ -79,7 +79,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     useSSHKey: false,
   };
 
-  const CronConfigCSVFieldMap = createSchema(Schema, {
+  const CronConfigCSVFieldMap = new Schema<CronConfigCSVFieldMapType>({
     PersonnelID: {
       type: String,
     },
@@ -126,7 +126,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     TimeFormat: "YYYY-MM-DD HH:mm",
   };
 
-  const ReconcileTimeOptions = createSchema(Schema, {
+  const ReconcileTimeOptions = new Schema<ReconcileTimeOptionsType>({
     enabled: {
       type: Boolean,
     },
@@ -147,7 +147,7 @@ export default function AgencyCronSchema(mongoose: MongooseModule) {
     endTime: "08:00",
   };
 
-  const AgencyCronConfig = createSchema(Schema, {
+  const AgencyCronConfig = new Schema<AgencyCronConfigType>({
     enabled: {
       type: Boolean,
       default: false,

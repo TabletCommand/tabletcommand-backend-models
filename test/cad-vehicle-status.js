@@ -22,26 +22,23 @@ describe("CADVehicleStatus", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
+  it("is saved", async function() {
     const item = new models.CADVehicleStatus(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.vehicleId, sut.vehicleId);
-      assert.equal(testItem.radioName, sut.radioName);
-      assert.equal(testItem.requestTime, sut.requestTime);
-      assert.equal(testItem.responseTime, sut.responseTime);
-      assert.equal(testItem.status, sut.status);
-      assert.equal(testItem.statusCode, sut.statusCode);
-      assert.equal(testItem.modifiedDate, sut.modifiedDate);
-      assert.equal(testItem.requestStatus, sut.requestStatus);
-      assert.equal(testItem.incidentNumber, sut.incidentNumber);
-      assert.equal(testItem.capability, sut.capability)
-      assert.equal(testItem.owner, sut.owner)
-      assert.equal(testItem.ownerId, sut.ownerId)
+    const sut = await item.save();
 
-      return done();
-    });
+    assert.equal(testItem.uuid, sut.uuid);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.vehicleId, sut.vehicleId);
+    assert.equal(testItem.radioName, sut.radioName);
+    assert.equal(testItem.requestTime, sut.requestTime);
+    assert.equal(testItem.responseTime, sut.responseTime);
+    assert.equal(testItem.status, sut.status);
+    assert.equal(testItem.statusCode, sut.statusCode);
+    assert.equal(testItem.modifiedDate, sut.modifiedDate);
+    assert.equal(testItem.requestStatus, sut.requestStatus);
+    assert.equal(testItem.incidentNumber, sut.incidentNumber);
+    assert.equal(testItem.capability, sut.capability)
+    assert.equal(testItem.owner, sut.owner)
+    assert.equal(testItem.ownerId, sut.ownerId)
   });
 });

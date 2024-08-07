@@ -1,17 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADIncidentBlockModule = void 0;
-const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const shared_incident_1 = require("./schema/shared-incident");
 async function CADIncidentBlockModule(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const ReportNumber = (0, shared_incident_1.ReportNumberSchema)(mongoose);
     // Simplified schema.
     // Payload should confirm to cad-incident (more or less)
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -45,7 +43,6 @@ async function CADIncidentBlockModule(mongoose) {
             default: [],
         }
     }, {
-        collection: "massive_cad_incident_block",
         timestamps: true,
         autoIndex: false,
         toJSON: {
@@ -58,8 +55,7 @@ async function CADIncidentBlockModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return (0, helpers_1.createModel)(mongoose, "CADIncidentBlock", modelSchema);
+    return mongoose.model("CADIncidentBlock", modelSchema, "massive_cad_incident_block", { overwriteModels: true });
 }
-exports.CADIncidentBlockModule = CADIncidentBlockModule;
 exports.default = CADIncidentBlockModule;
 //# sourceMappingURL=cad-incident-block.js.map

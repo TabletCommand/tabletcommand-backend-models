@@ -3,27 +3,24 @@ import * as uuid from "uuid";
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  ModelFromSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime
 } from "../helpers";
 
 import { ChecklistItemSchema } from "./checklist-item";
+import { Model } from "mongoose";
+import { ChecklistType } from "../types/checklist";
+
+export interface Checklist extends ChecklistType, Record<string, unknown> { }
 
 export function ChecklistSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
 
   const ChecklistItem = ChecklistItemSchema(mongoose);
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ChecklistType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     position: {
@@ -67,7 +64,7 @@ export function ChecklistSchema(mongoose: MongooseModule) {
       required: true
     },
     agencyId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Agency",
       default: null,
     },
@@ -76,30 +73,25 @@ export function ChecklistSchema(mongoose: MongooseModule) {
       default: [],
     }
   }, {
-    collection: "massive_checklist_sync",
   });
   modelSchema.set("autoIndex", false);
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id;
-    },
-  });
-
-  modelSchema.virtual("id").get(function (this: MongooseDocument) {
+  modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();
   });
 
+  modelSchema.set("toJSON", {
+    virtuals: true,
+    versionKey: false,
+  });
+
+
   return modelSchema;
 }
 
-export async function ChecklistModule(mongoose: MongooseModule) {
+export default async function ChecklistModule(mongoose: MongooseModule) {
   const modelSchema = ChecklistSchema(mongoose);
-  return createModel(mongoose, "Checklist", modelSchema);
+  return mongoose.model<Checklist>("Checklist", modelSchema, "massive_checklist_sync", { overwriteModels: true });
 }
 
-export interface Checklist extends ItemTypeFromTypeSchemaFunction<typeof ChecklistModule> { }
-export interface ChecklistModel extends ModelTypeFromTypeSchemaFunction<Checklist> { }
-export default ChecklistModule as ReplaceModelReturnType<typeof ChecklistModule, ChecklistModel>;
+export interface ChecklistModel extends Model<Checklist> { }

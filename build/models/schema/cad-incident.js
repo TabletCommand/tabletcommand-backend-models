@@ -7,29 +7,53 @@ const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const incident_event_1 = require("../incident-event");
 const shared_incident_1 = require("./shared-incident");
 function CADIncidentSchema(mongoose) {
-    const toJSONOpts = {
-        versionKey: false,
-        transform(doc, ret) {
-            strictSchema(doc.schema, ret);
-        },
-    };
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const IncidentEvent = (0, incident_event_1.IncidentEventSchema)(mongoose);
     // Share incident properties - copy to managed incidents
     const CADPerson = (0, shared_incident_1.CADPersonSchema)(mongoose);
-    CADPerson.set("toJSON", toJSONOpts);
+    CADPerson.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
     const RadioChannel = (0, shared_incident_1.RadioChannelSchema)(mongoose);
-    RadioChannel.set("toJSON", toJSONOpts);
+    RadioChannel.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
     const RecordValue = (0, shared_incident_1.RecordSchema)(mongoose);
-    RecordValue.set("toJSON", toJSONOpts);
+    RecordValue.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
     const ReportNumber = (0, shared_incident_1.ReportNumberSchema)(mongoose);
-    ReportNumber.set("toJSON", toJSONOpts);
+    ReportNumber.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
     const SharedSource = (0, shared_incident_1.SharedSourceSchema)(mongoose);
-    SharedSource.set("toJSON", toJSONOpts);
+    SharedSource.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
     const SharedTo = (0, shared_incident_1.SharedToSchema)(mongoose);
-    SharedTo.set("toJSON", toJSONOpts);
+    SharedTo.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
     // Currently, supporting type: "ack", item: "knife"
-    const CADCommentOpts = (0, helpers_1.createSchema)(Schema, {
+    const CADCommentOpts = new Schema({
         type: {
             type: String,
         },
@@ -40,8 +64,8 @@ function CADIncidentSchema(mongoose) {
         _id: false,
         id: false,
     });
-    CADCommentOpts.set("toJSON", toJSONOpts);
-    const CADComment = (0, helpers_1.createSchema)(Schema, {
+    CADCommentOpts.set("toJSON", {});
+    const CADComment = new Schema({
         Comment: {
             type: String,
         },
@@ -62,8 +86,13 @@ function CADIncidentSchema(mongoose) {
         _id: false,
         id: false,
     });
-    CADComment.set("toJSON", toJSONOpts);
-    const CADUnit = (0, helpers_1.createSchema)(Schema, {
+    CADComment.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
+    const CADUnit = new Schema({
         UnitID: {
             type: String,
             required: true,
@@ -116,8 +145,13 @@ function CADIncidentSchema(mongoose) {
         _id: false,
         id: false,
     });
-    CADUnit.set("toJSON", toJSONOpts);
-    const APNNotificationType = (0, helpers_1.createSchema)(Schema, {
+    CADUnit.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
+    const APNNotificationType = new Schema({
         name: {
             type: String,
         },
@@ -128,8 +162,13 @@ function CADIncidentSchema(mongoose) {
         _id: false,
         id: false,
     });
-    APNNotificationType.set("toJSON", toJSONOpts);
-    const CADPriorIncident = (0, helpers_1.createSchema)(Schema, {
+    APNNotificationType.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
+    const CADPriorIncident = new Schema({
         Address: {
             type: String,
         },
@@ -155,11 +194,16 @@ function CADIncidentSchema(mongoose) {
         _id: false,
         id: false,
     });
-    CADPriorIncident.set("toJSON", toJSONOpts);
+    CADPriorIncident.set("toJSON", {
+        versionKey: false,
+        transform(doc, ret) {
+            strictSchema(doc.schema, ret);
+        }
+    });
     // Main schema
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         uuid: {
@@ -440,6 +484,9 @@ function CADIncidentSchema(mongoose) {
         // collection: "massive_incident_cad",
         // strict: false, // Because we accept all kind of data in
     });
+    modelSchema.virtual("id").get(function () {
+        return this._id.toString();
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -447,12 +494,7 @@ function CADIncidentSchema(mongoose) {
             // Remove fields that should not be here
             delete ret.apikey;
             strictSchema(doc.schema, ret);
-            ret.id = ret._id;
         },
-    });
-    modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
     });
     const ignoreFields = ["station", "callerNumber"];
     function strictSchema(schema, ret) {

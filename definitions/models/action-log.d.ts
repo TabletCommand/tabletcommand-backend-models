@@ -1,25 +1,35 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ModelTypeFromTypeSchemaFunction, ItemTypeFromTypeSchemaFunction, ReplaceModelReturnType } from "../helpers";
-export declare function ActionLogModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { Model } from "mongoose";
+import { ActionLogType } from "../types/action-log";
+export interface ActionLog extends ActionLogType {
+}
+export default function ActionLogModule(mongoose: MongooseModule): Promise<Model<ActionLog, {}, {}, {}, import("mongoose").Document<unknown, {}, ActionLog> & ActionLog & Required<{
     _id: import("mongoose").Types.ObjectId;
-    departmentId: string;
-    email: string;
-    userId: string;
-    action: string;
-    object: any;
-    before: any;
-    after: any;
-    delta: any;
-    message: string;
-    createdAt: string;
-    modified_unix_date: number;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> {
+}>, any>>;
+export interface ActionLogModel extends Model<ActionLog> {
 }
-export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> {
-}
-declare const _default: ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;
-export default _default;
 //# sourceMappingURL=action-log.d.ts.map

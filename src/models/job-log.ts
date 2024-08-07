@@ -1,21 +1,20 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { JobLogType } from "../types/job-log";
 
-export async function JobLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface JobLog extends JobLogType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function JobLogModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<JobLogType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     jobName: {
@@ -44,7 +43,6 @@ export async function JobLogModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_job_log",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -58,9 +56,7 @@ export async function JobLogModule(mongoose: MongooseModule) {
   modelSchema.plugin(mongooseLeanVirtuals);
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "JobLog", modelSchema);
+  return mongoose.model<JobLog>("JobLog", modelSchema, "massive_job_log", { overwriteModels: true });
 }
 
-export interface JobLog extends ItemTypeFromTypeSchemaFunction<typeof JobLogModule> { }
-export interface JobLogModel extends ModelTypeFromTypeSchemaFunction<JobLog> { }
-export default JobLogModule as ReplaceModelReturnType<typeof JobLogModule, JobLogModel>;
+export interface JobLogModel extends Model<JobLog> { }

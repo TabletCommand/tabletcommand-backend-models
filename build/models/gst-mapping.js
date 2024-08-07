@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GSTMappingModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 async function GSTMappingModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -62,12 +61,9 @@ async function GSTMappingModule(mongoose) {
             type: String,
             default: "",
         },
-    }, {
-        collection: "massive_gst_mapping",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "GSTMapping", modelSchema);
+    return mongoose.model("GSTMapping", modelSchema, "massive_gst_mapping", { overwriteModels: true });
 }
-exports.GSTMappingModule = GSTMappingModule;
 exports.default = GSTMappingModule;
 //# sourceMappingURL=gst-mapping.js.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"pubnub-token.d.ts","sourceRoot":"","sources":["../../../src/models/schema/pubnub-token.ts"],"names":[],"mappings":";AAAA,OAAO,EACL,cAAc,EAEd,WAAW,EACZ,MAAM,eAAe,CAAC;AAEvB,MAAM,CAAC,OAAO,UAAU,iBAAiB,CAAC,QAAQ,EAAE,cAAc;;;;;;;;;;;;;;;;EAsBjE"}
+{"version":3,"file":"pubnub-token.d.ts","sourceRoot":"","sources":["../../../src/models/schema/pubnub-token.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;AAAA,OAAO,EACL,cAAc,EAEf,MAAM,eAAe,CAAC;AACvB,OAAO,EAAE,qBAAqB,EAAE,MAAM,0BAA0B,CAAC;AAEjE,MAAM,CAAC,OAAO,UAAU,iBAAiB,CAAC,QAAQ,EAAE,cAAc;;;;GAqBjE"}

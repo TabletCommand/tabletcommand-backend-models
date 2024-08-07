@@ -14,8 +14,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connect = void 0;
+exports.connect = exports.LocationSource = exports.LocationKindType = void 0;
 const _ = require("lodash");
+const constants_1 = require("./constants");
+Object.defineProperty(exports, "LocationKindType", { enumerable: true, get: function () { return constants_1.LocationKindType; } });
+Object.defineProperty(exports, "LocationSource", { enumerable: true, get: function () { return constants_1.LocationSource; } });
 async function wireModels(mongoose) {
     async function getModel(m) {
         const module = await m;
@@ -82,8 +85,6 @@ async function connect(url, overwriteOpts) {
     const defaultOpts = {
         autoIndex: false,
         readPreference: "primaryPreferred",
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
     };
     // If present, overwrite options
     const opts = _.assign({}, defaultOpts, overwriteOpts);

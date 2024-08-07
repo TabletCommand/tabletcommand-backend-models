@@ -1,27 +1,26 @@
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
 
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 import { ReportNumberSchema } from "./schema/shared-incident";
+import { Model } from "mongoose";
+import { CADIncidentBlockType } from "../types/cad";
 
-export async function CADIncidentBlockModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface CADIncidentBlock extends CADIncidentBlockType { }
+
+export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
   const ReportNumber = ReportNumberSchema(mongoose);
 
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADIncidentBlockType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -55,7 +54,6 @@ export async function CADIncidentBlockModule(mongoose: MongooseModule) {
       default: [],
     }
   }, {
-    collection: "massive_cad_incident_block",
     timestamps: true,
     autoIndex: false,
     toJSON: {
@@ -71,9 +69,7 @@ export async function CADIncidentBlockModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "CADIncidentBlock", modelSchema);
+  return mongoose.model<CADIncidentBlock>("CADIncidentBlock", modelSchema, "massive_cad_incident_block", { overwriteModels: true });
 }
 
-export interface CADIncidentBlock extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentBlockModule> { }
-export interface CADIncidentBlockModel extends ModelTypeFromTypeSchemaFunction<CADIncidentBlock> { }
-export default CADIncidentBlockModule as ReplaceModelReturnType<typeof CADIncidentBlockModule, CADIncidentBlockModel>;
+export interface CADIncidentBlockModel extends Model<CADIncidentBlock> { }

@@ -22,29 +22,25 @@ describe("UserRegistration", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
+  it("is saved", async function() {
     const item = new models.UserRegistration(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(sut.id, sut._id);
-      assert.equal(testItem.email, sut.email);
-      assert.equal(testItem.name, sut.name);
-      assert.equal(testItem.firstName, sut.firstName);
-      assert.equal(testItem.lastName, sut.lastName);
-      assert.equal(testItem.department, sut.department);
-      assert.equal(testItem.title, sut.title);
-      assert.equal(testItem.modifiedDate, sut.modifiedDate);
-      assert.equal(testItem.stage, sut.stage);
-      assert.equal(testItem.presentedAt, sut.presentedAt);
-      assert.equal(testItem.managedIncidentsCount, sut.managedIncidentsCount);
-      assert.equal(testItem.checklistsCount, sut.checklistsCount);
-      assert.equal(testItem.firstIncidentUnixTime, sut.firstIncidentUnixTime);
-      assert.equal(testItem.lastIncidentLocation, sut.lastIncidentLocation);
-      assert.equal(testItem.lastIncidentUnixTime, sut.lastIncidentUnixTime);
-
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(sut.id, sut._id);
+    assert.equal(testItem.email, sut.email);
+    assert.equal(testItem.name, sut.name);
+    assert.equal(testItem.firstName, sut.firstName);
+    assert.equal(testItem.lastName, sut.lastName);
+    assert.equal(testItem.department, sut.department);
+    assert.equal(testItem.title, sut.title);
+    assert.equal(testItem.modifiedDate, sut.modifiedDate);
+    assert.equal(testItem.stage, sut.stage);
+    assert.equal(testItem.presentedAt, sut.presentedAt);
+    assert.equal(testItem.managedIncidentsCount, sut.managedIncidentsCount);
+    assert.equal(testItem.checklistsCount, sut.checklistsCount);
+    assert.equal(testItem.firstIncidentUnixTime, sut.firstIncidentUnixTime);
+    assert.equal(testItem.lastIncidentLocation, sut.lastIncidentLocation);
+    assert.equal(testItem.lastIncidentUnixTime, sut.lastIncidentUnixTime);
   });
 });

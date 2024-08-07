@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADVehicleStatusHistoryModule = void 0;
 const helpers_1 = require("../helpers");
 const cad_status_option_selected_1 = require("./schema/cad-status-option-selected");
 async function CADVehicleStatusHistoryModule(mongoose) {
     const { Schema } = mongoose;
     const CADStatusOptionSelected = (0, cad_status_option_selected_1.default)(mongoose);
-    const modelSchemaConfig = (0, helpers_1.createSchemaDefinition)({
+    const modelSchema = new Schema({
         departmentId: {
             type: String,
             default: "",
@@ -68,13 +67,9 @@ async function CADVehicleStatusHistoryModule(mongoose) {
             type: String,
             default: "",
         },
-    });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, modelSchemaConfig, {
-        collection: "massive_cad_vehicle_status_history",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "CADVehicleStatusHistory", modelSchema);
+    return mongoose.model("CADVehicleStatusHistory", modelSchema, "massive_cad_vehicle_status_history", { overwriteModels: true });
 }
-exports.CADVehicleStatusHistoryModule = CADVehicleStatusHistoryModule;
 exports.default = CADVehicleStatusHistoryModule;
 //# sourceMappingURL=cad-vehicle-status-history.js.map

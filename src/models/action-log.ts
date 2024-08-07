@@ -1,20 +1,18 @@
 import {
   MongooseModule,
-  createSchema,
-  createModel,
   currentDate,
   retrieveCurrentUnixTime,
-  ModelTypeFromTypeSchemaFunction,
-  ItemTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { Model } from "mongoose";
+import { ActionLogType } from "../types/action-log";
 
-export async function ActionLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface ActionLog extends ActionLogType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function ActionLogModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+  const modelSchema = new Schema<ActionLogType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -62,12 +60,9 @@ export async function ActionLogModule(mongoose: MongooseModule) {
       default: retrieveCurrentUnixTime,
     },
   }, {
-    collection: "massive_action_log",
+    autoIndex: false
   });
-  modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "ActionLog", modelSchema);
+  return mongoose.model<ActionLog>("ActionLog", modelSchema, "massive_action_log", { overwriteModels: true });
 }
 
-export interface ActionLog extends ItemTypeFromTypeSchemaFunction<typeof ActionLogModule> { }
-export interface ActionLogModel extends ModelTypeFromTypeSchemaFunction<ActionLog> { }
-export default ActionLogModule as ReplaceModelReturnType<typeof ActionLogModule, ActionLogModel>;
+export interface ActionLogModel extends Model<ActionLog> { }

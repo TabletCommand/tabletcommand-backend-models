@@ -22,21 +22,17 @@ describe("IncidentNotified", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
+  it("is saved", async function() {
     const item = new models.IncidentNotified(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.IncidentNumber, sut.IncidentNumber);
-      assert.deepEqual(testItem.incidentTypes, sut.incidentTypes);
-      assert.deepEqual(testItem.units, sut.units);
-      assert.equal(testItem.unitsByDispatch[0].UnitID, sut.unitsByDispatch[0].UnitID);
-      assert.equal(testItem.unitsByDispatch[0].UnitDispatchNumber, sut.unitsByDispatch[0].UnitDispatchNumber);
-      assert.equal(testItem.updated, sut.updated.toISOString());
-
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.IncidentNumber, sut.IncidentNumber);
+    assert.deepEqual(testItem.incidentTypes, sut.incidentTypes);
+    assert.deepEqual(testItem.units, sut.units);
+    assert.equal(testItem.unitsByDispatch[0].UnitID, sut.unitsByDispatch[0].UnitID);
+    assert.equal(testItem.unitsByDispatch[0].UnitDispatchNumber, sut.unitsByDispatch[0].UnitDispatchNumber);
+    assert.equal(testItem.updated, sut.updated.toISOString());
   });
 });

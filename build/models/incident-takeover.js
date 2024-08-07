@@ -1,13 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IncidentTakeoverModule = void 0;
 const uuid = require("uuid");
-const helpers_1 = require("../helpers");
 async function IncidentTakeoverModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -63,12 +61,9 @@ async function IncidentTakeoverModule(mongoose) {
             type: Number,
             default: 0,
         },
-    }, {
-        collection: "massive_incident_takeover",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "IncidentTakeover", modelSchema);
+    return mongoose.model("IncidentTakeover", modelSchema, "massive_incident_takeover", { overwriteModels: true });
 }
-exports.IncidentTakeoverModule = IncidentTakeoverModule;
 exports.default = IncidentTakeoverModule;
 //# sourceMappingURL=incident-takeover.js.map

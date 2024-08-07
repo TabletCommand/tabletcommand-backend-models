@@ -22,22 +22,19 @@ describe("Message", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.Message(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.Message(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.title, sut.title);
-      assert.equal(testItem.uuid, sut.uuid);
-      assert.equal(testItem.requestId, sut.requestId);
-      assert.equal(testItem.body, sut.body);
-      assert.equal(testItem.actionTitle, sut.actionTitle);
-      assert.equal(testItem.url, sut.url);
-      assert.equal(testItem.priority, sut.priority);
-      assert.equal(JSON.stringify(testItem.type), JSON.stringify(sut.type));
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.title, sut.title);
+    assert.equal(testItem.uuid, sut.uuid);
+    assert.equal(testItem.requestId, sut.requestId);
+    assert.equal(testItem.body, sut.body);
+    assert.equal(testItem.actionTitle, sut.actionTitle);
+    assert.equal(testItem.url, sut.url);
+    assert.equal(testItem.priority, sut.priority);
+    assert.equal(JSON.stringify(testItem.type), JSON.stringify(sut.type));
   });
 });

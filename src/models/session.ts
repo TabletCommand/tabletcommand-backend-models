@@ -1,27 +1,24 @@
 import {
-  createModel,
-  createSchema,
-  DocumentTypeFromSchema,
-  FieldsOfDocument,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
 
 import OAuthSchema from "./schema/oauth";
+import { Model } from "mongoose";
+import { SessionType } from "../types/session";
 
-export async function SessionModule(mongoose: MongooseModule) {
+export interface Session extends SessionType { }
+
+export default async function SessionModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
   const OAuthToken = OAuthSchema(mongoose);
 
-  function requiredButAllowEmptyString(this: { myField: unknown }) {
+  function requiredButAllowEmptyString(this: Session) {
     // Workaround to set required, and allow empty id
-    return typeof this.myField === "string";
+    return typeof this.departmentId === "string";
   }
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<SessionType>({
     _id: {
       type: String,
       default: uuid.v4,
@@ -75,30 +72,24 @@ export async function SessionModule(mongoose: MongooseModule) {
       default: null,
     },
   }, {
-    collection: "sys_login",
   });
   modelSchema.set("autoIndex", false);
 
   modelSchema.pre("save", function(next) {
-    this._id = this.get("token") as string; // Copy _id from token
+    this._id = this.get("token"); // Copy _id from token
     next();
+  });
+  modelSchema.virtual("id").get(function(this: Session) {
+    return this._id.toString();
   });
 
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: DocumentTypeFromSchema<typeof modelSchema>, ret: FieldsOfDocument<DocumentTypeFromSchema<typeof modelSchema>>) {
-      ret.id = ret._id;
-    },
   });
 
-  modelSchema.virtual("id").get(function(this: DocumentTypeFromSchema<typeof modelSchema>) {
-    return this._id.toString();
-  });
 
-  return createModel(mongoose, "Session", modelSchema);
+  return mongoose.model<Session>("Session", modelSchema, "sys_login", { overwriteModels: true });
 }
 
-export interface Session extends ItemTypeFromTypeSchemaFunction<typeof SessionModule> { }
-export interface SessionModel extends ModelTypeFromTypeSchemaFunction<Session> { }
-export default SessionModule as ReplaceModelReturnType<typeof SessionModule, SessionModel>;
+export interface SessionModel extends Model<Session> { }

@@ -22,20 +22,17 @@ describe("JobLog", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.JobLog(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.JobLog(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.host, sut.host);
-      assert.equal(testItem.jobName, sut.jobName);
-      assert.equal(testItem.state, sut.state);
-      assert.equal(testItem.bidDate, sut.bidDate);
-      assert.equal(testItem.startDate, sut.startDate);
-      assert.equal(testItem.completedDate, sut.completedDate);
-      assert.equal(testItem.forceClosed, sut.forceClosed);
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.host, sut.host);
+    assert.equal(testItem.jobName, sut.jobName);
+    assert.equal(testItem.state, sut.state);
+    assert.equal(testItem.bidDate, sut.bidDate);
+    assert.equal(testItem.startDate, sut.startDate);
+    assert.equal(testItem.completedDate, sut.completedDate);
+    assert.equal(testItem.forceClosed, sut.forceClosed);
   });
 });

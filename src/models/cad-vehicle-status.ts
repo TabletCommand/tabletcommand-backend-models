@@ -1,21 +1,24 @@
 import * as  uuid from "uuid";
 import {
-  createModel,
-  createSchema,
-  createSchemaDefinition,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import CADStatusOptionSelectedModule from "./schema/cad-status-option-selected";
+import { Model } from "mongoose";
+import { CADVehicleStatusType } from "../types/cad";
 
-export async function CADVehicleStatusModule(mongoose: MongooseModule) {
+export interface CADVehicleStatus extends CADVehicleStatusType { }
+
+interface DestinationType {
+  address: string,
+  name: string,
+}
+
+export default async function CADVehicleStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const CADStatusOptionSelected = CADStatusOptionSelectedModule(mongoose);
 
-  const Destination = createSchema(Schema, {
+  const Destination = new Schema<DestinationType>({
     // eg 1234 Main St
     address: {
       type: String,
@@ -31,7 +34,8 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchemaConfig = createSchemaDefinition({
+
+  const modelSchema = new Schema<CADVehicleStatusType>({
     uuid: {
       type: String,
       index: true,
@@ -134,16 +138,11 @@ export async function CADVehicleStatusModule(mongoose: MongooseModule) {
     backupDate: {
       type: Date,
     },
-  });
-
-  const modelSchema = createSchema(Schema, modelSchemaConfig, {
-    collection: "massive_cad_vehicle_status",
+  }, {
   });
 
   modelSchema.set("autoIndex", false);
-  return createModel(mongoose, "CADVehicleStatus", modelSchema);
+  return mongoose.model<CADVehicleStatus>("CADVehicleStatus", modelSchema, "massive_cad_vehicle_status", { overwriteModels: true });
 }
 
-export interface CADVehicleStatus extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleStatusModule> { }
-export interface CADVehicleStatusModel extends ModelTypeFromTypeSchemaFunction<CADVehicleStatus> { }
-export default CADVehicleStatusModule as ReplaceModelReturnType<typeof CADVehicleStatusModule, CADVehicleStatusModel>;
+export interface CADVehicleStatusModel extends Model<CADVehicleStatus> { }

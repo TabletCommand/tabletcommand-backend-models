@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MonitorModule = void 0;
 const helpers_1 = require("../helpers");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function MonitorModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         departmentId: {
@@ -48,17 +47,14 @@ async function MonitorModule(mongoose) {
             type: Number,
             default: 1,
         },
-    }, {
-        collection: "massive_monitor",
-    });
+    }, {});
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
     });
     modelSchema.plugin(mongooseLeanVirtuals);
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "Monitor", modelSchema);
+    return mongoose.model("Monitor", modelSchema, "massive_monitor", { overwriteModels: true });
 }
-exports.MonitorModule = MonitorModule;
 exports.default = MonitorModule;
 //# sourceMappingURL=monitor.js.map

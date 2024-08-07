@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADStatusModule = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const color_1 = require("./schema/color");
 async function CADStatusModule(mongoose) {
     const { Schema } = mongoose;
     const Color = (0, color_1.default)(mongoose);
-    const StatusOptionValue = (0, helpers_1.createSchema)(Schema, {
+    const StatusOptionValue = new Schema({
         name: {
             type: String,
             default: "",
@@ -53,7 +52,7 @@ async function CADStatusModule(mongoose) {
         _id: false,
         id: false,
     });
-    const StatusOption = (0, helpers_1.createSchema)(Schema, {
+    const StatusOption = new Schema({
         name: {
             type: String,
             default: "",
@@ -78,7 +77,7 @@ async function CADStatusModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         uuid: {
             type: String,
             index: true,
@@ -148,12 +147,9 @@ async function CADStatusModule(mongoose) {
         backupDate: {
             type: Date,
         },
-    }, {
-        collection: "massive_cad_status",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "CADStatus", modelSchema);
+    return mongoose.model("CADStatus", modelSchema, "massive_cad_status", { overwriteModels: true });
 }
-exports.CADStatusModule = CADStatusModule;
 exports.default = CADStatusModule;
 //# sourceMappingURL=cad-status.js.map

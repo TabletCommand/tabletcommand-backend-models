@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReleaseNoteModule = void 0;
 const helpers_1 = require("../helpers");
 async function ReleaseNoteModule(mongoose) {
-    const { Schema, Types } = mongoose;
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         title: {
@@ -36,12 +35,8 @@ async function ReleaseNoteModule(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-    }, {
-        collection: "massive_release_note",
-    });
-    modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "ReleaseNote", modelSchema);
+    }, { autoIndex: false });
+    return mongoose.model("ReleaseNote", modelSchema, "massive_release_note", { overwriteModels: true });
 }
-exports.ReleaseNoteModule = ReleaseNoteModule;
 exports.default = ReleaseNoteModule;
 //# sourceMappingURL=release-note.js.map

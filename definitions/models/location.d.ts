@@ -1,64 +1,35 @@
-/// <reference types="mongoose" />
-import { ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, MongooseModule, ReplaceModelReturnType } from "../helpers";
-export declare function LocationModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { Model } from "mongoose";
+import { LocationType } from "../types/location";
+export interface Location extends LocationType, Record<string, unknown> {
+}
+export default function LocationModule(mongoose: MongooseModule): Promise<Model<Location, {}, {}, {}, import("mongoose").Document<unknown, {}, Location> & Location & Required<{
     _id: import("mongoose").Types.ObjectId;
-    departmentId: string;
-    userId: string;
-    uuid: string;
-    username: string;
-    device_type: string;
-    source: string;
-    kindType: string;
-    typeDetails: any;
-    active: boolean;
-    deleteAfterDate: string;
-    modified: string;
-    movedAt: string;
-    propsChangedAt: string;
-    version: number;
-    session: string;
-    altitude: number;
-    heading: number;
-    speed: number;
-    esriId: number;
-    locationGeoJSON: import("../helpers").MongooseInterface<{
-        type: {
-            type: StringConstructor;
-            required: boolean;
-            enum: string[];
-            default: string;
-        };
-        coordinates: {
-            type: NumberConstructor[];
-            required: boolean;
-            default: never[];
-        };
-    }>;
-    opAreaCode: string;
-    opAreaName: string;
-    agencyCode: string;
-    agencyName: string;
-    shared: boolean;
-    state: string;
-    sendToCAD: boolean;
-    color: import("../helpers").MongooseInterface<{
-        background: {
-            type: StringConstructor;
-            default: string;
-        };
-        text: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
-    colorChangedAt: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface Location extends ItemTypeFromTypeSchemaFunction<typeof LocationModule> {
+}>, any>>;
+export interface LocationModel extends Model<Location> {
 }
-export interface LocationModel extends ModelTypeFromTypeSchemaFunction<Location> {
-}
-declare const _default: ReplaceModelReturnType<typeof LocationModule, LocationModel>;
-export default _default;
 //# sourceMappingURL=location.d.ts.map

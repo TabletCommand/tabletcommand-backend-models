@@ -1,1 +1,1 @@
-{"version":3,"file":"oauth.d.ts","sourceRoot":"","sources":["../../../src/models/schema/oauth.ts"],"names":[],"mappings":";AAAA,OAAO,EACL,cAAc,EAEf,MAAM,eAAe,CAAC;AAEvB,MAAM,CAAC,OAAO,UAAU,WAAW,CAAC,QAAQ,EAAE,cAAc;;;;;;;;;;;;;;;;EAsB3D"}
+{"version":3,"file":"oauth.d.ts","sourceRoot":"","sources":["../../../src/models/schema/oauth.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;AAAA,OAAO,EACL,cAAc,EACf,MAAM,eAAe,CAAC;AACvB,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEpD,MAAM,CAAC,OAAO,UAAU,WAAW,CAAC,QAAQ,EAAE,cAAc;;;;GAsB3D"}

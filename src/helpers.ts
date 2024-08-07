@@ -1,4 +1,4 @@
-import { SchemaDefinition, SchemaOptions, Schema, Document, Model, Types } from "mongoose";
+import mongoose, { SchemaDefinition, Schema, Document, Model, Types } from "mongoose";
 
 export type MongooseModule = typeof import("mongoose");
 export type MongooseModel<T extends Document, QueryHelpers = Record<string, unknown>> = Model<T, QueryHelpers>;
@@ -49,27 +49,6 @@ export type TypedDocument<T extends TypedSchema<any>> = Document & (
   T extends { _interface: infer U } ? U : never
 );
 
-export function createSchemaDefinition<T extends SchemaDefinition>(c: T) {
-  return c;
-}
-
-export function createSchema
-  <T extends SchemaDefinition, TMethods>(schemaCtor: typeof Schema, p: T, o: SchemaOptions, methods?: TMethods & ThisType<DocumentFromSchemaDefinition<T>>)
-  : Schema & { _interface: MongooseInterface<T>, _methods: TMethods } {
-  const schema = new schemaCtor(p, o);
-  if (methods) {
-    schema.methods = methods;
-  }
-  return schema as unknown as Schema & { _interface: MongooseInterface<T>, _methods: TMethods };
-}
-
-export function createModel<T, TMethods>(mongoose: MongooseModule, name: string, schema: Schema & { _interface: T, _methods?: TMethods }) {
-  if (mongoose.models[name]) {
-    return mongoose.model<Document & T & TMethods>(name) as Model<Document & T & TMethods> & { __methods?: TMethods };
-  } else {
-    return mongoose.model<Document & T & TMethods>(name, schema) as Model<Document & T & TMethods> & { __methods?: TMethods };
-  }
-}
 
 export type ModelFromSchemaDefinition<T extends SchemaDefinition> = ModelFromSchema<Schema & { _interface: MongooseInterface<T> }>;
 export type ModelFromSchema<T extends Schema> = Model<DocumentTypeFromSchema<T>>;
@@ -124,4 +103,23 @@ type Conditions<T> = {
 };
 export function conditions<T extends import("mongoose").Document>(items: import("mongoose").Model<T>, c: Or<Conditions<T>>) {
   return c;
+}
+
+export function convertToObjectId(id: string): Types.ObjectId {
+  if (id) {
+    return new Types.ObjectId(id);
+  }
+  return new Types.ObjectId(); // fal;back if user provides empty string
+}
+
+export async function disconnectMongoose() {
+  return mongoose.disconnect();
+}
+
+export async function closeAllMongooseConnections() {
+  if (mongoose.connections.length) {
+    for (const connection of mongoose.connections) {
+      await connection.close();
+    }
+  }
 }

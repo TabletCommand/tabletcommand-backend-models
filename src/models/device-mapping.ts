@@ -1,20 +1,19 @@
 import * as  uuid from "uuid";
 import {
-  createSchema,
-  createModel,
   currentDate,
   MongooseModule,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { Model } from "mongoose";
+import { DeviceMappingType } from "../types/device-mapping";
 
-export async function DeviceMappingModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface DeviceMapping extends DeviceMappingType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function DeviceMappingModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<DeviceMappingType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -74,13 +73,10 @@ export async function DeviceMappingModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_device_mapping",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "DeviceMapping", modelSchema);
+  return mongoose.model<DeviceMapping>("DeviceMapping", modelSchema, "massive_device_mapping", { overwriteModels: true });
 }
 
-export interface DeviceMapping extends ItemTypeFromTypeSchemaFunction<typeof DeviceMappingModule> { }
-export interface DeviceMappingModel extends ModelTypeFromTypeSchemaFunction<DeviceMapping> { }
-export default DeviceMappingModule as ReplaceModelReturnType<typeof DeviceMappingModule, DeviceMappingModel>;
+export interface DeviceMappingModel extends Model<DeviceMapping> { }

@@ -1,20 +1,19 @@
 import {
   MongooseModule,
-  createSchema,
-  createModel,
   currentDate,
   retrieveCurrentUnixTime,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { Model } from "mongoose";
+import { BeaconLogType } from "../types/beacon-log";
 
-export async function BeaconLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface BeaconLog extends BeaconLogType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function BeaconLogModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<BeaconLogType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -38,13 +37,10 @@ export async function BeaconLogModule(mongoose: MongooseModule) {
       default: retrieveCurrentUnixTime,
     },
   }, {
-    collection: "massive_beacon_log",
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "BeaconLog", modelSchema);
+  return mongoose.model<BeaconLog>("BeaconLog", modelSchema, "massive_beacon_log", { overwriteModels: true });
 }
 
-export interface BeaconLog extends ItemTypeFromTypeSchemaFunction<typeof BeaconLogModule> { }
-export interface BeaconLogModel extends ModelTypeFromTypeSchemaFunction<BeaconLog> { }
-export default BeaconLogModule as ReplaceModelReturnType<typeof BeaconLogModule, BeaconLogModel>;
+export interface BeaconLogModel extends Model<BeaconLog> { }

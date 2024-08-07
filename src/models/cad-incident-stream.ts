@@ -1,26 +1,25 @@
 import {
   MongooseModule,
   MongooseDocument,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
 
 import * as uuid from "uuid";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { Model } from "mongoose";
+import { CADIncidentStreamType } from "../types/cad";
 
-export async function CADIncidentStreamModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface CADIncidentStream extends CADIncidentStreamType { }
+
+export default async function CADIncidentStreamModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
 
   // Simplified schema.
   // Payload should confirm to cad-incident (more or less)
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADIncidentStreamType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     uuid: {
@@ -52,7 +51,6 @@ export async function CADIncidentStreamModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
-    collection: "massive_cad_incident_stream",
     toJSON: {
       virtuals: true,
       versionKey: false,
@@ -66,9 +64,7 @@ export async function CADIncidentStreamModule(mongoose: MongooseModule) {
 
   modelSchema.plugin(mongooseLeanVirtuals);
 
-  return createModel(mongoose, "CADIncidentStream", modelSchema);
+  return mongoose.model<CADIncidentStream>("CADIncidentStream", modelSchema, "massive_cad_incident_stream", { overwriteModels: true });
 }
 
-export interface CADIncidentStream extends ItemTypeFromTypeSchemaFunction<typeof CADIncidentStreamModule> { }
-export interface CADIncidentStreamModel extends ModelTypeFromTypeSchemaFunction<CADIncidentStream> { }
-export default CADIncidentStreamModule as ReplaceModelReturnType<typeof CADIncidentStreamModule, CADIncidentStreamModel>;
+export interface CADIncidentStreamModel extends Model<CADIncidentStream> { }

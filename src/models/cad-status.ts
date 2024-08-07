@@ -1,20 +1,19 @@
 import * as uuid from "uuid";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import ColorModule from "./schema/color";
+import { Model } from "mongoose";
+import { StatusOptionValueType, StatusOptionType, CADStatusType } from "../types/cad";
 
-export async function CADStatusModule(mongoose: MongooseModule) {
+export interface CADStatus extends CADStatusType { }
+
+export default async function CADStatusModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const Color = ColorModule(mongoose);
 
-  const StatusOptionValue = createSchema(Schema, {
+  const StatusOptionValue = new Schema<StatusOptionValueType>({
     name: {
       type: String,
       default: "",
@@ -61,7 +60,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const StatusOption = createSchema(Schema, {
+  const StatusOption = new Schema<StatusOptionType>({
     name: {
       type: String,
       default: "",
@@ -87,7 +86,7 @@ export async function CADStatusModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADStatus>({
     uuid: {
       type: String,
       index: true,
@@ -158,13 +157,10 @@ export async function CADStatusModule(mongoose: MongooseModule) {
       type: Date,
     },
   }, {
-    collection: "massive_cad_status",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CADStatus", modelSchema);
+  return mongoose.model<CADStatus>("CADStatus", modelSchema, "massive_cad_status", { overwriteModels: true });
 }
 
-export interface CADStatus extends ItemTypeFromTypeSchemaFunction<typeof CADStatusModule> { }
-export interface CADStatusModel extends ModelTypeFromTypeSchemaFunction<CADStatus> { }
-export default CADStatusModule as ReplaceModelReturnType<typeof CADStatusModule, CADStatusModel>;
+export interface CADStatusModel extends Model<CADStatus> { }

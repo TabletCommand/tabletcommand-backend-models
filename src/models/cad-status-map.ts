@@ -1,17 +1,16 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { CADStatusMapType, ToStatusIdType } from "../types/cad";
 
-export async function CADStatusMapModule(mongoose: MongooseModule) {
+export interface CADStatusMap extends CADStatusMapType { }
+
+export default async function CADStatusMapModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  const ToStatusIdSchema = createSchema(Schema, {
+  const ToStatusIdSchema = new Schema<ToStatusIdType>({
     statusId: {
       type: Number,
       default: 0,
@@ -31,7 +30,7 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
   });
 
   // Update static items (keep in sync with the lib/cad-status-map/updateDocument!)
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADStatusMap>({
     departmentId: {
       type: String,
       default: "",
@@ -61,13 +60,10 @@ export async function CADStatusMapModule(mongoose: MongooseModule) {
       type: Date,
     },
   }, {
-    collection: "massive_cad_status_map",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CADStatusMap", modelSchema);
+  return mongoose.model<CADStatusMap>("CADStatusMap", modelSchema, "massive_cad_status_map", { overwriteModels: true });
 }
 
-export interface CADStatusMap extends ItemTypeFromTypeSchemaFunction<typeof CADStatusMapModule> { }
-export interface CADStatusMapModel extends ModelTypeFromTypeSchemaFunction<CADStatusMap> { }
-export default CADStatusMapModule as ReplaceModelReturnType<typeof CADStatusMapModule, CADStatusMapModel>;
+export interface CADStatusMapModel extends Model<CADStatusMap> { }

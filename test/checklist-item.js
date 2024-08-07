@@ -22,26 +22,23 @@ describe("ChecklistItem", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.ChecklistItem(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.ChecklistItem(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(item._id);
-      assert.equal(item._id, sut.id);
-      assert.equal(testItem.position, sut.position);
-      assert.equal(testItem.active, sut.active);
-      assert.equal(testItem.name, sut.name);
-      assert.equal(testItem.userId, sut.userId);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.isMandatory, sut.isMandatory);
-      assert.equal(testItem.api_checklist_id, sut.api_checklist_id);
-      assert.equal(testItem.checklist_uuid, sut.checklist_uuid);
-      assert.equal(testItem.description, sut.description);
-      const expectedDate = new Date().valueOf() / 1000.0;
-      const timeDelta = expectedDate - sut.modified_unix_date;
-      assert.isTrue(timeDelta < 1);
-      return done();
-    });
+    assert.isNotNull(item._id);
+    assert.equal(item._id, sut.id);
+    assert.equal(testItem.position, sut.position);
+    assert.equal(testItem.active, sut.active);
+    assert.equal(testItem.name, sut.name);
+    assert.equal(testItem.userId, sut.userId);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.isMandatory, sut.isMandatory);
+    assert.equal(testItem.api_checklist_id, sut.api_checklist_id);
+    assert.equal(testItem.checklist_uuid, sut.checklist_uuid);
+    assert.equal(testItem.description, sut.description);
+    const expectedDate = new Date().valueOf() / 1000.0;
+    const timeDelta = expectedDate - sut.modified_unix_date;
+    assert.isTrue(timeDelta < 1);
   });
 });

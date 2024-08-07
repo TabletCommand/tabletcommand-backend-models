@@ -22,23 +22,19 @@ describe("IncidentTakeover", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.IncidentTakeover(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
+  it("is saved", async function() {
+    const item = new models.IncidentTakeover(testItem);
+    const sut = await item.save();
 
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.incident_id, sut.incident_id);
-      assert.equal(testItem.incident_name, sut.incident_name);
-      assert.equal(testItem.incident_number, sut.incident_number);
-      assert.equal(testItem.old_owner, sut.old_owner);
-      assert.equal(testItem.new_owner, sut.new_owner);
-      assert.equal(testItem.status, sut.status);
-      assert.equal(testItem.request_time, sut.request_time);
-      assert.isTrue(sut.uuid !== "");
-
-      return done();
-    });
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.incident_id, sut.incident_id);
+    assert.equal(testItem.incident_name, sut.incident_name);
+    assert.equal(testItem.incident_number, sut.incident_number);
+    assert.equal(testItem.old_owner, sut.old_owner);
+    assert.equal(testItem.new_owner, sut.new_owner);
+    assert.equal(testItem.status, sut.status);
+    assert.equal(testItem.request_time, sut.request_time);
+    assert.isTrue(sut.uuid !== "");
   });
 });

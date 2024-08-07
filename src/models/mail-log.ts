@@ -1,20 +1,19 @@
+import { Model } from "mongoose";
 import {
   MongooseModule,
-  createSchema,
-  createModel,
   currentDate,
   retrieveCurrentUnixTime,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
 } from "../helpers";
+import { MailLogType } from "../types/mail-log";
 
-export async function MailLogModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface MailLog extends MailLogType { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function MailLogModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<MailLogType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     mailId: {
@@ -77,13 +76,10 @@ export async function MailLogModule(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
-    collection: "massive_mail_log",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "MailLog", modelSchema);
+  return mongoose.model<MailLog>("MailLog", modelSchema, "massive_mail_log", { overwriteModels: true });
 }
 
-export interface MailLog extends ItemTypeFromTypeSchemaFunction<typeof MailLogModule> { }
-export interface MailLogModel extends ModelTypeFromTypeSchemaFunction<MailLog> { }
-export default MailLogModule as ReplaceModelReturnType<typeof MailLogModule, MailLogModel>;
+export interface MailLogModel extends Model<MailLog> { }

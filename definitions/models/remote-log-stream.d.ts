@@ -1,69 +1,35 @@
-/// <reference types="mongoose" />
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, currentDate } from "../helpers";
-export declare function RemoteLogStreamModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { Model } from "mongoose";
+import { RemoteLogStreamType } from "../types/remote-log";
+export interface RemoteLogStream extends RemoteLogStreamType, Record<string, unknown> {
+}
+export default function RemoteLogStreamModule(mongoose: MongooseModule): Promise<Model<RemoteLogStream, {}, {}, {}, import("mongoose").Document<unknown, {}, RemoteLogStream> & RemoteLogStream & Required<{
     _id: import("mongoose").Types.ObjectId;
-    departmentId: string;
-    userId: string;
-    isCADRequest: boolean;
-    session: string;
-    requestId: string;
-    requested: string;
-    active: boolean;
-    uuid: string;
-    createdAt: string;
-    updatedAt: string;
-    status: string;
-    message: string;
-    manifest: string[];
-    userAgent: string;
-    appVersion: string;
-    file: import("../helpers").MongooseInterface<{
-        originalName: {
-            type: StringConstructor;
-            default: string;
-        };
-        encoding: {
-            type: StringConstructor;
-            default: string;
-        };
-        mimeType: {
-            type: StringConstructor;
-            default: string;
-        };
-        fieldname: {
-            type: StringConstructor;
-            default: string;
-        };
-        localPath: {
-            type: StringConstructor;
-            default: string;
-        };
-        remoteFilePath: {
-            type: StringConstructor;
-            default: string;
-        };
-        hostname: {
-            type: StringConstructor;
-            default: string;
-        };
-        size: {
-            type: NumberConstructor;
-            default: number;
-        };
-        received: {
-            type: DateConstructor;
-            default: typeof currentDate;
-        };
-    }>;
-    remoteFolderPath: string;
-    remoteFolderId: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface RemoteLogStream extends ItemTypeFromTypeSchemaFunction<typeof RemoteLogStreamModule> {
+}>, any>>;
+export interface RemoteLogStreamModel extends Model<RemoteLogStream> {
 }
-export interface RemoteLogStreamModel extends ModelTypeFromTypeSchemaFunction<RemoteLogStream> {
-}
-declare const _default: ReplaceModelReturnType<typeof RemoteLogStreamModule, RemoteLogStreamModel>;
-export default _default;
 //# sourceMappingURL=remote-log-stream.d.ts.map

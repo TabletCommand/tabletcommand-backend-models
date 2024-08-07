@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Mark43IncidentRetryModule = void 0;
 const helpers_1 = require("../helpers");
 async function Mark43IncidentRetryModule(mongoose) {
     const Schema = mongoose.Schema;
-    const RelatedEvent = (0, helpers_1.createSchema)(Schema, {
+    const RelatedEvent = new Schema({
         mark43Id: {
             type: Number,
             default: 0,
@@ -17,7 +16,7 @@ async function Mark43IncidentRetryModule(mongoose) {
         _id: false,
         id: false,
     });
-    const RetryPayload = (0, helpers_1.createSchema)(Schema, {
+    const RetryPayload = new Schema({
         departmentId: {
             type: Number,
             default: 0,
@@ -33,7 +32,7 @@ async function Mark43IncidentRetryModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         departmentId: {
             type: String,
             default: "",
@@ -74,12 +73,9 @@ async function Mark43IncidentRetryModule(mongoose) {
         incidentNumber: {
             type: String,
         },
-    }, {
-        collection: "massive_mark43_incident_retry",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "Mark43IncidentRetry", modelSchema);
+    return mongoose.model("Mark43IncidentRetry", modelSchema, "massive_mark43_incident_retry", { overwriteModels: true });
 }
-exports.Mark43IncidentRetryModule = Mark43IncidentRetryModule;
 exports.default = Mark43IncidentRetryModule;
 //# sourceMappingURL=mark43-incident-retry.js.map

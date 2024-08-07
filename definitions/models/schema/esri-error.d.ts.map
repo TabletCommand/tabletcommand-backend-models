@@ -1,1 +1,1 @@
-{"version":3,"file":"esri-error.d.ts","sourceRoot":"","sources":["../../../src/models/schema/esri-error.ts"],"names":[],"mappings":";AAAA,OAAO,EAEL,cAAc,EACf,MAAM,eAAe,CAAC;AAEvB,MAAM,CAAC,OAAO,UAAU,eAAe,CAAC,QAAQ,EAAE,cAAc;;;;;;;;;;;;;;;;;;;;EA0B/D"}
+{"version":3,"file":"esri-error.d.ts","sourceRoot":"","sources":["../../../src/models/schema/esri-error.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;AAAA,OAAO,EACL,cAAc,EACf,MAAM,eAAe,CAAC;AACvB,OAAO,EAAE,mBAAmB,EAAE,MAAM,kBAAkB,CAAC;AAEvD,MAAM,CAAC,OAAO,UAAU,eAAe,CAAC,QAAQ,EAAE,cAAc;;;;GA0B/D"}

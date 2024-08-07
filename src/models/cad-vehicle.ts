@@ -1,18 +1,17 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
+import { CADVehicleType, StationType } from "../types/cad";
 
-export async function CADVehicleModule(mongoose: MongooseModule) {
+export interface CADVehicle extends CADVehicleType { }
+
+export default async function CADVehicleModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
 
-  const Station = createSchema(Schema, {
+  const Station = new Schema<StationType>({
     code: {
       type: String,
       default: "",
@@ -26,7 +25,7 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADVehicleType>({
     // Internal
     uuid: {
       type: String,
@@ -84,13 +83,10 @@ export async function CADVehicleModule(mongoose: MongooseModule) {
       type: Date,
     },
   }, {
-    collection: "massive_cad_vehicle",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CADVehicle", modelSchema);
+  return mongoose.model<CADVehicle>("CADVehicle", modelSchema, "massive_cad_vehicle", { overwriteModels: true });
 }
 
-export interface CADVehicle extends ItemTypeFromTypeSchemaFunction<typeof CADVehicleModule> { }
-export interface CADVehicleModel extends ModelTypeFromTypeSchemaFunction<CADVehicle> { }
-export default CADVehicleModule as ReplaceModelReturnType<typeof CADVehicleModule, CADVehicleModel>;
+export interface CADVehicleModel extends Model<CADVehicle> { }

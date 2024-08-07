@@ -1,23 +1,22 @@
 import * as uuid from "uuid";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
 import AgencyCronConfigModule from "./schema/agency-cron-config";
 import AgencySAMLModule from "./schema/agency-saml";
+import { Model } from "mongoose";
+import { CrossStaffedUnitType, AgencyType } from "../types/agency";
+
+export interface Agency extends AgencyType, Record<string, unknown> { }
 
 export function AgencySchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
   const AgencyCronConfig = AgencyCronConfigModule(mongoose);
   const AgencySAML = AgencySAMLModule(mongoose);
 
-  const CrossStaffedUnit = createSchema(Schema, {
+  const CrossStaffedUnit = new Schema<CrossStaffedUnitType>({
     radioName: {
       type: String,
       default: "",
@@ -45,9 +44,9 @@ export function AgencySchema(mongoose: MongooseModule) {
     locationToCAD: 0
   };
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<AgencyType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     code: {
@@ -89,12 +88,12 @@ export function AgencySchema(mongoose: MongooseModule) {
       default: false,
     },
     departmentId: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Department",
       required: true
     },
     administrators: {
-      type: [Types.ObjectId],
+      type: [Schema.Types.ObjectId],
       ref: "User",
       default: []
     },
@@ -128,18 +127,14 @@ export function AgencySchema(mongoose: MongooseModule) {
       default: 0,
     },
   }, {
-    collection: "massive_agency",
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
-
   return modelSchema;
 }
 
-export async function AgencyModule(mongoose: MongooseModule) {
+export default async function AgencyModule(mongoose: MongooseModule) {
   const modelSchema = AgencySchema(mongoose);
-  return createModel(mongoose, "Agency", modelSchema);
+  return mongoose.model<Agency>("Agency", modelSchema, "massive_agency", { overwriteModels: true });
 }
 
-export interface Agency extends ItemTypeFromTypeSchemaFunction<typeof AgencyModule> { }
-export interface AgencyModel extends ModelTypeFromTypeSchemaFunction<Agency> { }
-export default AgencyModule as ReplaceModelReturnType<typeof AgencyModule, AgencyModel>;
+export interface AgencyModel extends Model<Agency> { }

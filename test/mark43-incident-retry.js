@@ -22,16 +22,14 @@ describe("Mark43IncidentRetry", function() {
     mongoose.disconnect();
   });
 
-  it("is saved", function(done) {
-    var item = new models.Mark43IncidentRetry(testItem);
-    item.save(function(err, sut) {
-      assert.isNull(err, "Should not err");
-      assert.isNotNull(testItem._id);
-      assert.equal(testItem.departmentId, sut.departmentId);
-      assert.equal(testItem.active, sut.active);
-      assert.equal(testItem.mark43IncidentId, sut.mark43IncidentId);
-      assert.equal(JSON.stringify(testItem.retryPayload), JSON.stringify(sut.retryPayload));
-      return done();
-    });
+  it("is saved", async function() {
+    const item = new models.Mark43IncidentRetry(testItem);
+    const sut = await item.save();
+
+    assert.isNotNull(testItem._id);
+    assert.equal(testItem.departmentId, sut.departmentId);
+    assert.equal(testItem.active, sut.active);
+    assert.equal(testItem.mark43IncidentId, sut.mark43IncidentId);
+    assert.equal(JSON.stringify(testItem.retryPayload), JSON.stringify(sut.retryPayload));
   });
 });

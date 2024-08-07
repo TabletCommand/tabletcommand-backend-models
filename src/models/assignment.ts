@@ -1,24 +1,21 @@
 import * as uuid from "uuid";
 
 import {
-  createModel,
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  ItemTypeFromTypeSchemaFunction,
-  ModelFromSchema,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
+import { Model } from "mongoose";
+import { AssignmentType } from "../types/assignment";
 
-export async function AssignmentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface Assignment extends AssignmentType, Record<string, unknown> { }
 
-  const modelSchema = createSchema(Schema, {
+export default async function AssignmentModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const modelSchema = new Schema<AssignmentType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     uuid: {
@@ -52,7 +49,6 @@ export async function AssignmentModule(mongoose: MongooseModule) {
       type: Number,
       default: retrieveCurrentUnixTime,
     },
-
     //
     position: {
       type: Number,
@@ -71,20 +67,18 @@ export async function AssignmentModule(mongoose: MongooseModule) {
       default: "",
     },
   }, {
-    collection: "massive_assignment",
+    autoIndex: false,
   });
   modelSchema.set("autoIndex", false);
+  modelSchema.virtual("id").get(function(this: AssignmentType) {
+    return this._id.toString();
+  });
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id.toString();
-    },
   });
 
-  return createModel(mongoose, "Assignment", modelSchema);
+  return mongoose.model<Assignment>("Assignment", modelSchema, "massive_assignment", { overwriteModels: true });
 }
 
-export interface Assignment extends ItemTypeFromTypeSchemaFunction<typeof AssignmentModule> { }
-export interface AssignmentModel extends ModelTypeFromTypeSchemaFunction<Assignment> { }
-export default AssignmentModule as ReplaceModelReturnType<typeof AssignmentModule, AssignmentModel>;
+export interface AssignmentModel extends Model<Assignment> { }

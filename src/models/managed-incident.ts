@@ -1,16 +1,8 @@
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import * as uuid from "uuid";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  DocumentTypeFromSchema,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ModelFromSchema,
-  MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import {
   CADPersonSchema,
@@ -20,9 +12,22 @@ import {
   SharedSourceSchema,
   SharedToSchema,
 } from "./schema/shared-incident";
+import { Model } from "mongoose";
+import {
+  HistoryItemType,
+  AssignmentItemType,
+  IncidentUnitType,
+  IncidentGroupType,
+  IncidentHazardType,
+  IncidentChecklistItemType,
+  IncidentChecklistType,
+  ManagedIncidentType,
+} from "../types/managed-incident";
 
-export async function ManagedIncidentModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface ManagedIncident extends ManagedIncidentType, Record<string, unknown> { }
+
+export default async function ManagedIncidentModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
 
   const CADPerson = CADPersonSchema(mongoose);
   const RadioChannel = RadioChannelSchema(mongoose);
@@ -31,7 +36,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
   const SharedSource = SharedSourceSchema(mongoose);
   const SharedTo = SharedToSchema(mongoose);
 
-  const HistoryItem = createSchema(Schema, {
+  const HistoryItem = new Schema<HistoryItemType>({
     message: {
       type: String,
       default: "",
@@ -57,7 +62,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const AssignmentItem = createSchema(Schema, {
+  const AssignmentItem = new Schema<AssignmentItemType>({
     name: {
       type: String,
       default: "",
@@ -99,7 +104,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentUnit = createSchema(Schema, {
+  const IncidentUnit = new Schema<IncidentUnitType>({
     UnitID: {
       type: String,
       required: true,
@@ -209,7 +214,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentGroup = createSchema(Schema, {
+  const IncidentGroup = new Schema<IncidentGroupType>({
     location_on_map: {
       type: String,
       default: "",
@@ -251,7 +256,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentHazard = createSchema(Schema, {
+  const IncidentHazard = new Schema<IncidentHazardType>({
     location_on_scene: {
       type: String,
       default: "",
@@ -293,7 +298,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentChecklistItem = createSchema(Schema, {
+  const IncidentChecklistItem = new Schema<IncidentChecklistItemType>({
     active: {
       type: Boolean,
       default: true
@@ -338,7 +343,7 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const IncidentChecklist = createSchema(Schema, {
+  const IncidentChecklist = new Schema<IncidentChecklistType>({
     active: {
       type: Boolean,
       default: true
@@ -383,9 +388,9 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<ManagedIncidentType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -555,29 +560,22 @@ export async function ManagedIncidentModule(mongoose: MongooseModule) {
     sharedSource: {
       type: SharedSource,
     },
-
   }, {
-    collection: "massive_incident_managed",
   });
   modelSchema.set("autoIndex", false);
+
+  modelSchema.virtual("id").get(function(this: ManagedIncident) {
+    return this._id.toHexString();
+  });
 
   modelSchema.set("toJSON", {
     virtuals: true,
     versionKey: false,
-    transform(doc: ModelFromSchema<typeof modelSchema>, ret: DocumentTypeFromSchema<typeof modelSchema>) {
-      ret.id = ret._id;
-    },
   });
 
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
 
   modelSchema.plugin(mongooseLeanVirtuals);
-  return createModel(mongoose, "ManagedIncident", modelSchema);
+  return mongoose.model<ManagedIncident>("ManagedIncident", modelSchema, "massive_incident_managed", { overwriteModels: true });
 }
 
-export interface ManagedIncident extends ItemTypeFromTypeSchemaFunction<typeof ManagedIncidentModule> { }
-export interface ManagedIncidentModel extends ModelTypeFromTypeSchemaFunction<ManagedIncident> { }
-export default ManagedIncidentModule as ReplaceModelReturnType<typeof ManagedIncidentModule, ManagedIncidentModel>;
+export interface ManagedIncidentModel extends Model<ManagedIncident> { }

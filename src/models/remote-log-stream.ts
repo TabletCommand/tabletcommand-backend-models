@@ -1,25 +1,22 @@
 import * as uuid from "uuid";
 import {
   MongooseModule,
-  createSchema,
-  createModel,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
-  ReplaceModelReturnType,
   currentDate,
 } from "../helpers";
-
+import { Model } from "mongoose";
 import RemoteFileSchema from "./schema/remote-file";
+import { RemoteLogStreamType } from "../types/remote-log";
 
-export async function RemoteLogStreamModule(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+export interface RemoteLogStream extends RemoteLogStreamType, Record<string, unknown> { }
+
+export default async function RemoteLogStreamModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
 
   const RemoteFile = RemoteFileSchema(mongoose);
 
-  // This is almost identical to RemoteLog
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<RemoteLogStreamType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -101,13 +98,10 @@ export async function RemoteLogStreamModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
-    collection: "massive_remote_log_stream",
     timestamps: true,
   });
 
-  return createModel(mongoose, "RemoteLogStream", modelSchema);
+  return mongoose.model<RemoteLogStream>("RemoteLogStream", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
 }
 
-export interface RemoteLogStream extends ItemTypeFromTypeSchemaFunction<typeof RemoteLogStreamModule> { }
-export interface RemoteLogStreamModel extends ModelTypeFromTypeSchemaFunction<RemoteLogStream> { }
-export default RemoteLogStreamModule as ReplaceModelReturnType<typeof RemoteLogStreamModule, RemoteLogStreamModel>;
+export interface RemoteLogStreamModel extends Model<RemoteLogStream> { }

@@ -82,7 +82,7 @@ describe("CADIncident", function() {
     assert.equal(sut.units[0].UnitDispatchNumber, testItem.units[0].UnitDispatchNumber);
     assert.equal(sut.units[0].UnitID, testItem.units[0].UnitID);
     assert.equal(sut.units[0].TimeDispatched, testItem.units[0].TimeDispatched);
-    
+
     const unit = _.first(sut.units.filter((x) => x.UnitID === "MA31"));
     assert.equal(unit.Personnel.length, 2);
     const p1 = _.first(unit.Personnel.filter((x) => x.PersonnelID === "X14"));

@@ -1,21 +1,17 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseModule,
-  ReplaceModelReturnType,
 } from "../helpers";
 import * as uuid from "uuid";
+import { SimPriorCommentType, SimPriorIncidentType, SimRadioChannelType, SimCommentType, SimUnitType, SequenceType, CADSimulationType } from "../types/cad";
 
-export async function CADSimulationModule(mongoose: MongooseModule) {
-  const {
-    Schema,
-    Types,
-  } = mongoose;
+export interface CADSimulation extends CADSimulationType { }
 
-  const SimPriorComment = createSchema(Schema, {
+export default async function CADSimulationModule(mongoose: MongooseModule) {
+  const { Schema } = mongoose;
+
+  const SimPriorComment = new Schema<SimPriorCommentType>({
     Comment: {
       type: String,
       default: "",
@@ -33,7 +29,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimPriorIncident = createSchema(Schema, {
+  const SimPriorIncident = new Schema<SimPriorIncidentType>({
     IncidentNumber: {
       type: String,
       default: "",
@@ -63,7 +59,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimRadioChannel = createSchema(Schema, {
+  const SimRadioChannel = new Schema<SimRadioChannelType>({
     name: {
       type: String,
       default: "",
@@ -77,7 +73,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimComment = createSchema(Schema, {
+  const SimComment = new Schema<SimCommentType>({
     comment: {
       type: String,
       default: "",
@@ -91,7 +87,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const SimUnit = createSchema(Schema, {
+  const SimUnit = new Schema<SimUnitType>({
     alarmLevelAtDispatch: {
       type: String,
       default: "",
@@ -105,9 +101,9 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     id: false,
   });
 
-  const Sequence = createSchema(Schema, {
-     _id: {
-      type: Types.ObjectId,
+  const Sequence = new Schema<SequenceType>({
+    _id: {
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     title: {
@@ -132,7 +128,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
     }
   }, {});
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<CADSimulationType>({
     // Internal
     uuid: {
       type: String,
@@ -155,7 +151,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: currentDate,
     },
     active: {
-      type: Boolean, 
+      type: Boolean,
       default: true
     },
     friendlyId: {
@@ -171,7 +167,7 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: "",
     },
     simulation: {
-      type: Boolean, 
+      type: Boolean,
       default: true,
     },
     notify: {
@@ -179,11 +175,11 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: false,
     },
     rts: {
-      type: Boolean, 
+      type: Boolean,
       default: false
     },
     tags: {
-      type: [String], 
+      type: [String],
       default: []
     },
     incidentType: {
@@ -251,11 +247,11 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: [],
     },
     randomPriorIncidents: {
-      type: Boolean, 
+      type: Boolean,
       default: false
     },
     randomStaffing: {
-      type: Boolean, 
+      type: Boolean,
       default: false
     },
     sequences: {
@@ -271,13 +267,10 @@ export async function CADSimulationModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_cad_simulation",
   });
   modelSchema.set("autoIndex", false);
 
-  return createModel(mongoose, "CADSimulation", modelSchema);
+  return mongoose.model<CADSimulation>("CADSimulation", modelSchema, "massive_cad_simulation", { overwriteModels: true });
 }
 
-export interface CADSimulation extends ItemTypeFromTypeSchemaFunction<typeof CADSimulationModule> { }
-export interface CADSimulationModel extends ModelTypeFromTypeSchemaFunction<CADSimulation> { }
-export default CADSimulationModule as ReplaceModelReturnType<typeof CADSimulationModule, CADSimulationModel>;
+export interface CADSimulationModel extends Model<CADSimulation> { }

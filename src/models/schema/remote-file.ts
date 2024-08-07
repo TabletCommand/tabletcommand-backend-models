@@ -1,13 +1,13 @@
 import {
   MongooseModule,
-  createSchema,
   currentDate,
 } from "../../helpers";
+import { RemoteFileSchemaType } from "../../types/remote-file";
 
 export default function RemoteFileSchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
 
-  const Item = createSchema(Schema, {
+  const Item = new Schema<RemoteFileSchemaType>({
     originalName: {
       type: String,
       default: "", // e.g database.sqlite

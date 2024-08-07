@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TemplateModule = exports.TemplateSchema = void 0;
+exports.TemplateSchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 function TemplateSchema(mongoose) {
-    const { Schema, Types } = mongoose;
-    const ChecklistOption = (0, helpers_1.createSchema)(Schema, {
+    const { Schema } = mongoose;
+    const ChecklistOption = new Schema({
         name: {
             type: String,
             default: "",
@@ -22,7 +22,7 @@ function TemplateSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const GroupOption = (0, helpers_1.createSchema)(Schema, {
+    const GroupOption = new Schema({
         name: {
             type: String,
             default: "",
@@ -39,9 +39,9 @@ function TemplateSchema(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         position: {
@@ -87,24 +87,21 @@ function TemplateSchema(mongoose) {
             default: []
         },
         agencyId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Agency",
             default: null,
         },
-    }, {
-        collection: "massive_template",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
+    modelSchema.virtual("id").get(function () {
+        return this._id.toHexString();
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
         transform(doc, ret) {
             strictSchema(doc.schema, ret);
-            ret.id = ret._id;
         },
-    });
-    modelSchema.virtual("id").get(function () {
-        return this._id.toHexString();
     });
     function strictSchema(schema, ret) {
         Object.keys(ret).forEach(function (element) {
@@ -125,8 +122,7 @@ function TemplateSchema(mongoose) {
 exports.TemplateSchema = TemplateSchema;
 async function TemplateModule(mongoose) {
     const modelSchema = TemplateSchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "Template", modelSchema);
+    return mongoose.model("Template", modelSchema, "massive_template", { overwriteModels: true });
 }
-exports.TemplateModule = TemplateModule;
 exports.default = TemplateModule;
 //# sourceMappingURL=template.js.map

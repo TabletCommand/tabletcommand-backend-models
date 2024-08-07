@@ -1,79 +1,40 @@
-/// <reference types="mongoose" />
-import * as uuid from "uuid";
-import { MongooseModule, ItemTypeFromTypeSchemaFunction, ModelTypeFromTypeSchemaFunction, ReplaceModelReturnType, retrieveCurrentUnixTime } from "../helpers";
-export declare function ChecklistItemSchema(mongoose: MongooseModule): import("mongoose").Schema<any> & {
-    _interface: import("../helpers").MongooseInterface<{
-        _id: {
-            type: import("mongoose").Types.ObjectIdConstructor;
-            auto: boolean;
-        };
-        position: {
-            type: NumberConstructor;
-            default: number;
-        };
-        userId: StringConstructor;
-        uuid: {
-            type: StringConstructor;
-            default: (<T extends ArrayLike<number>>(options: uuid.V4Options | null | undefined, buffer: T, offset?: number | undefined) => T) & ((options?: uuid.V4Options | undefined) => string);
-        };
-        checklist_uuid: {
-            type: StringConstructor;
-        };
-        api_checklist_id: {
-            type: StringConstructor;
-        };
-        isMandatory: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        modified_date: {
-            type: StringConstructor;
-        };
-        modified_unix_date: {
-            type: NumberConstructor;
-            default: typeof retrieveCurrentUnixTime;
-        };
-        departmentId: {
-            type: StringConstructor;
-            required: boolean;
-            index: true;
-        };
-        active: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        name: {
-            type: StringConstructor;
-            required: boolean;
-        };
-        description: {
-            type: StringConstructor;
-            default: string;
-        };
-    }>;
-    _methods: unknown;
-};
-export declare function ChecklistItemModule(mongoose: MongooseModule): Promise<import("mongoose").Model<import("mongoose").Document & Record<string, unknown> & {
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose/types/inferschematype" />
+import { MongooseModule } from "../helpers";
+import { Model } from "mongoose";
+import { ChecklistItemType } from "../types/checklist";
+export interface ChecklistItem extends ChecklistItemType, Record<string, unknown> {
+}
+export declare function ChecklistItemSchema(mongoose: MongooseModule): import("mongoose").Schema<ChecklistItemType, Model<ChecklistItemType, any, any, any, import("mongoose").Document<unknown, any, ChecklistItemType> & ChecklistItemType & Required<{
     _id: import("mongoose").Types.ObjectId;
-    position: number;
-    userId: string;
-    uuid: string;
-    checklist_uuid: string;
-    api_checklist_id: string;
-    isMandatory: boolean;
-    modified_date: string;
-    modified_unix_date: number;
-    departmentId: string;
-    active: boolean;
-    name: string;
-    description: string;
-}, {}> & {
-    __methods?: unknown;
-}>;
-export interface ChecklistItem extends ItemTypeFromTypeSchemaFunction<typeof ChecklistItemModule> {
+}>, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, ChecklistItemType, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<ChecklistItemType>> & import("mongoose").FlatRecord<ChecklistItemType> & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>>;
+export default function ChecklistItemModule(mongoose: MongooseModule): Promise<Model<ChecklistItem, {}, {}, {}, import("mongoose").Document<unknown, {}, ChecklistItem> & ChecklistItem & Required<{
+    _id: import("mongoose").Types.ObjectId;
+}>, any>>;
+export interface ChecklistItemModel extends Model<ChecklistItem> {
 }
-export interface ChecklistItemModel extends ModelTypeFromTypeSchemaFunction<ChecklistItem> {
-}
-declare const _default: ReplaceModelReturnType<typeof ChecklistItemModule, ChecklistItemModel>;
-export default _default;
 //# sourceMappingURL=checklist-item.d.ts.map

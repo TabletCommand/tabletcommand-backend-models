@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AgencyModule = exports.AgencySchema = void 0;
+exports.AgencySchema = void 0;
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const agency_cron_config_1 = require("./schema/agency-cron-config");
 const agency_saml_1 = require("./schema/agency-saml");
 function AgencySchema(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     const AgencyCronConfig = (0, agency_cron_config_1.default)(mongoose);
     const AgencySAML = (0, agency_saml_1.default)(mongoose);
-    const CrossStaffedUnit = (0, helpers_1.createSchema)(Schema, {
+    const CrossStaffedUnit = new Schema({
         radioName: {
             type: String,
             default: "",
@@ -35,9 +35,9 @@ function AgencySchema(mongoose) {
         fireMapperPro: 0,
         locationToCAD: 0
     };
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         code: {
@@ -79,12 +79,12 @@ function AgencySchema(mongoose) {
             default: false,
         },
         departmentId: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Department",
             required: true
         },
         administrators: {
-            type: [Types.ObjectId],
+            type: [Schema.Types.ObjectId],
             ref: "User",
             default: []
         },
@@ -118,16 +118,14 @@ function AgencySchema(mongoose) {
             default: 0,
         },
     }, {
-        collection: "massive_agency",
+        autoIndex: false,
     });
-    modelSchema.set("autoIndex", false);
     return modelSchema;
 }
 exports.AgencySchema = AgencySchema;
 async function AgencyModule(mongoose) {
     const modelSchema = AgencySchema(mongoose);
-    return (0, helpers_1.createModel)(mongoose, "Agency", modelSchema);
+    return mongoose.model("Agency", modelSchema, "massive_agency", { overwriteModels: true });
 }
-exports.AgencyModule = AgencyModule;
 exports.default = AgencyModule;
 //# sourceMappingURL=agency.js.map

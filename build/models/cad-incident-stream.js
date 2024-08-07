@@ -1,16 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADIncidentStreamModule = void 0;
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 async function CADIncidentStreamModule(mongoose) {
-    const { Schema, Types } = mongoose;
+    const { Schema } = mongoose;
     // Simplified schema.
     // Payload should confirm to cad-incident (more or less)
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         _id: {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             auto: true,
         },
         uuid: {
@@ -42,7 +41,6 @@ async function CADIncidentStreamModule(mongoose) {
         },
     }, {
         autoIndex: false,
-        collection: "massive_cad_incident_stream",
         toJSON: {
             virtuals: true,
             versionKey: false,
@@ -53,8 +51,7 @@ async function CADIncidentStreamModule(mongoose) {
         return this._id.toString();
     });
     modelSchema.plugin(mongooseLeanVirtuals);
-    return (0, helpers_1.createModel)(mongoose, "CADIncidentStream", modelSchema);
+    return mongoose.model("CADIncidentStream", modelSchema, "massive_cad_incident_stream", { overwriteModels: true });
 }
-exports.CADIncidentStreamModule = CADIncidentStreamModule;
 exports.default = CADIncidentStreamModule;
 //# sourceMappingURL=cad-incident-stream.js.map

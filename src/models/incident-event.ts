@@ -1,25 +1,19 @@
+import { Model } from "mongoose";
 import {
-  createModel,
-  createSchema,
   currentDate,
-  ItemTypeFromTypeSchemaFunction,
-  ModelTypeFromTypeSchemaFunction,
   MongooseDocument,
   MongooseModule,
-  ReplaceModelReturnType,
   retrieveCurrentUnixTime,
 } from "../helpers";
 import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { EventUserType, IncidentEventType } from "../types/incident-events";
 
-export async function IncidentEventModule(mongoose: MongooseModule) {
-  const modelSchema = IncidentEventSchema(mongoose);
-  return createModel(mongoose, "IncidentEvent", modelSchema);
-}
+export interface IncidentEvent extends IncidentEventType { }
 
 export function IncidentEventSchema(mongoose: MongooseModule) {
-  const { Schema, Types } = mongoose;
+  const { Schema } = mongoose;
 
-  const EventUser = createSchema(Schema, {
+  const EventUser = new Schema<EventUserType>({
     username: {
       type: String,
       default: "",
@@ -41,9 +35,9 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
     id: false,
   });
 
-  const modelSchema = createSchema(Schema, {
+  const modelSchema = new Schema<IncidentEventType>({
     _id: {
-      type: Types.ObjectId,
+      type: Schema.Types.ObjectId,
       auto: true,
     },
     departmentId: {
@@ -118,7 +112,6 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
       default: false,
     },
   }, {
-    collection: "massive_incident_event",
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -135,6 +128,9 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
   return modelSchema;
 }
 
-export interface IncidentEvent extends ItemTypeFromTypeSchemaFunction<typeof IncidentEventModule> { }
-export interface IncidentEventModel extends ModelTypeFromTypeSchemaFunction<IncidentEvent> { }
-export default IncidentEventModule as ReplaceModelReturnType<typeof IncidentEventModule, IncidentEventModel>;
+export default async function IncidentEventModule(mongoose: MongooseModule) {
+  const modelSchema = IncidentEventSchema(mongoose);
+  return mongoose.model<IncidentEvent>("IncidentEvent", modelSchema, "massive_incident_event", { overwriteModels: true });
+}
+
+export interface IncidentEventModel extends Model<IncidentEvent> { }

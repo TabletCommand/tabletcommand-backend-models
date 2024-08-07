@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CADVehicleModule = void 0;
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
 async function CADVehicleModule(mongoose) {
     const Schema = mongoose.Schema;
-    const Station = (0, helpers_1.createSchema)(Schema, {
+    const Station = new Schema({
         code: {
             type: String,
             default: "",
@@ -18,7 +17,7 @@ async function CADVehicleModule(mongoose) {
         _id: false,
         id: false,
     });
-    const modelSchema = (0, helpers_1.createSchema)(Schema, {
+    const modelSchema = new Schema({
         // Internal
         uuid: {
             type: String,
@@ -73,12 +72,9 @@ async function CADVehicleModule(mongoose) {
         backupDate: {
             type: Date,
         },
-    }, {
-        collection: "massive_cad_vehicle",
-    });
+    }, {});
     modelSchema.set("autoIndex", false);
-    return (0, helpers_1.createModel)(mongoose, "CADVehicle", modelSchema);
+    return mongoose.model("CADVehicle", modelSchema, "massive_cad_vehicle", { overwriteModels: true });
 }
-exports.CADVehicleModule = CADVehicleModule;
 exports.default = CADVehicleModule;
 //# sourceMappingURL=cad-vehicle.js.map
