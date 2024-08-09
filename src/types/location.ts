@@ -34,4 +34,8 @@ export interface LocationType {
   source: string,
   kindType: string,
   typeDetails: object
+  location?: {
+    latitude: number,
+    longitude: number,
+  };
 }
