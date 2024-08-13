@@ -1,6 +1,6 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "7.0.9",
+  "version": "7.0.10",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "build": "gulp build",
@@ -17,7 +17,6 @@
   "types": "definitions/index.d.ts",
   "dependencies": {
     "bluebird": "^3.7.2",
-    "bson": "~4.7.2",
     "debug": "^4.3.5",
     "lodash": "^4.17.21",
     "moment-timezone": "^0.5.45",
