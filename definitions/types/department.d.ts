@@ -58,6 +58,7 @@ export interface IntterraConnectionType {
 export interface IntterraConfigType {
     enabled: boolean;
     connections: IntterraConnectionType[];
+    incidentWebhookEnabled: boolean;
 }
 export interface SkymiraConfigType {
     enabled: boolean;

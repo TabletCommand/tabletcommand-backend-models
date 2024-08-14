@@ -186,6 +186,7 @@ const FirstArrivingConfigDefault = {
 const IntterraConfigDefault = {
   "enabled": false,
   "connections": [],
+  "incidentWebhookEnabled": false,
 };
 
 const ForwardingConfigDefault = {
@@ -624,6 +625,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     connections: {
       type: [IntterraConnection],
       default: [],
+    },
+    incidentWebhookEnabled: {
+      type: Boolean,
+      default: false,
     },
   }, {
     _id: false,
