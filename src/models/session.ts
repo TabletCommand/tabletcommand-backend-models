@@ -13,9 +13,9 @@ export default async function SessionModule(mongoose: MongooseModule) {
   const Schema = mongoose.Schema;
   const OAuthToken = OAuthSchema(mongoose);
 
-  function requiredButAllowEmptyString(this: Session) {
+  function requiredButAllowEmptyString(value: unknown) {
     // Workaround to set required, and allow empty id
-    return typeof this.departmentId === "string";
+    return typeof value === "string";
   }
 
   const modelSchema = new Schema<SessionType>({
@@ -41,7 +41,10 @@ export default async function SessionModule(mongoose: MongooseModule) {
     departmentId: {
       type: String,
       default: "",
-      required: requiredButAllowEmptyString,
+      validate: {
+        validator: requiredButAllowEmptyString,
+        message: "departmentId is required",
+      },
       index: true,
     },
     why: {

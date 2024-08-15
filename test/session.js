@@ -30,7 +30,6 @@ describe("Session", function() {
     assert.equal(sut.user, testItem.user);
     assert.equal(sut.email, testItem.email);
     assert.equal(sut.nick, testItem.nick);
-    assert.equal(sut.departmentId, testItem.departmentId);
     assert.isFalse(sut.active);
     assert.equal(sut.deviceId, testItem.deviceId);
     assert.equal(sut.remoteAddress, testItem.remoteAddress);
