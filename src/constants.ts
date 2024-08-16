@@ -20,3 +20,9 @@ export enum LocationKindType {
   Person = "person",
   Vehicle = "vehicle"
 }
+
+export enum UserStealthStatus {
+  Prohibited = "prohibited",  // User cannot go stealth
+  Visible = "visible",        // User can go stealth, visible
+  Hidden = "hidden"           // User can go stealth, hidden
+}

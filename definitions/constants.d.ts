@@ -19,4 +19,9 @@ export declare enum LocationKindType {
     Person = "person",
     Vehicle = "vehicle"
 }
+export declare enum UserStealthStatus {
+    Prohibited = "prohibited",
+    Visible = "visible",
+    Hidden = "hidden"
+}
 //# sourceMappingURL=constants.d.ts.map

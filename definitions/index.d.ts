@@ -24,8 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { ConnectOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
-import { LocationKindType, LocationSource } from "./constants";
-export { LocationKindType, LocationSource, };
+import { LocationKindType, LocationSource, UserStealthStatus } from "./constants";
+export { LocationKindType, LocationSource, UserStealthStatus, };
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";

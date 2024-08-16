@@ -202,7 +202,6 @@ export interface CADSimulationType {
 
 export interface CADIncidentStreamType {
   _id: Types.ObjectId,
-  id?: string,
   uuid: string,
   tag: string,
   departmentId: string,
@@ -213,7 +212,6 @@ export interface CADIncidentStreamType {
 
 export interface CADIncidentBlockType {
   _id: Types.ObjectId,
-  id?: string,
   departmentId: string,
   source: string,
   IncidentNumber: string,

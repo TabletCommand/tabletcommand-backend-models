@@ -1,3 +1,5 @@
+//x-disabled <reference types="../../mongoose-lean-virtuals" />
+
 import {
   currentDate,
   MongooseModule,
