@@ -14,8 +14,9 @@ describe("ArcGISGroup", function() {
   //   mock;
 
   beforeEach(async function() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const result = await connect(mongoURL);
-    console.log(result);
+    // console.log(result);
     // models = result.models;
     // mongoose = result.mongoose;
 
@@ -25,7 +26,7 @@ describe("ArcGISGroup", function() {
     // await mock.cleanup();
 
     // console.log("x", result);
-    console.log(mongoURL);
+    // console.log(mongoURL);
   });
 
   afterEach(async function() {

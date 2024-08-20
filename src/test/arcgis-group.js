@@ -1,38 +1,10 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const chai_1 = require("chai");
-require("mocha");
-// import * as _ from "lodash";
-const config_1 = require("./config");
-const __1 = require("..");
-// import MockModule from "./mock";
-describe("ArcGISGroup", function () {
-    // let models, 
-    //   mongoose: typeof import("mongoose"),
-    //   mock;
-    beforeEach(async function () {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const result = await (0, __1.connect)(config_1.url);
-        // console.log(result);
-        // models = result.models;
-        // mongoose = result.mongoose;
-        // mock = MockModule({
-        //   models,
-        // });
-        // await mock.cleanup();
-        // console.log("x", result);
-        // console.log(mongoURL);
-    });
-    afterEach(async function () {
-        // await mongoose.disconnect();
-    });
-    it("is saved", async function () {
-        chai_1.assert.isTrue(true);
-    });
-});
-/*
 
-const m = require("..");
+const assert = require("chai").assert;
+const _ = require("lodash");
+
+const m = require("../../definitions");
+const config = require("./config");
 
 describe("ArcGISGroup", function() {
   let models, mongoose, mock;
@@ -48,8 +20,8 @@ describe("ArcGISGroup", function() {
     await mock.cleanup();
   });
 
-  afterEach(async function() {
-    await mongoose.disconnect();
+  afterEach(function() {
+    mongoose.disconnect();
   });
 
   it("is saved", async function() {
@@ -95,5 +67,3 @@ describe("ArcGISGroup", function() {
     assert.equal(user.orgId, "zGXMcUaDlMGoAAAg");
   });
 });
-*/ 
-//# sourceMappingURL=arcgis-group.js.map
