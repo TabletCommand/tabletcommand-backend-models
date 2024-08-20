@@ -1,29 +1,32 @@
-import { assert } from "chai";
-import * as m from "../index";
-import * as config from "./config";
-import mockModule from "./mock";
+"use strict";
+
+const assert = require("chai").assert;
+
+const m = require("..");
+const config = require("./config");
 
 describe("User", function() {
-  let models: m.BackendModels, mongoose: m.MongooseModule;
-  let testItem: Partial<m.User>;
+  let models, mongoose;
+  let testItem;
   beforeEach(async function() {
     const c = await m.connect(config.url);
     models = c.models;
     mongoose = c.mongoose;
 
-    const mock = mockModule({
+    const mock = require("./mock")({
       mongoose
     });
     testItem = mock.user;
   });
-  afterEach(async function() {
-    await mongoose.disconnect();
+  afterEach(function() {
+    mongoose.disconnect();
   });
 
   it("is saved", async function() {
     const item = new models.User(testItem);
+    assert.isNotNull(item.uuid);
     const sut = await item.save();
-    assert.isNotNull(sut.uuid);
+
     assert.isNotNull(testItem._id);
     assert.equal(sut.nick, testItem.nick);
     assert.equal(sut.email, testItem.email);

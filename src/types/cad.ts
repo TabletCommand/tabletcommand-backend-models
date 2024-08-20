@@ -100,7 +100,7 @@ export interface CADStatusType {
   normalized: string,
   selfAssignable: boolean,
   roaming: boolean,
-  options: StatusOptionValueType,
+  options: StatusOptionType[],
   color: ColorSchemaType,
   backupDate: Date,
 }

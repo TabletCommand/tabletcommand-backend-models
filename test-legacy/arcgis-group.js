@@ -1,28 +1,31 @@
-import { assert } from "chai";
-import * as m from "../index";
-import * as config from "./config";
-import mockModule from "./mock";
+"use strict";
+
+const assert = require("chai").assert;
+const _ = require("lodash");
+
+const m = require("..");
+const config = require("./config");
 
 describe("ArcGISGroup", function() {
-  let models: m.BackendModels, mongoose: m.MongooseModule;
-  let testItem: Partial<m.ArcGISGroup>;
+  let models, mongoose, mock;
 
   beforeEach(async function() {
     const c = await m.connect(config.url);
     models = c.models;
     mongoose = c.mongoose;
-    const mock = mockModule({
-      mongoose
+    mock = require("./mock")({
+      models,
+      mongoose,
     });
-    testItem = mock.arcGISGroup;
     await mock.cleanup();
   });
 
-  afterEach(async function() {
-    await mongoose.disconnect();
+  afterEach(function() {
+    mongoose.disconnect();
   });
 
   it("is saved", async function() {
+    const testItem = mock.arcGISGroup;
     assert.isObject(testItem);
     const item = new models.ArcGISGroup(testItem);
     const sut = await item.save();

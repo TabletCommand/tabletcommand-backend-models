@@ -4,10 +4,6 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
-  ignorePatterns: [
-    ".eslintrc.js",
-    "src/**/*.js",
-  ],
   plugins: [
     "@typescript-eslint"
   ],
