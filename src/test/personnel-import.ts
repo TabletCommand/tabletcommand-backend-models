@@ -1,26 +1,25 @@
-"use strict";
-
-const assert = require("chai").assert;
-
-const m = require("../../definitions");
-const config = require("./config");
+import { assert } from "chai";
+import * as m from "../index";
+import * as config from "./config";
+import mockModule from "./mock";
 
 describe("PersonnelImport", function() {
-  let models, mongoose;
-  let testItem;
+  let models: m.BackendModels, mongoose: m.MongooseModule;
+  let testItem: Partial<m.PersonnelImport>;
   beforeEach(async function() {
     const c = await m.connect(config.url);
     models = c.models;
     mongoose = c.mongoose;
 
-    const mock = require("./mock")({
+    const mock = mockModule({
       mongoose
     });
     testItem = mock.personnelImport;
   });
-  afterEach(function() {
-    mongoose.disconnect();
+  afterEach(async function() {
+    await mongoose.disconnect();
   });
+
 
   it("is saved", async function() {
     const item = new models.PersonnelImport(testItem);
@@ -32,8 +31,12 @@ describe("PersonnelImport", function() {
     assert.equal(testItem.PersonnelWorkCode, sut.PersonnelWorkCode);
     assert.equal(testItem.PersonnelNote, sut.PersonnelNote);
     assert.equal(testItem.departmentId, sut.departmentId);
-    assert.equal(testItem.radioNames[0], sut.radioNames[0]);
-    assert.equal(testItem.radioNames[1], sut.radioNames[1]);
+    if (testItem.radioNames?.length) {
+      assert.equal(testItem.radioNames[0], sut.radioNames[0]);
+      assert.equal(testItem.radioNames[1], sut.radioNames[1]);
+    } else {
+      assert.equal(testItem.radioNames?.length, 1);
+    }
     assert.equal(sut.radioNames.length, 2);
     assert.equal(testItem.shiftStartTime, sut.shiftStartTime);
     assert.equal(testItem.shiftEndTime, sut.shiftEndTime);
@@ -43,9 +46,9 @@ describe("PersonnelImport", function() {
     assert.equal(testItem.agencyCode, sut.agencyCode);
     assert.equal(testItem.agencyId, sut.agencyId);
     assert.equal(testItem.importNotes, sut.importNotes);
-    assert.equal(testItem.modified.toString(), sut.modified.toISOString());
-    assert.equal(testItem.shiftStart.toString(), sut.shiftStart.toISOString());
-    assert.equal(testItem.shiftEnd.toString(), sut.shiftEnd.toISOString());
+    assert.equal(testItem.modified?.toISOString(), sut.modified.toISOString());
+    assert.equal(testItem.shiftStart?.toISOString(), sut.shiftStart.toISOString());
+    assert.equal(testItem.shiftEnd?.toISOString(), sut.shiftEnd.toISOString());
   });
 });
 

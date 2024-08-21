@@ -1,8 +1,7 @@
 "use strict";
 
-const assert = require("chai").assert;
-
-const m = require("../../definitions");
+import { assert } from "chai";
+import * as m from "../helpers";
 
 describe("helpers", function() {
   it("retrieveCurrentUnixTime", function() {

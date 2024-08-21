@@ -1,25 +1,23 @@
-"use strict";
-
-const assert = require("chai").assert;
-
-const m = require("../../definitions");
-const config = require("./config");
+import { assert } from "chai";
+import * as m from "../index";
+import * as config from "./config";
+import mockModule from "./mock";
 
 describe("Session", function() {
-  let models, mongoose;
-  let testItem;
+  let models: m.BackendModels, mongoose: m.MongooseModule;
+  let testItem: Partial<m.Session>;
   beforeEach(async function() {
     const c = await m.connect(config.url);
     models = c.models;
     mongoose = c.mongoose;
 
-    const mock = require("./mock")({
+    const mock = mockModule({
       mongoose
     });
     testItem = mock.session;
   });
-  afterEach(function() {
-    mongoose.disconnect();
+  afterEach(async function() {
+    await mongoose.disconnect();
   });
 
   it("is saved", async function() {

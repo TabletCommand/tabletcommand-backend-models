@@ -67,7 +67,7 @@ export interface CADVehicleStatusHistoryType {
   locationDestination: string,
 }
 
-export interface StatusOptionValueType {
+export interface StatusOptionValueType extends Record<string, unknown> {
   name: string,
   type: string,
   visible: boolean,

@@ -1,25 +1,23 @@
-"use strict";
-
-const assert = require("chai").assert;
-
-const m = require("../../definitions");
-const config = require("./config");
+import { assert } from "chai";
+import * as m from "../index";
+import * as config from "./config";
+import mockModule from "./mock";
 
 describe("MailLog", function() {
-  let models, mongoose;
-  let testItem;
+  let models: m.BackendModels, mongoose: m.MongooseModule;
+  let testItem: Partial<m.MailLog>;
   beforeEach(async function() {
     const c = await m.connect(config.url);
     models = c.models;
     mongoose = c.mongoose;
 
-    const mock = require("./mock")({
+    const mock = mockModule({
       mongoose
     });
     testItem = mock.mailLog;
   });
-  afterEach(function() {
-    mongoose.disconnect();
+  afterEach(async function() {
+    await mongoose.disconnect();
   });
 
   it("is saved", async function() {
@@ -32,7 +30,11 @@ describe("MailLog", function() {
     assert.equal(testItem.timestamp, sut.timestamp);
     assert.equal(testItem.recipient, sut.recipient);
     assert.equal(testItem.recipientDomain, sut.recipientDomain);
-    assert.equal(testItem.tags[0], sut.tags[0]);
+    if (testItem.tags?.length) {
+      assert.equal(testItem.tags[0], sut.tags[0]);
+    } else {
+      assert.equal(testItem.tags?.length, 1);
+    }
     assert.equal(testItem.deliveryStatus, sut.deliveryStatus);
     assert.equal(testItem.message, sut.message);
     assert.equal(testItem.deliveryStatus, sut.deliveryStatus);

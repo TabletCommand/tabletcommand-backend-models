@@ -1,5 +1,6 @@
 import { Mongoose } from "mongoose";
 import * as uuid from "uuid";
+import { retrieveCurrentUnixTime } from "../helpers";
 
 export default function mockModule(dependencies: { mongoose: Mongoose; }) {
 
@@ -298,7 +299,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     isMandatory: true,
     description: "Testing Description",
     modified_date: "",
-    modified_unix_date: 1,
+    modified_unix_date: retrieveCurrentUnixTime(),
   };
 
   const checklist = {
@@ -314,7 +315,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     agencyId: new mongoose.Types.ObjectId(agency._id),
     items: [checklistItem],
     modified_date: "",
-    modified_unix_date: 1,
+    modified_unix_date: retrieveCurrentUnixTime(),
   };
 
   const mailLog = {
@@ -339,7 +340,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     "title": "Upgrade App",
     "body": "Application out of date.",
     "actionTitle": "Upgrade App",
-    "color": null,
+    "color": { background: "", text: "" },
     "url": "",
     "priority": 4,
     "type": {
@@ -350,7 +351,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
         "patch": 1
       }
     },
-    "created": new Date().toISOString(),
+    "created": new Date(),
     "uuid": "138acffd-a94f-402d-87b3-ff6ed31a19dc",
     "requestId": "138acffd-a94f-402d-87b3-ff6ed31a19db",
   };
@@ -555,7 +556,11 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
             position: 20,
             type: "string",
             value: "ADM",
-            visible: true
+            visible: true,
+            isDefault: true,
+            latitude: 0,
+            longitude: 0,
+            time: 0,
           }
         ],
         name: "oosCode",
@@ -632,6 +637,10 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     department: "Test Department",
     addressDetails: {
       city: "San Francisco",
+      address: "",
+      state: "",
+      zipCode: "",
+      country: "",
     },
     active: true,
     apikey: "abcd",
@@ -641,8 +650,8 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     rtsChannelPrefix: "CH_TEST",
     pubNubV3: {
       token: "CH_AUTH_TOKEN",
-      expireAt: "2021-09-10T23:25:02.196Z",
-      runAt: "2021-09-10T08:25:02.196Z",
+      expireAt: new Date("2021-09-10T23:25:02.196Z"),
+      runAt: new Date("2021-09-10T08:25:02.196Z"),
     },
     agencyIds: [
       new mongoose.Types.ObjectId(agency._id)
@@ -650,7 +659,10 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     signupKey: "A1B2",
     incidentTypes: [{
       name: "Type",
-      value: "type"
+      value: "type",
+      allowPartialMatch: true,
+      callTypeDescription: [],
+      callType: [],
     }],
     shareLocationPhones: false,
     shareLocationTablets: true,
@@ -659,13 +671,15 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     shareAVL: {
       enabled: true,
       opAreaCode: "DAL",
-      opAreaName: "Delta Operations"
+      opAreaName: "Delta Operations",
+      fadeZoomLevel: 1,
     },
     accountType: "production",
     timeZone: "America/Los_Angeles",
     firstArrivingEnabled: true,
     firstArriving: {
-      token: "123"
+      token: "123",
+      apiUrl: "",
     },
     simpleSenseEnabled: true,
     simpleSense: {
@@ -715,30 +729,49 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
   };
 
   const esriMap = {
+    offline: [],
+    size: 0,
+    modified: 1,
+    modifiedAt: new Date(),
     mapLayers: [
       //
       {
         "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/XBO_Branches_Updated/FeatureServer/0",
         "itemId": "XBO_Branches_Updated_3067",
         "layerType": "ArcGISFeatureLayer",
-        "title": "XBO Branches_Updated"
+        "title": "XBO Branches_Updated",
+        "layerId": "",
+        "visibility": true,
+        "opacity": 1,
+        "access": "",
+        "owner": "",
       },
       {
         "itemId": "city_limits_092019_4185",
         "layerType": "ArcGISFeatureLayer",
         "title": "City Limits",
-        "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/city_limits_092019/FeatureServer/0"
+        "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/city_limits_092019/FeatureServer/0",
+        "layerId": "",
+        "visibility": true,
+        "opacity": 1,
+        "access": "",
+        "owner": "",
       },
       {
         "itemId": "unvdpdod57lext9eck9nxipcov2dgjqs_8576",
         "layerType": "ArcGISFeatureLayer",
         "title": "Tablet Command",
-        "url": "https://api.tabletcommand.com/esri/tc-file/unvdpdod57lext9eck9nxipcov2dgjqs/FeatureServer/0"
+        "url": "https://api.tabletcommand.com/esri/tc-file/unvdpdod57lext9eck9nxipcov2dgjqs/FeatureServer/0",
+        "layerId": "",
+        "visibility": true,
+        "opacity": 1,
+        "access": "",
+        "owner": "",
       }
     ],
     "owner": "john_tabletcommand",
     "title": "Location (MM Filters)",
-    "url": null,
+    "url": "",
     "access": "shared",
     "baseMap": {
       "baseMapLayers": [
@@ -750,7 +783,12 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
           "layerType": "VectorTileLayer",
           "title": "World Street Map (Night)",
           "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/86f556a2d1fd468181855a35e344567f/resources/styles/root.json",
-          "visibility": true
+          "visibility": true,
+          "layerId": "",
+          "itemId": "",
+          "url": "",
+          "access": "",
+          "owner": "",
         }
       ],
       "title": "Streets (Night)"
@@ -876,7 +914,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     ],
     sent: [
     ],
-    updated: "2018-09-10T18:25:02.196Z"
+    updated: new Date("2018-09-10T18:25:02.196Z")
   };
 
   const location = {
@@ -902,7 +940,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       text: "#00AA00",
       background: "#FFAAFF"
     },
-    modified: new Date().toISOString()
+    modified: new Date()
   };
 
   const managedIncident = {
@@ -911,7 +949,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     CommandChannel: "ACPRI",
     TacticalAltChannel: "ACOPSB",
     TacticalChannel: "ACOPSA",
-    active: 1,
+    active: true,
     address: "Interstate 76 Eb / Federal To I 76 Eb, UNINCORPORATED ADAMS COUNTY CO",
     api_incident_number: "ACFR040719-0002506",
     channel: "ADAMSCOUNTYFIRERESCUEN1C-MANAGED-ACFR040719-0002506",
@@ -929,15 +967,16 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     history: [
       //
       {
-        entity_id: 9207,
+        entity_id: "9207",
         entity_type: 14,
         message: "(43) 2a72 start medical (Shared)",
-        time: 1554681941
+        time: 1554681941,
+        user: "",
       }
     ],
-    is_closed: 1,
+    is_closed: true,
     location: "39.802526,-105.019773",
-    managed: "1",
+    managed: 1,
     modified_date: "2019-04-08T00:16:30.473", // Same as the modified_unix_date
     modified_unix_date: 1554682590.47396,
     name: "INJURED PARTY",
@@ -950,10 +989,25 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       //
       {
         UnitID: "M12",
-        active: 1,
+        assignment: {
+          name: "",
+          uuid: "",
+          modified_date: new Date().toISOString(),
+          modified_unix_date: 1,
+          built_in: true,
+          isMandatory: false,
+          description: "",
+          active: true,
+          position: 1,
+        },
+        AlarmAtDispatch: 0,
+        uuid: "",
+        parent_uuid: "",
+        local_id: "",
+        active: true,
         air_time: "",
         api_unit_dispatch_number: "5163322",
-        checked: 0,
+        checked: false,
         column_position: 0,
         group_position: 0,
         incident_position: 0,
@@ -1006,12 +1060,14 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       {
         "name": "CMD",
         "channel": "LOCAL Tone: 3",
-        "url": "http://example.com/stream1"
+        "url": "http://example.com/stream1",
+        "channelDescription": "",
       },
       {
         "name": "TAC",
         "channel": "CDF TAC 10",
-        "url": "http://example.com/stream2"
+        "url": "http://example.com/stream2",
+        "channelDescription": "",
       }
     ],
     record: {
@@ -1023,7 +1079,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       name: "Demo RTS Fire Department",
       reasons: [
         {
-          date: "2024-05-03T00:00:00.000Z",
+          date: new Date("2024-05-03T00:00:00.000Z"),
           name: "Unit B10 assigned"
         }
       ]
@@ -1033,15 +1089,15 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       {
         active: true,
         departmentId: "5195426cc4e016a988000965",
-        expireAt: "2024-08-01T10:20:30.400Z",
+        expireAt: new Date("2024-08-01T10:20:30.400Z"),
         name: "Test Fire Department",
         reasons: [
           {
-            date: "2024-05-03T01:01:01.010Z",
+            date: new Date("2024-05-03T01:01:01.010Z"),
             name: "Unit M10 assigned"
           }
         ],
-        startAt: "2024-05-01T01:02:03.040Z",
+        startAt: new Date("2024-05-01T01:02:03.040Z"),
       }
     ],
   };
@@ -1154,7 +1210,9 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
         criticalAlertsEnabled: true,
         session: "1234321",
         active: true,
-        offDuty: false
+        offDuty: false,
+        t: new Date(),
+        channelId: "",
       }
     ],
     notificationCount: 12,
@@ -1198,11 +1256,11 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     departmentId: "123zzz",
     radioNames: ["M10", "Z1"],
     shiftStartTime: 1559446299,
-    shiftStart: "2019-06-02T03:31:39.000Z",
+    shiftStart: new Date("2019-06-02T03:31:39.000Z"),
     shiftEndTime: 1569446299,
-    shiftEnd: "2019-09-25T21:18:19.000Z",
+    shiftEnd: new Date("2019-09-25T21:18:19.000Z"),
     modified_unix_date: 1570446299,
-    modified: "2019-10-07T11:04:59.000Z",
+    modified: new Date("2019-10-07T11:04:59.000Z"),
     active: true,
     agencyCode: "TC",
     agencyName: "Tablet Command",
@@ -1238,6 +1296,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
         message: "path: /ReportNumber msg: must be array",
         firstSeenAt: new Date("2022-11-14T09:23:48.866Z"),
         lastSeenAt: new Date("2022-11-14T09:23:48.866Z"),
+        clearedAt: new Date("2022-11-14T09:23:48.866Z"),
         payload: {
           AgencyID: "99999",
           IncidentNumber: "ABCD-1234",

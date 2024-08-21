@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const chai_1 = require("chai");
 const m = require("../index");
 const config = require("./config");
-const mockts_1 = require("./mockts");
+const mock_1 = require("./mock");
 describe("User", function () {
     let models, mongoose;
     let testItem;
@@ -11,7 +11,7 @@ describe("User", function () {
         const c = await m.connect(config.url);
         models = c.models;
         mongoose = c.mongoose;
-        const mock = (0, mockts_1.default)({
+        const mock = (0, mock_1.default)({
             mongoose
         });
         testItem = mock.user;

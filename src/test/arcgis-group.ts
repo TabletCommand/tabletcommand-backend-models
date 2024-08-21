@@ -1,4 +1,5 @@
 import { assert } from "chai";
+import * as _ from "lodash";
 import * as m from "../index";
 import * as config from "./config";
 import mockModule from "./mock";
@@ -39,28 +40,28 @@ describe("ArcGISGroup", function() {
 
     assert.equal(sut.linkedDepartments.length, 1);
     const dept = _.first(sut.linkedDepartments);
-    assert.equal(dept.department, "Demo RTS Fire Department");
-    assert.equal(dept.departmentId, "558365a198b2fa4278000053");
-    assert.equal(dept.authUsername, "tabletcmd");
+    assert.equal(dept?.department, "Demo RTS Fire Department");
+    assert.equal(dept?.departmentId, "558365a198b2fa4278000053");
+    assert.equal(dept?.authUsername, "tabletcmd");
 
-    assert.equal(dept.users.length, 1);
-    const deptUser = _.first(dept.users);
-    assert.equal(deptUser.username, "tc_someone");
-    assert.equal(deptUser.email, "hello@tc.com");
-    assert.equal(deptUser.userId, "558365a198a2aa42780000aa");
+    assert.equal(dept?.users.length, 1);
+    const deptUser = _.first(dept?.users);
+    assert.equal(deptUser?.username, "tc_someone");
+    assert.equal(deptUser?.email, "hello@tc.com");
+    assert.equal(deptUser?.userId, "558365a198a2aa42780000aa");
 
     assert.equal(sut.outsiders.length, 1);
     const outsider = _.first(sut.outsiders);
-    assert.equal(outsider.username, "Michael_Kallum");
-    assert.equal(outsider.fullName, "Michael Kallum");
-    assert.equal(outsider.memberType, "member");
-    assert.equal(outsider.orgId, "MyTOuXKXZoizaaa");
+    assert.equal(outsider?.username, "Michael_Kallum");
+    assert.equal(outsider?.fullName, "Michael Kallum");
+    assert.equal(outsider?.memberType, "member");
+    assert.equal(outsider?.orgId, "MyTOuXKXZoizaaa");
 
     assert.equal(sut.users.length, 1);
     const user = _.first(sut.users);
-    assert.equal(user.username, "jane_tabletcommand");
-    assert.equal(user.fullName, "Jane Serrano");
-    assert.equal(user.memberType, "admin");
-    assert.equal(user.orgId, "zGXMcUaDlMGoAAAg");
+    assert.equal(user?.username, "jane_tabletcommand");
+    assert.equal(user?.fullName, "Jane Serrano");
+    assert.equal(user?.memberType, "admin");
+    assert.equal(user?.orgId, "zGXMcUaDlMGoAAAg");
   });
 });

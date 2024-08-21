@@ -22,7 +22,7 @@ describe("CADVehicle", function() {
 
   it("is saved", async function() {
     const item = new models.CADVehicle(testItem);
-    const sut = await item.save()
+    const sut = await item.save();
 
     assert.equal(testItem.uuid, sut.uuid);
     assert.equal(testItem.departmentId, sut.departmentId);

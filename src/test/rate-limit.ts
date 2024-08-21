@@ -1,25 +1,23 @@
-"use strict";
-
-const assert = require("chai").assert;
-
-const m = require("../../definitions");
-const config = require("./config");
+import { assert } from "chai";
+import * as m from "../index";
+import * as config from "./config";
+import mockModule from "./mock";
 
 describe("RateLimit", function() {
-  let models, mongoose;
-  let testItem;
+  let models: m.BackendModels, mongoose: m.MongooseModule;
+  let testItem: Partial<m.RateLimit>;
   beforeEach(async function() {
     const c = await m.connect(config.url);
     models = c.models;
     mongoose = c.mongoose;
 
-    const mock = require("./mock")({
+    const mock = mockModule({
       mongoose
     });
     testItem = mock.rateLimit;
   });
-  afterEach(function() {
-    mongoose.disconnect();
+  afterEach(async function() {
+    await mongoose.disconnect();
   });
 
   it("is saved", async function() {
@@ -27,7 +25,7 @@ describe("RateLimit", function() {
     const sut = await item.save();
 
     assert.isNotNull(testItem._id);
-    assert.equal(sut.user, testItem.user);
+    assert.equal(sut.username, testItem.username);
     assert.equal(sut.modified_unix_date, testItem.modified_unix_date);
     assert.equal(sut.count, testItem.count);
   });

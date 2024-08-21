@@ -62,7 +62,7 @@ export interface CADVehicleStatusHistoryType {
     locationCurrent: string;
     locationDestination: string;
 }
-export interface StatusOptionValueType {
+export interface StatusOptionValueType extends Record<string, unknown> {
     name: string;
     type: string;
     visible: boolean;
@@ -94,7 +94,7 @@ export interface CADStatusType {
     normalized: string;
     selfAssignable: boolean;
     roaming: boolean;
-    options: StatusOptionValueType;
+    options: StatusOptionType[];
     color: ColorSchemaType;
     backupDate: Date;
 }

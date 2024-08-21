@@ -1,4 +1,5 @@
 import { assert } from "chai";
+import * as _ from "lodash";
 import * as m from "../index";
 import * as config from "./config";
 import mockModule from "./mock";
@@ -36,7 +37,7 @@ describe("CADIncidentBlock", function() {
     // assert.equal(sut.createdAt.toISOString(), new Date(testItem.createdAt).toISOString());
     assert.equal(sut.ReportNumber.length, 1);
     const rn = _.first(sut.ReportNumber);
-    assert.equal(rn.name, "Incident");
-    assert.equal(rn.number, "CA68");
+    assert.equal(rn?.name, "Incident");
+    assert.equal(rn?.number, "CA68");
   });
 });

@@ -5,7 +5,7 @@ import mockModule from "./mock";
 
 describe("Agency", function() {
   let models: m.BackendModels, mongoose: m.MongooseModule;
-  let testItem: m.Agency;
+  let testItem: Partial<m.Agency>;
   beforeEach(async function() {
     const c = await m.connect(config.url);
     models = c.models;
@@ -29,10 +29,10 @@ describe("Agency", function() {
     assert.equal(testItem.active, sut.active);
     assert.equal(testItem.code, sut.code);
     assert.equal(testItem.name, sut.name);
-    assert.equal(testItem.administrators.length, 1);
+    assert.equal(testItem.administrators?.length, 1);
     assert.equal(testItem.personnelIntegration, sut.personnelIntegration);
     assert.equal(testItem.personnelMonitorHours, sut.personnelMonitorHours);
-    assert.equal(testItem.crossStaffing.length, 1);
+    assert.equal(testItem.crossStaffing?.length, 1);
     const expectedDate = new Date().valueOf() / 1000.0;
     const timeDelta = expectedDate - sut.modified_unix_date;
     assert.isTrue(timeDelta < 1);

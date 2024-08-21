@@ -1,2 +1,2 @@
-import "mocha";
+export {};
 //# sourceMappingURL=arcgis-group.d.ts.map
