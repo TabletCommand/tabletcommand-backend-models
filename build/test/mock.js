@@ -777,6 +777,19 @@ function mockModule(dependencies) {
         note: "don't feed after dark",
         mapHidden: false
     };
+    const deviceMappingWithWhiteSpaces = {
+        _id: new mongoose.Types.ObjectId(),
+        nick: "Test Nick",
+        departmentId: "d123",
+        deviceType: "DeviceTypeTest",
+        mapId: " map123 ",
+        deviceId: " deviceType123 ",
+        modified_unix_date: 1432230780,
+        active: false,
+        remoteAddress: " 6.0.6.0 ",
+        note: " i will get trimmed ",
+        mapHidden: false
+    };
     const esri = {
         _id: new mongoose.Types.ObjectId(),
         departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
@@ -1287,6 +1300,7 @@ function mockModule(dependencies) {
         csvImport,
         department,
         deviceMapping,
+        deviceMappingWithWhiteSpaces,
         esri,
         gstMapping,
         incidentEvent,

@@ -816,6 +816,20 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     mapHidden: false
   };
 
+  const deviceMappingWithWhiteSpaces = {
+    _id: new mongoose.Types.ObjectId(),
+    nick: "Test Nick",
+    departmentId: "d123",
+    deviceType: "DeviceTypeTest",
+    mapId: " map123 ", // Should be trimmed by Schema
+    deviceId: " deviceType123 ", // Should be trimmed by Schema
+    modified_unix_date: 1432230780,
+    active: false,
+    remoteAddress: " 6.0.6.0 ", // Should be trimmed by Schema
+    note: " i will get trimmed ", // Should be trimmed by Schema
+    mapHidden: false
+  };
+
   const esri = {
     _id: new mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
@@ -1349,6 +1363,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     csvImport,
     department,
     deviceMapping,
+    deviceMappingWithWhiteSpaces,
     esri,
     gstMapping,
     incidentEvent,
