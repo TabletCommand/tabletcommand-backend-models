@@ -1,4 +1,5 @@
 "use strict";
+//x-disabled <reference types="../../mongoose-lean-virtuals" />
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CADIncidentSchema = void 0;
 const helpers_1 = require("../../helpers");

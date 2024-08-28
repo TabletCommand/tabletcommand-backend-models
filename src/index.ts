@@ -4,11 +4,13 @@ import { MongooseModule } from "./helpers";
 import {
   LocationKindType,
   LocationSource,
+  UserStealthStatus,
 } from "./constants";
 
 export {
   LocationKindType,
   LocationSource,
+  UserStealthStatus,
 };
 
 async function wireModels(mongoose: MongooseModule) {

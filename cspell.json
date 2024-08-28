@@ -33,16 +33,16 @@
     "quotemark",
     "rego",
     "signup",
-    "Somewear",
     "Skymira",
     "SKYTRAC",
+    "Somewear",
     "tabletcmd",
     "tabletcommand",
+    "TCIOS",
     "Ursache",
     "userackcomment",
     "usercomment",
     "virtuals",
-    "TCIOS",
     "zonehaven"
   ],
   // flagWords - list of words to be always considered incorrect

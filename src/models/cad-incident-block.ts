@@ -1,9 +1,6 @@
 import {
   MongooseModule,
-  MongooseDocument,
 } from "../helpers";
-
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 import { ReportNumberSchema } from "./schema/shared-incident";
 import { Model } from "mongoose";
@@ -61,13 +58,6 @@ export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
       versionKey: false,
     }
   });
-
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
 
   return mongoose.model<CADIncidentBlock>("CADIncidentBlock", modelSchema, "massive_cad_incident_block", { overwriteModels: true });
 }

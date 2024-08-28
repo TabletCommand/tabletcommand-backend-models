@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
 const shared_incident_1 = require("./schema/shared-incident");
 async function CADIncidentBlockModule(mongoose) {
     const { Schema } = mongoose;
@@ -50,11 +49,6 @@ async function CADIncidentBlockModule(mongoose) {
             versionKey: false,
         }
     });
-    modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
-    });
-    modelSchema.plugin(mongooseLeanVirtuals);
     return mongoose.model("CADIncidentBlock", modelSchema, "massive_cad_incident_block", { overwriteModels: true });
 }
 exports.default = CADIncidentBlockModule;

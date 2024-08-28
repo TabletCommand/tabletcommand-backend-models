@@ -1,78 +1,43 @@
+import { Mongoose } from "mongoose";
+import * as uuid from "uuid";
+import { retrieveCurrentUnixTime } from "../helpers";
 
-// import * as uuid from "uuid";
-// import { Types } from "mongoose";
+export default function mockModule(dependencies: { mongoose: Mongoose; }) {
 
-import { checkIfTestDatabase } from "./config";
-checkIfTestDatabase();
-
-export default function MockModule(
-  // dependecies: {
-  //   models: unknown,
-  // }
-) {
-
-  async function cleanup() {
-    return "";
+  function shouldRun() {
+    const mongoUrl = process.env.NODE_MONGO_URL || "";
+    if (!/massive-test/i.exec(mongoUrl)) {
+      console.log(`Not a test database: ${mongoUrl}? Expecting database: massive-test.`);
+      return false;
+    }
+    return true;
   }
 
-  const arcGISGroup = {
-    access: "private",
-    linkedDepartments: [
-      {
-        department: "Demo RTS Fire Department",
-        departmentId: "558365a198b2fa4278000053",
-        authUsername: "tabletcmd",
-        authError: null,
-        users: [
-          //
-          {
-            username: "tc_someone",
-            email: "hello@tc.com",
-            userId: "558365a198a2aa42780000aa",
-          }
-        ]
-      }
-    ],
-    externalOrgIds: [
-      "MyTOuXKXZoizaaa"
-    ],
-    groupId: "c5d013e197244577a583c49984d319d9",
-    outsiders: [
-      {
-        fullName: "Michael Kallum",
-        memberType: "member",
-        orgId: "MyTOuXKXZoizaaa",
-        username: "Michael_Kallum"
-      }
-    ],
-    owner: "jane_tabletcommand",
-    protected: true,
-    title: "TC - City of Fire Department",
-    users: [
-      {
-        fullName: "Jane Serrano",
-        memberType: "admin",
-        orgId: "zGXMcUaDlMGoAAAg",
-        username: "jane_tabletcommand"
-      },
-    ]
-  };
-
-  return {
-    cleanup,
-
-    arcGISGroup,
-  };
-}
-
-/*
-module.exports = function(dependencies) {
-  "use strict";
+  if (!shouldRun()) {
+    process.exit(1);
+  }
 
   const {
-    models,
     mongoose
   } = dependencies;
+
+  const mark43IncidentRetry = {
+    departmentId: "123",
+    incidentNumber: "abc123",
+    active: true,
+    mark43IncidentId: 123,
+    attempts: 0,
+    created: new Date(),
+    modified: new Date(),
+    retryPayload: {
+      departmentId: 4321,
+      activityType: "EVENT_CREATED",
+      relatedEvent: {
+        mark43Id: 1234,
+        cadAgencyEventNumber: "1234"
+      }
+    }
+  };
 
   const actionLog = {
     departmentId: "d1234",
@@ -94,8 +59,125 @@ module.exports = function(dependencies) {
     }
   };
 
+  const jobLog = {
+    host: "TestHost-01",
+    jobName: "Test Job 1",
+    state: "ready",
+    bidDate: new Date(),
+    startDate: new Date(),
+    completedDate: new Date(),
+    forceClosed: false
+  };
+
+  const releaseNote = {
+    title: "test note",
+    notes: "long form note...",
+    version: "1.94.0",
+    releaseDate: new Date(),
+    status: "draft"
+  };
+
+  const cadSimulation = {
+    "departmentId": "123",
+    "active": true,
+    "friendlyId": "test-1",
+    "modifiedDate": 1544771122.997,
+    "modified": new Date(),
+    "title": "Structure Fire with Confirming stills and Rescues",
+    "notes": "3 story apartment building ",
+    "simulation": true,
+    "notify": true,
+    "rts": true,
+    "tags":
+      [],
+    "incidentType": "Structure Fire ",
+    "streetName": "123 test Blvd.",
+    "locationComment": "3 Story Apartment building ",
+    "suite": "Apartment Building",
+    "CrossStreet1": "321 Ave",
+    "city": "Test",
+    "state": "Ca",
+    "lat": "55.784387",
+    "lon": "-122.228394",
+    "firemap": "",
+    "mapPages": "",
+    "tacticalChannel": "Test 2 ",
+    "commandChannel": "",
+    "radioChannels":
+      [],
+    "closeDelay": 1800,
+    "priorIncidents": [],
+    "randomPriorIncidents": false,
+    "randomStaffing": false,
+    "sequences":
+      [
+        {
+          "_id": new mongoose.Types.ObjectId(),
+          "title": "test Alarm ",
+          "alarm": "1",
+          "sequenceId": 0,
+          "unitsConfig": {
+            "alarmLevelAtDispatch": "1",
+            "units":
+              [
+                "E13",
+                "E4",
+                "E18",
+                "E16",
+                "T2",
+                "T6",
+                "B4",
+                "B2"
+              ]
+          },
+          "comments":
+            [
+              {
+                "comment": "4-2-2 alarm assignment ",
+                "source": "DISP2"
+              }
+            ]
+        },
+        {
+          "_id": new mongoose.Types.ObjectId(),
+          "title": "2nd Alarm ",
+          "alarm": "2",
+          "sequenceId": 1,
+          "unitsConfig": {
+            "alarmLevelAtDispatch": "2",
+            "units":
+              [
+                "E17",
+                "E12",
+                "E29",
+                "T1",
+                "B3"
+              ],
+          },
+          "comments": [],
+        },
+        {
+          "_id": new mongoose.Types.ObjectId(),
+          "title": "3 Alarm ",
+          "alarm": "3",
+          "sequenceId": 2,
+          "unitsConfig": {
+            "alarmLevelAtDispatch": "3",
+            "units":
+              [
+                "E1",
+                "E2",
+                "E25",
+                "T4"
+              ]
+          },
+          "comments": [],
+        }
+      ]
+  };
+
   const agency = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
     code: "TC",
     name: "Tablet Command",
@@ -121,7 +203,7 @@ module.exports = function(dependencies) {
         department: "Demo RTS Fire Department",
         departmentId: "558365a198b2fa4278000053",
         authUsername: "tabletcmd",
-        authError: null,
+        authError: "",
         users: [
           //
           {
@@ -168,6 +250,9 @@ module.exports = function(dependencies) {
   };
 
   const battalionUnit = {
+    _id: new mongoose.Types.ObjectId("56131f724143487a10009999"),
+    uuid: "",
+    agencyId: new mongoose.Types.ObjectId(),
     name: "BattalionUnit Test",
     friendly_id: "B1",
     local_id: 321,
@@ -180,6 +265,9 @@ module.exports = function(dependencies) {
     api_battalion_id: "123",
     battalion_uuid: "",
     battalion_name: "",
+    modified_date: "",
+    modified_unix_date: 1,
+    modified: new Date(),
   };
 
   const battalion = {
@@ -187,17 +275,17 @@ module.exports = function(dependencies) {
     active: true,
     isMandatory: false,
     userId: "123",
-    departmentId: 123,
+    departmentId: "123",
     AgencyId: new mongoose.Types.ObjectId(agency._id),
     position: 1,
     units: [battalionUnit]
   };
 
-  const checklistId = mongoose.Types.ObjectId();
+  const checklistId = "56131f724143487a10123456";
   const checklistUUID = "150cf1ca-ffbb-42c9-bd4c-fd64be45d888";
 
   const checklistItem = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d887",
     checklist_uuid: checklistUUID,
     position: 1,
@@ -209,12 +297,13 @@ module.exports = function(dependencies) {
     departmentId: "4321",
     local_id: 1,
     isMandatory: true,
-    agencyId: new mongoose.Types.ObjectId(agency._id),
-    description: "Testing Description"
+    description: "Testing Description",
+    modified_date: "",
+    modified_unix_date: retrieveCurrentUnixTime(),
   };
 
   const checklist = {
-    _id: checklistId,
+    _id: new mongoose.Types.ObjectId(checklistId),
     uuid: checklistUUID,
     position: 1,
     active: true,
@@ -224,7 +313,9 @@ module.exports = function(dependencies) {
     local_id: 1,
     isMandatory: true,
     agencyId: new mongoose.Types.ObjectId(agency._id),
-    items: [checklistItem]
+    items: [checklistItem],
+    modified_date: "",
+    modified_unix_date: retrieveCurrentUnixTime(),
   };
 
   const mailLog = {
@@ -245,28 +336,28 @@ module.exports = function(dependencies) {
 
   const message = {
     departmentId: "d1234",
-    "active" : false,
-    "title" : "Upgrade App",
-    "body" : "Application out of date.",
-    "actionTitle" : "Upgrade App",
-    "color" : null,
-    "url" : "",
-    "priority" : 4,
-    "type" : {
-        "type" : "upgradeApp",
-        "typeOpts" : {
-            "major" : 3,
-            "minor" : 0,
-            "patch" : 1
-        }
+    "active": false,
+    "title": "Upgrade App",
+    "body": "Application out of date.",
+    "actionTitle": "Upgrade App",
+    "color": { background: "", text: "" },
+    "url": "",
+    "priority": 4,
+    "type": {
+      "type": "upgradeApp",
+      "typeOpts": {
+        "major": 3,
+        "minor": 0,
+        "patch": 1
+      }
     },
-    "created" : new Date().toISOString(),
-    "uuid" : "138acffd-a94f-402d-87b3-ff6ed31a19dc",
-    "requestId" : "138acffd-a94f-402d-87b3-ff6ed31a19db",
+    "created": new Date(),
+    "uuid": "138acffd-a94f-402d-87b3-ff6ed31a19dc",
+    "requestId": "138acffd-a94f-402d-87b3-ff6ed31a19db",
   };
 
   const cadIncident = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     uuid: "150cf1ca-ffbb-42c9-bd4c-fd64be45d679",
     departmentId: "56131f724143487a10000001",
     AgencyID: "BDC",
@@ -305,27 +396,58 @@ module.exports = function(dependencies) {
           {
             Comment: "[1] Call Appended to Incident number 19-042593",
             CommentSource: "G8724",
-            CommentDateTime: "2019-03-01T01:59:57-08:00"
+            CommentDateTime: "2019-03-01T01:59:57-08:00",
+            CommentConfidential: false,
+            CommentOpts: { type: "", item: "" },
           }
         ]
       }
     ],
-    Latitude: "34.788611",
-    Longitude: "-114.549444",
+    Latitude: 34.788611,
+    Longitude: -114.549444,
     Comment: [
       //
       {
         Comment: "(1) VALLEY VIEW ICU TO SUNRISE ICU",
         CommentSource: "H6577",
-        CommentDateTime: "2019-03-21T13:21:08-07:00"
+        CommentDateTime: "2019-03-21T13:21:08-07:00",
+        CommentConfidential: false,
+        CommentOpts: { type: "", item: "" },
       }
     ],
     units: [
       //
       {
-        UnitDispatchNumber: 4067677,
+        UnitDispatchNumber: "4067677",
         UnitID: "MA31",
-        TimeDispatched: "2019-03-21T13:21:22-07:00"
+        TimeDispatched: "2019-03-21T13:21:22-07:00",
+        Personnel: [
+          {
+            "PersonnelID": "X14",
+            "PersonnelName": "Mary Smith",
+            "PersonnelNote": "X",
+            "PersonnelRank": "Captain",
+            "PersonnelWorkCode": "TRD",
+          },
+          {
+            "PersonnelID": "Y21",
+            "PersonnelName": "Nicholas Santos",
+            "PersonnelNote": "Y",
+            "PersonnelRank": "PM",
+            "PersonnelWorkCode": "REG",
+          }
+        ],
+        "AlarmAtDispatch": "",
+        "TimeEnroute": "",
+        "TimeArrived": "",
+        "TimeStaged": "",
+        "TimeCleared": "",
+        "TimeAtHospital": "",
+        "TimePatient": "",
+        "TimeTransport": "",
+        "TimeTransporting": "",
+        "PersonnelCount": 2,
+        "uuid": "",
       }
     ],
     preference_location: "address",
@@ -333,11 +455,85 @@ module.exports = function(dependencies) {
     ClosedDateTime: "",
     closed_unix_date: 0,
     start_unix_date: 1553199671,
-    modified_unix_date: 1553201071.636
+    modified_unix_date: 1553201071.636,
+
+    // Share incident properties
+    ReportNumber: [
+      //
+      {
+        "name": "A",
+        "number": "07-0351"
+      },
+      {
+        "name": "B",
+        "number": "UM-02210"
+      }
+    ],
+    radioChannels: [
+      //
+      {
+        "name": "CMD",
+        "channel": "LOCAL Tone: 3",
+        "url": "http://example.com/stream1",
+        "channelDescription": ""
+      },
+      {
+        "name": "TAC",
+        "channel": "CDF TAC 10",
+        "url": "http://example.com/stream2",
+        "channelDescription": ""
+      }
+    ],
+    record: {
+      "name": "John",
+      "value": "Smith",
+    },
+    sharedSource: {
+      isExternal: true,
+      name: "Demo RTS Fire Department",
+      reasons: [
+        {
+          date: new Date("2024-05-03T00:00:00.000Z"),
+          name: "Unit B10 assigned"
+        }
+      ]
+    },
+    sharedTo: [
+      // 
+      {
+        active: true,
+        departmentId: "5195426cc4e016a988000965",
+        expireAt: new Date("2024-08-01T10:20:30.400Z"),
+        name: "Test Fire Department",
+        reasons: [
+          {
+            date: new Date("2024-05-03T01:01:01.010Z"),
+            name: "Unit M10 assigned"
+          }
+        ],
+        startAt: new Date("2024-05-01T01:02:03.040Z"),
+      }
+    ],
+  };
+
+  const cadIncidentBlock = {
+    "EntryDateTime": "2023-09-20T09:14:37-07:00",
+    "ClosedDateTime": "2023-09-20T10:36:36-07:00",
+    "source": "callType",
+    "departmentId": "64948d8f051d17033f77d034",
+    "AgencyIncidentCallTypeDescription": "OTH, MISCELLANEOUS",
+    "IncidentNumber": "A23031",
+    "ReportNumber": [
+      {
+        "name": "Incident",
+        "number": "CA68"
+      }
+    ],
+    "createdAt": "2023-09-20T16:14:30.000+0000"
   };
 
   const cadStatus = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     code: "AV",
     codeDisplay: "RS",
     color: {
@@ -360,7 +556,11 @@ module.exports = function(dependencies) {
             position: 20,
             type: "string",
             value: "ADM",
-            visible: true
+            visible: true,
+            isDefault: true,
+            latitude: 0,
+            longitude: 0,
+            time: 0,
           }
         ],
         name: "oosCode",
@@ -383,13 +583,14 @@ module.exports = function(dependencies) {
       //
       {
         "statusId": 1,
-        "userEnabled": true
+        "userEnabled": true,
+        "position": 0,
       }
     ]
   };
 
   const cadVehicle = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     uuid: "30f8d7c7-20a3-4a12-b911-a424f5037003",
     radioName: "T01",
     vehicleId: "7705",
@@ -432,9 +633,15 @@ module.exports = function(dependencies) {
   };
 
   const department = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     department: "Test Department",
-    city: "San Francisco",
+    addressDetails: {
+      city: "San Francisco",
+      address: "",
+      state: "",
+      zipCode: "",
+      country: "",
+    },
     active: true,
     apikey: "abcd",
     partialApiKey: "ab",
@@ -443,8 +650,8 @@ module.exports = function(dependencies) {
     rtsChannelPrefix: "CH_TEST",
     pubNubV3: {
       token: "CH_AUTH_TOKEN",
-      expireAt: "2021-09-10T23:25:02.196Z",
-      runAt: "2021-09-10T08:25:02.196Z",
+      expireAt: new Date("2021-09-10T23:25:02.196Z"),
+      runAt: new Date("2021-09-10T08:25:02.196Z"),
     },
     agencyIds: [
       new mongoose.Types.ObjectId(agency._id)
@@ -452,7 +659,10 @@ module.exports = function(dependencies) {
     signupKey: "A1B2",
     incidentTypes: [{
       name: "Type",
-      value: "type"
+      value: "type",
+      allowPartialMatch: true,
+      callTypeDescription: [],
+      callType: [],
     }],
     shareLocationPhones: false,
     shareLocationTablets: true,
@@ -461,53 +671,107 @@ module.exports = function(dependencies) {
     shareAVL: {
       enabled: true,
       opAreaCode: "DAL",
-      opAreaName: "Delta Operations"
+      opAreaName: "Delta Operations",
+      fadeZoomLevel: 1,
     },
     accountType: "production",
     timeZone: "America/Los_Angeles",
     firstArrivingEnabled: true,
+    firstArriving: {
+      token: "123",
+      apiUrl: "",
+    },
     simpleSenseEnabled: true,
+    simpleSense: {
+      token: "123"
+    },
     licensing: {
       tcPro2Way: 0,
       tcPro1Way: 0,
       tcMobile: 0,
       tcWeb: 0,
       fireMapperPro: 0,
-      sendToCAD: 0
+      sendToCAD: 0,
+      tcStreams: 0,
     },
     webDisclaimer: {
       message: "test",
       enabled: true
     },
     notificationEmails: ["test@test.com"],
-    externalNotificationsEnabled: true
+    externalNotificationsEnabled: true,
+    restrictedComments: {
+      enabled: false,
+      callTypesAllowed: [],
+      statusesAllowed: [],
+      restrictedFields: [],
+      restrictedMessage: "Restricted Message"
+    },
+    customButtons: [
+      {
+        name: "Button Custom",
+        url: "",
+        order: 1,
+        allowExternal: false,
+        defaultExternal: false,
+        allowFloating: false,
+        color: {
+          "background": "#512e5f",
+          "text": "#F8F9F9"
+        }
+      }
+    ],
+    reportNumberEnabled: true,
+    samsara: {
+      enabled: false,
+      token: "",
+    },
   };
 
   const esriMap = {
+    offline: [],
+    size: 0,
+    modified: 1,
+    modifiedAt: new Date(),
     mapLayers: [
       //
       {
         "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/XBO_Branches_Updated/FeatureServer/0",
         "itemId": "XBO_Branches_Updated_3067",
         "layerType": "ArcGISFeatureLayer",
-        "title": "XBO Branches_Updated"
+        "title": "XBO Branches_Updated",
+        "layerId": "",
+        "visibility": true,
+        "opacity": 1,
+        "access": "",
+        "owner": "",
       },
       {
         "itemId": "city_limits_092019_4185",
         "layerType": "ArcGISFeatureLayer",
         "title": "City Limits",
-        "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/city_limits_092019/FeatureServer/0"
+        "url": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/city_limits_092019/FeatureServer/0",
+        "layerId": "",
+        "visibility": true,
+        "opacity": 1,
+        "access": "",
+        "owner": "",
       },
       {
         "itemId": "unvdpdod57lext9eck9nxipcov2dgjqs_8576",
         "layerType": "ArcGISFeatureLayer",
         "title": "Tablet Command",
-        "url": "https://api.tabletcommand.com/esri/tc-file/unvdpdod57lext9eck9nxipcov2dgjqs/FeatureServer/0"
+        "url": "https://api.tabletcommand.com/esri/tc-file/unvdpdod57lext9eck9nxipcov2dgjqs/FeatureServer/0",
+        "layerId": "",
+        "visibility": true,
+        "opacity": 1,
+        "access": "",
+        "owner": "",
       }
     ],
     "owner": "john_tabletcommand",
     "title": "Location (MM Filters)",
-    "url": null,
+    "url": "",
     "access": "shared",
     "baseMap": {
       "baseMapLayers": [
@@ -519,7 +783,12 @@ module.exports = function(dependencies) {
           "layerType": "VectorTileLayer",
           "title": "World Street Map (Night)",
           "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/86f556a2d1fd468181855a35e344567f/resources/styles/root.json",
-          "visibility": true
+          "visibility": true,
+          "layerId": "",
+          "itemId": "",
+          "url": "",
+          "access": "",
+          "owner": "",
         }
       ],
       "title": "Streets (Night)"
@@ -534,7 +803,7 @@ module.exports = function(dependencies) {
   };
 
   const deviceMapping = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     nick: "Test",
     departmentId: "d123",
     deviceType: "hello",
@@ -548,7 +817,7 @@ module.exports = function(dependencies) {
   };
 
   const esri = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
     modified_unix_date: 1432230780,
     auth: {
@@ -582,7 +851,7 @@ module.exports = function(dependencies) {
   };
 
   const gstMapping = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "d123",
     unitId: "E123",
     modified_unix_date: 1432230780,
@@ -592,7 +861,6 @@ module.exports = function(dependencies) {
     mapHidden: false,
     gstAgency: "LAX",
     deviceType: "gst",
-    note: ""
   };
 
   const incidentEvent = {
@@ -616,7 +884,7 @@ module.exports = function(dependencies) {
   };
 
   const incidentTakeover = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     incident_id: "i1234",
     incident_name: "Test Incident",
     incident_number: "TC-12345",
@@ -629,7 +897,7 @@ module.exports = function(dependencies) {
   };
 
   const incidentNotified = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "d123",
     IncidentNumber: "T-1536603902",
     incidentTypes: [
@@ -638,13 +906,19 @@ module.exports = function(dependencies) {
     units: [
       "E31"
     ],
+    unitsByDispatch: [
+      {
+        UnitID: "E31",
+        UnitDispatchNumber: "12345"
+      }
+    ],
     sent: [
     ],
-    updated: "2018-09-10T18:25:02.196Z"
+    updated: new Date("2018-09-10T18:25:02.196Z")
   };
 
   const location = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "d123",
     userId: "542a40db20783c000000153d",
     uuid: "92c8f732-52b7-46cc-855a-d54fddfe3172",
@@ -666,16 +940,16 @@ module.exports = function(dependencies) {
       text: "#00AA00",
       background: "#FFAAFF"
     },
-    modified: new Date().toISOString()
+    modified: new Date()
   };
 
   const managedIncident = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     CallerNumber: "(720) 275-6765",
     CommandChannel: "ACPRI",
     TacticalAltChannel: "ACOPSB",
     TacticalChannel: "ACOPSA",
-    active: 1,
+    active: true,
     address: "Interstate 76 Eb / Federal To I 76 Eb, UNINCORPORATED ADAMS COUNTY CO",
     api_incident_number: "ACFR040719-0002506",
     channel: "ADAMSCOUNTYFIRERESCUEN1C-MANAGED-ACFR040719-0002506",
@@ -693,15 +967,16 @@ module.exports = function(dependencies) {
     history: [
       //
       {
-        entity_id: 9207,
+        entity_id: "9207",
         entity_type: 14,
         message: "(43) 2a72 start medical (Shared)",
-        time: 1554681941
+        time: 1554681941,
+        user: "",
       }
     ],
-    is_closed: 1,
+    is_closed: true,
     location: "39.802526,-105.019773",
-    managed: "1",
+    managed: 1,
     modified_date: "2019-04-08T00:16:30.473", // Same as the modified_unix_date
     modified_unix_date: 1554682590.47396,
     name: "INJURED PARTY",
@@ -714,20 +989,52 @@ module.exports = function(dependencies) {
       //
       {
         UnitID: "M12",
-        active: 1,
+        assignment: {
+          name: "",
+          uuid: "",
+          modified_date: new Date().toISOString(),
+          modified_unix_date: 1,
+          built_in: true,
+          isMandatory: false,
+          description: "",
+          active: true,
+          position: 1,
+        },
+        AlarmAtDispatch: 0,
+        uuid: "",
+        parent_uuid: "",
+        local_id: "",
+        active: true,
         air_time: "",
         api_unit_dispatch_number: "5163322",
-        checked: 0,
+        checked: false,
         column_position: 0,
         group_position: 0,
         incident_position: 0,
         isSupervisor: false,
         is_part_of_group: false,
+        location_on_image: "",
         location_on_map: "",
         modified_date: "2019-04-08T00:16:30+0000",
         modified_unix_date: 1554682590.51667,
         note: "",
         personnelOnScene: 2,
+        Personnel: [
+          {
+            "PersonnelID": "X14",
+            "PersonnelName": "Mary Smith",
+            "PersonnelNote": "X",
+            "PersonnelRank": "Captain",
+            "PersonnelWorkCode": "TRD"
+          },
+          {
+            "PersonnelID": "Y21",
+            "PersonnelName": "Nicholas Santos",
+            "PersonnelNote": "Y",
+            "PersonnelRank": "PM",
+            "PersonnelWorkCode": "REG"
+          }
+        ],
         status: "Arrived",
         status_unix_date: 1554682217,
         time: "",
@@ -735,20 +1042,78 @@ module.exports = function(dependencies) {
       }
     ],
     userId: "5b3e78cc944e2a18d5222424",
-    uuid: "579E2F47-7F63-4351-B41F-4A345D680B8F"
+    uuid: "579E2F47-7F63-4351-B41F-4A345D680B8F",
+    // Share incident properties
+    ReportNumber: [
+      //
+      {
+        "name": "A",
+        "number": "07-0351"
+      },
+      {
+        "name": "B",
+        "number": "UM-02210"
+      }
+    ],
+    radioChannels: [
+      //
+      {
+        "name": "CMD",
+        "channel": "LOCAL Tone: 3",
+        "url": "http://example.com/stream1",
+        "channelDescription": "",
+      },
+      {
+        "name": "TAC",
+        "channel": "CDF TAC 10",
+        "url": "http://example.com/stream2",
+        "channelDescription": "",
+      }
+    ],
+    record: {
+      "name": "John",
+      "value": "Smith",
+    },
+    sharedSource: {
+      isExternal: true,
+      name: "Demo RTS Fire Department",
+      reasons: [
+        {
+          date: new Date("2024-05-03T00:00:00.000Z"),
+          name: "Unit B10 assigned"
+        }
+      ]
+    },
+    sharedTo: [
+      // 
+      {
+        active: true,
+        departmentId: "5195426cc4e016a988000965",
+        expireAt: new Date("2024-08-01T10:20:30.400Z"),
+        name: "Test Fire Department",
+        reasons: [
+          {
+            date: new Date("2024-05-03T01:01:01.010Z"),
+            name: "Unit M10 assigned"
+          }
+        ],
+        startAt: new Date("2024-05-01T01:02:03.040Z"),
+      }
+    ],
   };
 
   const monitor = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     departmentId: "546ace2b3cd8d60d1d00256a",
     agencyId: "123",
-    notificationType: "maps-token-error",
+    notificationType: "maps-auth-error",
     status: "active",
+    sentAt: new Date(1000.0 * 1603263604),
     sentUnixDate: 1603263604
   };
 
   const rateLimit = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     username: "test123",
     modified_unix_date: 1426983552.49945,
     count: 8
@@ -783,7 +1148,7 @@ module.exports = function(dependencies) {
   };
 
   const user = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     nick: "Test",
     email: "test@save.me",
     mapId: "TEST",
@@ -804,9 +1169,10 @@ module.exports = function(dependencies) {
     offDutyEnabled: true,
     webMapSettings: {
       defaultZoomLevel: 10,
-      defaultCenter: [1,1],
+      defaultCenter: [1, 1],
       defaultMap: "Default"
-    }
+    },
+    restrictedCommentsEnabled: true
   };
 
   const userRegistration = {
@@ -844,7 +1210,9 @@ module.exports = function(dependencies) {
         criticalAlertsEnabled: true,
         session: "1234321",
         active: true,
-        offDuty: false
+        offDuty: false,
+        t: new Date(),
+        channelId: "",
       }
     ],
     notificationCount: 12,
@@ -879,7 +1247,7 @@ module.exports = function(dependencies) {
   };
 
   const personnelImport = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     PersonnelID: "AM0111",
     PersonnelName: "Test User",
     PersonnelRank: "Eng",
@@ -888,11 +1256,11 @@ module.exports = function(dependencies) {
     departmentId: "123zzz",
     radioNames: ["M10", "Z1"],
     shiftStartTime: 1559446299,
-    shiftStart: "2019-06-02T03:31:39.000Z",
+    shiftStart: new Date("2019-06-02T03:31:39.000Z"),
     shiftEndTime: 1569446299,
-    shiftEnd: "2019-09-25T21:18:19.000Z",
+    shiftEnd: new Date("2019-09-25T21:18:19.000Z"),
     modified_unix_date: 1570446299,
-    modified: "2019-10-07T11:04:59.000Z",
+    modified: new Date("2019-10-07T11:04:59.000Z"),
     active: true,
     agencyCode: "TC",
     agencyName: "Tablet Command",
@@ -900,38 +1268,77 @@ module.exports = function(dependencies) {
   };
 
   const csvImport = {
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     batchId: "AM0111",
     departmentId: "1234",
     agencyId: "abcd1234",
     importType: "users",
     fileType: "csv",
     fileName: "test file 123",
-    fileSize: 800,
+    fileSize: "800",
     records: [],
     userId: "4321",
     status: "success",
     sendNotification: false
   };
 
-  async function cleanup() {
-    config.checkIfTestDatabase();
+  const validationReport = {
+    _id: new mongoose.Types.ObjectId(),
+    departmentId: new mongoose.Types.ObjectId("56131f724143487a10000001"),
+    modified: new Date("2022-11-13T22:02:01Z"),
+    location: [],
+    statusMap: [],
+    status: [],
+    vehicleStatus: [],
+    vehicle: [],
+    incident: [
+      {
+        message: "path: /ReportNumber msg: must be array",
+        firstSeenAt: new Date("2022-11-14T09:23:48.866Z"),
+        lastSeenAt: new Date("2022-11-14T09:23:48.866Z"),
+        clearedAt: new Date("2022-11-14T09:23:48.866Z"),
+        payload: {
+          AgencyID: "99999",
+          IncidentNumber: "ABCD-1234",
+          ReportNumber: ""
+        }
+      }
+    ],
+    personnel: [],
+  };
 
-    await models.CADVehicleStatus.deleteMany({});
-    await models.Esri.deleteMany({});
-    await models.IncidentNotified.deleteMany({});
-    await models.PersonnelImport.deleteMany({});
-    await models.UserDevice.deleteMany({});
-    await models.User.deleteMany({});
+  async function cleanup() {
+    if (!shouldRun()) {
+      process.exit(1);
+    }
+
+    const items = await mongoose.connection.db.collections();
+    for (const coll of items) {
+      // console.log(`Emptying ${coll.collectionName}.`);
+      await coll.deleteMany({});
+    }
+  }
+
+  async function beforeEach() {
+    if (!shouldRun()) {
+      process.exit(1);
+    }
+
+    await cleanup();
   }
 
   return {
+    beforeEach,
+    cleanup,
+
     actionLog,
+    mark43IncidentRetry,
     agency,
-    assignment,
     arcGISGroup,
+    assignment,
     battalion,
     cadIncident,
+    cadIncidentBlock,
     cadStatus,
     cadStatusMap,
     cadVehicle,
@@ -939,7 +1346,7 @@ module.exports = function(dependencies) {
     cadVehicleStatusHistory,
     checklist,
     checklistItem,
-    cleanup,
+    csvImport,
     department,
     deviceMapping,
     esri,
@@ -947,10 +1354,13 @@ module.exports = function(dependencies) {
     incidentEvent,
     incidentNotified,
     incidentTakeover,
+    jobLog,
+    releaseNote,
+    cadSimulation,
     location,
     mailLog,
-    message,
     managedIncident,
+    message,
     monitor,
     personnelImport,
     rateLimit,
@@ -959,7 +1369,7 @@ module.exports = function(dependencies) {
     user,
     userDevice,
     userRegistration,
-    csvImport
+    validationReport,
   };
-};
-*/
+}
+

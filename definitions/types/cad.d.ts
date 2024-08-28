@@ -62,7 +62,7 @@ export interface CADVehicleStatusHistoryType {
     locationCurrent: string;
     locationDestination: string;
 }
-export interface StatusOptionValueType {
+export interface StatusOptionValueType extends Record<string, unknown> {
     name: string;
     type: string;
     visible: boolean;
@@ -94,7 +94,7 @@ export interface CADStatusType {
     normalized: string;
     selfAssignable: boolean;
     roaming: boolean;
-    options: StatusOptionValueType;
+    options: StatusOptionType[];
     color: ColorSchemaType;
     backupDate: Date;
 }
@@ -187,7 +187,6 @@ export interface CADSimulationType {
 }
 export interface CADIncidentStreamType {
     _id: Types.ObjectId;
-    id?: string;
     uuid: string;
     tag: string;
     departmentId: string;
@@ -197,7 +196,6 @@ export interface CADIncidentStreamType {
 }
 export interface CADIncidentBlockType {
     _id: Types.ObjectId;
-    id?: string;
     departmentId: string;
     source: string;
     IncidentNumber: string;

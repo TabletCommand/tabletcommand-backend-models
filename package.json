@@ -1,11 +1,11 @@
 {
   "name": "tabletcommand-backend-models",
-  "version": "7.0.8",
+  "version": "7.0.13",
   "description": "Tablet Command Backend Models",
   "scripts": {
     "build": "gulp build",
     "lint": "eslint src",
-    "test": "mocha --reporter list --recursive test"
+    "test": "npx mocha -r ts-node/register --reporter list --recursive build/test/**/*.js"
   },
   "author": "Marius Ursache <marius@tabletcommand.com>",
   "license": "MIT",
@@ -17,8 +17,7 @@
   "types": "definitions/index.d.ts",
   "dependencies": {
     "bluebird": "^3.7.2",
-    "bson": "~4.7.2",
-    "debug": "^4.3.5",
+    "debug": "^4.3.6",
     "lodash": "^4.17.21",
     "moment-timezone": "^0.5.45",
     "mongoose": "^7.7.0",
@@ -39,7 +38,7 @@
     "eslint": "^8.57.0",
     "gulp": "^4.0.2",
     "gulp-shell": "^0.8.0",
-    "mocha": "^10.6.0",
+    "mocha": "^10.7.3",
     "ts-node": "^10.9.2",
     "type-coverage": "^2.29.1",
     "typescript": "~4.7.4",

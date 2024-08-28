@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LocationKindType = exports.LocationSource = void 0;
+exports.UserStealthStatus = exports.LocationKindType = exports.LocationSource = void 0;
 var LocationSource;
 (function (LocationSource) {
     LocationSource["CAD"] = "CAD";
@@ -24,4 +24,10 @@ var LocationKindType;
     LocationKindType["Person"] = "person";
     LocationKindType["Vehicle"] = "vehicle";
 })(LocationKindType = exports.LocationKindType || (exports.LocationKindType = {}));
+var UserStealthStatus;
+(function (UserStealthStatus) {
+    UserStealthStatus["Prohibited"] = "prohibited";
+    UserStealthStatus["Visible"] = "visible";
+    UserStealthStatus["Hidden"] = "hidden"; // User can go stealth, hidden
+})(UserStealthStatus = exports.UserStealthStatus || (exports.UserStealthStatus = {}));
 //# sourceMappingURL=constants.js.map

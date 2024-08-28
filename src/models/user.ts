@@ -262,7 +262,13 @@ export function UserSchema(mongoose: MongooseModule) {
     restrictedCommentsEnabled: {
       type: Boolean,
       default: false,
-    }
+    },
+
+    // UserStealthStatus: prohibited, visible, hidden
+    stealthStatus: {
+      type: String,
+      default: "prohibited",
+    },
   }, {
     autoIndex: false,
   });
