@@ -6,7 +6,7 @@ const config = require("./config");
 const mock_1 = require("./mock");
 describe("DeviceMapping", function () {
     let models, mongoose;
-    let testItem;
+    let testItem, testItemForTrim;
     beforeEach(async function () {
         const c = await m.connect(config.url);
         models = c.models;
@@ -15,6 +15,7 @@ describe("DeviceMapping", function () {
             mongoose
         });
         testItem = mock.deviceMapping;
+        testItemForTrim = mock.deviceMappingWithWhiteSpaces;
     });
     afterEach(async function () {
         await mongoose.disconnect();
@@ -32,6 +33,18 @@ describe("DeviceMapping", function () {
         chai_1.assert.equal(testItem.note, sut.note);
         chai_1.assert.isFalse(sut.active);
         chai_1.assert.isFalse(sut.mapHidden);
+    });
+    it("is saved with trim", async function () {
+        var _a, _b, _c, _d;
+        const item = new models.DeviceMapping(testItemForTrim);
+        const sut = await item.save();
+        chai_1.assert.isNotNull(testItemForTrim._id);
+        chai_1.assert.equal(testItemForTrim.departmentId, sut.departmentId);
+        chai_1.assert.equal(testItemForTrim.modified_unix_date, sut.modified_unix_date);
+        chai_1.assert.equal((_a = testItemForTrim.mapId) === null || _a === void 0 ? void 0 : _a.trim(), sut.mapId); // Should be trimmed by Schema
+        chai_1.assert.equal((_b = testItemForTrim.deviceId) === null || _b === void 0 ? void 0 : _b.trim(), sut.deviceId); // Should be trimmed by Schema
+        chai_1.assert.equal((_c = testItemForTrim.remoteAddress) === null || _c === void 0 ? void 0 : _c.trim(), sut.remoteAddress); // Should be trimmed by Schema
+        chai_1.assert.equal((_d = testItemForTrim.note) === null || _d === void 0 ? void 0 : _d.trim(), sut.note); // Should be trimmed by Schema
     });
 });
 //# sourceMappingURL=device-mapping.js.map

@@ -532,6 +532,19 @@ export default function mockModule(dependencies: {
         note: string;
         mapHidden: boolean;
     };
+    deviceMappingWithWhiteSpaces: {
+        _id: import("mongoose").Types.ObjectId;
+        nick: string;
+        departmentId: string;
+        deviceType: string;
+        mapId: string;
+        deviceId: string;
+        modified_unix_date: number;
+        active: boolean;
+        remoteAddress: string;
+        note: string;
+        mapHidden: boolean;
+    };
     esri: {
         _id: import("mongoose").Types.ObjectId;
         departmentId: import("mongoose").Types.ObjectId;
