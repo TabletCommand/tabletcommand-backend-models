@@ -691,6 +691,7 @@ function mockModule(dependencies) {
             enabled: false,
             token: "",
         },
+        reportOdometer: "status",
     };
     const esriMap = {
         offline: [],

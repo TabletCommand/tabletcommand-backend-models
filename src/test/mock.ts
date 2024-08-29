@@ -727,6 +727,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       enabled: false,
       token: "",
     },
+    reportOdometer: "status",
   };
 
   const esriMap = {

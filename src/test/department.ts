@@ -90,5 +90,6 @@ describe("Department", function() {
     }
     assert.equal(sut.reportNumberEnabled, testItem.reportNumberEnabled);
     assert.equal(JSON.stringify(sut.samsara), JSON.stringify(testItem.samsara));
+    assert.equal(sut.reportOdometer, "status");
   });
 });

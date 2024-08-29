@@ -28,8 +28,8 @@ export enum UserStealthStatus {
 }
 
 export enum DepartmentReportOdometer {
-  Disabled = "disabled",                    // Not recording, not sending
-  Status = "status",                        // Recording, send with status
-  Comment = "comment",                      // Recording, send as comment
-  StatusAndComment = "status-and-comment",  // Recording, send with status and as comment
+  Disabled = "",                      // Not recording, not sending
+  Status = "status",                  // Recording, send with status
+  Comment = "comment",                // Recording, send as comment
+  StatusComment = "status-comment",   // Recording, send with status and as comment
 }

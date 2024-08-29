@@ -93,6 +93,7 @@ describe("Department", function () {
         }
         chai_1.assert.equal(sut.reportNumberEnabled, testItem.reportNumberEnabled);
         chai_1.assert.equal(JSON.stringify(sut.samsara), JSON.stringify(testItem.samsara));
+        chai_1.assert.equal(sut.reportOdometer, "status");
     });
 });
 //# sourceMappingURL=department.js.map

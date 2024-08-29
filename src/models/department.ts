@@ -1555,6 +1555,11 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
     },
+    // Other values, status, comment, status-comment
+    reportOdometer: {
+      type: String,
+      default: "",
+    },
     restrictedComments: {
       type: RestrictedComments,
       default: RestrictedCommentsDefault,
@@ -1575,6 +1580,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: 8,
     },
+
     zonehaven: {
       enabled: {
         type: Boolean,

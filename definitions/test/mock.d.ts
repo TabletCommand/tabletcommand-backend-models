@@ -518,6 +518,7 @@ export default function mockModule(dependencies: {
             enabled: boolean;
             token: string;
         };
+        reportOdometer: string;
     };
     deviceMapping: {
         _id: import("mongoose").Types.ObjectId;

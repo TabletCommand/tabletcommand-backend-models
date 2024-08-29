@@ -24,4 +24,10 @@ export declare enum UserStealthStatus {
     Visible = "visible",
     Hidden = "hidden"
 }
+export declare enum DepartmentReportOdometer {
+    Disabled = "",
+    Status = "status",
+    Comment = "comment",
+    StatusComment = "status-comment"
+}
 //# sourceMappingURL=constants.d.ts.map

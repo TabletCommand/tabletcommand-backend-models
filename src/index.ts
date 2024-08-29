@@ -2,12 +2,14 @@ import * as _ from "lodash";
 import { ConnectOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
 import {
+  DepartmentReportOdometer,
   LocationKindType,
   LocationSource,
   UserStealthStatus,
 } from "./constants";
 
 export {
+  DepartmentReportOdometer,
   LocationKindType,
   LocationSource,
   UserStealthStatus,

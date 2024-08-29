@@ -348,5 +348,6 @@ export interface DepartmentType {
     somewear: SomewearType;
     cadBidirectionalException: boolean;
     forwarding: ForwardingConfigType;
+    reportOdometer: string;
 }
 //# sourceMappingURL=department.d.ts.map

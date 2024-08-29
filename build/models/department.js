@@ -1432,6 +1432,11 @@ async function DepartmentModule(mongoose) {
             type: String,
             default: "",
         },
+        // Other values, status, comment, status-comment
+        reportOdometer: {
+            type: String,
+            default: "",
+        },
         restrictedComments: {
             type: RestrictedComments,
             default: RestrictedCommentsDefault,
