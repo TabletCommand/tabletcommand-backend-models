@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "declaration": true,
     "declarationDir": "../definitions",
     "declarationMap": true,
@@ -10,12 +11,21 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
     "outDir": "../build",
-    "typeRoots": ["./types", "node_modules/@types"],
+    "paths": {
+      "*": [
+        "../node_modules/@types/*",
+        "*"
+      ]
+    },
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    // "noUnusedLocals": true,
+    "types": [
+      "node",
+      "mocha"
+    ]
   }
 }

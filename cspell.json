@@ -50,17 +50,20 @@
   // For example "hte" should be "the"
   "flagWords": ["hte"],
   "ignoreWords": [],
-  "languageSettings": [
-    {
-      "languageId": "*",
-      "dictionaries": []
-    }
-  ],
+  "languageSettings": [{
+    "languageId": "*",
+    "dictionaries": []
+  }],
   "files": [
     // "README.md",
     ".buildkite/**",
     "src/**"
     // "test/**"
   ],
-  "ignorePaths": ["node_modules", "build", "src/test", "/project-words.txt"]
+  "ignorePaths": [
+    "node_modules",
+    "build",
+    "src/test",
+    "/project-words.txt"
+  ]
 }

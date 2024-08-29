@@ -1,4 +1,5 @@
 import { assert } from "chai";
+import "mocha";
 import * as _ from "lodash";
 import * as m from "../index";
 import * as config from "./config";

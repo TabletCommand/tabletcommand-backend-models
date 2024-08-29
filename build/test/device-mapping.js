@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const chai_1 = require("chai");
+require("mocha");
 const m = require("../index");
 const config = require("./config");
 const mock_1 = require("./mock");

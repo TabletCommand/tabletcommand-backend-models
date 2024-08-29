@@ -1,6 +1,7 @@
 "use strict";
 
 import { assert } from "chai";
+import "mocha";
 import * as m from "../helpers";
 
 describe("helpers", function() {

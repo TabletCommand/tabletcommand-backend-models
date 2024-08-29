@@ -5,6 +5,7 @@ const _ = require("lodash");
 const m = require("../index");
 const config = require("./config");
 const mock_1 = require("./mock");
+require("mocha");
 describe("CADIncident", function () {
     let models, mongoose;
     let testItem;

@@ -26,3 +26,10 @@ export enum UserStealthStatus {
   Visible = "visible",        // User can go stealth, visible
   Hidden = "hidden"           // User can go stealth, hidden
 }
+
+export enum DepartmentReportOdometer {
+  Disabled = "disabled",                    // Not recording, not sending
+  Status = "status",                        // Recording, send with status
+  Comment = "comment",                      // Recording, send as comment
+  StatusAndComment = "status-and-comment",  // Recording, send with status and as comment
+}

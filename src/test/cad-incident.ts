@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import * as m from "../index";
 import * as config from "./config";
 import mockModule from "./mock";
+import "mocha";
 
 describe("CADIncident", function() {
   let models: m.BackendModels, mongoose: m.MongooseModule;

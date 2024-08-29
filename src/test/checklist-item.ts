@@ -1,4 +1,5 @@
 import { assert } from "chai";
+import "mocha";
 import * as m from "../index";
 import * as config from "./config";
 import mockModule from "./mock";

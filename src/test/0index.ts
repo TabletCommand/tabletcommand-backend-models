@@ -1,5 +1,4 @@
-// !IMPORTANT Without this one in the first test suite, all tests get ts error for mocha functions
-import { describe, beforeEach, afterEach, it } from "mocha";
+import "mocha";
 // Check for a mocha config file where we can import those
 import { assert } from "chai";
 import * as m from "../index";

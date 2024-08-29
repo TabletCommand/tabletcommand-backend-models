@@ -1,4 +1,4 @@
-export const url = process.env.NODE_MONGO_URL || "mongodb://127.0.0.1/incident-test";
+export const url = process.env.NODE_MONGO_URL || "";
 
 export function checkIfTestDatabase() {
   if (!/massive-test/i.exec(url)) {
@@ -6,3 +6,5 @@ export function checkIfTestDatabase() {
     process.exit(1);
   }
 }
+
+checkIfTestDatabase();

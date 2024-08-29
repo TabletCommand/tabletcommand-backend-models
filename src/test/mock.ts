@@ -1,5 +1,6 @@
 import { Mongoose } from "mongoose";
 import * as uuid from "uuid";
+import * as _ from "lodash";
 import { retrieveCurrentUnixTime } from "../helpers";
 
 export default function mockModule(dependencies: { mongoose: Mongoose; }) {
@@ -1326,8 +1327,8 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       process.exit(1);
     }
 
-    const items = await mongoose.connection.db.collections();
-    for (const coll of items) {
+    const items = await _.first(mongoose.connections)?.db.collections();
+    for (const coll of items ?? []) {
       // console.log(`Emptying ${coll.collectionName}.`);
       await coll.deleteMany({});
     }

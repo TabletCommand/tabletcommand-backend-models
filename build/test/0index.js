@@ -1,22 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// !IMPORTANT Without this one in the first test suite, all tests get ts error for mocha functions
-const mocha_1 = require("mocha");
+require("mocha");
 // Check for a mocha config file where we can import those
 const chai_1 = require("chai");
 const m = require("../index");
 const config = require("./config");
-(0, mocha_1.describe)(" Models", function () {
+describe(" Models", function () {
     let models, mongoose;
-    (0, mocha_1.beforeEach)(async function () {
+    beforeEach(async function () {
         const c = await m.connect(config.url);
         models = c.models;
         mongoose = c.mongoose;
     });
-    (0, mocha_1.afterEach)(async function () {
+    afterEach(async function () {
         await mongoose.disconnect();
     });
-    (0, mocha_1.it)("are wired", function () {
+    it("are wired", function () {
         // These should match index.js
         chai_1.assert.isFunction(models.ActionLog, "Missing ActionLog");
         chai_1.assert.isFunction(models.Agency, "Missing Agency");

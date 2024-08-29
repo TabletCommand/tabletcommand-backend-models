@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid = require("uuid");
+const _ = require("lodash");
 const helpers_1 = require("../helpers");
 function mockModule(dependencies) {
     function shouldRun() {
@@ -1264,11 +1265,12 @@ function mockModule(dependencies) {
         personnel: [],
     };
     async function cleanup() {
+        var _a;
         if (!shouldRun()) {
             process.exit(1);
         }
-        const items = await mongoose.connection.db.collections();
-        for (const coll of items) {
+        const items = await ((_a = _.first(mongoose.connections)) === null || _a === void 0 ? void 0 : _a.db.collections());
+        for (const coll of items !== null && items !== void 0 ? items : []) {
             // console.log(`Emptying ${coll.collectionName}.`);
             await coll.deleteMany({});
         }
