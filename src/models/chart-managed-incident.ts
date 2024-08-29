@@ -4,7 +4,7 @@ import {
   MongooseDocument,
 } from "../helpers";
 
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { ChartItemType, ChartManagedIncidentType } from "../types/chart";
 
 export interface ChartManagedIncident extends ChartManagedIncidentType { }

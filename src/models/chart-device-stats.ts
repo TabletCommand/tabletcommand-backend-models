@@ -4,7 +4,7 @@ import {
 } from "../helpers";
 import { Model } from "mongoose";
 
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { ChartDeviceStatsType, ChartItemType } from "../types/chart";
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
 

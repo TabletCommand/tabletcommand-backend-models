@@ -4,7 +4,7 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { MonitorType } from "../types/monitor";
 
 export interface Monitor extends MonitorType { }

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../helpers");
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 async function JobLogModule(mongoose) {
     const { Schema } = mongoose;
     const modelSchema = new Schema({
@@ -42,7 +42,7 @@ async function JobLogModule(mongoose) {
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     modelSchema.set("autoIndex", false);
     return mongoose.model("JobLog", modelSchema, "massive_job_log", { overwriteModels: true });
 }

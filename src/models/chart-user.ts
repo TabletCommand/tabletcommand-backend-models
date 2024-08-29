@@ -4,7 +4,7 @@ import {
   MongooseDocument,
 } from "../helpers";
 
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { ChartUserType } from "../types/chart";
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 

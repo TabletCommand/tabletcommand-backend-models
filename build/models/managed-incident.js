@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const shared_incident_1 = require("./schema/shared-incident");
@@ -530,7 +530,7 @@ async function ManagedIncidentModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     return mongoose.model("ManagedIncident", modelSchema, "massive_incident_managed", { overwriteModels: true });
 }
 exports.default = ManagedIncidentModule;

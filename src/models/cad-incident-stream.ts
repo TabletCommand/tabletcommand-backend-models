@@ -5,7 +5,7 @@ import {
 } from "../helpers";
 
 import * as uuid from "uuid";
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { Model } from "mongoose";
 import { CADIncidentStreamType } from "../types/cad";
 

@@ -1,10 +1,9 @@
 "use strict";
-//x-disabled <reference types="../../mongoose-lean-virtuals" />
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CADIncidentSchema = void 0;
 const helpers_1 = require("../../helpers");
 const uuid = require("uuid");
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const incident_event_1 = require("../incident-event");
 const shared_incident_1 = require("./shared-incident");
 function CADIncidentSchema(mongoose) {
@@ -515,7 +514,7 @@ function CADIncidentSchema(mongoose) {
             }
         });
     }
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     return modelSchema;
 }
 exports.CADIncidentSchema = CADIncidentSchema;

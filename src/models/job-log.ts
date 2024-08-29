@@ -4,7 +4,7 @@ import {
   MongooseModule,
   currentDate,
 } from "../helpers";
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { JobLogType } from "../types/job-log";
 
 export interface JobLog extends JobLogType { }

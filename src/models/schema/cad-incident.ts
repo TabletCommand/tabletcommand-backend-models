@@ -1,12 +1,10 @@
-//x-disabled <reference types="../../mongoose-lean-virtuals" />
-
 import {
   currentDate,
   MongooseModule,
 } from "../../helpers";
 
 import * as uuid from "uuid";
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { IncidentEventSchema } from "../incident-event";
 import {
   CADPersonSchema,

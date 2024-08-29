@@ -5,7 +5,7 @@
   "scripts": {
     "build": "gulp build",
     "lint": "eslint src",
-    "test": "npx mocha -r ts-node/register --reporter list --recursive build/test/**/*.js"
+    "test": "npx mocha -r ts-node/register --reporter list --recursive src/test/**/*.ts"
   },
   "author": "Marius Ursache <marius@tabletcommand.com>",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "lodash": "^4.17.21",
     "moment-timezone": "^0.5.45",
     "mongoose": "^7.7.0",
-    "mongoose-lean-virtuals": "^0.7.6",
+    "mongoose-lean-virtuals": "^0.9.1",
     "uuid": "~10.0.0"
   },
   "devDependencies": {
