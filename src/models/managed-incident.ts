@@ -1,4 +1,4 @@
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import * as uuid from "uuid";
 import {
   currentDate,

@@ -4,7 +4,7 @@ import {
   MongooseDocument,
   MongooseModule,
 } from "../helpers";
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import ColorModule from "./schema/color";
 import GeoJSONPointModule from "./schema/geojson-point";
 import { Model } from "mongoose";

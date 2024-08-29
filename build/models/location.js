@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid = require("uuid");
 const helpers_1 = require("../helpers");
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const color_1 = require("./schema/color");
 const geojson_point_1 = require("./schema/geojson-point");
 async function LocationModule(mongoose) {
@@ -189,7 +189,7 @@ async function LocationModule(mongoose) {
         departmentId: 1,
         modified: 1,
     });
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     modelSchema.set("autoIndex", false);
     return mongoose.model("Location", modelSchema, "massive_location", { overwriteModels: true });
 }

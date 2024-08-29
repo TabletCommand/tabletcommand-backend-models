@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid = require("uuid");
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
 const color_1 = require("./schema/color");
 const pubnub_token_1 = require("./schema/pubnub-token");
@@ -1527,7 +1527,7 @@ async function DepartmentModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     return mongoose.model("Department", modelSchema, "massive_admin", { overwriteModels: true });
 }
 exports.default = DepartmentModule;

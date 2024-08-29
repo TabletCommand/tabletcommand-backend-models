@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../helpers");
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 async function MonitorModule(mongoose) {
     const { Schema } = mongoose;
     const modelSchema = new Schema({
@@ -52,7 +52,7 @@ async function MonitorModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     modelSchema.set("autoIndex", false);
     return mongoose.model("Monitor", modelSchema, "massive_monitor", { overwriteModels: true });
 }

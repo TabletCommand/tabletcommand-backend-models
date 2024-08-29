@@ -13,19 +13,12 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "outDir": "../build",
-    "paths": {
-      "*": [
-        "../node_modules/@types/*",
-        "*"
-      ]
-    },
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    "types": [
-      "node",
-      "mocha"
-    ]
-  }
+    "types": ["node", "mocha"]
+  },
+  "include": ["**/*.ts", "mongoose-lean-virtuals.d.ts"],
+  "exclude": ["node_modules"],
 }

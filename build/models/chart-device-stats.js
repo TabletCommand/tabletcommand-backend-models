@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
 async function ChartDeviceStatsModule(mongoose) {
     const { Schema } = mongoose;
@@ -70,7 +70,7 @@ async function ChartDeviceStatsModule(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     return mongoose.model("ChartDeviceStat", modelSchema, "massive_chart_device_stat", { overwriteModels: true });
 }
 exports.default = ChartDeviceStatsModule;

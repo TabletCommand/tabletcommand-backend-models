@@ -3,7 +3,7 @@ import {
   MongooseDocument,
   MongooseModule,
 } from "../helpers";
-import * as mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { SMTPUnhandledType } from "../types/smtp-unhandled";
 
 export interface SMTPUnhandled extends SMTPUnhandledType { }

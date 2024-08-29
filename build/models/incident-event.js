@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IncidentEventSchema = void 0;
 const helpers_1 = require("../helpers");
-const mongooseLeanVirtuals = require("mongoose-lean-virtuals");
+const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 function IncidentEventSchema(mongoose) {
     const { Schema } = mongoose;
     const EventUser = new Schema({
@@ -111,7 +111,7 @@ function IncidentEventSchema(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    modelSchema.plugin(mongooseLeanVirtuals);
+    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     modelSchema.set("autoIndex", false);
     return modelSchema;
 }
