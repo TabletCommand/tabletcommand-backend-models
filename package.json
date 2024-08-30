@@ -5,7 +5,7 @@
   "scripts": {
     "build": "gulp build",
     "lint": "eslint src",
-    "test": "npx mocha -r ts-node/register --reporter list --recursive src/test/**/*.ts"
+    "test": "TS_NODE_TRANSPILE_ONLY=true npx mocha -r ts-node/register --reporter list --extension .ts --recursive src/test"
   },
   "author": "Marius Ursache <marius@tabletcommand.com>",
   "license": "MIT",
