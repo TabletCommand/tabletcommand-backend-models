@@ -14,12 +14,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connect = exports.UserStealthStatus = exports.LocationSource = exports.LocationKindType = exports.DepartmentReportOdometer = void 0;
+exports.connect = exports.UserStealthStatus = exports.LocationVisibility = exports.LocationSource = exports.LocationKindType = exports.DepartmentReportOdometer = void 0;
 const _ = require("lodash");
 const constants_1 = require("./constants");
 Object.defineProperty(exports, "DepartmentReportOdometer", { enumerable: true, get: function () { return constants_1.DepartmentReportOdometer; } });
 Object.defineProperty(exports, "LocationKindType", { enumerable: true, get: function () { return constants_1.LocationKindType; } });
 Object.defineProperty(exports, "LocationSource", { enumerable: true, get: function () { return constants_1.LocationSource; } });
+Object.defineProperty(exports, "LocationVisibility", { enumerable: true, get: function () { return constants_1.LocationVisibility; } });
 Object.defineProperty(exports, "UserStealthStatus", { enumerable: true, get: function () { return constants_1.UserStealthStatus; } });
 async function wireModels(mongoose) {
     async function getModel(m) {

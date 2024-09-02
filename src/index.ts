@@ -5,6 +5,7 @@ import {
   DepartmentReportOdometer,
   LocationKindType,
   LocationSource,
+  LocationVisibility,
   UserStealthStatus,
 } from "./constants";
 
@@ -12,6 +13,7 @@ export {
   DepartmentReportOdometer,
   LocationKindType,
   LocationSource,
+  LocationVisibility,
   UserStealthStatus,
 };
 
