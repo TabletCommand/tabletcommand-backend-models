@@ -1,4 +1,6 @@
 import * as uuid from "uuid";
+import { isArray, isString } from "lodash";
+
 import {
   currentDate,
   MongooseDocument,
@@ -9,6 +11,7 @@ import ColorModule from "./schema/color";
 import GeoJSONPointModule from "./schema/geojson-point";
 import { Model } from "mongoose";
 import { LocationType } from "../types/location";
+import { LocationVisibility } from "../constants";
 
 export interface Location extends LocationType, Record<string, unknown> { }
 
@@ -172,6 +175,12 @@ export default async function LocationModule(mongoose: MongooseModule) {
       type: Date,
       default: currentDate,
     },
+
+    // combines .sendToCAD, .active, .shared as LocationVisibility[]
+    visibility: {
+      type: [String],
+      default: [],
+    },
   }, {
   });
 
@@ -216,3 +225,33 @@ export default async function LocationModule(mongoose: MongooseModule) {
 }
 
 export interface LocationModel extends Model<Location> { }
+
+export function decodeLocationVisibility(str: unknown): LocationVisibility[] {
+  const out: LocationVisibility[] = [];
+  if (!isArray(str)) {
+    return out;
+  }
+
+  str.forEach((elem: unknown) => {
+    if (!isString(elem)) {
+      return;
+    }
+
+    switch (elem.toLowerCase()) {
+      case LocationVisibility.Hidden.toLowerCase():
+        out.push(LocationVisibility.Hidden);
+        break;
+      case LocationVisibility.Visible.toLowerCase():
+        out.push(LocationVisibility.Visible);
+        break;
+      case LocationVisibility.CAD.toLowerCase():
+        out.push(LocationVisibility.CAD);
+        break;
+      case LocationVisibility.Shared.toLowerCase():
+        out.push(LocationVisibility.Shared);
+        break;
+    }
+  });
+
+  return out;
+}

@@ -5,6 +5,8 @@ require("mocha");
 const m = require("../index");
 const config = require("./config");
 const mock_1 = require("./mock");
+const location_1 = require("../models/location");
+const constants_1 = require("../constants");
 describe("Location", function () {
     let models, mongoose;
     let testItem;
@@ -24,7 +26,6 @@ describe("Location", function () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         const item = new models.Location(testItem);
         const sut = await item.save();
-        await models.Location.findOne({ _id: testItem._id });
         chai_1.assert.isNotNull(testItem._id);
         chai_1.assert.equal(testItem.departmentId, sut.departmentId);
         chai_1.assert.equal(testItem.userId, sut.userId);
@@ -71,6 +72,16 @@ describe("Location", function () {
         const found = await models.Location.findOne(geoQuery);
         chai_1.assert.isObject(found);
         await models.Location.collection.dropIndexes();
+    });
+    it("decodes .visibility", async function () {
+        const item = new models.Location(testItem);
+        const sut = await item.save();
+        const sutVis = (0, location_1.decodeLocationVisibility)(sut.visibility);
+        chai_1.assert.equal(sutVis.length, 4);
+        chai_1.assert.notEqual(sutVis.indexOf(constants_1.LocationVisibility.Hidden), -1);
+        chai_1.assert.notEqual(sutVis.indexOf(constants_1.LocationVisibility.Visible), -1);
+        chai_1.assert.notEqual(sutVis.indexOf(constants_1.LocationVisibility.CAD), -1);
+        chai_1.assert.notEqual(sutVis.indexOf(constants_1.LocationVisibility.Shared), -1);
     });
 });
 //# sourceMappingURL=location.js.map

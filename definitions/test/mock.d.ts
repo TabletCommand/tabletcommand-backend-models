@@ -756,6 +756,7 @@ export default function mockModule(dependencies: {
             background: string;
         };
         modified: Date;
+        visibility: string[];
     };
     mailLog: {
         mailId: string;

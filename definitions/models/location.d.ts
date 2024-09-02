@@ -25,6 +25,7 @@
 import { MongooseModule } from "../helpers";
 import { Model } from "mongoose";
 import { LocationType } from "../types/location";
+import { LocationVisibility } from "../constants";
 export interface Location extends LocationType, Record<string, unknown> {
 }
 export default function LocationModule(mongoose: MongooseModule): Promise<Model<Location, {}, {}, {}, import("mongoose").Document<unknown, {}, Location> & Location & Required<{
@@ -32,4 +33,5 @@ export default function LocationModule(mongoose: MongooseModule): Promise<Model<
 }>, any>>;
 export interface LocationModel extends Model<Location> {
 }
+export declare function decodeLocationVisibility(str: unknown): LocationVisibility[];
 //# sourceMappingURL=location.d.ts.map

@@ -956,7 +956,16 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       text: "#00AA00",
       background: "#FFAAFF"
     },
-    modified: new Date()
+    modified: new Date(),
+    visibility: [
+      "hidden",
+      "visible",
+      "cad",
+      "shared",
+      // Does not exist
+      "none",
+      "",
+    ]
   };
 
   const managedIncident = {

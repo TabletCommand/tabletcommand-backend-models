@@ -910,7 +910,16 @@ function mockModule(dependencies) {
             text: "#00AA00",
             background: "#FFAAFF"
         },
-        modified: new Date()
+        modified: new Date(),
+        visibility: [
+            "hidden",
+            "visible",
+            "cad",
+            "shared",
+            // Does not exist
+            "none",
+            "",
+        ]
     };
     const managedIncident = {
         _id: new mongoose.Types.ObjectId(),

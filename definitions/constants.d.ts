@@ -30,4 +30,10 @@ export declare enum DepartmentReportOdometer {
     Comment = "comment",
     StatusComment = "status-comment"
 }
+export declare enum LocationVisibility {
+    Hidden = "hidden",
+    Visible = "visible",
+    CAD = "cad",
+    Shared = "shared"
+}
 //# sourceMappingURL=constants.d.ts.map

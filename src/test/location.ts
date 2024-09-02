@@ -3,6 +3,8 @@ import "mocha";
 import * as m from "../index";
 import * as config from "./config";
 import mockModule from "./mock";
+import { decodeLocationVisibility } from "../models/location";
+import { LocationVisibility } from "../constants";
 
 describe("Location", function() {
   let models: m.BackendModels, mongoose: m.MongooseModule;
@@ -24,7 +26,6 @@ describe("Location", function() {
   it("is saved", async function() {
     const item = new models.Location(testItem);
     const sut = await item.save();
-    await models.Location.findOne({ _id: testItem._id });
     assert.isNotNull(testItem._id);
     assert.equal(testItem.departmentId, sut.departmentId);
     assert.equal(testItem.userId, sut.userId);
@@ -75,5 +76,18 @@ describe("Location", function() {
     assert.isObject(found);
 
     await models.Location.collection.dropIndexes();
+  });
+
+  it("decodes .visibility", async function() {
+    const item = new models.Location(testItem);
+    const sut = await item.save();
+
+    const sutVis = decodeLocationVisibility(sut.visibility);
+
+    assert.equal(sutVis.length, 4);
+    assert.notEqual(sutVis.indexOf(LocationVisibility.Hidden), -1);
+    assert.notEqual(sutVis.indexOf(LocationVisibility.Visible), -1);
+    assert.notEqual(sutVis.indexOf(LocationVisibility.CAD), -1);
+    assert.notEqual(sutVis.indexOf(LocationVisibility.Shared), -1);
   });
 });
