@@ -32,7 +32,7 @@ var UserStealthStatus;
 })(UserStealthStatus = exports.UserStealthStatus || (exports.UserStealthStatus = {}));
 var DepartmentReportOdometer;
 (function (DepartmentReportOdometer) {
-    DepartmentReportOdometer["Disabled"] = "";
+    DepartmentReportOdometer["Disabled"] = "disabled";
     DepartmentReportOdometer["Status"] = "status";
     DepartmentReportOdometer["Comment"] = "comment";
     DepartmentReportOdometer["StatusComment"] = "status-comment";

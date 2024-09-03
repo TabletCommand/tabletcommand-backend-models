@@ -25,7 +25,7 @@ export declare enum UserStealthStatus {
     Hidden = "hidden"
 }
 export declare enum DepartmentReportOdometer {
-    Disabled = "",
+    Disabled = "disabled",
     Status = "status",
     Comment = "comment",
     StatusComment = "status-comment"
