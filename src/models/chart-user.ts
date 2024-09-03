@@ -1,10 +1,8 @@
 import { Model } from "mongoose";
 import {
   MongooseModule,
-  MongooseDocument,
 } from "../helpers";
 
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { ChartUserType } from "../types/chart";
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 
@@ -37,20 +35,11 @@ export default async function ChartUserModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
+    autoIndex: false,
+    toJSON: {
+      versionKey: false,
+    }
   });
-  modelSchema.set("autoIndex", false);
-
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-  });
-
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
 
   return mongoose.model<ChartUser>("ChartUser", modelSchema, "massive_chart_user", { overwriteModels: true });
 }

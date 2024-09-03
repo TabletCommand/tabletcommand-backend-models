@@ -65,8 +65,9 @@ async function SessionModule(mongoose) {
             type: OAuthToken,
             default: null,
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     modelSchema.pre("save", function (next) {
         this._id = this.get("token"); // Copy _id from token
         next();

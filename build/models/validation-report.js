@@ -49,8 +49,9 @@ function ValidationReportSchema(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return modelSchema;
 }
 exports.ValidationReportSchema = ValidationReportSchema;

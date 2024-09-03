@@ -6,7 +6,7 @@ import {
   MongooseDocument,
   MongooseModule,
 } from "../helpers";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { mongooseLeanVirtuals } from "mongoose-lean-virtuals";
 import ColorModule from "./schema/color";
 import GeoJSONPointModule from "./schema/geojson-point";
 import { Model } from "mongoose";
@@ -182,6 +182,7 @@ export default async function LocationModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
+    autoIndex: false,
   });
 
   modelSchema.set("toJSON", {
@@ -220,7 +221,6 @@ export default async function LocationModule(mongoose: MongooseModule) {
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
-  modelSchema.set("autoIndex", false);
   return mongoose.model<Location>("Location", modelSchema, "massive_location", { overwriteModels: true });
 }
 

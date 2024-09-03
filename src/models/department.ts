@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { mongooseLeanVirtuals } from "mongoose-lean-virtuals";
 
 import {
   currentDate,
@@ -1640,11 +1640,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       default: ForwardingConfigDefault,
     },
   }, {
-  });
-
-  modelSchema.set("autoIndex", false);
-  modelSchema.set("timestamps", {
-    updatedAt: "modified",
+    "autoIndex": false,
+    "timestamps": {
+      updatedAt: "modified",
+    }
   });
 
   modelSchema.virtual("id").get(function(this: Department) {
@@ -1655,7 +1654,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     virtuals: true,
     versionKey: false,
   });
-
 
   modelSchema.plugin(mongooseLeanVirtuals);
 

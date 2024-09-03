@@ -56,8 +56,8 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return modelSchema;
 }

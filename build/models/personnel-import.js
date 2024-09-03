@@ -100,8 +100,9 @@ function PersonnelImportSchema(mongoose) {
             type: String,
             default: "",
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return modelSchema;
 }
 exports.PersonnelImportSchema = PersonnelImportSchema;

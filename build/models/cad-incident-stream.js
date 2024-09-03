@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const helpers_1 = require("../helpers");
 const uuid = require("uuid");
-const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 async function CADIncidentStreamModule(mongoose) {
     const { Schema } = mongoose;
     // Simplified schema.
@@ -42,15 +41,9 @@ async function CADIncidentStreamModule(mongoose) {
     }, {
         autoIndex: false,
         toJSON: {
-            virtuals: true,
             versionKey: false,
         }
     });
-    modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
-    });
-    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     return mongoose.model("CADIncidentStream", modelSchema, "massive_cad_incident_stream", { overwriteModels: true });
 }
 exports.default = CADIncidentStreamModule;

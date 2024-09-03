@@ -61,8 +61,9 @@ async function GSTMappingModule(mongoose) {
             type: String,
             default: "",
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return mongoose.model("GSTMapping", modelSchema, "massive_gst_mapping", { overwriteModels: true });
 }
 exports.default = GSTMappingModule;

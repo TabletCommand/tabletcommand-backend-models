@@ -91,8 +91,9 @@ function TemplateSchema(mongoose) {
             ref: "Agency",
             default: null,
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });

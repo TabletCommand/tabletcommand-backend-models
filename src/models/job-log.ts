@@ -1,10 +1,8 @@
 import { Model } from "mongoose";
 import {
-  MongooseDocument,
   MongooseModule,
   currentDate,
 } from "../helpers";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { JobLogType } from "../types/job-log";
 
 export interface JobLog extends JobLogType { }
@@ -43,18 +41,11 @@ export default async function JobLogModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
+    autoIndex: false,
+    toJSON: {
+      versionKey: false,
+    }
   });
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-  });
-
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    return this._id.toHexString();
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<JobLog>("JobLog", modelSchema, "massive_job_log", { overwriteModels: true });
 }

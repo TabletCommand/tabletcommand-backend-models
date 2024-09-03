@@ -1,10 +1,8 @@
 import { Model } from "mongoose";
 import {
   MongooseModule,
-  MongooseDocument,
 } from "../helpers";
 
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { ChartItemType, ChartManagedIncidentType } from "../types/chart";
 
 export interface ChartManagedIncident extends ChartManagedIncidentType { }
@@ -57,20 +55,11 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
       default: [],
     },
   }, {
+    autoIndex: false,
+    toJSON: {
+      versionKey: false,
+    }
   });
-  modelSchema.set("autoIndex", false);
-
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-  });
-
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
 
   return mongoose.model<ChartManagedIncident>("ChartManagedIncident", modelSchema, "massive_chart_managed_incident", { overwriteModels: true });
 }

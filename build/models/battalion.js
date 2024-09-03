@@ -133,7 +133,6 @@ function BattalionSchema(mongoose) {
     }, {
         autoIndex: false,
     });
-    modelSchema.set("autoIndex", false);
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();

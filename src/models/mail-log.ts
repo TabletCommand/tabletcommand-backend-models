@@ -76,8 +76,8 @@ export default async function MailLogModule(mongoose: MongooseModule) {
       default: currentDate,
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<MailLog>("MailLog", modelSchema, "massive_mail_log", { overwriteModels: true });
 }

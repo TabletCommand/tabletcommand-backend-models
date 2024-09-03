@@ -68,8 +68,8 @@ export default async function CSVImportModule(mongoose: MongooseModule) {
       default: false
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<CSVImport>("CSVImport", modelSchema, "massive_csv_import", { overwriteModels: true });
 }

@@ -70,8 +70,8 @@ export default async function GSTMappingModule(mongoose: MongooseModule) {
       default: "",
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<GSTMapping>("GSTMapping", modelSchema, "massive_gst_mapping", { overwriteModels: true });
 }

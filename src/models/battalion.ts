@@ -145,7 +145,6 @@ export function BattalionSchema(mongoose: MongooseModule) {
   }, {
     autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
     // tslint:disable-next-line: no-unsafe-any
     return this._id.toString();

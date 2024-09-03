@@ -195,8 +195,8 @@ export default async function UserDeviceModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<UserDevice>("UserDevice", modelSchema, "massive_user_device", { overwriteModels: true });
 }

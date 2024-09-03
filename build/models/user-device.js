@@ -181,8 +181,9 @@ async function UserDeviceModule(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return mongoose.model("UserDevice", modelSchema, "massive_user_device", { overwriteModels: true });
 }
 exports.default = UserDeviceModule;

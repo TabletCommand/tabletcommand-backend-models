@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const defaultDate = new Date("2013-01-01T00:26:40.000Z"); // Chart fallback date, before sync
 async function ChartManagedIncidentModule(mongoose) {
     const { Schema } = mongoose;
@@ -45,17 +44,12 @@ async function ChartManagedIncidentModule(mongoose) {
             type: [ChartItem],
             default: [],
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+    }, {
+        autoIndex: false,
+        toJSON: {
+            versionKey: false,
+        }
     });
-    modelSchema.virtual("id").get(function () {
-        // tslint:disable-next-line: no-unsafe-any
-        return this._id.toString();
-    });
-    modelSchema.plugin(mongoose_lean_virtuals_1.default);
     return mongoose.model("ChartManagedIncident", modelSchema, "massive_chart_managed_incident", { overwriteModels: true });
 }
 exports.default = ChartManagedIncidentModule;

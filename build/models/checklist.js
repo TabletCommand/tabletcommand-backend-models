@@ -61,8 +61,9 @@ function ChecklistSchema(mongoose) {
             type: [ChecklistItem],
             default: [],
         }
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();

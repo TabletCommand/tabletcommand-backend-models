@@ -71,8 +71,8 @@ export default async function IncidentTakeoverModule(mongoose: MongooseModule) {
       default: 0,
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<IncidentTakeover>("IncidentTakeover", modelSchema, "massive_incident_takeover", { overwriteModels: true });
 }

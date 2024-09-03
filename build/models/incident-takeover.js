@@ -61,8 +61,9 @@ async function IncidentTakeoverModule(mongoose) {
             type: Number,
             default: 0,
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return mongoose.model("IncidentTakeover", modelSchema, "massive_incident_takeover", { overwriteModels: true });
 }
 exports.default = IncidentTakeoverModule;

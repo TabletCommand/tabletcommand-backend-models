@@ -102,8 +102,8 @@ export function TemplateSchema(mongoose: MongooseModule) {
       default: null,
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
   modelSchema.virtual("id").get(function(this: Template) {
     return this._id.toHexString();
   });

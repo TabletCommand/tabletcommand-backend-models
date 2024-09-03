@@ -5,7 +5,7 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { mongooseLeanVirtuals } from "mongoose-lean-virtuals";
 import { EventUserType, IncidentEventType } from "../types/incident-events";
 
 export interface IncidentEvent extends IncidentEventType { }
@@ -112,6 +112,7 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
       default: false,
     },
   }, {
+    autoIndex: false,
   });
   modelSchema.set("toJSON", {
     virtuals: true,
@@ -124,7 +125,6 @@ export function IncidentEventSchema(mongoose: MongooseModule) {
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);
-  modelSchema.set("autoIndex", false);
   return modelSchema;
 }
 

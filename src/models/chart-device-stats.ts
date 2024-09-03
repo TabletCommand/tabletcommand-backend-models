@@ -1,10 +1,8 @@
 import {
   MongooseModule,
-  MongooseDocument,
 } from "../helpers";
 import { Model } from "mongoose";
 
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { ChartDeviceStatsType, ChartItemType } from "../types/chart";
 const defaultDate = new Date("2023-04-19T00:00:00.000Z"); // Chart fallback date, after the feature was implemented
 
@@ -71,20 +69,11 @@ export default async function ChartDeviceStatsModule(mongoose: MongooseModule) {
       default: [],
     },
   }, {
+    autoIndex: false,
+    toJSON: {
+      versionKey: false,
+    }
   });
-  modelSchema.set("autoIndex", false);
-
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-  });
-
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
 
   return mongoose.model<ChartDeviceStats>("ChartDeviceStat", modelSchema, "massive_chart_device_stat", { overwriteModels: true });
 }

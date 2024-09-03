@@ -514,7 +514,7 @@ function CADIncidentSchema(mongoose) {
             }
         });
     }
-    modelSchema.plugin(mongoose_lean_virtuals_1.default);
+    modelSchema.plugin(mongoose_lean_virtuals_1.mongooseLeanVirtuals);
     return modelSchema;
 }
 exports.CADIncidentSchema = CADIncidentSchema;

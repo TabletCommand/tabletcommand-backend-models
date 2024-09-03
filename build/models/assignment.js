@@ -60,7 +60,6 @@ async function AssignmentModule(mongoose) {
     }, {
         autoIndex: false,
     });
-    modelSchema.set("autoIndex", false);
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
     });

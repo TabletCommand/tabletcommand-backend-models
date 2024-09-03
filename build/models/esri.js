@@ -95,15 +95,11 @@ function EsriSchema(mongoose) {
             type: Date,
             default: new Date("1970-01-01T00:00:00.000Z"),
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
-    // Deprecated. Check which apps rely on .id instead of using ._id.
-    modelSchema.virtual("id").get(function () {
-        return this._id.toHexString();
-    });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+    }, {
+        autoIndex: false,
+        toJSON: {
+            versionKey: false,
+        }
     });
     return modelSchema;
 }

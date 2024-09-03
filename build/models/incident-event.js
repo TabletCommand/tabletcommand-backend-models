@@ -102,7 +102,9 @@ function IncidentEventSchema(mongoose) {
             type: Boolean,
             default: false,
         },
-    }, {});
+    }, {
+        autoIndex: false,
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -111,8 +113,7 @@ function IncidentEventSchema(mongoose) {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    modelSchema.plugin(mongoose_lean_virtuals_1.default);
-    modelSchema.set("autoIndex", false);
+    modelSchema.plugin(mongoose_lean_virtuals_1.mongooseLeanVirtuals);
     return modelSchema;
 }
 exports.IncidentEventSchema = IncidentEventSchema;

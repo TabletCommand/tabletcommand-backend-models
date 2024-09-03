@@ -267,8 +267,8 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
       default: false,
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<CADSimulation>("CADSimulation", modelSchema, "massive_cad_simulation", { overwriteModels: true });
 }

@@ -33,8 +33,8 @@ export default async function RateLimitModule(mongoose: MongooseModule) {
       default: "",
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<RateLimit>("RateLimit", modelSchema, "massive_rate_limit", { overwriteModels: true });
 }

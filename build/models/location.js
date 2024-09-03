@@ -166,7 +166,9 @@ async function LocationModule(mongoose) {
             type: [String],
             default: [],
         },
-    }, {});
+    }, {
+        autoIndex: false,
+    });
     modelSchema.set("toJSON", {
         virtuals: true,
         versionKey: false,
@@ -197,8 +199,7 @@ async function LocationModule(mongoose) {
         departmentId: 1,
         modified: 1,
     });
-    modelSchema.plugin(mongoose_lean_virtuals_1.default);
-    modelSchema.set("autoIndex", false);
+    modelSchema.plugin(mongoose_lean_virtuals_1.mongooseLeanVirtuals);
     return mongoose.model("Location", modelSchema, "massive_location", { overwriteModels: true });
 }
 exports.default = LocationModule;

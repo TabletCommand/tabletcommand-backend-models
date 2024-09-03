@@ -86,8 +86,9 @@ async function MessageModule(mongoose) {
             type: TypeSchema,
             default: {},
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return mongoose.model("Message", modelSchema, "massive_message", { overwriteModels: true });
 }
 exports.default = MessageModule;

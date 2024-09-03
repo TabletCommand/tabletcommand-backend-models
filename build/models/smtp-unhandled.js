@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 async function SMTPUnhandledModule(mongoose) {
     const { Schema } = mongoose;
     const modelSchema = new Schema({
@@ -18,16 +17,12 @@ async function SMTPUnhandledModule(mongoose) {
             default: "",
             required: true,
         },
-    }, {});
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+    }, {
+        autoIndex: false,
+        toJSON: {
+            versionKey: false,
+        }
     });
-    modelSchema.virtual("id").get(function () {
-        return this._id.toHexString();
-    });
-    modelSchema.plugin(mongoose_lean_virtuals_1.default);
-    modelSchema.set("autoIndex", false);
     return mongoose.model("SMTPUnhandled", modelSchema, "massive_smtp_unhandled", { overwriteModels: true });
 }
 exports.default = SMTPUnhandledModule;

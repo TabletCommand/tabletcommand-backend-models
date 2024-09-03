@@ -69,7 +69,6 @@ export default async function AssignmentModule(mongoose: MongooseModule) {
   }, {
     autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
   modelSchema.virtual("id").get(function(this: AssignmentType) {
     return this._id.toString();
   });

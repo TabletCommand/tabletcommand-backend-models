@@ -4,7 +4,6 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { MonitorType } from "../types/monitor";
 
 export interface Monitor extends MonitorType { }
@@ -56,14 +55,11 @@ export default async function MonitorModule(mongoose: MongooseModule) {
       default: 1,
     },
   }, {
+    autoIndex: false,
+    toJSON: {
+      versionKey: false,
+    }
   });
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<Monitor>("Monitor", modelSchema, "massive_monitor", { overwriteModels: true });
 }

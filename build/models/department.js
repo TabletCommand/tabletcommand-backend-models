@@ -1515,10 +1515,11 @@ async function DepartmentModule(mongoose) {
             type: ForwardingConfig,
             default: ForwardingConfigDefault,
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
-    modelSchema.set("timestamps", {
-        updatedAt: "modified",
+    }, {
+        "autoIndex": false,
+        "timestamps": {
+            updatedAt: "modified",
+        }
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
@@ -1527,7 +1528,7 @@ async function DepartmentModule(mongoose) {
         virtuals: true,
         versionKey: false,
     });
-    modelSchema.plugin(mongoose_lean_virtuals_1.default);
+    modelSchema.plugin(mongoose_lean_virtuals_1.mongooseLeanVirtuals);
     return mongoose.model("Department", modelSchema, "massive_admin", { overwriteModels: true });
 }
 exports.default = DepartmentModule;

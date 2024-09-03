@@ -1,4 +1,4 @@
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { mongooseLeanVirtuals } from "mongoose-lean-virtuals";
 import * as uuid from "uuid";
 import {
   currentDate,
@@ -561,8 +561,8 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
       type: SharedSource,
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   modelSchema.virtual("id").get(function(this: ManagedIncident) {
     return this._id.toHexString();

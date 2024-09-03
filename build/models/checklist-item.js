@@ -53,8 +53,9 @@ function ChecklistItemSchema(mongoose) {
             type: String,
             default: ""
         }
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return modelSchema;
 }
 exports.ChecklistItemSchema = ChecklistItemSchema;

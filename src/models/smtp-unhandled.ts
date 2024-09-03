@@ -1,9 +1,7 @@
 import { Model } from "mongoose";
 import {
-  MongooseDocument,
   MongooseModule,
 } from "../helpers";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { SMTPUnhandledType } from "../types/smtp-unhandled";
 
 export interface SMTPUnhandled extends SMTPUnhandledType { }
@@ -27,18 +25,11 @@ export default async function SMTPUnhandledModule(mongoose: MongooseModule) {
       required: true,
     },
   }, {
+    autoIndex: false,
+    toJSON: {
+      versionKey: false,
+    }
   });
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-  });
-
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    return this._id.toHexString();
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
-  modelSchema.set("autoIndex", false);
 
   return mongoose.model<SMTPUnhandled>("SMTPUnhandled", modelSchema, "massive_smtp_unhandled", { overwriteModels: true });
 }

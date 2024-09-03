@@ -111,8 +111,8 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
       default: "",
     },
   }, {
+    autoIndex: false,
   });
-  modelSchema.set("autoIndex", false);
 
   return modelSchema;
 }

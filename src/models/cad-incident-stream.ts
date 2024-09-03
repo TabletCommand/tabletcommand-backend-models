@@ -1,11 +1,9 @@
 import {
   MongooseModule,
-  MongooseDocument,
   currentDate,
 } from "../helpers";
 
 import * as uuid from "uuid";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 import { Model } from "mongoose";
 import { CADIncidentStreamType } from "../types/cad";
 
@@ -52,17 +50,9 @@ export default async function CADIncidentStreamModule(mongoose: MongooseModule) 
   }, {
     autoIndex: false,
     toJSON: {
-      virtuals: true,
       versionKey: false,
     }
   });
-
-  modelSchema.virtual("id").get(function(this: MongooseDocument) {
-    // tslint:disable-next-line: no-unsafe-any
-    return this._id.toString();
-  });
-
-  modelSchema.plugin(mongooseLeanVirtuals);
 
   return mongoose.model<CADIncidentStream>("CADIncidentStream", modelSchema, "massive_cad_incident_stream", { overwriteModels: true });
 }

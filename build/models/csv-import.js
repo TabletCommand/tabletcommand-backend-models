@@ -60,8 +60,9 @@ async function CSVImportModule(mongoose) {
             type: Boolean,
             default: false
         },
-    }, {});
-    modelSchema.set("autoIndex", false);
+    }, {
+        autoIndex: false,
+    });
     return mongoose.model("CSVImport", modelSchema, "massive_csv_import", { overwriteModels: true });
 }
 exports.default = CSVImportModule;

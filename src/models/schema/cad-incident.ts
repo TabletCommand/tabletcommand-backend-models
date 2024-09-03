@@ -4,7 +4,7 @@ import {
 } from "../../helpers";
 
 import * as uuid from "uuid";
-import mongooseLeanVirtuals from "mongoose-lean-virtuals";
+import { mongooseLeanVirtuals } from "mongoose-lean-virtuals";
 import { IncidentEventSchema } from "../incident-event";
 import {
   CADPersonSchema,

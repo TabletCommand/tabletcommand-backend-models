@@ -28,7 +28,6 @@ describe("Esri", function() {
     assert.isNotNull(sut._id);
     assert.isNotNull(sut.id);
     assert.equal(sut._id.toString(), testItem._id?.toString());
-    assert.equal(sut.toJSON().id, testItem._id?.toString());
     assert.equal(sut.departmentId, testItem.departmentId);
 
     assert.equal(sut.auth.username, testItem.auth?.username);
