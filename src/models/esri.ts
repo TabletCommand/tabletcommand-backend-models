@@ -114,6 +114,13 @@ export function EsriSchema(mongoose: MongooseModule) {
     }
   });
 
+  modelSchema.index({
+    departmentId: 1,
+  }, {
+    name: "departmentId_unique",
+    unique: true,
+  });
+
   return modelSchema;
 }
 

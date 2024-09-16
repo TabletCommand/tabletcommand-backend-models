@@ -22,8 +22,12 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     mongoose
   } = dependencies;
 
+  const ObjectId = mongoose.Types.ObjectId;
+
+  const departmentId = new ObjectId().toString();
+
   const mark43IncidentRetry = {
-    departmentId: "123",
+    departmentId,
     incidentNumber: "abc123",
     active: true,
     mark43IncidentId: 123,
@@ -935,7 +939,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
 
   const location = {
     _id: new mongoose.Types.ObjectId(),
-    departmentId: "d123",
+    departmentId,
     userId: "542a40db20783c000000153d",
     uuid: "92c8f732-52b7-46cc-855a-d54fddfe3172",
     username: "E23",
@@ -1341,6 +1345,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     for (const coll of items ?? []) {
       // console.log(`Emptying ${coll.collectionName}.`);
       await coll.deleteMany({});
+      await coll.dropIndexes();
     }
   }
 

@@ -6,7 +6,7 @@ function AgencySAMLSchema(mongoose) {
         selector: {
             type: String,
             required: true,
-            unique: true,
+            // Index set at schema level, to be able to specify name and/or other options
         },
         idp: {
             type: String,

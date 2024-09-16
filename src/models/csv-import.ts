@@ -71,6 +71,13 @@ export default async function CSVImportModule(mongoose: MongooseModule) {
     autoIndex: false,
   });
 
+  modelSchema.index({
+    batchId: 1,
+  }, {
+    name: "batchId_1",
+    unique: true,
+  });
+
   return mongoose.model<CSVImport>("CSVImport", modelSchema, "massive_csv_import", { overwriteModels: true });
 }
 

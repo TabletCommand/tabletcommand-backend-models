@@ -80,6 +80,25 @@ export default async function DeviceMappingModule(mongoose: MongooseModule) {
     autoIndex: false,
   });
 
+  modelSchema.index({
+    departmentId: 1,
+    modified_unix_date: 1
+  }, {
+    name: "departmentId_1_modified_unix_date_1",
+  });
+
+  modelSchema.index({
+    deviceId: 1,
+  }, {
+    name: "deviceId_1",
+  });
+
+  modelSchema.index({
+    remoteAddress: 1,
+  }, {
+    name: "remoteAddress_1",
+  });
+
   return mongoose.model<DeviceMapping>("DeviceMapping", modelSchema, "massive_device_mapping", { overwriteModels: true });
 }
 

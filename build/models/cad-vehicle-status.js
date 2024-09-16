@@ -24,14 +24,12 @@ async function CADVehicleStatusModule(mongoose) {
     const modelSchema = new Schema({
         uuid: {
             type: String,
-            index: true,
             default: uuid.v4,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         vehicleId: {
             type: String,
@@ -126,6 +124,50 @@ async function CADVehicleStatusModule(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1,
+    }, {
+        name: "departmentId_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        modified_unix_date: 1,
+    }, {
+        name: "departmentId_1_modified_unix_date_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        owner: 1,
+        modifiedDate: 1
+    }, {
+        name: "departmentId_1_owner_1_modifiedDate_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        owner: 1,
+        modified: -1
+    }, {
+        name: "departmentId_1_owner_1_modified_-1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        radioName: 1
+    }, {
+        name: "departmentId_1_radioName_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        vehicleId: 1
+    }, {
+        name: "departmentId_1_vehicleId_1_unique",
+        unique: true,
+    });
+    modelSchema.index({
+        uuid: 1,
+    }, {
+        name: "uuid_1_unique",
+        unique: true,
     });
     return mongoose.model("CADVehicleStatus", modelSchema, "massive_cad_vehicle_status", { overwriteModels: true });
 }

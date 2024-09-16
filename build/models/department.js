@@ -1516,17 +1516,42 @@ async function DepartmentModule(mongoose) {
             default: ForwardingConfigDefault,
         },
     }, {
-        "autoIndex": false,
-        "timestamps": {
+        autoIndex: false,
+        timestamps: {
             updatedAt: "modified",
+        },
+        toJSON: {
+            virtuals: true,
+            versionKey: false,
         }
     });
+    modelSchema.index({
+        apikey: 1,
+    }, {
+        name: "apikey_1",
+        unique: true,
+    });
+    modelSchema.index({
+        department: 1,
+    }, {
+        name: "department_1_unique",
+        unique: true,
+    });
+    modelSchema.index({
+        rtsChannelPrefix: 1,
+    }, {
+        name: "rtsChannelPrefix_1_unique",
+        unique: true,
+    });
+    // TODO: Create this
+    // modelSchema.index({
+    //   uuid: 1,
+    // }, {
+    //   name: "uuid_1_unique",
+    //   unique: true,
+    // });
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
-    });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
     });
     modelSchema.plugin(mongoose_lean_virtuals_1.mongooseLeanVirtuals);
     return mongoose.model("Department", modelSchema, "massive_admin", { overwriteModels: true });

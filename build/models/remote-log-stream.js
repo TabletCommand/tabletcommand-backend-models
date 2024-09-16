@@ -15,7 +15,6 @@ async function RemoteLogStreamModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         userId: {
             type: String,

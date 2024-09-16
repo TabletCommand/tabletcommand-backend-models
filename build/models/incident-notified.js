@@ -42,7 +42,6 @@ async function IncidentNotifiedModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         IncidentNumber: {
             type: String,
@@ -70,6 +69,26 @@ async function IncidentNotifiedModule(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1,
+        updated: 1
+    }, {
+        name: "departmentId_1_updated_1",
+    });
+    // TODO: Review this
+    // modelSchema.index({
+    //   departmentId: 1,
+    //   IncidentNumber: 1
+    // }, {
+    //   name: "departmentId_1_IncidentNumber_1",
+    // });
+    modelSchema.index({
+        departmentId: 1,
+        IncidentNumber: 1
+    }, {
+        name: "departmentId_1_IncidentNumber_1_unique",
+        unique: true,
     });
     return mongoose.model("IncidentNotified", modelSchema, "massive_incident_notified", { overwriteModels: true });
 }

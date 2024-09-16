@@ -23,7 +23,6 @@ export default async function RemoteLogStreamModule(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     userId: {
       type: String,

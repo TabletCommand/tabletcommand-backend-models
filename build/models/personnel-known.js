@@ -76,6 +76,14 @@ function PersonnelKnownSchema(mongoose) {
         timestamps: true,
         autoIndex: false,
     });
+    modelSchema.index({
+        departmentId: 1,
+        PersonnelID: 1,
+        active: 1
+    }, {
+        name: "departmentId_1_PersonnelID_1_active_1",
+        unique: true,
+    });
     return modelSchema;
 }
 exports.PersonnelKnownSchema = PersonnelKnownSchema;

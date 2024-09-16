@@ -79,6 +79,12 @@ export default async function MailLogModule(mongoose: MongooseModule) {
     autoIndex: false,
   });
 
+  modelSchema.index({
+    modified_unix_date: 1,
+  }, {
+    name: "modified_unix_date_1",
+  });
+
   return mongoose.model<MailLog>("MailLog", modelSchema, "massive_mail_log", { overwriteModels: true });
 }
 

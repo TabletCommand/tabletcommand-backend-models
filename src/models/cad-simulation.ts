@@ -132,14 +132,12 @@ export default async function CADSimulationModule(mongoose: MongooseModule) {
     // Internal
     uuid: {
       type: String,
-      index: true,
       default: uuid.v4,
     },
     departmentId: {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     modifiedDate: {
       type: Number,

@@ -45,7 +45,6 @@ export default async function SessionModule(mongoose: MongooseModule) {
         validator: requiredButAllowEmptyString,
         message: "departmentId is required",
       },
-      index: true,
     },
     why: {
       type: String,
@@ -76,21 +75,65 @@ export default async function SessionModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+    }
   });
 
   modelSchema.pre("save", function(next) {
     this._id = this.get("token"); // Copy _id from token
     next();
   });
-  modelSchema.virtual("id").get(function(this: Session) {
-    return this._id.toString();
+
+  modelSchema.index({
+    departmentId: 1,
+    when: -1
+  }, {
+    name: "departmentId_1_when_-1",
   });
 
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
+  // TODO: Review if this should be unique
+  modelSchema.index({
+    nick: 1,
+  }, {
+    name: "nick_1",
+    // unique: true,
   });
 
+  modelSchema.index({
+    token: 1,
+    active: 1
+  }, {
+    name: "token_1_active_1",
+  });
+
+  modelSchema.index({
+    token: 1,
+  }, {
+    name: "token_1_unique",
+    unique: true,
+  });
+
+  modelSchema.index({
+    user: 1,
+    active: 1
+  }, {
+    name: "user_1_active_1",
+  });
+
+  modelSchema.index({
+    user: 1,
+    when: 1
+  }, {
+    name: "user_1_when_1",
+  });
+
+  modelSchema.index({
+    when: 1,
+  }, {
+    name: "when_1",
+  });
 
   return mongoose.model<Session>("Session", modelSchema, "sys_login", { overwriteModels: true });
 }

@@ -63,6 +63,12 @@ async function CSVImportModule(mongoose) {
     }, {
         autoIndex: false,
     });
+    modelSchema.index({
+        batchId: 1,
+    }, {
+        name: "batchId_1",
+        unique: true,
+    });
     return mongoose.model("CSVImport", modelSchema, "massive_csv_import", { overwriteModels: true });
 }
 exports.default = CSVImportModule;

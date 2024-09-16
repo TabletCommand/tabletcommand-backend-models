@@ -12,7 +12,6 @@ async function IncidentTakeoverModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         uuid: {
             type: String,
@@ -63,6 +62,12 @@ async function IncidentTakeoverModule(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1,
+        incident_id: 1
+    }, {
+        name: "departmentId_1_incident_id_1",
     });
     return mongoose.model("IncidentTakeover", modelSchema, "massive_incident_takeover", { overwriteModels: true });
 }

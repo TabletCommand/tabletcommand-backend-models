@@ -6,6 +6,7 @@
   "language": "en-US",
   // words - list of words to be always considered correct
   "words": [
+    "_ftsx",
     "2dsphere",
     "apikey",
     "arcgis",

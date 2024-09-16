@@ -19,7 +19,6 @@ export default async function BeaconLogModule(mongoose: MongooseModule) {
     departmentId: {
       type: String,
       default: "",
-      index: true,
     },
     userId: {
       type: String,
@@ -38,6 +37,12 @@ export default async function BeaconLogModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+  }, {
+    name: "departmentId_1",
   });
 
   return mongoose.model<BeaconLog>("BeaconLog", modelSchema, "massive_beacon_log", { overwriteModels: true });

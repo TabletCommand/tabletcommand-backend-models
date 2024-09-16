@@ -18,6 +18,8 @@ describe("Location", function() {
       mongoose
     });
     testItem = mock.location;
+
+    await mock.beforeEach();
   });
   afterEach(async function() {
     await mongoose.disconnect();
@@ -74,8 +76,6 @@ describe("Location", function() {
 
     const found = await models.Location.findOne(geoQuery);
     assert.isObject(found);
-
-    await models.Location.collection.dropIndexes();
   });
 
   it("decodes .visibility", async function() {

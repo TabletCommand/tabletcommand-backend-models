@@ -81,9 +81,10 @@ async function wireModels(mongoose) {
     };
 }
 __exportStar(require("./helpers"), exports);
-async function connect(url, overwriteOpts) {
+async function connect(url, overwriteOpts, enableDebug = false) {
     const mongoose = await Promise.resolve().then(() => require("mongoose"));
     mongoose.Promise = await Promise.resolve().then(() => require("bluebird"));
+    mongoose.set("debug", enableDebug);
     const models = await wireModels(mongoose);
     const defaultOpts = {
         autoIndex: false,

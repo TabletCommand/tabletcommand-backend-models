@@ -42,7 +42,6 @@ function ChecklistSchema(mongoose) {
         departmentId: {
             type: String,
             required: true,
-            index: true,
         },
         active: {
             type: Boolean,
@@ -63,14 +62,37 @@ function ChecklistSchema(mongoose) {
         }
     }, {
         autoIndex: false,
+        toJSON: {
+            virtuals: true,
+            versionKey: false,
+        }
     });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+    modelSchema.index({
+        departmentId: 1,
+        isMandatory: 1
+    }, {
+        name: "departmentId_1_isMandatory_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        modified_date: 1,
+    }, {
+        name: "departmentId_1_modified_date_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        userId: 1
+    }, {
+        name: "deptId_1_userId_1",
+    });
+    modelSchema.index({
+        uuid: 1,
+    }, {
+        name: "uuid_1",
     });
     return modelSchema;
 }

@@ -36,12 +36,10 @@ export function UserSchema(mongoose: MongooseModule) {
     nick: {
       type: String,
       default: "",
-      index: true,
     },
     email: {
       type: String,
       default: "",
-      index: true,
     },
     name: {
       type: String,
@@ -55,7 +53,6 @@ export function UserSchema(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     modified_date: {
       type: Date,
@@ -271,6 +268,10 @@ export function UserSchema(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+    }
   });
 
   // NO _id on User schema?
@@ -278,11 +279,68 @@ export function UserSchema(mongoose: MongooseModule) {
     return this._id.toHexString();
   });
 
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
+  modelSchema.index({
+    departmentId: 1,
+  }, {
+    name: "departmentId_1",
   });
 
+  modelSchema.index({
+    departmentId: 1,
+    email: 1
+  }, {
+    name: "departmentId_1_email_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    vehicle: 1
+  }, {
+    name: "departmentId_1_vehicle_1_partial",
+    partialFilterExpression: {
+      "vehicle": {
+        "$exists": true
+      }
+    }
+  });
+
+  modelSchema.index({
+    email: 1,
+  }, {
+    name: "email_1_unique",
+    unique: true,
+  });
+
+  modelSchema.index({
+    nick: 1,
+  }, {
+    name: "nick_1_unique",
+    unique: true,
+  });
+
+  // A field has to be defined as text and weight  
+  modelSchema.index({
+    nick: "text",
+    email: "text",
+    name: "text",
+  }, {
+    name: "nick_text_email_text_name_text_mapId_text_arcGISAuth.username_text_vehicle.radioName_text",
+    weights: {
+      email: 10,
+      name: 1,
+      nick: 9,
+    },
+    textIndexVersion: 3,
+    language_override: "language",
+    default_language: "english",
+  });
+
+  modelSchema.index({
+    token: 1,
+    tokenExpireAt: 1
+  }, {
+    name: "token_1_tokenExpireAt_1",
+  });
 
   return modelSchema;
 }

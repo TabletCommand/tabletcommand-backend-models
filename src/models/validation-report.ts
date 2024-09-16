@@ -21,7 +21,6 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
       type: Schema.Types.ObjectId,
       ref: "Department",
       required: true,
-      unique: true,
     },
     location: {
       type: [ValidationErrorItem],
@@ -57,6 +56,13 @@ export function ValidationReportSchema(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+  }, {
+    name: "departmentId_unique",
+    unique: true,
   });
 
   return modelSchema;

@@ -46,7 +46,6 @@ export default async function Mark43IncidentRetryModule(mongoose: MongooseModule
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     created: {
       type: Date,

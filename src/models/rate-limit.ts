@@ -36,6 +36,13 @@ export default async function RateLimitModule(mongoose: MongooseModule) {
     autoIndex: false,
   });
 
+  modelSchema.index({
+    username: 1,
+    modified_unix_date: 1
+  }, {
+    name: "username_1_modified_unix_date_1",
+  });
+
   return mongoose.model<RateLimit>("RateLimit", modelSchema, "massive_rate_limit", { overwriteModels: true });
 }
 

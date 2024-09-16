@@ -62,6 +62,14 @@ export default async function ActionLogModule(mongoose: MongooseModule) {
   }, {
     autoIndex: false
   });
+
+  modelSchema.index({
+    departmentId: 1,
+    modified_unix_date: 1
+  }, {
+    name: "departmentId_1_modified_unix_date_1",
+  });
+
   return mongoose.model<ActionLog>("ActionLog", modelSchema, "massive_action_log", { overwriteModels: true });
 }
 

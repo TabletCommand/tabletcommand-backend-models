@@ -11,7 +11,6 @@ async function BeaconLogModule(mongoose) {
         departmentId: {
             type: String,
             default: "",
-            index: true,
         },
         userId: {
             type: String,
@@ -30,6 +29,11 @@ async function BeaconLogModule(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1,
+    }, {
+        name: "departmentId_1",
     });
     return mongoose.model("BeaconLog", modelSchema, "massive_beacon_log", { overwriteModels: true });
 }

@@ -131,9 +131,10 @@ export { ValidationReport, ValidationReportModel } from "./models/validation-rep
 
 export * from "./helpers";
 
-export async function connect(url: string, overwriteOpts?: ConnectOptions) {
+export async function connect(url: string, overwriteOpts?: ConnectOptions, enableDebug = false) {
   const mongoose = await import("mongoose");
   mongoose.Promise = await import("bluebird");
+  mongoose.set("debug", enableDebug);
   const models = await wireModels(mongoose);
   const defaultOpts: ConnectOptions = {
     autoIndex: false,

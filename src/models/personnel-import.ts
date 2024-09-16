@@ -114,6 +114,90 @@ export function PersonnelImportSchema(mongoose: MongooseModule) {
     autoIndex: false,
   });
 
+  modelSchema.index({
+    agencyId: 1,
+    modified: -1
+  }, {
+    name: "agencyId_1_modified_-1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    active: 1
+  }, {
+    name: "departmentId_1_active_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    active: 1,
+    radioNames: 1
+  }, {
+    name: "departmentId_1_active_1_radioNames_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    agencyId: 1,
+    active: 1,
+    shiftStartTime: 1,
+    shiftEndTime: 1
+  }, {
+    name: "departmentId_1_agencyId_1_active_1_shiftStartTime_1_shiftEndTime_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    modified: 1,
+    shiftEndTime: 1
+  }, {
+    name: "departmentId_1_modified_1_shiftEndTime_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    radioNames: 1,
+    active: 1,
+    shiftEndTime: 1,
+    shiftStartTime: 1
+  }, {
+    name: "departmentId_1_radioNames_1_active_1_shiftEndTime_1_shiftStartTime_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    "radios.radioName": 1,
+    active: 1,
+    "radios.active": 1,
+    shiftEndTime: 1,
+    shiftStartTime: 1
+  }, {
+    name: "departmentId_1_radios.radioName_1_active_1_radios.active_1_shiftEndTime_1_shiftStartTime_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    shiftStartTime: 1,
+    PersonnelID: 1
+  }, {
+    name: "departmentId_1_shiftStartTime_1_PersonnelID_1",
+    unique: true,
+  });
+
+  modelSchema.index({
+    radios: 1,
+    modified: 1
+  }, {
+    name: "radios_1_modified_1",
+  });
+
+  modelSchema.index({
+    modified: 1,
+  }, {
+    name: "ttl_90d_modified_1",
+    expireAfterSeconds: 7786800,
+  });
+
   return modelSchema;
 }
 

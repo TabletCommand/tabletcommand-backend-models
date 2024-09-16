@@ -27,7 +27,6 @@ async function CADStatusMapModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         modifiedDate: {
             type: Number,
@@ -53,6 +52,11 @@ async function CADStatusMapModule(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1
+    }, {
+        name: "departmentId_1",
     });
     return mongoose.model("CADStatusMap", modelSchema, "massive_cad_status_map", { overwriteModels: true });
 }

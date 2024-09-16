@@ -28,6 +28,12 @@ async function RateLimitModule(mongoose) {
     }, {
         autoIndex: false,
     });
+    modelSchema.index({
+        username: 1,
+        modified_unix_date: 1
+    }, {
+        name: "username_1_modified_unix_date_1",
+    });
     return mongoose.model("RateLimit", modelSchema, "massive_rate_limit", { overwriteModels: true });
 }
 exports.default = RateLimitModule;

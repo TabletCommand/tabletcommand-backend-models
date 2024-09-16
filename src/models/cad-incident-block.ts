@@ -23,7 +23,6 @@ export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
     departmentId: {
       type: String,
       required: true,
-      index: true,
     },
     // callType or admin email
     source: {
@@ -57,6 +56,14 @@ export default async function CADIncidentBlockModule(mongoose: MongooseModule) {
       virtuals: true,
       versionKey: false,
     }
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    IncidentNumber: 1,
+  }, {
+    name: "departmentId_1_IncidentNumber_1_unique",
+    unique: true,
   });
 
   return mongoose.model<CADIncidentBlock>("CADIncidentBlock", modelSchema, "massive_cad_incident_block", { overwriteModels: true });

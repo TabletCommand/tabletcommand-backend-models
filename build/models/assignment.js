@@ -21,7 +21,6 @@ async function AssignmentModule(mongoose) {
         departmentId: {
             type: String,
             required: true,
-            index: true,
         },
         isMandatory: {
             type: Boolean,
@@ -59,13 +58,31 @@ async function AssignmentModule(mongoose) {
         },
     }, {
         autoIndex: false,
+        toJSON: {
+            virtuals: true,
+            versionKey: false,
+        }
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toString();
     });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+    modelSchema.index({
+        departmentId: 1,
+        isMandatory: 1,
+    }, {
+        name: "departmentId_1_isMandatory_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        modified_date: 1,
+    }, {
+        name: "departmentId_1_modified_date_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        userId: 1,
+    }, {
+        name: "departmentId_1_userId_1",
     });
     return mongoose.model("Assignment", modelSchema, "massive_assignment", { overwriteModels: true });
 }

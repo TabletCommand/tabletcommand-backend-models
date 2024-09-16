@@ -39,7 +39,6 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     userId: {
       type: String,
@@ -59,6 +58,28 @@ export default async function ChartManagedIncidentModule(mongoose: MongooseModul
     toJSON: {
       versionKey: false,
     }
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    dateAt: -1
+  }, {
+    name: "departmentId_1_dateAt_-1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    date: 1,
+  }, {
+    name: "departmentId_1_date_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    userId: 1,
+    dateAt: -1
+  }, {
+    name: "departmentId_1_userId_1_dateAt_-1",
   });
 
   return mongoose.model<ChartManagedIncident>("ChartManagedIncident", modelSchema, "massive_chart_managed_incident", { overwriteModels: true });

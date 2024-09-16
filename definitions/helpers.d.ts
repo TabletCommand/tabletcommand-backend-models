@@ -102,5 +102,6 @@ export declare function conditions<T extends import("mongoose").Document>(items:
 export declare function convertToObjectId(id: string): Types.ObjectId;
 export declare function disconnectMongoose(): Promise<void>;
 export declare function closeAllMongooseConnections(): Promise<void>;
+export declare function sleep(ms: number): Promise<unknown>;
 export {};
 //# sourceMappingURL=helpers.d.ts.map

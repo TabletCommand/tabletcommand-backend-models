@@ -214,7 +214,6 @@ function CADIncidentSchema(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         AgencyID: {
             type: String,

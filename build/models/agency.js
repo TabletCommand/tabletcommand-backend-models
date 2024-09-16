@@ -120,6 +120,41 @@ function AgencySchema(mongoose) {
     }, {
         autoIndex: false,
     });
+    modelSchema.index({
+        agencyApiKey: 1,
+    }, {
+        name: "agencyApiKey_1",
+        unique: true,
+    });
+    modelSchema.index({
+        departmentId: 1,
+    }, {
+        name: "departmentId_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        code: 1,
+    }, {
+        name: "departmentId_1_code_1_unique",
+        unique: true,
+    });
+    modelSchema.index({
+        personnelApiKey: 1,
+    }, {
+        name: "personnelApiKey_1_unique",
+        unique: true,
+    });
+    modelSchema.index({
+        "saml.selector": 1,
+    }, {
+        name: "saml_selector_partial_uniq",
+        unique: true,
+        partialFilterExpression: {
+            "saml.selector": {
+                "$exists": true
+            }
+        }
+    });
     return modelSchema;
 }
 exports.AgencySchema = AgencySchema;

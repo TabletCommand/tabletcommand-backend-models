@@ -37,7 +37,6 @@ async function Mark43IncidentRetryModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         created: {
             type: Date,

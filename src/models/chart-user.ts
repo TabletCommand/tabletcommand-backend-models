@@ -24,7 +24,6 @@ export default async function ChartUserModule(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     count: {
       type: Number,
@@ -39,6 +38,20 @@ export default async function ChartUserModule(mongoose: MongooseModule) {
     toJSON: {
       versionKey: false,
     }
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    dateAt: -1,
+  }, {
+    name: "departmentId_1_dateAt_-1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    date: 1,
+  }, {
+    name: "departmentId_1_date_1",
   });
 
   return mongoose.model<ChartUser>("ChartUser", modelSchema, "massive_chart_user", { overwriteModels: true });

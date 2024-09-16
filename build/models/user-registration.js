@@ -8,7 +8,6 @@ async function UserRegistrationModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         name: {
             type: String,
@@ -80,6 +79,11 @@ async function UserRegistrationModule(mongoose) {
         },
     }, {
         autoIndex: false
+    });
+    modelSchema.index({
+        email: 1,
+    }, {
+        name: "email_1",
     });
     return mongoose.model("UserRegistration", modelSchema, "massive_user_registration", { overwriteModels: true });
 }

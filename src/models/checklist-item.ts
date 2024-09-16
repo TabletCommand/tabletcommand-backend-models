@@ -47,7 +47,6 @@ export function ChecklistItemSchema(mongoose: MongooseModule) {
     departmentId: {
       type: String,
       required: true,
-      index: true,
     },
     active: {
       type: Boolean,

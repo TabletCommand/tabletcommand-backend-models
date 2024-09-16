@@ -35,13 +35,11 @@ function IncidentEventSchema(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         IncidentNumber: {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         modified_unix_date: {
             type: Number,
@@ -104,21 +102,55 @@ function IncidentEventSchema(mongoose) {
         },
     }, {
         autoIndex: false,
-    });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+        toJSON: {
+            virtuals: true,
+            versionKey: false,
+        }
     });
     modelSchema.virtual("id").get(function () {
         // tslint:disable-next-line: no-unsafe-any
         return this._id.toString();
     });
+    // Indexes are not defined here because this type is reused in CADIncident
     modelSchema.plugin(mongoose_lean_virtuals_1.mongooseLeanVirtuals);
     return modelSchema;
 }
 exports.IncidentEventSchema = IncidentEventSchema;
 async function IncidentEventModule(mongoose) {
     const modelSchema = IncidentEventSchema(mongoose);
+    // Define indexes here
+    modelSchema.index({
+        departmentId: 1,
+        IncidentNumber: 1
+    }, {
+        name: "departmentId_1_IncidentNumber_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        IncidentNumber: 1,
+        modified_unix_date: 1,
+    }, {
+        name: "departmentId_1_IncidentNumber_1_modified_unix_date_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        archived: 1
+    }, {
+        name: "departmentId_1_archived_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        modified_unix_date: 1,
+        archived: 1
+    }, {
+        name: "departmentId_1_modified_unix_date_1_archived_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        type: 1
+    }, {
+        name: "departmentId_1_type_1",
+    });
     return mongoose.model("IncidentEvent", modelSchema, "massive_incident_event", { overwriteModels: true });
 }
 exports.default = IncidentEventModule;

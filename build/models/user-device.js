@@ -184,6 +184,23 @@ async function UserDeviceModule(mongoose) {
     }, {
         autoIndex: false,
     });
+    modelSchema.index({
+        departmentId: 1,
+        userId: 1,
+    }, {
+        name: "departmentId_1_userId_1",
+    });
+    modelSchema.index({
+        "devices.token": 1,
+    }, {
+        name: "devices_token_1",
+    });
+    modelSchema.index({
+        userId: 1,
+    }, {
+        name: "userId_1_unique",
+        unique: true,
+    });
     return mongoose.model("UserDevice", modelSchema, "massive_user_device", { overwriteModels: true });
 }
 exports.default = UserDeviceModule;

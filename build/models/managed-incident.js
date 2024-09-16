@@ -366,7 +366,6 @@ async function ManagedIncidentModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         userId: {
             type: String,
@@ -523,13 +522,77 @@ async function ManagedIncidentModule(mongoose) {
         },
     }, {
         autoIndex: false,
+        toJSON: {
+            virtuals: true,
+            versionKey: false,
+        },
     });
     modelSchema.virtual("id").get(function () {
         return this._id.toHexString();
     });
-    modelSchema.set("toJSON", {
-        virtuals: true,
-        versionKey: false,
+    modelSchema.index({
+        departmentId: 1,
+        api_incident_number: 1
+    }, {
+        name: "departmentId_1_api_incident_number_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        end_unix_time: 1,
+    }, {
+        name: "departmentId_1_end_unix_time_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        end_unix_time: 1,
+        start_unix_time: -1,
+    }, {
+        name: "departmentId_1_end_unix_time_1_start_unix_time_-1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        extended: 1
+    }, {
+        name: "departmentId_1_extended_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        is_closed: 1,
+        modified_unix_date: -1,
+    }, {
+        name: "departmentId_1_is_closed_1_modified_unix_date_-1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        modified_date: 1,
+    }, {
+        name: "departmentId_1_modified_date_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        modified_unix_date: 1
+    }, {
+        name: "departmentId_1_modified_unix_date_1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        userId: 1,
+        start_unix_time: -1,
+    }, {
+        name: "departmentId_1_userId_1_start_unix_time_-1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        start_unix_time: -1,
+        end_unix_time: 1
+    }, {
+        name: "departmentId_1_start_unix_time_-1_end_unix_time_1",
+    });
+    modelSchema.index({
+        uuid: 1,
+    }, {
+        name: "uuid_1",
+        unique: true,
     });
     modelSchema.plugin(mongoose_lean_virtuals_1.mongooseLeanVirtuals);
     return mongoose.model("ManagedIncident", modelSchema, "massive_incident_managed", { overwriteModels: true });

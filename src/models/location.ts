@@ -20,7 +20,6 @@ export default async function LocationModule(mongoose: MongooseModule) {
   const Color = ColorModule(mongoose);
   const GeoJSONPoint = GeoJSONPointModule(mongoose);
 
-
   const modelSchema = new Schema<LocationType>({
     _id: {
       type: Schema.Types.ObjectId,
@@ -30,7 +29,6 @@ export default async function LocationModule(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     userId: {
       type: String,
@@ -183,11 +181,10 @@ export default async function LocationModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
-  });
-
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+    }
   });
 
   modelSchema.virtual("id").get(function(this: MongooseDocument) {
@@ -212,12 +209,140 @@ export default async function LocationModule(mongoose: MongooseModule) {
     return location;
   });
 
-  // Create GeoJSON index
   modelSchema.index({
-    locationGeoJSON: "2dsphere",
+    active: 1,
     shared: 1,
     departmentId: 1,
+    movedAt: 1
+  }, {
+    name: "active_1_shared_1_departmentId_1_movedAt_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    active: 1,
+    movedAt: 1
+  }, {
+    name: "departmentId_1_active_1_movedAt_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    agencyCode: 1,
+    agencyName: 1,
+    modified: 1
+  }, {
+    name: "departmentId_1_agencyCode_1_agencyName_1_modified_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
     modified: 1,
+  }, {
+    name: "departmentId_1_modified_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    modified: 1,
+    movedAt: 1,
+  }, {
+    name: "departmentId_1_modified_1_movedAt_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    opAreaCode: 1
+  }, {
+    name: "departmentId_1_opAreaCode_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    opAreaName: 1
+  }, {
+    name: "departmentId_1_opAreaName_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    session: 1,
+    device_type: 1
+  }, {
+    name: "departmentId_1_session_1_deviceType_1_unique",
+    unique: true,
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    shared: 1
+  }, {
+    name: "departmentId_1_shared_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    state: 1
+  }, {
+    name: "departmentId_1_state_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    username: 1
+  }, {
+    name: "departmentId_1_username_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    device_type: 1,
+    userId: 1,
+    active: 1
+  }, {
+    name: "departmentId_deviceType_userId_active",
+  });
+
+  modelSchema.index({
+    esriId: 1,
+    modified: 1
+  }, {
+    name: "esriId_1_modified_1",
+  });
+
+  modelSchema.index({
+    session: 1,
+    userId: 1
+  }, {
+    name: "session_1_userId_1",
+  });
+
+  // Create GeoJSON index
+  modelSchema.index({
+    // This seems to need to be the first position, otherwise the query plan selects the wrong index (?)
+    locationGeoJSON: "2dsphere",
+    shared: 1,
+    modified: 1,
+    movedAt: 1,
+    // departmentId: 1,
+  }, {
+    name: "shared_1_modified_1_movedAt_1_locationGeoJSON_2dsphere",
+    "2dsphereIndexVersion": 3
+  });
+
+  // Expire data after 45d
+  modelSchema.index({
+    movedAt: -1,
+  }, {
+    name: "ttl_45d_movedAt_-1",
+    expireAfterSeconds: 3888000,
+  });
+
+  modelSchema.index({
+    uuid: 1,
+  }, {
+    name: "uuid_1_unique",
+    unique: true,
   });
 
   modelSchema.plugin(mongooseLeanVirtuals);

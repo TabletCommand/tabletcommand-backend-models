@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.closeAllMongooseConnections = exports.disconnectMongoose = exports.convertToObjectId = exports.conditions = exports.currentDate = exports.retrieveCurrentUnixTime = void 0;
+exports.sleep = exports.closeAllMongooseConnections = exports.disconnectMongoose = exports.convertToObjectId = exports.conditions = exports.currentDate = exports.retrieveCurrentUnixTime = void 0;
 const mongoose_1 = require("mongoose");
 function retrieveCurrentUnixTime() {
     return Date.now() / 1000;
@@ -33,4 +33,8 @@ async function closeAllMongooseConnections() {
     }
 }
 exports.closeAllMongooseConnections = closeAllMongooseConnections;
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+exports.sleep = sleep;
 //# sourceMappingURL=helpers.js.map

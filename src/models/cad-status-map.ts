@@ -35,7 +35,6 @@ export default async function CADStatusMapModule(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     modifiedDate: {
       type: Number,
@@ -61,6 +60,12 @@ export default async function CADStatusMapModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+  });
+
+  modelSchema.index({
+    departmentId: 1
+  }, {
+    name: "departmentId_1",
   });
 
   return mongoose.model<CADStatusMap>("CADStatusMap", modelSchema, "massive_cad_status_map", { overwriteModels: true });

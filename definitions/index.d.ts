@@ -77,7 +77,7 @@ export { UserDevice, UserDeviceModel } from "./models/user-device";
 export { UserRegistration, UserRegistrationModel } from "./models/user-registration";
 export { ValidationReport, ValidationReportModel } from "./models/validation-report";
 export * from "./helpers";
-export declare function connect(url: string, overwriteOpts?: ConnectOptions): Promise<{
+export declare function connect(url: string, overwriteOpts?: ConnectOptions, enableDebug?: boolean): Promise<{
     mongoose: typeof import("mongoose");
     connection: typeof import("mongoose");
     models: {

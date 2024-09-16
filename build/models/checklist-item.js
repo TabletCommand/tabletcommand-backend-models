@@ -39,7 +39,6 @@ function ChecklistItemSchema(mongoose) {
         departmentId: {
             type: String,
             required: true,
-            index: true,
         },
         active: {
             type: Boolean,

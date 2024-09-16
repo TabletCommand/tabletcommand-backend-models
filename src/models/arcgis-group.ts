@@ -108,7 +108,8 @@ export default async function ArcGISGroupModule(mongoose: MongooseModule) {
     // Unique, to be able to use replaceInto
     groupId: {
       type: String,
-      unique: true,
+      // unique: true,
+      // TODO: Review if this can be created as unique
     },
     title: {
       type: String,
@@ -175,6 +176,14 @@ export default async function ArcGISGroupModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+  });
+
+  modelSchema.index({
+    groupId: 1,
+  }, {
+    name: "groupId_1",
+    // unique: true,
+    // TODO: Review if this can be created as unique
   });
 
   return mongoose.model<ArcGISGroup>("ArcGISGroup", modelSchema, "massive_arcgis_group", { overwriteModels: true });

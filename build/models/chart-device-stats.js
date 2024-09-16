@@ -53,7 +53,6 @@ async function ChartDeviceStatsModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         items: {
             type: [ChartItem],
@@ -64,6 +63,13 @@ async function ChartDeviceStatsModule(mongoose) {
         toJSON: {
             versionKey: false,
         }
+    });
+    modelSchema.index({
+        dateAt: 1,
+        "items.email": 1,
+        departmentId: 1
+    }, {
+        name: "dateAt_1_items_email_1_departmentId_1",
     });
     return mongoose.model("ChartDeviceStat", modelSchema, "massive_chart_device_stat", { overwriteModels: true });
 }

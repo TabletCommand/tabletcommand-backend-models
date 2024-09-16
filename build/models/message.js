@@ -28,7 +28,6 @@ async function MessageModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         userId: {
             type: String,
@@ -88,6 +87,25 @@ async function MessageModule(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1,
+        userId: 1,
+        createdAt: 1
+    }, {
+        name: "departmentId_1_userId_1_createdAt_1",
+    });
+    modelSchema.index({
+        "type.type": 1,
+        created: 1
+    }, {
+        name: "type_type_created_1",
+    });
+    modelSchema.index({
+        uuid: 1,
+    }, {
+        name: "uuid_1_unique",
+        unique: true,
     });
     return mongoose.model("Message", modelSchema, "massive_message", { overwriteModels: true });
 }

@@ -17,12 +17,10 @@ export default async function CADVehicleStatusHistoryModule(mongoose: MongooseMo
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     vehicleId: {
       type: String,
       default: "",
-      index: true,
     },
     radioName: {
       type: String,
@@ -76,6 +74,53 @@ export default async function CADVehicleStatusHistoryModule(mongoose: MongooseMo
     },
   }, {
     autoIndex: false,
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    incidentNumber: 1,
+    requested: -1
+  }, {
+    name: "departmentId_1_incidentNumber_1_requested__1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    requestedAt: -1,
+    requestDelay: 1
+  }, {
+    name: "departmentId_1_requestedAt_-1_requestDelay_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    requested: -1,
+    requestDelay: 1
+  }, {
+    name: "departmentId_1_requested_-1_requestDelay_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    vehicleId: 1,
+    requestedAt: -1
+  }, {
+    name: "departmentId_1_vehicleId_1_requestedAt_-1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    vehicleId: 1,
+    requested: -1,
+  }, {
+    name: "departmentId_1_vehicleId_1_requested_-1",
+  });
+
+  modelSchema.index({
+    requested: 1,
+  }, {
+    name: "ttl_30d_requested_1",
+    expireAfterSeconds: 2654300,
   });
 
   return mongoose.model<CADVehicleStatusHistory>("CADVehicleStatusHistory", modelSchema, "massive_cad_vehicle_status_history", { overwriteModels: true });

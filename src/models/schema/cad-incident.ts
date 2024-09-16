@@ -235,7 +235,6 @@ export function CADIncidentSchema(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     AgencyID: {
       type: String,

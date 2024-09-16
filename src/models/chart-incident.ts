@@ -38,7 +38,6 @@ export default async function ChartIncidentModule(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     count: {
       type: Number,
@@ -53,6 +52,20 @@ export default async function ChartIncidentModule(mongoose: MongooseModule) {
     toJSON: {
       versionKey: false,
     }
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    date: 1,
+  }, {
+    name: "departmentId1_date_1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    dateAt: -1
+  }, {
+    name: "departmentId_1_dateAt_-1",
   });
 
   return mongoose.model<ChartIncident>("ChartIncident", modelSchema, "massive_chart_incident", { overwriteModels: true });

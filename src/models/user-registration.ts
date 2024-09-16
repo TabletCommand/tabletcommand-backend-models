@@ -15,7 +15,6 @@ export default async function UserRegistrationModule(mongoose: MongooseModule) {
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     name: {
       type: String,
@@ -87,6 +86,12 @@ export default async function UserRegistrationModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false
+  });
+
+  modelSchema.index({
+    email: 1,
+  }, {
+    name: "email_1",
   });
 
   return mongoose.model<UserRegistration>("UserRegistration", modelSchema, "massive_user_registration", { overwriteModels: true });

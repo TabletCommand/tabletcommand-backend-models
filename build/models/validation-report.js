@@ -15,7 +15,6 @@ function ValidationReportSchema(mongoose) {
             type: Schema.Types.ObjectId,
             ref: "Department",
             required: true,
-            unique: true,
         },
         location: {
             type: [ValidationErrorItem],
@@ -51,6 +50,12 @@ function ValidationReportSchema(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1,
+    }, {
+        name: "departmentId_unique",
+        unique: true,
     });
     return modelSchema;
 }

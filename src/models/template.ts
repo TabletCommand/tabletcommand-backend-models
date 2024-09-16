@@ -78,7 +78,6 @@ export function TemplateSchema(mongoose: MongooseModule) {
     departmentId: {
       type: String,
       required: true,
-      index: true,
     },
     active: {
       type: Boolean,
@@ -103,19 +102,30 @@ export function TemplateSchema(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+      transform(doc, ret) {
+        strictSchema(doc.schema as typeof modelSchema, ret);
+      },
+    }
   });
   modelSchema.virtual("id").get(function(this: Template) {
     return this._id.toHexString();
   });
 
-  modelSchema.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform(doc, ret) {
-      strictSchema(doc.schema as typeof modelSchema, ret);
-    },
+  modelSchema.index({
+    departmentId: 1,
+  }, {
+    name: "departmentId_1",
   });
 
+  modelSchema.index({
+    uuid: 1,
+  }, {
+    name: "uuid_1_unique",
+    unique: true,
+  });
 
   function strictSchema(schema: typeof modelSchema, ret: Record<string, unknown>) {
     Object.keys(ret).forEach(function(element) {

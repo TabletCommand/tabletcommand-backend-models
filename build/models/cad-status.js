@@ -80,14 +80,12 @@ async function CADStatusModule(mongoose) {
     const modelSchema = new Schema({
         uuid: {
             type: String,
-            index: true,
             default: uuid.v4,
         },
         departmentId: {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         modifiedDate: {
             type: Number,
@@ -149,6 +147,17 @@ async function CADStatusModule(mongoose) {
         },
     }, {
         autoIndex: false,
+    });
+    modelSchema.index({
+        departmentId: 1
+    }, {
+        name: "departmentId_1",
+    });
+    modelSchema.index({
+        uuid: 1
+    }, {
+        name: "uuid_1_unique",
+        unique: true,
     });
     return mongoose.model("CADStatus", modelSchema, "massive_cad_status", { overwriteModels: true });
 }

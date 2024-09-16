@@ -32,7 +32,6 @@ export default async function CADIncidentStreamModule(mongoose: MongooseModule) 
       type: String,
       default: "",
       required: true,
-      index: true,
     },
     incidentNumber: {
       type: String,
@@ -52,6 +51,37 @@ export default async function CADIncidentStreamModule(mongoose: MongooseModule) 
     toJSON: {
       versionKey: false,
     }
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    incidentNumber: 1,
+    createdAt: -1,
+    _id: -1
+  }, {
+    name: "departmentId_1_incidentNumber_1_createdAt_-1__id_-1",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    createdAt: -1
+  }, {
+    name: "departmentId_createdAt",
+  });
+
+  modelSchema.index({
+    departmentId: 1,
+    incidentNumber: 1,
+    createdAt: 1
+  }, {
+    name: "departmentId_incidentNumber_createdAt",
+  });
+
+  modelSchema.index({
+    createdAt: -1,
+  }, {
+    name: "ttl_90d_createdAt_-1",
+    expireAfterSeconds: 7786800,
   });
 
   return mongoose.model<CADIncidentStream>("CADIncidentStream", modelSchema, "massive_cad_incident_stream", { overwriteModels: true });

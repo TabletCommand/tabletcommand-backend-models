@@ -12,7 +12,6 @@ async function MonitorModule(mongoose) {
             type: String,
             default: "",
             required: true,
-            index: true,
         },
         agencyId: {
             type: String,
@@ -51,6 +50,21 @@ async function MonitorModule(mongoose) {
         toJSON: {
             versionKey: false,
         }
+    });
+    // cspell: words deparmtent
+    modelSchema.index({
+        departmentId: 1,
+        notificationType: 1,
+        sentAt: -1,
+    }, {
+        name: "deparmtentId_1_notificationType_1_sentAt_-1",
+    });
+    modelSchema.index({
+        departmentId: 1,
+        notificationType: 1,
+        sentUnixDate: -1,
+    }, {
+        name: "deparmtentId_1_notificationType_1_sentUnixDate_-1",
     });
     return mongoose.model("Monitor", modelSchema, "massive_monitor", { overwriteModels: true });
 }
