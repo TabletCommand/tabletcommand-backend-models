@@ -233,8 +233,8 @@ export declare function connect(url: string, overwriteOpts?: ConnectOptions): Pr
         }>, any>;
     };
 }>;
-declare type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
-export declare type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
-export declare type MongooseTypes = MongooseModule;
+type UnboxPromise<T extends Promise<unknown>> = T extends Promise<infer U> ? U : never;
+export type BackendModels = UnboxPromise<ReturnType<typeof connect>>["models"];
+export type MongooseTypes = MongooseModule;
 export default connect;
 //# sourceMappingURL=index.d.ts.map

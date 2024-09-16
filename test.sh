@@ -17,7 +17,7 @@ if hash brew 2>/dev/null; then
     fi
 fi
 
-NODE_VERSION="v16.19.0"
+NODE_VERSION="v20.11.1"
 
 nvm use $NODE_VERSION || nvm install $NODE_VERSION
 
