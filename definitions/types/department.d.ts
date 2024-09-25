@@ -213,9 +213,22 @@ export interface ForwardingConnectionType {
     label: string;
     description: string;
 }
+export interface VehicleStatusWebhookConnectionType {
+    active: boolean;
+    connectionType: string;
+    fields: ForwardFieldsType[];
+    apiUrl: string;
+    apiKey: string;
+    authType: string;
+    description: string;
+}
 export interface ForwardingConfigType {
     enabled: boolean;
     connections: ForwardingConnectionType[];
+}
+export interface VehicleStatusWebhookConfigType {
+    enabled: boolean;
+    connections: VehicleStatusWebhookConnectionType[];
 }
 export interface DepartmentType {
     _id: Types.ObjectId;
@@ -348,6 +361,7 @@ export interface DepartmentType {
     somewear: SomewearType;
     cadBidirectionalException: boolean;
     forwarding: ForwardingConfigType;
+    vehicleStatusWebhook: VehicleStatusWebhookConfigType;
     reportOdometer: string;
 }
 //# sourceMappingURL=department.d.ts.map

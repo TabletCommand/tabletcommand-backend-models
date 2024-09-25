@@ -21,6 +21,8 @@ import {
   ForwardFieldsType,
   ForwardingConfigType,
   ForwardingConnectionType,
+  VehicleStatusWebhookConnectionType,
+  VehicleStatusWebhookConfigType,
   GSTConfigType,
   IncidentReplayType,
   IncidentTypeType,
@@ -194,6 +196,11 @@ const ForwardingConfigDefault = {
   "connections": [],
 };
 
+const VehicleStatusWebhookConfigDefault = {
+  "enabled": false,
+  "connections": [],
+};
+
 const IncidentReplayDefault = {
   "enabled": false,
   "replays": [],
@@ -330,6 +337,51 @@ const ForwardFieldsDefault = [
     "key": "EntryDateTime",
     "value": "EntryDateTime", // cspell:disable-line
     "required": false,
+    "enabled": true,
+    "transformationRequired": false,
+  }
+];
+
+const VehicleStatusWebhookFieldsDefault = [
+  {
+    "key": "responseTime",
+    "value": "responseTime",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "responseTimeAt",
+    "value": "responseTimeAt",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "radioName",
+    "value": "radioName",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "vehicleId",
+    "value": "vehicleId",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "statusCode",
+    "value": "statusCode",
+    "required": true,
+    "enabled": true,
+    "transformationRequired": false,
+  },
+  {
+    "key": "status",
+    "value": "status",
+    "required": true,
     "enabled": true,
     "transformationRequired": false,
   }
@@ -617,6 +669,40 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const VehicleStatusWebhookConnection = new Schema<VehicleStatusWebhookConnectionType>({
+    active: {
+      type: Boolean,
+      default: false,
+    },
+    connectionType: {
+      type: String,
+      default: "",
+    },
+    fields: {
+      type: [ForwardFields],
+      default: VehicleStatusWebhookFieldsDefault,
+    },
+    apiUrl: {
+      type: String,
+      default: "",
+    },
+    apiKey: {
+      type: String,
+      default: "",
+    },
+    authType: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const IntterraConfig = new Schema<IntterraConfigType>({
     enabled: {
       type: Boolean,
@@ -649,6 +735,21 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
+
+  const VehicleStatusWebhookConfig = new Schema<VehicleStatusWebhookConfigType>({
+    enabled: {
+      type: Boolean,
+      default: false,
+    },
+    connections: {
+      type: [VehicleStatusWebhookConnection],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
+
 
   const SkymiraConfig = new Schema<SkymiraConfigType>({
     enabled: {
@@ -1638,6 +1739,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     forwarding: {
       type: ForwardingConfig,
       default: ForwardingConfigDefault,
+    },
+    vehicleStatusWebhook: {
+      type: VehicleStatusWebhookConfig,
+      default: VehicleStatusWebhookConfigDefault,
     },
   }, {
     autoIndex: false,
