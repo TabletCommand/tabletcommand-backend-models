@@ -4,7 +4,7 @@ import {
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
-import { UnitSettingType, IncidentSettingType, DeviceSchemaType, SoundSchemaItemType, SoundSchemaType, UserDeviceType } from "../types/user";
+import { UnitSettingType, IncidentSettingType, DeviceSchemaType, SoundSchemaItemType, SoundSchemaType, UserDeviceType, TokenKeysType } from "../types/user";
 
 export interface UserDevice extends UserDeviceType { }
 
@@ -47,10 +47,26 @@ export default async function UserDeviceModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const IncidentTokenKeys = new Schema<TokenKeysType>({
+    auth: {
+      type: String
+    },
+    p256dh: {
+      type: String
+    }
+  }, {
+    _id: false,
+    id: false,
+  });
+
   const deviceSchema = new Schema<DeviceSchemaType>({
     token: {
       type: String,
       default: "",
+    },
+    // Used by web to validate token of Capability URLs
+    keys: {
+      type: IncidentTokenKeys,
     },
     env: {
       type: String,

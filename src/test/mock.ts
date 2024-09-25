@@ -1229,6 +1229,10 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       //
       {
         token: "de2687382a9df6a1165616aac",
+        keys: {
+          auth: "",
+          p256dh: "",
+        },
         env: "testmock",
         ver: "TC Mobile v1.0 b23",
         ua: "TCMobile/1.0 (iPhone; iOS 10.1.1; Scale/3.00)",

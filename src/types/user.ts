@@ -14,8 +14,14 @@ export interface IncidentSettingType {
   notificationMode: string,
 }
 
+export interface TokenKeysType {
+  auth: string,
+  p256dh: string,
+}
+
 export interface DeviceSchemaType {
   token: string,
+  keys: TokenKeysType,
   env: string,
   ver: string,
   ua: string,
