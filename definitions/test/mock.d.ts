@@ -1006,6 +1006,10 @@ export default function mockModule(dependencies: {
         departmentID: string;
         devices: {
             token: string;
+            keys: {
+                auth: string;
+                p256dh: string;
+            };
             env: string;
             ver: string;
             ua: string;

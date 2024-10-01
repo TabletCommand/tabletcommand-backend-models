@@ -37,10 +37,25 @@ async function UserDeviceModule(mongoose) {
         _id: false,
         id: false,
     });
+    const IncidentTokenKeys = new Schema({
+        auth: {
+            type: String
+        },
+        p256dh: {
+            type: String
+        }
+    }, {
+        _id: false,
+        id: false,
+    });
     const deviceSchema = new Schema({
         token: {
             type: String,
             default: "",
+        },
+        // Used by web to validate token of Capability URLs
+        keys: {
+            type: IncidentTokenKeys,
         },
         env: {
             type: String,
