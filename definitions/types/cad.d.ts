@@ -23,56 +23,56 @@ export interface DestinationType {
     name: string;
 }
 export interface CADVehicleStatusType {
-    uuid: string;
-    departmentId: string;
-    vehicleId: string;
-    radioName: string;
-    requestTime: number;
-    responseTime: number;
-    changedAt: Date;
-    status: string;
-    statusCode: string;
-    modifiedDate: number;
-    modified: Date;
-    requestStatus: number;
-    owner: string;
-    ownerId: string;
-    incidentNumber: string;
-    options: CADStatusOptionSelectedSchemaType[];
-    capability: string;
-    locationCurrent: string;
-    locationDestination: string;
-    destination: DestinationType;
     assignableByUser: boolean;
     backupDate: Date;
+    capability: string;
+    changedAt: Date;
+    departmentId: string;
+    destination: DestinationType;
+    incidentNumber: string;
+    locationCurrent: string;
+    locationDestination: string;
+    modified: Date;
+    modifiedDate: number;
+    options: CADStatusOptionSelectedSchemaType[];
+    owner: string;
+    ownerId: string;
+    radioName: string;
+    requestStatus: number;
+    requestTime: number;
+    responseTime: number;
+    status: string;
+    statusCode: string;
+    uuid: string;
+    vehicleId: string;
 }
 export interface CADVehicleStatusHistoryType {
     departmentId: string;
-    vehicleId: string;
-    radioName: string;
-    status: string;
-    statusCode: string;
-    requestedAt: number;
-    requested: Date;
-    requestDelay: number;
-    requestedBy: string;
-    incidentNumber: string;
-    options: CADStatusOptionSelectedSchemaType[];
     e: string;
+    incidentNumber: string;
     locationCurrent: string;
     locationDestination: string;
+    options: CADStatusOptionSelectedSchemaType[];
+    radioName: string;
+    requestDelay: number;
+    requested: Date;
+    requestedAt: number;
+    requestedBy: string;
+    status: string;
+    statusCode: string;
+    vehicleId: string;
 }
 export interface StatusOptionValueType extends Record<string, unknown> {
-    name: string;
-    type: string;
-    visible: boolean;
-    value: string;
     favorite: boolean;
-    position: number;
     isDefault: boolean;
     latitude: number;
     longitude: number;
+    name: string;
+    position: number;
     time: number;
+    type: string;
+    value: string;
+    visible: boolean;
 }
 export interface StatusOptionType {
     name: string;
@@ -82,21 +82,21 @@ export interface StatusOptionType {
     cadValues: StatusOptionValueType[];
 }
 export interface CADStatusType {
-    uuid: string;
-    departmentId: string;
-    modifiedDate: number;
-    modified: Date;
-    statusId: number;
+    backupDate: Date;
     code: string;
     codeDisplay: string;
-    status: string;
+    color: ColorSchemaType;
+    departmentId: string;
+    modified: Date;
+    modifiedDate: number;
     name: string;
     normalized: string;
-    selfAssignable: boolean;
-    roaming: boolean;
     options: StatusOptionType[];
-    color: ColorSchemaType;
-    backupDate: Date;
+    roaming: boolean;
+    selfAssignable: boolean;
+    status: string;
+    statusId: number;
+    uuid: string;
 }
 export interface CADStatusOptionSelectedSchemaType {
     name: string;
@@ -144,64 +144,64 @@ export interface SimUnitType {
 }
 export interface SequenceType {
     _id: Types.ObjectId;
-    title: string;
     alarm: string;
-    sequenceId: number;
-    unitsConfig: SimUnitType;
     comments: SimCommentType[];
+    sequenceId: number;
+    title: string;
+    unitsConfig: SimUnitType;
 }
 export interface CADSimulationType {
-    uuid: string;
-    departmentId: string;
-    modifiedDate: number;
-    modified: Date;
-    active: boolean;
-    friendlyId: string;
-    title: string;
-    notes: string;
-    simulation: boolean;
-    notify: boolean;
-    rts: boolean;
-    tags: string[];
-    incidentType: string;
-    streetName: string;
-    locationComment: string;
-    suite: string;
     CrossStreet1: string;
+    active: boolean;
     city: string;
-    state: string;
-    lat: string;
-    lon: string;
-    firemap: string;
-    mapPages: string;
-    tacticalChannel: string;
-    commandChannel: string;
-    radioChannels: SimRadioChannelType[];
     closeDelay: number;
+    commandChannel: string;
+    departmentId: string;
+    firemap: string;
+    friendlyId: string;
+    incidentType: string;
+    lat: string;
+    locationComment: string;
+    lon: string;
+    mapPages: string;
+    modified: Date;
+    modifiedDate: number;
+    notes: string;
+    notify: boolean;
     priorIncidents: SimPriorIncidentType[];
+    radioChannels: SimRadioChannelType[];
     randomPriorIncidents: boolean;
     randomStaffing: boolean;
-    sequences: SequenceType[];
-    sortId: number;
+    rts: boolean;
     sendStatus: boolean;
+    sequences: SequenceType[];
+    simulation: boolean;
+    sortId: number;
+    state: string;
+    streetName: string;
+    suite: string;
+    tacticalChannel: string;
+    tags: string[];
+    title: string;
+    uuid: string;
 }
 export interface CADIncidentStreamType {
     _id: Types.ObjectId;
-    uuid: string;
-    tag: string;
+    createdAt: Date;
     departmentId: string;
     incidentNumber: string;
-    createdAt: Date;
     payload: object;
+    tag: string;
+    uuid: string;
 }
 export interface CADIncidentBlockType {
     _id: Types.ObjectId;
+    AgencyIncidentCallTypeDescription: string;
+    ClosedDateTime: string;
+    EntryDateTime: string;
+    IncidentNumber: string;
+    ReportNumber: ReportNumberSchemaType[];
     departmentId: string;
     source: string;
-    IncidentNumber: string;
-    AgencyIncidentCallTypeDescription: string;
-    EntryDateTime: string;
-    ClosedDateTime: string;
-    ReportNumber: ReportNumberSchemaType[];
 }
 //# sourceMappingURL=cad.d.ts.map
