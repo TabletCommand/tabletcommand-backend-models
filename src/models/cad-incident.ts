@@ -67,10 +67,10 @@ export default async function CADIncidentModule(mongoose: MongooseModule) {
 
   modelSchema.index({
     departmentId: 1,
+    closed_unix_date: 1,
     start_unix_date: -1,
-    closed_unix_date: 1
   }, {
-    name: "departmentId_1_start_unix_date_-1_closed_unix_date_1",
+    name: "departmentId_1_closed_unix_date_1_start_unix_date_-1",
   });
 
   modelSchema.index({
@@ -111,10 +111,10 @@ export default async function CADIncidentModule(mongoose: MongooseModule) {
 
   modelSchema.index({
     "sharedTo.departmentId": 1,
+    closed_unix_date: 1,
     start_unix_date: -1,
-    closed_unix_date: 1
   }, {
-    name: "sharedTo.departmentId_1_start_unix_date_-1_closed_unix_date_1",
+    name: "sharedTo.departmentId_1_closed_unix_date_1_start_unix_date_-1",
   });
 
   modelSchema.index({

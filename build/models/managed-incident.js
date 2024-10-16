@@ -539,12 +539,6 @@ async function ManagedIncidentModule(mongoose) {
     modelSchema.index({
         departmentId: 1,
         end_unix_time: 1,
-    }, {
-        name: "departmentId_1_end_unix_time_1",
-    });
-    modelSchema.index({
-        departmentId: 1,
-        end_unix_time: 1,
         start_unix_time: -1,
     }, {
         name: "departmentId_1_end_unix_time_1_start_unix_time_-1",
@@ -587,6 +581,13 @@ async function ManagedIncidentModule(mongoose) {
         end_unix_time: 1
     }, {
         name: "departmentId_1_start_unix_time_-1_end_unix_time_1",
+    });
+    modelSchema.index({
+        "sharedTo.departmentId": 1,
+        end_unix_time: 1,
+        start_unix_date: -1,
+    }, {
+        name: "sharedTo.departmentId_1_end_unix_time_1_start_unix_date_-1",
     });
     modelSchema.index({
         uuid: 1,
