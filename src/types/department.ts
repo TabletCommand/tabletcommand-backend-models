@@ -296,6 +296,7 @@ export interface DepartmentType {
   cadEmailUsername: string,
   notificationEmails: string[]
   rosteringEnabled: boolean,
+  rosteringShiftDefault: number,
   externalNotificationsEnabled: boolean,
   cadBidirectionalEnabled: boolean,
   cadOneWayVehiclesEnabled: boolean,

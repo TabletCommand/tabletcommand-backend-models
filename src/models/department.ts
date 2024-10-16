@@ -1331,6 +1331,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       type: Boolean,
       default: false,
     },
+    rosteringShiftDefault: {
+      type: Number,
+      default: 777600,
+    },
     externalNotificationsEnabled: {
       type: Boolean,
       default: false
