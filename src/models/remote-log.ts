@@ -97,6 +97,18 @@ export default async function RemoteLogModule(mongoose: MongooseModule) {
     timestamps: true,
   });
 
+  modelSchema.index({
+    createdAt: 1,
+  }, {
+    name: "createdAt_1",
+  });
+
+  modelSchema.index({
+    requestId: 1,
+  }, {
+    name: "requestId_1",
+  });
+
   return mongoose.model<RemoteLog>("RemoteLog", modelSchema, "massive_remote_log", { overwriteModels: true });
 }
 

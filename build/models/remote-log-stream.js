@@ -91,6 +91,22 @@ async function RemoteLogStreamModule(mongoose) {
         autoIndex: false,
         timestamps: true,
     });
+    modelSchema.index({
+        uuid: 1,
+    }, {
+        name: "uuid_1_unique",
+        unique: true,
+    });
+    modelSchema.index({
+        createdAt: 1,
+    }, {
+        name: "createdAt_1",
+    });
+    modelSchema.index({
+        requestId: 1,
+    }, {
+        name: "requestId_1",
+    });
     return mongoose.model("RemoteLogStream", modelSchema, "massive_remote_log_stream", { overwriteModels: true });
 }
 exports.default = RemoteLogStreamModule;
