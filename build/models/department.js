@@ -556,6 +556,10 @@ async function DepartmentModule(mongoose) {
             type: [String],
             default: [],
         },
+        forwardAll: {
+            type: Boolean,
+            default: false,
+        },
         apiUrl: {
             type: String,
             default: "",

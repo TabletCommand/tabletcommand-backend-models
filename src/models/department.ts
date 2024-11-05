@@ -636,6 +636,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       type: [String],
       default: [],
     },
+    forwardAll: {
+      type: Boolean,
+      default: false,
+    },
     apiUrl: {
       type: String,
       default: "",

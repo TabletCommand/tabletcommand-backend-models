@@ -240,6 +240,7 @@ export interface ForwardingConnectionType {
   connectionType: string,
   fields: ForwardFieldsType[],
   callTypes: string[],
+  forwardAll: boolean,
   apiUrl: string,
   authType: string,
   authUser: string,
