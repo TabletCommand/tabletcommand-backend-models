@@ -5,10 +5,12 @@ const uuid = require("uuid");
 const helpers_1 = require("../helpers");
 const agency_cron_config_1 = require("./schema/agency-cron-config");
 const agency_saml_1 = require("./schema/agency-saml");
+const color_1 = require("./schema/color");
 function AgencySchema(mongoose) {
     const { Schema } = mongoose;
     const AgencyCronConfig = (0, agency_cron_config_1.default)(mongoose);
     const AgencySAML = (0, agency_saml_1.default)(mongoose);
+    const Color = (0, color_1.default)(mongoose);
     const CrossStaffedUnit = new Schema({
         radioName: {
             type: String,
@@ -39,6 +41,19 @@ function AgencySchema(mongoose) {
         _id: {
             type: Schema.Types.ObjectId,
             auto: true,
+        },
+        active: {
+            type: Boolean,
+            default: false,
+        },
+        activeUserCount: {
+            type: Number,
+            default: 0,
+        },
+        administrators: {
+            type: [Schema.Types.ObjectId],
+            ref: "User",
+            default: []
         },
         code: {
             type: String,
@@ -74,19 +89,14 @@ function AgencySchema(mongoose) {
             type: Date,
             default: helpers_1.currentDate,
         },
-        active: {
-            type: Boolean,
-            default: false,
-        },
         departmentId: {
             type: Schema.Types.ObjectId,
             ref: "Department",
             required: true
         },
-        administrators: {
-            type: [Schema.Types.ObjectId],
-            ref: "User",
-            default: []
+        orientationMarkerColor: {
+            type: Color,
+            default: null,
         },
         personnelIntegration: {
             type: Boolean,
@@ -112,10 +122,6 @@ function AgencySchema(mongoose) {
             type: [AgencySAML],
             default: [],
             select: false, // Not a secret but not needed in all the queries
-        },
-        activeUserCount: {
-            type: Number,
-            default: 0,
         },
     }, {
         autoIndex: false,

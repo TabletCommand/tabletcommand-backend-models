@@ -1,4 +1,5 @@
 import { Types } from "mongoose";
+import { ColorSchemaType } from "./color";
 export interface EncryptedDataType {
     iv: string;
     encryptedData: string;
@@ -73,23 +74,24 @@ export interface AgencySAMLSchemaType extends Record<string, unknown> {
 }
 export interface AgencyType {
     _id: Types.ObjectId;
-    code: string;
-    name: string;
-    domain: string;
-    personnelApiKey: string;
+    active: boolean;
+    activeUserCount: number;
+    administrators: Types.ObjectId[];
     agencyApiKey: string;
-    uuid: string;
+    code: string;
+    cronConfig: AgencyCronConfigType;
+    crossStaffing: CrossStaffedUnitType[];
+    departmentId: Types.ObjectId;
+    domain: string;
+    licensing: AgencyLicensing;
     modified_unix_date: number;
     modified: Date;
-    active: boolean;
-    departmentId: Types.ObjectId;
-    administrators: Types.ObjectId[];
+    name: string;
+    orientationMarkerColor: ColorSchemaType;
+    personnelApiKey: string;
     personnelIntegration: boolean;
     personnelMonitorHours: number;
-    crossStaffing: CrossStaffedUnitType[];
-    licensing: AgencyLicensing;
-    cronConfig: AgencyCronConfigType;
     saml: AgencySAMLSchemaType[];
-    activeUserCount: number;
+    uuid: string;
 }
 //# sourceMappingURL=agency.d.ts.map
