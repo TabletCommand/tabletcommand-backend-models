@@ -2,6 +2,7 @@ import { Mongoose } from "mongoose";
 import * as uuid from "uuid";
 import * as _ from "lodash";
 import { retrieveCurrentUnixTime } from "../helpers";
+import { Department } from "../models/department";
 
 export default function mockModule(dependencies: { mongoose: Mongoose; }) {
 
@@ -637,7 +638,7 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
     incidentNumber: "INC19991"
   };
 
-  const department = {
+  const department: Partial<Department> = {
     _id: new mongoose.Types.ObjectId(),
     department: "Test Department",
     addressDetails: {
@@ -657,6 +658,8 @@ export default function mockModule(dependencies: { mongoose: Mongoose; }) {
       token: "CH_AUTH_TOKEN",
       expireAt: new Date("2021-09-10T23:25:02.196Z"),
       runAt: new Date("2021-09-10T08:25:02.196Z"),
+      refreshInStaging: true,
+      env: "qa",
     },
     agencyIds: [
       new mongoose.Types.ObjectId(agency._id)

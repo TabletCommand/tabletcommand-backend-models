@@ -23,6 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Mongoose } from "mongoose";
+import { Department } from "../models/department";
 export default function mockModule(dependencies: {
     mongoose: Mongoose;
 }): {
@@ -428,98 +429,7 @@ export default function mockModule(dependencies: {
         status: string;
         sendNotification: boolean;
     };
-    department: {
-        _id: import("mongoose").Types.ObjectId;
-        department: string;
-        addressDetails: {
-            city: string;
-            address: string;
-            state: string;
-            zipCode: string;
-            country: string;
-        };
-        active: boolean;
-        apikey: string;
-        partialApiKey: string;
-        personnelStaffingEnabled: boolean;
-        rtsEnabled: boolean;
-        rtsChannelPrefix: string;
-        pubNubV3: {
-            token: string;
-            expireAt: Date;
-            runAt: Date;
-        };
-        agencyIds: import("mongoose").Types.ObjectId[];
-        signupKey: string;
-        incidentTypes: {
-            name: string;
-            value: string;
-            allowPartialMatch: boolean;
-            callTypeDescription: never[];
-            callType: never[];
-        }[];
-        shareLocationPhones: boolean;
-        shareLocationTablets: boolean;
-        cadOneWayVehiclesEnabled: boolean;
-        mowsEnabled: boolean;
-        shareAVL: {
-            enabled: boolean;
-            opAreaCode: string;
-            opAreaName: string;
-            fadeZoomLevel: number;
-        };
-        accountType: string;
-        timeZone: string;
-        firstArrivingEnabled: boolean;
-        firstArriving: {
-            token: string;
-            apiUrl: string;
-        };
-        simpleSenseEnabled: boolean;
-        simpleSense: {
-            token: string;
-        };
-        licensing: {
-            tcPro2Way: number;
-            tcPro1Way: number;
-            tcMobile: number;
-            tcWeb: number;
-            fireMapperPro: number;
-            sendToCAD: number;
-            tcStreams: number;
-        };
-        webDisclaimer: {
-            message: string;
-            enabled: boolean;
-        };
-        notificationEmails: string[];
-        externalNotificationsEnabled: boolean;
-        restrictedComments: {
-            enabled: boolean;
-            callTypesAllowed: never[];
-            statusesAllowed: never[];
-            restrictedFields: never[];
-            restrictedMessage: string;
-        };
-        customButtons: {
-            name: string;
-            url: string;
-            order: number;
-            allowExternal: boolean;
-            defaultExternal: boolean;
-            allowFloating: boolean;
-            color: {
-                background: string;
-                text: string;
-            };
-        }[];
-        reportNumberEnabled: boolean;
-        samsara: {
-            enabled: boolean;
-            token: string;
-        };
-        reportOdometer: string;
-    };
+    department: Partial<Department>;
     deviceMapping: {
         _id: import("mongoose").Types.ObjectId;
         nick: string;

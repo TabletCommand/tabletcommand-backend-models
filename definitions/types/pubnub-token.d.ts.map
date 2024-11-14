@@ -1,1 +1,1 @@
-{"version":3,"file":"pubnub-token.d.ts","sourceRoot":"","sources":["../../src/types/pubnub-token.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,qBAAqB;IACpC,KAAK,EAAE,MAAM,CAAC;IACd,QAAQ,EAAE,IAAI,CAAC;IACf,KAAK,EAAE,IAAI,CAAC;CACb"}
+{"version":3,"file":"pubnub-token.d.ts","sourceRoot":"","sources":["../../src/types/pubnub-token.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,qBAAqB;IACpC,KAAK,EAAE,MAAM,CAAC;IACd,QAAQ,EAAE,IAAI,CAAC;IACf,KAAK,EAAE,IAAI,CAAC;IAEZ,GAAG,CAAC,EAAE,MAAM,CAAC;IACb,gBAAgB,EAAE,OAAO,CAAC;CAC3B"}

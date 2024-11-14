@@ -39,6 +39,8 @@ describe("Department", function() {
     assert.equal(sut.pubNubV3.token, testItem.pubNubV3?.token);
     assert.equal(sut.pubNubV3.expireAt.toISOString(), testItem.pubNubV3?.expireAt.toISOString());
     assert.equal(sut.pubNubV3.runAt.toISOString(), testItem.pubNubV3?.runAt.toISOString());
+    assert.equal(sut.pubNubV3.env, testItem.pubNubV3?.env);
+    assert.equal(sut.pubNubV3.refreshInStaging, testItem.pubNubV3?.refreshInStaging);
     assert.equal(sut.signupKey, testItem.signupKey);
     assert.equal(sut.incidentTypes.length, 1);
     assert.equal(sut.agencyIds.length, 1);
