@@ -1215,6 +1215,9 @@ async function DepartmentModule(mongoose) {
             type: [String],
             default: []
         },
+        orientationMarkerColor: {
+            type: Color,
+        },
         rosteringEnabled: {
             type: Boolean,
             default: false,

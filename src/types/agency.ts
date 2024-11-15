@@ -1,5 +1,4 @@
 import { Types } from "mongoose";
-import { ColorSchemaType } from "./color";
 
 export interface EncryptedDataType {
   iv: string,
@@ -97,7 +96,6 @@ export interface AgencyType {
   modified_unix_date: number,
   modified: Date,
   name: string,
-  orientationMarkerColor: ColorSchemaType,
   personnelApiKey: string,
   personnelIntegration: boolean,
   personnelMonitorHours: number,

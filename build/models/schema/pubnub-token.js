@@ -18,10 +18,6 @@ function PubNubTokenSchema(mongoose) {
         env: {
             type: String,
         },
-        refreshInStaging: {
-            type: Boolean,
-            default: false,
-        },
     }, {
         _id: false,
         id: false,

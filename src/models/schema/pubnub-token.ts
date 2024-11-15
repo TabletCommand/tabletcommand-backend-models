@@ -22,10 +22,6 @@ export default function PubNubTokenSchema(mongoose: MongooseModule) {
     env: {
       type: String,
     },
-    refreshInStaging: {
-      type: Boolean,
-      default: false,
-    },
   }, {
     _id: false,
     id: false,

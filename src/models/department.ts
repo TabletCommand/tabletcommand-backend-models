@@ -151,7 +151,6 @@ const FireMapperConfigurationDefault = {
   staticLayer: [],
 };
 
-
 const LicensingDefault = {
   "tcPro2Way": 0,
   "tcPro1Way": 0,
@@ -725,7 +724,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-
   const ForwardingConfig = new Schema<ForwardingConfigType>({
     enabled: {
       type: Boolean,
@@ -753,7 +751,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-
 
   const SkymiraConfig = new Schema<SkymiraConfigType>({
     enabled: {
@@ -786,7 +783,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-
 
   const ReplayOption = new Schema<ReplayOptionType>({
     departmentId: {
@@ -866,7 +862,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
-
   const StatusMappingObjectConfig = new Schema<StatusMappingObjectConfigType>({
     status: {
       type: String,
@@ -945,7 +940,6 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     _id: false,
     id: false,
   });
-
 
   const SafetyPriorityKeyword = new Schema<SafetyPriorityKeywordType>({
     priority: {
@@ -1330,6 +1324,9 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     notificationEmails: {
       type: [String],
       default: []
+    },
+    orientationMarkerColor: {
+      type: Color,
     },
     rosteringEnabled: {
       type: Boolean,

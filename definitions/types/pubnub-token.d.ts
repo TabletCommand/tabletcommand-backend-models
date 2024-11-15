@@ -3,6 +3,5 @@ export interface PubNubTokenSchemaType {
     expireAt: Date;
     runAt: Date;
     env?: string;
-    refreshInStaging: boolean;
 }
 //# sourceMappingURL=pubnub-token.d.ts.map

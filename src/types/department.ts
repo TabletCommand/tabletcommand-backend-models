@@ -270,138 +270,150 @@ export interface VehicleStatusWebhookConfigType {
   connections: VehicleStatusWebhookConnectionType[],
 }
 
+export type AccountContact = {
+  department: string,
+  name: string,
+  phone: string,
+  email: string,
+};
+
+export type AccountAddress = {
+  address: string,
+  city: string,
+  state: string,
+  zipCode: string,
+  country: string,
+};
+
+export interface Connectivity {
+  enabled: boolean,
+  staleMinutes: number,
+  heartbeatMinutes: number,
+}
+
+export interface StatusConnectivity extends Connectivity {
+  ackUnitsCount: number,
+}
+
+export type AccountConnectivity = {
+  incident: Connectivity,
+  location: Connectivity,
+  status: StatusConnectivity,
+};
+
+export type Coordinate = {
+  longitude: number,
+  latitude: number,
+};
+
+export type AccountConfigurationShareAVL = {
+  enabled: boolean,
+  opAreaName: string,
+  opAreaCode: string,
+  fadeZoomLevel: number,
+};
+
+export type AccountConfigurationShareIncident = {
+  enabled: boolean,
+  rules: ShareIncidentRuleType[],
+};
+
+export type AccountConfigurationZonehaven = {
+  enabled: boolean,
+  visible: boolean,
+  layerUrl: string,
+  fadeZoomLevel: number,
+};
+
 export interface DepartmentType {
   _id: Types.ObjectId,
   id?: string,
-  uuid: string,
-  department: string,
-  fdid: string,
-  addressDetails: {
-    address: string,
-    city: string,
-    state: string,
-    zipCode: string,
-    country: string,
-  },
-  contact: {
-    department: string,
-    name: string,
-    phone: string,
-    email: string,
-  },
-  modified_unix_date: number,
-  modified: Date,
-  active: boolean,
-  apikey: string,
-  partialApiKey: string,
-  cadEmailUsername: string,
-  notificationEmails: string[]
-  rosteringEnabled: boolean,
-  rosteringShiftDefault: number,
-  externalNotificationsEnabled: boolean,
-  cadBidirectionalEnabled: boolean,
-  cadOneWayVehiclesEnabled: boolean,
-  cadAllowedIPAddresses: string[]
-  cadGetLocationEnabled: boolean,
-  cadAllowIgnoreAfterDays: number,
-  connectivity: {
-    incident: {
-      enabled: boolean,
-      staleMinutes: number,
-      heartbeatMinutes: number,
-    },
-    location: {
-      enabled: boolean,
-      staleMinutes: number,
-      heartbeatMinutes: number,
-    },
-    status: {
-      enabled: boolean,
-      staleMinutes: number,
-      heartbeatMinutes: number,
-      ackUnitsCount: number,
-    }
-  },
-  selfAssignmentEnabled: boolean,
-  userContributionEnabled: boolean,
-  vehicleSwapEnabled: boolean,
-  personnelStaffingEnabled: boolean,
-  authSource: string[],
-  defaultMapPosition: {
-    longitude: number,
-    latitude: number,
-  },
-  fireMapPDFReader: string,
-  locationStaleMinutes: number,
-  beaconEnabled: boolean,
-  firstArrivingEnabled: boolean,
-  firstArriving: FirstArrivingConfigType,
-  simpleSenseEnabled: boolean,
-  simpleSense: SimpleSenseConfigType,
-  fireMapperRefreshInterval: number,
-  fireMapperProLicenses: number,
-  fireMapper: FireMapperConfigurationType,
-  arcGISMapsEnabled: boolean,
-  beansAIEnabled: boolean,
-  mowsEnabled: boolean,
-  rtsEnabled: boolean,
-  rtsChannelPrefix: string,
-  pubNubV3: PubNubTokenSchemaType,
-  socketIO: PubNubTokenSchemaType,
-  esriGeoJSONFilename: string,
-  incidentTypes: IncidentTypeType[],
-  ackDelimiter: string,
-  callTypeBlock: string[]
-  agencyIds: Types.ObjectId[],
-  signupKey: string,
-  signupDomains: string[],
-  safetyPriorityKeywords: SafetyPriorityKeywordType[],
-  shareLocationPhones: boolean,
-  shareLocationTablets: boolean,
-  shareAVL: {
-    enabled: boolean,
-    opAreaName: string,
-    opAreaCode: string,
-    fadeZoomLevel: number,
-  },
-  shareIncident: {
-    enabled: boolean,
-    rules: ShareIncidentRuleType[],
-  },
-  speedReportingEnabled: boolean,
   accountType: string,
-  timeZone: string,
-  remoteLoggingEnabled: boolean,
-  logOffEnabled: boolean,
-  licensing: LicensingType,
-  webDisclaimer: WebDisclaimerType,
-  addUserInstructions: string,
-  restrictedComments: RestrictedCommentsType,
-  customButtons: CustomButtonsType[],
-  reportNumberEnabled: boolean,
-  audioConfiguration: AudioStreamGroupType[]
-  minPasswordLength: number,
-  zonehaven: {
-    enabled: boolean,
-    visible: boolean,
-    layerUrl: string,
-    fadeZoomLevel: number,
-  },
+  ackDelimiter: string,
+  active: boolean,
   activeUserCount: number,
-  samsara: SamsaraConfigurationType
-  mark43: Mark43ConfigType
-  intterra: IntterraConfigType
-  vehicleRadioNameIsStable: boolean,
-  cadIncidentHistoryType: number[],
+  addressDetails: AccountAddress,
+  addUserInstructions: string,
+  agencyIds: Types.ObjectId[],
+  apikey: string,
+  arcGISMapsEnabled: boolean,
+  audioConfiguration: AudioStreamGroupType[]
+  authSource: string[],
+  beaconEnabled: boolean,
+  beansAIEnabled: boolean,
+  cadAllowedIPAddresses: string[]
+  cadAllowIgnoreAfterDays: number,
+  cadBidirectionalEnabled: boolean,
+  cadBidirectionalException: boolean,
+  cadEmailUsername: string,
+  cadGetLocationEnabled: boolean,
   cadIncidentEventType: string[],
-  incidentVehicleStatus: IncidentVehicleStatusConfigType,
-  skymira: SkymiraConfigType,
-  skytrac: SkytracConfigType[],
+  cadIncidentHistoryType: number[],
+  cadOneWayVehiclesEnabled: boolean,
+  callTypeBlock: string[]
+  connectivity: AccountConnectivity,
+  contact: AccountContact,
+  customButtons: CustomButtonsType[],
+  defaultMapPosition: Coordinate,
+  department: string,
+  esriGeoJSONFilename: string,
+  externalNotificationsEnabled: boolean,
+  fdid: string,
+  fireMapPDFReader: string,
+  fireMapper: FireMapperConfigurationType,
+  fireMapperProLicenses: number,
+  fireMapperRefreshInterval: number,
+  firstArriving: FirstArrivingConfigType,
+  firstArrivingEnabled: boolean,
+  forwarding: ForwardingConfigType,
   gst: GSTConfigType,
   incidentReplay: IncidentReplayType,
-  somewear: SomewearType,
-  cadBidirectionalException: boolean,
-  forwarding: ForwardingConfigType,
-  vehicleStatusWebhook: VehicleStatusWebhookConfigType,
+  incidentTypes: IncidentTypeType[],
+  incidentVehicleStatus: IncidentVehicleStatusConfigType,
+  intterra: IntterraConfigType
+  licensing: LicensingType,
+  locationStaleMinutes: number,
+  logOffEnabled: boolean,
+  mark43: Mark43ConfigType
+  minPasswordLength: number,
+  modified_unix_date: number,
+  modified: Date,
+  mowsEnabled: boolean,
+  notificationEmails: string[]
+  orientationMarkerColor: ColorSchemaType,
+  partialApiKey: string,
+  personnelStaffingEnabled: boolean,
+  pubNubV3: PubNubTokenSchemaType,
+  remoteLoggingEnabled: boolean,
+  reportNumberEnabled: boolean,
   reportOdometer: string,
+  restrictedComments: RestrictedCommentsType,
+  rosteringEnabled: boolean,
+  rosteringShiftDefault: number,
+  rtsChannelPrefix: string,
+  rtsEnabled: boolean,
+  safetyPriorityKeywords: SafetyPriorityKeywordType[],
+  samsara: SamsaraConfigurationType
+  selfAssignmentEnabled: boolean,
+  shareAVL: AccountConfigurationShareAVL,
+  shareIncident: AccountConfigurationShareIncident,
+  shareLocationPhones: boolean,
+  shareLocationTablets: boolean,
+  signupDomains: string[],
+  signupKey: string,
+  simpleSense: SimpleSenseConfigType,
+  simpleSenseEnabled: boolean,
+  skymira: SkymiraConfigType,
+  skytrac: SkytracConfigType[],
+  socketIO: PubNubTokenSchemaType,
+  somewear: SomewearType,
+  speedReportingEnabled: boolean,
+  timeZone: string,
+  userContributionEnabled: boolean,
+  uuid: string,
+  vehicleRadioNameIsStable: boolean,
+  vehicleStatusWebhook: VehicleStatusWebhookConfigType,
+  vehicleSwapEnabled: boolean,
+  webDisclaimer: WebDisclaimerType,
+  zonehaven: AccountConfigurationZonehaven,
 }

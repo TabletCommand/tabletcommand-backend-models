@@ -619,7 +619,6 @@ function mockModule(dependencies) {
             token: "CH_AUTH_TOKEN",
             expireAt: new Date("2021-09-10T23:25:02.196Z"),
             runAt: new Date("2021-09-10T08:25:02.196Z"),
-            refreshInStaging: true,
             env: "qa",
         },
         agencyIds: [
@@ -669,6 +668,10 @@ function mockModule(dependencies) {
         },
         notificationEmails: ["test@test.com"],
         externalNotificationsEnabled: true,
+        orientationMarkerColor: {
+            text: "a",
+            background: "b",
+        },
         restrictedComments: {
             enabled: false,
             callTypesAllowed: [],

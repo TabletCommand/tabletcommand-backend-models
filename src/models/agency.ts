@@ -6,7 +6,6 @@ import {
 } from "../helpers";
 import AgencyCronConfigModule from "./schema/agency-cron-config";
 import AgencySAMLModule from "./schema/agency-saml";
-import ColorModule from "./schema/color";
 import { Model } from "mongoose";
 import { CrossStaffedUnitType, AgencyType } from "../types/agency";
 
@@ -16,7 +15,6 @@ export function AgencySchema(mongoose: MongooseModule) {
   const { Schema } = mongoose;
   const AgencyCronConfig = AgencyCronConfigModule(mongoose);
   const AgencySAML = AgencySAMLModule(mongoose);
-  const Color = ColorModule(mongoose);
 
   const CrossStaffedUnit = new Schema<CrossStaffedUnitType>({
     radioName: {
@@ -102,10 +100,6 @@ export function AgencySchema(mongoose: MongooseModule) {
       type: Schema.Types.ObjectId,
       ref: "Department",
       required: true
-    },
-    orientationMarkerColor: {
-      type: Color,
-      default: null,
     },
     personnelIntegration: {
       type: Boolean,
