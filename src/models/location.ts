@@ -54,7 +54,7 @@ export default async function LocationModule(mongoose: MongooseModule) {
     source: {
       type: String,
     },
-    // person, vehicle, fixed-wing, helicopter, marine
+    // person, vehicle, fixed-wing, helicopter, vessel
     kindType: {
       type: String,
       default: "vehicle",

@@ -17,6 +17,7 @@ export interface BattalionUnitType extends Record<string, unknown> {
   battalion_uuid: string,
   battalion_name: string,
   agencyId: Types.ObjectId
+  kindType: string,
 }
 
 export interface BattalionType {

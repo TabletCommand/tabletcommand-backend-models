@@ -236,6 +236,7 @@ function mockModule(dependencies) {
         uuid: "",
         agencyId: new mongoose.Types.ObjectId(),
         name: "BattalionUnit Test",
+        kindType: "vehicle",
         friendly_id: "B1",
         local_id: 321,
         personnel: 4,

@@ -133,6 +133,7 @@ export default function mockModule(dependencies: {
             uuid: string;
             agencyId: import("mongoose").Types.ObjectId;
             name: string;
+            kindType: string;
             friendly_id: string;
             local_id: number;
             personnel: number;
