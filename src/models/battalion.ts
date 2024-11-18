@@ -73,6 +73,10 @@ export function BattalionSchema(mongoose: MongooseModule) {
       ref: "Agency",
       default: null,
     },
+    kindType:{
+      type:String,
+      default:"vehicle"
+    }
   }, {
     autoIndex: false,
     toJSON: {

@@ -64,6 +64,10 @@ function BattalionSchema(mongoose) {
             ref: "Agency",
             default: null,
         },
+        kindType: {
+            type: String,
+            default: "vehicle"
+        }
     }, {
         autoIndex: false,
         toJSON: {
