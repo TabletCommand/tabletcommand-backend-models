@@ -26,7 +26,6 @@ describe("ManagedIncident", function() {
     const item = new models.ManagedIncident(testItem);
     const sut = await item.save();
 
-
     assert.isNotNull(testItem._id);
     assert.equal(sut.departmentId, testItem.departmentId);
     assert.equal(sut.CallerNumber, testItem.CallerNumber);

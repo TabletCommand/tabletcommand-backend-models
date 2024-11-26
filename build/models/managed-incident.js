@@ -522,6 +522,9 @@ async function ManagedIncidentModule(mongoose) {
         },
     }, {
         autoIndex: false,
+        timestamps: {
+            updatedAt: "modified",
+        },
         toJSON: {
             virtuals: true,
             versionKey: false,

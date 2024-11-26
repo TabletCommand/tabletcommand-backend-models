@@ -561,6 +561,9 @@ export default async function ManagedIncidentModule(mongoose: MongooseModule) {
     },
   }, {
     autoIndex: false,
+    timestamps: {
+      updatedAt: "modified",
+    },
     toJSON: {
       virtuals: true,
       versionKey: false,
