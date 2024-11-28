@@ -325,6 +325,18 @@ export type AccountConfigurationZonehaven = {
   fadeZoomLevel: number,
 };
 
+export type ManagedIncidentPriorityItem = {
+  title: string,
+  color: ColorSchemaType,
+  position: number,
+};
+
+export type ManagedIncidentModeItem = {
+  title: string,
+  color: ColorSchemaType,
+  position: number,
+};
+
 export interface DepartmentType {
   _id: Types.ObjectId,
   id?: string,
@@ -375,6 +387,8 @@ export interface DepartmentType {
   locationStaleMinutes: number,
   logOffEnabled: boolean,
   mark43: Mark43ConfigType
+  managedIncidentMode: ManagedIncidentModeItem[],
+  managedIncidentPriority: ManagedIncidentPriorityItem[],
   minPasswordLength: number,
   modified_unix_date: number,
   modified: Date,

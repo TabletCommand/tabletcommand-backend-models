@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ManagedIncidentPriorityDefault = exports.ManagedIncidentModeDefault = exports.OrientationMarkerColorDefault = exports.SamsaraConfigurationDefault = exports.VehicleStatusWebhookFieldsDefault = exports.ForwardFieldsDefault = exports.StatusMappingConfigDefault = exports.RestrictedCommentsDefault = exports.WebDisclaimerDefault = exports.SimpleSenseConfigDefault = exports.Mark43ConfigDefault = exports.SkymiraConfigDefault = exports.GSTConfigDefault = exports.SomewearDefault = exports.IncidentReplayDefault = exports.VehicleStatusWebhookConfigDefault = exports.ForwardingConfigDefault = exports.IntterraConfigDefault = exports.FirstArrivingConfigDefault = exports.SafetyPriorityKeywordDefault = exports.LicensingDefault = exports.FireMapperConfigurationDefault = exports.IntterraFieldsDefault = exports.Mark43StatusConfigDefault = void 0;
 const uuid = require("uuid");
 const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const helpers_1 = require("../helpers");
 const color_1 = require("./schema/color");
 const pubnub_token_1 = require("./schema/pubnub-token");
-const Mark43StatusConfigDefault = {
+exports.Mark43StatusConfigDefault = {
     TimeDispatched: ["D"],
     TimeEnroute: ["EN"],
     TimeStaged: ["ST"],
@@ -14,7 +15,7 @@ const Mark43StatusConfigDefault = {
     TimeTransporting: ["T", "EH"],
     TimeArrived: ["ATS", "A"],
 };
-const IntterraFieldsDefault = [
+exports.IntterraFieldsDefault = [
     {
         "key": "IncidentNumber",
         "value": "incidentId",
@@ -67,7 +68,7 @@ const IntterraFieldsDefault = [
 ];
 // If any of the following fields are updated/added/deleted,
 // make sure to update the database records, before/after release (script/query)
-const FireMapperConfigurationDefault = {
+exports.FireMapperConfigurationDefault = {
     enabled: false,
     layerRefreshInterval: 15,
     proLicenseCount: 0,
@@ -100,7 +101,7 @@ const FireMapperConfigurationDefault = {
     ],
     staticLayer: [],
 };
-const LicensingDefault = {
+exports.LicensingDefault = {
     "tcPro2Way": 0,
     "tcPro1Way": 0,
     "tcMobile": 0,
@@ -109,7 +110,7 @@ const LicensingDefault = {
     "sendToCAD": 0,
     "tcStreams": 0
 };
-const SafetyPriorityKeywordDefault = [
+exports.SafetyPriorityKeywordDefault = [
     {
         "keywords": [],
         "priority": 0,
@@ -126,54 +127,54 @@ const SafetyPriorityKeywordDefault = [
         "hexColor": "0A60FF"
     }
 ];
-const FirstArrivingConfigDefault = {
+exports.FirstArrivingConfigDefault = {
     "token": "",
     "apiUrl": "",
 };
-const IntterraConfigDefault = {
+exports.IntterraConfigDefault = {
     "enabled": false,
     "connections": [],
     "incidentWebhookEnabled": false,
 };
-const ForwardingConfigDefault = {
+exports.ForwardingConfigDefault = {
     "enabled": false,
     "connections": [],
 };
-const VehicleStatusWebhookConfigDefault = {
+exports.VehicleStatusWebhookConfigDefault = {
     "enabled": false,
     "connections": [],
 };
-const IncidentReplayDefault = {
+exports.IncidentReplayDefault = {
     "enabled": false,
     "replays": [],
 };
-const SomewearDefault = {
+exports.SomewearDefault = {
     "enabled": false,
 };
-const GSTConfigDefault = {
+exports.GSTConfigDefault = {
     "enabled": false,
     "code": "",
 };
-const SkymiraConfigDefault = {
+exports.SkymiraConfigDefault = {
     "enabled": false,
     "token": "",
     "locationsUrl": "",
 };
-const Mark43ConfigDefault = {
+exports.Mark43ConfigDefault = {
     "baseUrl": "",
     "authToken": "",
     "apiToken": "",
     "userId": 0,
     "enabled": false,
 };
-const SimpleSenseConfigDefault = {
+exports.SimpleSenseConfigDefault = {
     "token": "",
 };
-const WebDisclaimerDefault = {
+exports.WebDisclaimerDefault = {
     "message": "",
     "enabled": false
 };
-const RestrictedCommentsDefault = {
+exports.RestrictedCommentsDefault = {
     enabled: false,
     callTypesAllowed: [],
     statusesAllowed: [],
@@ -184,7 +185,7 @@ const RestrictedCommentsDefault = {
     ],
     restrictedMessage: "RESTRICTED"
 };
-const StatusMappingConfigDefault = {
+exports.StatusMappingConfigDefault = {
     TimeDispatched: {
         "status": "Unit Dispatched",
         "statusCode": "DSP"
@@ -223,7 +224,7 @@ const StatusMappingConfigDefault = {
         "statusCode": "TCM"
     }
 };
-const ForwardFieldsDefault = [
+exports.ForwardFieldsDefault = [
     {
         "key": "IncidentNumber",
         "value": "IncidentNumber",
@@ -274,7 +275,7 @@ const ForwardFieldsDefault = [
         "transformationRequired": false,
     }
 ];
-const VehicleStatusWebhookFieldsDefault = [
+exports.VehicleStatusWebhookFieldsDefault = [
     {
         "key": "responseTime",
         "value": "responseTime",
@@ -318,10 +319,28 @@ const VehicleStatusWebhookFieldsDefault = [
         "transformationRequired": false,
     }
 ];
-const SamsaraConfigurationDefault = {
+exports.SamsaraConfigurationDefault = {
     enabled: false,
     token: "",
 };
+exports.OrientationMarkerColorDefault = {
+    background: "#FC2125",
+    text: "#FFFFFF",
+};
+exports.ManagedIncidentModeDefault = [
+    { title: "Investigative", color: { background: "#283593", text: "#F5F5F5" }, position: 1 },
+    { title: "Offensive", color: { background: "#00695C", text: "#F5F5F5" }, position: 2 },
+    { title: "Defensive", color: { background: "#827717", text: "#F5F5F5" }, position: 3 },
+    { title: "Combination", color: { background: "#F57F17", text: "#F5F5F5" }, position: 4 },
+    { title: "Marginal", color: { background: "#1B5E20", text: "#F5F5F5" }, position: 5 },
+    { title: "Transitional", color: { background: "#4E342E", text: "#F3E5F5" }, position: 6 },
+];
+exports.ManagedIncidentPriorityDefault = [
+    { title: "Life", color: { background: "#6A1B9A", text: "#F5F5F5" }, position: 1 },
+    { title: "Stabilization", color: { background: "#EDE7F6", text: "#00695C" }, position: 2 },
+    { title: "Property", color: { background: "#FFF3E0", text: "#BF360C" }, position: 3 },
+    { title: "Environment", color: { background: "#DCEDC8", text: "#424242" }, position: 4 },
+];
 async function DepartmentModule(mongoose) {
     const { Schema } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
@@ -447,7 +466,7 @@ async function DepartmentModule(mongoose) {
         },
         unitStatusCodes: {
             type: Mark43StatusConfig,
-            default: Mark43StatusConfigDefault,
+            default: exports.Mark43StatusConfigDefault,
         },
         process: {
             type: Mark43ProcessConfig,
@@ -488,7 +507,7 @@ async function DepartmentModule(mongoose) {
         },
         fields: {
             type: [IntterraFields],
-            default: IntterraFieldsDefault,
+            default: exports.IntterraFieldsDefault,
         },
         callTypes: {
             type: [String],
@@ -550,7 +569,7 @@ async function DepartmentModule(mongoose) {
         },
         fields: {
             type: [ForwardFields],
-            default: ForwardFieldsDefault,
+            default: exports.ForwardFieldsDefault,
         },
         callTypes: {
             type: [String],
@@ -603,7 +622,7 @@ async function DepartmentModule(mongoose) {
         },
         fields: {
             type: [ForwardFields],
-            default: VehicleStatusWebhookFieldsDefault,
+            default: exports.VehicleStatusWebhookFieldsDefault,
         },
         apiUrl: {
             type: String,
@@ -823,7 +842,7 @@ async function DepartmentModule(mongoose) {
         },
         statusMappings: {
             type: StatusMappingConfig,
-            default: StatusMappingConfigDefault,
+            default: exports.StatusMappingConfigDefault,
         },
         statusExclusions: {
             type: [String],
@@ -1128,6 +1147,30 @@ async function DepartmentModule(mongoose) {
         _id: false,
         id: false,
     });
+    const ManagedIncidentModeItemSchema = new Schema({
+        title: {
+            type: String,
+        },
+        color: {
+            type: Color,
+        },
+        position: {
+            type: Number,
+            default: 1,
+        },
+    });
+    const ManagedIncidentPriorityItemSchema = new Schema({
+        title: {
+            type: String,
+        },
+        color: {
+            type: Color,
+        },
+        position: {
+            type: Number,
+            default: 1,
+        },
+    });
     // Main schema
     const modelSchema = new Schema({
         _id: {
@@ -1217,6 +1260,7 @@ async function DepartmentModule(mongoose) {
         },
         orientationMarkerColor: {
             type: Color,
+            default: exports.OrientationMarkerColorDefault,
         },
         rosteringEnabled: {
             type: Boolean,
@@ -1367,7 +1411,7 @@ async function DepartmentModule(mongoose) {
         },
         firstArriving: {
             type: FirstArrivingConfig,
-            default: FirstArrivingConfigDefault,
+            default: exports.FirstArrivingConfigDefault,
         },
         simpleSenseEnabled: {
             type: Boolean,
@@ -1375,7 +1419,7 @@ async function DepartmentModule(mongoose) {
         },
         simpleSense: {
             type: SimpleSenseConfig,
-            default: SimpleSenseConfigDefault,
+            default: exports.SimpleSenseConfigDefault,
         },
         incidentVehicleStatus: {
             type: IncidentVehicleStatusConfig,
@@ -1398,7 +1442,7 @@ async function DepartmentModule(mongoose) {
         },
         fireMapper: {
             type: FireMapperConfiguration,
-            default: FireMapperConfigurationDefault,
+            default: exports.FireMapperConfigurationDefault,
         },
         // Uses ArcGIS maps, requires ArcGIS accounts
         // Set this to default=enabled until we figure out why we need the flag.
@@ -1467,7 +1511,7 @@ async function DepartmentModule(mongoose) {
         },
         safetyPriorityKeywords: {
             type: [SafetyPriorityKeyword],
-            default: SafetyPriorityKeywordDefault,
+            default: exports.SafetyPriorityKeywordDefault,
         },
         shareLocationPhones: {
             type: Boolean,
@@ -1527,11 +1571,11 @@ async function DepartmentModule(mongoose) {
         },
         licensing: {
             type: Licensing,
-            default: LicensingDefault,
+            default: exports.LicensingDefault,
         },
         webDisclaimer: {
             type: WebDisclaimer,
-            default: WebDisclaimerDefault,
+            default: exports.WebDisclaimerDefault,
         },
         addUserInstructions: {
             type: String,
@@ -1544,7 +1588,7 @@ async function DepartmentModule(mongoose) {
         },
         restrictedComments: {
             type: RestrictedComments,
-            default: RestrictedCommentsDefault,
+            default: exports.RestrictedCommentsDefault,
         },
         customButtons: {
             type: [CustomButtons],
@@ -1586,19 +1630,19 @@ async function DepartmentModule(mongoose) {
         },
         samsara: {
             type: SamsaraConfiguration,
-            default: SamsaraConfigurationDefault,
+            default: exports.SamsaraConfigurationDefault,
         },
         mark43: {
             type: Mark43Config,
-            default: Mark43ConfigDefault
+            default: exports.Mark43ConfigDefault
         },
         intterra: {
             type: IntterraConfig,
-            default: IntterraConfigDefault,
+            default: exports.IntterraConfigDefault,
         },
         skymira: {
             type: SkymiraConfig,
-            default: SkymiraConfigDefault,
+            default: exports.SkymiraConfigDefault,
         },
         skytrac: {
             type: [SkytracConfig],
@@ -1606,23 +1650,31 @@ async function DepartmentModule(mongoose) {
         },
         gst: {
             type: GSTConfig,
-            default: GSTConfigDefault,
+            default: exports.GSTConfigDefault,
         },
         incidentReplay: {
             type: IncidentReplay,
-            default: IncidentReplayDefault,
+            default: exports.IncidentReplayDefault,
         },
         somewear: {
             type: Somewear,
-            default: SomewearDefault,
+            default: exports.SomewearDefault,
         },
         forwarding: {
             type: ForwardingConfig,
-            default: ForwardingConfigDefault,
+            default: exports.ForwardingConfigDefault,
         },
         vehicleStatusWebhook: {
             type: VehicleStatusWebhookConfig,
-            default: VehicleStatusWebhookConfigDefault,
+            default: exports.VehicleStatusWebhookConfigDefault,
+        },
+        managedIncidentMode: {
+            type: [ManagedIncidentModeItemSchema],
+            default: exports.ManagedIncidentModeDefault,
+        },
+        managedIncidentPriority: {
+            type: [ManagedIncidentPriorityItemSchema],
+            default: exports.ManagedIncidentPriorityDefault,
         },
     }, {
         autoIndex: false,

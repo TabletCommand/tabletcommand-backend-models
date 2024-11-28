@@ -131,6 +131,13 @@ export { ValidationReport, ValidationReportModel } from "./models/validation-rep
 
 export * from "./helpers";
 
+// Export default vars
+export {
+  ManagedIncidentModeDefault,
+  ManagedIncidentPriorityDefault,
+  OrientationMarkerColorDefault,
+} from "./models/department";
+
 export async function connect(url: string, overwriteOpts?: ConnectOptions, enableDebug = false) {
   const mongoose = await import("mongoose");
   mongoose.Promise = await import("bluebird");

@@ -1,4 +1,5 @@
 import * as uuid from "uuid";
+import { Model } from "mongoose";
 import { mongooseLeanVirtuals } from "mongoose-lean-virtuals";
 
 import {
@@ -8,7 +9,7 @@ import {
 } from "../helpers";
 import ColorModule from "./schema/color";
 import PubNubTokenSchema from "./schema/pubnub-token";
-import { Model } from "mongoose";
+import { ColorSchemaType } from "../types/color";
 import {
   AudioStreamGroupType,
   AudioStreamType,
@@ -21,8 +22,6 @@ import {
   ForwardFieldsType,
   ForwardingConfigType,
   ForwardingConnectionType,
-  VehicleStatusWebhookConnectionType,
-  VehicleStatusWebhookConfigType,
   GSTConfigType,
   IncidentReplayType,
   IncidentTypeType,
@@ -31,6 +30,8 @@ import {
   IntterraConnectionType,
   IntterraFieldsType,
   LicensingType,
+  ManagedIncidentModeItem,
+  ManagedIncidentPriorityItem,
   Mark43ConfigType,
   Mark43ProcessCommentConfigType,
   Mark43ProcessConfigType,
@@ -48,12 +49,14 @@ import {
   SomewearType,
   StatusMappingConfigType,
   StatusMappingObjectConfigType,
-  WebDisclaimerType
+  VehicleStatusWebhookConfigType,
+  VehicleStatusWebhookConnectionType,
+  WebDisclaimerType,
 } from "../types/department";
 
 export interface Department extends DepartmentType, Record<string, unknown> { }
 
-const Mark43StatusConfigDefault = {
+export const Mark43StatusConfigDefault = {
   TimeDispatched: ["D"],
   TimeEnroute: ["EN"],
   TimeStaged: ["ST"],
@@ -63,7 +66,7 @@ const Mark43StatusConfigDefault = {
   TimeArrived: ["ATS", "A"],
 };
 
-const IntterraFieldsDefault = [
+export const IntterraFieldsDefault = [
   {
     "key": "IncidentNumber",
     "value": "incidentId",
@@ -117,7 +120,7 @@ const IntterraFieldsDefault = [
 
 // If any of the following fields are updated/added/deleted,
 // make sure to update the database records, before/after release (script/query)
-const FireMapperConfigurationDefault = {
+export const FireMapperConfigurationDefault = {
   enabled: false,
   layerRefreshInterval: 15,
   proLicenseCount: 0,
@@ -151,7 +154,7 @@ const FireMapperConfigurationDefault = {
   staticLayer: [],
 };
 
-const LicensingDefault = {
+export const LicensingDefault = {
   "tcPro2Way": 0,
   "tcPro1Way": 0,
   "tcMobile": 0,
@@ -161,7 +164,7 @@ const LicensingDefault = {
   "tcStreams": 0
 };
 
-const SafetyPriorityKeywordDefault = [
+export const SafetyPriorityKeywordDefault = [
   {
     "keywords": [],
     "priority": 0,
@@ -179,48 +182,48 @@ const SafetyPriorityKeywordDefault = [
   }
 ];
 
-const FirstArrivingConfigDefault = {
+export const FirstArrivingConfigDefault = {
   "token": "",
   "apiUrl": "",
 };
 
-const IntterraConfigDefault = {
+export const IntterraConfigDefault = {
   "enabled": false,
   "connections": [],
   "incidentWebhookEnabled": false,
 };
 
-const ForwardingConfigDefault = {
+export const ForwardingConfigDefault = {
   "enabled": false,
   "connections": [],
 };
 
-const VehicleStatusWebhookConfigDefault = {
+export const VehicleStatusWebhookConfigDefault = {
   "enabled": false,
   "connections": [],
 };
 
-const IncidentReplayDefault = {
+export const IncidentReplayDefault = {
   "enabled": false,
   "replays": [],
 };
 
-const SomewearDefault = {
+export const SomewearDefault = {
   "enabled": false,
 };
 
-const GSTConfigDefault = {
+export const GSTConfigDefault = {
   "enabled": false,
   "code": "",
 };
 
-const SkymiraConfigDefault = {
+export const SkymiraConfigDefault = {
   "enabled": false,
   "token": "",
   "locationsUrl": "",
 };
 
-const Mark43ConfigDefault = {
+export const Mark43ConfigDefault = {
   "baseUrl": "",
   "authToken": "",
   "apiToken": "",
@@ -228,16 +231,16 @@ const Mark43ConfigDefault = {
   "enabled": false,
 };
 
-const SimpleSenseConfigDefault = {
+export const SimpleSenseConfigDefault = {
   "token": "",
 };
 
-const WebDisclaimerDefault = {
+export const WebDisclaimerDefault = {
   "message": "",
   "enabled": false
 };
 
-const RestrictedCommentsDefault = {
+export const RestrictedCommentsDefault = {
   enabled: false,
   callTypesAllowed: [],
   statusesAllowed: [],
@@ -249,7 +252,7 @@ const RestrictedCommentsDefault = {
   restrictedMessage: "RESTRICTED"
 };
 
-const StatusMappingConfigDefault = {
+export const StatusMappingConfigDefault = {
   TimeDispatched: {
     "status": "Unit Dispatched",
     "statusCode": "DSP"
@@ -289,7 +292,7 @@ const StatusMappingConfigDefault = {
   }
 };
 
-const ForwardFieldsDefault = [
+export const ForwardFieldsDefault = [
   {
     "key": "IncidentNumber",
     "value": "IncidentNumber",
@@ -341,7 +344,7 @@ const ForwardFieldsDefault = [
   }
 ];
 
-const VehicleStatusWebhookFieldsDefault = [
+export const VehicleStatusWebhookFieldsDefault = [
   {
     "key": "responseTime",
     "value": "responseTime",
@@ -386,10 +389,31 @@ const VehicleStatusWebhookFieldsDefault = [
   }
 ];
 
-const SamsaraConfigurationDefault = {
+export const SamsaraConfigurationDefault = {
   enabled: false,
   token: "",
 };
+
+export const OrientationMarkerColorDefault: ColorSchemaType = {
+  background: "#FC2125",
+  text: "#FFFFFF",
+};
+
+export const ManagedIncidentModeDefault: ManagedIncidentModeItem[] = [
+  { title: "Investigative", color: { background: "#283593", text: "#F5F5F5" }, position: 1 },
+  { title: "Offensive", color: { background: "#00695C", text: "#F5F5F5" }, position: 2 },
+  { title: "Defensive", color: { background: "#827717", text: "#F5F5F5" }, position: 3 },
+  { title: "Combination", color: { background: "#F57F17", text: "#F5F5F5" }, position: 4 },
+  { title: "Marginal", color: { background: "#1B5E20", text: "#F5F5F5" }, position: 5 },
+  { title: "Transitional", color: { background: "#4E342E", text: "#F3E5F5" }, position: 6 },
+];
+
+export const ManagedIncidentPriorityDefault: ManagedIncidentModeItem[] = [
+  { title: "Life", color: { background: "#6A1B9A", text: "#F5F5F5" }, position: 1 },
+  { title: "Stabilization", color: { background: "#EDE7F6", text: "#00695C" }, position: 2 },
+  { title: "Property", color: { background: "#FFF3E0", text: "#BF360C" }, position: 3 },
+  { title: "Environment", color: { background: "#DCEDC8", text: "#424242" }, position: 4 },
+];
 
 export default async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -1237,6 +1261,32 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     id: false,
   });
 
+  const ManagedIncidentModeItemSchema = new Schema<ManagedIncidentModeItem>({
+    title: {
+      type: String,
+    },
+    color: {
+      type: Color,
+    },
+    position: {
+      type: Number,
+      default: 1,
+    },
+  });
+
+  const ManagedIncidentPriorityItemSchema = new Schema<ManagedIncidentPriorityItem>({
+    title: {
+      type: String,
+    },
+    color: {
+      type: Color,
+    },
+    position: {
+      type: Number,
+      default: 1,
+    },
+  });
+
   // Main schema
   const modelSchema = new Schema<DepartmentType>({
     _id: {
@@ -1327,6 +1377,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     },
     orientationMarkerColor: {
       type: Color,
+      default: OrientationMarkerColorDefault,
     },
     rosteringEnabled: {
       type: Boolean,
@@ -1748,6 +1799,15 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     vehicleStatusWebhook: {
       type: VehicleStatusWebhookConfig,
       default: VehicleStatusWebhookConfigDefault,
+    },
+
+    managedIncidentMode: {
+      type: [ManagedIncidentModeItemSchema],
+      default: ManagedIncidentModeDefault,
+    },
+    managedIncidentPriority: {
+      type: [ManagedIncidentPriorityItemSchema],
+      default: ManagedIncidentPriorityDefault,
     },
   }, {
     autoIndex: false,
