@@ -36,4 +36,10 @@ export declare enum LocationVisibility {
     CAD = "cad",
     Shared = "shared"
 }
+export declare enum AccountIndustry {
+    Fire = "fire",
+    Law = "law",
+    University = "university",
+    Utility = "utility"
+}
 //# sourceMappingURL=constants.d.ts.map

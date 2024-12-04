@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 import { ColorSchemaType } from "./color";
 import { PubNubTokenSchemaType } from "./pubnub-token";
+import { AccountIndustry } from "../constants";
 export interface Mark43StatusConfigType {
     TimeDispatched: string[];
     TimeEnroute: string[];
@@ -332,6 +333,7 @@ export interface DepartmentType {
     incidentReplay: IncidentReplayType;
     incidentTypes: IncidentTypeType[];
     incidentVehicleStatus: IncidentVehicleStatusConfigType;
+    industry: AccountIndustry;
     intterra: IntterraConfigType;
     licensing: LicensingType;
     locationStaleMinutes: number;

@@ -1,12 +1,15 @@
+import { Model } from "mongoose";
 import * as uuid from "uuid";
+
+import { AccountIndustry } from "../constants";
 import {
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
 } from "../helpers";
+
 import AgencyCronConfigModule from "./schema/agency-cron-config";
 import AgencySAMLModule from "./schema/agency-saml";
-import { Model } from "mongoose";
 import { CrossStaffedUnitType, AgencyType } from "../types/agency";
 
 export interface Agency extends AgencyType, Record<string, unknown> { }
@@ -125,6 +128,10 @@ export function AgencySchema(mongoose: MongooseModule) {
       type: [AgencySAML],
       default: [],
       select: false, // Not a secret but not needed in all the queries
+    },
+    industry: {
+      type: String,
+      default: AccountIndustry.Fire,
     },
   }, {
     autoIndex: false,

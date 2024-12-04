@@ -2,6 +2,7 @@ import * as _ from "lodash";
 import { ConnectOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
 import {
+  AccountIndustry,
   DepartmentReportOdometer,
   LocationKindType,
   LocationSource,
@@ -10,6 +11,7 @@ import {
 } from "./constants";
 
 export {
+  AccountIndustry,
   DepartmentReportOdometer,
   LocationKindType,
   LocationSource,

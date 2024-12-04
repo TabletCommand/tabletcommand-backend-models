@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LocationVisibility = exports.DepartmentReportOdometer = exports.UserStealthStatus = exports.LocationKindType = exports.LocationSource = void 0;
+exports.AccountIndustry = exports.LocationVisibility = exports.DepartmentReportOdometer = exports.UserStealthStatus = exports.LocationKindType = exports.LocationSource = void 0;
 var LocationSource;
 (function (LocationSource) {
     LocationSource["CAD"] = "CAD";
@@ -72,4 +72,11 @@ var LocationVisibility;
 // if .visible, .hidden, .CAD are missing, don't include this point.
 // On update:
 // If .visible or .hidden or .CAD present, save the location, otherwise, drop the request
+var AccountIndustry;
+(function (AccountIndustry) {
+    AccountIndustry["Fire"] = "fire";
+    AccountIndustry["Law"] = "law";
+    AccountIndustry["University"] = "university";
+    AccountIndustry["Utility"] = "utility";
+})(AccountIndustry = exports.AccountIndustry || (exports.AccountIndustry = {}));
 //# sourceMappingURL=constants.js.map

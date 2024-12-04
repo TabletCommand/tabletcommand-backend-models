@@ -24,8 +24,8 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { ConnectOptions } from "mongoose";
 import { MongooseModule } from "./helpers";
-import { DepartmentReportOdometer, LocationKindType, LocationSource, LocationVisibility, UserStealthStatus } from "./constants";
-export { DepartmentReportOdometer, LocationKindType, LocationSource, LocationVisibility, UserStealthStatus, };
+import { AccountIndustry, DepartmentReportOdometer, LocationKindType, LocationSource, LocationVisibility, UserStealthStatus } from "./constants";
+export { AccountIndustry, DepartmentReportOdometer, LocationKindType, LocationSource, LocationVisibility, UserStealthStatus, };
 export { ActionLog, ActionLogModel } from "./models/action-log";
 export { Agency, AgencyModel } from "./models/agency";
 export { ArcGISGroup, ArcGISGroupModel } from "./models/arcgis-group";

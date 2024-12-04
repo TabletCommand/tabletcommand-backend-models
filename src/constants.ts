@@ -69,3 +69,10 @@ export enum LocationVisibility {
 // if .visible, .hidden, .CAD are missing, don't include this point.
 // On update:
 // If .visible or .hidden or .CAD present, save the location, otherwise, drop the request
+
+export enum AccountIndustry {
+  Fire = "fire", // Default, when not set
+  Law = "law",
+  University = "university",
+  Utility = "utility",
+}

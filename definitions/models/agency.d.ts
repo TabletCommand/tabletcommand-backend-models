@@ -22,8 +22,8 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { MongooseModule } from "../helpers";
 import { Model } from "mongoose";
+import { MongooseModule } from "../helpers";
 import { AgencyType } from "../types/agency";
 export interface Agency extends AgencyType, Record<string, unknown> {
 }

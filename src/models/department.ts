@@ -3,6 +3,10 @@ import { Model } from "mongoose";
 import { mongooseLeanVirtuals } from "mongoose-lean-virtuals";
 
 import {
+  AccountIndustry,
+} from "../constants";
+
+import {
   currentDate,
   MongooseModule,
   retrieveCurrentUnixTime,
@@ -1808,6 +1812,11 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     managedIncidentPriority: {
       type: [ManagedIncidentPriorityItemSchema],
       default: ManagedIncidentPriorityDefault,
+    },
+
+    industry: {
+      type: String,
+      default: AccountIndustry.Fire,
     },
   }, {
     autoIndex: false,

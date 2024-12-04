@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ManagedIncidentPriorityDefault = exports.ManagedIncidentModeDefault = exports.OrientationMarkerColorDefault = exports.SamsaraConfigurationDefault = exports.VehicleStatusWebhookFieldsDefault = exports.ForwardFieldsDefault = exports.StatusMappingConfigDefault = exports.RestrictedCommentsDefault = exports.WebDisclaimerDefault = exports.SimpleSenseConfigDefault = exports.Mark43ConfigDefault = exports.SkymiraConfigDefault = exports.GSTConfigDefault = exports.SomewearDefault = exports.IncidentReplayDefault = exports.VehicleStatusWebhookConfigDefault = exports.ForwardingConfigDefault = exports.IntterraConfigDefault = exports.FirstArrivingConfigDefault = exports.SafetyPriorityKeywordDefault = exports.LicensingDefault = exports.FireMapperConfigurationDefault = exports.IntterraFieldsDefault = exports.Mark43StatusConfigDefault = void 0;
 const uuid = require("uuid");
 const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
+const constants_1 = require("../constants");
 const helpers_1 = require("../helpers");
 const color_1 = require("./schema/color");
 const pubnub_token_1 = require("./schema/pubnub-token");
@@ -1675,6 +1676,10 @@ async function DepartmentModule(mongoose) {
         managedIncidentPriority: {
             type: [ManagedIncidentPriorityItemSchema],
             default: exports.ManagedIncidentPriorityDefault,
+        },
+        industry: {
+            type: String,
+            default: constants_1.AccountIndustry.Fire,
         },
     }, {
         autoIndex: false,

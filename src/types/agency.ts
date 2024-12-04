@@ -1,4 +1,7 @@
 import { Types } from "mongoose";
+import {
+  AccountIndustry,
+} from "../constants";
 
 export interface EncryptedDataType {
   iv: string,
@@ -91,7 +94,8 @@ export interface AgencyType {
   cronConfig: AgencyCronConfigType,
   crossStaffing: CrossStaffedUnitType[],
   departmentId: Types.ObjectId,
-  domain: string
+  domain: string,
+  industry?: AccountIndustry,
   licensing: AgencyLicensing,
   modified_unix_date: number,
   modified: Date,

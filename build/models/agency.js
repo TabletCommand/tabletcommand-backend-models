@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AgencySchema = void 0;
 const uuid = require("uuid");
+const constants_1 = require("../constants");
 const helpers_1 = require("../helpers");
 const agency_cron_config_1 = require("./schema/agency-cron-config");
 const agency_saml_1 = require("./schema/agency-saml");
@@ -116,6 +117,10 @@ function AgencySchema(mongoose) {
             type: [AgencySAML],
             default: [],
             select: false, // Not a secret but not needed in all the queries
+        },
+        industry: {
+            type: String,
+            default: constants_1.AccountIndustry.Fire,
         },
     }, {
         autoIndex: false,
