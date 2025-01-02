@@ -25,7 +25,7 @@
 import { Model } from "mongoose";
 import { MongooseModule } from "../helpers";
 import { ColorSchemaType } from "../types/color";
-import { DepartmentType, ManagedIncidentModeItem } from "../types/department";
+import { DepartmentType, ManagedIncidentModeItem, ManagedIncidentPriority, ManagedIncidentPriorityItem } from "../types/department";
 export interface Department extends DepartmentType, Record<string, unknown> {
 }
 export declare const Mark43StatusConfigDefault: {
@@ -81,6 +81,7 @@ export declare const IntterraConfigDefault: {
 export declare const ForwardingConfigDefault: {
     enabled: boolean;
     connections: never[];
+    incidentWebhookEnabled: boolean;
 };
 export declare const VehicleStatusWebhookConfigDefault: {
     enabled: boolean;
@@ -181,7 +182,8 @@ export declare const SamsaraConfigurationDefault: {
 };
 export declare const OrientationMarkerColorDefault: ColorSchemaType;
 export declare const ManagedIncidentModeDefault: ManagedIncidentModeItem[];
-export declare const ManagedIncidentPriorityDefault: ManagedIncidentModeItem[];
+export declare const ManagedIncidentPriorityItemsDefault: ManagedIncidentPriorityItem[];
+export declare const ManagedIncidentPriorityDefault: ManagedIncidentPriority;
 export default function DepartmentModule(mongoose: MongooseModule): Promise<Model<Department, {}, {}, {}, import("mongoose").Document<unknown, {}, Department> & Department & Required<{
     _id: import("mongoose").Types.ObjectId;
 }>, any>>;

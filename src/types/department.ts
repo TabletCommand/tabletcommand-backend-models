@@ -332,6 +332,11 @@ export type ManagedIncidentPriorityItem = {
   position: number,
 };
 
+export type ManagedIncidentPriority = {
+  label: string,
+  items: ManagedIncidentPriorityItem[],
+};
+
 export type ManagedIncidentModeItem = {
   title: string,
   color: ColorSchemaType,
@@ -390,7 +395,7 @@ export interface DepartmentType {
   logOffEnabled: boolean,
   mark43: Mark43ConfigType
   managedIncidentMode: ManagedIncidentModeItem[],
-  managedIncidentPriority: ManagedIncidentPriorityItem[],
+  managedIncidentPriority: ManagedIncidentPriority,
   minPasswordLength: number,
   modified_unix_date: number,
   modified: Date,

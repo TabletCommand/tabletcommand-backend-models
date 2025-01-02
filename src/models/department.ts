@@ -35,6 +35,7 @@ import {
   IntterraFieldsType,
   LicensingType,
   ManagedIncidentModeItem,
+  ManagedIncidentPriority,
   ManagedIncidentPriorityItem,
   Mark43ConfigType,
   Mark43ProcessCommentConfigType,
@@ -200,6 +201,7 @@ export const IntterraConfigDefault = {
 export const ForwardingConfigDefault = {
   "enabled": false,
   "connections": [],
+  "incidentWebhookEnabled": false,
 };
 
 export const VehicleStatusWebhookConfigDefault = {
@@ -412,12 +414,22 @@ export const ManagedIncidentModeDefault: ManagedIncidentModeItem[] = [
   { title: "Transitional", color: { background: "#4E342E", text: "#F3E5F5" }, position: 6 },
 ];
 
-export const ManagedIncidentPriorityDefault: ManagedIncidentModeItem[] = [
+export const ManagedIncidentPriorityItemsDefault: ManagedIncidentPriorityItem[] = [
   { title: "Life", color: { background: "#6A1B9A", text: "#F5F5F5" }, position: 1 },
   { title: "Stabilization", color: { background: "#EDE7F6", text: "#00695C" }, position: 2 },
   { title: "Property", color: { background: "#FFF3E0", text: "#BF360C" }, position: 3 },
   { title: "Environment", color: { background: "#DCEDC8", text: "#424242" }, position: 4 },
 ];
+
+export const ManagedIncidentPriorityDefault: ManagedIncidentPriority = {
+  label: "Incident Priority",
+  items: [
+    { title: "Life", color: { background: "#6A1B9A", text: "#F5F5F5" }, position: 1 },
+    { title: "Stabilization", color: { background: "#EDE7F6", text: "#00695C" }, position: 2 },
+    { title: "Property", color: { background: "#FFF3E0", text: "#BF360C" }, position: 3 },
+    { title: "Environment", color: { background: "#DCEDC8", text: "#424242" }, position: 4 }
+  ],
+};
 
 export default async function DepartmentModule(mongoose: MongooseModule) {
   const { Schema } = mongoose;
@@ -1275,7 +1287,10 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
     position: {
       type: Number,
       default: 1,
-    },
+    }
+  }, {
+    _id: false,
+    id: false,
   });
 
   const ManagedIncidentPriorityItemSchema = new Schema<ManagedIncidentPriorityItem>({
@@ -1289,8 +1304,23 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       type: Number,
       default: 1,
     },
+  }, {
+    _id: false,
+    id: false,
   });
 
+  const ManagedIncidentPrioritySchema = new Schema<ManagedIncidentPriority>({
+    label: {
+      type: String,
+    },
+    items: {
+      type: [ManagedIncidentPriorityItemSchema],
+      default: [],
+    },
+  }, {
+    _id: false,
+    id: false,
+  });
   // Main schema
   const modelSchema = new Schema<DepartmentType>({
     _id: {
@@ -1810,7 +1840,7 @@ export default async function DepartmentModule(mongoose: MongooseModule) {
       default: ManagedIncidentModeDefault,
     },
     managedIncidentPriority: {
-      type: [ManagedIncidentPriorityItemSchema],
+      type: ManagedIncidentPrioritySchema,
       default: ManagedIncidentPriorityDefault,
     },
 

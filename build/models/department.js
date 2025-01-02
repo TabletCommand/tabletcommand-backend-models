@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ManagedIncidentPriorityDefault = exports.ManagedIncidentModeDefault = exports.OrientationMarkerColorDefault = exports.SamsaraConfigurationDefault = exports.VehicleStatusWebhookFieldsDefault = exports.ForwardFieldsDefault = exports.StatusMappingConfigDefault = exports.RestrictedCommentsDefault = exports.WebDisclaimerDefault = exports.SimpleSenseConfigDefault = exports.Mark43ConfigDefault = exports.SkymiraConfigDefault = exports.GSTConfigDefault = exports.SomewearDefault = exports.IncidentReplayDefault = exports.VehicleStatusWebhookConfigDefault = exports.ForwardingConfigDefault = exports.IntterraConfigDefault = exports.FirstArrivingConfigDefault = exports.SafetyPriorityKeywordDefault = exports.LicensingDefault = exports.FireMapperConfigurationDefault = exports.IntterraFieldsDefault = exports.Mark43StatusConfigDefault = void 0;
+exports.ManagedIncidentPriorityDefault = exports.ManagedIncidentPriorityItemsDefault = exports.ManagedIncidentModeDefault = exports.OrientationMarkerColorDefault = exports.SamsaraConfigurationDefault = exports.VehicleStatusWebhookFieldsDefault = exports.ForwardFieldsDefault = exports.StatusMappingConfigDefault = exports.RestrictedCommentsDefault = exports.WebDisclaimerDefault = exports.SimpleSenseConfigDefault = exports.Mark43ConfigDefault = exports.SkymiraConfigDefault = exports.GSTConfigDefault = exports.SomewearDefault = exports.IncidentReplayDefault = exports.VehicleStatusWebhookConfigDefault = exports.ForwardingConfigDefault = exports.IntterraConfigDefault = exports.FirstArrivingConfigDefault = exports.SafetyPriorityKeywordDefault = exports.LicensingDefault = exports.FireMapperConfigurationDefault = exports.IntterraFieldsDefault = exports.Mark43StatusConfigDefault = void 0;
 const uuid = require("uuid");
 const mongoose_lean_virtuals_1 = require("mongoose-lean-virtuals");
 const constants_1 = require("../constants");
@@ -140,6 +140,7 @@ exports.IntterraConfigDefault = {
 exports.ForwardingConfigDefault = {
     "enabled": false,
     "connections": [],
+    "incidentWebhookEnabled": false,
 };
 exports.VehicleStatusWebhookConfigDefault = {
     "enabled": false,
@@ -336,12 +337,21 @@ exports.ManagedIncidentModeDefault = [
     { title: "Marginal", color: { background: "#1B5E20", text: "#F5F5F5" }, position: 5 },
     { title: "Transitional", color: { background: "#4E342E", text: "#F3E5F5" }, position: 6 },
 ];
-exports.ManagedIncidentPriorityDefault = [
+exports.ManagedIncidentPriorityItemsDefault = [
     { title: "Life", color: { background: "#6A1B9A", text: "#F5F5F5" }, position: 1 },
     { title: "Stabilization", color: { background: "#EDE7F6", text: "#00695C" }, position: 2 },
     { title: "Property", color: { background: "#FFF3E0", text: "#BF360C" }, position: 3 },
     { title: "Environment", color: { background: "#DCEDC8", text: "#424242" }, position: 4 },
 ];
+exports.ManagedIncidentPriorityDefault = {
+    label: "Incident Priority",
+    items: [
+        { title: "Life", color: { background: "#6A1B9A", text: "#F5F5F5" }, position: 1 },
+        { title: "Stabilization", color: { background: "#EDE7F6", text: "#00695C" }, position: 2 },
+        { title: "Property", color: { background: "#FFF3E0", text: "#BF360C" }, position: 3 },
+        { title: "Environment", color: { background: "#DCEDC8", text: "#424242" }, position: 4 }
+    ],
+};
 async function DepartmentModule(mongoose) {
     const { Schema } = mongoose;
     const PubNubToken = (0, pubnub_token_1.default)(mongoose);
@@ -1158,7 +1168,10 @@ async function DepartmentModule(mongoose) {
         position: {
             type: Number,
             default: 1,
-        },
+        }
+    }, {
+        _id: false,
+        id: false,
     });
     const ManagedIncidentPriorityItemSchema = new Schema({
         title: {
@@ -1171,6 +1184,21 @@ async function DepartmentModule(mongoose) {
             type: Number,
             default: 1,
         },
+    }, {
+        _id: false,
+        id: false,
+    });
+    const ManagedIncidentPrioritySchema = new Schema({
+        label: {
+            type: String,
+        },
+        items: {
+            type: [ManagedIncidentPriorityItemSchema],
+            default: [],
+        },
+    }, {
+        _id: false,
+        id: false,
     });
     // Main schema
     const modelSchema = new Schema({
@@ -1674,7 +1702,7 @@ async function DepartmentModule(mongoose) {
             default: exports.ManagedIncidentModeDefault,
         },
         managedIncidentPriority: {
-            type: [ManagedIncidentPriorityItemSchema],
+            type: ManagedIncidentPrioritySchema,
             default: exports.ManagedIncidentPriorityDefault,
         },
         industry: {
